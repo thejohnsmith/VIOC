@@ -1,0 +1,161 @@
+<style>
+  #welcome {
+    float: left;
+    width: 100%;
+    padding-left: 7px;
+    padding-bottom: 44px;
+  }
+
+  #welcome h3 {
+    color: #045E90;
+    font-size: 23px;
+    font-weight: normal;
+    padding-bottom: 17px;
+  }
+
+  #welcome p {
+    font-size: 19px;
+  }
+</style>
+<section id="welcome">
+
+  <!-- Added .welcome-message-custom field for dataService
+  -->
+  <h3>Welcome <span class="welcome-message-custom">%%user.firstname%%</span></h3>
+  <p>VIOC is pleased to present the new VDirect portal. You can access multi-part lifecycle campaigns, recurring additional offers as well as specific email/direct mail templates.</p>
+</section>
+
+<script>
+/*  var $j = jQuery.noConflict();
+  $j(function() {
+  var ac_url = 'http://uc1wviocneo01.res.prod.global/jssp/vioc/getUser.jssp';
+    $j.ajax({
+      url: ac_url,
+      success: function(result) {
+        $j('.welcome-message-custom').text(result.firstName + '!'));
+        console.log(result.firstName);
+      }
+    });
+  });
+  $.getJSON('data.json', function(data) {
+	var output = '<ul>';
+	$.each(data, function(key, val) {
+		output += '<li>' + val.name + '</li>';
+	});
+	output +='</ul>';
+	$('#update').prepend(output);
+});
+  */
+</script>
+
+<link href="https://files.marcomcentral.app.pti.com/epsilon/marcom/css/homepage.css" rel="stylesheet" type="text/css" />
+<link href="https://files.marcomcentral.app.pti.com/epsilon/marcom/css/carousel.css" rel="stylesheet" type="text/css" />
+
+
+
+<!-- carousel -->
+
+<div class="carouselHolder">
+  <div id="myCarousel" class="carousel slide" data-ride="carousel">
+    <ol class="carousel-indicators">
+      <li data-target="#myCarousel" data-slide-to="0" class="active leftindicator-2"></li>
+      <li data-target="#myCarousel" data-slide-to="1" class="leftindicator-1"></li>
+      <li data-target="#myCarousel" data-slide-to="2" class="indicator-0"></li>
+      <li data-target="#myCarousel" data-slide-to="3" class="rightIndicator-1"></li>
+      <li data-target="#myCarousel" data-slide-to="4" class="rightIndicator-2"></li>
+      <li data-target="#myCarousel" data-slide-to="5" class="rightIndicator-2"></li>
+      <li data-target="#myCarousel" data-slide-to="6" class="rightIndicator-2"></li>
+    </ol>
+    <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+      < </a> <a class="right carousel-control" href="#myCarousel" data-slide="next"> > </a>
+        <div class="carousel-inner">
+
+          <!-- 1 assign 'item active when updated' -->
+          <div class="item active">
+            <div class="topSlice">
+              <h1>%%user.firstname%%, We're Coming Soon</h1>
+              <p>New PowerPoint Templates</p>
+            </div>
+          </div>
+
+          <!-- 2 -->
+
+          <div class="item">
+            <div class="topSlice">
+              <h1>Coming Soon 2</h1>
+              <p>New PowerPoint Templates</p>
+            </div>
+          </div>
+
+          <div class="item">
+            <div class="topSlice">
+              <h1>Coming Soon 3</h1>
+              <p>New PowerPoint Templates</p>
+            </div>
+          </div>
+
+          <div class="item">
+            <div class="topSlice">
+              <h1>Coming Soon 4</h1>
+              <p>New PowerPoint Templates</p>
+            </div>
+          </div>
+
+          <div class="item">
+            <div class="topSlice">
+              <h1>Coming Soon 5</h1>
+              <p>New PowerPoint Templates</p>
+            </div>
+          </div>
+
+          <div class="item">
+            <div class="topSlice">
+              <h1>Coming Soon 6</h1>
+              <p>New PowerPoint Templates</p>
+            </div>
+          </div>
+
+          <div class="item">
+            <div class="topSlice">
+              <h1>Coming Soon 7</h1>
+              <p>New PowerPoint Templates</p>
+            </div>
+          </div>
+
+
+          <!-- end slides -->
+        </div>
+  </div>
+</div>
+<script type="text/javascript" src="https://files.marcomcentral.app.pti.com/epsilon/marcom/js/bootstrap.js">
+</script>
+
+<script>
+  $j('.carousel').carousel({
+    interval: 15000,
+    pause: 'hover'
+  });
+</script>
+
+<!-- end carousel -->
+
+<!-- Begin Items  -->
+<div class="iconsHolder clearfix">
+
+  <a href="#">
+    <div class="icons iconsCorp"> </div>
+  </a>
+
+
+
+  <a href="#">
+    <div class="icons iconsGroc "> </div>
+  </a>
+
+  <a href="#">
+    <div class="icons iconsFood iconsLast"> </div>
+  </a>
+
+  <!-- end -->
+</div>
+<!-- End Items -->

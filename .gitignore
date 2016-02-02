@@ -1,0 +1,23 @@
+# Logs
+logs
+*.log
+npm-debug.log*
+
+# Runtime data
+pids
+*.pid
+*.seed
+# Dependency directory
+node_modules
+
+# Optional npm cache directory
+.npm
+
+#Installed components via bower
+bower_components/
+
+# FTP Configuration
+.ftpconfig
+
+# Mac Folder Configs
+.DS_Store

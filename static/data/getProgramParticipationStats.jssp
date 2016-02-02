@@ -1,0 +1,32 @@
+[
+  {
+    "id": 1,
+    "programName": "Reminder",
+    "storesParticipating": 0,
+    "storesEligible": 3
+  },
+  {
+    "id": 2,
+    "programName": "Lapsed",
+    "storesParticipating": 1,
+    "storesEligible": 3
+  },
+  {
+    "id": 3,
+    "programName": "Relapsed",
+    "storesParticipating": 3,
+    "storesEligible": 3
+  },
+  {
+    "id": 4,
+    "programName": "Lost",
+    "storesParticipating": 0,
+    "storesEligible": 3
+  },
+  {
+    "id": 5,
+    "programName": "Reactivation",
+    "storesParticipating": 3,
+    "storesEligible": 2
+  }
+]
