@@ -64,39 +64,40 @@
     /**
      * Updates the .program-select properties.
      * @param {object} result Json object from API request.
-     * @param {string} $storeId Shorthand for items.
+     * @param {string} $programId Shorthand for items.
      * @return {string} outputs fill sections.
      */
     function upDateProgramsDashboard(result) {
       // define colors
-      var storeStatusClasses = {
+      var programStatusClasses = {
         reminder: ['status-red'],
         relapsed: ['status-yellow'],
         lapsed: ['status-green'],
         error: ['status-error']
       };
       return $.each(result, function(index, obj) {
-        var $storeId = $('#store-' + obj.id);
-        $storeId.find(
+        var $programId = $('#program-' + obj.id);
+        $programId.attr('data-program-id', obj.id);
+        $programId.find(
           '.checkbox-area input').data(
           'radiobox-label', obj.programName);
-        $storeId.find('.storesParticipating')
+        $programId.find('.storesParticipating')
           .text(obj.storesParticipating);
-        $storeId.find(
+        $programId.find(
             '.storesEligible')
           .text(obj.storesEligible);
         // No stores participating : Red
         if (obj.storesParticipating === 0) {
-          $storeId.attr('class', storeStatusClasses.reminder);
+          $programId.attr('class', programStatusClasses.reminder);
         }
         // More than one store participating : Yellow
         if (obj.storesParticipating > 0) {
-          $storeId.attr('class', storeStatusClasses.relapsed);
+          $programId.attr('class', programStatusClasses.relapsed);
           updateParticipationDashboard();
         }
         // All stores participating : Green
         if (obj.storesParticipating === obj.storesEligible) {
-          $storeId.attr('class', storeStatusClasses.lapsed);
+          $programId.attr('class', programStatusClasses.lapsed);
         }
         // Check for errors:
         // If more stores participating than eligible display error state.
@@ -108,7 +109,7 @@
         // Color : Gray
         // Displays warning symbol '⚠'
         function handleError(obj) {
-          $storeId.attr('class', storeStatusClasses.error).find(
+          $programId.attr('class', programStatusClasses.error).find(
             '.program-status').html('&#9888;').attr('title',
             'An error occured');
         }
@@ -127,7 +128,7 @@
         'Please check back again later.'
       );
       $('.alert-container').html(
-        '<div class="alert-main alert-danger">DANGER: An error occured</div>'
+        '<programss="alert-main alert-danger">DANGER: An error occured</div>'
       ).fadeIn();
     }
   });
