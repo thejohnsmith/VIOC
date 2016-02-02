@@ -1087,7 +1087,7 @@ header .header-right a:hover {
   -moz-transition: 0.5s;
   -o-transition: 0.5s;
 }
-.program-inputs .store-btn input[type='button']:hover {
+.program-inputs .store-btn input[type="button"]:hover {
   background: #E02926;
 }
 .program-inputs p.note-area {
@@ -1162,7 +1162,7 @@ header .header-right a:hover {
   padding: 0 2px;
   height: 24px;
   font-size: 17px;
-  font-family: 'HelveticaNeueLT-Condensed';
+  font-family: "HelveticaNeueLT-Condensed";
   text-align: center;
   box-shadow: none;
   -webkit-appearance: none;
