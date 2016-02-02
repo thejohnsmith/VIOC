@@ -24,7 +24,7 @@ var customCheckAndRadioBoxes = (function($) {
       if ($jsAllSelectableChecked.length === $jsAllSelectable.length) {
         return;
       }
-      // setStoreSubscription.makeRequest();
+      setStoreSubscription.makeRequest();
       $('.left-container').append(
         '<div class="alert-container"><br>' +
         '<div class="alert-main alert-success">' +

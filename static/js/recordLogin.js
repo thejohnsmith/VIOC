@@ -8,14 +8,6 @@
      data-user-email="%%User.Email%%"
  */
 var recordLogin = (function($) {
-  var $userRelated = $('.user-related');
-  var $userObj = {
-    externalId: $userRelated.data('user-external-id') || 654321,
-    loginId: $userRelated.data('user-login-id') || 'BetaUser',
-    firstName: $userRelated.data('user-first-name') || '',
-    lastName: $userRelated.data('user-last-name') || '',
-    email: $userRelated.data('user-email') || ''
-  };
   var makeRequest = function() {
     var localDevUrl =
       'data/recordLogin.jssp';
@@ -30,7 +22,7 @@ var recordLogin = (function($) {
         'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
       },
       data: {
-        userId: $userObj.userExternalId || 654321
+        userId: marcomUserData.$user.externalId || 654321
       },
       processData: true,
       contentType: 'application/json'

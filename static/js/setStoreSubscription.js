@@ -15,12 +15,15 @@ var setStoreSubscription = (function($) {
       'https://adobe-uat-vioc.epsilon.com/jssp/vioc/setStoreSubscription.jssp';
     $.ajax({
       url: localDevUrl,
-      type: 'post',
+      type: 'POST',
       data: {
         userId: 654321,
         programIds: 1
       },
       processData: true,
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
+      },
       contentType: 'application/json'
     }).done(function(result) {
       console.log('Data Loaded: ' + result);

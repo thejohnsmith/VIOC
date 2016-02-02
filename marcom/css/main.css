@@ -709,7 +709,7 @@ ul.navBarEnhanced li:nth-child(0) {
 }
 #programSummary .program-select li.status-yellow .program-status {
   background: #FFE600;
-  text-shadow: -2px 0px 2px rgba(72, 72, 72, 0.4);
+  color: #9E9E9E;
 }
 #programSummary .program-select li.status-red .program-status {
   background: #E1261C;
@@ -745,6 +745,10 @@ ul.navBarEnhanced li:nth-child(0) {
 .program-select--is-active-user .program-info .program-status {
   float: none;
   width: auto;
+}
+#programSummary .program-select--is-active-user label {
+  cursor: default!important;
+  color: #555!important;
 }
 .check-box-main {
   float: left;
