@@ -140,6 +140,17 @@ img {
 .clear {
   clear: both;
 }
+table {
+  border-collapse: separate;
+  border-spacing: 0;
+}
+caption, th, td {
+  text-align: left;
+  font-weight: normal;
+}
+a {
+  text-decoration: none;
+}
 a:hover {
   text-decoration: none;
 }
@@ -251,15 +262,15 @@ li.navBarItem {
   margin: 0 auto;
 }
 .NavTop {
+  display: none;
   float: none;
   background: none;
   max-width: 1200px;
   width: 90%;
   margin: 0 auto;
   position: absolute;
-  left: 5%;
-  right: 5%;
   z-index: 0;
+  padding: 4px 5px 5px 5px;
 }
 .NavTop > div {
   max-width: 1200px;
@@ -297,6 +308,86 @@ ul.navBarEnhanced li:nth-child(0) {
 }
 .catalogRoot, #copyright, .FooterBottom {
   display: none;
+}
+header#nav {
+  font-family: 'HelveticaNeueLT-Condensed', sans-serif;
+  background: #f3f4f4;
+  padding: 0 0;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.header-top {
+  float: left;
+  width: 100%;
+  padding-bottom: 16px;
+  min-height: 87px;
+}
+.header-top .header-left {
+  float: left;
+  width: 80%;
+  position: relative;
+  margin-top: 12px;
+}
+.logo {
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+.header-info {
+  float: left;
+  padding-left: 106px;
+  padding-top: 11px;
+}
+.header-info h2 {
+  font-size: 16px;
+  font-family: 'HelveticaNeueLT-Thin';
+  font-weight: normal;
+  text-transform: uppercase;
+}
+.header-info h3 {
+  font-size: 22px;
+  font-weight: normal;
+  font-family: 'HelveticaNeueLT-Thin';
+  text-transform: uppercase;
+  letter-spacing: 1.9px;
+}
+.header-info h3 b {
+  font-family: 'HelveticaNeueLT-Thin';
+  font-size: 30px;
+  font-weight: normal;
+}
+.header-right {
+  float: right;
+  width: 20%;
+  text-align: right;
+  padding-top: 8px;
+  padding-right: 22px;
+}
+.header-right a {
+  color: #555655;
+  text-transform: uppercase;
+  font-size: 10px;
+}
+.header-right a + a {
+  position: relative;
+  padding-left: 10px;
+}
+.header-right a + a:before {
+  content: '|';
+  color: #000;
+  position: absolute;
+  left: 0;
+  width: 1px;
+  top: -3px;
+  font-size: 15px;
+}
+.header-right a:hover {
+  color: #00aeef;
+}
+.header-nav {
+  float: left;
+  width: 100%;
+  background: #e3e3e2;
 }
 
 /*Default menu styles*/

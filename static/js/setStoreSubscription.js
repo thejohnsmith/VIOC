@@ -17,7 +17,7 @@ var setStoreSubscription = (function($) {
       url: localDevUrl,
       type: 'POST',
       data: {
-        userId: 654321,
+        userId: marcomUserData.$user.externalId || '',
         programIds: 1
       },
       processData: true,

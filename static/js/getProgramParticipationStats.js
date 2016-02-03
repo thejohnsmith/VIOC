@@ -15,7 +15,10 @@
 
     $.ajax({
       url: acUrl,
-      dataType: 'json'
+      type: 'GET',
+      data: {
+        userId: marcomUserData.$user.externalId || ''
+      }
     }).done(function(result) {
       upDateProgramsDashboard(result);
       getProgramTitle(result);

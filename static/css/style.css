@@ -87,7 +87,7 @@ input[type='text']:focus, input[type='password']:focus, input[type='search']:foc
 /* Home Page Style
  ================================================== */
 
-header {
+header#nav {
   float: left;
   width: 100%;
   background: #f3f4f4;

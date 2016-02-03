@@ -22,7 +22,7 @@ var recordLogin = (function($) {
         'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
       },
       data: {
-        userId: marcomUserData.$user.externalId || 654321
+        userId: marcomUserData.$user.externalId || ''
       },
       processData: true,
       contentType: 'application/json'
