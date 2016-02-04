@@ -14,7 +14,7 @@
       'https://adobe-uat-vioc.epsilon.com/jssp/vioc/getProgramParticipationStats.jssp';
     var programId = window.location.href.slice(-1);
     $.ajax({
-      url: acUrl,
+      url: localDevUrl,
       type: 'GET',
       dataType: 'json',
       processData: true,
