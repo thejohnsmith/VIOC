@@ -14,17 +14,20 @@
       'https://adobe-uat-vioc.epsilon.com/jssp/vioc/getProgramParticipationStats.jssp';
     var programId = window.location.href.slice(-1);
     $.ajax({
-      url: marcomDevUrl,
+      url: acUrl,
       type: 'GET',
       dataType: 'json',
+      processData: true,
       data: {
         userId: marcomUserData.$user.externalId
+      },
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
       }
     }).done(function(result) {
-      upDateProgramsDashboard(result);
+      //upDateProgramsDashboard(result);
       getProgramTitle(result);
-      // Initialize the custom input skins
-      //customCheckAndRadioBoxes.check();
+      loadProgramData(result);
     }).fail(function() {
       ajaxclientFailed();
     });
@@ -61,6 +64,18 @@
       });
     }
 
+    function loadProgramData(result) {
+      if ($('.program-list').length) {
+        var programSelectTpl = $('.program-list-template').html();
+        var programDataRendered = Mustache.render(programSelectTpl,
+          result);
+        Mustache.parse(programSelectTpl);
+        $('.program-list').html(programDataRendered);
+        return upDateProgramsDashboard(result);
+
+      }
+    }
+
     /**
      * Updates the .program-select properties.
      * @param {object} result Json object from API request.
@@ -77,32 +92,24 @@
       };
       return $.each(result, function(index, obj) {
         var $programId = $('#program-' + obj.id);
-        $programId.attr('data-program-id', obj.id);
-        $programId.find(
-          '.checkbox-area input').data(
-          'radiobox-label', obj.programName);
-        $programId.find('.storesParticipating')
-          .text(obj.storesParticipating);
-        $programId.find(
-            '.storesEligible')
-          .text(obj.storesEligible);
+        console.log(Number(obj.storesEnrolled));
         // No stores participating : Red
-        if (obj.storesParticipating === 0) {
+        if (obj.storesEnrolled === 0) {
           $programId.attr('class', programStatusClasses.reminder);
         }
         // More than one store participating : Yellow
-        if (obj.storesParticipating > 0) {
+        if (obj.storesEnrolled > 0) {
           $programId.attr('class', programStatusClasses.relapsed);
           updateParticipationDashboard();
         }
         // All stores participating : Green
-        if (obj.storesParticipating === obj.storesEligible) {
+        if (obj.storesEnrolled === obj.storesEligible) {
           $programId.attr('class', programStatusClasses.lapsed);
         }
         // Check for errors:
         // If more stores participating than eligible display error state.
-        if (obj.storesParticipating > obj.storesEligible || !$.isNumeric(
-            obj.storesParticipating)) {
+        if (obj.storesEnrolled > obj.storesEligible || !$.isNumeric(
+            obj.storesEnrolled)) {
           handleError(obj);
         }
         // Handle errors
@@ -138,27 +145,27 @@
 // var result = [{
 //   "id": 1,
 //   "programName": "Reminder",
-//   "storesParticipating": 0,
+//   "storesEnrolled": 0,
 //   "storesEligible": 3
 // }, {
 //   "id": 2,
 //   "programName": "Lapsed",
-//   "storesParticipating": 3,
+//   "storesEnrolled": 3,
 //   "storesEligible": 3
 // }, {
 //   "id": 3,
 //   "programName": "Relapsed",
-//   "storesParticipating": 3,
+//   "storesEnrolled": 3,
 //   "storesEligible": 3
 // }, {
 //   "id": 4,
 //   "programName": "Lost",
-//   "storesParticipating": 1,
+//   "storesEnrolled": 1,
 //   "storesEligible": 3
 // }, {
 //   "id": 5,
 //   "programName": "Reactivation",
-//   "storesParticipating": 3,
+//   "storesEnrolled": 3,
 //   "storesEligible": 3
 // }];
 // upDateProgramsDashboard(result);

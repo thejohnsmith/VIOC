@@ -14,8 +14,8 @@ var setStoreSubscription = (function($) {
     var acUrl =
       'https://adobe-uat-vioc.epsilon.com/jssp/vioc/setStoreSubscription.jssp';
     $.ajax({
-      url: localDevUrl,
-      type: 'POST',
+      url: acUrl,
+      type: 'GET',
       data: {
         userId: marcomUserData.$user.externalId
       },
