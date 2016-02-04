@@ -92,7 +92,7 @@
       };
       return $.each(result, function(index, obj) {
         var $programId = $('#program-' + obj.id);
-        console.log(Number(obj.storesEnrolled));
+        // console.log(Number(obj.storesEnrolled));
         // No stores participating : Red
         if (obj.storesEnrolled === 0) {
           $programId.attr('class', programStatusClasses.reminder);
