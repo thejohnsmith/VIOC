@@ -15,34 +15,45 @@ var customCheckAndRadioBoxes = (function($) {
       $(this).closest('.customRadiobox').addClass('focused');
     });
   };
-  var selectAllCustom = function() {
-    $('.js-trigger-all-selectable').on('click', function() {
-      var $jsAllSelectable = $('.js-all-selectable');
-      var $jsAllSelectableChecked = $('.js-all-selectable.checked');
 
-      // Return if all are already selected.
-      if ($jsAllSelectableChecked.length === $jsAllSelectable.length) {
-        return;
-      }
-      setStoreSubscription.makeRequest();
-      $('.left-container').append(
-        '<div class="alert-container"><br>' +
-        '<div class="alert-main alert-success">' +
-        'SUCCESS: Programs have loaded.</div></div>'
-      ).fadeIn();
-      setTimeout(function() {
-        $('.alert-container').fadeOut();
-        setTimeout(function() {
-          $('.alert-container').remove();
-        }, 1500);
-      }, 1400);
 
-      $jsAllSelectable.addClass('checked').find($(
-        'input')).prop(
-        'checked',
-        'checked').focus();
+  var enrollPrograms = function($activeBoxValues) {
+
+  }
+
+  // var selectAllCustomBoxes = function() {
+  //   $('.js-trigger-enroll').on('click', function() {
+  //     var $jsAllSelectable = $('.js-all-selectable');
+  //     var $jsAllSelectableChecked = $(
+  //       '.js-all-selectable.checked');
+  //
+  //     // Return if all are already selected.
+  //     if ($jsAllSelectableChecked.length === $jsAllSelectable
+  //       .length) {
+  //       return;
+  //     }
+  //     $jsAllSelectable.addClass('checked').find($(
+  //       'input')).prop(
+  //       'checked',
+  //       'checked').focus();
+  //   });
+  //   return;
+  // };
+
+  var handleActiveBoxes = function activeHandler() {
+    var $activeBoxValues = $.map($('input:checkbox:checked'),
+      function(e, i) {
+        return Number(e.value);
+      });
+    console.log('the checked values are: ' + $activeBoxValues.join(
+      ''));
+    $('.js-trigger-enroll').on('click', function($activeBoxValues) {
+
+      /** Call the Subscription Request
+       *  TO DO: Collect the ID's of the selected programs.
+       */
+      return setStoreSubscription.makeRequest($activeBoxValues);
     });
-    return;
   };
 
   var customCheckbox = function() {
@@ -58,16 +69,20 @@ var customCheckAndRadioBoxes = (function($) {
         $(this).find('input').trigger('change');
         if ($(this).hasClass('checked')) {
           $(this).removeClass('checked');
-          $(this).find($('input[type="checkbox"]')).prop('checked',
+          $(this).find($('input[type="checkbox"]')).prop(
+            'checked',
             '');
         } else {
           $(this).addClass('checked');
-          $(this).find($('input[type="checkbox"]')).prop('checked',
+          $(this).find($('input[type="checkbox"]')).prop(
+            'checked',
             'checked').focus();
+
         }
+        return handleActiveBoxes();
       }
     });
-    selectAllCustom();
+
     combinedHandlers();
   };
   var customRadiobox = function() {
@@ -76,7 +91,8 @@ var customCheckAndRadioBoxes = (function($) {
       $(this).parent().append('<label>' + $(this).data(
           'radiobox-label') +
         '</label>');
-      $(this).css('position', 'absolute').css('left', '-999999px');
+      $(this).css('position', 'absolute').css('left',
+        '-999999px');
     });
     $('input:radio').each(function() {
       if ($(this).attr('checked') === 'checked') {
@@ -84,7 +100,8 @@ var customCheckAndRadioBoxes = (function($) {
       }
     });
     $('.customRadiobox').click(function() {
-      if (!$(this).children('input[type="radio"]').is('[readonly]')) {
+      if (!$(this).children('input[type="radio"]').is(
+          '[readonly]')) {
         $(this).find('input').trigger('change');
         if ($(this).hasClass('checked')) {
           // (this).find($('input[type="radio"]')).removeAttr('checked');
@@ -97,7 +114,8 @@ var customCheckAndRadioBoxes = (function($) {
             'input:radio').prop(
             'name') + '"]').not($(this)).prop('checked', '');
           $(this).addClass('checked');
-          $(this).find($('input[type="radio"]')).prop('checked',
+          $(this).find($('input[type="radio"]')).prop(
+            'checked',
             'checked').focus();
         }
       }

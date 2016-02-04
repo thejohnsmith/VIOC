@@ -5,7 +5,7 @@
  */
 var setStoreSubscription = (function($) {
 
-  var makeRequest = function() {
+  var makeRequest = function($activeBoxValues) {
     // var userId =
     var localDevUrl =
       'data/setStoreSubscription.jssp';
@@ -17,8 +17,7 @@ var setStoreSubscription = (function($) {
       url: localDevUrl,
       type: 'POST',
       data: {
-        userId: marcomUserData.$user.externalId || '',
-        programIds: 1
+        userId: marcomUserData.$user.externalId
       },
       processData: true,
       headers: {
@@ -27,9 +26,11 @@ var setStoreSubscription = (function($) {
       contentType: 'application/json'
     }).done(function(result) {
       console.log('Data Loaded: ' + result);
-      $('.alert-container').html('<div class="alert-main alert-success">SUCCESS: Programs have loaded.</div>').fadeIn();
+      toastr.success('The stores were enrolled successfully.');
     }).fail(function() {
-      console.log('setStoreSubscription failed');
+      console.log('setStoreSubscription failed ' + $activeBoxValues);
+      // Display a success toast, with a title
+      toastr.error('The stores were not enrolled.');
     });
   };
 

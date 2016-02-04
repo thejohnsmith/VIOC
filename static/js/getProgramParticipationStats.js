@@ -12,12 +12,13 @@
       'https://files.marcomcentral.app.pti.com/epsilon/static/data/getProgramParticipationStats.jssp';
     var acUrl =
       'https://adobe-uat-vioc.epsilon.com/jssp/vioc/getProgramParticipationStats.jssp';
-
+    var programId = window.location.href.slice(-1);
     $.ajax({
-      url: acUrl,
+      url: marcomDevUrl,
       type: 'GET',
+      dataType: 'json',
       data: {
-        userId: marcomUserData.$user.externalId || ''
+        userId: marcomUserData.$user.externalId
       }
     }).done(function(result) {
       upDateProgramsDashboard(result);
@@ -28,30 +29,25 @@
       ajaxclientFailed();
     });
 
-    /**
+    /** Get Program title
      * Gets the programTitle from API matched to the programID hash in the URL.
      * @param {object} result Json object from API request.
      * @return {string} programTitle
      */
-    var programId = window.location.href.slice(-1);
-
     function getProgramTitle(result) {
       return result.map(function(obj) {
-        if (JSON.stringify(obj.id) < programId) {
-          var programTitle = 'Unknown';
+        var programTitle;
+        if (programId === '#' || programId < 1) {
+          programTitle = 'Unknown';
           return setProgramTitle(programTitle);
         } else if (JSON.stringify(obj.id) === programId) {
-          var programTitle = obj.programName;
+          programTitle = obj.programName;
           return setProgramTitle(programTitle);
-        } else {
-          $('.alert-container').html(
-            '<div class="alert-main alert-danger">DANGER: An error occured</div>'
-          ).fadeIn();
         }
       });
     }
 
-    /**
+    /** Set Program title
      * Sets the programTitle text for the page header.
      * Fades title in to prevent flashing of other text.
      * @param {object} result Json object from API request.
@@ -64,6 +60,7 @@
         opacity: 1
       });
     }
+
     /**
      * Updates the .program-select properties.
      * @param {object} result Json object from API request.

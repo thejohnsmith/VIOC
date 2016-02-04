@@ -1,13 +1,15 @@
-[{
-	"store_id": 101,
-	"subscription_id": 1
-}, {
-	"store_id": 102,
-	"subscription_id": 2
-}, {
-	"store_id": 103,
-	"subscription_id": 3
-}, {
-	"store_id": 104,
-	"subscription_id": 4
-}]
+[
+	{
+		"store_id": 101,
+		"subscription_id": 1
+	}, {
+		"store_id": 102,
+		"subscription_id": 2
+	}, {
+		"store_id": 103,
+		"subscription_id": 3
+	}, {
+		"store_id": 104,
+		"subscription_id": 4
+	}
+]

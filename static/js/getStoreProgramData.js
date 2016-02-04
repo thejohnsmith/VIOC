@@ -13,9 +13,13 @@
     var acUrl =
       'https://adobe-uat-vioc.epsilon.com/jssp/vioc/getStoreProgramData.jssp';
     var programId = window.location.href.slice(-1);
+
     $.ajax({
       url: acUrl,
-      dataType: 'json'
+      dataType: 'json',
+      data: {
+        userId: marcomUserData.$user.externalId
+      }
     }).done(function(result) {
       loadStoreProgramData(result);
       // Initialize the custom input skins after ajax loads.
@@ -29,7 +33,8 @@
       // TO TO: make sure the costEstimate var renderes as .00 if price is 23.00
       if ($('.storeProgramData').length) {
         var programDataTpl = $('#programDataTpl').html();
-        var programDataRendered = Mustache.render(programDataTpl, result);
+        var programDataRendered = Mustache.render(programDataTpl,
+          result);
         Mustache.parse(programDataTpl); // optional, speeds up future uses
         $('.storeProgramData').html(programDataRendered);
         return calculateTotals(result);
@@ -54,7 +59,9 @@
       $('.channelDMTotal').text(result.sum('channelDM'));
       $('.channelSMSTotal').text(result.sum('channelSMS'));
       $('.costEstimateTotal').text(result.sum('costEstimate').toFixed(2));
-      $('.alert-container').html('<div class="alert-main alert-success">SUCCESS: Programs have loaded.</div>').fadeIn();
+      $('.alert-container').html(
+        '<div class="alert-main alert-success">SUCCESS: Programs have loaded.</div>'
+      ).fadeIn();
       return formatCurrency();
     }
 
@@ -74,7 +81,9 @@
         'There was a problem fetching your programs.' +
         'Please check back again later.'
       );
-      $('.alert-container').html('<div class="alert-main alert-danger">Error: There was a problem loading the store data.</div>').fadeIn();
+      $('.alert-container').html(
+        '<div class="alert-main alert-danger">Error: There was a problem loading the store data.</div>'
+      ).fadeIn();
     }
   });
 }));
