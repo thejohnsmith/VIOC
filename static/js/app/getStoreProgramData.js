@@ -29,8 +29,6 @@
     });
 
     function loadStoreProgramData(result) {
-
-      // TO TO: make sure the costEstimate var renderes as .00 if price is 23.00
       if ($('.storeProgramData').length) {
         var programDataTpl = $('#programDataTpl').html();
         var programDataRendered = Mustache.render(programDataTpl,
@@ -38,14 +36,9 @@
         Mustache.parse(programDataTpl); // optional, speeds up future uses
         $('.storeProgramData').html(programDataRendered);
         return calculateTotals(result);
-
       }
     }
 
-    /**
-     *
-     *
-     */
     function calculateTotals(result) {
       Array.prototype.sum = function(prop) {
         var total = 0
@@ -66,8 +59,6 @@
     }
 
     /** Adds decimal places to cost numbers
-     *
-     *
      */
     function formatCurrency(argument) {
       return $('.js-format-currency').each(function(argument) {

@@ -29,8 +29,10 @@ var setStoreSubscription = (function($) {
       toastr.success(
         'Enrollment preferences have been updated for the selected programs.'
       );
+      // Get a new copy of data, populate the template and reinitialize the buttons.
+      getProgramParticipationStats.makeRequest();
+      customCheckAndRadioBoxes.customCheckbox();
     }).fail(function() {
-      // Display a success toast, with a title
       toastr.error('An internal error has occurred.');
       console.log(
         '** Request failed **\nProgram IDs sent to API:\n' +

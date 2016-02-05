@@ -30,7 +30,7 @@ var getProgramParticipationStats = (function($) {
       }).fail(function() {
         requestFailed();
       });
-    }(),
+    },
     /** Get Program title
      * Gets the programTitle from API matched to the programID hash in the URL.
      * @param {object} result Json object from API request.
@@ -68,13 +68,15 @@ var getProgramParticipationStats = (function($) {
      * @retrun {function} upDateProgramsDashboard
      */
     loadProgramData = function(result) {
-      if ($('.program-list').length) {
-        var $programSelectTpl = $('.program-list-template').html();
-        var programDataRendered = Mustache.render($programSelectTpl,
-          result);
-        Mustache.parse($programSelectTpl);
-        $('.program-list').html(programDataRendered);
-        return upDateProgramsDashboard(result);
+      if ($('.program-select').length) {
+        $.get(
+          'https://files.marcomcentral.app.pti.com/epsilon/static/program-list.mustache.html',
+          function(templates) {
+            var template = $(templates).filter('.program-list-template').html();
+            $('.program-select').html(Mustache.render(template, result));
+            customCheckAndRadioBoxes.customCheckbox();
+            return upDateProgramsDashboard(result);
+          });
       }
     },
     /**
@@ -157,4 +159,6 @@ var getProgramParticipationStats = (function($) {
     updateParticipationDashboard: updateParticipationDashboard,
     requestFailed: requestFailed
   };
+
 })(jQuery);
+getProgramParticipationStats.makeRequest();
