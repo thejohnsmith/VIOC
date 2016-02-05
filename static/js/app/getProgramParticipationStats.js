@@ -128,7 +128,7 @@
           return $programId.attr('class', programStatus.error)
             .find(
               '.program-status').html('&#9888;').attr('title',
-              'An error occured');
+              'An error occurred');
         }
       });
     }

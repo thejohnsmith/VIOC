@@ -742,6 +742,9 @@ header#nav {
   float: left;
   width: 100%;
 }
+.program-select > .program-list {
+  padding-left: 15px;
+}
 .program-select ul {
   padding: 0;
 }
