@@ -5,7 +5,7 @@
  */
 var setStoreSubscription = (function($) {
 
-  var makeRequest = function($activeBoxValues) {
+  var makeRequest = function($selectedPrograms) {
     // var userId =
     var localDevUrl =
       'data/setStoreSubscription.jssp';
@@ -15,9 +15,10 @@ var setStoreSubscription = (function($) {
       'https://adobe-uat-vioc.epsilon.com/jssp/vioc/setStoreSubscription.jssp';
     $.ajax({
       url: acUrl,
-      type: 'GET',
+      type: 'POST',
       data: {
-        userId: marcomUserData.$user.externalId
+        userId: marcomUserData.$user.externalId,
+        subscription_id: $selectedPrograms
       },
       processData: true,
       headers: {
@@ -28,7 +29,7 @@ var setStoreSubscription = (function($) {
       console.log('Data Loaded: ' + result);
       toastr.success('The stores were enrolled successfully.');
     }).fail(function() {
-      console.log('setStoreSubscription failed ' + $activeBoxValues);
+      console.log('setStoreSubscription failed ' + $selectedPrograms);
       // Display a success toast, with a title
       toastr.error('The stores were not enrolled.');
     });
