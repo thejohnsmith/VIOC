@@ -21,3 +21,9 @@ bower_components/
 
 # Mac Folder Configs
 .DS_Store
+
+.eslintrc.js
+
+static/.eslintrc.js
+
+static/.eslintrc.js
