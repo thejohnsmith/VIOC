@@ -16,26 +16,25 @@ var setStoreSubscription = (function($) {
     $.ajax({
       url: acUrl,
       type: 'POST',
+      contentType: 'application/json',
+      processData: true,
       data: {
         userId: marcomUserData.$user.externalId,
         subscription_id: $selectedPrograms
       },
-      processData: true,
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
-      },
-      contentType: 'application/json'
+      }
     }).done(function(result) {
-      console.log('Data Loaded: ' + result);
       toastr.success(
         'Enrollment preferences have been updated for the selected programs.'
       );
     }).fail(function() {
+      // Display a success toast, with a title
+      toastr.error('An internal error has occurred.');
       console.log(
         '** Request failed **\nProgram IDs sent to API:\n' +
         $selectedPrograms);
-      // Display a success toast, with a title
-      toastr.error('An internal error has occurred.');
     });
   };
 
