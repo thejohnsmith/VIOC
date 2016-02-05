@@ -9,97 +9,31 @@
         <section id="programSummary">
           <h1>Programs</h1>
           <div class="program-select program-select--is-active-user">
-            <ul>
-              <li id="program-1" class="status-green">
-                <div class="checkbox-area">
-                  <div class="customCheckbox">
-                    <input data-checkbox-label="Reminder" type="checkbox">
-                    <label>Reminder</label>
-                  </div>
-                </div>
-                <div class="program-info">
-                  <div class="program-status">
-                    <span class="storesParticipating"></span> / <span class="storesEligible"></span>
-                  </div>
-                  <div class="program-edit">
-                    <a href="#" title="Edit Program">
-                      <img src="https://files.marcomcentral.app.pti.com/epsilon/static/marcom_custom/images/edit-bg.png" alt="Edit Program" title="Edit Program" width="22">
-                    </a>
-                  </div>
-                </div>
-              </li>
-              <li id="program-2" class="status-yellow">
-                <div class="checkbox-area">
-                  <div class="customCheckbox">
-                    <input data-checkbox-label="Lapsed" type="checkbox">
-                    <label>Lapsed</label>
-                  </div>
-                </div>
-                <div class="program-info">
-                  <div class="program-status">
-                    <span class="storesParticipating"></span> / <span class="storesEligible"></span>
-                  </div>
-                  <div class="program-edit">
-                    <a href="#" title="Edit Program">
-                      <img src="https://files.marcomcentral.app.pti.com/epsilon/static/marcom_custom/images/edit-bg.png" alt="Edit Program" title="Edit Program" width="22">
-                    </a>
-                  </div>
-                </div>
-              </li>
-              <li id="program-3" class="status-red">
-                <div class="checkbox-area">
-                  <div class="customCheckbox">
-                    <input data-checkbox-label="Relapsed" type="checkbox">
-                    <label>Relapsed</label>
-                  </div>
-                </div>
-                <div class="program-info">
-                  <div class="program-status">
-                    <span class="storesParticipating"></span> / <span class="storesEligible"></span>
-                  </div>
-                  <div class="program-edit">
-                    <a href="#" title="Edit Program">
-                      <img src="https://files.marcomcentral.app.pti.com/epsilon/static/marcom_custom/images/edit-bg.png" alt="Edit Program" title="Edit Program" width="22">
-                    </a>
-                  </div>
-                </div>
-              </li>
-              <li id="program-4" class="status-red">
-                <div class="checkbox-area">
-                  <div class="customCheckbox">
-                    <input data-checkbox-label="Lost" type="checkbox">
-                    <label>Lost</label>
-                  </div>
-                </div>
-                <div class="program-info">
-                  <div class="program-status">
-                    <span class="storesParticipating"></span> / <span class="storesEligible"></span>
-                  </div>
-                  <div class="program-edit">
-                    <a href="#" title="Edit Program">
-                      <img src="https://files.marcomcentral.app.pti.com/epsilon/static/marcom_custom/images/edit-bg.png" alt="Edit Program" title="Edit Program" width="22">
-                    </a>
-                  </div>
-                </div>
-              </li>
-              <li id="program-5" class="status-green">
-                <div class="checkbox-area">
-                  <div class="customCheckbox">
-                    <input data-checkbox-label="Reactivation" type="checkbox">
-                    <label>Reactivation</label>
-                  </div>
-                </div>
-                <div class="program-info">
-                  <div class="program-status">
-                    <span class="storesParticipating"></span> / <span class="storesEligible"></span>
-                  </div>
-                  <div class="program-edit">
-                    <a href="#" title="Edit Program">
-                      <img src="https://files.marcomcentral.app.pti.com/epsilon/static/marcom_custom/images/edit-bg.png" alt="Edit Program" title="Edit Program" width="22">
-                    </a>
-                  </div>
-                </div>
-              </li>
+            <ul class="program-list">
+              <script class="program-list-template" type="x-tmpl-mustache">
+                {{#.}}
+                  {{#isLifecycleCampaign}}
+                  <li id="program-{{id}}" class="status-green">
+                    <div class="checkbox-area">
+                      <div class="customCheckbox js-all-selectable">
+                        <input type="checkbox" value="{{id}}">
+                        <label>{{programName}}</label>
+                      </div>
+                    </div>
+                    <div class="program-info">
+                      <div class="program-status">
+                        <span class="storesParticipating">{{storesEnrolled}}</span> / <span class="storesEligible">{{storesEligible}}</span>
+                      </div>
+                      <div class="program-edit">
+                        <a href="reminder.html?uigroup_id=479602&page_id=10840#programId={{id}}" title="Edit Program">
+                          <img src="images/edit-bg.png" alt="Edit Program" title="Edit Program" width="22">
+                        </a>
+                      </div>
+                    </div>
+                  </li>
+                  {{/isLifecycleCampaign}}
+                {{/.}}
+              </script>
             </ul>
           </div>
         </section>
@@ -119,7 +53,7 @@
               </thead>
               <tbody>
                 <tr class="program-name-lifecycle">
-                  <td data-title="Enrolled" data-enrolled="">
+                  <td data-title="Enrolled" data-enrolled="false">
                     <span class="errolled-state" aria-hidden="true">
                     </span>
                   </td>

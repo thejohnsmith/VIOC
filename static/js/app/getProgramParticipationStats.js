@@ -14,7 +14,7 @@
       'https://adobe-uat-vioc.epsilon.com/jssp/vioc/getProgramParticipationStats.jssp';
     var programId = window.location.href.slice(-1);
     $.ajax({
-      url: localDevUrl,
+      url: acUrl,
       type: 'GET',
       dataType: 'json',
       processData: true,
@@ -72,7 +72,6 @@
         Mustache.parse(programSelectTpl);
         $('.program-list').html(programDataRendered);
         return upDateProgramsDashboard(result);
-
       }
     }
 
@@ -84,27 +83,30 @@
      */
     function upDateProgramsDashboard(result) {
       // define colors
-      var programStatusClasses = {
-        reminder: ['status-red'],
-        relapsed: ['status-yellow'],
-        lapsed: ['status-green'],
+      var programStatus = {
+        alert: ['status-red'],
+        warning: ['status-yellow'],
+        success: ['status-green'],
         error: ['status-error']
       };
       return $.each(result, function(index, obj) {
         var $programId = $('#program-' + obj.id);
-        // console.log(Number(obj.storesEnrolled));
-        // No stores participating : Red
-        if (obj.storesEnrolled === 0) {
-          $programId.attr('class', programStatusClasses.reminder);
-        }
-        // More than one store participating : Yellow
-        if (obj.storesEnrolled > 0) {
-          $programId.attr('class', programStatusClasses.relapsed);
-          updateParticipationDashboard();
-        }
-        // All stores participating : Green
-        if (obj.storesEnrolled === obj.storesEligible) {
-          $programId.attr('class', programStatusClasses.lapsed);
+        // Make sure to ommit non-lifecycle campaign entries.
+        if (obj.isLifecycleCampaign) {
+          // No stores participating : Red
+          if (obj.storesEnrolled === 0 ||
+            obj.storesEnrolled === 0 && obj.storesEligible === 0) {
+            $programId.attr('class', programStatus.alert);
+          }
+          // More than one store participating : Yellow
+          if (obj.storesEnrolled > 0 && obj.storesEligible > 0) {
+            $programId.attr('class', programStatus.warning);
+            updateParticipationDashboard();
+          }
+          // All stores participating : Green
+          if (obj.storesEnrolled === obj.storesEligible) {
+            $programId.attr('class', programStatus.success);
+          }
         }
         // Check for errors:
         // If more stores participating than eligible display error state.
@@ -116,14 +118,16 @@
         // Color : Gray
         // Displays warning symbol '⚠'
         function handleError(obj) {
-          $programId.attr('class', programStatusClasses.error).find(
-            '.program-status').html('&#9888;').attr('title',
-            'An error occured');
+          return $programId.attr('class', programStatus.error)
+            .find(
+              '.program-status').html('&#9888;').attr('title',
+              'An error occured');
         }
       });
     }
 
     function updateParticipationDashboard() {
+      console.log('updated');
       $('.program-name-lifecycle > [data-enrolled]')
         .attr('data-enrolled', true);
       return;
