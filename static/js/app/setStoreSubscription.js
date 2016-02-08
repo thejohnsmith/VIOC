@@ -35,7 +35,9 @@ var setStoreSubscription = (function($) {
     }).fail(function() {
       toastr.error('An internal error has occurred.');
       console.log(
-        '** Request failed **\nProgram IDs sent to API:\n' +
+        '%c ** Request failed ** ',
+        'color: #f10; font-weight: bold;',
+        '\nProgram IDs sent to API:\n' +
         $selectedPrograms);
     });
   };
