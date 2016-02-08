@@ -117,7 +117,7 @@
 			<div class="main">
 				<div class="left-container">
 					<section id="welcome">
-            <h3>Welcome <span class="welcome-message-custom">%%User.FirstName%% !</span></h3>
+            <h3>Welcome <span class="welcome-message-custom">User!</span></h3>
             <p>VIOC is pleased to present the new VDirect portal. You can access multi-part lifecycle campaigns, recurring additional offers as well as specific email/direct mail templates.</p>
           </section>
 					<section id="gettingStartedNow">
@@ -170,40 +170,36 @@
 									</tr>
 								</thead>
 								<tbody>
-									<tr>
-										<td data-title="Enrolled">
-											<span>
-												<img src="https://files.marcomcentral.app.pti.com/epsilon/static/marcom_custom/images/cross-bg.png" alt="" title="">
+									<tr class="program-name-lifecycle">
+										<td data-title="Enrolled" data-enrolled="false">
+											<span class="errolled-state" aria-hidden="true">
 											</span>
 										</td>
 										<td data-title="Program">Lifecycle</td>
 										<td data-title="Impact">3.0 OCPD</td>
 										<td data-title="Opportunity">No</td>
 									</tr>
-									<tr>
-										<td data-title="Enrolled">
-											<span>
-												<img src="https://files.marcomcentral.app.pti.com/epsilon/static/marcom_custom/images/tick-bg.png" alt="" title="">
+									<tr class="program-name-imn">
+										<td data-title="Enrolled" data-enrolled="false">
+											<span class="errolled-state" aria-hidden="true">
 											</span>
 										</td>
 										<td data-title="Program">IMN</td>
 										<td data-title="Impact">0.25</td>
 										<td data-title="Opportunity">No</td>
 									</tr>
-									<tr>
-										<td data-title="Enrolled">
-											<span>
-												<img src="https://files.marcomcentral.app.pti.com/epsilon/static/marcom_custom/images/cross-bg.png" alt="" title="">
+									<tr class="program-name-facebook">
+										<td data-title="Enrolled" data-enrolled="true">
+											<span class="errolled-state" aria-hidden="true">
 											</span>
 										</td>
 										<td data-title="Program">Facebook</td>
 										<td data-title="Impact">0.2</td>
 										<td data-title="Opportunity">Yes</td>
 									</tr>
-									<tr>
-										<td data-title="Enrolled">
-											<span>
-												<img src="https://files.marcomcentral.app.pti.com/epsilon/static/marcom_custom/images/tick-bg.png" alt="" title="">
+									<tr class="program-name-sem">
+										<td data-title="Enrolled" data-enrolled="false">
+											<span class="errolled-state" aria-hidden="true">
 											</span>
 										</td>
 										<td data-title="Program">SEM</td>
@@ -252,6 +248,7 @@
 	<script src="js/lib/toastrOpts.js"></script>
 	<script src="js/lib/checkAndRadioBoxes.js"></script>
 	<script src="js/lib/easyResponsiveTabs.js"></script>
+	<script src="js/lib/navTabs.js"></script>
 
 	<!-- Async,API and Marcom hookups -->
 	<script src="js/app/marcomUserData.js"></script>
