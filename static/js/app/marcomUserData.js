@@ -13,6 +13,7 @@ var marcomUserData = (function($) {
     lastName: $userRelated.data('user-last-name') || '',
     email: $userRelated.data('user-email') || ''
   };
+
   return {
     $user: user
   };

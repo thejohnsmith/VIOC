@@ -1,0 +1,87 @@
+#CtlHead {
+  width: 100%;
+}
+.searchHolder {
+  display: none!important
+}
+.NavTop:before {
+  display: none!important
+}
+.ButtonRowClearR, .btnContactUs {
+  display: none;
+}
+#CtlLogIn {
+  width: auto;
+  clear: both;
+  margin: 6% auto;
+  font-family: 'HelveticaNeueLT-Thin', sans-serif;
+  box-shadow: 0 0 37px 10px rgba(0, 0, 0, 0.18);
+  min-width: 300px;
+  max-width: 450px;
+  padding: 6px 12px;
+}
+#CtlLogIn .CtlSearchGroup, .CtlSearchGroup td.header {
+  border: none;
+}
+#CtlLogIn .CtlSearchGroup {
+  background: none;
+  margin: 0!important;
+  padding: 0 4px 0 0;
+  width: 100%;
+}
+.pbtn, .btn-s:hover {
+  background: none;
+}
+A.pbtn {
+  padding: 0;
+}
+.pbtn {
+  font-family: 'HelveticaNeueLT-Condensed';
+  height: auto!important;
+}
+A.pbtn SPAN {
+  color: #00aeef;
+  background: none;
+  border: 2px solid #00aeef;
+  text-align: center;
+  width: auto;
+  height: auto;
+  font-size: 15px!important;
+}
+A.pbtn.primary SPAN {
+  padding: 5px 40px;
+  color: #00aeef;
+}
+.CtlSearchGroup td {
+  padding: 0 6px;
+}
+.header-right .btnLogOut:before {
+  content: none;
+}
+.CtlSearchGroup td input, .CtlSearchGroup td select {
+  border-color: #66afe9;
+  width: 100%;
+  color: #555;
+  font-size: 13px;
+  padding: 7px 10px;
+  /*font-family: 'HelveticaNeueLT-Thin', sans-serif;*/
+  font-weight: normal;
+  margin-bottom: 18px;
+}
+.CtlSearchGroup td input:focus, .CtlSearchGroup td select:focus, A.pbtn SPAN:hover {
+  border-color: rgb(0, 188, 212);
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px rgba(102, 175, 233, 0.8);
+}
+A.pbtn SPAN:hover:focus {
+  border-color: rgba(0, 72, 144, 0.72);
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px rgba(0, 0, 0, 0.64);
+  color: #004890;
+  background: #ECECEC;
+}
+#ctl00_content_Login_txtMessage {
+  background: #fff;
+  color: red;
+  padding: 0 15px;
+  display: inline-block;
+  text-align: right;
+}

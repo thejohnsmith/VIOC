@@ -4,8 +4,13 @@
  * @param {object} data.userId
  */
 var getProgramParticipationStats = (function($) {
+
   var programId = window.location.href.slice(-1) || 0;
   var makeRequest = function() {
+      // Make sure there's a User ID loaded from Marcom before we Init this script.
+      if (marcomUserData.$user.externalId === '%%User.ExternalId%%') {
+        return
+      }
       var localDevUrl =
         'data/getProgramParticipationStats.jssp';
       var marcomDevUrl =
@@ -161,4 +166,7 @@ var getProgramParticipationStats = (function($) {
   };
 
 })(jQuery);
+
+
+
 getProgramParticipationStats.makeRequest();
