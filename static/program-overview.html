@@ -130,109 +130,10 @@
 					<div id="programSummary">
 						<h1>Lifecycle Programs</h1>
 						<div class="program-select">
-							<ul class="program-list">
-								<script class="program-list-template" type="x-tmpl-mustache">
-									{{#.}}
-										{{#isLifecycleCampaign}}
-										<li id="program-{{id}}" class="status-green">
-											<div class="checkbox-area">
-												<div class="customCheckbox js-all-selectable">
-													<input type="checkbox" value="{{id}}">
-													<label>{{programName}}</label>
-												</div>
-											</div>
-											<div class="program-info">
-												<div class="program-status">
-													<span class="storesParticipating">{{storesEnrolled}}</span> / <span class="storesEligible">{{storesEligible}}</span>
-												</div>
-												<div class="program-edit">
-													<a href="reminder.html?uigroup_id=479602&page_id=10840#programId={{id}}" title="Edit Program">
-														<img src="images/edit-bg.png" alt="Edit Program" title="Edit Program" width="22">
-													</a>
-												</div>
-											</div>
-										</li>
-										{{/isLifecycleCampaign}}
-									{{/.}}
-								</script>
-							</ul>
-
-								<!-- <li id="program-2" class="status-yellow">
-									<div class="checkbox-area">
-										<div class="customCheckbox js-all-selectable">
-											<input data-checkbox-label="Lapsed" type="checkbox" value="2">
-											<label>Lapsed</label>
-										</div>
-									</div>
-									<div class="program-info">
-										<div class="program-status">
-											<span class="storesParticipating"></span> / <span class="storesEligible"></span>
-										</div>
-										<div class="program-edit">
-											<a href="reminder.html?uigroup_id=479602&page_id=10840#programId=2" title="Edit Program">
-												<img src="images/edit-bg.png" alt="Edit Program" title="Edit Program" width="22">
-											</a>
-										</div>
-									</div>
-								</li>
-								<li id="program-3" class="status-red">
-									<div class="checkbox-area">
-										<div class="customCheckbox js-all-selectable">
-											<input data-checkbox-label="Relapsed" type="checkbox" value="3">
-											<label>Relapsed</label>
-										</div>
-									</div>
-									<div class="program-info">
-										<div class="program-status">
-											<span class="storesParticipating"></span> / <span class="storesEligible"></span>
-										</div>
-										<div class="program-edit">
-											<a href="reminder.html?uigroup_id=479602&page_id=10840#programId=3" title="Edit Program">
-												<img src="images/edit-bg.png" alt="Edit Program" title="Edit Program" width="22">
-											</a>
-										</div>
-									</div>
-								</li>
-								<li id="program-4" class="status-red">
-									<div class="checkbox-area">
-										<div class="customCheckbox js-all-selectable">
-											<input data-checkbox-label="Lost" type="checkbox" value="4">
-											<label>Lost</label>
-										</div>
-									</div>
-									<div class="program-info">
-										<div class="program-status">
-											<span class="storesParticipating"></span> / <span class="storesEligible"></span>
-										</div>
-										<div class="program-edit">
-											<a href="reminder.html?uigroup_id=479602&page_id=10840#programId=4" title="Edit Program">
-												<img src="images/edit-bg.png" alt="Edit Program" title="Edit Program" width="22">
-											</a>
-										</div>
-									</div>
-								</li>
-								<li id="program-5" class="status-green">
-									<div class="checkbox-area">
-										<div class="customCheckbox js-all-selectable">
-											<input data-checkbox-label="Reactivation" type="checkbox" value="5">
-											<label>Reactivation</label>
-										</div>
-									</div>
-									<div class="program-info">
-										<div class="program-status">
-											<span class="storesParticipating"></span> / <span class="storesEligible"></span>
-										</div>
-										<div class="program-edit">
-											<a href="reminder.html?uigroup_id=479602&page_id=10840#programId=5" title="Edit Program">
-												<img src="images/edit-bg.png" alt="Edit Program" title="Edit Program" width="22">
-											</a>
-										</div>
-									</div>
-								</li> -->
-							</ul>
-							<div class="program-button">
-								<input type="button" class="blue-btn js-trigger-enroll" value="Auto-Enroll Your Stores In Selected Program(s)" title="Auto-Enroll Your Stores In Selected Program(s)">
-							</div>
+							<!-- Mustache Template: program-list.mustache.html -->
+						</div>
+						<div class="program-button">
+							<input type="button" class="blue-btn js-trigger-enroll" value="Auto-Enroll Your Stores In Selected Program(s)" title="Auto-Enroll Your Stores In Selected Program(s)">
 						</div>
 					</div>
 				</div>
@@ -324,6 +225,7 @@
 	<script src="js/lib/toastrOpts.js"></script>
 	<script src="js/lib/checkAndRadioBoxes.js"></script>
 	<script src="js/lib/easyResponsiveTabs.js"></script>
+	<script src="js/lib/navTabs.js"></script>
 
 	<!-- Async,API and Marcom hookups -->
 	<script src="js/app/marcomUserData.js"></script>
