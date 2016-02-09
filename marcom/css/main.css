@@ -285,10 +285,6 @@ ul.navBarEnhanced {
   margin: 0 auto;
   display: table;
 }
-li.navBarItem {
-  /*display: table-cell;
-  text-align: center;*/
-}
 ul.navBarEnhanced a {
   float: none;
   display: inline-block;
