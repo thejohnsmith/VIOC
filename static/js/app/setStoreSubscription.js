@@ -25,10 +25,10 @@ var setStoreSubscription = (function($) {
       },
       contentType: 'application/json'
     }).done(function(result) {
-      console.log('Data Loaded: ' + result);
+      // console.log('Data Loaded: ' + result);
       toastr.success('The stores were enrolled successfully.');
     }).fail(function() {
-      console.log('setStoreSubscription failed ' + $activeBoxValues);
+      // console.log('setStoreSubscription failed ' + $activeBoxValues);
       // Display a success toast, with a title
       toastr.error('The stores were not enrolled.');
     });
