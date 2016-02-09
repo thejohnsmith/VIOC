@@ -14,13 +14,46 @@ var customCheckAndRadioBoxes = (function($) {
       $(this).closest('.customCheckbox').addClass('focused');
       $(this).closest('.customRadiobox').addClass('focused');
     });
+    selectedPrograms();
   };
 
+  /** Call the Subscription Request
+   * @param {array} $selectedPrograms
+   * @return {string} $selectedPrograms
+   */
+  var selectedPrograms = function() {
+    if (!$('.js-trigger-enroll').length) {
+      return
+    }
+    $('.js-trigger-enroll').on('click', function() {
+      if (!$('input:checkbox:checked').length) {
+        return
+      }
+      var $selectedPrograms = $('input:checkbox:checked')
+        .map(function() {
+          return $(this).val();
+        }).get().join();
+      return enrollPrograms($selectedPrograms);
+    });
+  };
 
-  var enrollPrograms = function($activeBoxValues) {
-
+  // TO DO: This should be moved to setStoreSubscription.js
+  var enrollPrograms = function($selectedPrograms) {
+    removeChecked();
+    return setStoreSubscription.makeRequest($selectedPrograms);
   }
 
+  var removeChecked = function() {
+    return $('.js-all-selectable.checked')
+      .removeClass('checked')
+      .find($('input:checkbox')).prop('checked', '');
+  }
+
+  // TO DO: Updated storesParticipating values.
+  // This would likely be easier to do by making an API request to get programParticipationStats
+  // var $('.js-all-selectable.checked').parent().parent().find('.storesParticipating');
+
+  // TO DO: Add a SelectALL function
   // var selectAllCustomBoxes = function() {
   //   $('.js-trigger-enroll').on('click', function() {
   //     var $jsAllSelectable = $('.js-all-selectable');
@@ -39,22 +72,6 @@ var customCheckAndRadioBoxes = (function($) {
   //   });
   //   return;
   // };
-
-  var handleActiveBoxes = function activeHandler() {
-    var $activeBoxValues = $.map($('input:checkbox:checked'),
-      function(e, i) {
-        return Number(e.value);
-      });
-    console.log('the checked values are: ' + $activeBoxValues.join(
-      ''));
-    $('.js-trigger-enroll').on('click', function($activeBoxValues) {
-
-      /** Call the Subscription Request
-       *  TO DO: Collect the ID's of the selected programs.
-       */
-      return setStoreSubscription.makeRequest($activeBoxValues);
-    });
-  };
 
   var customCheckbox = function() {
     $('.customCheckbox input:checkbox').each(function() {
@@ -79,7 +96,7 @@ var customCheckAndRadioBoxes = (function($) {
             'checked').focus();
 
         }
-        return handleActiveBoxes();
+        // return selectedPrograms();
       }
     });
 

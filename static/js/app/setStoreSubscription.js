@@ -5,7 +5,7 @@
  */
 var setStoreSubscription = (function($) {
 
-  var makeRequest = function($activeBoxValues) {
+  var makeRequest = function($selectedPrograms) {
     // var userId =
     var localDevUrl =
       'data/setStoreSubscription.jssp';
@@ -15,22 +15,30 @@ var setStoreSubscription = (function($) {
       'https://adobe-uat-vioc.epsilon.com/jssp/vioc/setStoreSubscription.jssp';
     $.ajax({
       url: acUrl,
-      type: 'GET',
-      data: {
-        userId: marcomUserData.$user.externalId
-      },
+      type: 'POST',
+      contentType: 'application/json',
       processData: true,
+      data: {
+        userId: marcomUserData.$user.externalId,
+        subscription_id: $selectedPrograms
+      },
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
-      },
-      contentType: 'application/json'
+      }
     }).done(function(result) {
-      console.log('Data Loaded: ' + result);
-      toastr.success('The stores were enrolled successfully.');
+      toastr.success(
+        'Enrollment preferences have been updated for the selected programs.'
+      );
+      // Get a new copy of data, populate the template and reinitialize the buttons.
+      getProgramParticipationStats.makeRequest();
+      customCheckAndRadioBoxes.customCheckbox();
     }).fail(function() {
-      console.log('setStoreSubscription failed ' + $activeBoxValues);
-      // Display a success toast, with a title
-      toastr.error('The stores were not enrolled.');
+      toastr.error('An internal error has occurred.');
+      console.log(
+        '%c ** Request failed ** ',
+        'color: #f10; font-weight: bold;',
+        '\nProgram IDs sent to API:\n' +
+        $selectedPrograms);
     });
   };
 

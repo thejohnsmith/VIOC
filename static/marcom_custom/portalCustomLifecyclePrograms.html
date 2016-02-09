@@ -14,103 +14,11 @@
       <div class="left-container">
         <div id="programSummary">
           <h1>Lifecycle Programs</h1>
-          <h3>Set Corporate Defaults</h3>
-          <div class="program-select">
-            <ul>
-              <li id="program-1" class="status-green">
-                <div class="checkbox-area">
-                  <div class="customCheckbox js-all-selectable">
-                    <input data-checkbox-label="Reminder" type="checkbox">
-                    <label>Reminder</label>
-                  </div>
-                </div>
-                <div class="program-info">
-                  <div class="program-status">
-                    <span class="storesParticipating"></span> / <span class="storesEligible"></span>
-                  </div>
-                  <div class="program-edit">
-                    <a href="https://marcomcentral.app.pti.com/Epsilon_Data_Management/Beta_Epsilon/CustomPage.aspx?uigroup_id=479602&page_id=10840#programId=1" title="Edit Program">
-                      <img src="https://files.marcomcentral.app.pti.com/epsilon/static/marcom_custom/images/edit-bg.png" alt="Edit Program" title="Edit Program" width="22">
-                    </a>
-                  </div>
-                </div>
-              </li>
-              <li id="program-2" class="status-yellow">
-                <div class="checkbox-area">
-                  <div class="customCheckbox js-all-selectable">
-                    <input data-checkbox-label="Lapsed" type="checkbox">
-                    <label>Lapsed</label>
-                  </div>
-                </div>
-                <div class="program-info">
-                  <div class="program-status">
-                    <span class="storesParticipating"></span> / <span class="storesEligible"></span>
-                  </div>
-                  <div class="program-edit">
-                    <a href="https://marcomcentral.app.pti.com/Epsilon_Data_Management/Beta_Epsilon/CustomPage.aspx?uigroup_id=479602&page_id=10840#programId=2" title="Edit Program">
-                      <img src="https://files.marcomcentral.app.pti.com/epsilon/static/marcom_custom/images/edit-bg.png" alt="Edit Program" title="Edit Program" width="22">
-                    </a>
-                  </div>
-                </div>
-              </li>
-              <li id="program-3" class="status-red">
-                <div class="checkbox-area">
-                  <div class="customCheckbox js-all-selectable">
-                    <input data-checkbox-label="Relapsed" type="checkbox">
-                    <label>Relapsed</label>
-                  </div>
-                </div>
-                <div class="program-info">
-                  <div class="program-status">
-                    <span class="storesParticipating"></span> / <span class="storesEligible"></span>
-                  </div>
-                  <div class="program-edit">
-                    <a href="https://marcomcentral.app.pti.com/Epsilon_Data_Management/Beta_Epsilon/CustomPage.aspx?uigroup_id=479602&page_id=10840#programId=3" title="Edit Program">
-                      <img src="https://files.marcomcentral.app.pti.com/epsilon/static/marcom_custom/images/edit-bg.png" alt="Edit Program" title="Edit Program" width="22">
-                    </a>
-                  </div>
-                </div>
-              </li>
-              <li id="program-4" class="status-red">
-                <div class="checkbox-area">
-                  <div class="customCheckbox js-all-selectable">
-                    <input data-checkbox-label="Lost" type="checkbox">
-                    <label>Lost</label>
-                  </div>
-                </div>
-                <div class="program-info">
-                  <div class="program-status">
-                    <span class="storesParticipating"></span> / <span class="storesEligible"></span>
-                  </div>
-                  <div class="program-edit">
-                    <a href="https://marcomcentral.app.pti.com/Epsilon_Data_Management/Beta_Epsilon/CustomPage.aspx?uigroup_id=479602&page_id=10840#programId=4" title="Edit Program">
-                      <img src="https://files.marcomcentral.app.pti.com/epsilon/static/marcom_custom/images/edit-bg.png" alt="Edit Program" title="Edit Program" width="22">
-                    </a>
-                  </div>
-                </div>
-              </li>
-              <li id="program-5" class="status-green">
-                <div class="checkbox-area">
-                  <div class="customCheckbox js-all-selectable">
-                    <input data-checkbox-label="Reactivation" type="checkbox">
-                    <label>Reactivation</label>
-                  </div>
-                </div>
-                <div class="program-info">
-                  <div class="program-status">
-                    <span class="storesParticipating"></span> / <span class="storesEligible"></span>
-                  </div>
-                  <div class="program-edit">
-                    <a href="https://marcomcentral.app.pti.com/Epsilon_Data_Management/Beta_Epsilon/CustomPage.aspx?uigroup_id=479602&page_id=10840#programId=5" title="Edit Program">
-                      <img src="https://files.marcomcentral.app.pti.com/epsilon/static/marcom_custom/images/edit-bg.png" alt="Edit Program" title="Edit Program" width="22">
-                    </a>
-                  </div>
-                </div>
-              </li>
-            </ul>
-            <div class="program-button">
-              <input type="button" class="blue-btn js-trigger-all-selectable" value="Auto-Enroll Your Stores In Selected Program(s)" title="Auto-Enroll Your Stores In Selected Program(s)">
-            </div>
+          <div class="program-select program-select--is-active-user">
+            <!-- Mustache Template: program-list.mustache.html -->
+          </div>
+          <div class="program-button">
+            <input type="button" class="blue-btn js-trigger-enroll" value="Auto-Enroll Your Stores In Selected Program(s)" title="Auto-Enroll Your Stores In Selected Program(s)">
           </div>
         </div>
       </div>
