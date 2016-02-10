@@ -8,7 +8,12 @@
      data-user-email="%%User.Email%%"
  */
 var recordLogin = (function($) {
+
   var makeRequest = function() {
+    // Make sure there's a User ID loaded from Marcom before we Init this script.
+    if (marcomUserData.$user.externalId === '%%User.ExternalId%%') {
+      return
+    }
     var localDevUrl =
       'data/recordLogin.jssp';
     var marcomDevUrl =
@@ -66,11 +71,11 @@ var recordLogin = (function($) {
         }
       },
       showGettingStarted = function() {
-        $('#gettingStartedNow').fadeIn();
+        $('#welcome + #gettingStartedNow').fadeIn();
         $('#programSummary').hide();
       },
       showPrograms = function() {
-        $('#gettingStartedNow').hide();
+        $('#welcome + #gettingStartedNow').hide();
         $('#programSummary').fadeIn();
       }
 
@@ -81,5 +86,6 @@ var recordLogin = (function($) {
     makeRequest: makeRequest
   };
 })(jQuery);
+
 
 recordLogin.makeRequest();
