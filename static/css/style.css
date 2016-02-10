@@ -745,7 +745,8 @@ header .header-right a:hover {
 }
 #programManagementTabs {
   float: left;
-  width: 100%;
+  width: 70%;
+  margin: 0 20px 0 0;
 }
 .alert-container {
   float: left;
