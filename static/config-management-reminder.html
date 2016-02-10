@@ -132,78 +132,224 @@
 				<p>This layout configures the look-and-feel of the program-specific coupons. See the preview below to see which coupons are included in this layout.</p>
 				<form>
 					<input type="text" placeholder="Enter Name for Layout" />
-				</form>
-
-				<p><a class="discountCodeLink" href="javascript:void(0)">Do you have a discount code?</a></p>
-				<div class="discountCode closed">
-					<div class="left">
-						<p>Please provide the discount code</p>
-					</div>
-					<div class="right">
-						<form>
-							<label for="email">Email:</label> <input type="text" placeholder="ex: RM101" />
-							<br /><label for="dm">DM:</label> <input type= "text" placeholder="ex: RMDM101" />
-							<br /><label for="sms">SMS:</label> <input type="text" placeholder="ex: RMSMS101" />
-							<input type="submit" value="Apply">
-						</form>
-					</div>
-				</div>
-
-				<h4>Coupons</h4>
-				<div id="parentHorizontalTab" class="lifescycle-tab">
-					<ul class="resp-tabs-list hor_1">
-						<li>Offer 1 - Standard*</li>
-						<li>Offer 1 - High Risk</li>
-					</ul>
-					<div class="resp-tabs-container hor_1">
-						<div>
-							<p>Offer 1 - Standard Risk</p>
-							<label>Coupon Text:</label> 
-							<select class="selectbox">
-								<option selected>Any oil change, 5 qts</option>
-								<option>Any oil change, 5 qts</option>
-								<option>Any oil change, 5 qts</option>
-								<option>Any oil change, 5 qts</option>
-							</select>
-							<br /><label>Discount Type:</label> <select class="selectbox">
-											<option selected>$0</option>
-											<option>$5</option>
-											<option>$10</option>
-											<option>$20</option>
-										</select>
-							<br /><label>Discount Amount:</label> <input name="discount-amount" type="text" />
-							<br /><label>Email Coupon Code:</label> <input name="email-coupon-code" type="text" />
-							<br /><label>Direct Mail Coupon Code:</label> <input name="direct-mail-coupon-code" type="text" />
-							<br /><label>SMS Coupon Code:</label> <input name="sms-coupon-code" type="text" />
+					<p><a class="discountCodeLink" href="javascript:void(0)">Do you have a discount code?</a></p>
+					<div class="discountCode closed">
+						<div class="left">
+							<p>Please provide the discount code</p>
 						</div>
-						<div>
-							<p>Offer 1 - High Risk</p>
-								<label>Coupon Text:</label> 
-							<select class="selectbox">
-								<option selected>Any oil change, 5 qts</option>
-								<option>Any oil change, 5 qts</option>
-								<option>Any oil change, 5 qts</option>
-								<option>Any oil change, 5 qts</option>
-							</select>
-							<br /><label>Discount Type:</label> <select class="selectbox">
-											<option selected>$0</option>
-											<option>$5</option>
-											<option>$10</option>
-											<option>$20</option>
-										</select>
-							<br /><label>Discount Amount:</label> <input name="discount-amount" type="text" />
-							<br /><label>Email Coupon Code:</label> <input name="email-coupon-code" type="text" />
-							<br /><label>Direct Mail Coupon Code:</label> <input name="direct-mail-coupon-code" type="text" />
-							<br /><label>SMS Coupon Code:</label> <input name="sms-coupon-code" type="text" />
+						<div class="right">
+								<table>
+									<tr>
+										<td><label for="email">Email:</label></td>
+										<td><input type="text" placeholder="ex: RM101" /></td>
+									</tr>
+									<tr>
+										<td><label for="dm">DM:</label></td>
+										<td><input type= "text" placeholder="ex: RMDM101" /></td>
+									</tr>
+									<tr>
+										<td><label for="sms">SMS:</label></td>
+										<td><input type="text" placeholder="ex: RMSMS101" /></td>
+									</tr>
+									<tr>
+										<td></td>
+										<td><input type="submit" id="applyCode" name="apply" value="Apply"></td>
+									</tr>
+								</table>						
 						</div>
 					</div>
-				</div>
+
+					<h4>Coupons</h4>
+					<div id="parentHorizontalTab" class="lifescycle-tab">
+						<ul class="resp-tabs-list hor_1">
+							<li>Offer 1 - Standard*</li>
+							<li>Offer 1 - High Risk</li>
+						</ul>
+						<div class="resp-tabs-container hor_1">
+							<div>
+								<table>
+									<tr>
+										<td><label>Coupon Text:</label> </td>
+										<td>
+											<select class="selectbox">
+												<option selected>Any oil change, 5 qts</option>
+												<option>Any oil change, 5 qts</option>
+												<option>Any oil change, 5 qts</option>
+												<option>Any oil change, 5 qts</option>
+											</select>
+										</td>
+									</tr>
+									<tr>
+										<td><label>Discount Type:</label></td>
+										<td>
+											<select class="selectbox">
+												<option selected>$0</option>
+												<option>$5</option>
+												<option>$10</option>
+												<option>$20</option>
+											</select>
+										</td>
+									</tr>
+									<tr>
+										<td>
+											<label>Discount Amount:</label>
+										</td>
+										<td>
+											<input name="discount-amount" type="text" />
+										</td>
+									</tr>
+									<tr>
+										<td>
+											<label>Email Coupon Code:</label>
+										</td>
+										<td>
+											<input name="email-coupon-code" type="text" />
+										</td>
+									</tr>
+									<tr>
+										<td>
+											<label>Direct Mail Coupon Code:</label>
+										</td>
+										<td>
+											<input name="direct-mail-coupon-code" type="text" />
+										</td>
+									</tr>
+									<tr>
+										<td>
+											<label>SMS Coupon Code:</label>
+										</td>
+										<td>
+											<input name="sms-coupon-code" type="text" />
+										</td>
+									</tr>
+								</table>
+							</div>
+							<div>
+								<table>
+									<tr>
+										<td><label>Coupon Text:</label> </td>
+										<td>
+											<select class="selectbox">
+												<option selected>Any oil change, 10 qts</option>
+												<option>Any oil change, 8 qts</option>
+												<option>Any oil change, 7 qts</option>
+												<option>Any oil change, 3 qts</option>
+											</select>
+										</td>
+									</tr>
+									<tr>
+										<td><label>Discount Type:</label></td>
+										<td>
+											<select class="selectbox">
+												<option selected>$0</option>
+												<option>$5</option>
+												<option>$10</option>
+												<option>$20</option>
+											</select>
+										</td>
+									</tr>
+									<tr>
+										<td>
+											<label>Discount Amount:</label>
+										</td>
+										<td>
+											<input name="discount-amount" type="text" />
+										</td>
+									</tr>
+									<tr>
+										<td>
+											<label>Email Coupon Code:</label>
+										</td>
+										<td>
+											<input name="email-coupon-code" type="text" />
+										</td>
+									</tr>
+									<tr>
+										<td>
+											<label>Direct Mail Coupon Code:</label>
+										</td>
+										<td>
+											<input name="direct-mail-coupon-code" type="text" />
+										</td>
+									</tr>
+									<tr>
+										<td>
+											<label>SMS Coupon Code:</label>
+										</td>
+										<td>
+											<input name="sms-coupon-code" type="text" />
+										</td>
+									</tr>
+								</table>
+							</div>
+						</div>
+					</div>
+
+					<div class="module">
+						<h4>Settings</h4>
+						<table>
+							<tr>
+								<td><label>Email Creative:</label> </td>
+								<td>
+									<select class="selectbox">
+										<option selected>Basic Blue</option>
+										<option>Basic Black</option>
+										<option>Basic Pink</option>
+										<option>Basic Purple</option>
+									</select>
+								</td>
+							</tr>
+							<tr>
+								<td><label>Direct Mail Creative:</label></td>
+								<td>
+									<select class="selectbox">
+										<option selected>Basic Blue</option>
+										<option>Basic Black</option>
+										<option>Basic Pink</option>
+										<option>Basic Purple</option>
+									</select>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<label>When should these coupons expire?</label>
+								</td>
+								<td>
+									<select class="selectbox">
+										<option selected>After 30 days</option>
+										<option>After 60 days</option>
+										<option>After 90 days</option>
+									</select>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<label>Deliver a copy to your seed address?</label>
+								</td>
+								<td>
+									<select class="selectbox">
+										<option selected>Yes</option>
+										<option>No</option>
+									</select>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<input type="submit" id="save" name="save" value="Save Layout" />
+								</td>
+								<td>
+									
+								</td>
+							</tr>
+						</table>
+					</div>
+				</form>			
 			</section>
 			<div class="sidebar">
           		<div class="sidebar-module sidebar-module-inset">
           			<img src="images/coupon-program-layout.png" width="298" height="856" />
           		</div>
-			</div>	
+			</div>
 		</div>
 
 
@@ -242,6 +388,7 @@
 	<script type="text/javascript" src="js/jquery.validate.js"></script>
 	<script type="text/javascript" src="js/placeholder.js"></script>
 	<script type="text/javascript" src="js/general.js"></script>
+	<script type="text/javascript" src="js/discountCode.js"></script>
 </body>
 
 </html>

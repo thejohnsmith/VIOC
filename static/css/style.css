@@ -1675,20 +1675,3 @@ header .header-info h3{font-size:14px; float:none; display:inline-block; width:2
 @media all and (min-width:768px) and (max-width:769px) {
 	.program-input-row .select-option .sbHolder ul{width:99.7% !important;}
 }
-
-#programManagementTabs input {
-  width: 100%;
-  color: #000;
-  margin: 5px 0 15px 0;
-}
-.discountCodeLink {
-  font-weight: bold;
-  text-decoration: underline;
-  margin: 0;
-  padding: 0;
-}
-.discountCode {
-  width: 100%;
-  background: #eee;
-  padding: 20px;
-}
