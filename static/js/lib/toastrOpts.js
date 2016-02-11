@@ -1,5 +1,6 @@
 /** Toastr (Toast Messages) plugin options.
  *  Ussage: toastr['success']('Have fun storming the castle!')
+ *  https://github.com/CodeSeven/toastr
  */
 
 toastr.options = {
@@ -8,7 +9,7 @@ toastr.options = {
   'newestOnTop': true,
   'progressBar': false,
   'positionClass': 'toast-bottom-left',
-  'preventDuplicates': false,
+  'preventDuplicates': true,
   'onclick': null,
   'showDuration': '300',
   'hideDuration': '1000',

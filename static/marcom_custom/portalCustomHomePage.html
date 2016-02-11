@@ -6,101 +6,44 @@
           <h3><a href="home.aspx"></a>Welcome <span class="welcome-message-custom"> %%User.FirstName%%!</span></h3>
           <p>VIOC is pleased to present the new VDirect portal. You can access multi-part lifecycle campaigns, recurring additional offers as well as specific email/direct mail templates.</p>
         </section>
-        <section id="programSummary">
-          <h1>Programs</h1>
-          <div class="program-select program-select--is-active-user">
+        <section id="gettingStartedNow" class="js-hidden">
+          <h1>Get Started Now</h1>
+          <p></p>
+          <div class="youtube-video-area">
+          </div>
+          <div class="icons-link">
             <ul>
-              <li id="program-1" class="status-green">
-                <div class="checkbox-area">
-                  <div class="customCheckbox">
-                    <input data-checkbox-label="Reminder" type="checkbox">
-                    <label>Reminder</label>
+              <li>
+                <a href="#" title="Getting Started Guide">
+                  <div class="icon-area">
+                    <img src="https://files.marcomcentral.app.pti.com/epsilon/static/marcom_custom/images/ico-getting-started.png" alt="Getting Started Guide" title="Getting Started Guide" width="65">
                   </div>
-                </div>
-                <div class="program-info">
-                  <div class="program-status">
-                    <span class="storesParticipating"></span> / <span class="storesEligible"></span>
-                  </div>
-                  <div class="program-edit">
-                    <a href="#" title="Edit Program">
-                      <img src="https://files.marcomcentral.app.pti.com/epsilon/static/marcom_custom/images/edit-bg.png" alt="Edit Program" title="Edit Program" width="22">
-                    </a>
-                  </div>
-                </div>
+                  <span>Getting Started Guide</span>
+                </a>
               </li>
-              <li id="program-2" class="status-yellow">
-                <div class="checkbox-area">
-                  <div class="customCheckbox">
-                    <input data-checkbox-label="Lapsed" type="checkbox">
-                    <label>Lapsed</label>
+              <li>
+                <a href="#" title="FAQ">
+                  <div class="icon-area">
+                    <img src="https://files.marcomcentral.app.pti.com/epsilon/static/marcom_custom/images/ico-faq.png" alt="FAQ" title="FAQ" width="65">
                   </div>
-                </div>
-                <div class="program-info">
-                  <div class="program-status">
-                    <span class="storesParticipating"></span> / <span class="storesEligible"></span>
-                  </div>
-                  <div class="program-edit">
-                    <a href="#" title="Edit Program">
-                      <img src="https://files.marcomcentral.app.pti.com/epsilon/static/marcom_custom/images/edit-bg.png" alt="Edit Program" title="Edit Program" width="22">
-                    </a>
-                  </div>
-                </div>
+                  <span>FAQ</span>
+                </a>
               </li>
-              <li id="program-3" class="status-red">
-                <div class="checkbox-area">
-                  <div class="customCheckbox">
-                    <input data-checkbox-label="Relapsed" type="checkbox">
-                    <label>Relapsed</label>
+              <li>
+                <a href="#" title="Additional Documents">
+                  <div class="icon-area">
+                    <img src="https://files.marcomcentral.app.pti.com/epsilon/static/marcom_custom/images/ico-documents.png" alt="Additional Documents" title="Additional Documents" width="65">
                   </div>
-                </div>
-                <div class="program-info">
-                  <div class="program-status">
-                    <span class="storesParticipating"></span> / <span class="storesEligible"></span>
-                  </div>
-                  <div class="program-edit">
-                    <a href="#" title="Edit Program">
-                      <img src="https://files.marcomcentral.app.pti.com/epsilon/static/marcom_custom/images/edit-bg.png" alt="Edit Program" title="Edit Program" width="22">
-                    </a>
-                  </div>
-                </div>
-              </li>
-              <li id="program-4" class="status-red">
-                <div class="checkbox-area">
-                  <div class="customCheckbox">
-                    <input data-checkbox-label="Lost" type="checkbox">
-                    <label>Lost</label>
-                  </div>
-                </div>
-                <div class="program-info">
-                  <div class="program-status">
-                    <span class="storesParticipating"></span> / <span class="storesEligible"></span>
-                  </div>
-                  <div class="program-edit">
-                    <a href="#" title="Edit Program">
-                      <img src="https://files.marcomcentral.app.pti.com/epsilon/static/marcom_custom/images/edit-bg.png" alt="Edit Program" title="Edit Program" width="22">
-                    </a>
-                  </div>
-                </div>
-              </li>
-              <li id="program-5" class="status-green">
-                <div class="checkbox-area">
-                  <div class="customCheckbox">
-                    <input data-checkbox-label="Reactivation" type="checkbox">
-                    <label>Reactivation</label>
-                  </div>
-                </div>
-                <div class="program-info">
-                  <div class="program-status">
-                    <span class="storesParticipating"></span> / <span class="storesEligible"></span>
-                  </div>
-                  <div class="program-edit">
-                    <a href="#" title="Edit Program">
-                      <img src="https://files.marcomcentral.app.pti.com/epsilon/static/marcom_custom/images/edit-bg.png" alt="Edit Program" title="Edit Program" width="22">
-                    </a>
-                  </div>
-                </div>
+                  <span>Additional Documents</span>
+                </a>
               </li>
             </ul>
+          </div>
+        </section>
+        <section id="programSummary" class="js-hidden">
+          <h1>Programs</h1>
+          <div class="program-select program-select--is-active-user">
+            <!-- Mustache Template: program-list.mustache.html -->
           </div>
         </section>
       </div>
@@ -119,7 +62,7 @@
               </thead>
               <tbody>
                 <tr class="program-name-lifecycle">
-                  <td data-title="Enrolled" data-enrolled="">
+                  <td data-title="Enrolled" data-enrolled="false">
                     <span class="errolled-state" aria-hidden="true">
                     </span>
                   </td>

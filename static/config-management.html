@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-	<title>Reminder Program | Valvoline</title>
+	<title>Configuration Management | Valvoline</title>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0" />
 	<meta name="format-detection" content="telephone=no">
@@ -16,6 +16,7 @@
 	<link rel="stylesheet" type="text/css" href="css/reset.css">
 	<link rel="stylesheet" type="text/css" href="css/easy-responsive-tabs.css" />
 	<link rel="stylesheet" type="text/css" href="css/jquery.mCustomScrollbar.css">
+	<link rel="stylesheet" type="text/css" href="css/edit-additional-offer-layout.css">
 	<!--css styles ends-->
 
 	<script src="js/jquery_min.js"></script>
@@ -121,32 +122,29 @@
 					<ul>
 						<li><a href="index.html" title="Home">Home</a></li>
 						<li>
-							<span>Reminder Program</span>
+							<span>Edit DFS/Additional Offer Layout</span>
 						</li>
 					</ul>
 				</section>
 			</div>
 			<div class="main">
 				<section id="programManagementTabs">
-					<h1 class="h1 page-title"><span class="hidden">Reminder Program</span></h1>
+					<h1 class="h1 page-title"><span>Edit DFS/Additional Offer Layout</span></h1>
+					<p>This layout configures the look-and-feel of the program-specific coupons. See the preview below to see which coupons are included in this layout.</p>
+					<form>
+						<input type="text" placeholder="Enter Name for Layout" />
+					</form>
+					<h4>Coupons</h4>
 					<div id="parentHorizontalTab" class="lifescycle-tab">
 						<ul class="resp-tabs-list hor_1">
-							<li>Program Spend Summary</li>
-							<li>Program Inputs</li>
+							<li>Transmission</li>
+							<li>Gearbox</li>
+							<li>Fuel System</li>
+							<li>Radiator</li>
+							<li>Additional Offer</li>
 						</ul>
 						<div class="resp-tabs-container hor_1">
 							<div>
-								<div class="alert-container">
-									<!-- <div class="alert-main alert-controls">
-										Use the controls below to enroll your store’s customers in the VIOC Reminder Campaign, view estimated monthly costs based upon marketing channel selection. Once enrolled, VIOC will automatically deliver communications via selected marketing channels.
-									</div>
-									<div class="alert-main alert-danger">
-										DANGER: Write your danger message here.
-									</div>
-									<div class="alert-main alert-success">
-										SUCCESS: Write your success message here.
-									</div> -->
-								</div>
 								<section id="programManagement">
 									<div class="filters-area">
 										<div class="filter-select select-option">
@@ -595,9 +593,15 @@
 							</div>
 						</div>
 					</div>
+					<div class="container">
+						<h4>Settings</h4>
+						<p>When should these coupons expire?</p>
+					</div>
 				</section>
 			</div>
 		</div>
+
+
 		<!--footer starts here-->
 		<footer>
 			<div class="main">
@@ -616,7 +620,6 @@
 	<script src="js/lib/toastrOpts.js"></script>
 	<script src="js/lib/checkAndRadioBoxes.js"></script>
 	<script src="js/lib/easyResponsiveTabs.js"></script>
-	<script src="js/lib/navTabs.js"></script>
 
 	<!-- Async,API and Marcom hookups -->
 	<script src="js/app/marcomUserData.js"></script>

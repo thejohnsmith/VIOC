@@ -1,0 +1,85 @@
+h1 {
+	padding: 0;
+	margin: 0;
+}
+
+h4 {
+	color: #E02926;
+	font-weight: bold;
+	font-size: 24px;
+	padding: 10px 0 0 0;
+	margin: 10px 0;
+}
+
+.red {
+	color: #E02926;
+}
+
+input {
+	padding: 10px;
+	width: 80%;
+	font-family: 'HelveticaNeueLT-LightCond';
+	font-size: 18px;
+}
+
+.resp-tab-content {
+	margin: 0 0 15px 0;
+}
+
+p {
+	padding: 0 0 10px 0;
+	margin: 0;
+}
+
+#programManagementTabs {
+	padding: 0 15px 0 0;
+	margin: 0 0 20px 0;
+}
+
+#programManagementTabs input {
+  width: 50%;
+  color: #000;
+  margin: 5px 0 15px 0;
+}
+
+#programManagementTabs select {
+  width: auto;
+  color: #000;
+  margin: 5px 0 15px 0;
+}
+.discountCodeLink {
+  font-weight: bold;
+  text-decoration: underline;
+  margin: 0;
+  padding: 0;
+}
+.discountCode {
+  width: 100%;
+  background: #eee;
+  padding: 20px;
+}
+
+.discountCode table,
+#parentHorizontalTab table {
+	width: 100%;
+}
+.discountCode table tr td:first-child,
+#parentHorizontalTab table tr td:first-child {
+	text-align: right;
+	vertical-align: middle;
+	padding: 0 15px 10px 0;
+}
+.discountCode table tr td:nth-child(odd),
+#parentHorizontalTab  table tr td:nth-child(odd) {
+	width: 40%;
+}
+.module table tr td:first-child {
+	vertical-align: middle;
+	padding: 0 15px 10px 0;
+}
+.module table tr td:nth-child(odd) {
+	width: 40%;
+}
+.module table {
+	width: 100%;
+}

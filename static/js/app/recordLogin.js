@@ -8,7 +8,12 @@
      data-user-email="%%User.Email%%"
  */
 var recordLogin = (function($) {
+
   var makeRequest = function() {
+    // Make sure there's a User ID loaded from Marcom before we Init this script.
+    if (marcomUserData.$user.externalId === '%%User.ExternalId%%') {
+      return
+    }
     var localDevUrl =
       'data/recordLogin.jssp';
     var marcomDevUrl =
@@ -22,44 +27,58 @@ var recordLogin = (function($) {
         'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
       },
       data: {
-        userId: marcomUserData.$user.externalId || ''
+        userId: marcomUserData.$user.externalId
       },
       processData: true,
       contentType: 'application/json'
     }).done(function(data) {
-      getLoginDays(data);
+      results = JSON.parse(data);
+      getLoginDays(results);
     }).fail(function() {
       return;
     });
   };
 
-  var getLoginDays = function(data) {
+  var getLoginDays = function(results) {
     var loginDays = {
-      'x': data.firstPortalLogin,
-      'y': data.lastPortalLogin
+      'x': results.firstPortalLogin,
+      'y': results.lastPortalLogin
     };
 
     var getDateRange = function(loginDays) {
-      var fistDay = moment(loginDays.x);
-      var lastDay = moment(loginDays.y);
-      var range = lastDay.diff(fistDay, 'days');
+        var fistDay = moment(loginDays.x);
+        var lastDay = moment(loginDays.y);
+        var range = lastDay.diff(fistDay, 'days');
 
-      /* Make sure the moment library has loaded */
-      if (typeof moment === 'undefined') {
-        return console.log('Error: moment.js was not loaded.');
+        /* Make sure the moment library has loaded */
+        if (typeof moment === 'undefined') {
+          console.log('%c ** Error ** ',
+            'color: #f10; font-weight: bold;',
+            '\nmoment.js was not loaded.');
+          return showGettingStarted();
+        }
+
+        /* Switch sections of home page depending on login times.
+         * If time between last login and first login is greater than 5 days: show Getting Started section.
+         * If time is less then show the Program Summary section.
+         */
+        if (range > 5) {
+          // Greater than 5, show "Getting Started Now" version of the home page.
+          return showGettingStarted();
+        } else {
+          // Less than 5, show the "Programs" version of the home page.
+          return showPrograms();
+        }
+      },
+      showGettingStarted = function() {
+        $('#welcome + #gettingStartedNow').fadeIn();
+        $('#programSummary').hide();
+      },
+      showPrograms = function() {
+        $('#welcome + #gettingStartedNow').hide();
+        $('#programSummary').fadeIn();
       }
 
-      /* To Do:
-       * Switch versions of home page
-       */
-      if (range > 5) {
-        // console.log('Greater than 5, show "Getting Started Now" version of the home page.');
-        return;
-      } else {
-        // console.log('Less than 5, show the "Programs" version of the home page.');
-        return;
-      }
-    }
     return getDateRange(loginDays);
   }
 
@@ -67,5 +86,6 @@ var recordLogin = (function($) {
     makeRequest: makeRequest
   };
 })(jQuery);
+
 
 recordLogin.makeRequest();
