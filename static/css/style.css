@@ -748,6 +748,15 @@ header .header-right a:hover {
   width: 70%;
   margin: 0 20px 0 0;
 }
+#programManagementTabs .filters-area {
+  float: none;
+  width: 100%;
+}
+#programManagementTabs .filters-area > div {
+  float: none;
+  display: inline-block;
+  margin-bottom: 1em;
+}
 .alert-container {
   float: left;
   width: 100%;
@@ -943,7 +952,9 @@ header .header-right a:hover {
   padding-left: 24px;
 }
 .programsummary-table th.store-enroll .customCheckbox {
-  padding-left: 33px;
+  padding-left: 0;
+  padding-top: 49px;
+  margin-top: -20px;
 }
 .store-enroll .customCheckbox label {
   text-decoration: underline;
