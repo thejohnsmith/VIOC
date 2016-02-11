@@ -83,3 +83,13 @@ p {
 .module table {
 	width: 100%;
 }
+
+.sidebar p {
+	padding: 20px 0 10px 0;
+}
+.sidebar textarea {
+	text-align: left;
+	padding: 10px;
+	font-size: 14px;
+	line-height: 20px;
+}
