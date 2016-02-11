@@ -152,7 +152,7 @@ var getProgramParticipationStats = (function($) {
         '<programss="alert-main alert-danger">DANGER: An error occured</div>'
       ).fadeIn();
       // Display a success toast, with a title
-      toastr.error('An internal error has occurred.');
+      console.warn('An internal error has occurred.');
     }
 
   return {
