@@ -42,8 +42,15 @@ var getProgramParticipationStats = (function($) {
      * @return {string} programTitle
      */
     getProgramTitle = function(result) {
+      if (!$('.h1.page-title').length) {
+        return;
+      }
       return result.map(function(obj) {
         var programTitle;
+        if (JSON.stringify(obj.id) === programId) {
+          programTitle = obj.programName;
+          return setProgramTitle(programTitle);
+        }
         if (programId === '#' ||
           programId === 'l' ||
           programId === '=' ||
@@ -51,11 +58,7 @@ var getProgramParticipationStats = (function($) {
           console.warn(
             'Program ID was not found: %c Result is unknown',
             'color: #f10; font-weight: bold;');
-
           programTitle = 'Unknown';
-          return setProgramTitle(programTitle);
-        } else if (JSON.stringify(obj.id) === programId) {
-          programTitle = obj.programName;
           return setProgramTitle(programTitle);
         }
       });
@@ -72,6 +75,10 @@ var getProgramParticipationStats = (function($) {
       }).removeClass('hidden').animate({
         opacity: 1
       });
+      return setBreadcrumbTitle(programTitle);
+    },
+    setBreadcrumbTitle = function(programTitle) {
+      $('#breadcrumbs span').text(programTitle + ' Program');
     },
     /** Load Program Data
      * Updates the participation dashboard

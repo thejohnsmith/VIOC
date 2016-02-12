@@ -62,7 +62,7 @@ var recordLogin = (function($) {
          * If time between last login and first login is greater than 5 days: show Getting Started section.
          * If time is less then show the Program Summary section.
          */
-        if (range > 5) {
+        if (range > 5 && $('.storeProgramData').length) {
           // Greater than 5, show "Getting Started Now" version of the home page.
           return showGettingStarted();
         } else {
