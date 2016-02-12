@@ -18,7 +18,7 @@ var getProgramParticipationStats = (function($) {
       var acUrl =
         'https://adobe-uat-vioc.epsilon.com/jssp/vioc/getProgramParticipationStats.jssp';
       $.ajax({
-        url: acUrl,
+        url: marcomDevUrl,
         type: 'GET',
         dataType: 'json',
         processData: true,
@@ -44,7 +44,14 @@ var getProgramParticipationStats = (function($) {
     getProgramTitle = function(result) {
       return result.map(function(obj) {
         var programTitle;
-        if (programId === '#' || programId < 1) {
+        if (programId === '#' ||
+          programId === 'l' ||
+          programId === '=' ||
+          programId < 1) {
+          console.warn(
+            'Program ID was not found: %c Result is unknown',
+            'color: #f10; font-weight: bold;');
+
           programTitle = 'Unknown';
           return setProgramTitle(programTitle);
         } else if (JSON.stringify(obj.id) === programId) {

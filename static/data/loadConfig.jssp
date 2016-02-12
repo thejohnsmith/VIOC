@@ -1,0 +1,35 @@
+{
+    "configType": "dfs",
+    "previewUrl": "http://......pdf",
+    "uiLayout": {
+        "allowEmailDiscountCode": true,
+        "allowDMDiscountCode": true,
+        "offer1StandardTab": true,
+        "offer1HighTab": true,
+        "offer2StandardTab": true,
+        "offer2HighTab": true,
+        "transmissionTab": true,
+        "gearboxTab": true,
+        "fuelSystemTab": true,
+        "radiatorTab": true,
+        "additionalOfferTab": true,
+        "emailCreativeChoices": {
+            "BasicBlue": "Basic Blue"
+        },
+        "dmCreativeChoices": {
+            "BasicBlue": "Basic Blue",
+            "Generic": "Generic",
+            "Mural": "Mural"
+        },
+        "storesUsingConfig": [
+            "El Dorado and Lake Forest (Store #000151)"
+        ]
+    },
+    "content": {
+        "name": "Summer Specials",
+        "emailDiscountCode": "RME101",
+        "dmDiscountCode": "RMDM101",
+        "smsDiscountCode": "RMSMS101",
+        "all_additional_fields_from_spreadsheet": "foo"
+    }
+}
