@@ -1,0 +1,66 @@
+[{
+  "id": 1,
+  "configType": "program",
+  "label": "Corporate Default",
+  "isCorporateDefault": 1
+}, {
+  "id": 2,
+  "configType": "program",
+  "label": "Corporate Default",
+  "isCorporateDefault": 1
+}, {
+  "id": 3,
+  "configType": "program",
+  "label": "Corporate Default",
+  "isCorporateDefault": 1
+}, {
+  "id": 4,
+  "configType": "program",
+  "label": "Corporate Default",
+  "isCorporateDefault": 1
+}, {
+  "id": 5,
+  "configType": "program",
+  "label": "Corporate Default",
+  "isCorporateDefault": 1
+}, {
+  "id": 6,
+  "configType": "program",
+  "label": "Corporate Default",
+  "isCorporateDefault": 1
+}, {
+  "id": 7,
+  "configType": "program",
+  "label": "Corporate Default",
+  "isCorporateDefault": 1
+}, {
+  "id": 8,
+  "configType": "program",
+  "label": "Corporate Default",
+  "isCorporateDefault": 1
+}, {
+  "id": 9,
+  "configType": "dfs",
+  "label": "Corporate Default",
+  "isCorporateDefault": 1
+}, {
+  "id": 10,
+  "configType": "program",
+  "label": "Summer Specials",
+  "isCorporateDefault": 0
+}, {
+  "id": 11,
+  "configType": "program",
+  "label": "Winter Specials",
+  "isCorporateDefault": 0
+}, {
+  "id": 12,
+  "configType": "dfs",
+  "label": "Summer Special DFS Offers",
+  "isCorporateDefault": 0
+}, {
+  "id": 13,
+  "configType": "dfs",
+  "label": "Winter Special DFS Offers",
+  "isCorporateDefault": 0
+}]
