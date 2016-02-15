@@ -15,6 +15,7 @@ var customCheckAndRadioBoxes = (function($) {
       $(this).closest('.customRadiobox').addClass('focused');
     });
     selectedPrograms();
+    selectAllCustomBoxes();
   };
 
   /** Call the Subscription Request
@@ -54,24 +55,25 @@ var customCheckAndRadioBoxes = (function($) {
   // var $('.js-all-selectable.checked').parent().parent().find('.storesParticipating');
 
   // TO DO: Add a SelectALL function
-  // var selectAllCustomBoxes = function() {
-  //   $('.js-trigger-enroll').on('click', function() {
-  //     var $jsAllSelectable = $('.js-all-selectable');
-  //     var $jsAllSelectableChecked = $(
-  //       '.js-all-selectable.checked');
-  //
-  //     // Return if all are already selected.
-  //     if ($jsAllSelectableChecked.length === $jsAllSelectable
-  //       .length) {
-  //       return;
-  //     }
-  //     $jsAllSelectable.addClass('checked').find($(
-  //       'input')).prop(
-  //       'checked',
-  //       'checked').focus();
-  //   });
-  //   return;
-  // };
+  var selectAllCustomBoxes = function() {
+    $('.js-select-all-boxes').on('click', function(e) {
+      e.preventDefault();
+      var $jsAllSelectable = $('.js-all-selectable');
+      var $jsAllSelectableChecked = $(
+        '.js-all-selectable.checked');
+
+      // Return if all are already selected.
+      if ($jsAllSelectableChecked.length === $jsAllSelectable
+        .length) {
+        return;
+      }
+      $jsAllSelectable.addClass('checked').find($(
+        'input')).prop(
+        'checked',
+        'checked').focus();
+    });
+    return;
+  };
 
   var customCheckbox = function() {
     $('.customCheckbox input:checkbox').each(function() {
