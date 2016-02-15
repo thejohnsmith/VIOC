@@ -12,7 +12,7 @@
 }, {
   "storeId": 102,
   "storeName": "Smith Avenue",
-  "enrolled": true,
+  "enrolled": false,
   "channelEmail": 452,
   "channelDM": 858,
   "channelSMS": 138,

@@ -18,7 +18,8 @@
       url: acUrl,
       dataType: 'json',
       data: {
-        userId: marcomUserData.$user.externalId
+        userId: marcomUserData.$user.externalId,
+        programId: programId
       }
     }).done(function(result) {
       loadStoreProgramData(result);

@@ -16,6 +16,7 @@ var customCheckAndRadioBoxes = (function($) {
     });
     selectedPrograms();
     selectAllCustomBoxes();
+    activeChecked();
   };
 
   /** Call the Subscription Request
@@ -44,8 +45,18 @@ var customCheckAndRadioBoxes = (function($) {
     return setStoreSubscription.makeRequest($selectedPrograms);
   }
 
+  var enrollStores = function($selectedPrograms) {
+    removeChecked();
+    return setStoreSubscription.makeRequest($selectedPrograms);
+  }
+
+  var activeChecked = function() {
+    $('.checkbox-area[data-enrolled="true"] > .js-all-selectable').addClass(
+      'checked');
+  }
+
   var removeChecked = function() {
-    return $('.js-all-selectable.checked')
+    return $('#programSummary .customCheckbox.checked')
       .removeClass('checked')
       .find($('input:checkbox')).prop('checked', '');
   }
@@ -54,7 +65,6 @@ var customCheckAndRadioBoxes = (function($) {
   // This would likely be easier to do by making an API request to get programParticipationStats
   // var $('.js-all-selectable.checked').parent().parent().find('.storesParticipating');
 
-  // TO DO: Add a SelectALL function
   var selectAllCustomBoxes = function() {
     $('.js-select-all-boxes').on('click', function(e) {
       e.preventDefault();
