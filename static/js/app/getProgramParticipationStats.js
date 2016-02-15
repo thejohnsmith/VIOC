@@ -117,15 +117,15 @@ var getProgramParticipationStats = (function($) {
         // Make sure to ommit non-lifecycle campaign entries.
         if (obj.isLifecycleCampaign) {
           // No stores participating : Red
-          if (obj.storesEnrolled === 0 ||
-            obj.storesEnrolled === 0 && obj.storesEligible === 0) {
+          if (obj.storesParticipating === 0 ||
+            obj.storesParticipating === 0 && obj.storesEligible === 0) {
             $programId.attr('class', programStatus.alert);
           }
           // More than one store participating : Yellow
-          if (obj.storesEnrolled > 0 && obj.storesEligible > 0) {
+          if (obj.storesParticipating > 0 && obj.storesEligible > 0) {
             $programId.attr('class', programStatus.warning);
             // All stores participating : Green
-            if (obj.storesEnrolled === obj.storesEligible) {
+            if (obj.storesParticipating === obj.storesEligible) {
               $programId.attr('class', programStatus.success);
             }
             updateParticipationDashboard();
@@ -133,8 +133,8 @@ var getProgramParticipationStats = (function($) {
         }
         // Check for errors:
         // If more stores participating than eligible display error state.
-        if (obj.storesEnrolled > obj.storesEligible || !$.isNumeric(
-            obj.storesEnrolled)) {
+        if (obj.storesParticipating > obj.storesEligible || !$.isNumeric(
+            obj.storesParticipating)) {
           handleDashboardError(obj);
         }
         // Handle errors
