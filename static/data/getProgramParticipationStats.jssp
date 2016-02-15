@@ -1,7 +1,7 @@
 [{
-  "id": 1,
-  "programName": "Reminder",
-  "programDesc": "Description Here",
+  "id": 6,
+  "programName": "IMN",
+  "programDesc": "Description TBD",
   "programMeta": {
     "touchpoints": [{
       "previewThumbnail": "http://project-progress.net/projects/valvoline/images/review-bg.jpg",
@@ -11,15 +11,15 @@
       "timing": "2 - 3 Days"
     }]
   },
-  "storesParticipating": 3,
   "programUsesDfs": 1,
-  "isLifecycleCampaign": 1,
-  "monthlyCostPerRecipientDm": 0.44,
-  "storesEligible": 3
+  "isLifecycleCampaign": 0,
+  "monthlyCostPerRecipientDm": 0,
+  "storesEligible": 0,
+  "storesEnrolled": 0
 }, {
-  "id": 2,
-  "programName": "Lapsed",
-  "programDesc": "Description Here",
+  "id": 7,
+  "programName": "Facebook",
+  "programDesc": "Description TBD",
   "programMeta": {
     "touchpoints": [{
       "previewThumbnail": "http://project-progress.net/projects/valvoline/images/review-bg.jpg",
@@ -30,14 +30,14 @@
     }]
   },
   "programUsesDfs": 1,
-  "isLifecycleCampaign": 1,
-  "monthlyCostPerRecipientDm": 0.44,
-  "storesParticipating": 0,
-  "storesEligible": 3
+  "isLifecycleCampaign": 0,
+  "monthlyCostPerRecipientDm": 0,
+  "storesEligible": 0,
+  "storesEnrolled": 0
 }, {
-  "id": 3,
-  "programName": "Relapsed",
-  "programDesc": "Description Here",
+  "id": 8,
+  "programName": "SEM",
+  "programDesc": "Description TBD",
   "programMeta": {
     "touchpoints": [{
       "previewThumbnail": "http://project-progress.net/projects/valvoline/images/review-bg.jpg",
@@ -48,50 +48,14 @@
     }]
   },
   "programUsesDfs": 1,
-  "isLifecycleCampaign": 1,
-  "monthlyCostPerRecipientDm": 0.44,
-  "storesParticipating": 2,
-  "storesEligible": 3
-}, {
-  "id": 4,
-  "programName": "Lost",
-  "programDesc": "Description Here",
-  "programMeta": {
-    "touchpoints": [{
-      "previewThumbnail": "http://project-progress.net/projects/valvoline/images/review-bg.jpg",
-      "previewUrl": "http://www.vioc.com",
-      "channel": "Email",
-      "Name": "reminder",
-      "timing": "2 - 3 Days"
-    }]
-  },
-  "programUsesDfs": 1,
-  "isLifecycleCampaign": 1,
-  "monthlyCostPerRecipientDm": 0.44,
-  "storesParticipating": 0,
-  "storesEligible": 3
-}, {
-  "id": 5,
-  "programName": "Reactivation",
-  "programDesc": "Description Here",
-  "programMeta": {
-    "touchpoints": [{
-      "previewThumbnail": "http://project-progress.net/projects/valvoline/images/review-bg.jpg",
-      "previewUrl": "http://www.vioc.com",
-      "channel": "Email",
-      "Name": "reminder",
-      "timing": "2 - 3 Days"
-    }]
-  },
-  "programUsesDfs": 1,
-  "isLifecycleCampaign": 1,
-  "monthlyCostPerRecipientDm": 0.44,
-  "storesParticipating": 1,
-  "storesEligible": 3
+  "isLifecycleCampaign": 0,
+  "monthlyCostPerRecipientDm": 0,
+  "storesEligible": 0,
+  "storesEnrolled": 0
 }, {
   "id": 9,
   "programName": "Lifecycle Test",
-  "programDesc": "Description Here",
+  "programDesc": "Description TBD",
   "programMeta": {
     "touchpoints": [{
       "previewThumbnail": "http://project-progress.net/projects/valvoline/images/review-bg.jpg",
@@ -103,13 +67,13 @@
   },
   "programUsesDfs": 1,
   "isLifecycleCampaign": 1,
-  "monthlyCostPerRecipientDm": 0.44,
-  "storesParticipating": 1,
-  "storesEligible": 3
+  "monthlyCostPerRecipientDm": 0,
+  "storesEligible": 0,
+  "storesEnrolled": 0
 }, {
   "id": 10,
   "programName": "Post-Visit",
-  "programDesc": "Description Here",
+  "programDesc": "Description TBD",
   "programMeta": {
     "touchpoints": [{
       "previewThumbnail": "http://project-progress.net/projects/valvoline/images/review-bg.jpg",
@@ -122,12 +86,12 @@
   "programUsesDfs": 1,
   "isLifecycleCampaign": 1,
   "monthlyCostPerRecipientDm": 0.44,
-  "storesParticipating": 2,
-  "storesEligible": 3
+  "storesEligible": 0,
+  "storesEnrolled": 0
 }, {
   "id": 11,
   "programName": "Pre-Reminder",
-  "programDesc": "Description Here",
+  "programDesc": "Description TBD",
   "programMeta": {
     "touchpoints": [{
       "previewThumbnail": "http://project-progress.net/projects/valvoline/images/review-bg.jpg",
@@ -140,6 +104,96 @@
   "programUsesDfs": 1,
   "isLifecycleCampaign": 1,
   "monthlyCostPerRecipientDm": 0.44,
-  "storesParticipating": 3,
-  "storesEligible": 3
+  "storesEligible": 0,
+  "storesEnrolled": 0
+}, {
+  "id": 1,
+  "programName": "Reminder",
+  "programDesc": "Description TBD",
+  "programMeta": {
+    "touchpoints": [{
+      "previewThumbnail": "http://project-progress.net/projects/valvoline/images/review-bg.jpg",
+      "previewUrl": "http://www.vioc.com",
+      "channel": "Email",
+      "Name": "reminder",
+      "timing": "2 - 3 Days"
+    }]
+  },
+  "programUsesDfs": 1,
+  "isLifecycleCampaign": 1,
+  "monthlyCostPerRecipientDm": 0.44,
+  "storesEligible": 0,
+  "storesEnrolled": 0
+}, {
+  "id": 2,
+  "programName": "Lapsed",
+  "programDesc": "Description TBD",
+  "programMeta": {
+    "touchpoints": [{
+      "previewThumbnail": "http://project-progress.net/projects/valvoline/images/review-bg.jpg",
+      "previewUrl": "http://www.vioc.com",
+      "channel": "Email",
+      "Name": "reminder",
+      "timing": "2 - 3 Days"
+    }]
+  },
+  "programUsesDfs": 1,
+  "isLifecycleCampaign": 1,
+  "monthlyCostPerRecipientDm": 0.44,
+  "storesEligible": 0,
+  "storesEnrolled": 0
+}, {
+  "id": 4,
+  "programName": "Lost",
+  "programDesc": "Description TBD",
+  "programMeta": {
+    "touchpoints": [{
+      "previewThumbnail": "http://project-progress.net/projects/valvoline/images/review-bg.jpg",
+      "previewUrl": "http://www.vioc.com",
+      "channel": "Email",
+      "Name": "reminder",
+      "timing": "2 - 3 Days"
+    }]
+  },
+  "programUsesDfs": 1,
+  "isLifecycleCampaign": 1,
+  "monthlyCostPerRecipientDm": 0.44,
+  "storesEligible": 0,
+  "storesEnrolled": 0
+}, {
+  "id": 5,
+  "programName": "Reactivation",
+  "programDesc": "Description TBD",
+  "programMeta": {
+    "touchpoints": [{
+      "previewThumbnail": "http://project-progress.net/projects/valvoline/images/review-bg.jpg",
+      "previewUrl": "http://www.vioc.com",
+      "channel": "Email",
+      "Name": "reminder",
+      "timing": "2 - 3 Days"
+    }]
+  },
+  "programUsesDfs": 1,
+  "isLifecycleCampaign": 1,
+  "monthlyCostPerRecipientDm": 0.44,
+  "storesEligible": 0,
+  "storesEnrolled": 0
+}, {
+  "id": 3,
+  "programName": "Relapsed",
+  "programDesc": "Description TBD",
+  "programMeta": {
+    "touchpoints": [{
+      "previewThumbnail": "http://project-progress.net/projects/valvoline/images/review-bg.jpg",
+      "previewUrl": "http://www.vioc.com",
+      "channel": "Email",
+      "Name": "reminder",
+      "timing": "2 - 3 Days"
+    }]
+  },
+  "programUsesDfs": 1,
+  "isLifecycleCampaign": 1,
+  "monthlyCostPerRecipientDm": 0.44,
+  "storesEligible": 0,
+  "storesEnrolled": 0
 }]
