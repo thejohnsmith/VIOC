@@ -14,7 +14,6 @@ var getHashParams = (function($) {
 
   while (e = r.exec(q))
     hashParams[d(e[1])] = d(e[2]);
-  // return hashParams;
 
   return {
     hashParams: hashParams
