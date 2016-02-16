@@ -15,7 +15,7 @@
     var programId = window.location.href.slice(-1);
 
     $.ajax({
-      url: acUrl,
+      url: marcomDevUrl,
       dataType: 'json',
       data: {
         userId: marcomUserData.$user.externalId,
@@ -23,22 +23,44 @@
       }
     }).done(function(result) {
       loadStoreProgramData(result);
-      // Initialize the custom input skins after ajax loads.
-      customCheckAndRadioBoxes.customCheckbox();
     }).fail(function() {
       ajaxclientFailed();
     });
 
     function loadStoreProgramData(result) {
-      if ($('.storeProgramData').length) {
-        var programDataTpl = $('#programDataTpl').html();
-        var programDataRendered = Mustache.render(programDataTpl,
-          result);
-        Mustache.parse(programDataTpl); // optional, speeds up future uses
-        $('.storeProgramData').html(programDataRendered);
-        return calculateTotals(result);
+      if ($('.program-enrollment-section').length) {
+        $.get(
+          'https://files.marcomcentral.app.pti.com/epsilon/static/program-enrollment.mustache.html',
+          function(templates) {
+            var template = $(templates).filter(
+              '.program-enrollment-template').html();
+            $('.program-enrollment-section').html(Mustache.render(
+              template,
+              result));
+            // customCheckAndRadioBoxes.customCheckbox();
+            calculateTotals(result);
+          });
+      }
+      if ($('.program-settings-section').length) {
+        $.get(
+          'https://files.marcomcentral.app.pti.com/epsilon/static/program-settings.mustache.html',
+          function(templates) {
+            var template2 = $(templates).filter(
+              '.program-settings-template').html();
+            $('.program-settings-section').html(Mustache.render(
+              template2,
+              result));
+            // customCheckAndRadioBoxes.customCheckbox();
+            // return calculateTotals(result);
+            return reloadCheckBoxes();
+          });
       }
     }
+
+    function reloadCheckBoxes() {
+      return customCheckAndRadioBoxes.customCheckbox();
+    }
+
 
     function calculateTotals(result) {
       Array.prototype.sum = function(prop) {

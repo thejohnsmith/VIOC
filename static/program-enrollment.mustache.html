@@ -1,0 +1,92 @@
+<script class="program-enrollment-template" type="x-tmpl-mustache">
+  {{#.}}
+  <tr>
+    <td>
+      <table>
+        <tr>
+          <td>
+            <table>
+              <tr>
+                <td class="store-enroll">
+                  <div class="checkbox-area" data-enrolled="{{enrolled}}">
+                    <div class="customCheckbox js-all-selectable">
+                      <input data-checkbox-label="" type="checkbox">
+                    </div>
+                  </div>
+                </td>
+                <td class="store">{{storeName}}
+                  <br>
+                  <div class="store-number">Store #{{storeId}}</div>
+                </td>
+                <td class="store-counts">
+                  <table class="inner-table">
+                    <tr>
+                      <td>{{channelEmail}}</td>
+                      <td>{{channelDM}}</td>
+                      <td>{{channelSMS}}</td>
+                    </tr>
+                  </table>
+                </td>
+                <td class="store-cost"><span>$</span><span class="js-format-currency">{{costEstimate}}</span>
+                  <br><a href="javascript:void(0);" title="Details" class="mobie-details-{{storeId}}">Details</a></td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+  <tr class="mobile-info-{{storeId}}">
+    <td>
+      <table class="mobile-table">
+        <tr>
+          <td class="store-label">Store #</td>
+          <td class="store-info">{{storeId}}</td>
+        </tr>
+        <tr>
+          <td class="store-label">Recipients in Email Channel:</td>
+          <td class="store-info">{{channelEmail}}</td>
+        </tr>
+        <tr>
+          <td class="store-label">Recipients in DM Channel:</td>
+          <td class="store-info">{{channelDM}}</td>
+        </tr>
+        <tr>
+          <td class="store-label">Recipients in SMS Channel:</td>
+          <td class="store-info">{{channelSMS}}</td>
+        </tr>
+        <tr>
+          <td class="store-label">Estimated Monthly Cost:</td>
+          <td class="store-info">{{costEstimate}}</td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+  {{/.}}
+  <tr>
+    <tr class="grand-total">
+      <td>
+        <table>
+          <tr>
+            <tr>
+              <td class="total-label">Total Participants in the Reminder Campaign:</td>
+              <td class="store-counts">
+                <table class="inner-table">
+                  <tbody>
+                    <tr>
+                      <td class="channelEmailTotal"></td>
+                      <td class="channelDMTotal"></td>
+                      <td class="channelSMSTotal"></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </td>
+              <td class="store-cost">
+                <span>$</span><span class="costEstimateTotal js-format-currency"></span>
+              </td>
+            </tr>
+          </tr>
+        </table>
+      </td>
+    </tr>
+</script>
