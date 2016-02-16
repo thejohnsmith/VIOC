@@ -69,8 +69,7 @@ var customCheckAndRadioBoxes = (function($) {
     $('.js-select-all-boxes').on('click', function(e) {
       e.preventDefault();
       var $jsAllSelectable = $('.js-all-selectable');
-      var $jsAllSelectableChecked = $(
-        '.js-all-selectable.checked');
+      var $jsAllSelectableChecked = $('.js-all-selectable.checked');
 
       // Return if all are already selected.
       if ($jsAllSelectableChecked.length === $jsAllSelectable
@@ -81,6 +80,18 @@ var customCheckAndRadioBoxes = (function($) {
         'input')).prop(
         'checked',
         'checked').focus();
+
+      $('.js-select-all-boxes').on('click', function() {
+        if (!$('.store-enroll input:checkbox:checked').length) {
+          return
+        }
+        var $selectedPrograms = $(
+            '.store-enroll .js-all-selectable.checked')
+          .map(function() {
+            return $(this).val();
+          }).get().join();
+        return setStoreSubscription.makeRequest($selectedPrograms);
+      });
     });
     return;
   };
