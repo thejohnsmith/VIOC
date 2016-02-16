@@ -10,11 +10,50 @@
 	<meta name="description" content="">
 	<link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
 	<link rel="icon" href="images/favicon.ico" type="image/x-icon">
-
 	<link rel="stylesheet" type="text/css" href="css/style.css">
 	<link rel="stylesheet" type="text/css" href="css/reset.css">
 	<link rel="stylesheet" type="text/css" href="css/easy-responsive-tabs.css">
 	<style>
+		.container-fluid {
+			padding-right: 15px;
+			padding-left: 15px;
+			margin-right: auto;
+			margin-left: auto;
+		}
+
+		.row {
+			margin-right: -15px;
+			margin-left: -15px;
+		}
+
+		.col-sm-2,
+		.col-sm-6,
+		.col-sm-8 {
+			position: relative;
+			min-height: 1px;
+			padding-right: 15px;
+			padding-left: 15px;
+		}
+
+		.col-sm-8 {
+			padding-left: 0;
+		}
+
+		@media (min-width: 768px) {
+			.col-sm-2 {
+				float: left;
+				width: 16.66666667%;
+			}
+			.col-sm-6 {
+				float: left;
+				width: 50%;
+			}
+			.col-sm-8 {
+				float: left;
+				width: 66.66666667%;
+			}
+		}
+
 		.programsummary-table .total-label {
 			width: 42% !important;
 		}
@@ -74,14 +113,6 @@
 			background-color: #FFF;
 		}
 
-		.col-sm-8 {
-			padding-left: 0;
-		}
-
-		.form-control {
-			width: 90%;
-		}
-
 		#programManagementTabs {
 			width: 100%;
 			float: none;
@@ -100,10 +131,6 @@
 			text-align: center;
 		}
 	</style>
-
-
-	<!--css styles ends-->
-
 	<script src="js/jquery_min.js"></script>
 </head>
 
@@ -116,7 +143,6 @@
 		data-user-email="john.smith@marcom.com"
 		aria-hidden="true">
 	</span>
-
 	<div class="dummy"></div>
 	<div class="wrapper">
 		<!--header starts here-->
@@ -252,7 +278,8 @@
 															<tr>
 																<th class="store-enroll">
 																	<div class="checkbox-area">
-																		<p>Store Enrollment</p><button class="btn btn-primary btn-sm js-select-all-boxes">Enroll All</button>
+																		<p>Store Enrollment</p>
+																		<button class="btn btn-primary btn-sm js-select-all-boxes">Enroll All</button>
 																	</div>
 																</th>
 																<th class="store">Store</th>
@@ -393,7 +420,7 @@
 											</thead>
 											<tbody>
 												<tr>
-													<td style="padding: 10px 0 0 10px">
+													<td style="padding: 10px 0 0 0">
 														<div class="checkbox-area" data-enrolled="">
 															<div class="customCheckbox js-all-selectable">
 																<input data-checkbox-label="" type="checkbox">
@@ -404,19 +431,19 @@
 														<div class="store-name">EI Dorado &amp; Lake Forest</div>
 														<div class="store-number">Store #XX0151</div>
 													</td>
-													<td class="store-configuration" style="padding: 8px">
+													<td class="store-configuration" style="padding: 8px 0 8px 8px">
 														<select class="form-control">
 															<option>Corporate Default</option>
 														</select>
 													</td>
-													<td class="store-configuration" style="padding: 8px">
+													<td class="store-configuration" style="padding: 8px 0 8px 8px">
 														<select class="form-control">
 															<option>Corporate Default</option>
 														</select>
 													</td>
 												</tr>
 												<tr>
-													<td colspan="2" style="background-color: #FFF; padding: 8px">
+													<td colspan="2" style="padding: 14px 14px 0;text-align: right;">
 														Adjust 1 selected store(s) to use:
 													</td>
 													<td class="store-configuration" style="background-color: #FFF; padding: 8px">
@@ -433,7 +460,7 @@
 															</div>
 														</div>
 													</td>
-													<td class="store-configuration" style="background-color: #FFF; padding: 8px">
+													<td class="store-configuration" style="background-color: #FFF; padding: 8px 0 8px 8px">
 														<div class="container-fluid">
 															<div class="row">
 																<div class="col-sm-8">
@@ -456,7 +483,7 @@
 									<div class="container well">
 										<div class="row">
 											<div class="col-sm-6">
-												<h1 style="font-size: 24px">Program Offer Layouts <button class="btn btn-sm btn-link">Create New</button></h1>
+												<h1 style="font-size: 20px">Program Offer Layouts <button class="btn btn-sm btn-link">Create New</button></h1>
 												<table width="100%" padding="4" border="0">
 
 													<tr>
@@ -474,7 +501,7 @@
 												</table>
 											</div>
 											<div class="col-sm-6">
-												<h1 style="font-size: 24px">Due For Service/Additional Offer Layout Options <button class="btn btn-sm btn-link">Create New</button></h1>
+												<h1 style="font-size: 20px">Due For Service/Additional Offer Layout Options <button class="btn btn-sm btn-link">Create New</button></h1>
 												<table width="100%" padding="4" border="0">
 													<tr>
 														<td>
