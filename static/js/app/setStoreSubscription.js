@@ -30,8 +30,8 @@ var setStoreSubscription = (function($) {
         'Enrollment preferences have been updated for the selected programs.'
       );
       // Get a new copy of data, populate the template and reinitialize the buttons.
-      getProgramParticipationStats.makeRequest();
-      customCheckAndRadioBoxes.customCheckbox();
+      // getProgramParticipationStats.makeRequest();
+      // customCheckAndRadioBoxes.customCheckbox();
     }).fail(function() {
       toastr.error('An internal error has occurred.');
       console.log(
