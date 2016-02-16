@@ -5,7 +5,15 @@
  */
 var getProgramParticipationStats = (function($) {
 
-  var programId = window.location.href.slice(-1) || 0;
+  if (location.hash == "programId") {
+    console.log('programId = ' + this);
+    return Designer();
+  }
+
+  var programId = window.location.href.slice(-2) || 0,
+    getProgramId = function() {
+      return programId;
+    }
   var makeRequest = function() {
       // Make sure there's a User ID loaded from Marcom before we Init this script.
       if (marcomUserData.$user.externalId === '%%User.ExternalId%%') {
@@ -170,6 +178,7 @@ var getProgramParticipationStats = (function($) {
     }
 
   return {
+    programId: programId,
     makeRequest: makeRequest,
     getProgramTitle: getProgramTitle,
     setProgramTitle: setProgramTitle,
