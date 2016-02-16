@@ -1,24 +1,26 @@
 <script class="program-list-template" type="x-tmpl-mustache">
   {{#.}} {{#isLifecycleCampaign}}
   <ul class="program-list">
-  <li id="program-{{id}}" class="status-green">
-    <div class="checkbox-area">
-      <div class="customCheckbox">
-        <input type="checkbox" value="{{id}}">
-        <label>{{programName}}</label>
+    <li id="program-{{id}}" class="status-green">
+      <div class="checkbox-area">
+        <div class="customCheckbox">
+          <input type="checkbox" value="{{id}}">
+          <label>{{programName}}</label>
+        </div>
       </div>
-    </div>
-    <div class="program-info">
-      <div class="program-status">
-        <span class="storesParticipating">{{storesEnrolled}}</span> / <span class="storesEligible">{{storesEligible}}</span>
-      </div>
-      <div class="program-edit">
-        <a href="https://marcomcentral.app.pti.com/Epsilon_Data_Management/Beta_Epsilon/CustomPage.aspx?uigroup_id=479602&page_id=11173#programId={{id}}" title="Edit Program">
-          <img src="https://files.marcomcentral.app.pti.com/epsilon/static/marcom_custom/images/edit-bg.png" alt="Edit Program" title="Edit Program" width="22">
+      <div class="program-info">
+        <a href="#" title="This indicates how many of your stores are participating in this program.">
+          <div class="program-status">
+            <span class="storesParticipating">{{storesParticipating}}</span> / <span class="storesEligible">{{storesEligible}}</span>
+          </div>
         </a>
+        <div class="program-edit">
+          <a href="https://marcomcentral.app.pti.com/Epsilon_Data_Management/Beta_Epsilon/CustomPage.aspx?uigroup_id=479602&page_id=11173#programId={{id}}" title="Edit Program">
+            <img src="https://files.marcomcentral.app.pti.com/epsilon/static/marcom_custom/images/edit-bg.png" alt="Edit Program" title="Edit Program" width="22">
+          </a>
+        </div>
       </div>
-    </div>
-  </li>
+    </li>
   </ul>
   {{/isLifecycleCampaign}} {{/.}}
 </script>

@@ -1,7 +1,7 @@
 /** Get User Configurations
  * Returns the configurations associated to a user's account
  * Usage: getUserConfigurations.makeRequest();
- * 1. Find a vioc:user by userId and verify they are legal.
+ * 1. Find a vioc: user by userId and verify they are legal.
  * 2. Query all configs that (belong to this user ID) or
  *    (have a null user ID and corporate defaults) or
  *    (belongs to no user (0) and belongs to that program ID)
@@ -28,6 +28,8 @@ var getUserConfigurations = (function($) {
     if (marcomUserData.$user.externalId === '%%User.ExternalId%%') {
       return;
     }
+    var $programId = getProgramParticipationStats.programId ||
+      window.location.href.slice(-1) || 0;
     var localDevUrl =
       'data/getUserConfigurations.jssp';
     var marcomDevUrl =
@@ -36,7 +38,7 @@ var getUserConfigurations = (function($) {
       'https://adobe-uat-vioc.epsilon.com/jssp/vioc/getUserConfigurations.jssp';
     $.ajax({
       url: localDevUrl,
-      type: 'POST',
+      type: 'GET',
       contentType: 'application/json',
       processData: true,
       data: {
@@ -48,11 +50,10 @@ var getUserConfigurations = (function($) {
       }
     }).done(function(result) {
       toastr.success(
-        'Enrollment preferences have been updated for the selected programs.'
+        'Programs were successfully fetched'
       );
-      // Get a new copy of data, populate the template and reinitialize the buttons.
       getProgramParticipationStats.makeRequest();
-      customCheckAndRadioBoxes.customCheckbox();
+
     }).fail(function() {
       toastr.error('An internal error has occurred.');
       console.log(
@@ -60,6 +61,10 @@ var getUserConfigurations = (function($) {
         'color: #f10; font-weight: bold;',
         '\nProgram ID not found.');
     });
+    var updateUI = function updateUI() {
+
+      return;
+    }
   };
 
   return {
