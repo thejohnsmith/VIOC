@@ -121,7 +121,7 @@
 					<p>VIOC is pleased to present the new VDirect portal. You can access multi-part lifecycle campaigns, recurring additional offers as well as specific email/direct mail templates.</p>
 				</section>
 				<section id="programSummary">
-					<h1>Programs</h1>
+					<h1>Lifecycle Programs</h1>
 					<div class="program-select program-select--is-active-user">
 						<!-- Mustache Template: program-list.mustache.html -->
 					</div>
@@ -136,45 +136,54 @@
 									<tr>
 										<th>Enrolled</th>
 										<th>Program</th>
-										<th>Impact</th>
+										<th>Impact (OCPD)</th>
 										<th>Opportunity</th>
 									</tr>
 								</thead>
 								<tbody>
-									<tr class="program-name-lifecycle">
+									<tr class="program-name program-name-lifecycle">
 										<td data-title="Enrolled" data-enrolled="false">
 											<span class="errolled-state" aria-hidden="true">
 											</span>
 										</td>
 										<td data-title="Program">Lifecycle</td>
-										<td data-title="Impact">3.0 OCPD</td>
+										<td data-title="Impact">3.0</td>
 										<td data-title="Opportunity">No</td>
 									</tr>
-									<tr class="program-name-imn">
+									<tr class="program-name program-name-fleet">
 										<td data-title="Enrolled" data-enrolled="false">
 											<span class="errolled-state" aria-hidden="true">
 											</span>
 										</td>
-										<td data-title="Program">IMN</td>
+										<td data-title="Program">Fleet</td>
+										<td data-title="Impact">3.0</td>
+										<td data-title="Opportunity">No</td>
+									</tr>
+									<tr class="program-name program-name-inspection">
+										<td data-title="Enrolled" data-enrolled="false">
+											<span class="errolled-state" aria-hidden="true">
+											</span>
+										</td>
+										<td data-title="Program">Inspection</td>
 										<td data-title="Impact">0.25</td>
 										<td data-title="Opportunity">No</td>
 									</tr>
-									<tr class="program-name-facebook">
+									<tr class="program-name program-name-asphalt">
+										<td data-title="Enrolled" data-enrolled="false">
+											<span class="errolled-state" aria-hidden="true">
+											</span>
+										</td>
+										<td data-title="Program">Asphalt Adventures</td>
+										<td data-title="Impact">2.3</td>
+										<td data-title="Opportunity">Yes</td>
+									</tr>
+									<tr class="program-name program-name-facebook">
 										<td data-title="Enrolled" data-enrolled="true">
 											<span class="errolled-state" aria-hidden="true">
 											</span>
 										</td>
 										<td data-title="Program">Facebook</td>
 										<td data-title="Impact">0.2</td>
-										<td data-title="Opportunity">Yes</td>
-									</tr>
-									<tr class="program-name-sem">
-										<td data-title="Enrolled" data-enrolled="false">
-											<span class="errolled-state" aria-hidden="true">
-											</span>
-										</td>
-										<td data-title="Program">SEM</td>
-										<td data-title="Impact">2.3</td>
 										<td data-title="Opportunity">Yes</td>
 									</tr>
 								</tbody>
@@ -187,9 +196,9 @@
 							<p>Upcoming campaigns and in-home dates</p>
 							<div class="tab-links">
 								<ul class="nav-tabs">
-									<li class="active"><a href="#tab1" title="Oct 2015" class="active">Oct 2015</a>
+									<li class="active"><a href="#tab1" title="Apr 2016" class="active">Apr 2016</a>
 									</li>
-									<li><a href="#tab2" title="Nov 2015">Nov 2015</a>
+									<li><a href="#tab2" title="May 2016">May 2016</a>
 									</li>
 								</ul>
 							</div>
@@ -226,7 +235,7 @@
 	<script src="js/lib/navTabs.js"></script>
 
 	<!-- Async,API and Marcom hookups -->
-	<script src="js/app/getHashParams.js"></script>	
+	<script src="js/app/getHashParams.js"></script>
 	<script src="js/app/marcomUserData.js"></script>
 	<script src="js/app/recordLogin.js"></script>
 	<script src="js/app/getProgramParticipationStats.js"></script>
