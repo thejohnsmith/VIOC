@@ -3,9 +3,11 @@
  * @param {int} programId, this is taken from the location URL
  * @param {object} data.userId
  */
+
 var getProgramParticipationStats = (function($) {
 
-  var programId = window.location.href.slice(-1) || 0;
+  /* Use getHashParams.js to get programId */
+  var programId = getHashParams.hashParams.programId;
   var makeRequest = function() {
       // Make sure there's a User ID loaded from Marcom before we Init this script.
       if (marcomUserData.$user.externalId === '%%User.ExternalId%%') {
@@ -18,7 +20,7 @@ var getProgramParticipationStats = (function($) {
       var acUrl =
         'https://adobe-uat-vioc.epsilon.com/jssp/vioc/getProgramParticipationStats.jssp';
       $.ajax({
-        url: acUrl,
+        url: marcomDevUrl,
         type: 'GET',
         dataType: 'json',
         processData: true,
@@ -46,7 +48,7 @@ var getProgramParticipationStats = (function($) {
         return;
       }
       return result.map(function(obj) {
-        var programTitle;
+        var programTitle = getHashParams.hashParams.programId;
         if (JSON.stringify(obj.id) === programId) {
           programTitle = obj.programName;
           return setProgramTitle(programTitle);
@@ -180,7 +182,6 @@ var getProgramParticipationStats = (function($) {
   };
 
 })(jQuery);
-
 
 
 getProgramParticipationStats.makeRequest();
