@@ -21,7 +21,7 @@ var recordLogin = (function($) {
     var acUrl =
       'https://adobe-uat-vioc.epsilon.com/jssp/vioc/recordLogin.jssp';
     $.ajax({
-      url: acUrl,
+      url: marcomDevUrl,
       type: 'GET',
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
