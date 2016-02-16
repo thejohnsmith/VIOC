@@ -629,7 +629,7 @@ header .header-right a:hover {
   -o-transition: 0.5s;
 }
 .program-select--is-active-user .program-edit {
-  display: none;
+  display: block;
 }
 .program-select--is-active-user .customCheckbox, .program-select--is-active-user .customCheckbox.checked {
   background: none;
@@ -637,7 +637,6 @@ header .header-right a:hover {
 }
 .program-select--is-active-user .program-info .program-status {
   float: none;
-  width: auto;
 }
 #programSummary .program-select--is-active-user label {
   cursor: default!important;
