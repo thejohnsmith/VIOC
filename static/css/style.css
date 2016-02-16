@@ -763,6 +763,7 @@ header .header-right a:hover {
   float: none;
   display: inline-block;
   margin-bottom: 1em;
+  vertical-align: middle;
 }
 .alert-container {
   float: left;
@@ -831,19 +832,27 @@ header .header-right a:hover {
 .filters-area .filter-select {
   float: left;
   padding-right: 30px;
+  margin: 0 20px 0 0;
 }
 .filters-area .filter-select .selectbox {
   display: inline-block;
-  width: auto;
-  width: calc(100% - 26px);
-  margin-left: 10px;
+  width: 125px;
+  
 }
 .filters-area .filter-select:last-child {
   padding-right: 0;
 }
-.filters-area .filter-reset {
+.filters-area div span {
+  padding-top: 20px;
+}
+.filters-area .filter-select {
   float: left;
   position: relative;
+  top: 2px;
+}
+.filter-reset {
+  position: absolute;
+  right: 0;
   top: 2px;
 }
 .select-option .sbHolder {
