@@ -837,7 +837,6 @@ header .header-right a:hover {
 .filters-area .filter-select .selectbox {
   display: inline-block;
   width: 125px;
-  
 }
 .filters-area .filter-select:last-child {
   padding-right: 0;
