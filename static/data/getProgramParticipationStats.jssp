@@ -15,7 +15,7 @@
   "isLifecycleCampaign": 0,
   "monthlyCostPerRecipientDm": 0,
   "storesEligible": 0,
-  "storesEnrolled": 0
+  "storesParticipating": 0
 }, {
   "id": 7,
   "programName": "Facebook",
@@ -33,7 +33,7 @@
   "isLifecycleCampaign": 0,
   "monthlyCostPerRecipientDm": 0,
   "storesEligible": 0,
-  "storesEnrolled": 0
+  "storesParticipating": 0
 }, {
   "id": 8,
   "programName": "SEM",
@@ -51,7 +51,7 @@
   "isLifecycleCampaign": 0,
   "monthlyCostPerRecipientDm": 0,
   "storesEligible": 0,
-  "storesEnrolled": 0
+  "storesParticipating": 0
 }, {
   "id": 9,
   "programName": "Lifecycle Test",
@@ -69,7 +69,7 @@
   "isLifecycleCampaign": 1,
   "monthlyCostPerRecipientDm": 0,
   "storesEligible": 0,
-  "storesEnrolled": 0
+  "storesParticipating": 0
 }, {
   "id": 10,
   "programName": "Post-Visit",
@@ -87,7 +87,7 @@
   "isLifecycleCampaign": 1,
   "monthlyCostPerRecipientDm": 0.44,
   "storesEligible": 0,
-  "storesEnrolled": 0
+  "storesParticipating": 0
 }, {
   "id": 11,
   "programName": "Pre-Reminder",
@@ -105,7 +105,7 @@
   "isLifecycleCampaign": 1,
   "monthlyCostPerRecipientDm": 0.44,
   "storesEligible": 0,
-  "storesEnrolled": 0
+  "storesParticipating": 0
 }, {
   "id": 1,
   "programName": "Reminder",
@@ -123,7 +123,7 @@
   "isLifecycleCampaign": 1,
   "monthlyCostPerRecipientDm": 0.44,
   "storesEligible": 0,
-  "storesEnrolled": 0
+  "storesParticipating": 0
 }, {
   "id": 2,
   "programName": "Lapsed",
@@ -141,7 +141,7 @@
   "isLifecycleCampaign": 1,
   "monthlyCostPerRecipientDm": 0.44,
   "storesEligible": 0,
-  "storesEnrolled": 0
+  "storesParticipating": 0
 }, {
   "id": 4,
   "programName": "Lost",
@@ -159,7 +159,7 @@
   "isLifecycleCampaign": 1,
   "monthlyCostPerRecipientDm": 0.44,
   "storesEligible": 0,
-  "storesEnrolled": 0
+  "storesParticipating": 0
 }, {
   "id": 5,
   "programName": "Reactivation",
@@ -177,7 +177,7 @@
   "isLifecycleCampaign": 1,
   "monthlyCostPerRecipientDm": 0.44,
   "storesEligible": 0,
-  "storesEnrolled": 0
+  "storesParticipating": 0
 }, {
   "id": 3,
   "programName": "Relapsed",
@@ -195,5 +195,5 @@
   "isLifecycleCampaign": 1,
   "monthlyCostPerRecipientDm": 0.44,
   "storesEligible": 0,
-  "storesEnrolled": 0
+  "storesParticipating": 0
 }]
