@@ -121,21 +121,27 @@
 					<ul>
 						<li><a href="index.html" title="Home">Home</a></li>
 						<li>
-							<span>Edit Reminder Program Layout</span>
+							<a href="program-overview.html" title="Lifecycle Programs">Lifecycle Programs</a>
+						</li>
+						 <li>
+							<a href="program-reminder.html" title="Reminder Program">Reminder Program</a>
+						</li>
+						<li>
+							Edit Post Visit Program Layout
 						</li>
 					</ul>
 				</section>
 			</div>
 			<div class="main">
 				<section id="programManagementTabs">
-				<h1 class="h1 page-title"><span>Edit Reminder Program Layout</span></h1>
+				<h1 class="h1 page-title"><span>Edit Post Visit Program Layout</span></h1>
 				<p>This layout configures the look-and-feel of the program-specific coupons. See the preview below to see which coupons are included in this layout.</p>
 				<form>
 					<input type="text" placeholder="Enter Name for Layout" />
 					<p><a class="discountCodeLink" href="javascript:void(0)">Do you have a discount code?</a></p>
 					<div class="discountCode closed">
 						<div class="left">
-							<p>Please provide the discount code</p>
+							<p>Please provide the discount code:</p>
 						</div>
 						<div class="right">
 								<table>
@@ -144,16 +150,8 @@
 										<td><input type="text" placeholder="ex: RM101" /></td>
 									</tr>
 									<tr>
-										<td><label for="dm">DM:</label></td>
-										<td><input type= "text" placeholder="ex: RMDM101" /></td>
-									</tr>
-									<tr>
-										<td><label for="sms">SMS:</label></td>
-										<td><input type="text" placeholder="ex: RMSMS101" /></td>
-									</tr>
-									<tr>
 										<td></td>
-										<td><input type="submit" id="applyCode" name="apply" value="Apply"></td>
+										<td><div class="program-button"><input class="blue-btn" type="submit" id="applyCode" name="apply" value="Apply"></div></td>
 									</tr>
 								</table>
 						</div>
@@ -172,10 +170,16 @@
 										<td><label>Coupon Text:</label> </td>
 										<td>
 											<select class="selectbox">
-												<option selected>Any oil change, 5 qts</option>
-												<option>Any oil change, 5 qts</option>
-												<option>Any oil change, 5 qts</option>
-												<option>Any oil change, 5 qts</option>
+												<option value="AnyOilChange5qts" selected>Any Oil Change, 5 qts</option>
+												<option value="ConventionalOilChange5qts">Conventional Oil Change, 5 qts.</option>
+												<option value="DieselOilChange">Diesel Oil Change</option>
+												<option value="FullSynthetic5qts">Full Synthetic. 5 qts.</option>
+												<option value="FullSynthetic6qts">Full Synthetic. 6 qts.</option>
+												<option value="Premium5qtsORDiesel">Premium 5qts. OR Diesel</option>
+												<option value="Premium6qtsORDiesel">Premium 6qts. OR Diesel</option>
+												<option value="PremiumOilChange5qts">Premium Oil Change, 5qts.</option>
+												<option value="SyntheticBlend5qts">Synthetic Blend. 5 qts.</option>
+												<option value="SyntheticBlend6qts">Synthetic Blend. 6 qts.</option>
 											</select>
 										</td>
 									</tr>
@@ -183,10 +187,8 @@
 										<td><label>Discount Type:</label></td>
 										<td>
 											<select class="selectbox">
-												<option selected>$0</option>
-												<option>$5</option>
-												<option>$10</option>
-												<option>$20</option>
+												<option value="DollarOff" selected>$ Off</option>
+												<option value="PercOff">% Off</option>
 											</select>
 										</td>
 									</tr>
@@ -204,22 +206,6 @@
 										</td>
 										<td>
 											<input name="email-coupon-code" type="text" />
-										</td>
-									</tr>
-									<tr>
-										<td>
-											<label>Direct Mail Coupon Code:</label>
-										</td>
-										<td>
-											<input name="direct-mail-coupon-code" type="text" />
-										</td>
-									</tr>
-									<tr>
-										<td>
-											<label>SMS Coupon Code:</label>
-										</td>
-										<td>
-											<input name="sms-coupon-code" type="text" />
 										</td>
 									</tr>
 								</table>
@@ -230,10 +216,16 @@
 										<td><label>Coupon Text:</label> </td>
 										<td>
 											<select class="selectbox">
-												<option selected>Any oil change, 10 qts</option>
-												<option>Any oil change, 8 qts</option>
-												<option>Any oil change, 7 qts</option>
-												<option>Any oil change, 3 qts</option>
+												<option value="AnyOilChange5qts" selected>Any Oil Change, 5 qts</option>
+												<option value="ConventionalOilChange5qts">Conventional Oil Change, 5 qts.</option>
+												<option value="DieselOilChange">Diesel Oil Change</option>
+												<option value="FullSynthetic5qts">Full Synthetic. 5 qts.</option>
+												<option value="FullSynthetic6qts">Full Synthetic. 6 qts.</option>
+												<option value="Premium5qtsORDiesel">Premium 5qts. OR Diesel</option>
+												<option value="Premium6qtsORDiesel">Premium 6qts. OR Diesel</option>
+												<option value="PremiumOilChange5qts">Premium Oil Change, 5qts.</option>
+												<option value="SyntheticBlend5qts">Synthetic Blend. 5 qts.</option>
+												<option value="SyntheticBlend6qts">Synthetic Blend. 6 qts.</option>
 											</select>
 										</td>
 									</tr>
@@ -241,10 +233,8 @@
 										<td><label>Discount Type:</label></td>
 										<td>
 											<select class="selectbox">
-												<option selected>$0</option>
-												<option>$5</option>
-												<option>$10</option>
-												<option>$20</option>
+												<option value="DollarOff" selected>$ Off</option>
+												<option value="PercOff">% Off</option>
 											</select>
 										</td>
 									</tr>
@@ -262,22 +252,6 @@
 										</td>
 										<td>
 											<input name="email-coupon-code" type="text" />
-										</td>
-									</tr>
-									<tr>
-										<td>
-											<label>Direct Mail Coupon Code:</label>
-										</td>
-										<td>
-											<input name="direct-mail-coupon-code" type="text" />
-										</td>
-									</tr>
-									<tr>
-										<td>
-											<label>SMS Coupon Code:</label>
-										</td>
-										<td>
-											<input name="sms-coupon-code" type="text" />
 										</td>
 									</tr>
 								</table>
@@ -291,22 +265,8 @@
 							<tr>
 								<td><label>Email Creative:</label> </td>
 								<td>
-									<select class="selectbox">
-										<option selected>Basic Blue</option>
-										<option>Basic Black</option>
-										<option>Basic Pink</option>
-										<option>Basic Purple</option>
-									</select>
-								</td>
-							</tr>
-							<tr>
-								<td><label>Direct Mail Creative:</label></td>
-								<td>
-									<select class="selectbox">
-										<option selected>Basic Blue</option>
-										<option>Basic Black</option>
-										<option>Basic Pink</option>
-										<option>Basic Purple</option>
+									<select value="BasicBlue" class="selectbox">
+										<option value="BasicBlue" selected>Basic Blue</option>
 									</select>
 								</td>
 							</tr>
@@ -316,9 +276,9 @@
 								</td>
 								<td>
 									<select class="selectbox">
-										<option selected>After 30 days</option>
-										<option>After 60 days</option>
-										<option>After 90 days</option>
+										<option value="Plus30" selected>Plus 30</option>
+										<option value="Plus45">Plus 45</option>
+										<option value="Plus60">Plus 60</option>
 									</select>
 								</td>
 							</tr>
@@ -328,14 +288,14 @@
 								</td>
 								<td>
 									<select class="selectbox">
-										<option selected>Yes</option>
-										<option>No</option>
+										<option value="Yes" selected>Yes</option>
+										<option value="No">No</option>
 									</select>
 								</td>
 							</tr>
 							<tr>
 								<td>
-									<input type="submit" id="save" name="save" value="Save Layout" />
+									<div class="program-button"><input class="blue-btn" type="submit" id="save" name="save" value="Save Layout"></div>
 								</td>
 								<td>
 
@@ -345,7 +305,7 @@
 					</div>
 				</form>
 			</section>
-			<div class="sidebar">
+			<div class="sidebar hidden">
           		<div class="sidebar-module sidebar-module-inset">
           			<img src="images/coupon-program-layout.png" width="298" height="856" />
           			<p>This layout is used by the following stores:</p>
@@ -353,8 +313,6 @@
           		</div>
 			</div>
 		</div>
-
-
 		<!--footer starts here-->
 		<footer>
 			<div class="main">
