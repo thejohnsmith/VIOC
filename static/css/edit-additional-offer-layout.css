@@ -34,11 +34,12 @@ p {
 #programManagementTabs {
 	padding: 0 15px 0 0;
 	margin: 0 0 20px 0;
+	width: 100%;
 }
 
 #programManagementTabs input {
   width: 50%;
-  color: #000;
+  color: #fff;
   margin: 5px 0 15px 0;
 }
 
@@ -46,6 +47,10 @@ p {
   width: auto;
   color: #000;
   margin: 5px 0 15px 0;
+}
+.program-button {
+	padding: 0;
+	margin: 0;
 }
 .discountCodeLink {
   font-weight: bold;
@@ -71,14 +76,14 @@ p {
 }
 .discountCode table tr td:nth-child(odd),
 #parentHorizontalTab  table tr td:nth-child(odd) {
-	width: 40%;
+	width: 23%;
 }
 .module table tr td:first-child {
 	vertical-align: middle;
 	padding: 0 15px 10px 0;
 }
 .module table tr td:nth-child(odd) {
-	width: 40%;
+	width: 23%;
 }
 .module table {
 	width: 100%;
