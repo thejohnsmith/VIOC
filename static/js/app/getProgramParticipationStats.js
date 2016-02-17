@@ -20,7 +20,7 @@ var getProgramParticipationStats = (function($) {
       var acUrl =
         'https://adobe-uat-vioc.epsilon.com/jssp/vioc/getProgramParticipationStats.jssp';
       $.ajax({
-        url: marcomDevUrl,
+        url: acUrl,
         type: 'GET',
         dataType: 'json',
         processData: true,
