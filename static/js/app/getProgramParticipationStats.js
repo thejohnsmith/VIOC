@@ -184,4 +184,4 @@ var getProgramParticipationStats = (function($) {
 })(jQuery);
 
 
-getProgramParticipationStats.makeRequest();
+getProgramParticipationStats.makeRequest()
