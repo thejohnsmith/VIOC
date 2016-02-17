@@ -113,7 +113,7 @@
 			background-color: #FFF;
 		}
 
-		#programManagementTabs {
+		#programManagementTabs.wide-tabs {
 			width: 100%;
 			float: none;
 			margin: 0 auto;
@@ -136,7 +136,7 @@
 
 <body>
 	<span class="user-related none"
-		data-user-external-id="34567"
+		data-user-external-id="654321"
 		data-user-login-id="BetaUser"
 		data-user-first-name="John"
 		data-user-last-name="Smith"
@@ -237,8 +237,8 @@
 				</section>
 			</div>
 			<div class="main">
-				<section id="programManagementTabs">
-					<h1 class="h1 page-title"><span class="hidden">Program Management</span></h1>
+				<section id="programManagementTabs" class="wide-tabs">
+					<h1 class="h1 page-title"><span>Program Management</span></h1>
 					<div class="filters-area">
 						<div>Store Filters:&nbsp;&nbsp;</div>
 						<div class="filter-select select-option">
@@ -310,16 +310,226 @@
 													</td>
 												</tr>
 											</thead>
-											<tbody class="program-enrollment-section">
-												<!-- program-enrollment-template.mustache.html -->
+											<tbody class="storeProgramData">
+												<script id="programDataTpl" type="x-tmpl-mustache">
+													{{#.}}
+													<tr>
+														<td>
+															<table>
+																<tr>
+																	<td>
+																		<table>
+																			<tr>
+																				<td class="store-enroll">
+																					<div class="checkbox-area" data-enrolled="{{enrolled}}">
+																						<div class="customCheckbox js-all-selectable">
+																							<input data-checkbox-label="" type="checkbox">
+																						</div>
+																					</div>
+																				</td>
+																				<td class="store">{{storeName}}
+																					<br>
+																					<div class="store-number">Store #{{storeId}}</div>
+																				</td>
+																				<td class="store-counts">
+																					<table class="inner-table">
+																						<tr>
+																							<td>{{channelEmail}}</td>
+																							<td>{{channelDM}}</td>
+																							<td>{{channelSMS}}</td>
+																						</tr>
+																					</table>
+																				</td>
+																				<td class="store-cost"><span>$</span><span class="js-format-currency">{{costEstimate}}</span>
+																					<br><a href="javascript:void(0);" title="Details" class="mobie-details-{{storeId}}">Details</a></td>
+																			</tr>
+																		</table>
+																	</td>
+																</tr>
+															</table>
+														</td>
+													</tr>
+													<tr class="mobile-info-{{storeId}}">
+														<td>
+															<table class="mobile-table">
+																<tr>
+																	<td class="store-label">Store #</td>
+																	<td class="store-info">{{storeId}}</td>
+																</tr>
+																<tr>
+																	<td class="store-label">Recipients in Email Channel:</td>
+																	<td class="store-info">{{channelEmail}}</td>
+																</tr>
+																<tr>
+																	<td class="store-label">Recipients in DM Channel:</td>
+																	<td class="store-info">{{channelDM}}</td>
+																</tr>
+																<tr>
+																	<td class="store-label">Recipients in SMS Channel:</td>
+																	<td class="store-info">{{channelSMS}}</td>
+																</tr>
+																<tr>
+																	<td class="store-label">Estimated Monthly Cost:</td>
+																	<td class="store-info">{{costEstimate}}</td>
+																</tr>
+															</table>
+														</td>
+													</tr>
+													{{/.}}
+													<tr>
+														<tr class="grand-total">
+															<td>
+																<table>
+																	<tr>
+
+
+																		<tr>
+																			<td class="total-label">Total Participants in the Reminder Campaign:</td>
+																			<td class="store-counts">
+																				<table class="inner-table">
+																					<tbody>
+																						<tr>
+																							<td class="channelEmailTotal"></td>
+																							<td class="channelDMTotal"></td>
+																							<td class="channelSMSTotal"></td>
+																						</tr>
+																					</tbody>
+																				</table>
+																			</td>
+																			<td class="store-cost">
+																				<span>$</span><span class="costEstimateTotal js-format-currency"></span>
+																			</td>
+																		</tr>
+																	</tr>
+																</table>
+															</td>
+														</tr>
+												</script>
 											</tbody>
 										</table>
 									</div>
 								</div>
 							</div>
 							<div>
-							<div class="program-settings-section programsummary-table">
-								<!-- program-settings-template.mustache.html -->
+								<div class="programsummary-table" style="display:block">
+									<div class="participation-table">
+										<table>
+											<thead>
+												<tr>
+													<th>
+														<div class="checkbox-area">
+															<div class="customCheckbox js-all-selectable">
+																<input data-checkbox-label="" type="checkbox">
+															</div>
+														</div>
+													</th>
+													<th class="store">Store</th>
+													<th class="store-configuration">Program Offer Layout</th>
+													<th class="store-configuration">DFS/Additional Offer Layout</th>
+												</tr>
+											</thead>
+											<tbody>
+												<tr>
+													<td style="padding: 10px 0 0 0">
+														<div class="checkbox-area" data-enrolled="">
+															<div class="customCheckbox js-all-selectable">
+																<input data-checkbox-label="" type="checkbox">
+															</div>
+														</div>
+													</td>
+													<td class="store" style="padding: 8px">
+														<div class="store-name">EI Dorado &amp; Lake Forest</div>
+														<div class="store-number">Store #XX0151</div>
+													</td>
+													<td class="store-configuration" style="padding: 8px 0 8px 8px">
+														<select class="form-control">
+															<option>Corporate Default</option>
+														</select>
+													</td>
+													<td class="store-configuration" style="padding: 8px 0 8px 8px">
+														<select class="form-control">
+															<option>Corporate Default</option>
+														</select>
+													</td>
+												</tr>
+												<tr>
+													<td colspan="2" style="padding: 14px 14px 0;text-align: right;">
+														Adjust 1 selected store(s) to use:
+													</td>
+													<td class="store-configuration" style="background-color: #FFF; padding: 8px">
+														<div class="container-fluid">
+															<div class="row">
+																<div class="col-sm-8">
+																	<select class="form-control">
+																		<option>Corporate Default</option>
+																	</select>
+																</div>
+																<div class="col-sm-2">
+																	<button class="btn btn-small btn-primary">Apply</button>
+																</div>
+															</div>
+														</div>
+													</td>
+													<td class="store-configuration" style="background-color: #FFF; padding: 8px 0 8px 8px">
+														<div class="container-fluid">
+															<div class="row">
+																<div class="col-sm-8">
+																	<select class="form-control">
+																		<option>Corporate Default</option>
+																	</select>
+																</div>
+																<div class="col-sm-2">
+																	<button class="btn btn-small btn-primary">Apply</button>
+																</div>
+															</div>
+														</div>
+													</td>
+												</tr>
+											</tbody>
+										</table>
+									</div>
+									<br style="clear:both">
+									<br>
+									<div class="container well">
+										<div class="row">
+											<div class="col-sm-6">
+												<h1 style="font-size: 20px">Program Offer Layouts <button class="btn btn-sm btn-link">Create New</button></h1>
+												<table width="100%" padding="4" border="0">
+
+													<tr>
+														<td>
+															<select class="form-control">
+																<option>Corporate Default (Used by 1 Store)</option>
+															</select>
+														</td>
+														<td>
+															<button class="btn btn-sm btn-link">Edit</button> |
+															<button class="btn btn-sm btn-link">Delete</button> |
+															<button class="btn btn-sm btn-link">Rename</button>
+														</td>
+													</tr>
+												</table>
+											</div>
+											<div class="col-sm-6">
+												<h1 style="font-size: 20px">Due For Service/Additional Offer Layout Options <button class="btn btn-sm btn-link">Create New</button></h1>
+												<table width="100%" padding="4" border="0">
+													<tr>
+														<td>
+															<select class="form-control">
+																<option>Corporate Default (Used by 1 Store)</option>
+															</select>
+														</td>
+														<td>
+															<button class="btn btn-sm btn-link">Edit</button> |
+															<button class="btn btn-sm btn-link">Delete</button> |
+															<button class="btn btn-sm btn-link">Rename</button>
+														</td>
+													</tr>
+												</table>
+											</div>
+										</div>
+									</div>
+								</div>
 							</div>
 						</div>
 					</div>
@@ -349,7 +559,6 @@
 	<script src="js/app/getHashParams.js"></script>
 	<script src="js/app/marcomUserData.js"></script>
 	<script src="js/app/recordLogin.js"></script>
-	<script src="js/app/getUserConfigurations.js"></script>
 	<script src="js/app/getProgramParticipationStats.js"></script>
 	<script src="js/app/getStoreProgramData.js"></script>
 	<script src="js/app/setStoreSubscription.js"></script>
