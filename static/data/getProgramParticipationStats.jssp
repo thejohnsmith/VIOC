@@ -1,61 +1,38 @@
 [{
   "id": 6,
-  "programName": "IMN",
-  "programDesc": "Description TBD",
-  "programMeta": {
-    "touchpoints": [{
-      "previewThumbnail": "http://project-progress.net/projects/valvoline/images/review-bg.jpg",
-      "previewUrl": "http://www.vioc.com",
-      "channel": "Email",
-      "Name": "reminder",
-      "timing": "2 - 3 Days"
-    }]
-  },
-  "programUsesDfs": 1,
+  "programName": "Fleet",
+  "programDesc": "",
+  "programUsesDfs": 0,
+  "programMeta": {},
   "isLifecycleCampaign": 0,
-  "monthlyCostPerRecipientDm": 0,
-  "storesEligible": 0,
+  "monthlyCostPerRecipientDm": 0.32,
+  "storesEligible": 1,
   "storesParticipating": 0
 }, {
   "id": 7,
   "programName": "Facebook",
-  "programDesc": "Description TBD",
-  "programMeta": {
-    "touchpoints": [{
-      "previewThumbnail": "http://project-progress.net/projects/valvoline/images/review-bg.jpg",
-      "previewUrl": "http://www.vioc.com",
-      "channel": "Email",
-      "Name": "reminder",
-      "timing": "2 - 3 Days"
-    }]
-  },
-  "programUsesDfs": 1,
+  "programDesc": "",
+  "programUsesDfs": 0,
+  "programMeta": {},
   "isLifecycleCampaign": 0,
-  "monthlyCostPerRecipientDm": 0,
-  "storesEligible": 0,
+  "monthlyCostPerRecipientDm": 0.32,
+  "storesEligible": 1,
   "storesParticipating": 0
 }, {
   "id": 8,
-  "programName": "SEM",
-  "programDesc": "Description TBD",
-  "programMeta": {
-    "touchpoints": [{
-      "previewThumbnail": "http://project-progress.net/projects/valvoline/images/review-bg.jpg",
-      "previewUrl": "http://www.vioc.com",
-      "channel": "Email",
-      "Name": "reminder",
-      "timing": "2 - 3 Days"
-    }]
-  },
-  "programUsesDfs": 1,
+  "programName": "Inspection",
+  "programDesc": "",
+  "programUsesDfs": 0,
+  "programMeta": {},
   "isLifecycleCampaign": 0,
-  "monthlyCostPerRecipientDm": 0,
-  "storesEligible": 0,
+  "monthlyCostPerRecipientDm": 0.32,
+  "storesEligible": 1,
   "storesParticipating": 0
 }, {
   "id": 9,
   "programName": "Lifecycle Test",
-  "programDesc": "Description TBD",
+  "programDesc": "The Lifecycle Test program is used for internal purposes only, to test the functionality of WARP Drive.",
+  "programUsesDfs": 0,
   "programMeta": {
     "touchpoints": [{
       "previewThumbnail": "http://project-progress.net/projects/valvoline/images/review-bg.jpg",
@@ -65,15 +42,15 @@
       "timing": "2 - 3 Days"
     }]
   },
-  "programUsesDfs": 1,
   "isLifecycleCampaign": 1,
-  "monthlyCostPerRecipientDm": 0,
-  "storesEligible": 0,
-  "storesParticipating": 0
+  "monthlyCostPerRecipientDm": 0.32,
+  "storesEligible": 1,
+  "storesParticipating": null
 }, {
   "id": 10,
   "programName": "Post-Visit",
-  "programDesc": "Description TBD",
+  "programDesc": "The Post-Visit program is a Thank You email sent out one to two business days after a customer?s visit. The email also includes a link to take a brief customer satisfaction survey. One week after a customer?s visit, a second campaign will be sent that includes a special offer and invites the customer to bring in their second car.",
+  "programUsesDfs": 0,
   "programMeta": {
     "touchpoints": [{
       "previewThumbnail": "http://project-progress.net/projects/valvoline/images/review-bg.jpg",
@@ -83,15 +60,15 @@
       "timing": "2 - 3 Days"
     }]
   },
-  "programUsesDfs": 1,
   "isLifecycleCampaign": 1,
-  "monthlyCostPerRecipientDm": 0.44,
-  "storesEligible": 0,
+  "monthlyCostPerRecipientDm": 0.32,
+  "storesEligible": 1,
   "storesParticipating": 0
 }, {
   "id": 11,
   "programName": "Pre-Reminder",
-  "programDesc": "Description TBD",
+  "programDesc": "The Pre-Reminder program is an email sent to the customer two weeks before we believe they are due for an oil change, based on mileage.",
+  "programUsesDfs": 1,
   "programMeta": {
     "touchpoints": [{
       "previewThumbnail": "http://project-progress.net/projects/valvoline/images/review-bg.jpg",
@@ -101,15 +78,15 @@
       "timing": "2 - 3 Days"
     }]
   },
-  "programUsesDfs": 1,
   "isLifecycleCampaign": 1,
-  "monthlyCostPerRecipientDm": 0.44,
-  "storesEligible": 0,
+  "monthlyCostPerRecipientDm": 0.32,
+  "storesEligible": 1,
   "storesParticipating": 0
 }, {
   "id": 1,
   "programName": "Reminder",
-  "programDesc": "Description TBD",
+  "programDesc": "The Reminder program includes mail, email and text message communications if we have the customers contact information. It goes out at the time we believe they are due for an oil change, based on mileage.",
+  "programUsesDfs": 1,
   "programMeta": {
     "touchpoints": [{
       "previewThumbnail": "http://project-progress.net/projects/valvoline/images/review-bg.jpg",
@@ -119,15 +96,15 @@
       "timing": "2 - 3 Days"
     }]
   },
-  "programUsesDfs": 1,
   "isLifecycleCampaign": 1,
-  "monthlyCostPerRecipientDm": 0.44,
-  "storesEligible": 0,
+  "monthlyCostPerRecipientDm": 0.32,
+  "storesEligible": 1,
   "storesParticipating": 0
 }, {
   "id": 2,
   "programName": "Lapsed",
-  "programDesc": "Description TBD",
+  "programDesc": "The Lapsed program includes mail, email and text message communications if we have the customers contact information. It goes out approximately 4.5 months after they were in for their previous oil change.",
+  "programUsesDfs": 1,
   "programMeta": {
     "touchpoints": [{
       "previewThumbnail": "http://project-progress.net/projects/valvoline/images/review-bg.jpg",
@@ -137,15 +114,15 @@
       "timing": "2 - 3 Days"
     }]
   },
-  "programUsesDfs": 1,
   "isLifecycleCampaign": 1,
-  "monthlyCostPerRecipientDm": 0.44,
-  "storesEligible": 0,
+  "monthlyCostPerRecipientDm": 0.32,
+  "storesEligible": 1,
   "storesParticipating": 0
 }, {
   "id": 4,
   "programName": "Lost",
-  "programDesc": "Description TBD",
+  "programDesc": "The Lost program includes mail and email communications if we have the customers contact information. It goes out approximately 8 months after they were in for their previous oil change.",
+  "programUsesDfs": 0,
   "programMeta": {
     "touchpoints": [{
       "previewThumbnail": "http://project-progress.net/projects/valvoline/images/review-bg.jpg",
@@ -155,15 +132,15 @@
       "timing": "2 - 3 Days"
     }]
   },
-  "programUsesDfs": 1,
   "isLifecycleCampaign": 1,
-  "monthlyCostPerRecipientDm": 0.44,
-  "storesEligible": 0,
+  "monthlyCostPerRecipientDm": 0.32,
+  "storesEligible": 1,
   "storesParticipating": 0
 }, {
   "id": 5,
   "programName": "Reactivation",
-  "programDesc": "Description TBD",
+  "programDesc": "The Reactivation program includes mail and email communications if we have the customers contact information. Customers receive Reactivation communications if they haven?t been in for service for 10-24 months.",
+  "programUsesDfs": 0,
   "programMeta": {
     "touchpoints": [{
       "previewThumbnail": "http://project-progress.net/projects/valvoline/images/review-bg.jpg",
@@ -173,15 +150,15 @@
       "timing": "2 - 3 Days"
     }]
   },
-  "programUsesDfs": 1,
   "isLifecycleCampaign": 1,
-  "monthlyCostPerRecipientDm": 0.44,
-  "storesEligible": 0,
+  "monthlyCostPerRecipientDm": 0.32,
+  "storesEligible": 1,
   "storesParticipating": 0
 }, {
   "id": 3,
   "programName": "Relapsed",
-  "programDesc": "Description TBD",
+  "programDesc": "The Relapsed program includes mail and email communications if we have the customers contact information. It goes out approximately 6 months after they were in for their previous oil change.",
+  "programUsesDfs": 0,
   "programMeta": {
     "touchpoints": [{
       "previewThumbnail": "http://project-progress.net/projects/valvoline/images/review-bg.jpg",
@@ -191,9 +168,18 @@
       "timing": "2 - 3 Days"
     }]
   },
-  "programUsesDfs": 1,
   "isLifecycleCampaign": 1,
-  "monthlyCostPerRecipientDm": 0.44,
-  "storesEligible": 0,
+  "monthlyCostPerRecipientDm": 0.32,
+  "storesEligible": 1,
+  "storesParticipating": 0
+}, {
+  "id": 12,
+  "programName": "Asphalt Adventures",
+  "programDesc": "",
+  "programUsesDfs": 0,
+  "programMeta": {},
+  "isLifecycleCampaign": 0,
+  "monthlyCostPerRecipientDm": 0.32,
+  "storesEligible": 1,
   "storesParticipating": 0
 }]

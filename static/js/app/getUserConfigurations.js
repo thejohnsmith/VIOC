@@ -25,49 +25,51 @@
 var getUserConfigurations = (function($) {
 
   var makeRequest = function($programId) {
-    if (marcomUserData.$user.externalId === '%%User.ExternalId%%') {
-      return;
-    }
-    var $programId = getProgramParticipationStats.programId ||
-      window.location.href.slice(-1) || 0;
-    var localDevUrl =
-      'data/getUserConfigurations.jssp';
-    var marcomDevUrl =
-      'https://files.marcomcentral.app.pti.com/epsilon/static/data/getUserConfigurations.jssp';
-    var acUrl =
-      'https://adobe-uat-vioc.epsilon.com/jssp/vioc/getUserConfigurations.jssp';
-    $.ajax({
-      url: localDevUrl,
-      type: 'GET',
-      contentType: 'application/json',
-      processData: true,
-      data: {
-        userId: marcomUserData.$user.externalId,
-        programId: $programId
-      },
-      headers: {
-        'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
+      if (marcomUserData.$user.externalId === '%%User.ExternalId%%') {
+        return;
       }
-    }).done(function(result) {
-      toastr.success(
-        'Programs were successfully fetched'
-      );
-      getProgramParticipationStats.makeRequest();
+      var $programId = getHashParams.hashParams.programId ||
+        getProgramParticipationStats.programId;
+      var localDevUrl =
+        'data/getUserConfigurations.jssp';
+      var marcomDevUrl =
+        'https://files.marcomcentral.app.pti.com/epsilon/static/data/getUserConfigurations.jssp';
+      var acUrl =
+        'https://adobe-uat-vioc.epsilon.com/jssp/vioc/getUserConfigurations.jssp';
+      $.ajax({
+        url: marcomDevUrl,
+        type: 'GET',
+        contentType: 'application/json',
+        processData: true,
+        data: {
+          userId: marcomUserData.$user.externalId,
+          programId: $programId
+        },
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
+        }
+      }).done(function(result) {
+        // updateUI(result);
+        // console.log('getUserConfigurations is: ' + result);
+        // toastr.success('Programs were successfully fetched');
 
-    }).fail(function() {
-      toastr.error('An internal error has occurred.');
-      console.log(
-        '%c ** Request failed ** ',
-        'color: #f10; font-weight: bold;',
-        '\nProgram ID not found.');
-    });
-    var updateUI = function updateUI() {
-
-      return;
+      }).fail(function() {
+        toastr.error('An internal error has occurred.');
+        console.log(
+          '%c ** Request failed ** ',
+          'color: #f10; font-weight: bold;',
+          '\nProgram ID not found.');
+      });
+    },
+    updateUI = function updateUI(result) {
+      return $.each(result, function(index, obj) {
+        var test = JSON.stringify(obj.programId);
+        console.log('programId is: ' + test);
+      });
     }
-  };
-
   return {
-    makeRequest: makeRequest
-  };
+    makeRequest: makeRequest,
+    updateUI: updateUI
+  }
 })(jQuery);
+getUserConfigurations.makeRequest(8);

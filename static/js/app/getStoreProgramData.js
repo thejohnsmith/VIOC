@@ -52,6 +52,7 @@
               result));
             // customCheckAndRadioBoxes.customCheckbox();
             // return calculateTotals(result);
+            getUserConfigurations.makeRequest();
             return reloadCheckBoxes();
           });
       }
