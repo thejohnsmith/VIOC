@@ -1,0 +1,158 @@
+<div class="wrapper">
+  <div class="mid-container">
+    <div class="main">
+      <section id="breadcrumbs">
+        <ul>
+          <li><a href="home.aspx" title="Home">Home</a></li>
+          <li>
+            <span>Help</span>
+          </li>
+        </ul>
+      </section>
+    </div>
+    <div class="main">
+      <div class="left-container help-left-container">
+        <section id="gettingStartedNow">
+          <h1>Help</h1>
+          <div class="help-get-started">
+            <h6>Get Started Now</h6>
+            <div class="youtube-video-area">
+
+            </div>
+            <div class="video-desc">
+              <p>Descriptive text goes here</p>
+            </div>
+          </div>
+          <div class="contact-form">
+            <h5>Need Personalized Support?</h5>
+            <h4>800-VIOC-ROX or complete form</h4>
+            <form id="contact-form-main">
+              <div class="form-main">
+                <label>Name</label>
+                <div class="form-input">
+                  <input type="text" class="inputbox" tabindex="1" name="name">
+                </div>
+              </div>
+              <div class="form-main">
+                <label>Email</label>
+                <div class="form-input">
+                  <input type="text" class="inputbox" tabindex="2" name="email">
+                </div>
+              </div>
+              <div class="form-main">
+                <label>Phone</label>
+                <div class="form-input">
+                  <input type="text" class="inputbox" tabindex="3" name="phone">
+                </div>
+              </div>
+              <div class="form-main">
+                <label></label>
+                <div class="form-input">
+                  <textarea class="textbox" placeholder="Tell us what you need help with" tabindex="4" name="message"></textarea>
+                </div>
+              </div>
+              <div class="form-submit">
+                <input type="submit" class="submit-btn" value="Submit" title="Submit" tabindex="5" id="submit-btn">
+              </div>
+              <div class="successmsg">Thank you
+                <br>We will contact you soon.</div>
+            </form>
+          </div>
+        </section>
+      </div>
+      <div class="right-container help-right-container">
+        <div class="support-library">
+          <h1>Support Library</h1>
+          <ul>
+            <li>
+              <div class="support-img">
+                <img src="https://files.marcomcentral.app.pti.com/epsilon/static/marcom_custom/images/support-img.png" alt="Support Library" title="Support Library">
+              </div>
+              <div class="support-info">
+                <p>Topic-specific supporting text goes here. Sam a qui ratis aut iusam, qui diam quatium adis doluptatis quid elitius, qui vel milibus, sit omnimusantur accuptas dest ommoluptas natium eaquam nonsequ odist, to blabo.</p>
+              </div>
+            </li>
+            <li>
+              <div class="support-img">
+                <img src="https://files.marcomcentral.app.pti.com/epsilon/static/marcom_custom/images/support-img.png" alt="Support Library" title="Support Library">
+              </div>
+              <div class="support-info">
+                <p>Topic-specific supporting text goes here. Sam a qui ratis aut iusam, qui diam quatium adis doluptatis quid elitius, qui vel milibus, sit omnimusantur accuptas dest ommoluptas natium eaquam nonsequ odist, to blabo.</p>
+              </div>
+            </li>
+            <li>
+              <div class="support-img">
+                <img src="https://files.marcomcentral.app.pti.com/epsilon/static/marcom_custom/images/support-img.png" alt="Support Library" title="Support Library">
+              </div>
+              <div class="support-info">
+                <p>Topic-specific supporting text goes here. Sam a qui ratis aut iusam, qui diam quatium adis doluptatis quid elitius, qui vel milibus, sit omnimusantur accuptas dest ommoluptas natium eaquam nonsequ odist, to blabo.</p>
+              </div>
+            </li>
+          </ul>
+        </div>
+        <div class="faq">
+          <h1>FAQs</h1>
+          <ul id="top-accordian" class="accordion">
+            <li class="title">
+              <a href="#one" class="accordion-title">How do I ... Item 1</a>
+              <ul class="accordion-content">
+                <li>
+                  <p>Doing item 2 is easy, just... a qui ratis aut iusam, qui diam quatium adis doluptatis quid elitius, qui vel milibus, sit omnimusantur accuptas dest ommolupt aquam abo. Sam, qui diam quatium adis doluptatis quid elitius, qui vel milibus,
+                    sit omnimusantur accuptas dest omm. <a href="#" title="Read More">Read More</a></p>
+                </li>
+              </ul>
+            </li>
+            <li class="title">
+              <a href="#one" class="accordion-title">How do I ... Item 2</a>
+              <ul class="accordion-content">
+                <li>
+                  <p>Doing item 2 is easy, just... a qui ratis aut iusam, qui diam quatium adis doluptatis quid elitius, qui vel milibus, sit omnimusantur accuptas dest ommolupt aquam abo. Sam, qui diam quatium adis doluptatis quid elitius, qui vel milibus,
+                    sit omnimusantur accuptas dest omm. <a href="#" title="Read More">Read More</a></p>
+                </li>
+              </ul>
+            </li>
+            <li class="title">
+              <a href="#one" class="accordion-title">How do I ... Item 3</a>
+              <ul class="accordion-content">
+                <li>
+                  <p>Doing item 2 is easy, just... a qui ratis aut iusam, qui diam quatium adis doluptatis quid elitius, qui vel milibus, sit omnimusantur accuptas dest ommolupt aquam abo. Sam, qui diam quatium adis doluptatis quid elitius, qui vel milibus,
+                    sit omnimusantur accuptas dest omm. <a href="#" title="Read More">Read More</a></p>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+  var topAccordion = new function($) {
+    var $topAccordionComponent = $('#top-accordian'),
+      init = function() {
+        if (!$topAccordionComponent.length) {
+          return;
+        }
+        return handlers();
+      },
+      handlers = function clickHandlers() {
+        $topAccordionComponent.find('.accordion-title').on('click', function(
+          event) {
+          event.preventDefault(); //stop browser to take action for clicked anchor
+          if (!$(this).next().is(':visible')) {
+            $('#top-accordian .accordion-title').removeClass('active'); // close all
+            $('#top-accordian .accordion-content').slideUp(); // close all
+            $(this).next().slideDown(); //open`
+            $(this).addClass('active');
+          } else {
+            $(this).next().slideUp(); //current close // only one
+            $('#top-accordian .accordion-title').removeClass('active');
+          }
+        });
+      };
+    return {
+      init: init
+    };
+  }(jQuery);
+  topAccordion.init();
+</script>
