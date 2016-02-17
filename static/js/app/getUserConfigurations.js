@@ -49,8 +49,8 @@ var getUserConfigurations = (function($) {
           'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
         }
       }).done(function(result) {
-        // updateUI(result);
-        console.log('getUserConfigurations is: ' + result);
+        updateUI(result);
+        // console.log('getUserConfigurations is: ' + result);
         // toastr.success('Programs were successfully fetched');
 
       }).fail(function() {
@@ -62,10 +62,22 @@ var getUserConfigurations = (function($) {
       });
     },
     updateUI = function updateUI(result) {
-      return $.each(result, function(index, obj) {
-        var test = JSON.stringify(obj.programId);
-        console.log('programId is: ' + test);
-      });
+      if ($('.program-enrollment-section').length) {
+
+        /** Use programId as selected option
+         *  Display all "configType": "program" as options
+         */
+        $.get(
+          'https://files.marcomcentral.app.pti.com/epsilon/static/program-config-options.mustache.html',
+          function(templates) {
+            var template = $(templates).filter(
+              '.program-config-options-template').html();
+            $('.program-config-options-section').html(Mustache.render(
+              template,
+              result));
+            // customCheckAndRadioBoxes.customCheckbox();
+          });
+      }
     }
   return {
     makeRequest: makeRequest,

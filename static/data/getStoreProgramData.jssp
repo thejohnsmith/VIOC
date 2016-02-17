@@ -1,34 +1,33 @@
 [{
-  "storeId": 101,
-  "storeName": "Testing El Dorado and Lake Forest",
-  "enrolled": true,
-  "channelEmail": 300,
-  "channelDM": 1200,
-  "channelSMS": 250,
-  "costEstimate": 23.01,
-  "configuration": {
-    "key1": "value1"
+    "storeId": 101,
+    "storeName": "El Dorado and Lake Forest",
+    "enrolled": true,
+    "programConfigId": 1,
+    "dfsConfigId": 13,
+    "channelEmail": 500,
+    "channelDM": 1200,
+    "channelSMS": 250,
+    "costEstimate": 384.00
+  }, {
+    "storeId": 102,
+    "storeName": "Smith Avenue",
+    "enrolled": true,
+    "programConfigId": 1,
+    "dfsConfigId": 13,
+    "channelEmail": 452,
+    "channelDM": 858,
+    "channelSMS": 138,
+    "costEstimate": 274.56
+  }, {
+    "storeId": 103,
+    "storeName": "Correia Drive",
+    "enrolled": true,
+    "programConfigId": 1,
+    "dfsConfigId": 13,
+    "channelEmail": 193,
+    "channelDM": 494,
+    "channelSMS": 96,
+    "costEstimate": 158.08
   }
-}, {
-  "storeId": 102,
-  "storeName": "Smith Avenue",
-  "enrolled": false,
-  "channelEmail": 452,
-  "channelDM": 858,
-  "channelSMS": 138,
-  "costEstimate": 274.56,
-  "configuration": {
-    "key1": "value1"
-  }
-}, {
-  "storeId": 103,
-  "storeName": "Correia Drive",
-  "enrolled": true,
-  "channelEmail": 193,
-  "channelDM": 494,
-  "channelSMS": 96,
-  "costEstimate": 158.08,
-  "configuration": {
-    "key1": "value1"
-  }
-}]
+
+]
