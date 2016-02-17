@@ -755,6 +755,11 @@ header .header-right a:hover {
   width: 70%;
   margin: 0 20px 0 0;
 }
+#programManagementTabs.wide-tabs {
+  width: 100%;
+  float: none;
+  margin: 0 auto;
+}
 #programManagementTabs .filters-area {
   float: none;
   width: 100%;
@@ -837,7 +842,6 @@ header .header-right a:hover {
 .filters-area .filter-select .selectbox {
   display: inline-block;
   width: 125px;
-
 }
 .filters-area .filter-select:last-child {
   padding-right: 0;
