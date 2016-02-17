@@ -50,7 +50,7 @@ var getUserConfigurations = (function($) {
         }
       }).done(function(result) {
         // updateUI(result);
-        // console.log('getUserConfigurations is: ' + result);
+        console.log('getUserConfigurations is: ' + result);
         // toastr.success('Programs were successfully fetched');
 
       }).fail(function() {
@@ -72,4 +72,5 @@ var getUserConfigurations = (function($) {
     updateUI: updateUI
   }
 })(jQuery);
-getUserConfigurations.makeRequest(8);
+
+getUserConfigurations.makeRequest()
