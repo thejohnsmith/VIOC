@@ -1484,18 +1484,18 @@ header#nav {
   font-size: 27px;
   color: #2AACE3;
 }
-.contact-form form {
+#contact-form-main {
   float: left;
   width: 100%;
   padding-top: 15px;
 }
-.contact-form form .form-main {
+#contact-form-main .form-main {
   float: left;
   width: 100%;
   padding-bottom: 5px;
   position: relative;
 }
-.contact-form form .form-main label {
+#contact-form-main .form-main label {
   width: 65px;
   font-size: 19px;
   color: #045E90;
@@ -1503,12 +1503,12 @@ header#nav {
   left: 0;
   top: 5px;
 }
-.contact-form form .form-main .form-input {
+#contact-form-main .form-main .form-input {
   float: right;
   width: 100%;
   padding-left: 65px;
 }
-.contact-form form .inputbox {
+#contact-form-main .inputbox {
   background: #F3F3F3;
   color: #555555;
   font-size: 13px;
@@ -1520,10 +1520,10 @@ header#nav {
   border-radius: 0;
   box-shadow: none;
 }
-.contact-form form .inputbox:focus, .contact-form form .textbox:focus {
+#contact-form-main .textbox:focus {
   border-color: #045E90;
 }
-.contact-form form .textbox {
+#contact-form-main .textbox {
   background: #F3F3F3;
   color: #555555;
   font-size: 13px;
@@ -1536,11 +1536,11 @@ header#nav {
   transition: 0.5s;
   box-shadow: none;
 }
-.contact-form form .form-submit {
+#contact-form-main .form-submit {
   float: left;
   width: 100%;
 }
-.contact-form form .form-submit .submit-btn {
+#contact-form-main .form-submit .submit-btn {
   float: right;
   background: #fff;
   border: 2px solid #00aeef;
@@ -1553,7 +1553,7 @@ header#nav {
   transition: 0.5s;
   box-shadow: none;
 }
-.contact-form form .form-submit .submit-btn:hover, .contact-form form .form-submit .submit-btn:focus {
+#contact-form-main .form-submit .submit-btn:focus {
   background: #00aeef;
   color: #fff;
 }
@@ -2201,7 +2201,7 @@ button.toast-close-button {
   .accordion-title, .accordion-title.active {
     background-size: 46px;
   }
-  .contact-form form .form-submit .submit-btn {
+  #contact-form-main .form-submit .submit-btn {
     font-size: 17px;
   }
 }
