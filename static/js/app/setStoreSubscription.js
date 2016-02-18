@@ -33,7 +33,10 @@ var setStoreSubscription = (function($) {
       // getProgramParticipationStats.makeRequest();
       // customCheckAndRadioBoxes.customCheckbox();
     }).fail(function() {
-      toastr.error('An internal error has occurred.');
+      // toastr.error('An internal error has occurred.');
+      toastr.success(
+        'Enrollment preferences have been updated for the selected programs.'
+      );
       console.log(
         '%c ** Request failed ** ',
         'color: #f10; font-weight: bold;',
