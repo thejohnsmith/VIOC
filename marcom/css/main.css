@@ -636,6 +636,9 @@ header#nav {
 #participationDashboard .participation-table tbody {
   border-top: 12px solid #F6F6F6;
 }
+.program-settings-section .participation-table tbody .customCheckbox {
+  margin-left: 5px;
+}
 .participation-table tr {
   background: #F6F6F6;
   vertical-align: middle;
@@ -1016,6 +1019,10 @@ header#nav {
   width: 70%;
   margin-bottom: 1em;
 }
+.filter-title, .filter-results {
+  display: inline-block;
+  ;
+}
 .view-program-summary {
   float: right;
   width: 30%;
@@ -1033,22 +1040,22 @@ header#nav {
   color: #555555;
 }
 .filters-area .filter-select {
-  float: left;
-  padding-right: 30px;
+  padding-right: 20px;
+  vertical-align: initial;
+  display: inline-block;
 }
 .filters-area .filter-select .selectbox {
   display: inline-block;
   width: auto;
-  width: calc(100% - 26px);
-  margin-left: 10px;
+  top: -6px;
+  position: relative;
+  vertical-align: baseline;
 }
 .filters-area .filter-select:last-child {
   padding-right: 0;
 }
 .filters-area .filter-reset {
-  float: left;
-  position: relative;
-  top: 2px;
+  margin-left: 4px;
 }
 .select-option .sbHolder {
   position: relative;
@@ -1129,7 +1136,7 @@ header#nav {
 .programsummary-table {
   float: left;
   width: 100%;
-  padding-top: 10px;
+  padding: 10px 0;
 }
 .programsummary-table th {
   background: #1cb7f1;
@@ -1147,6 +1154,9 @@ header#nav {
   vertical-align: middle;
 }
 .programsummary-table .store {
+  text-align: center;
+}
+.programsummary-table .program-enrollment-section .store {
   text-align: left;
 }
 .programsummary-table th.store-counts td {
@@ -2771,9 +2781,11 @@ a.btn.disabled, fieldset[disabled] a.btn {
 .btn-primary {
   color: #fff;
   background-color: #337ab7;
-  background-color: rgba(0, 144, 201, 0.49);
   border-color: #2e6da4;
   border-color: rgba(63, 81, 181, 0.46);
+}
+.programsummary-table th.store-enroll .btn-primary {
+  background-color: rgba(0, 144, 201, 0.49);
 }
 .btn-primary:focus, .btn-primary.focus {
   color: #fff;
@@ -3006,25 +3018,19 @@ input[type="submit"].btn-block, input[type="reset"].btn-block, input[type="butto
   margin-right: auto;
   margin-left: auto;
 }
-
 .row {
   margin-right: -15px;
   margin-left: -15px;
 }
-
-.col-sm-2,
-.col-sm-6,
-.col-sm-8 {
+.col-sm-2, .col-sm-6, .col-sm-8 {
   position: relative;
   min-height: 1px;
   padding-right: 15px;
   padding-left: 15px;
 }
-
 .col-sm-8 {
   padding-left: 0;
 }
-
 @media (min-width: 768px) {
   .col-sm-2 {
     float: left;
@@ -3039,76 +3045,67 @@ input[type="submit"].btn-block, input[type="reset"].btn-block, input[type="butto
     width: 66.66666667%;
   }
 }
-
 .programsummary-table .total-label {
   width: 42% !important;
 }
-
 .store-checkbox {
   width: 5% !important;
   padding-left: 8px !important;
   padding-right: 8px !important;
 }
-
 .enrolled {
   width: 5% !important;
   padding-left: 8px !important;
   padding-right: 8px !important;
 }
-
 .store-number {
   font-size: 11px;
 }
-
 .program-edit {
   float: right;
   margin: 0px 6px;
 }
-
 .store-configuration table {
   width: 100%
 }
-
 .store-configuration table td {
   border: 0px !important;
   min-width: 40px;
   width: 1% !important;
 }
-
 .store-configuration table td:first-of-type {
   width: 99% !important
 }
-
 .options-table h3 {
   margin-bottom: 8px;
 }
-
 .options-table td {
   background-color: #F6F6F6;
   border: 2px solid #FFF;
   width: 33%;
   padding: 8px;
 }
-
 .options-table .option-button-cell {
   background-color: #FFF;
 }
-
 .options-table .option-button-cell .program-button {
   padding-top: 0px;
   background-color: #FFF;
 }
-
 #programManagementTabs {
   width: 100%;
   float: none;
   margin: 0 auto;
 }
-
+#programManagementTabs.wide-tabs .filters-area {
+  width: 100%;
+  float: none;
+  margin: 0 auto;
+  padding: 10px 0 20px;
+}
 .programsummary-table .customCheckbox {
   background-position: center center;
 }
-
 .programsummary-table .customCheckbox {
   display: inline-block;
   float: none;
