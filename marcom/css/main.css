@@ -916,7 +916,7 @@ header#nav {
   display: inline-block;
   padding-right: 5px;
 }
-#breadcrumbs li span {
+#breadcrumbs li a span {
   text-decoration: underline;
 }
 #breadcrumbs li:after {
