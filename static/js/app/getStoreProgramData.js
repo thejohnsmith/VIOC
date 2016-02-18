@@ -54,8 +54,17 @@
             // return calculateTotals(result);
             getUserConfigurations.makeRequest();
             return reloadCheckBoxes();
-          });
+          }).done(function() {
+          return setHashLinks();
+        });
       }
+    }
+
+    function setHashLinks() {
+      var currentProgramId = getHashParams.hashParams.programId;
+      var $createProgram = $('.js-create-program-hash');
+      $($createProgram).attr('href', $($createProgram).attr('href') +
+        '#programId=' + currentProgramId);
     }
 
     function reloadCheckBoxes() {
