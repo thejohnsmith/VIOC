@@ -20,6 +20,9 @@
   max-width: 450px;
   padding: 6px 12px;
 }
+#CtlLogIn > p > a, .header-right {
+  display: none;
+}
 #CtlLogIn .CtlSearchGroup, .CtlSearchGroup td.header {
   border: none;
 }
