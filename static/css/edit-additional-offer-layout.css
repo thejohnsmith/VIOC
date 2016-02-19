@@ -75,7 +75,7 @@ p {
 }
 .discountCode table tr td:nth-child(odd),
 #parentHorizontalTab table tr td:nth-child(odd) {
-	width: 23%;
+	width: 40%;
 }
 
 #parentHorizontalTab {
