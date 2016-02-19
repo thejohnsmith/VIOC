@@ -1,7 +1,7 @@
 <script class="program-list-template" type="x-tmpl-mustache">
   {{#.}} {{#isLifecycleCampaign}}
   <ul class="program-list">
-    <li id="program-{{id}}" class="status-green">
+    <li id="program-{{id}}" class="status-green" data-programDesc="{{programDesc}}">
       <div class="checkbox-area">
         <div class="customCheckbox">
           <input type="checkbox" value="{{id}}">
