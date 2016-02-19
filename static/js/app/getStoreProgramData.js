@@ -1,11 +1,11 @@
-(function(getStoreProgramData) {
+(function (getStoreProgramData) {
 
   // The global jQuery object is passed as a parameter
   getStoreProgramData(window.jQuery, window, document);
-}(function($, window, document) {
+}(function ($, window, document) {
   // The $ is now locally scoped
 
-  $(function() {
+  $(function () {
     var localDevUrl =
       'data/getStoreProgramData.jssp';
     var marcomDevUrl =
@@ -21,17 +21,17 @@
         userId: marcomUserData.$user.externalId,
         programId: programId
       }
-    }).done(function(result) {
+    }).done(function (result) {
       loadStoreProgramData(result);
-    }).fail(function() {
+    }).fail(function () {
       ajaxclientFailed();
     });
 
     function loadStoreProgramData(result) {
-      if ($('.program-enrollment-section').length) {
+      if($('.program-enrollment-section').length) {
         $.get(
           'https://files.marcomcentral.app.pti.com/epsilon/static/program-enrollment.mustache.html',
-          function(templates) {
+          function (templates) {
             var template = $(templates).filter(
               '.program-enrollment-template').html();
             $('.program-enrollment-section').html(Mustache.render(
@@ -41,10 +41,10 @@
             calculateTotals(result);
           });
       }
-      if ($('.program-settings-section').length) {
+      if($('.program-settings-section').length) {
         $.get(
           'https://files.marcomcentral.app.pti.com/epsilon/static/program-settings.mustache.html',
-          function(templates) {
+          function (templates) {
             var template2 = $(templates).filter(
               '.program-settings-template').html();
             $('.program-settings-section').html(Mustache.render(
@@ -54,7 +54,7 @@
             // return calculateTotals(result);
             getUserConfigurations.makeRequest();
             return reloadCheckBoxes();
-          }).done(function() {
+          }).done(function () {
           return setHashLinks();
         });
       }
@@ -62,20 +62,22 @@
 
     function setHashLinks() {
       var currentProgramId = getHashParams.hashParams.programId;
-      var $createProgram = $('.js-create-program-hash');
-      $($createProgram).attr('href', $($createProgram).attr('href') +
-        '#programId=' + currentProgramId);
+      if($('.js-create-program-hash').length) {
+        $('.js-create-program-hash').each(function () {
+          $(this).attr('href', $(this).attr('href') +
+            '#programId=' + currentProgramId);
+        });
+      }
     }
 
     function reloadCheckBoxes() {
       return customCheckAndRadioBoxes.customCheckbox();
     }
 
-
     function calculateTotals(result) {
-      Array.prototype.sum = function(prop) {
+      Array.prototype.sum = function (prop) {
         var total = 0
-        for (var i = 0, _len = this.length; i < _len; i++) {
+        for(var i = 0, _len = this.length; i < _len; i++) {
           total += this[i][prop]
         }
         return total;
@@ -94,7 +96,7 @@
     /** Adds decimal places to cost numbers
      */
     function formatCurrency(argument) {
-      return $('.js-format-currency').each(function(argument) {
+      return $('.js-format-currency').each(function (argument) {
         var $numberInput = parseFloat($(this).text());
         var $numberOutput = $(this).text($numberInput.toFixed(2));
       });

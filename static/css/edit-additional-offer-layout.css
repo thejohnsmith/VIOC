@@ -38,7 +38,6 @@ p {
 }
 
 #programManagementTabs input {
-  width: 50%;
   margin: 5px 0 15px 0;
 }
 
@@ -75,7 +74,7 @@ p {
 }
 .discountCode table tr td:nth-child(odd),
 #parentHorizontalTab table tr td:nth-child(odd) {
-	width: 23%;
+	width: 40%;
 }
 
 #parentHorizontalTab {
@@ -104,7 +103,7 @@ p {
 }
 .resp-tab-content {
 	margin: 0 0 20px 0;
-	width: auto;
+	width: 80%;
 }
 .coupon-form {
 	float: left;
