@@ -206,6 +206,9 @@ a:focus {
 .preloader {
   display: none;
 }
+.twitter-typeahead > .tt-hint {
+  background: transparent!important
+}
 .dummy {
   float: left;
   width: 100%;
@@ -648,6 +651,11 @@ header#nav {
 .program-settings-section .participation-table tbody .customCheckbox {
   margin-left: 5px;
 }
+.program-settings-footer {
+  color: #fff;
+  background: #1cb7f1;
+  display: none;
+}
 .participation-table tr {
   background: #F6F6F6;
   vertical-align: middle;
@@ -952,7 +960,7 @@ header#nav {
   width: 100%;
   text-align: center;
   background: #F6F8F7;
-  padding: 20px 0;
+  /*padding: 20px 0;*/
   margin-bottom: 25px;
 }
 #programDetails td {

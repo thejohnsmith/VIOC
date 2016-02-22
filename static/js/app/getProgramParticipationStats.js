@@ -139,7 +139,6 @@ var getProgramParticipationStats = (function ($) {
      */
     updateParticipationDashboard = function () {
       $('.program-name-lifecycle > [data-enrolled]').attr('data-enrolled', true);
-      getNewProgramDesc();
       return getFirstProgramDesc();
     },
     /**
@@ -152,6 +151,10 @@ var getProgramParticipationStats = (function ($) {
         return setProgramDesc($firstProgramDesc);
       }
     },
+    setProgramDesc = function (activeProgramDesc) {
+      $('.programDesc').html('<p>' + activeProgramDesc + '</p>');
+      return getNewProgramDesc();
+    },
     getNewProgramDesc = function () {
       $('.program-list li').hover(function () {
         var $newProgramDesc = $(this).attr('data-programDesc');
@@ -159,9 +162,6 @@ var getProgramParticipationStats = (function ($) {
       }, function () {
         return;
       });
-    },
-    setProgramDesc = function (activeProgramDesc) {
-      $('.programDesc').html('<p>' + activeProgramDesc + '</p>');
     },
     requestFailed = function () {
       $('.program-select').html('There was a problem fetching your programs.' + 'Please check back again later.');
