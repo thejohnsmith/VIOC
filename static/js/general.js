@@ -136,6 +136,8 @@
    });
 
   //Create jstree object()
-  $('#jstree_demo_div').jstree(); 
+  if ($('#jstree_demo_div').length) {
+    $('#jstree_demo_div').jstree();
+  }
 
  });
