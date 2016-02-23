@@ -14,7 +14,7 @@
 	<!--css styles starts-->
 	<link rel="stylesheet" type="text/css" href="css/style.css">
 	<link rel="stylesheet" type="text/css" href="css/reset.css">
-	<link rel="stylesheet" href="dist/themes/default/style.min.css" />
+	<link rel="stylesheet" type="text/css" href="css/themes/default/style.min.css" />
 	<link rel="stylesheet" type="text/css" href="css/targeting-criteria.css" />
 	<!--css styles ends-->
 
@@ -137,19 +137,46 @@
 					<section id="customerGeography">
 					<h1>Customer Georgraphy</h1>
 					<p>Target customers based on their home store location.</p>
-					<img src="images/jstree-screenshot.png" width="100%" height="auto" alt="jstree screenshot" />
-					<div id="jstree_demo_div">
-
-						<div id="html1">
-							<ul>
-							    <li>Root node 1
-									<ul>
-								        <li>Child node 1</li>
-								        <li><a href="#">Child node 2</a></li>
-							      	</ul>
-							    </li>
-							</ul>
-						</div>
+					<div id="jstree">
+					    <!-- in this example the tree is populated from inline HTML -->
+					    <ul>
+							<li id="root_node_1">Oil Pros, LLC
+								<ul>
+									<li>Oklahoma</li>
+									<li>Kansas</li>
+									<li>Texas
+										<ul>
+											<li>Austin</li>
+											<li>West Texas</li>
+											<li>North Texas
+												<ul>
+													<li id="child_node_1">Store #101</li>
+													<li>Store #102</li>
+												</ul>
+											</li>
+										</ul>
+									</li>
+								</ul>
+							</li>
+							<li id="root_node_2">Oil Brothers, LLC
+								<ul>
+									<li>Oklahoma</li>
+									<li>Kansas</li>
+									<li>Texas
+										<ul>
+											<li>Austin</li>
+											<li>West Texas</li>
+											<li>North Texas
+												<ul>
+													<li id="child_node_2">Store #101</li>
+													<li>Store #102</li>
+												</ul>
+											</li>
+										</ul>
+									</li>
+								</ul>
+							</li>
+					    </ul>
 					</div>
 				</section>
 				</div>
@@ -185,15 +212,13 @@
 							<option value="Yes">Yes</option>
 						</select>
 					</div>
-				</div>
-			</div>
-			<div class="main call-to-action">
-				<div class="left-container">
-					Note: Once you proceed beyond this step, you will not be able to adjust your selection.
-				</div>
-				<div class="right-container">
-					<p>Select up to 321 Target Recipients</p>
-					<button class="button">Cancel and return to WARP drive</button>
+					<div class="call-to-action">
+						<p class="total">Select up to <b>321</b> Target Recipients</p>
+						<p class="note">
+							Note: Once you proceed beyond this step, you will not be able to adjust your selection.
+						</p>
+						<a href="#">Cancel and return to WARP drive</a>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -222,7 +247,6 @@
 	<script src="js/app/setStoreSubscription.js"></script>
 
 	<!-- ** Scripts not needed for Marcom templates ** -->
-	<script src="dist/jstree.min.js"></script>
 	<script type="text/javascript" src="js/css_browser_selector.js"></script>
 	<script type="text/javascript" src="js/menu.js"></script>
 	<script type="text/javascript" src="js/selectbox-0.2.js"></script>
@@ -230,25 +254,8 @@
 	<script type="text/javascript" src="js/jquery.mousewheel.min.js"></script>
 	<script type="text/javascript" src="js/jquery.validate.js"></script>
 	<script type="text/javascript" src="js/placeholder.js"></script>
+	<script type="text/javascript" src="js/jstree.min.js"></script>
 	<script type="text/javascript" src="js/general.js"></script>
-
-	<script src="dist/jstree.min.js"></script>
-  <script>
-  $(function () {
-    // 6 create an instance when the DOM is ready
-    $('#jstree').jstree();
-    // 7 bind to events triggered on the tree
-    $('#jstree').on("changed.jstree", function (e, data) {
-      console.log(data.selected);
-    });
-    // 8 interact with the tree - either way is OK
-    $('button').on('click', function () {
-      $('#jstree').jstree(true).select_node('child_node_1');
-      $('#jstree').jstree('select_node', 'child_node_1');
-      $.jstree.reference('#jstree').select_node('child_node_1');
-    });
-  });
-  </script>
 </body>
 
 </html>
