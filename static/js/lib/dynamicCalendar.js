@@ -37,8 +37,8 @@ var dynamicCalendar = (function ($) {
       //  "calendar-MM-YYYY.jpg format"
       var imgCurrent = getCurrentMonth().format('MM-YYYY');
       var imgNext = getNextMonth().format('MM-YYYY');
-      $('.tab-content:first img').attr('src', '../calendar/calendar-' + imgCurrent + '.jpg');
-      $('.tab-content:last img').attr('src', '../calendar/calendar-' + imgNext + '.jpg');
+      $('.tab-content:first img').attr('src', 'https://files.marcomcentral.app.pti.com/epsilon/calendars/calendar-' + imgCurrent + '.jpg');
+      $('.tab-content:last img').attr('src', 'https://files.marcomcentral.app.pti.com/epsilon/calendars/calendar-' + imgNext + '.jpg');
       return;
     }
   return {
