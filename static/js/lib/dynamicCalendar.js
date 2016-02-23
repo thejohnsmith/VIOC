@@ -14,45 +14,37 @@ var dynamicCalendar = (function ($) {
   var $calendar = $('#calendar'),
     $calendarTabs = $calendar.find('.nav-tabs'),
     init = function () {
-      getCurrentMonth();
-      getNextMonth();
-      setDateLabel()
+      setDateLabel();
+      setImagePath();
     },
     getCurrentMonth = function () {
-      // Use moment to get months
-      // var currentMonth = new moment().format('MMMM');
       var currentMonth = new moment();
-      console.log('current month is: ' + currentMonth);
-      setDateLabel(currentMonth);
       return currentMonth;
     },
     getNextMonth = function () {
-      // var nextMonth = new moment().subtract(1, 'months').format('MMMM')
-      // TO DO: output just unformatted data.
-      // then have renderer format it in the right functions!
       var nextMonth = new moment().add(1, 'months');
-      console.log('last month is : ' + nextMonth);
-      setDateLabel(nextMonth);
       return nextMonth;
     },
-    getMonthAndYear = function (currentMonth) {
-      var currentMonthLabel = getCurrentMonth().format('MMMM YYYY');
-      var nextMonthLabel = getNextMonth().format('MMMM YYYY');
-      console.log('year added: ' + currentMonthLabel);
-
+    setDateLabel = function () {
+      var dateLabelCurrent = getCurrentMonth().format('MMMM YYYY');
+      var dateLabelNext = getNextMonth().format('MMMM YYYY');
+      $calendarTabs.find('li:first a').attr('title', dateLabelCurrent).text(dateLabelCurrent);
+      $calendarTabs.find('li:last a').attr('title', dateLabelNext).text(dateLabelNext);
+      return;
     },
-    setDateLabel = function (rawDate) {
-      // var nextMonthLabel = getNextMonth().format('MMMM YYYY');
-      // '#tab1 points to .calendar-paceholder > a ID'
-      var dateLabel = new moment(rawDate).format('MMMM YYYY');
-      console.log('tabs: ' + dateLabel);
-      $calendarTabs.find('.active a').attr('title', dateLabel).text(dateLabel);
+    setImagePath = function () {
+      // /calendars folder
+      //  "calendar-MM-YYYY.jpg format"
+      var imgCurrent = getCurrentMonth().format('MM-YYYY');
+      var imgNext = getNextMonth().format('MM-YYYY');
+      $('.tab-content:first img').attr('src', '../calendar/calendar-' + imgCurrent + '.jpg');
+      $('.tab-content:last img').attr('src', '../calendar/calendar-' + imgNext + '.jpg');
+      return;
     }
   return {
     init: init,
     $calendar: $calendar,
     getCurrentMonth: getCurrentMonth,
-    getNextMonth: getNextMonth
   };
 })(jQuery);
 dynamicCalendar.init();
