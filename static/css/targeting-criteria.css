@@ -1,0 +1,59 @@
+#jstree_demo_div {
+	padding: 15px;
+}
+.left-container,
+.right-container {
+	margin: 20px 0;
+	padding: 10px 20px 10px 0;
+}
+.left-container {
+	width: 40%;
+}
+.right-container {
+	width: 60%;
+	padding: 10px 20px;
+}
+.left-container h1,
+.right-container h1 {
+	font-size: 24px;
+	padding: 5px 0;
+	margin: 0;
+}
+.left-container div,
+.right-container div {
+	padding: 0 0 35px 0;
+}
+.left-container p,
+.right-container p {
+	margin: 0 0 15px 0;
+}
+.left-container img {
+	border: 2px solid #ccc;
+}
+.right-container label {
+	padding: 0 10px 0 0;
+}
+.right-container select {
+	width: auto;
+}
+.right-container input {
+	padding: 0;
+	margin: 0 5px 3px 0;
+	vertical-align: middle;
+}
+.target-reciptients {
+	float: right;
+	width: 200px;
+	text-align: center;
+	border: 1px solid #444;
+}
+.target-reciptients h1 {
+	color: #000;
+	padding: 10px 0;
+	font-weight: bold;
+}
+.target-reciptients p {
+	background-color: #ededed;
+	border-top: 1px solid #444;
+}
+
