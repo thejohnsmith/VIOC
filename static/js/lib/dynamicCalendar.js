@@ -8,9 +8,7 @@
   * @param {class} .active applied to three places: .nav-tabs > li, .nav-tabs > li a, .calendar-paceholder > a
  */
 var dynamicCalendar = (function ($) {
-  if(!$('#calendar').length) {
-    return
-  }
+
   var $calendar = $('#calendar'),
     $calendarTabs = $calendar.find('.nav-tabs'),
     init = function () {
@@ -47,4 +45,5 @@ var dynamicCalendar = (function ($) {
     getCurrentMonth: getCurrentMonth,
   };
 })(jQuery);
+
 dynamicCalendar.init();
