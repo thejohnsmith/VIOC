@@ -27,8 +27,9 @@
 .right-container p {
 	margin: 0 0 15px 0;
 }
-.left-container img {
+#jstree {
 	border: 2px solid #ccc;
+	padding: 15px;
 }
 .right-container label {
 	padding: 0 10px 0 0;
@@ -56,4 +57,3 @@
 	background-color: #ededed;
 	border-top: 1px solid #444;
 }
-
