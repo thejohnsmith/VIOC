@@ -29,6 +29,7 @@ var getProgramParticipationStats = (function ($) {
         //upDateProgramsDashboard(result);
         getProgramTitle(result);
         loadProgramData(result);
+        loadDashboardData(result);
       }).fail(function () {
         requestFailed();
       });
@@ -71,6 +72,16 @@ var getProgramParticipationStats = (function ($) {
     },
     setBreadcrumbTitle = function (programTitle) {
       $('#breadcrumbs span').text(programTitle + ' Program');
+    },
+    loadDashboardData = function (result) {
+      if($('.participation-dashboard-tpl').length) {
+        $.get('https://files.marcomcentral.app.pti.com/epsilon/static/participation-dashboard.mustache.html', function (templates) {
+          var template = $(templates).filter('.participation-dashboard-template').html();
+          $('.participation-dashboard-tpl').html(Mustache.render(template, result));
+          return loadProgramData(result),
+            upDateOppertunityDashboard(result);
+        });
+      }
     },
     /** Load Program Data
      * Updates the participation dashboard
@@ -117,7 +128,7 @@ var getProgramParticipationStats = (function ($) {
             if(obj.storesParticipating === obj.storesEligible) {
               $programId.attr('class', programStatus.success);
             }
-            updateParticipationDashboard();
+            updateDashboardEnrollment(false);
           }
         }
         // Check for errors:
@@ -133,12 +144,27 @@ var getProgramParticipationStats = (function ($) {
         }
       });
     },
+    upDateOppertunityDashboard = function (result) {
+      return $.each(result, function (index, obj) {
+        // if(obj.storesParticipating === obj.storesEligible) {
+        // console.log('participating ' + obj.storesParticipating);
+        $('.program-name-' + obj.programName + ' > [data-enrolled]').attr('data-enrolled', false);
+        // }
+      });
+    },
+    /**
+     *
+     * @return
+     */
+    updateDashboardOppertunity = function (val) {
+      $('.program-name-lifecycle > [data-enrolled]').attr('data-enrolled', val);
+    },
     /**
      * Updates the participation dashboard
      * @return sets enrolled state to true.
      */
-    updateParticipationDashboard = function () {
-      $('.program-name-lifecycle > [data-enrolled]').attr('data-enrolled', true);
+    updateDashboardEnrollment = function (val) {
+      $('.program-name-lifecycle > [data-enrolled]').attr('data-enrolled', val);
       return getFirstProgramDesc();
     },
     /**
@@ -175,7 +201,7 @@ var getProgramParticipationStats = (function ($) {
     setProgramTitle: setProgramTitle,
     loadProgramData: loadProgramData,
     upDateProgramsDashboard: upDateProgramsDashboard,
-    updateParticipationDashboard: updateParticipationDashboard,
+    updateDashboardEnrollment: updateDashboardEnrollment,
     requestFailed: requestFailed
   };
 })(jQuery);
