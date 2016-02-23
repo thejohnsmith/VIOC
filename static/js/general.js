@@ -135,6 +135,32 @@
      }, 50)
    });
 
+  if ($('.last-service-date').length) {
+    $( "#from" ).datepicker({
+      showOn: "button",
+      buttonImage: "images/calendar.gif",
+      buttonImageOnly: true,
+      buttonText: "Select date",
+      //defaultDate: "+1w",
+      minDate: 0, 
+      maxDate: "+1Y",
+      onClose: function( selectedDate ) {
+        $( "#to" ).datepicker( "option", "minDate", selectedDate );
+      }
+    });
+    $( "#to" ).datepicker({
+      showOn: "button",
+      buttonImage: "images/calendar.gif",
+      buttonImageOnly: true,
+      buttonText: "Select date",
+      minDate: 0, 
+      maxDate: "+1Y",
+      onClose: function( selectedDate ) {
+        $( "#from" ).datepicker( "option", "maxDate", selectedDate );
+      }
+    });
+  }
+
   //Create jstree object()
   if ($('#jstree').length) {
     $('#jstree').jstree();
