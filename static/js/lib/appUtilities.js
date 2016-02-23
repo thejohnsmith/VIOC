@@ -1,3 +1,4 @@
+/* This is meant to run in Marcom only, hence the renaming of jQuery */
 $j(function() {
   var appUtilities = function() {
       setBrowserTitle(),
