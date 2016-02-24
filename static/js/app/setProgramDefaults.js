@@ -12,7 +12,7 @@ var setProgramDefaults = (function ($) {
     var acUrl = 'https://adobe-uat-vioc.epsilon.com/jssp/vioc/setProgramDefaults.jssp';
     $.ajax({
       url: acUrl,
-      type: 'POST',
+      type: 'GET',
       contentType: 'application/json',
       processData: true,
       data: {
