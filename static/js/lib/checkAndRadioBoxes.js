@@ -42,7 +42,7 @@ var customCheckAndRadioBoxes = (function($) {
   // TO DO: This should be moved to setStoreSubscription.js
   var enrollPrograms = function($selectedPrograms) {
     removeChecked();
-    return setStoreSubscription.makeRequest($selectedPrograms);
+    return setProgramDefaults.makeRequest($selectedPrograms);
   }
 
   var enrollStores = function($selectedPrograms) {

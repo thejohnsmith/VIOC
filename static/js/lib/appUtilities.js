@@ -1,33 +1,28 @@
 /* This is meant to run in Marcom only, hence the renaming of jQuery */
-$j(function() {
-  var appUtilities = function() {
+var $j = jQuery;
+$j(function () {
+  var appUtilities = function () {
       setBrowserTitle(),
-        changeNavBarLink(),
-        setFavicon()
+      changeNavBarLink(),
+      setFavicon()
     },
-    setBrowserTitle = function() {
-      var $pageTitle = $j('.page-title').text();
-      $j('title').remove().html($pageTitle);
+    setBrowserTitle = function () {
+      // var $pageTitle = $j('.page-title').text();
+      var $pageTitle = '' || $j('.wrapper h1').first().text();
+      return $j('title').html('VIOC Warp Drive' + ' - ' + $pageTitle);
     },
     /* Adds a new destination to the Reports link in main navigation */
-    changeNavBarLink = function() {
-
-      // TO DO: Write a proper function for these...
-      $j('.navBarItem > a').filter(function() {
+    changeNavBarLink = function () {
+      $j('.navBarItem > a').filter(function () {
         return $j(this).text() === 'REPORTS';
-      }).attr('href', 'https://bo-vioc.epsilon.com').attr('target',
-        '_blank');
-      $j('.navBarItem > a').filter(function() {
+      }).attr('href', 'https://bo-vioc.epsilon.com').attr('target', '_blank');
+      $j('.navBarItem > a').filter(function () {
         return $j(this).text() === 'ON DEMAND MARKETING';
-      }).attr('href',
-        'https://marcomcentral.app.pti.com/Epsilon_Data_Management/Beta_Epsilon/catalog.aspx?uigroup_id=479602&folder_id=1633307'
-      );
+      }).attr('href', 'https://marcomcentral.app.pti.com/Epsilon_Data_Management/Beta_Epsilon/catalog.aspx?uigroup_id=479602&folder_id=1633307');
     },
     /* Inserts a the site favicon */
-    setFavicon = function() {
-      return $j('head').append(
-        '<link rel="icon" href="https://files.marcomcentral.app.pti.com/epsilon/static/images/favicon.ico" type="image/x-icon">'
-      );
+    setFavicon = function () {
+      return $j('head').append('<link rel="icon" href="https://files.marcomcentral.app.pti.com/epsilon/static/images/favicon.ico" type="image/x-icon">');
     }
   return appUtilities();
-})
+});
