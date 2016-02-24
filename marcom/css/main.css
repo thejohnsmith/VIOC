@@ -189,9 +189,11 @@ a:focus {
 .cf:after {
   clear: both;
 }
+
 /*.cf {
   *zoom: 1;
 }*/
+
 .text-transform {
   text-transform: uppercase;
 }
@@ -874,6 +876,9 @@ header#nav {
 #programSummary .program-select--is-active-user label {
   cursor: default!important;
   color: #555!important;
+}
+.program-select--is-active-user .program-button {
+  display: none;
 }
 .check-box-main {
   float: left;
