@@ -41,6 +41,10 @@
 	padding: 0;
 	margin: 0 5px 3px 0;
 	vertical-align: middle;
+	height: 25px;
+}
+.last-service-date img {
+	vertical-align: middle;
 }
 .target-reciptients {
 	float: right;
@@ -57,7 +61,7 @@
 	background-color: #ededed;
 	border-top: 1px solid #444;
 }
-.call-to-action .note {
+p.note {
 	text-align: center;
 	background-color: #ffc;
 	padding: 10px;
@@ -69,11 +73,28 @@
 	background-color: #bdd7ee;
 	padding: 5px;
 }
-.total b {
-	font-weight: bold;
-	font-size: 20px;
-}
-.call-to-action a {
-	text-decoration: underline;
+.call-to-action {
 	padding: 10px 0;
+	margin: 0;
+}
+
+.call-to-action a {
+	text-decoration: none;
+	text-align: center;
+	margin: 0 20px 0 0;
+	border: 2px solid #999;
+	color: #999;
+    padding: 5px 40px;
+	display: inline;
+	font-weight: bold;
+	width: 100%;
+}
+.call-to-action .submit {
+	background: blue;
+	color: #fff;
+	text-decoration: none;
+	background: #fff;
+    border: 2px solid #00aeef;
+    padding: 5px 40px;
+    color: #00aeef;
 }
