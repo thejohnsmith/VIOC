@@ -189,9 +189,9 @@ a:focus {
 .cf:after {
   clear: both;
 }
-.cf {
+/*.cf {
   *zoom: 1;
-}
+}*/
 .text-transform {
   text-transform: uppercase;
 }
@@ -1038,7 +1038,6 @@ header#nav {
 }
 .filter-title, .filter-results {
   display: inline-block;
-  ;
 }
 .view-program-summary {
   float: right;

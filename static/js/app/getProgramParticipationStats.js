@@ -78,8 +78,7 @@ var getProgramParticipationStats = (function ($) {
         $.get('https://files.marcomcentral.app.pti.com/epsilon/static/participation-dashboard.mustache.html', function (templates) {
           var template = $(templates).filter('.participation-dashboard-template').html();
           $('.participation-dashboard-tpl').html(Mustache.render(template, result));
-          return loadProgramData(result),
-            upDateOppertunityDashboard(result);
+          return loadProgramData(result);
         });
       }
     },
@@ -95,9 +94,15 @@ var getProgramParticipationStats = (function ($) {
           var template = $(templates).filter('.program-list-template').html();
           $('.program-select').html(Mustache.render(template, result));
           customCheckAndRadioBoxes.customCheckbox();
-          return upDateProgramsDashboard(result);
+          return upDateProgramsDashboard(result)
         });
       }
+    },
+    loadProgramTabs = function (result) {
+      $.get('https://files.marcomcentral.app.pti.com/epsilon/static/program-tabs.mustache.html', function (templates) {
+        var template = $(templates).filter('.program-tabs-template').html();
+        $('#programDetails').html(Mustache.render(template, result));
+      });
     },
     /**
      * Updates the .program-select properties.
@@ -144,21 +149,6 @@ var getProgramParticipationStats = (function ($) {
         }
       });
     },
-    upDateOppertunityDashboard = function (result) {
-      return $.each(result, function (index, obj) {
-        // if(obj.storesParticipating === obj.storesEligible) {
-        // console.log('participating ' + obj.storesParticipating);
-        $('.program-name-' + obj.programName + ' > [data-enrolled]').attr('data-enrolled', false);
-        // }
-      });
-    },
-    /**
-     *
-     * @return
-     */
-    updateDashboardOppertunity = function (val) {
-      $('.program-name-lifecycle > [data-enrolled]').attr('data-enrolled', val);
-    },
     /**
      * Updates the participation dashboard
      * @return sets enrolled state to true.
@@ -174,12 +164,8 @@ var getProgramParticipationStats = (function ($) {
     getFirstProgramDesc = function () {
       if($('.program-list li')) {
         var $firstProgramDesc = $('.program-list li').first().attr('data-programDesc');
-        return setProgramDesc($firstProgramDesc);
+        return setProgramDesc($firstProgramDesc), getNewProgramDesc();
       }
-    },
-    setProgramDesc = function (activeProgramDesc) {
-      $('.programDesc').html('<p>' + activeProgramDesc + '</p>');
-      return getNewProgramDesc();
     },
     getNewProgramDesc = function () {
       $('.program-list li').hover(function () {
@@ -189,11 +175,14 @@ var getProgramParticipationStats = (function ($) {
         return;
       });
     },
+    setProgramDesc = function (activeProgramDesc) {
+      return $('.programDesc').html('<p>' + activeProgramDesc + '</p>');
+    },
     requestFailed = function () {
       $('.program-select').html('There was a problem fetching your programs.' + 'Please check back again later.');
       $('.alert-container').html('<programss="alert-main alert-danger">DANGER: An error occured</div>').fadeIn();
       // Display a success toast, with a title
-      console.warn('An internal error has occurred.');
+      return console.warn('An internal error has occurred.');
     }
   return {
     makeRequest: makeRequest,
