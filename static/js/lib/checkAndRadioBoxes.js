@@ -35,14 +35,18 @@ var customCheckAndRadioBoxes = (function($) {
         .map(function() {
           return $(this).val();
         }).get().join();
-      return enrollPrograms($selectedPrograms);
+        var $selectedProgramNames = $('input:checkbox:checked + label')
+          .map(function() {
+            return $(this).text();
+          }).get().join();
+      return enrollPrograms($selectedPrograms, $selectedProgramNames);
     });
   };
 
   // TO DO: This should be moved to setStoreSubscription.js
-  var enrollPrograms = function($selectedPrograms) {
+  var enrollPrograms = function($selectedPrograms, $selectedProgramNames) {
     removeChecked();
-    return setProgramDefaults.makeRequest($selectedPrograms);
+    return setProgramDefaults.makeRequest($selectedPrograms, $selectedProgramNames);
   }
 
   var enrollStores = function($selectedPrograms) {
