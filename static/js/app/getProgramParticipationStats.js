@@ -180,7 +180,7 @@ var getProgramParticipationStats = (function ($) {
         var $firstTab = $('.program-overview-tab-content:first').html();
         $('.resp-tab-content:first').html($firstTab);
         var $lastTab = $('.program-touchpoints-tab-content:first tbody tr').html();
-        $('.participation-table tbody >').html($lastTab);
+        $('.participation-table tbody > *').html($lastTab);
     },
     setProgramTabContent = function () {
       setFirstProgramTabContent();
@@ -188,7 +188,7 @@ var getProgramParticipationStats = (function ($) {
         var $firstTab = $(this).find('.program-overview-tab-content').html();
         $('.resp-tab-content:first').html($firstTab);
         var $lastTab = $(this).find('.program-touchpoints-tab-content tr').html();
-        $('.participation-table tbody >').html($lastTab);
+        $('.participation-table tbody > *').html($lastTab);
       }, function () {
         return;
       });
