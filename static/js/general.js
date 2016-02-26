@@ -161,54 +161,5 @@
     });
   }
 
-  if ($('#jstree').length) {
-    $('#jstree').jstree({'plugins':["wholerow","checkbox"]});
-    // 7 bind to events triggered on the tree
-    $('#jstree').on("changed.jstree", function (e, data) {
-      console.log(data.selected);
-    });
-            
-    $('#root_node_1').on('click', function () {
-      $('#jstree').jstree(true).select_node('child_node_1');
-      $('#jstree').jstree('select_node', 'child_node_1');
-      $.jstree.reference('#jstree').select_node('child_node_1');
-    });
-    $('#root_node_2').on('click', function () {
-      $('#jstree').jstree(true).select_node('child_node_2');
-      $('#jstree').jstree('select_node', 'child_node_2');
-      $.jstree.reference('#jstree').select_node('child_node_2');
-    });
-
-  }
-
-  // Parse URL parameters from the query
-  function getParameterByName(name, url) {
-    if (!url) url = window.location.href;
-    name = name.replace(/[\[\]]/g, "\\$&");
-    var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
-        results = regex.exec(url);
-    if (!results) return null;
-    if (!results[2]) return '';
-    return decodeURIComponent(results[2].replace(/\+/g, " "));
-  }
-
-  var userExternalId = getParameterByName('userExternalId'); 
-  var productExternalId = getParameterByName('productExternalId'); 
-  var returnUrl = getParameterByName('returnUrl'); 
-
-  console.log('userExternalId: ' + userExternalId);
-  console.log('productExternalId: ' + productExternalId);
-  console.log('returnUrl: ' + returnUrl);
-
-  // AJAX request
-  var xhttp = new XMLHttpRequest();
-  xhttp.onreadystatechange = function() {
-    if (xhttp.readyState == 4 && xhttp.status == 200) {
-      console.log('response from ajax: ' + xhttp.responseText);
-    }
-  };
-  xhttp.open("GET", "data/getStoreSummary.jssp", true);
-  xhttp.send();
-
 });
 
