@@ -22,7 +22,11 @@
   "isLifecycleCampaign": 1,
   "monthlyCostPerRecipientDm": 0.32,
   "storesEligible": 3,
-  "storesParticipating": 3
+  "storesParticipating": 3,
+  "showInPrtcDash": 0,
+  "prtcDashEnrolled": 0,
+  "prtcDashOpportunity": 1,
+  "ocpd": 0
 }, {
   "id": 11,
   "programName": "Pre-Reminder",
@@ -47,29 +51,99 @@
   "isLifecycleCampaign": 1,
   "monthlyCostPerRecipientDm": 0.32,
   "storesEligible": 3,
-  "storesParticipating": 0
+  "storesParticipating": 3,
+  "showInPrtcDash": 0,
+  "prtcDashEnrolled": 0,
+  "prtcDashOpportunity": 1,
+  "ocpd": 0
 }, {
   "id": 1,
   "programName": "Reminder",
   "programDesc": "The Reminder program includes mail, email and text message communications if we have the customers contact information. It goes out at the time we believe they are due for an oil change, based on mileage.",
-  "programImg": "https://files.marcomcentral.app.pti.com/epsilon/static/images/programOverview700x315.jpg",
+  "programImg": "https://files.marcomcentral.app.pti.com/epsilon/previews/StateInspection_Reminder_lpv.jpg",
   "programUsesDfs": 1,
-  "programMeta": [],
+  "programMeta": {
+    "touchpoints": [{
+      "previewThumbnail": "https://files.marcomcentral.app.pti.com/epsilon/thumbnails/VIOC_Reaminder_EM_161x95.jpg",
+      "previewUrl": "https://files.marcomcentral.app.pti.com/epsilon/pdfs/VIOC_Reminder_EM.pdf",
+      "channel": "Email",
+      "name": "Reminder Email #1",
+      "timing": "Due for Service"
+    }, {
+      "previewThumbnail": "https://files.marcomcentral.app.pti.com/epsilon/thumbnails/VIOC_Reminder_DM_161x95.jpg",
+      "previewUrl": "https://files.marcomcentral.app.pti.com/epsilon/pdfs/VIOC_Reminder_DM.pdf",
+      "channel": "Direct Mail",
+      "name": "Reminder Direct Mail",
+      "timing": "Due for Service"
+    }, {
+      "previewThumbnail": "https://files.marcomcentral.app.pti.com/epsilon/thumbnails/VIOC-SMS-thumbnail-graphic-161x95.jpg",
+      "previewUrl": "",
+      "channel": "SMS",
+      "name": "Reminder SMS",
+      "timing": "Due for Service"
+    }, {
+      "previewThumbnail": "https://files.marcomcentral.app.pti.com/epsilon/thumbnails/VIOC_Reaminder_EM_161x95.jpg",
+      "previewUrl": "https://files.marcomcentral.app.pti.com/epsilon/pdfs/VIOC_Reminder_EM.pdf",
+      "channel": "Email",
+      "name": "Reminder Email #2",
+      "timing": "14 Days After Due for Service"
+    }, {
+      "previewThumbnail": "https://files.marcomcentral.app.pti.com/epsilon/thumbnails/VIOC_Reaminder_EM_161x95.jpg",
+      "previewUrl": "https://files.marcomcentral.app.pti.com/epsilon/pdfs/VIOC_Reminder_EM.pdf",
+      "channel": "Email",
+      "name": "Reminder Email #3",
+      "timing": "28 Days After Due for Service"
+    }]
+  },
   "isLifecycleCampaign": 1,
   "monthlyCostPerRecipientDm": 0.32,
   "storesEligible": 3,
-  "storesParticipating": 3
+  "storesParticipating": 3,
+  "showInPrtcDash": 0,
+  "prtcDashEnrolled": 0,
+  "prtcDashOpportunity": 1,
+  "ocpd": 0
 }, {
   "id": 2,
   "programName": "Lapsed",
   "programDesc": "The Lapsed program includes mail, email and text message communications if we have the customers contact information. It goes out approximately 4.5 months after they were in for their previous oil change.",
   "programImg": "https://files.marcomcentral.app.pti.com/epsilon/static/images/programOverview700x315.jpg",
   "programUsesDfs": 1,
-  "programMeta": [],
+  "programMeta": {
+    "touchpoints": [{
+      "previewThumbnail": "https://files.marcomcentral.app.pti.com/epsilon/thumbnails/VIOC_Lapsed_EM_161x95.jpg",
+      "previewUrl": "https://files.marcomcentral.app.pti.com/epsilon/pdfs/VIOC_Lapsed_EM.pdf",
+      "channel": "Email",
+      "name": "Lapsed Email #1",
+      "timing": "45 Days After Due for Service"
+    }, {
+      "previewThumbnail": "https://files.marcomcentral.app.pti.com/epsilon/thumbnails/VIOC_Lapsed_DM_161x95.jpg",
+      "previewUrl": "https://files.marcomcentral.app.pti.com/epsilon/pdfs/VIOC_Lapsed_DM.pdf",
+      "channel": "Direct Mail",
+      "name": "Lapsed Direct Mail",
+      "timing": "45 Days After Due for Service"
+    }, {
+      "previewThumbnail": "https://files.marcomcentral.app.pti.com/epsilon/thumbnails/VIOC-SMS-thumbnail-graphic-161x95.jpg",
+      "previewUrl": "",
+      "channel": "SMS",
+      "name": "Lapsed SMS",
+      "timing": "45 Days After Due for Service"
+    }, {
+      "previewThumbnail": "https://files.marcomcentral.app.pti.com/epsilon/thumbnails/VIOC_Lapsed_EM_161x95.jpg",
+      "previewUrl": "https://files.marcomcentral.app.pti.com/epsilon/pdfs/VIOC_Lapsed_EM.pdf",
+      "channel": "Email",
+      "name": "Lapsed Email #2",
+      "timing": "66 Days After Due for Service"
+    }]
+  },
   "isLifecycleCampaign": 1,
   "monthlyCostPerRecipientDm": 0.32,
   "storesEligible": 3,
-  "storesParticipating": 3
+  "storesParticipating": 3,
+  "showInPrtcDash": 0,
+  "prtcDashEnrolled": 0,
+  "prtcDashOpportunity": 1,
+  "ocpd": 0
 }, {
   "id": 3,
   "programName": "Relapsed",
@@ -94,7 +168,11 @@
   "isLifecycleCampaign": 1,
   "monthlyCostPerRecipientDm": 0.32,
   "storesEligible": 3,
-  "storesParticipating": 3
+  "storesParticipating": 3,
+  "showInPrtcDash": 0,
+  "prtcDashEnrolled": 0,
+  "prtcDashOpportunity": 1,
+  "ocpd": 0
 }, {
   "id": 4,
   "programName": "Lost",
@@ -119,7 +197,11 @@
   "isLifecycleCampaign": 1,
   "monthlyCostPerRecipientDm": 0.32,
   "storesEligible": 3,
-  "storesParticipating": 3
+  "storesParticipating": 3,
+  "showInPrtcDash": 0,
+  "prtcDashEnrolled": 0,
+  "prtcDashOpportunity": 1,
+  "ocpd": 0
 }, {
   "id": 5,
   "programName": "Reactivation",
@@ -144,7 +226,11 @@
   "isLifecycleCampaign": 1,
   "monthlyCostPerRecipientDm": 0.32,
   "storesEligible": 3,
-  "storesParticipating": 0
+  "storesParticipating": 3,
+  "showInPrtcDash": 0,
+  "prtcDashEnrolled": 0,
+  "prtcDashOpportunity": 1,
+  "ocpd": 0
 }, {
   "id": 9,
   "programName": "Lifecycle Test",
@@ -163,7 +249,11 @@
   "isLifecycleCampaign": 1,
   "monthlyCostPerRecipientDm": 0.32,
   "storesEligible": 3,
-  "storesParticipating": 3
+  "storesParticipating": 3,
+  "showInPrtcDash": 0,
+  "prtcDashEnrolled": 0,
+  "prtcDashOpportunity": 1,
+  "ocpd": 0
 }, {
   "id": 6,
   "programName": "Fleet",
@@ -174,7 +264,11 @@
   "isLifecycleCampaign": 0,
   "monthlyCostPerRecipientDm": 0.32,
   "storesEligible": 3,
-  "storesParticipating": 0
+  "storesParticipating": 0,
+  "showInPrtcDash": 0,
+  "prtcDashEnrolled": 0,
+  "prtcDashOpportunity": 1,
+  "ocpd": 0
 }, {
   "id": 7,
   "programName": "Facebook",
@@ -185,7 +279,11 @@
   "isLifecycleCampaign": 0,
   "monthlyCostPerRecipientDm": 0.32,
   "storesEligible": 3,
-  "storesParticipating": 0
+  "storesParticipating": 0,
+  "showInPrtcDash": 1,
+  "prtcDashEnrolled": 0,
+  "prtcDashOpportunity": 1,
+  "ocpd": 1.23
 }, {
   "id": 8,
   "programName": "Inspection",
@@ -210,7 +308,11 @@
   "isLifecycleCampaign": 0,
   "monthlyCostPerRecipientDm": 0.32,
   "storesEligible": 3,
-  "storesParticipating": 0
+  "storesParticipating": 0,
+  "showInPrtcDash": 0,
+  "prtcDashEnrolled": 0,
+  "prtcDashOpportunity": 1,
+  "ocpd": 0
 }, {
   "id": 12,
   "programName": "Asphalt Adventures",
@@ -221,5 +323,24 @@
   "isLifecycleCampaign": 0,
   "monthlyCostPerRecipientDm": 0.32,
   "storesEligible": 3,
-  "storesParticipating": 0
+  "storesParticipating": 0,
+  "showInPrtcDash": 1,
+  "prtcDashEnrolled": 0,
+  "prtcDashOpportunity": 1,
+  "ocpd": 1.23
+}, {
+  "id": 307202,
+  "programName": "SEM",
+  "programDesc": "",
+  "programImg": "https://files.marcomcentral.app.pti.com/epsilon/static/images/programOverview700x315.jpg",
+  "programUsesDfs": 0,
+  "programMeta": {},
+  "isLifecycleCampaign": 0,
+  "monthlyCostPerRecipientDm": 0.32,
+  "storesEligible": 3,
+  "storesParticipating": 0,
+  "showInPrtcDash": 1,
+  "prtcDashEnrolled": 0,
+  "prtcDashOpportunity": 1,
+  "ocpd": 4.5599999
 }]
