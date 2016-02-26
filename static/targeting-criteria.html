@@ -138,47 +138,7 @@
 					<section id="customerGeography">
 					<h1>Customer Georgraphy</h1>
 					<p>Target customers based on their home store location.</p>
-					<div id="jstree" class="jstree-default jstree-checkbox-selection">
-					    <!-- in this example the tree is populated from inline HTML -->
-					    <ul>
-							<li id="root_node_1">Oil Pros, LLC
-								<ul>
-									<li>Oklahoma</li>
-									<li>Kansas</li>
-									<li>Texas
-										<ul>
-											<li>Austin</li>
-											<li>West Texas</li>
-											<li>North Texas
-												<ul>
-													<li id="child_node_1">Store #101</li>
-													<li>Store #102</li>
-												</ul>
-											</li>
-										</ul>
-									</li>
-								</ul>
-							</li>
-							<li id="root_node_2">Oil Brothers, LLC
-								<ul>
-									<li>Oklahoma</li>
-									<li>Kansas</li>
-									<li>Texas
-										<ul>
-											<li>Austin</li>
-											<li>West Texas</li>
-											<li>North Texas
-												<ul>
-													<li id="child_node_2">Store #101</li>
-													<li>Store #102</li>
-												</ul>
-											</li>
-										</ul>
-									</li>
-								</ul>
-							</li>
-					    </ul>
-					</div>
+					<div id="jstree" class="jstree-default jstree-checkbox-selection"></div>
 				</section>
 				</div>
 				<div class="right-container">
@@ -193,7 +153,7 @@
 					<div class="last-service-oil-type">
 						<h1>Last Service Oil Type</h1>
 						<p>Target customers based on what type of oil they used during their last service.</p>
-						<select class="selectbox">
+						<select class="selectbox" onchange="updateRecipientCount()">
 							<option value="Conventional" selected>Conventional</option>
 							<option value="Blend">Blend</option>
 							<option value="Synthetic">Synthetic</option>
@@ -208,7 +168,7 @@
 					<div class="include-fleet">
 						<h1>Include Fleet?</h1>
 						<p>Determines whether fleet customers should be included in the results.</p>
-						<select class="selectbox">
+						<select class="selectbox" onchange="updateRecipientCount()">
 							<option value="No" selected>No</option>
 							<option value="Yes">Yes</option>
 						</select>
@@ -247,6 +207,8 @@
 	<script src="js/app/getProgramParticipationStats.js"></script>
 	<script src="js/app/getStoreProgramData.js"></script>
 	<script src="js/app/setStoreSubscription.js"></script>
+	<script src="js/app/getStoreSummary.js"></script>
+	<script src="js/app/getRecipientEstimate.js"></script>
 
 	<!-- ** Scripts not needed for Marcom templates ** -->
 	<script type="text/javascript" src="js/css_browser_selector.js"></script>
