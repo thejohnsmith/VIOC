@@ -99,25 +99,6 @@ var getProgramParticipationStats = (function ($) {
         });
       }
     },
-    loadProgramTabs = function (result) {
-      // $.get('https://files.marcomcentral.app.pti.com/epsilon/static/program-tabs.mustache.html', function (templates) {
-      //   var template = $(templates).filter('.program-tabs-template').html();
-      //   $('.resp-tabs-container').html(Mustache.render(template, result));
-        $('#parentHorizontalTab').easyResponsiveTabs({
-          type: 'default', // Types: default, vertical, accordion
-          width: 'auto', // auto or any width like 600px
-          fit: true, // 100% fit in a container
-          tabidentify: 'hor_1', // The tab groups identifier
-          activate: function (event) { // Callback function if tab is switched
-            var $tab = $(this);
-            var $info = $('#nested-tabInfo');
-            var $name = $('span', $info);
-            $name.text($tab.text());
-            $info.show();
-          }
-        // });
-      });
-    },
     /**
      * Updates the .program-select properties.
      * @param {object} result Json object from API request.
@@ -169,32 +150,24 @@ var getProgramParticipationStats = (function ($) {
      */
     updateDashboardEnrollment = function (val) {
       $('.program-name-lifecycle > [data-enrolled]').attr('data-enrolled', val);
-      // return getFirstProgramDesc();
-      // setProgramTabContent();
     },
-    /**
-     * Updates the text in .programDesc
-     * @return
-     */
     setFirstProgramTabContent = function () {
-        var $firstTab = $('.program-overview-tab-content:first').html();
-        $('.resp-tab-content:first').html($firstTab);
-        var $lastTab = $('.program-touchpoints-tab-content:first tbody tr').html();
-        $('.participation-table tbody > *').html($lastTab);
+      var $initialFirstTab = $('#programSummary .program-list:first .program-overview-tab-content').html();
+      var $initialLastTab = $('#programSummary .program-list:first .program-touchpoints-tab-content').html();
+      $('#programDetails .resp-tab-content:first').html($initialFirstTab);
+      $('#programDetails .participation-table thead').next().html($initialLastTab);
+      $('#programDetails .js-loading').fadeOut();
     },
     setProgramTabContent = function () {
       setFirstProgramTabContent();
       return $('.program-list').hover(function () {
         var $firstTab = $(this).find('.program-overview-tab-content').html();
-        $('.resp-tab-content:first').html($firstTab);
-        var $lastTab = $(this).find('.program-touchpoints-tab-content tr').html();
-        $('.participation-table tbody > *').html($lastTab);
+        $('#programDetails .resp-tab-content:first').html($firstTab);
+        var $lastTab = $(this).find('.program-touchpoints-tab-content').html();
+        $('#programDetails .participation-table thead').next().html($lastTab);
       }, function () {
         return;
       });
-    },
-    setProgramDesc = function (activeProgramDesc) {
-      return $('.programDesc').html('<p>' + activeProgramDesc + '</p>');
     },
     requestFailed = function () {
       $('.program-select').html('There was a problem fetching your programs.' + 'Please check back again later.');

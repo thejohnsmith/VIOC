@@ -411,6 +411,21 @@ header .header-right a:hover {
 .icons-link ul li a:hover {
   color: #DF2925;
 }
+.display-table {
+  display: table;
+}
+.display-table.none {
+  display: none;
+}
+.display-table-row {
+  display: table-row;
+}
+.display-table-cell {
+  display: table-cell;
+}
+.display-table-row-group {
+  display: table-row-group;
+}
 .participation-table {
   float: left;
   width: 100%;
@@ -419,7 +434,7 @@ header .header-right a:hover {
 #participationDashboard .participation-table {
   padding-bottom: 17px;
 }
-.participation-table table {
+#programDetails .display-table, .participation-table table {
   width: 100%;
   text-align: center;
   background: #F6F6F6;
@@ -428,10 +443,10 @@ header .header-right a:hover {
 #participationDashboard .participation-table tbody {
   border-top: 12px solid #F6F6F6;
 }
-.participation-table tr {
+.participation-table tr, .participation-table .tr {
   background: #F6F6F6;
 }
-.participation-table th {
+.participation-table th, .participation-table .th {
   background: #EEECED;
   text-align: center;
   color: #E02926;
@@ -440,12 +455,10 @@ header .header-right a:hover {
   width: 25%;
   padding: 11px;
 }
-.participation-table td {
+.participation-table td, .participation-table .td {
   text-align: center;
   width: 25%;
   padding: 7px 11px;
-}
-.participation-table td {
   border-right: 1px solid #fff;
 }
 #participationDashboard .participation-table [data-enrolled='false'] > * {
@@ -733,7 +746,7 @@ header .header-right a:hover {
   padding: 20px 0;
   margin-bottom: 25px;
 }
-#programDetails td {
+#programDetails td, #programDetails .td {
   border-right: 0;
   border-bottom: 1px solid #fff;
   border-top: 0;
