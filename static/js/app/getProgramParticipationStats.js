@@ -94,14 +94,28 @@ var getProgramParticipationStats = (function ($) {
           var template = $(templates).filter('.program-list-template').html();
           $('.program-select').html(Mustache.render(template, result));
           customCheckAndRadioBoxes.customCheckbox();
-          return upDateProgramsDashboard(result)
+          // loadProgramTabs(result);
+          return upDateProgramsDashboard(result), setProgramTabContent();
         });
       }
     },
     loadProgramTabs = function (result) {
-      $.get('https://files.marcomcentral.app.pti.com/epsilon/static/program-tabs.mustache.html', function (templates) {
-        var template = $(templates).filter('.program-tabs-template').html();
-        $('#programDetails').html(Mustache.render(template, result));
+      // $.get('https://files.marcomcentral.app.pti.com/epsilon/static/program-tabs.mustache.html', function (templates) {
+      //   var template = $(templates).filter('.program-tabs-template').html();
+      //   $('.resp-tabs-container').html(Mustache.render(template, result));
+        $('#parentHorizontalTab').easyResponsiveTabs({
+          type: 'default', // Types: default, vertical, accordion
+          width: 'auto', // auto or any width like 600px
+          fit: true, // 100% fit in a container
+          tabidentify: 'hor_1', // The tab groups identifier
+          activate: function (event) { // Callback function if tab is switched
+            var $tab = $(this);
+            var $info = $('#nested-tabInfo');
+            var $name = $('span', $info);
+            $name.text($tab.text());
+            $info.show();
+          }
+        // });
       });
     },
     /**
@@ -155,22 +169,26 @@ var getProgramParticipationStats = (function ($) {
      */
     updateDashboardEnrollment = function (val) {
       $('.program-name-lifecycle > [data-enrolled]').attr('data-enrolled', val);
-      return getFirstProgramDesc();
+      // return getFirstProgramDesc();
+      // setProgramTabContent();
     },
     /**
      * Updates the text in .programDesc
      * @return
      */
-    getFirstProgramDesc = function () {
-      if($('.program-list li')) {
-        var $firstProgramDesc = $('.program-list li').first().attr('data-programDesc');
-        return setProgramDesc($firstProgramDesc), getNewProgramDesc();
-      }
+    setFirstProgramTabContent = function () {
+        var $firstTab = $('.program-overview-tab-content:first').html();
+        $('.resp-tab-content:first').html($firstTab);
+        var $lastTab = $('.program-touchpoints-tab-content:first tbody tr').html();
+        $('.participation-table tbody >').html($lastTab);
     },
-    getNewProgramDesc = function () {
-      $('.program-list li').hover(function () {
-        var $newProgramDesc = $(this).attr('data-programDesc');
-        return setProgramDesc($newProgramDesc);
+    setProgramTabContent = function () {
+      setFirstProgramTabContent();
+      return $('.program-list').hover(function () {
+        var $firstTab = $(this).find('.program-overview-tab-content').html();
+        $('.resp-tab-content:first').html($firstTab);
+        var $lastTab = $(this).find('.program-touchpoints-tab-content tr').html();
+        $('.participation-table tbody >').html($lastTab);
       }, function () {
         return;
       });

@@ -1,163 +1,155 @@
 [{
-  "id": 6,
-  "programName": "Fleet",
-  "programDesc": "",
-  "programUsesDfs": 0,
-  "programMeta": {},
-  "isLifecycleCampaign": 0,
-  "monthlyCostPerRecipientDm": 0.32,
-  "storesEligible": 1,
-  "storesParticipating": 0
-}, {
-  "id": 7,
-  "programName": "Facebook",
-  "programDesc": "",
-  "programUsesDfs": 0,
-  "programMeta": {},
-  "isLifecycleCampaign": 0,
-  "monthlyCostPerRecipientDm": 0.32,
-  "storesEligible": 1,
-  "storesParticipating": 0
-}, {
-  "id": 8,
-  "programName": "Inspection",
-  "programDesc": "",
-  "programUsesDfs": 0,
-  "programMeta": {},
-  "isLifecycleCampaign": 0,
-  "monthlyCostPerRecipientDm": 0.32,
-  "storesEligible": 1,
-  "storesParticipating": 0
-}, {
-  "id": 9,
-  "programName": "Lifecycle Test",
-  "programDesc": "The Lifecycle Test program is used for internal purposes only, to test the functionality of WARP Drive.",
-  "programUsesDfs": 0,
-  "programMeta": {
-    "touchpoints": [{
-      "previewThumbnail": "http://project-progress.net/projects/valvoline/images/review-bg.jpg",
-      "previewUrl": "http://www.vioc.com",
-      "channel": "Email",
-      "Name": "reminder",
-      "timing": "2 - 3 Days"
-    }]
-  },
-  "isLifecycleCampaign": 1,
-  "monthlyCostPerRecipientDm": 0.32,
-  "storesEligible": 1,
-  "storesParticipating": null
-}, {
   "id": 10,
   "programName": "Post-Visit",
-  "programDesc": "The Post-Visit program is a Thank You email sent out one to two business days after a customer?s visit. The email also includes a link to take a brief customer satisfaction survey. One week after a customer?s visit, a second campaign will be sent that includes a special offer and invites the customer to bring in their second car.",
+  "programDesc": "The Post-Visit program is a Thank You email sent out one to two business days after a customer's visit. The email also includes a link to take a brief customer satisfaction survey. One week after a customer's visit, a second campaign will be sent that includes a special offer and invites the customer to bring in their second car.",
+  "programImg": "https://files.marcomcentral.app.pti.com/epsilon/static/images/programOverview700x315.jpg",
   "programUsesDfs": 0,
   "programMeta": {
     "touchpoints": [{
-      "previewThumbnail": "http://project-progress.net/projects/valvoline/images/review-bg.jpg",
-      "previewUrl": "http://www.vioc.com",
+      "previewThumbnail": "https://files.marcomcentral.app.pti.com/epsilon/thumbnails/VIOC_PostVisit_EM_161x95.jpg",
+      "previewUrl": "https://files.marcomcentral.app.pti.com/epsilon/pdfs/VIOC_PostVisit_EM.pdf",
       "channel": "Email",
-      "Name": "reminder",
-      "timing": "2 - 3 Days"
+      "name": "Post-Visit Email #1",
+      "timing": "2 Days After Service Date"
+    }, {
+      "previewThumbnail": "",
+      "previewUrl": "https://files.marcomcentral.app.pti.com/epsilon/pdfs/VIOC_PostVisit_EM.pdf",
+      "channel": "Email",
+      "name": "Post-Visit Email #2",
+      "timing": "7 Days After Service Date"
     }]
   },
   "isLifecycleCampaign": 1,
   "monthlyCostPerRecipientDm": 0.32,
-  "storesEligible": 1,
-  "storesParticipating": 0
+  "storesEligible": 3,
+  "storesParticipating": 3
 }, {
   "id": 11,
   "programName": "Pre-Reminder",
   "programDesc": "The Pre-Reminder program is an email sent to the customer two weeks before we believe they are due for an oil change, based on mileage.",
+  "programImg": "https://files.marcomcentral.app.pti.com/epsilon/static/images/programOverview700x315.jpg",
   "programUsesDfs": 1,
   "programMeta": {
     "touchpoints": [{
-      "previewThumbnail": "http://project-progress.net/projects/valvoline/images/review-bg.jpg",
-      "previewUrl": "http://www.vioc.com",
+      "previewThumbnail": "https://files.marcomcentral.app.pti.com/epsilon/thumbnails/VIOC_PreReminder_EM_161x95.jpg",
+      "previewUrl": "https://files.marcomcentral.app.pti.com/epsilon/pdfs/VIOC_PreReminder_EM.pdf",
       "channel": "Email",
-      "Name": "reminder",
-      "timing": "2 - 3 Days"
+      "name": "Pre-Reminder Email",
+      "timing": "14 Days Before Due for Service"
+    }, {
+      "previewThumbnail": "https://files.marcomcentral.app.pti.com/epsilon/thumbnails/VIOC-SMS-thumbnail-graphic-161x95.jpg",
+      "previewUrl": "",
+      "channel": "SMS",
+      "name": "Pre-Reminder SMS",
+      "timing": "14 Days Before Due for Service"
     }]
   },
   "isLifecycleCampaign": 1,
   "monthlyCostPerRecipientDm": 0.32,
-  "storesEligible": 1,
+  "storesEligible": 3,
   "storesParticipating": 0
 }, {
   "id": 1,
   "programName": "Reminder",
   "programDesc": "The Reminder program includes mail, email and text message communications if we have the customers contact information. It goes out at the time we believe they are due for an oil change, based on mileage.",
+  "programImg": "https://files.marcomcentral.app.pti.com/epsilon/static/images/programOverview700x315.jpg",
   "programUsesDfs": 1,
-  "programMeta": {
-    "touchpoints": [{
-      "previewThumbnail": "http://project-progress.net/projects/valvoline/images/review-bg.jpg",
-      "previewUrl": "http://www.vioc.com",
-      "channel": "Email",
-      "Name": "reminder",
-      "timing": "2 - 3 Days"
-    }]
-  },
+  "programMeta": [],
   "isLifecycleCampaign": 1,
   "monthlyCostPerRecipientDm": 0.32,
-  "storesEligible": 1,
-  "storesParticipating": 0
+  "storesEligible": 3,
+  "storesParticipating": 3
 }, {
   "id": 2,
   "programName": "Lapsed",
   "programDesc": "The Lapsed program includes mail, email and text message communications if we have the customers contact information. It goes out approximately 4.5 months after they were in for their previous oil change.",
+  "programImg": "https://files.marcomcentral.app.pti.com/epsilon/static/images/programOverview700x315.jpg",
   "programUsesDfs": 1,
-  "programMeta": {
-    "touchpoints": [{
-      "previewThumbnail": "http://project-progress.net/projects/valvoline/images/review-bg.jpg",
-      "previewUrl": "http://www.vioc.com",
-      "channel": "Email",
-      "Name": "reminder",
-      "timing": "2 - 3 Days"
-    }]
-  },
+  "programMeta": [],
   "isLifecycleCampaign": 1,
   "monthlyCostPerRecipientDm": 0.32,
-  "storesEligible": 1,
-  "storesParticipating": 0
-}, {
-  "id": 4,
-  "programName": "Lost",
-  "programDesc": "The Lost program includes mail and email communications if we have the customers contact information. It goes out approximately 8 months after they were in for their previous oil change.",
-  "programUsesDfs": 0,
-  "programMeta": {
-    "touchpoints": [{
-      "previewThumbnail": "http://project-progress.net/projects/valvoline/images/review-bg.jpg",
-      "previewUrl": "http://www.vioc.com",
-      "channel": "Email",
-      "Name": "reminder",
-      "timing": "2 - 3 Days"
-    }]
-  },
-  "isLifecycleCampaign": 1,
-  "monthlyCostPerRecipientDm": 0.32,
-  "storesEligible": 1,
-  "storesParticipating": 0
-}, {
-  "id": 5,
-  "programName": "Reactivation",
-  "programDesc": "The Reactivation program includes mail and email communications if we have the customers contact information. Customers receive Reactivation communications if they haven?t been in for service for 10-24 months.",
-  "programUsesDfs": 0,
-  "programMeta": {
-    "touchpoints": [{
-      "previewThumbnail": "http://project-progress.net/projects/valvoline/images/review-bg.jpg",
-      "previewUrl": "http://www.vioc.com",
-      "channel": "Email",
-      "Name": "reminder",
-      "timing": "2 - 3 Days"
-    }]
-  },
-  "isLifecycleCampaign": 1,
-  "monthlyCostPerRecipientDm": 0.32,
-  "storesEligible": 1,
-  "storesParticipating": 0
+  "storesEligible": 3,
+  "storesParticipating": 3
 }, {
   "id": 3,
   "programName": "Relapsed",
   "programDesc": "The Relapsed program includes mail and email communications if we have the customers contact information. It goes out approximately 6 months after they were in for their previous oil change.",
+  "programImg": "https://files.marcomcentral.app.pti.com/epsilon/static/images/programOverview700x315.jpg",
+  "programUsesDfs": 0,
+  "programMeta": {
+    "touchpoints": [{
+      "previewThumbnail": "https://files.marcomcentral.app.pti.com/epsilon/thumbnails/VIOC_Relapsed_EM_161x95.jpg",
+      "previewUrl": "https://files.marcomcentral.app.pti.com/epsilon/pdfs/VIOC_Relapsed_EM.pdf",
+      "channel": "Email",
+      "name": "Relapsed Email",
+      "timing": "90 Days After Due for Service"
+    }, {
+      "previewThumbnail": "https://files.marcomcentral.app.pti.com/epsilon/thumbnails/VIOC_Relapsed_DM_161x95.jpg",
+      "previewUrl": "https://files.marcomcentral.app.pti.com/epsilon/pdfs/VIOC_Relapsed_DM.pdf",
+      "channel": "Direct Mail",
+      "name": "Relapsed Direct Mail",
+      "timing": "90 Days After Due for Service"
+    }]
+  },
+  "isLifecycleCampaign": 1,
+  "monthlyCostPerRecipientDm": 0.32,
+  "storesEligible": 3,
+  "storesParticipating": 3
+}, {
+  "id": 4,
+  "programName": "Lost",
+  "programDesc": "The Lost program includes mail and email communications if we have the customers contact information. It goes out approximately 8 months after they were in for their previous oil change.",
+  "programImg": "https://files.marcomcentral.app.pti.com/epsilon/static/images/programOverview700x315.jpg",
+  "programUsesDfs": 0,
+  "programMeta": {
+    "touchpoints": [{
+      "previewThumbnail": "https://files.marcomcentral.app.pti.com/epsilon/thumbnails/VIOC_Lost_EM_161x95.jpg",
+      "previewUrl": "https://files.marcomcentral.app.pti.com/epsilon/pdfs/VIOC_Lost_EM.pdf",
+      "channel": "Email",
+      "name": "Lost Email",
+      "timing": "240 Days After Service Date"
+    }, {
+      "previewThumbnail": "https://files.marcomcentral.app.pti.com/epsilon/thumbnails/VIOC_Lost_DM_161x95.jpg",
+      "previewUrl": "https://files.marcomcentral.app.pti.com/epsilon/pdfs/VIOC_Lost_DM.pdf",
+      "channel": "Direct Mail",
+      "name": "Lost Direct Mail",
+      "timing": "240 Days After Service Date"
+    }]
+  },
+  "isLifecycleCampaign": 1,
+  "monthlyCostPerRecipientDm": 0.32,
+  "storesEligible": 3,
+  "storesParticipating": 3
+}, {
+  "id": 5,
+  "programName": "Reactivation",
+  "programDesc": "The Reactivation program includes mail and email communications if we have the customers contact information. Customers receive Reactivation communications if they haven't been in for service for 10-24 months.",
+  "programImg": "https://files.marcomcentral.app.pti.com/epsilon/static/images/programOverview700x315.jpg",
+  "programUsesDfs": 0,
+  "programMeta": {
+    "touchpoints": [{
+      "previewThumbnail": "https://files.marcomcentral.app.pti.com/epsilon/thumbnails/VIOC_Reactivation_EM_161x95.jpg",
+      "previewUrl": "https://files.marcomcentral.app.pti.com/epsilon/pdfs/VIOC_Reactivation_EM.pdf",
+      "channel": "Email",
+      "name": "Reactivation Email",
+      "timing": "Every Other Month - 300 Days to 24 Months"
+    }, {
+      "previewThumbnail": "https://files.marcomcentral.app.pti.com/epsilon/thumbnails/VIOC_Reactivation_DM_161x95.jpg",
+      "previewUrl": "https://files.marcomcentral.app.pti.com/epsilon/pdfs/VIOC_Reactivation_DM.pdf",
+      "channel": "Direct Mail",
+      "name": "Reactivation Direct Mail",
+      "timing": "Every Other Month - 300 Days to 24 Months"
+    }]
+  },
+  "isLifecycleCampaign": 1,
+  "monthlyCostPerRecipientDm": 0.32,
+  "storesEligible": 3,
+  "storesParticipating": 0
+}, {
+  "id": 9,
+  "programName": "Lifecycle Test",
+  "programDesc": "The Lifecycle Test program is used for internal purposes only, to test the functionality of WARP Drive.",
+  "programImg": "https://files.marcomcentral.app.pti.com/epsilon/static/images/programOverview700x315.jpg",
   "programUsesDfs": 0,
   "programMeta": {
     "touchpoints": [{
@@ -170,16 +162,64 @@
   },
   "isLifecycleCampaign": 1,
   "monthlyCostPerRecipientDm": 0.32,
-  "storesEligible": 1,
+  "storesEligible": 3,
+  "storesParticipating": 3
+}, {
+  "id": 6,
+  "programName": "Fleet",
+  "programDesc": "",
+  "programImg": "https://files.marcomcentral.app.pti.com/epsilon/static/images/programOverview700x315.jpg",
+  "programUsesDfs": 0,
+  "programMeta": [],
+  "isLifecycleCampaign": 0,
+  "monthlyCostPerRecipientDm": 0.32,
+  "storesEligible": 3,
+  "storesParticipating": 0
+}, {
+  "id": 7,
+  "programName": "Facebook",
+  "programDesc": "",
+  "programImg": "https://files.marcomcentral.app.pti.com/epsilon/static/images/programOverview700x315.jpg",
+  "programUsesDfs": 0,
+  "programMeta": {},
+  "isLifecycleCampaign": 0,
+  "monthlyCostPerRecipientDm": 0.32,
+  "storesEligible": 3,
+  "storesParticipating": 0
+}, {
+  "id": 8,
+  "programName": "Inspection",
+  "programDesc": "",
+  "programImg": "https://files.marcomcentral.app.pti.com/epsilon/static/images/programOverview700x315.jpg",
+  "programUsesDfs": 0,
+  "programMeta": {
+    "touchpoints": [{
+      "previewThumbnail": "",
+      "previewUrl": "",
+      "channel": "Direct Mail",
+      "name": "Thank You",
+      "timing": "7 Days After Service Date w/ Inspection (New Customers Only)"
+    }, {
+      "previewThumbnail": "",
+      "previewUrl": "",
+      "channel": "Direct Mail",
+      "name": "Reminder",
+      "timing": "28 Days Before State Inspection Due"
+    }]
+  },
+  "isLifecycleCampaign": 0,
+  "monthlyCostPerRecipientDm": 0.32,
+  "storesEligible": 3,
   "storesParticipating": 0
 }, {
   "id": 12,
   "programName": "Asphalt Adventures",
   "programDesc": "",
+  "programImg": "https://files.marcomcentral.app.pti.com/epsilon/static/images/programOverview700x315.jpg",
   "programUsesDfs": 0,
   "programMeta": {},
   "isLifecycleCampaign": 0,
   "monthlyCostPerRecipientDm": 0.32,
-  "storesEligible": 1,
+  "storesEligible": 3,
   "storesParticipating": 0
 }]
