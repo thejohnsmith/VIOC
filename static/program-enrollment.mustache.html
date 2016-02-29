@@ -38,20 +38,12 @@
             <tr>
               <td>
                 <table>
-                  <tr>
+                  <tr data="{{storeName}}">
                     <td class="store-enroll">
-                      <!-- ** NOTE **
-                    JS for these toggles are inside program-settings.mustache.js
-                -->
                       <div class="toggle-btn" data-enrolled="{{enrolled}}">
-                        <input type="checkbox" class="cb-value" />
+                        <input type="checkbox" class="cb-value" data-storeId="{{storeId}}">
                         <span class="round-btn"></span>
                       </div>
-                      <!-- <div class="checkbox-area" data-enrolled="{{enrolled}}">
-                    <div class="customCheckbox">
-                      <input data-checkbox-label="" type="checkbox">
-                    </div>
-                  </div> -->
                     </td>
                     <td class="store">{{storeName}}
                       <br>

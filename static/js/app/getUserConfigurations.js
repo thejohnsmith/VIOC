@@ -30,6 +30,9 @@ var getUserConfigurations = (function($) {
       }
       var $programId = getHashParams.hashParams.programId ||
         getProgramParticipationStats.programId;
+        if (!$programId) {
+          return;
+        }
       var localDevUrl =
         'data/getUserConfigurations.jssp';
       var marcomDevUrl =
@@ -37,7 +40,7 @@ var getUserConfigurations = (function($) {
       var acUrl =
         'https://adobe-uat-vioc.epsilon.com/jssp/vioc/getUserConfigurations.jssp';
       $.ajax({
-        url: marcomDevUrl,
+        url: acUrl,
         type: 'GET',
         contentType: 'application/json',
         processData: true,
