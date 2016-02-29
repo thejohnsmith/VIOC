@@ -8,7 +8,7 @@
               <th class="store-enroll">
                 <div class="">
                   <p>Store Enrollment</p>
-                  <a href="#" class="enroll-all-stores btn btn-primary btn-sm">Enroll All</a>
+                  <button class="enroll-all-stores btn btn-primary btn-sm">Enroll All</button>
                 </div>
               </th>
               <th class="store">Store</th>
@@ -131,28 +131,6 @@
     </tbody>
   </table>
   <script>
-    var $j = jQuery;
-    $j(document).ready(function() {
-      $j('.enroll-all-stores').on('click', function(e) {
-        $j('.toggle-btn').each(function() {
-          $j(this).addClass('active');
-          toggleBtns();
-        });
-      });
 
-      function toggleBtns() {
-        $j('.cb-value').on('click', function(e) {
-          var mainParent = $j(this).parent('.toggle-btn');
-          if ($j(mainParent).find('input.cb-value').is(':checked')) {
-            $j(mainParent).addClass('active');
-          } else {
-            $j(mainParent).removeClass('active');
-          }
-        });
-      }
-      if ($j('.toggle-btn').length) {
-        return toggleBtns();
-      }
-    });
   </script>
 </script>

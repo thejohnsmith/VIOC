@@ -97,6 +97,27 @@ var customCheckAndRadioBoxes = (function($) {
         return setStoreSubscription.makeRequest($selectedPrograms);
       });
     });
+
+    $('.enroll-all-stores').on('click', function(e) {
+      $('.toggle-btn').each(function() {
+        $(this).addClass('active');
+        toggleBtns();
+      });
+    });
+
+    function toggleBtns() {
+      $('.cb-value').on('click', function(e) {
+        var mainParent = $(this).parent('.toggle-btn');
+        if ($(mainParent).find('input.cb-value').is(':checked')) {
+          $(mainParent).addClass('active');
+        } else {
+          $(mainParent).removeClass('active');
+        }
+      });
+    }
+    if ($('.toggle-btn').length) {
+      return toggleBtns();
+    }
     return;
   };
 
