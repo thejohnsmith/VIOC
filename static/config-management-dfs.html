@@ -49,8 +49,10 @@
 						</div>
 					</div>
 					<div class="header-right">
-						<a href="#" title="Contact Us">Contact Us</a>
-					</div>
+	          <a class="btnHelp" href="CustomPage.aspx?uigroup_id=479602&amp;page_id=10798" title="Help">Help</a>
+	          <a class="btnContactUs" href="CustomPage.aspx?uigroup_id=479602&amp;page_id=10798" title="Contact Us">Contact Us</a>
+	          <a class="btnLogOut" id="ctl00_ctl08_btnLogOut" href="javascript:__doPostBack('ctl00$ctl08$btnLogOut','')">Log Out</a>
+	        </div>
 				</div>
 			</div>
 			<div class="header-nav">
@@ -124,167 +126,28 @@
 							<a href="program-overview.html" title="Lifecycle Programs">Lifecycle Programs</a>
 						</li>
 						 <li>
-							<a href="program-reminder.html" title="Reminder Program">Reminder Program</a>
+							<a href="#" title="Additional Offers">Additional Offers</a>
 						</li>
 						<li>
-							Edit DFS/Additional Offer Layout
+							Edit Additional Offers
 						</li>
 					</ul>
 				</section>
 			</div>
 			<div class="main">
 				<section id="programManagementTabs">
-				<h1 class="h1 page-title"><span>Edit DFS/Additional Offer Layout</span></h1>
-				<p>This layout configures the look-and-feel of the program-specific coupons. See the preview below to see which coupons are included in this layout.</p>
+				<h1 class="h1 page-title"><span>Edit Additional Offers</span></h1>
+				<p>This layout defines the look-and-feel of the program-specific coupons. See the preview below to see which coupons are included.</p>
 				<form>
-					<input type="text" placeholder="Enter Name for Layout" />
+					<input type="text" placeholder="Enter Name for Settings" />
 
 					<h4>Coupons</h4>
 					<div id="parentHorizontalTab" class="lifescycle-tab">
 						<ul class="resp-tabs-list hor_1">
-							<li>Transmission</li>
-							<li>Gearbox</li>
-							<li>Fuel System</li>
-							<li>Radiator</li>
+
 							<li>Additional Offer</li>
 						</ul>
 						<div class="resp-tabs-container hor_1">
-							<div>
-								<div class="coupon-form">
-									<table>
-										<tr>
-											<td><label>Discount Type:</label></td>
-											<td>
-												<select class="selectbox">
-													<option value="DollarOff" selected>$ Off</option>
-													<option value="PercOff">% Off</option>
-												</select>
-											</td>
-										</tr>
-										<tr>
-											<td>
-												<label>Discount Amount:</label>
-											</td>
-											<td>
-												<input name="discount-amount" type="text" />
-											</td>
-										</tr>
-										<tr>
-											<td>
-												<label>Email Coupon Code:</label>
-											</td>
-											<td>
-												<input name="email-coupon-code" type="text" />
-											</td>
-										</tr>
-									</table>
-								</div>
-								<div class="coupon-image">
-									<img src="images/dfs-coupon.png" width="286" height="259" alt="Coupon" />
-								</div>
-							</div>
-							<div>
-								<div class="coupon-form">
-									<table>
-										<tr>
-											<td><label>Discount Type:</label></td>
-											<td>
-												<select class="selectbox">
-													<option value="DollarOff" selected>$ Off</option>
-													<option value="PercOff">% Off</option>
-												</select>
-											</td>
-										</tr>
-										<tr>
-											<td>
-												<label>Discount Amount:</label>
-											</td>
-											<td>
-												<input name="discount-amount" type="text" />
-											</td>
-										</tr>
-										<tr>
-											<td>
-												<label>Email Coupon Code:</label>
-											</td>
-											<td>
-												<input name="email-coupon-code" type="text" />
-											</td>
-										</tr>
-									</table>
-								</div>
-								<div class="coupon-image">
-									<img src="images/dfs-coupon.png" width="286" height="259" alt="Coupon" />
-								</div>
-							</div>
-							<div>
-								<div class="coupon-form">
-									<table>
-										<tr>
-											<td><label>Discount Type:</label></td>
-											<td>
-												<select class="selectbox">
-													<option value="DollarOff" selected>$ Off</option>
-													<option value="PercOff">% Off</option>
-												</select>
-											</td>
-										</tr>
-										<tr>
-											<td>
-												<label>Discount Amount:</label>
-											</td>
-											<td>
-												<input name="discount-amount" type="text" />
-											</td>
-										</tr>
-										<tr>
-											<td>
-												<label>Email Coupon Code:</label>
-											</td>
-											<td>
-												<input name="email-coupon-code" type="text" />
-											</td>
-										</tr>
-									</table>
-								</div>
-								<div class="coupon-image">
-									<img src="images/dfs-coupon.png" width="286" height="259" alt="Coupon" />
-								</div>
-							</div>
-							<div>
-								<div class="coupon-form">
-									<table>
-										<tr>
-											<td><label>Discount Type:</label></td>
-											<td>
-												<select class="selectbox">
-													<option value="DollarOff" selected>$ Off</option>
-													<option value="PercOff">% Off</option>
-												</select>
-											</td>
-										</tr>
-										<tr>
-											<td>
-												<label>Discount Amount:</label>
-											</td>
-											<td>
-												<input name="discount-amount" type="text" />
-											</td>
-										</tr>
-										<tr>
-											<td>
-												<label>Email Coupon Code:</label>
-											</td>
-											<td>
-												<input name="email-coupon-code" type="text" />
-											</td>
-										</tr>
-									</table>
-								</div>
-								<div class="coupon-image">
-									<img src="images/dfs-coupon.png" width="286" height="259" alt="Coupon" />
-								</div>
-							</div>
 							<div>
 								<div class="coupon-form">
 									<table>
@@ -361,10 +224,18 @@
 										</tr>
 										<tr>
 											<td>
-												<label>Email Coupon Code:</label>
+												<label>Email Discount Code:</label>
 											</td>
 											<td>
 												<input name="email-coupon-code" type="text" />
+											</td>
+										</tr>
+										<tr>
+											<td>
+												<label>Direct Mail Discount Code: </label>
+											</td>
+											<td>
+												<input name="direct-mail-discount-code" type="text" />
 											</td>
 										</tr>
 									</table>
@@ -384,7 +255,7 @@
 								</td>
 								<td>
 									<select class="selectbox">
-										<option value="Plus15" selected>Plus 15</option>
+										<option value="Plus15" selected>Send Date Plus 15</option>
 										<option value="Plus30">Plus 30</option>
 										<option value="Plus45">Plus 45</option>
 										<option value="Plus60">Plus 60</option>
@@ -393,7 +264,7 @@
 							</tr>
 							<tr>
 								<td>
-									<div class="program-button"><input class="blue-btn" type="submit" id="save" name="save" value="Save Layout"></div>
+									<div class="program-button"><input class="blue-btn" type="submit" id="save" name="save" value="Save Settings"></div>
 								</td>
 								<td>
 
@@ -403,9 +274,7 @@
 					</div>
 				</form>
 				</div>
-				<div class="coupon-image">
-					<img src="images/program-coupon.png" width="286" height="259" alt="Coupon" />
-				</div>
+
 			</section>
 			<div class="sidebar hidden">
           		<div class="sidebar-module sidebar-module-inset">
@@ -437,7 +306,7 @@
 	<script src="js/lib/easyResponsiveTabs.js"></script>
 
 	<!-- Async,API and Marcom hookups -->
-	<script src="js/app/getHashParams.js"></script>	
+	<script src="js/app/getHashParams.js"></script>
 	<script src="js/app/marcomUserData.js"></script>
 	<script src="js/app/recordLogin.js"></script>
 	<script src="js/app/getProgramParticipationStats.js"></script>

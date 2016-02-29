@@ -1,92 +1,158 @@
 <script class="program-enrollment-template" type="x-tmpl-mustache">
-  {{#.}}
-  <tr>
-    <td>
-      <table>
-        <tr>
+  <table>
+    <thead>
+      <tr>
+        <td>
+          <table>
+            <tr>
+              <th class="store-enroll">
+                <div class="">
+                  <p>Store Enrollment</p>
+                  <a href="#" class="enroll-all-stores btn btn-primary btn-sm">Enroll All</a>
+                </div>
+              </th>
+              <th class="store">Store</th>
+              <th class="store-counts">
+                <p>Counts Per Channel</p>
+                <table class="inner-table">
+                  <tr>
+                    <td>Email</td>
+                    <td>DM</td>
+                    <td>SMS</td>
+                  </tr>
+                </table>
+              </th>
+              <th class="store-cost">Estimated
+                <br>Monthly Cost</th>
+            </tr>
+          </table>
+        </td>
+      </tr>
+    </thead>
+    <tbody class="">
+      {{#.}}
+
+      <tr>
+        <td>
+          <table>
+            <tr>
+              <td>
+                <table>
+                  <tr>
+                    <td class="store-enroll">
+                      <!-- ** NOTE **
+                    JS for these toggles are inside program-settings.mustache.js
+                -->
+                      <div class="toggle-btn" data-enrolled="{{enrolled}}">
+                        <input type="checkbox" class="cb-value" />
+                        <span class="round-btn"></span>
+                      </div>
+                      <!-- <div class="checkbox-area" data-enrolled="{{enrolled}}">
+                    <div class="customCheckbox">
+                      <input data-checkbox-label="" type="checkbox">
+                    </div>
+                  </div> -->
+                    </td>
+                    <td class="store">{{storeName}}
+                      <br>
+                      <div class="store-number">Store #{{storeId}}</div>
+                    </td>
+                    <td class="store-counts">
+                      <table class="inner-table">
+                        <tr>
+                          <td>{{channelEmail}}</td>
+                          <td>{{channelDM}}</td>
+                          <td>{{channelSMS}}</td>
+                        </tr>
+                      </table>
+                    </td>
+                    <td class="store-cost"><span>$</span><span class="js-format-currency">{{costEstimate}}</span>
+                      <br><a href="javascript:void(0);" title="Details" class="mobie-details-{{storeId}}">Details</a></td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr class="mobile-info-{{storeId}}">
+        <td>
+          <table class="mobile-table">
+            <tr>
+              <td class="store-label">Store #</td>
+              <td class="store-info">{{storeId}}</td>
+            </tr>
+            <tr>
+              <td class="store-label">Recipients in Email Channel:</td>
+              <td class="store-info">{{channelEmail}}</td>
+            </tr>
+            <tr>
+              <td class="store-label">Recipients in DM Channel:</td>
+              <td class="store-info">{{channelDM}}</td>
+            </tr>
+            <tr>
+              <td class="store-label">Recipients in SMS Channel:</td>
+              <td class="store-info">{{channelSMS}}</td>
+            </tr>
+            <tr>
+              <td class="store-label">Estimated Monthly Cost:</td>
+              <td class="store-info">{{costEstimate}}</td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      {{/.}}
+      <tr>
+        <tr class="grand-total">
           <td>
             <table>
               <tr>
-                <td class="store-enroll">
-                  <div class="checkbox-area" data-enrolled="{{enrolled}}">
-                    <div class="customCheckbox js-all-selectable">
-                      <input data-checkbox-label="" type="checkbox">
-                    </div>
-                  </div>
-                </td>
-                <td class="store">{{storeName}}
-                  <br>
-                  <div class="store-number">Store #{{storeId}}</div>
-                </td>
-                <td class="store-counts">
-                  <table class="inner-table">
-                    <tr>
-                      <td>{{channelEmail}}</td>
-                      <td>{{channelDM}}</td>
-                      <td>{{channelSMS}}</td>
-                    </tr>
-                  </table>
-                </td>
-                <td class="store-cost"><span>$</span><span class="js-format-currency">{{costEstimate}}</span>
-                  <br><a href="javascript:void(0);" title="Details" class="mobie-details-{{storeId}}">Details</a></td>
+                <tr>
+                  <td class="total-label">Total Participants in the Reminder Campaign:</td>
+                  <td class="store-counts">
+                    <table class="inner-table">
+                      <tbody>
+                        <tr>
+                          <td class="channelEmailTotal"></td>
+                          <td class="channelDMTotal"></td>
+                          <td class="channelSMSTotal"></td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </td>
+                  <td class="store-cost">
+                    <span>$</span><span class="costEstimateTotal js-format-currency"></span>
+                  </td>
+                </tr>
               </tr>
             </table>
           </td>
         </tr>
-      </table>
-    </td>
-  </tr>
-  <tr class="mobile-info-{{storeId}}">
-    <td>
-      <table class="mobile-table">
-        <tr>
-          <td class="store-label">Store #</td>
-          <td class="store-info">{{storeId}}</td>
-        </tr>
-        <tr>
-          <td class="store-label">Recipients in Email Channel:</td>
-          <td class="store-info">{{channelEmail}}</td>
-        </tr>
-        <tr>
-          <td class="store-label">Recipients in DM Channel:</td>
-          <td class="store-info">{{channelDM}}</td>
-        </tr>
-        <tr>
-          <td class="store-label">Recipients in SMS Channel:</td>
-          <td class="store-info">{{channelSMS}}</td>
-        </tr>
-        <tr>
-          <td class="store-label">Estimated Monthly Cost:</td>
-          <td class="store-info">{{costEstimate}}</td>
-        </tr>
-      </table>
-    </td>
-  </tr>
-  {{/.}}
-  <tr>
-    <tr class="grand-total">
-      <td>
-        <table>
-          <tr>
-            <tr>
-              <td class="total-label">Total Participants in the Reminder Campaign:</td>
-              <td class="store-counts">
-                <table class="inner-table">
-                  <tbody>
-                    <tr>
-                      <td class="channelEmailTotal"></td>
-                      <td class="channelDMTotal"></td>
-                      <td class="channelSMSTotal"></td>
-                    </tr>
-                  </tbody>
-                </table>
-              </td>
-              <td class="store-cost">
-                <span>$</span><span class="costEstimateTotal js-format-currency"></span>
-              </td>
-            </tr>
-          </tr>
-        </table>
-      </td>
-    </tr>
+    </tbody>
+  </table>
+  <script>
+    var $j = jQuery;
+    $j(document).ready(function() {
+      $j('.enroll-all-stores').on('click', function(e) {
+        $j('.toggle-btn').each(function() {
+          $j(this).addClass('active');
+          toggleBtns();
+        });
+      });
+
+      function toggleBtns() {
+        $j('.cb-value').on('click', function(e) {
+          var mainParent = $j(this).parent('.toggle-btn');
+          if ($j(mainParent).find('input.cb-value').is(':checked')) {
+            $j(mainParent).addClass('active');
+          } else {
+            $j(mainParent).removeClass('active');
+          }
+        });
+      }
+      if ($j('.toggle-btn').length) {
+        return toggleBtns();
+      }
+    });
+  </script>
 </script>

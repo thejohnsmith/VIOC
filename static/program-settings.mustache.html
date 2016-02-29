@@ -4,16 +4,13 @@
     <table>
       <thead>
         <tr>
-          <th>
-            <div class="checkbox-area">
-              <div class="customCheckbox">
-                <input data-checkbox-label="" type="checkbox">
-              </div>
-            </div>
+          <th class="store-enroll">
+            <p>Program Select</p>
+            <button class="btn btn-primary btn-sm js-select-all-boxes">Select All</button>
           </th>
           <th class="store">Store</th>
-          <th class="store-configuration">Program Offer Layout</th>
-          <th class="store-configuration">DFS/Additional Offer Layout</th>
+          <th class="store-configuration">Oil Change Offers</th>
+          <th class="store-configuration">Additional Offers</th>
         </tr>
       </thead>
       <tbody>
@@ -21,7 +18,7 @@
         <tr>
           <td style="padding: 10px 0 0 0">
             <div class="checkbox-area" data-enrolled="">
-              <div class="customCheckbox">
+              <div class="customCheckbox js-all-selectable">
                 <input data-checkbox-label="" type="checkbox">
               </div>
             </div>
@@ -32,12 +29,12 @@
           </td>
           <td class="store-configuration" style="padding: 8px">
             <select class="form-control">
-              <option>Corporate Default</option>
+              <option>Default Offer</option>
             </select>
           </td>
           <td class="store-configuration" style="padding: 8px">
             <select class="form-control">
-              <option>Corporate Default</option>
+              <option>Default Offer</option>
             </select>
           </td>
         </tr>
@@ -51,7 +48,7 @@
               <div class="row">
                 <div class="col-sm-8">
                   <select class="form-control">
-                    <option>Corporate Default</option>
+                    <option>Default Offer</option>
                   </select>
                 </div>
                 <div class="col-sm-2">
@@ -83,7 +80,7 @@
   <div class="container well">
     <div class="row">
       <div class="col-sm-6">
-        <h1 style="font-size: 20px">Program Offer Layouts
+        <h1 style="font-size: 20px">Oil Change Offers
         <a class="btn btn-sm btn-link js-create-program-hash" href="https://marcomcentral.app.pti.com/Epsilon_Data_Management/Beta_Epsilon/CustomPage.aspx?uigroup_id=479602&page_id=11225">
           Create New
         </a>
@@ -92,7 +89,7 @@
           <tr>
             <td>
               <select class="form-control">
-                <option>Corporate Default (Used by 3 Stores)</option>
+                <option>Default Settings</option>
               </select>
             </td>
             <td>
@@ -108,7 +105,7 @@
         </table>
       </div>
       <div class="col-sm-6">
-        <h1 style="font-size: 20px">Due For Service/Additional Offer Layout Options
+        <h1 style="font-size: 20px">Additional Offers
         <a class="btn btn-sm btn-link" href="https://marcomcentral.app.pti.com/Epsilon_Data_Management/Beta_Epsilon/CustomPage.aspx?uigroup_id=479602&page_id=11226">
           Create New
         </a>
@@ -117,7 +114,7 @@
           <tr>
             <td>
               <select class="form-control">
-                <option>Corporate Default (Used by 3 Stores)</option>
+                <option>Defa</option>
               </select>
             </td>
             <td>
@@ -134,5 +131,10 @@
       </div>
     </div>
   </div>
+  <script>
+    $j(document).ready(function() {
 
+
+    });
+  </script>
 </script>

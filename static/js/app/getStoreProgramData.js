@@ -56,7 +56,7 @@
 
     function programSettingsHandler() {
       if($('.program-settings-section .customCheckbox').length) {
-        return $('.program-settings-section .customCheckbox').click(function () {
+        return $('.program-settings-section .customCheckbox, .store-enroll .js-select-all-boxes').click(function () {
           $('.program-settings-footer').toggle($('.program-settings-section td .customCheckbox.checked').length > 1);
           $('.program-settings-footer-row td:first-child').html('Adjust ' + $('.program-settings-section td .customCheckbox.checked').length + ' selected store(s) to use:');
         })
