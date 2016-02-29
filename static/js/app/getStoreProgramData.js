@@ -9,7 +9,7 @@
     var acUrl = 'https://adobe-uat-vioc.epsilon.com/jssp/vioc/getStoreProgramData.jssp';
     var programId = window.location.href.slice(-1);
     $.ajax({
-      url: marcomDevUrl,
+      url: acUrl,
       dataType: 'json',
       data: {
         userId: marcomUserData.$user.externalId,
@@ -75,7 +75,8 @@
         }
         return total;
       }
-      $('.channelEmailTotal').text(result.sum('channelEmail'));
+
+      $('.toggle-btn.active .channelEmailTotal').text(result.sum('channelEmail'));
       $('.channelDMTotal').text(result.sum('channelDM'));
       $('.channelSMSTotal').text(result.sum('channelSMS'));
       $('.costEstimateTotal').text(result.sum('costEstimate').toFixed(2));

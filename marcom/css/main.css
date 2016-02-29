@@ -1181,6 +1181,7 @@ header#nav {
 }
 .programsummary-table td {
   padding: 0;
+  width: 25%;
 }
 .programsummary-table td table td {
   border-right: 0;
@@ -3065,6 +3066,13 @@ input[type="submit"].btn-block, input[type="reset"].btn-block, input[type="butto
   .col-sm-8 {
     float: left;
     width: 66.66666667%;
+  }
+  .programsummary-table .col-sm-6 {
+    padding: 0 0 0 15px;
+    width: 48%;
+  }
+  .programsummary-table .col-sm-8 {
+    padding-right: 0;
   }
 }
 .programsummary-table .total-label {
