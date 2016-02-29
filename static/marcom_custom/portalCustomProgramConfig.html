@@ -18,9 +18,9 @@
     <div class="main">
       <section id="programManagementTabs">
         <h1 class="h1 page-title">Edit <span> Unknown Program Layout</span></h1>
-        <p>This layout configures the look-and-feel of the program-specific coupons. See the preview below to see which coupons are included in this layout.</p>
+        <p>This layout defines the look-and-feel of the program-specific coupons. See the preview below to see which coupons are included.</p>
         <form>
-          <input type="text" placeholder="Enter Name for Layout" />
+          <input type="text" placeholder="Enter Name for Settings" />
           <p><a class="discountCodeLink" href="javascript:void(0)">Do you have a discount code?</a></p>
           <div class="discountCode closed">
             <div class="left">
@@ -49,10 +49,36 @@
           </div>
 
           <h4>Coupons</h4>
+          <style>
+            .resp-tabs-list li {
+              font-size: 17px;
+              display: inline-block;
+              padding: 15px 15px;
+              margin: 0 -1px 0;
+              list-style: none;
+              cursor: pointer;
+              float: none;
+              -webkit-transition: 0.5s;
+              text-align: center;
+              transition: 0.5s;
+              max-width: 160px;
+              vertical-align: middle;
+            }
+
+            .resp-tab-content {
+              margin: 0 0 20px 0;
+              width: 100%;
+            }
+          </style>
           <div id="parentHorizontalTab" class="lifescycle-tab">
             <ul class="resp-tabs-list hor_1">
-              <li>Offer 1 - Standard*</li>
-              <li>Offer 1 - High Risk</li>
+              <li>Offer 1 (Standard)</li>
+              <li>Offer 1 (High Risk)</li>
+              <li>DFS</li>
+              <li>Transmission</li>
+              <li>Gearbox</li>
+              <li>Fuel System</li>
+              <li>Radiator</li>
             </ul>
             <div class="resp-tabs-container hor_1">
               <div>
@@ -83,6 +109,7 @@
                       </td>
                       <td>
                         <select class="selectbox">
+                          <option value="PricePoint">Price Point</option>
                           <option value="DollarOff" selected>$ Off</option>
                           <option value="PercOff">% Off</option>
                         </select>
@@ -98,10 +125,26 @@
                     </tr>
                     <tr>
                       <td>
-                        <label>Email Coupon Code:</label>
+                        <label>Email Discount Code:</label>
                       </td>
                       <td>
-                        <input name="email-coupon-code" type="text" />
+                        <input name="email-discount-code" type="text" />
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <label>Direct Mail Discount Code:</label>
+                      </td>
+                      <td>
+                        <input name="direct-discount-code" type="text" />
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <label>SMS Discount Code:</label>
+                      </td>
+                      <td>
+                        <input name="sms-discount-code" type="text" />
                       </td>
                     </tr>
                   </table>
@@ -206,7 +249,7 @@
               <tr>
                 <td>
                   <div class="program-button">
-                    <input class="blue-btn" type="submit" id="save" name="save" value="Save Layout">
+                    <input class="blue-btn" type="submit" id="save" name="save" value="Save Settings">
                   </div>
                 </td>
                 <td>
@@ -222,27 +265,28 @@
 </div>
 
 <script>
-$j(document).ready(function() {
+  $j(document).ready(function() {
 
-  'use strict'
+    'use strict'
 
-  var discountCodeInfoClosed = true;
+    var discountCodeInfoClosed = true;
 
-   $j('.closed').hide();
+    $j('.closed').hide();
 
-   $j('.discountCodeLink').on('click', function(event) {
-    event.preventDefault();
-    showDiscountCodeInfo();
-   });
+    $j('.discountCodeLink').on('click', function(event) {
+      event.preventDefault();
+      showDiscountCodeInfo();
+    });
 
-  function showDiscountCodeInfo() {
-    if(discountCodeInfoClosed === true) {
-      discountCodeInfoClosed = false;
-      $j('.closed').show('slideDown');
-    } else {
-      discountCodeInfoClosed = true;
-      $j('.closed').hide('slideUp');
+    function showDiscountCodeInfo() {
+      if (discountCodeInfoClosed === true) {
+        discountCodeInfoClosed = false;
+        $j('.closed').show('slideDown');
+      } else {
+        discountCodeInfoClosed = true;
+        $j('.closed').hide('slideUp');
+      }
     }
-  }
-});
+
+  });
 </script>
