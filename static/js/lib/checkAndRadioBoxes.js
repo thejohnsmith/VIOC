@@ -99,6 +99,7 @@ var customCheckAndRadioBoxes = (function($) {
     });
 
     $('.enroll-all-stores').on('click', function(e) {
+      e.preventDefault();
       $('.toggle-btn').each(function() {
         $(this).addClass('active');
         toggleBtns();
