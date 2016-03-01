@@ -68,5 +68,7 @@
 <script src="https://files.marcomcentral.app.pti.com/epsilon/static/js/app/getUserConfigurations.js"></script>
 
 <script>
-  if (window.location.href.indexOf('errorPageBasic.aspx') > -1) window.location.href = 'home.aspx'
+  if (window.location.href.indexOf('errorPageBasic.aspx') > -1 || window.location.toString().contains('errorPageBasic'){
+    return window.location.href = 'home.aspx'
+  }
 </script>

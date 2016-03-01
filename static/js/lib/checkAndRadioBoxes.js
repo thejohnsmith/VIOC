@@ -91,9 +91,7 @@ var customCheckAndRadioBoxes = (function ($) {
      * @return {function} toggleBtns();
      */
     function toggleBtns() {
-      $('.toggle-btn[data-enrolled="true"]').addClass('active');
-        console.log($(this) + ' enrolled: true');
-
+      $('.toggle-btn[data-enrolled="true"]').addClass('active').prop('checked', 'checked');
 
       $('.cb-value').on('click', function (e) {
         var mainParent = $(this).parent('.toggle-btn');
@@ -101,12 +99,14 @@ var customCheckAndRadioBoxes = (function ($) {
         var $programId = getHashParams.hashParams.programId;
         console.log('store id: ' + $storeId);
         console.log('program id: ' + $programId);
-        if($(mainParent).find('input.cb-value').is(':checked')) {
+        if($(this).is(':checked')) {
           $(mainParent).addClass('active');
-          setStoreSubscription.makeRequest(marcomUserData.$user.externalId, $programId, $storeId, 0);
-        } else {
+          $(this).prop('checked', 'checked')
+          setStoreSubscription.makeRequest(marcomUserData.$user.externalId, $storeId, $programId, 1);
+        } else if ($(mainParent).hasClass('active')) {
           $(mainParent).removeClass('active');
-          setStoreSubscription.makeRequest(marcomUserData.$user.externalId, $programId, $storeId, 0);
+          $(this).prop('checked', '')
+          setStoreSubscription.makeRequest(marcomUserData.$user.externalId, $storeId, $programId, 0);
         }
       });
     }
