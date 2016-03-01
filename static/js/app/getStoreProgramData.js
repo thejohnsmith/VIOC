@@ -7,13 +7,13 @@
     var localDevUrl = 'data/getStoreProgramData.jssp';
     var marcomDevUrl = 'https://files.marcomcentral.app.pti.com/epsilon/static/data/getStoreProgramData.jssp';
     var acUrl = 'https://adobe-uat-vioc.epsilon.com/jssp/vioc/getStoreProgramData.jssp';
-    var programId = window.location.href.slice(-1);
+    var $programId = getHashParams.hashParams.programId;
     $.ajax({
       url: acUrl,
       dataType: 'json',
       data: {
         userId: marcomUserData.$user.externalId,
-        programId: programId
+        programId: $programId
       }
     }).done(function (result) {
       loadStoreProgramData(result);

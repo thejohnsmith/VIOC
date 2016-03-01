@@ -20,11 +20,17 @@
   max-width: 450px;
   padding: 6px 12px;
 }
+#CtlLogIn h4 {
+  font-size: 26px;
+}
 #CtlLogIn > p > a, .header-right {
   display: none;
 }
 #CtlLogIn .CtlSearchGroup, .CtlSearchGroup td.header {
   border: none;
+}
+.CtlSearchGroup td.header {
+  padding-bottom: 8px;
 }
 #CtlLogIn .CtlSearchGroup {
   background: none;
