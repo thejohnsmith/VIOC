@@ -2686,8 +2686,8 @@ input[type="submit"].btn-block, input[type="reset"].btn-block, input[type="butto
   position: relative;
   background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAyklEQVQ4T42TaxHCQAyENw5wAhLACVUAUkABOCkSwEkdhNmbpHNckzv689L98toIAKjqGcAFwElEFr5ln6ruAMwA7iLyFBM/TPDuQSrxwf6fCKBoX2UMIYGYkg8BLOnVg2RiAEexGaQQq4w9e9klcxGLLAUwgDAcihlYAR1IvZA1sz/+AAaQjXhTQQVoe2Yo3E7UQiT2ijeQdojRtClOfVKvMVyVpU594kZK9zzySWTlcNqZY9tjCsUds00+A57z1e35xzlzJjee8xf0HYp+cOZQUQAAAABJRU5ErkJggg==") no-repeat 50px center #e74c3c;
   cursor: pointer;
-  -webkit-transition: background-color .40s ease-in-out;
-  transition: background-color .40s ease-in-out;
+  /*-webkit-transition: background-color .40s ease-in-out;
+  transition: background-color .40s ease-in-out;*/
   cursor: pointer;
 }
 .toggle-btn.active {
@@ -2706,8 +2706,8 @@ input[type="submit"].btn-block, input[type="reset"].btn-block, input[type="butto
   left: 5px;
   top: 50%;
   margin-top: -15px;
-  -webkit-transition: all .30s ease-in-out;
-  transition: all .30s ease-in-out;
+  /*-webkit-transition: all .30s ease-in-out;
+  transition: all .30s ease-in-out;*/
 }
 .toggle-btn .cb-value {
   position: absolute;

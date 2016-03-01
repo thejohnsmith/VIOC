@@ -38,7 +38,7 @@
             <tr>
               <td>
                 <table>
-                  <tr data="{{storeName}}">
+                  <tr class="store-item" data-enrolled="{{#enrolled}}true{{/enrolled}}{{^enrolled}}false{{/enrolled}}">
                     <td class="store-enroll">
                       <div class="toggle-btn" data-enrolled="{{enrolled}}">
                         <input type="checkbox" class="cb-value" data-storeId="{{storeId}}" {{#enrolled}}checked{{/enrolled}}>
@@ -52,9 +52,9 @@
                     <td class="store-counts">
                       <table class="inner-table">
                         <tr>
-                          <td>{{channelEmail}}</td>
-                          <td>{{channelDM}}</td>
-                          <td>{{channelSMS}}</td>
+                          <td class="channelEmailTotal">{{channelEmail}}</td>
+                          <td class="channelDMTotal">{{channelDM}}</td>
+                          <td class="channelSMSTotal">{{channelSMS}}</td>
                         </tr>
                       </table>
                     </td>
