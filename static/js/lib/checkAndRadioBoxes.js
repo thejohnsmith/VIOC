@@ -73,13 +73,7 @@ var customCheckAndRadioBoxes = (function ($) {
         return setStoreSubscription.makeRequest($selectedPrograms);
       });
     });
-    $('.enroll-all-stores').on('click', function (e) {
-      e.preventDefault();
-      $('.toggle-btn').each(function () {
-        $(this).addClass('active');
-        toggleBtns();
-      });
-    });
+
     /** Toggle Buttons
      * @todo API request to enroll ALL stores.
      * @todo API request to enroll & unenroll INDIVIDUAL stores.
@@ -91,24 +85,34 @@ var customCheckAndRadioBoxes = (function ($) {
      * @return {function} toggleBtns();
      */
     function toggleBtns() {
+      var $programId = getHashParams.hashParams.programId;
+      var $userId = marcomUserData.$user.externalId || {};
       $('.toggle-btn[data-enrolled="true"]').addClass('active').prop('checked', 'checked');
-
-      $('.cb-value').on('click', function (e) {
-        var mainParent = $(this).parent('.toggle-btn');
+      $('.cb-value').on('click', function () {
+        var $mainParent = $(this).parent('.toggle-btn');
         var $storeId = $(this).attr('data-storeId');
-        var $programId = getHashParams.hashParams.programId;
-        console.log('store id: ' + $storeId);
-        console.log('program id: ' + $programId);
+
         if($(this).is(':checked')) {
-          $(mainParent).addClass('active');
+          $($mainParent).addClass('active');
           $(this).prop('checked', 'checked')
-          setStoreSubscription.makeRequest(marcomUserData.$user.externalId, $storeId, $programId, 1);
-        } else if ($(mainParent).hasClass('active')) {
-          $(mainParent).removeClass('active');
+          setStoreSubscription.makeRequest($userId, $storeId, $programId, 1);
+        } else if ($($mainParent).hasClass('active')) {
+          $($mainParent).removeClass('active');
           $(this).prop('checked', '')
-          setStoreSubscription.makeRequest(marcomUserData.$user.externalId, $storeId, $programId, 0);
+          setStoreSubscription.makeRequest($userId, $storeId, $programId, 0);
         }
       });
+
+      $('.enroll-all-stores').on('click', function (e) {
+        e.preventDefault();
+        $('.toggle-btn').each(function () {
+          var $storeId = $(this).attr('data-storeId');
+          $(this).parent().addClass('active')
+          $(this).prop('checked', 'checked');
+          setStoreSubscription.makeRequest($userId, $storeId, $programId, 1);
+        });
+      });
+
     }
     if($('.toggle-btn').length) {
       return toggleBtns();
