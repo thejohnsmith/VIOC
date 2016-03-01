@@ -86,27 +86,25 @@ var customCheckAndRadioBoxes = (function ($) {
       var $programId = getHashParams.hashParams.programId;
       var $userId = marcomUserData.$user.externalId || {};
       $('[data-enrolled="true"] .toggle-btn').addClass('active').prop('checked', 'checked');
+      
       $('.cb-value').on('click', function () {
         var $mainParent = $(this).parent('.toggle-btn');
         var $storeId = $(this).attr('data-storeId');
         if($(this).is(':checked')) {
           $($mainParent).addClass('active');
           $(this).prop('checked', 'checked')
+
           return setStoreSubscription.makeRequest($userId, $storeId, $programId, 1);
         } else if($($mainParent).hasClass('active')) {
           $($mainParent).removeClass('active');
           $(this).prop('checked', '')
+
           return setStoreSubscription.makeRequest($userId, $storeId, $programId, 0);
         }
       });
       $('.enroll-all-stores').on('click', function (e) {
         e.preventDefault();
-        $('.toggle-btn').each(function () {
-          var $storeId = $(this).attr('data-storeId');
-          $(this).parent().addClass('active')
-          $(this).prop('checked', 'checked');
-          setStoreSubscription.makeRequest($userId, $storeId, $programId, 1);
-        });
+        return $('[data-enrolled="false"] .cb-value').click();
       });
     }
     if($('.toggle-btn').length) {
