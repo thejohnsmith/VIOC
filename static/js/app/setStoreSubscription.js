@@ -33,9 +33,9 @@ var setStoreSubscription = (function ($) {
       // Display the success message with the proper program names.
       toastr.success('Your stores have been enrolled.');
 
-      /* This is example only */
-      // Refresh the API to display the updated Enrollment(s).
-      // getProgramParticipationStats.makeRequest();
+      if($('.store-counts').length && $('.grand-total').length){
+        getStoreProgramData.makeRequest();
+      }
 
       // Debugging
       console.log('%c ** Request Success ** ', 'color: #0a9; font-weight: bold;', '\nProgram Id sent to API:\n' + $programId);
