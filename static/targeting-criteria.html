@@ -129,7 +129,7 @@
 			</div>
 			<div class="main">
 				<div class="target-reciptients">
-					<h1>321</h1>
+					<h1 id="counter">...</h1>
 					<p>Target Recipients</p>
 				</div>
 				<h1>Choose Target Recipients</h1>
@@ -148,12 +148,12 @@
 						<label for="from">From</label>
 						<input type="text" id="from" name="from">
 						<label for="to"> &nbsp;&nbsp;to </label>
-						<input type="text" id="to" name="to">
+						<input type="text" id="to" name="to" >
 					</div>
 					<div class="last-service-oil-type">
 						<h1>Last Service Oil Type</h1>
 						<p>Target customers based on what type of oil they used during their last service.</p>
-						<select class="selectbox" onchange="updateRecipientCount()">
+						<select class="selectbox" id="oilType" id="oilType">
 							<option value="Conventional" selected>Conventional</option>
 							<option value="Blend">Blend</option>
 							<option value="Synthetic">Synthetic</option>
@@ -163,12 +163,12 @@
 					<div class="customer-type">
 						<h1>Customer Type</h1>
 						<p>Target customers based on whether they are new, active or inactive.</p>
-						<input type="checkbox" value="active"></input> <label>Active</label> <input type="checkbox" value="inactive"></input> <label>Inactive</label> <input type="checkbox" value="new"></input> <label>New</label>
+						<input type="checkbox" value="active" id="chkActive"></input> <label>Active</label> <input id="chkInactive" type="checkbox" value="inactive"></input> <label>Inactive</label> <input type="checkbox" value="new" id="chkNew"></input> <label>New</label>
 					</div>
 					<div class="include-fleet">
 						<h1>Include Fleet?</h1>
 						<p>Determines whether fleet customers should be included in the results.</p>
-						<select class="selectbox" onchange="updateRecipientCount()">
+						<select class="selectbox" id="fleet">
 							<option value="No" selected>No</option>
 							<option value="Yes">Yes</option>
 						</select>
@@ -177,8 +177,8 @@
 						Note: Once you proceed beyond this step, you will not be able to adjust your selection.
 					</p>
 					<span class="call-to-action">
-						<a href="#">Cancel and return to WARP drive</a>
-						<a href="#" class="submit">Select up to 321 Target Recipients</a>
+						<a href="#" class="submit"  id="btnSubmit">Select up to ... Target Recipients</a>
+						<a href="#" id="btnCancel">Cancel and return to WARP drive</a>
 					</span>
 				</div>
 			</div>
@@ -207,8 +207,7 @@
 	<script src="js/app/getProgramParticipationStats.js"></script>
 	<script src="js/app/getStoreProgramData.js"></script>
 	<script src="js/app/setStoreSubscription.js"></script>
-	<script src="js/app/getStoreSummary.js"></script>
-	<script src="js/app/getRecipientEstimate.js"></script>
+	<script src="js/app/targetingCriteria.js"></script>
 
 	<!-- ** Scripts not needed for Marcom templates ** -->
 	<script type="text/javascript" src="js/css_browser_selector.js"></script>
