@@ -7,6 +7,7 @@
  * @param {property} selected Applies to .selectBoxOption for active Option item.
  * @param {class} .filter-reset Child of .filter-select, anchor tag for Edit option.
  * @param {class} .filter-results Displays the total # of stores, all initially. Updates when filters change.
+ * @param {class} .filter-results-value Span element containing the numarical value of results.
  *
  * ** NOTES **
  * Functions -
@@ -21,22 +22,47 @@
  * - show 2ND filter
  */
 var programFilters = new function ($) {
-  var $programFiltersComponent = $('.filter-select'),
-    init = function () {
+  var $programFiltersComponent = $('.filter-select');
+  var $selectOption = $('.select-option');
+  init = function () {
       if(!$programFiltersComponent.length) {
         return;
       }
       return handlers();
     },
     handlers = function clickHandlers() {
-      $programFiltersComponent.find('.selectbox').on('click', function (event) {
-        event.preventDefault();
-
+      $selectOption.on('change', function (event) {
+        var $filter = $(this);
+        /** Shows the next filter option
+         *  Next element is required AND Next element must not visible
+         */
+        if($filter.next('.filter-select').length && $filter.next('.filter-select').hasClass('hidden')) {
+          var $nextFilter = $filter.next('.filter-select');
+          showNextFilter($nextFilter);
+        }
       });
-    };
+    },
+    showFilter = function ($filter) {
+      return $filter
+        // Show Filter
+        .removeClass('hidden')
+        // Find [select] element
+        .find('select')
+        // Focus on Next Filter
+        .focus();
+    },
+    hideFilter = function ($filter) {
+      return $filter
+        // Hide Filter
+        .addClass('hidden')
+    },
+    showNextFilter = function ($nextFilter) {
+      // Get next filter element.
+      return showFilter($nextFilter);
+    }
   return {
-    init: init
+    init: init,
+    hideFilter: hideFilter
   };
 }(jQuery);
-
 programFilters.init();
