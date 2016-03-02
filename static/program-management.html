@@ -135,13 +135,7 @@
 </head>
 
 <body>
-	<span class="user-related none"
-		data-user-external-id="34567"
-		data-user-login-id="BetaUser"
-		data-user-first-name="John"
-		data-user-last-name="Smith"
-		data-user-email="john.smith@marcom.com"
-		aria-hidden="true">
+	<span class="user-related none" data-user-external-id="34567" data-user-login-id="BetaUser" data-user-first-name="John" data-user-last-name="Smith" data-user-email="john.smith@marcom.com" aria-hidden="true">
 	</span>
 	<div class="dummy"></div>
 	<div class="wrapper">
@@ -159,10 +153,10 @@
 						</div>
 					</div>
 					<div class="header-right">
-	          <a class="btnHelp" href="CustomPage.aspx?uigroup_id=479602&amp;page_id=10798" title="Help">Help</a>
-	          <a class="btnContactUs" href="CustomPage.aspx?uigroup_id=479602&amp;page_id=10798" title="Contact Us">Contact Us</a>
-	          <a class="btnLogOut" id="ctl00_ctl08_btnLogOut" href="javascript:__doPostBack('ctl00$ctl08$btnLogOut','')">Log Out</a>
-	        </div>
+						<a class="btnHelp" href="CustomPage.aspx?uigroup_id=479602&amp;page_id=10798" title="Help">Help</a>
+						<a class="btnContactUs" href="CustomPage.aspx?uigroup_id=479602&amp;page_id=10798" title="Contact Us">Contact Us</a>
+						<a class="btnLogOut" id="ctl00_ctl08_btnLogOut" href="javascript:__doPostBack('ctl00$ctl08$btnLogOut','')">Log Out</a>
+					</div>
 				</div>
 			</div>
 			<div class="header-nav">
@@ -242,98 +236,103 @@
 				<section id="programManagementTabs" class="wide-tabs">
 					<h1 class="h1 page-title"><span>Program Management</span></h1>
 					<div class="filters-area">
-						<div class="filter-title">Store Filters:&nbsp;&nbsp;</div>
-						<div class="filter-select select-option">
+						<div class="filter-title">Store Filters:</div>
+
+						<div class="company filter-select select-option">
 							<select class="selectbox">
-								<option selected>Primary Filter</option>
-								<option>Company</option>
-								<option>Market</option>
-								<option>Area</option>
+								<option class="selectboxOption" selected>Select Company</option>
+								<option class="selectboxOption">Company 1</option>
+								<option class="selectboxOption">Company 2</option>
+								<option class="selectboxOption">Company 3</option>
 							</select>
 							<a href="#" title="filter-edit" class="filter-reset"><img src="images/edit-filter.png" alt="Edit" title="Edit" width="16"></a>
 						</div>
-						<div class="filter-select select-option">
+
+						<div class="market filter-select select-option hidden">
 							<select class="selectbox">
-								<option selected>Secondary Filter</option>
-								<option>Company</option>
-								<option>Market</option>
-								<option>Area</option>
+								<option class="selectboxOption" selected>Select Market</option>
+								<option class="selectboxOption">Market 1</option>
+								<option class="selectboxOption">Market 2</option>
+								<option class="selectboxOption">Market 3</option>
 							</select>
 							<a href="#" title="filter-edit" class="filter-reset"><img src="images/edit-filter.png" alt="Edit" title="Edit" width="16"></a>
 						</div>
-						<div class="filter-select select-option">
+
+						<div class="area filter-select select-option hidden">
 							<select class="selectbox">
-								<option selected>Tertiary Filter</option>
-								<option>Company</option>
-								<option>Market</option>
-								<option>Area</option>
+								<option class="selectboxOption" selected>Select Area</option>
+								<option class="selectboxOption">Area 1</option>
+								<option class="selectboxOption">Area 2</option>
+								<option class="selectboxOption">Area 3</option>
 							</select>
 							<a href="#" title="filter-edit" class="filter-reset"><img src="images/edit-filter.png" alt="Edit" title="Edit" width="16"></a>
 						</div>
-						<div class="filter-results">&nbsp;3 Results</div>
+
+						<div class="filter-results"><span class="filter-results-value">3</span> Results</div>
 					</div>
 
 					<div id="parentHorizontalTab" class="lifescycle-tab">
-	          <ul class="resp-tabs-list hor_1">
-	            <div class="view-program-summary"><a href="#" title="View Program Summary">View Program Summary</a></div>
-	            <li>Enrollment and Cost</li>
-	            <li>Program Settings</li>
-	          </ul>
-	          <div class="resp-tabs-container hor_1">
-	            <div>
-	              <div class="programsummary-table" style="display:block">
-	                <div class="participation-table program-enrollment-section">
-	                  <!-- program-enrollment-template.mustache.html -->
-	                </div>
-	              </div>
-	            </div>
-	            <div>
-	              <div class="program-settings-section programsummary-table">
-	                <!-- program-settings-template.mustache.html -->
-	              </div>
-	            </div>
-	          </div>
-	      </section>
+						<ul class="resp-tabs-list hor_1">
+							<div class="view-program-summary"><a href="#" title="View Program Summary">View Program Summary</a></div>
+							<li>Enrollment and Cost</li>
+							<li>Program Settings</li>
+						</ul>
+						<div class="resp-tabs-container hor_1">
+							<div>
+								<div class="programsummary-table" style="display:block">
+									<div class="participation-table program-enrollment-section">
+										<!-- program-enrollment-template.mustache.html -->
+									</div>
+								</div>
+							</div>
+							<div>
+								<div class="program-settings-section programsummary-table">
+									<!-- program-settings-template.mustache.html -->
+								</div>
+							</div>
+						</div>
+				</section>
 
+				</div>
 			</div>
+			<!--footer starts here-->
+			<footer>
+				<div class="main">
+				</div>
+			</footer>
 		</div>
-		<!--footer starts here-->
-		<footer>
-			<div class="main">
-			</div>
-		</footer>
-	</div>
-	<div class="prelaod">
-		<img src="images/check-on.png" alt="" title="">
-		<img src="images/edit-bg.png" alt="" title="">
-		<img src="images/check-on-2.png" alt="" title="">
-	</div>
-	<!-- Dependencies -->
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/2.2.1/mustache.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.11.1/moment.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
-	<script src="js/lib/toastrOpts.js"></script>
-	<script src="js/lib/checkAndRadioBoxes.js"></script>
-	<script src="js/lib/easyResponsiveTabs.js"></script>
+		<div class="prelaod">
+			<img src="images/check-on.png" alt="" title="">
+			<img src="images/edit-bg.png" alt="" title="">
+			<img src="images/check-on-2.png" alt="" title="">
+		</div>
+		<!-- Dependencies -->
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/2.2.1/mustache.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.11.1/moment.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.2/toastr.min.js"></script>
+		<script src="js/lib/toastrOpts.js"></script>
+		<script src="js/lib/checkAndRadioBoxes.js"></script>
+		<script src="js/lib/easyResponsiveTabs.js"></script>
+		<script src="js/lib/programFilters.js"></script>
 
-	<!-- Async,API and Marcom hookups -->
-	<script src="js/app/getHashParams.js"></script>
-	<script src="js/app/marcomUserData.js"></script>
-	<script src="js/app/recordLogin.js"></script>
-	<script src="js/app/getProgramParticipationStats.js"></script>
-	<script src="js/app/getStoreProgramData.js"></script>
-	<script src="js/app/setStoreSubscription.js"></script>
-	<script src="js/app/getUserConfigurations.js"></script>
+		<!-- Async,API and Marcom hookups -->
+		<script src="js/app/getHashParams.js"></script>
+		<script src="js/app/marcomUserData.js"></script>
+		<script src="js/app/recordLogin.js"></script>
+		<script src="js/app/getProgramParticipationStats.js"></script>
+		<script src="js/app/getStoreProgramData.js"></script>
+		<script src="js/app/setStoreSubscription.js"></script>
+		<script src="js/app/getUserConfigurations.js"></script>
 
-	<!-- ** Scripts not needed for Marcom templates ** -->
-	<script type="text/javascript" src="js/css_browser_selector.js"></script>
-	<script type="text/javascript" src="js/menu.js"></script>
-	<script type="text/javascript" src="js/selectbox-0.2.js"></script>
-	<script type="text/javascript" src="js/jquery.mCustomScrollbar.concat.min.js"></script>
-	<script type="text/javascript" src="js/jquery.mousewheel.min.js"></script>
-	<script type="text/javascript" src="js/jquery.validate.js"></script>
-	<script type="text/javascript" src="js/placeholder.js"></script>
-	<script type="text/javascript" src="js/general.js"></script>
+		<!-- ** Scripts not needed for Marcom templates ** -->
+		<script type="text/javascript" src="js/css_browser_selector.js"></script>
+		<script type="text/javascript" src="js/menu.js"></script>
+		<script type="text/javascript" src="js/selectbox-0.2.js"></script>
+		<script type="text/javascript" src="js/jquery.mCustomScrollbar.concat.min.js"></script>
+		<script type="text/javascript" src="js/jquery.mousewheel.min.js"></script>
+		<script type="text/javascript" src="js/jquery.validate.js"></script>
+		<script type="text/javascript" src="js/placeholder.js"></script>
+		<script type="text/javascript" src="js/general.js"></script>
 </body>
 
 </html>
