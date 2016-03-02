@@ -1,11 +1,54 @@
 [{
-    "userId": 29849,
-    "userExternalId": 878985
-  }, {
-    "userId": 34567,
-    "userExternalId": 123456
-  }, {
-    "userId": 09789,
-    "userExternalId": 323554
-  }
-]
+  "text": "VIOC, Inc.",
+  "filter-type": "company",
+  "state": {
+    "opened": true,
+    "selected": false
+  },
+  "children": [{
+    "text": "Texas",
+    "filter-type": "market",
+    "state": {
+      "opened": true,
+      "selected": false
+    },
+    "children": [{
+      "text": "North Texas",
+      "filter-type": "area",
+      "state": {
+        "opened": true,
+        "selected": false
+      },
+      "children": [{
+        "id": "1",
+        "text": "Store #1",
+        "state": {
+          "opened": true,
+          "selected": false
+        }
+      }, {
+        "id": "2",
+        "text": "Store #2",
+        "state": {
+          "opened": true,
+          "selected": false
+        }
+      }]
+    }, {
+      "text": "Fort Worth",
+      "filter-type": "area",
+      "state": {
+        "opened": true,
+        "selected": false
+      },
+      "children": [{
+        "id": "3",
+        "text": "Store #3",
+        "state": {
+          "opened": true,
+          "selected": false
+        }
+      }]
+    }]
+  }]
+}]

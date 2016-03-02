@@ -33,17 +33,14 @@ var getStoreProgramData = (function ($) {
         $.get('https://files.marcomcentral.app.pti.com/epsilon/static/program-enrollment.mustache.html', function (templates) {
           var template = $(templates).filter('.program-enrollment-template').html();
           $('.program-enrollment-section').html(Mustache.render(template, result));
-          // customCheckAndRadioBoxes.customCheckbox();
         }).done(function () {
-          return calculateTotals();
+          return calculateTotals(result);
         });
       }
       if($('.program-settings-section').length) {
         $.get('https://files.marcomcentral.app.pti.com/epsilon/static/program-settings.mustache.html', function (templates) {
           var template2 = $(templates).filter('.program-settings-template').html();
           $('.program-settings-section').html(Mustache.render(template2, result));
-          // customCheckAndRadioBoxes.customCheckbox();
-          // return calculateTotals(result);
           getUserConfigurations.makeRequest();
           return reloadCheckBoxes();
         }).done(function () {
@@ -71,18 +68,16 @@ var getStoreProgramData = (function ($) {
     reloadCheckBoxes = function () {
       return customCheckAndRadioBoxes.customCheckbox();
     },
-    calculateTotals = function () {
-      // Array.prototype.sum = function (prop) {
-      //     var total = 0
-      //     for(var i = 0, _len = this.length; i < _len; i++) {
-      //       total += this[i][prop]
-      //     }
-      //     return total;
-      //   }
-      ;
-      //$('.costEstimateTotal').text(result.sum('costEstimate').toFixed(2));
-      //return formatCurrency();
-      return calculateSum('channelEmailTotal'),
+    calculateTotals = function (result) {
+      Array.prototype.sum = function (prop) {
+        var total = 0
+        for(var i = 0, _len = this.length; i < _len; i++) {
+          total += this[i][prop]
+        }
+        return total;
+      }
+      $('.costEstimateTotal').text(result.sum('costEstimate').toFixed(2));
+      return formatCurrency(), calculateSum('channelEmailTotal'),
         calculateSum('channelDMTotal'),
         calculateSum('channelSMSTotal')
     },
