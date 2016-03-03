@@ -23,17 +23,17 @@
               </div>
             </div>
           </td>
-          <td class="store" style="padding: 8px">
+          <td data-storeId="{{storeId}}" class="store program-settings-store" style="padding: 8px">
             <div class="store-name">{{storeName}}</div>
             <div class="store-number">Store #{{storeId}}</div>
           </td>
           <td class="store-configuration" style="padding: 8px">
-            <select class="form-control">
+            <select class="form-control program-dropdown store-level-dropdown">
               <option>Default Settings</option>
             </select>
           </td>
           <td class="store-configuration" style="padding: 8px">
-            <select class="form-control">
+            <select class="form-control additional-dropdown store-level-dropdown">
               <option>Default Settings</option>
             </select>
           </td>
@@ -47,12 +47,12 @@
             <div class="container-fluid">
               <div class="row">
                 <div class="col-sm-8">
-                  <select class="form-control">
+                  <select class="form-control program-dropdown bulk-level-dropdown">
                     <option>Default Settings</option>
                   </select>
                 </div>
                 <div class="col-sm-2">
-                  <button class="btn btn-small btn-primary">Apply</button>
+                  <button class="btn btn-small btn-primary bulk-apply-program">Apply</button>
                 </div>
               </div>
             </div>
@@ -61,12 +61,12 @@
             <div class="container-fluid">
               <div class="row">
                 <div class="col-sm-8">
-                  <select class="form-control program-config-options-section">
+                  <select class="form-control program-config-options-section program-dropdown bulk-level-dropdown">
 
                   </select>
                 </div>
                 <div class="col-sm-2">
-                  <button class="btn btn-small btn-primary">Apply</button>
+                  <button class="btn btn-small btn-primary  bulk-apply-additional">Apply</button>
                 </div>
               </div>
             </div>
@@ -88,7 +88,7 @@
         <table width="100%" padding="4" border="0">
           <tr>
             <td>
-              <select class="form-control">
+              <select class="form-control program-dropdown management-dropdown">
                 <option>Default Settings</option>
               </select>
             </td>
@@ -96,10 +96,6 @@
               <a class="btn btn-sm btn-link js-create-program-hash" href="https://marcomcentral.app.pti.com/Epsilon_Data_Management/Beta_Epsilon/CustomPage.aspx?uigroup_id=479602&page_id=11225">
                 Edit
               </a>
-              <span class="pipe" aria-hidden="true"> | </span>
-              <button class="btn btn-sm btn-link program-edit-btn">Delete</button>
-              <span class="pipe" aria-hidden="true"> | </span>
-              <button class="btn btn-sm btn-link program-edit-btn">Rename</button>
             </td>
           </tr>
         </table>
@@ -113,7 +109,7 @@
         <table width="100%" padding="4" border="0">
           <tr>
             <td>
-              <select class="form-control">
+              <select class="form-control additional-dropdown management-dropdown">
                 <option>Default Settings</option>
               </select>
             </td>
@@ -121,10 +117,6 @@
               <a class="btn btn-sm btn-link" href="https://marcomcentral.app.pti.com/Epsilon_Data_Management/Beta_Epsilon/CustomPage.aspx?uigroup_id=479602&page_id=11226">
               Edit
             </a>
-              <span class="pipe" aria-hidden="true"> | </span>
-              <button class="btn btn-sm btn-link program-edit-btn">Delete</button>
-              <span class="pipe" aria-hidden="true"> | </span>
-              <button class="btn btn-sm btn-link program-edit-btn">Rename</button>
             </td>
           </tr>
         </table>
