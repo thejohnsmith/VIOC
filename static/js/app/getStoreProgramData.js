@@ -2,7 +2,6 @@ var getStoreProgramData = (function ($) {
   /* Use getHashParams.js to get programId */
   var $programId = getHashParams.hashParams.programId;
   var makeRequest = function () {
-    console.log();
       // Make sure there's a User ID loaded from Marcom before we Init this script.
       if(marcomUserData.$user.externalId === '%%User.ExternalId%%' || $programId === undefined || $programId === null) {
         return
@@ -44,6 +43,12 @@ var getStoreProgramData = (function ($) {
           getUserConfigurations.makeRequest();
           return reloadCheckBoxes();
         }).done(function () {
+          /** Load the program settings if .program-settings-section is present
+           * @file app/program-settings.js
+           */
+          if($('.program-settings-section').length) {
+            programManagementController.controller.init();
+          }
           return setHashLinks(),
             programSettingsHandler()
         });
