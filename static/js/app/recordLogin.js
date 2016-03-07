@@ -30,14 +30,18 @@ var recordLogin = (function ($) {
     }).done(function (data) {
       results = JSON.parse(data);
       if($('#welcome').length) {
-        setLandingPageComponents(results);
+        setLandingPageType(results);
       }
     }).fail(function () {
       return;
     });
   };
-  var setLandingPageComponents = function (results) {
+  var setLandingPageType = function (results) {
     var $loginCount = results.loginCount;
+    var $newUser = getParameterByName('newUser', window.location.href);
+    if($newUser > 0) {
+      $loginCount = 6;
+    }
     if($loginCount > 5) {
       // Greater than 5, show "Getting Started Now" version of the home page.
       $('#welcome + #gettingStartedNow').fadeIn();
