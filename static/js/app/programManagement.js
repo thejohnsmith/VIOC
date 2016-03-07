@@ -44,20 +44,23 @@ var programManagementController = (function ($) {
 		  1)  Change "Edit" to "New" if the management config dropdown is showing a corporate item
 		  2)  Change the href of the "Edit/New" button to contain the ID of the selected config
 			*/
-      var $selectedMgmg = $('.config-select-program .management-dropdown').find(':selected').text();
-      var $selectedAdditional = $('.config-select-additional .management-dropdown').find(':selected').text();
-      if($selectedMgmg === 'Corporate Default') {
-        // console.log('selectedMgmg is Not Corporate Default');
-        $('.config-select-program .btn').text('View');
-      } else {
-        $('.config-select-program .btn').text('Edit');
-      }
-      if($selectedAdditional === 'Corporate Default') {
-        // console.log('selectedAdditional is Not Corporate Default');
-        $('.config-select-additional .btn').text('View');
-      } else {
-        $('.config-select-additional .btn').text('Edit');
-      }
+      $('.management-dropdown').each(function(){
+        var $selectedMgmg = $(this).find(':selected');
+        var $selectedMgmgId = $selectedMgmg.val();
+        var $selectedMgmgText = $selectedMgmg.text();
+        var $newProgramConfigLink = $(this).parent().next().find('.btn.btn-link');
+        var $configUrl = 'https://marcomcentral.app.pti.com/Epsilon_Data_Management/Beta_Epsilon/CustomPage.aspx?uigroup_id=479602&page_id=11225'
+
+        // Corporate Default configs are read-only.
+        if($selectedMgmgText === 'Corporate Default') {
+          $newProgramConfigLink.attr('href', $configUrl + '#program=' + $selectedMgmgId);
+          return $newProgramConfigLink.text('View');
+        } else {
+          $newProgramConfigLink.attr('href', $configUrl + '#program=' + $selectedMgmgId);
+          return $newProgramConfigLink.text('Edit');
+        }
+
+      });
     },
     attachEventListeners: function () {
       // Attach events
