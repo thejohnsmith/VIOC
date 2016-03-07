@@ -49,14 +49,14 @@ var programManagementController = (function ($) {
         var $selectedMgmgId = $selectedMgmg.val();
         var $selectedMgmgText = $selectedMgmg.text();
         var $newProgramConfigLink = $(this).parent().next().find('.btn.btn-link');
-        var $configUrl = 'https://marcomcentral.app.pti.com/Epsilon_Data_Management/Beta_Epsilon/CustomPage.aspx?uigroup_id=479602&page_id=11225'
+        var $configUrl = $newProgramConfigLink.attr('data-baseUrl');
 
         // Corporate Default configs are read-only.
         if($selectedMgmgText === 'Corporate Default') {
-          $newProgramConfigLink.attr('href', $configUrl + '#program=' + $selectedMgmgId);
+          $newProgramConfigLink.attr('href', $configUrl + '#programId=' + $selectedMgmgId);
           return $newProgramConfigLink.text('View');
         } else {
-          $newProgramConfigLink.attr('href', $configUrl + '#program=' + $selectedMgmgId);
+          $newProgramConfigLink.attr('href', $configUrl + '#programId=' + $selectedMgmgId);
           return $newProgramConfigLink.text('Edit');
         }
 
