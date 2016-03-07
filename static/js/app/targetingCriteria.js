@@ -41,7 +41,9 @@ var submitForm = function () {
 }
 var updateRecipientCount = function (save, callback) {
   var storeIds = [];
-  var selectedElements = $('#jstree').jstree().get_selected();
+  if($('#jstree').length){
+    var selectedElements = $('#jstree').jstree().get_selected();
+  }
   for(var idx in selectedElements) {
     if(!isNaN(parseInt(selectedElements[idx]))) storeIds.push(selectedElements[idx]);
   }
