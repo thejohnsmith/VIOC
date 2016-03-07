@@ -128,7 +128,6 @@ var getProgramParticipationStats = (function ($) {
             if(obj.storesParticipating === obj.storesEligible) {
               $programId.attr('class', programStatus.success);
             }
-            updateDashboardEnrollment(false);
           }
         }
         // Check for errors:
@@ -143,13 +142,6 @@ var getProgramParticipationStats = (function ($) {
           return $programId.attr('class', programStatus.error).find('.program-status').html('&#9888;').attr('title', 'An error occurred');
         }
       });
-    },
-    /**
-     * Updates the participation dashboard
-     * @return sets enrolled state to true.
-     */
-    updateDashboardEnrollment = function (val) {
-      $('.program-name-lifecycle > [data-enrolled]').attr('data-enrolled', val);
     },
     setFirstProgramTabContent = function () {
       var $initialFirstTab = $('#programSummary .program-list:first .program-overview-tab-content').html();
@@ -181,7 +173,6 @@ var getProgramParticipationStats = (function ($) {
     setProgramTitle: setProgramTitle,
     loadProgramData: loadProgramData,
     upDateProgramsDashboard: upDateProgramsDashboard,
-    updateDashboardEnrollment: updateDashboardEnrollment,
     requestFailed: requestFailed
   };
 })(jQuery);

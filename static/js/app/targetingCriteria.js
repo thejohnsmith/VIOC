@@ -78,7 +78,6 @@ $(document).ready(function () {
     'userId': userId
   }).done(function (data) {
     if($('.program-settings-section').length) {
-			console.log('load filters');
       var $storeSummary = data;
       return programFilters.init($storeSummary);
     }

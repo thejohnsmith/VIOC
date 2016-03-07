@@ -88,7 +88,7 @@ var programFilters = new function ($) {
         $(filter1html).appendTo('.filters-area-section');
         return handlers();
       }).fail(function () {
-        requestFailed();
+        toastr.error('Errrrrrr');
       });
 
     }
