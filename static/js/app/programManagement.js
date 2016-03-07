@@ -26,9 +26,9 @@ var programManagementController = (function ($) {
       })
     },
     retrieveUserConfigs: function (callback) {
-			/**
-			 * @todo use dynamic userId and programId
-			 */
+      /**
+       * @todo use dynamic userId and programId
+       */
       $.get('https://adobe-uat-vioc.epsilon.com/jssp/vioc/getUserConfigurations.jssp?userId=34567&programId=1', function (results) {
         if(typeof callback === "function") callback(JSON.parse(results));
       });
@@ -44,6 +44,20 @@ var programManagementController = (function ($) {
 		  1)  Change "Edit" to "New" if the management config dropdown is showing a corporate item
 		  2)  Change the href of the "Edit/New" button to contain the ID of the selected config
 			*/
+      var $selectedMgmg = $('.config-select-program .management-dropdown').find(':selected').text();
+      var $selectedAdditional = $('.config-select-additional .management-dropdown').find(':selected').text();
+      if($selectedMgmg === 'Corporate Default') {
+        // console.log('selectedMgmg is Not Corporate Default');
+        $('.config-select-program .btn').text('View');
+      } else {
+        $('.config-select-program .btn').text('Edit');
+      }
+      if($selectedAdditional === 'Corporate Default') {
+        // console.log('selectedAdditional is Not Corporate Default');
+        $('.config-select-additional .btn').text('View');
+      } else {
+        $('.config-select-additional .btn').text('Edit');
+      }
     },
     attachEventListeners: function () {
       // Attach events
@@ -58,6 +72,7 @@ var programManagementController = (function ($) {
       });
       $('.management-dropdown').on('change', function () {
         //console.log('Store level config changed!');
+        controller.refreshManagementControls();
       })
     },
     onSelectAll: function () {},

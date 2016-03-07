@@ -1,22 +1,13 @@
 <script class="participation-dashboard-template" type="x-tmpl-mustache">
-  <tr class="program-name program-name-lifecycle">
-    <td data-title="Enrolled" data-enrolled="">
-      <span class="errolled-state" aria-hidden="true">
-    </span>
-    </td>
-    <td data-title="Program">Lifecycle</td>
-    <td data-title="Impact">3.0</td>
-    <td data-title="Opportunity">Yes</td>
-  </tr>
-  {{#.}} {{^isLifecycleCampaign}}
+  {{#.}} {{^isLifecycleCampaign}} {{#showInPrtcDash}}
   <tr class="program-name program-name-{{programName}}">
-    <td data-title="Enrolled" data-enrolled="true">
+    <td data-title="Enrolled" data-enrolled="{{#prtcDashEnrolled}}true{{/prtcDashEnrolled}}{{^prtcDashEnrolled}}false{{/prtcDashEnrolled}}">
       <span class="errolled-state" aria-hidden="true">
       </span>
     </td>
     <td data-title="Program">{{programName}}</td>
     <td data-title="Impact">{{monthlyCostPerRecipientDm}}</td>
-    <td data-title="Opportunity">Yes</td>
+    <td data-title="Opportunity">{{#prtcDashOpportunity}}yes{{/prtcDashOpportunity}}{{^prtcDashOpportunity}}no{{/prtcDashOpportunity}}</td>
   </tr>
-  {{/isLifecycleCampaign}} {{/.}}
+  {{/showInPrtcDash}} {{/isLifecycleCampaign}} {{/.}}
 </script>

@@ -2,7 +2,7 @@
   "id": 10,
   "programName": "Post-Visit",
   "programDesc": "The Post-Visit program is a Thank You email sent out one to two business days after a customer's visit. The email also includes a link to take a brief customer satisfaction survey. One week after a customer's visit, a second campaign will be sent that includes a special offer and invites the customer to bring in their second car.",
-  "programImg": "https://files.marcomcentral.app.pti.com/epsilon/static/images/programOverview700x315.jpg",
+  "programImg": "https://files.marcomcentral.app.pti.com/epsilon/previews/PostVisit_lpv.jpg",
   "programUsesDfs": 0,
   "programMeta": {
     "touchpoints": [{
@@ -12,7 +12,7 @@
       "name": "Post-Visit Email #1",
       "timing": "2 Days After Service Date"
     }, {
-      "previewThumbnail": "",
+      "previewThumbnail": "https://files.marcomcentral.app.pti.com/epsilon/thumbnails/VIOC_PostVisit-2_EM-161x95.jpg",
       "previewUrl": "https://files.marcomcentral.app.pti.com/epsilon/pdfs/VIOC_PostVisit_EM.pdf",
       "channel": "Email",
       "name": "Post-Visit Email #2",
@@ -22,7 +22,7 @@
   "isLifecycleCampaign": 1,
   "monthlyCostPerRecipientDm": 0.32,
   "storesEligible": 3,
-  "storesParticipating": 3,
+  "storesParticipating": 0,
   "showInPrtcDash": 0,
   "prtcDashEnrolled": 0,
   "prtcDashOpportunity": 1,
@@ -31,7 +31,7 @@
   "id": 11,
   "programName": "Pre-Reminder",
   "programDesc": "The Pre-Reminder program is an email sent to the customer two weeks before we believe they are due for an oil change, based on mileage.",
-  "programImg": "https://files.marcomcentral.app.pti.com/epsilon/static/images/programOverview700x315.jpg",
+  "programImg": "https://files.marcomcentral.app.pti.com/epsilon/previews/PreReminder_lpv.jpg",
   "programUsesDfs": 1,
   "programMeta": {
     "touchpoints": [{
@@ -51,7 +51,7 @@
   "isLifecycleCampaign": 1,
   "monthlyCostPerRecipientDm": 0.32,
   "storesEligible": 3,
-  "storesParticipating": 3,
+  "storesParticipating": 0,
   "showInPrtcDash": 0,
   "prtcDashEnrolled": 0,
   "prtcDashOpportunity": 1,
@@ -60,7 +60,7 @@
   "id": 1,
   "programName": "Reminder",
   "programDesc": "The Reminder program includes mail, email and text message communications if we have the customers contact information. It goes out at the time we believe they are due for an oil change, based on mileage.",
-  "programImg": "https://files.marcomcentral.app.pti.com/epsilon/previews/StateInspection_Reminder_lpv.jpg",
+  "programImg": "https://files.marcomcentral.app.pti.com/epsilon/previews/Reminder_lpv.jpg",
   "programUsesDfs": 1,
   "programMeta": {
     "touchpoints": [{
@@ -107,7 +107,7 @@
   "id": 2,
   "programName": "Lapsed",
   "programDesc": "The Lapsed program includes mail, email and text message communications if we have the customers contact information. It goes out approximately 4.5 months after they were in for their previous oil change.",
-  "programImg": "https://files.marcomcentral.app.pti.com/epsilon/static/images/programOverview700x315.jpg",
+  "programImg": "https://files.marcomcentral.app.pti.com/epsilon/previews/Lapsed_lpv.jpg",
   "programUsesDfs": 1,
   "programMeta": {
     "touchpoints": [{
@@ -148,7 +148,7 @@
   "id": 3,
   "programName": "Relapsed",
   "programDesc": "The Relapsed program includes mail and email communications if we have the customers contact information. It goes out approximately 6 months after they were in for their previous oil change.",
-  "programImg": "https://files.marcomcentral.app.pti.com/epsilon/static/images/programOverview700x315.jpg",
+  "programImg": "https://files.marcomcentral.app.pti.com/epsilon/previews/Relapsed_lpv.jpg",
   "programUsesDfs": 0,
   "programMeta": {
     "touchpoints": [{
@@ -177,7 +177,7 @@
   "id": 4,
   "programName": "Lost",
   "programDesc": "The Lost program includes mail and email communications if we have the customers contact information. It goes out approximately 8 months after they were in for their previous oil change.",
-  "programImg": "https://files.marcomcentral.app.pti.com/epsilon/static/images/programOverview700x315.jpg",
+  "programImg": "https://files.marcomcentral.app.pti.com/epsilon/previews/Lost_lpv.jpg",
   "programUsesDfs": 0,
   "programMeta": {
     "touchpoints": [{
@@ -206,7 +206,7 @@
   "id": 5,
   "programName": "Reactivation",
   "programDesc": "The Reactivation program includes mail and email communications if we have the customers contact information. Customers receive Reactivation communications if they haven't been in for service for 10-24 months.",
-  "programImg": "https://files.marcomcentral.app.pti.com/epsilon/static/images/programOverview700x315.jpg",
+  "programImg": "https://files.marcomcentral.app.pti.com/epsilon/previews/Reactivation_lpv.jpg",
   "programUsesDfs": 0,
   "programMeta": {
     "touchpoints": [{
@@ -249,7 +249,7 @@
   "isLifecycleCampaign": 1,
   "monthlyCostPerRecipientDm": 0.32,
   "storesEligible": 3,
-  "storesParticipating": 3,
+  "storesParticipating": 0,
   "showInPrtcDash": 0,
   "prtcDashEnrolled": 0,
   "prtcDashOpportunity": 1,
@@ -258,13 +258,13 @@
   "id": 6,
   "programName": "Fleet",
   "programDesc": "",
-  "programImg": "https://files.marcomcentral.app.pti.com/epsilon/static/images/programOverview700x315.jpg",
+  "programImg": "",
   "programUsesDfs": 0,
   "programMeta": [],
   "isLifecycleCampaign": 0,
   "monthlyCostPerRecipientDm": 0.32,
   "storesEligible": 3,
-  "storesParticipating": 0,
+  "storesParticipating": 3,
   "showInPrtcDash": 0,
   "prtcDashEnrolled": 0,
   "prtcDashOpportunity": 1,
@@ -273,13 +273,13 @@
   "id": 7,
   "programName": "Facebook",
   "programDesc": "",
-  "programImg": "https://files.marcomcentral.app.pti.com/epsilon/static/images/programOverview700x315.jpg",
+  "programImg": "",
   "programUsesDfs": 0,
   "programMeta": {},
   "isLifecycleCampaign": 0,
   "monthlyCostPerRecipientDm": 0.32,
   "storesEligible": 3,
-  "storesParticipating": 0,
+  "storesParticipating": 3,
   "showInPrtcDash": 1,
   "prtcDashEnrolled": 0,
   "prtcDashOpportunity": 1,
@@ -288,7 +288,7 @@
   "id": 8,
   "programName": "Inspection",
   "programDesc": "",
-  "programImg": "https://files.marcomcentral.app.pti.com/epsilon/static/images/programOverview700x315.jpg",
+  "programImg": "",
   "programUsesDfs": 0,
   "programMeta": {
     "touchpoints": [{
@@ -308,7 +308,7 @@
   "isLifecycleCampaign": 0,
   "monthlyCostPerRecipientDm": 0.32,
   "storesEligible": 3,
-  "storesParticipating": 0,
+  "storesParticipating": 3,
   "showInPrtcDash": 0,
   "prtcDashEnrolled": 0,
   "prtcDashOpportunity": 1,
@@ -317,7 +317,7 @@
   "id": 12,
   "programName": "Asphalt Adventures",
   "programDesc": "",
-  "programImg": "https://files.marcomcentral.app.pti.com/epsilon/static/images/programOverview700x315.jpg",
+  "programImg": "",
   "programUsesDfs": 0,
   "programMeta": {},
   "isLifecycleCampaign": 0,
@@ -332,7 +332,7 @@
   "id": 307202,
   "programName": "SEM",
   "programDesc": "",
-  "programImg": "https://files.marcomcentral.app.pti.com/epsilon/static/images/programOverview700x315.jpg",
+  "programImg": "",
   "programUsesDfs": 0,
   "programMeta": {},
   "isLifecycleCampaign": 0,

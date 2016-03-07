@@ -69,6 +69,11 @@ var getStoreProgramData = (function ($) {
           $('.program-settings-footer-row td:first-child').html('Adjust ' + $('.program-settings-section td .customCheckbox.checked').length + ' selected store(s) to use:');
         })
       }
+      // var $filter1 = '{{#.}}{{#filter-type}}<div class="{{filter-type}} filter-select select-option">' + '<select class="selectbox">' + '{{#filter-type}}<option class="selectboxOption" selected>Select {{filter-type}}</option>' + '<option class="selectboxOption" value="{{text}}">{{text}}</option>{{/filter-type}}' + '</select>' + '</div>{{/filter-type}}' + '{{#children}}' + '{{#filter-type}}<div class="{{filter-type}} filter-select select-option hidden">' + '<select class="selectbox">' + '{{#filter-type}}<option class="selectboxOption" selected>Select {{filter-type}}</option>{{/filter-type}}' + '{{#children}}<option class="selectboxOption" value="{{text}}">{{text}}</option>{{/children}}' + '</select>' + '</div>{{/filter-type}}' + '{{/children}}' + '{{#children}}' + '<div class="area filter-select select-option hidden">' + '<select class="selectbox">' + '{{#children}}<option class="selectboxOption" selected>Select Area</option>' + '{{#children}}<option class="selectboxOption" value="{{text}}">{{text}}</option>{{/children}}{{/children}}' + '</select>' + '</div>' + '{{/children}}' + '{{/.}}'
+      // var filter1html = Mustache.to_html($filter1, $storeSummary);
+      // $(filter1html).appendTo('.filters-area-section');
+      // return handlers();
+
     },
     reloadCheckBoxes = function () {
       return customCheckAndRadioBoxes.customCheckbox();
