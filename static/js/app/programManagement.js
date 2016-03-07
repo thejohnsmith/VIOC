@@ -51,15 +51,15 @@ var programManagementController = (function ($) {
         var $newProgramConfigLink = $(this).parent().next().find('.btn.btn-link');
         var $configUrl = $newProgramConfigLink.attr('data-baseUrl');
 
+        // Update the Edit/View links
+        $newProgramConfigLink.attr('href', $configUrl + '#programId=' + $selectedMgmgId);
+
         // Corporate Default configs are read-only.
         if($selectedMgmgText === 'Corporate Default') {
-          $newProgramConfigLink.attr('href', $configUrl + '#programId=' + $selectedMgmgId);
           return $newProgramConfigLink.text('View');
         } else {
-          $newProgramConfigLink.attr('href', $configUrl + '#programId=' + $selectedMgmgId);
           return $newProgramConfigLink.text('Edit');
         }
-
       });
     },
     attachEventListeners: function () {
