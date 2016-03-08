@@ -30,30 +30,35 @@ var programManagementController = (function ($) {
        * @todo use dynamic userId and programId
        */
       $.get('https://adobe-uat-vioc.epsilon.com/jssp/vioc/getUserConfigurations.jssp?userId=34567&programId=1', function (results) {
-        if(typeof callback === "function") callback(JSON.parse(results));
+        if(typeof callback === 'function') callback(JSON.parse(results));
       });
     },
     getStoreProgramData: function () {
-      // Do stuff
+      $storeProgramData;
     },
-    selectStoreConfigurations: function () {
-      // Do stuff
+    selectStoreConfigurations: function (callback) {
+      /* Usage: setStoreSubscription.makeRequest(34567, 1, 1, 1);
+       * example: https://adobe-uat-vioc.epsilon.com/jssp/vioc/setStoreSubscription.jssp?userId=34567&storeIds=1&programId=1&subscribe=1
+       */
+      var selectedStores = $storeProgramData;
+
+      function saveStoreSubscription(selectedStores) {
+        if(typeof callback === 'function') callback(selectedStores);
+      }
     },
     refreshManagementControls: function () {
       /*
 		  1)  Change "Edit" to "New" if the management config dropdown is showing a corporate item
 		  2)  Change the href of the "Edit/New" button to contain the ID of the selected config
 			*/
-      $('.management-dropdown').each(function(){
+      $('.management-dropdown').each(function () {
         var $selectedMgmg = $(this).find(':selected');
         var $selectedMgmgId = $selectedMgmg.val();
         var $selectedMgmgText = $selectedMgmg.text();
         var $newProgramConfigLink = $(this).parent().next().find('.btn.btn-link');
         var $configUrl = $newProgramConfigLink.attr('data-baseUrl');
-
         // Update the Edit/View links
         $newProgramConfigLink.attr('href', $configUrl + '#programId=' + $selectedMgmgId);
-
         // Corporate Default configs are read-only.
         if($selectedMgmgText === 'Corporate Default') {
           return $newProgramConfigLink.text('View');
@@ -62,6 +67,8 @@ var programManagementController = (function ($) {
         }
       });
     },
+    showSuccessToast: function () {},
+    showFailToast: function () {},
     attachEventListeners: function () {
       // Attach events
       $('.store-level-dropdown').on('change', function () {

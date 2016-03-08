@@ -25,6 +25,8 @@ var getStoreProgramData = (function ($) {
         loadStoreProgramData(result);
       }).fail(function () {
         requestFailed();
+      }).always(function (result) {
+        $storeProgramData = result;
       });
     },
     loadStoreProgramData = function (result) {

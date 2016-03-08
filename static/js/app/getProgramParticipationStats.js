@@ -32,6 +32,8 @@ var getProgramParticipationStats = (function ($) {
         loadDashboardData(result);
       }).fail(function () {
         requestFailed();
+      }).always(function (result) {
+        $programParticipationStats = result;
       });
     },
     /** Get Program title
@@ -94,7 +96,6 @@ var getProgramParticipationStats = (function ($) {
           var template = $(templates).filter('.program-list-template').html();
           $('.program-select').html(Mustache.render(template, result));
           customCheckAndRadioBoxes.customCheckbox();
-          // loadProgramTabs(result);
           return upDateProgramsDashboard(result), setProgramTabContent();
         });
       }
