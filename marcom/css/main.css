@@ -130,6 +130,13 @@ textarea:-ms-input-placeholder {
   color: #555;
   opacity: 1;
 }
+.disabled-input, .disabled-input:hover {
+  opacity: 0.4;
+  cursor: pointer;
+}
+.disabled-input > * {
+  display: none;
+}
 p {
   line-height: 24px;
 }
@@ -1492,6 +1499,85 @@ header#nav {
 .program-input-select .save-updates .save-update-btn:hover {
   background: #EC1C23;
 }
+.settings-section {
+  float: left;
+  max-width: 600px;
+  padding-right: 32px
+}
+.results-section {
+  float: left;
+  max-width: 600px
+}
+.results-table th {
+  text-align: center;
+  border: 1px solid #888;
+  padding: 8px;
+  background-color: darkblue;
+  color: white
+}
+.results-table td {
+  padding: 8px;
+  border: 1px solid #888;
+  font-size: 14px
+}
+.results-table td.result-label {
+  padding: 8px;
+  background-color: lightblue
+}
+.results-table td.result-value {
+  padding: 4px
+}
+.results-table td.result-value div {
+  padding: 4px
+}
+.results-table td.result-value div:nth-child(even) {
+  background-color: #E9E9E9;
+  border-radius: 4px;
+  margin: 6px 0px;
+}
+.results-table td.result-value span {
+  border-top: 1px solid #888;
+  padding-top: 4px;
+  margin-top: 4px;
+  display: block;
+  font-size: 12px;
+  color: #888;
+  font-weight: bold
+}
+.settings-section i {
+  color: red;
+}
+.settings-table {
+  max-width: 500px;
+}
+.label-cell {
+  min-width: 200px;
+  padding: 8px
+}
+.value-cell {
+  padding: 8px
+}
+.value-cell select {
+  border: 1px solid #888;
+  width: 100%
+}
+.discount-code-subrow {
+  text-align: right;
+  height: 48px
+}
+.discount-code-table td {
+  padding: 8px
+}
+.result-preview {
+  padding: 0px;
+  border: 0px
+}
+.result-preview .touchpoint-overview {
+  padding: 8px;
+  border-top: 1px solid #888;
+  border-left: 1px solid #888;
+  border-right: 1px solid #888
+}
 .help-get-started {
   float: left;
   width: 100%;
@@ -2730,7 +2816,7 @@ button.toast-close-button {
     width: 99.7% !important;
   }
 }
-.btn {
+.btn, a.btn {
   display: inline-block;
   padding: 6px 12px;
   margin-bottom: 0;
@@ -2752,6 +2838,9 @@ button.toast-close-button {
   border-radius: 4px;
   -webkit-transition: all 0.5s ease-out;
   transition: all 0.5s ease-out;
+}
+a.btn.btn-primary {
+  color: #fff;
 }
 .btn:focus, .btn:active:focus, .btn.active:focus, .btn.focus, .btn:active.focus, .btn.active.focus {
   outline: thin dotted;

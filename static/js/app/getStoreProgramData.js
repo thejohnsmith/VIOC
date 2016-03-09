@@ -25,8 +25,6 @@ var getStoreProgramData = (function ($) {
         loadStoreProgramData(result);
       }).fail(function () {
         requestFailed();
-      }).always(function (result) {
-        $storeProgramData = result;
       });
     },
     loadStoreProgramData = function (result) {
@@ -43,14 +41,9 @@ var getStoreProgramData = (function ($) {
           var template2 = $(templates).filter('.program-settings-template').html();
           $('.program-settings-section').html(Mustache.render(template2, result));
           getUserConfigurations.makeRequest();
+          programManagementController.controller.init();
           return reloadCheckBoxes();
         }).done(function () {
-          /** Load the program settings if .program-settings-section is present
-           * @file app/program-settings.js
-           */
-          if($('.program-settings-section').length) {
-            programManagementController.controller.init();
-          }
           return setHashLinks(),
             programSettingsHandler()
         });
