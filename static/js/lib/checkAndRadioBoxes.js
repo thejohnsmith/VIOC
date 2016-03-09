@@ -53,24 +53,11 @@ var customCheckAndRadioBoxes = (function ($) {
     // This would likely be easier to do by making an API request to get programParticipationStats
     // var $('.js-all-selectable.checked').parent().parent().find('.storesParticipating');
   var selectAllCustomBoxes = function () {
-    $('.js-select-all-boxes').on('click', function (e) {
+    var $jsAllSelectable = $('.programsummary-table .js-all-selectable:not(".disabled-input")');
+
+    $('.store-enroll .btn.btn-primary').on('click', function (e) {
       e.preventDefault();
-      var $jsAllSelectable = $('.js-all-selectable');
-      var $jsAllSelectableChecked = $('.js-all-selectable.checked');
-      // Return if all are already selected.
-      if($jsAllSelectableChecked.length === $jsAllSelectable.length) {
-        return;
-      }
       $jsAllSelectable.addClass('checked').find($('input')).prop('checked', 'checked').focus();
-      $('.js-select-all-boxes').on('click', function () {
-        if(!$('.store-enroll input:checkbox:checked').length) {
-          return
-        }
-        var $selectedPrograms = $('.store-enroll .js-all-selectable.checked').map(function () {
-          return $(this).val();
-        }).get().join();
-        return setStoreSubscription.makeRequest($selectedPrograms);
-      });
     });
     /** Toggle Buttons
      * @todo API request to enroll ALL stores.
