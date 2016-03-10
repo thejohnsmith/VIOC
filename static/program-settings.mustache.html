@@ -33,7 +33,7 @@
               <option>Default Settings</option>
             </select>
           {{/enrolled}}
-          {{^enrolled}}Store Not Enrolled{{/enrolled}}
+          {{^enrolled}}<small>Store Not Enrolled</small>{{/enrolled}}
           </td>
           <td class="store-configuration additional-offer" style="padding: 8px">
           {{#enrolled}}
@@ -42,7 +42,7 @@
             </select>
           </td>
           {{/enrolled}}
-          {{^enrolled}}Store Not Enrolled{{/enrolled}}
+          {{^enrolled}}<small>Store Not Enrolled</small>{{/enrolled}}
         </tr>
         {{/.}}
         <tr class="program-settings-footer-row">
