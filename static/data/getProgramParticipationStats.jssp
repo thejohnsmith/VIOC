@@ -1,63 +1,51 @@
 [{
-  "id": 101,
-  "programName": "Fleet-Reminder",
-  "programDesc": "The Fleet-Reminder program is a Thank You email sent out one to two business days after a customer's visit. The email also includes a link to take a brief customer satisfaction survey. One week after a customer's visit, a second campaign will be sent that includes a special offer and invites the customer to bring in their second car.",
-  "programImg": "https://files.marcomcentral.app.pti.com/epsilon/previews/PostVisit_lpv.jpg",
+  "id": 13,
+  "programName": "Fleet Reminder",
+  "programDesc": "",
+  "programImg": "",
   "programUsesDfs": 0,
-  "programMeta": {
-    "touchpoints": [{
-      "previewThumbnail": "https://files.marcomcentral.app.pti.com/epsilon/thumbnails/VIOC_PostVisit_EM_161x95.jpg",
-      "previewUrl": "https://files.marcomcentral.app.pti.com/epsilon/pdfs/VIOC_PostVisit_EM.pdf",
-      "channel": "Email",
-      "name": "Fleet-Reminder Email #1",
-      "timing": "2 Days After Service Date"
-    }, {
-      "previewThumbnail": "https://files.marcomcentral.app.pti.com/epsilon/thumbnails/VIOC_PostVisit-2_EM-161x95.jpg",
-      "previewUrl": "https://files.marcomcentral.app.pti.com/epsilon/pdfs/VIOC_PostVisit_EM.pdf",
-      "channel": "Email",
-      "name": "Post-Visit Email #2",
-      "timing": "7 Days After Service Date"
-    }]
-  },
+  "programMeta": {},
   "isLifecycleCampaign": 1,
+  "isSpecialtyProgram": 1,
   "monthlyCostPerRecipientDm": 0.32,
   "storesEligible": 3,
   "storesParticipating": 0,
   "showInPrtcDash": 0,
-  "prtcDashEnrolled": 0,
+  "prtcDashEnrolled": 1,
   "prtcDashOpportunity": 1,
-  "ocpd": 0,
-  "isSpecialtyProgram": 1
+  "ocpd": 0
 }, {
-  "id": 111,
-  "programName": "Fleet-Lapsed",
-  "programDesc": "The Fleet-Lapsed program is an email sent to the customer two weeks before we believe they are due for an oil change, based on mileage.",
-  "programImg": "https://files.marcomcentral.app.pti.com/epsilon/previews/PreReminder_lpv.jpg",
-  "programUsesDfs": 1,
-  "programMeta": {
-    "touchpoints": [{
-      "previewThumbnail": "https://files.marcomcentral.app.pti.com/epsilon/thumbnails/VIOC_PreReminder_EM_161x95.jpg",
-      "previewUrl": "https://files.marcomcentral.app.pti.com/epsilon/pdfs/VIOC_PreReminder_EM.pdf",
-      "channel": "Email",
-      "name": "Pre-Reminder Email",
-      "timing": "14 Days Before Due for Service"
-    }, {
-      "previewThumbnail": "https://files.marcomcentral.app.pti.com/epsilon/thumbnails/VIOC-SMS-thumbnail-graphic-161x95.jpg",
-      "previewUrl": "",
-      "channel": "SMS",
-      "name": "Pre-Reminder SMS",
-      "timing": "14 Days Before Due for Service"
-    }]
-  },
+  "id": 14,
+  "programName": "Fleet Lapsed",
+  "programDesc": "",
+  "programImg": "",
+  "programUsesDfs": 0,
+  "programMeta": {},
   "isLifecycleCampaign": 1,
+  "isSpecialtyProgram": 1,
   "monthlyCostPerRecipientDm": 0.32,
   "storesEligible": 3,
   "storesParticipating": 0,
   "showInPrtcDash": 0,
-  "prtcDashEnrolled": 0,
+  "prtcDashEnrolled": 1,
   "prtcDashOpportunity": 1,
-  "ocpd": 0,
-  "isSpecialtyProgram": 1
+  "ocpd": 0
+}, {
+  "id": 15,
+  "programName": "Inspection Reminder",
+  "programDesc": "",
+  "programImg": "",
+  "programUsesDfs": 0,
+  "programMeta": {},
+  "isLifecycleCampaign": 1,
+  "isSpecialtyProgram": 1,
+  "monthlyCostPerRecipientDm": 0.32,
+  "storesEligible": 3,
+  "storesParticipating": 0,
+  "showInPrtcDash": 0,
+  "prtcDashEnrolled": 1,
+  "prtcDashOpportunity": 1,
+  "ocpd": 0
 }, {
   "id": 10,
   "programName": "Post-Visit",
@@ -80,11 +68,12 @@
     }]
   },
   "isLifecycleCampaign": 1,
+  "isSpecialtyProgram": 0,
   "monthlyCostPerRecipientDm": 0.32,
   "storesEligible": 3,
-  "storesParticipating": 0,
+  "storesParticipating": 3,
   "showInPrtcDash": 0,
-  "prtcDashEnrolled": 0,
+  "prtcDashEnrolled": 1,
   "prtcDashOpportunity": 1,
   "ocpd": 0
 }, {
@@ -109,11 +98,12 @@
     }]
   },
   "isLifecycleCampaign": 1,
+  "isSpecialtyProgram": 0,
   "monthlyCostPerRecipientDm": 0.32,
   "storesEligible": 3,
-  "storesParticipating": 0,
+  "storesParticipating": 3,
   "showInPrtcDash": 0,
-  "prtcDashEnrolled": 0,
+  "prtcDashEnrolled": 1,
   "prtcDashOpportunity": 1,
   "ocpd": 0
 }, {
@@ -156,11 +146,12 @@
     }]
   },
   "isLifecycleCampaign": 1,
+  "isSpecialtyProgram": 0,
   "monthlyCostPerRecipientDm": 0.32,
   "storesEligible": 3,
   "storesParticipating": 3,
   "showInPrtcDash": 0,
-  "prtcDashEnrolled": 0,
+  "prtcDashEnrolled": 1,
   "prtcDashOpportunity": 1,
   "ocpd": 0
 }, {
@@ -197,11 +188,12 @@
     }]
   },
   "isLifecycleCampaign": 1,
+  "isSpecialtyProgram": 0,
   "monthlyCostPerRecipientDm": 0.32,
   "storesEligible": 3,
   "storesParticipating": 3,
   "showInPrtcDash": 0,
-  "prtcDashEnrolled": 0,
+  "prtcDashEnrolled": 1,
   "prtcDashOpportunity": 1,
   "ocpd": 0
 }, {
@@ -226,11 +218,12 @@
     }]
   },
   "isLifecycleCampaign": 1,
+  "isSpecialtyProgram": 0,
   "monthlyCostPerRecipientDm": 0.32,
   "storesEligible": 3,
   "storesParticipating": 3,
   "showInPrtcDash": 0,
-  "prtcDashEnrolled": 0,
+  "prtcDashEnrolled": 1,
   "prtcDashOpportunity": 1,
   "ocpd": 0
 }, {
@@ -255,11 +248,12 @@
     }]
   },
   "isLifecycleCampaign": 1,
+  "isSpecialtyProgram": 0,
   "monthlyCostPerRecipientDm": 0.32,
   "storesEligible": 3,
   "storesParticipating": 3,
   "showInPrtcDash": 0,
-  "prtcDashEnrolled": 0,
+  "prtcDashEnrolled": 1,
   "prtcDashOpportunity": 1,
   "ocpd": 0
 }, {
@@ -284,34 +278,12 @@
     }]
   },
   "isLifecycleCampaign": 1,
+  "isSpecialtyProgram": 0,
   "monthlyCostPerRecipientDm": 0.32,
   "storesEligible": 3,
   "storesParticipating": 3,
   "showInPrtcDash": 0,
-  "prtcDashEnrolled": 0,
-  "prtcDashOpportunity": 1,
-  "ocpd": 0
-}, {
-  "id": 9,
-  "programName": "Lifecycle Test",
-  "programDesc": "The Lifecycle Test program is used for internal purposes only, to test the functionality of WARP Drive.",
-  "programImg": "https://files.marcomcentral.app.pti.com/epsilon/static/images/programOverview700x315.jpg",
-  "programUsesDfs": 0,
-  "programMeta": {
-    "touchpoints": [{
-      "previewThumbnail": "http://project-progress.net/projects/valvoline/images/review-bg.jpg",
-      "previewUrl": "http://www.vioc.com",
-      "channel": "Email",
-      "Name": "reminder",
-      "timing": "2 - 3 Days"
-    }]
-  },
-  "isLifecycleCampaign": 1,
-  "monthlyCostPerRecipientDm": 0.32,
-  "storesEligible": 3,
-  "storesParticipating": 0,
-  "showInPrtcDash": 0,
-  "prtcDashEnrolled": 0,
+  "prtcDashEnrolled": 1,
   "prtcDashOpportunity": 1,
   "ocpd": 0
 }, {
@@ -322,13 +294,30 @@
   "programUsesDfs": 0,
   "programMeta": [],
   "isLifecycleCampaign": 0,
+  "isSpecialtyProgram": 0,
   "monthlyCostPerRecipientDm": 0.32,
   "storesEligible": 3,
   "storesParticipating": 3,
   "showInPrtcDash": 0,
-  "prtcDashEnrolled": 0,
+  "prtcDashEnrolled": 1,
   "prtcDashOpportunity": 1,
   "ocpd": 0
+}, {
+  "id": 390149,
+  "programName": "Lifecycle",
+  "programDesc": "",
+  "programImg": "",
+  "programUsesDfs": 0,
+  "programMeta": {},
+  "isLifecycleCampaign": 0,
+  "isSpecialtyProgram": 0,
+  "monthlyCostPerRecipientDm": 0.32,
+  "storesEligible": 3,
+  "storesParticipating": 0,
+  "showInPrtcDash": 1,
+  "prtcDashEnrolled": 1,
+  "prtcDashOpportunity": 1,
+  "ocpd": 3
 }, {
   "id": 7,
   "programName": "Facebook",
@@ -337,13 +326,14 @@
   "programUsesDfs": 0,
   "programMeta": {},
   "isLifecycleCampaign": 0,
+  "isSpecialtyProgram": 0,
   "monthlyCostPerRecipientDm": 0.32,
   "storesEligible": 3,
   "storesParticipating": 3,
   "showInPrtcDash": 1,
-  "prtcDashEnrolled": 0,
+  "prtcDashEnrolled": 1,
   "prtcDashOpportunity": 1,
-  "ocpd": 1.23
+  "ocpd": 0.2
 }, {
   "id": 8,
   "programName": "Inspection",
@@ -366,11 +356,12 @@
     }]
   },
   "isLifecycleCampaign": 0,
+  "isSpecialtyProgram": 0,
   "monthlyCostPerRecipientDm": 0.32,
   "storesEligible": 3,
   "storesParticipating": 3,
   "showInPrtcDash": 0,
-  "prtcDashEnrolled": 0,
+  "prtcDashEnrolled": 1,
   "prtcDashOpportunity": 1,
   "ocpd": 0
 }, {
@@ -381,13 +372,14 @@
   "programUsesDfs": 0,
   "programMeta": {},
   "isLifecycleCampaign": 0,
+  "isSpecialtyProgram": 0,
   "monthlyCostPerRecipientDm": 0.32,
   "storesEligible": 3,
   "storesParticipating": 0,
   "showInPrtcDash": 1,
-  "prtcDashEnrolled": 0,
+  "prtcDashEnrolled": 1,
   "prtcDashOpportunity": 1,
-  "ocpd": 1.23
+  "ocpd": 0.25
 }, {
   "id": 307202,
   "programName": "SEM",
@@ -396,11 +388,12 @@
   "programUsesDfs": 0,
   "programMeta": {},
   "isLifecycleCampaign": 0,
+  "isSpecialtyProgram": 0,
   "monthlyCostPerRecipientDm": 0.32,
   "storesEligible": 3,
   "storesParticipating": 0,
   "showInPrtcDash": 1,
-  "prtcDashEnrolled": 0,
+  "prtcDashEnrolled": 1,
   "prtcDashOpportunity": 1,
-  "ocpd": 4.5599999
+  "ocpd": 2.3
 }]
