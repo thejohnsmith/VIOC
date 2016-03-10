@@ -6,7 +6,7 @@
         <tr>
           <th class="store-enroll">
             <p>Program Select</p>
-            <button class="btn btn-primary btn-sm js-select-all-boxes">Select All</button>
+            <button class="btn btn-primary btn-sm">Select All</button>
           </th>
           <th class="store">Store</th>
           <th class="store-configuration">Oil Change Offers</th>
@@ -33,7 +33,7 @@
               <option>Default Settings</option>
             </select>
           {{/enrolled}}
-          {{^enrolled}}Store Not Enrolled{{/enrolled}}
+          {{^enrolled}}<small>Store Not Enrolled</small>{{/enrolled}}
           </td>
           <td class="store-configuration additional-offer" style="padding: 8px">
           {{#enrolled}}
@@ -42,7 +42,7 @@
             </select>
           </td>
           {{/enrolled}}
-          {{^enrolled}}Store Not Enrolled{{/enrolled}}
+          {{^enrolled}}<small>Store Not Enrolled</small>{{/enrolled}}
         </tr>
         {{/.}}
         <tr class="program-settings-footer-row">
