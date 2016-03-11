@@ -37,7 +37,7 @@ var setStoreSubscription = (function ($) {
        **/
       if(!$subscribe) {
         // Unenrolled
-        return new toastr.error('Store no longer enrolled.');
+        return new toastr.success('Store no longer enrolled.');
       }
       if($subscribe) {
         // Enrolled

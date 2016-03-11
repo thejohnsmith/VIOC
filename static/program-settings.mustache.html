@@ -28,21 +28,19 @@
             <div class="store-number">Store #{{storeId}}</div>
           </td>
           <td class="store-configuration" style="padding: 8px">
-          {{#enrolled}}
+            {{#enrolled}}
             <select data-storeId="{{storeId}}" class="form-control program-dropdown store-level-dropdown dropdown-{{storeId}}-program">
-              <option>Default Settings</option>
             </select>
-          {{/enrolled}}
-          {{^enrolled}}<small>Store Not Enrolled</small>{{/enrolled}}
+            {{/enrolled}} {{^enrolled}}
+            <small>Store Not Enrolled</small>{{/enrolled}}
           </td>
           <td class="store-configuration additional-offer" style="padding: 8px">
-          {{#enrolled}}
+            {{#enrolled}}
             <select data-storeId="{{storeId}}" class="form-control dfs-dropdown store-level-dropdown dropdown-{{storeId}}-dfs">
-              <option>Default Settings</option>
             </select>
           </td>
-          {{/enrolled}}
-          {{^enrolled}}<small>Store Not Enrolled</small>{{/enrolled}}
+          {{/enrolled}} {{^enrolled}}
+          <small>Store Not Enrolled</small>{{/enrolled}}
         </tr>
         {{/.}}
         <tr class="program-settings-footer-row">
@@ -57,7 +55,7 @@
                   </select>
                 </div>
                 <div class="col-sm-2">
-                  <a href="#" class="btn btn-small btn-primary bulk-apply-program">Apply</a>
+                  <button href="#" class="btn btn-small btn-primary bulk-apply-program">Apply</button>
                 </div>
               </div>
             </div>
@@ -70,7 +68,7 @@
                   </select>
                 </div>
                 <div class="col-sm-2">
-                  <a href="#" class="btn btn-small btn-primary bulk-apply-dfs">Apply</a>
+                  <button href="#" class="btn btn-small btn-primary bulk-apply-dfs">Apply</button>
                 </div>
               </div>
             </div>
@@ -93,7 +91,6 @@
           <tr class="config-select config-select-program">
             <td>
               <select class="form-control program-dropdown management-dropdown">
-                <option>Default Settings</option>
               </select>
             </td>
             <td>
@@ -113,8 +110,7 @@
         <table width="100%" padding="4" border="0">
           <tr class="config-select config-select-additional">
             <td>
-              <select class="form-control additional-dropdown dfs-dropdown management-dropdown">
-                <option>Default Settings</option>
+              <select class="form-control program-dropdown management-dropdown">
               </select>
             </td>
             <td>

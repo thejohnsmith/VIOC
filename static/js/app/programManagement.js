@@ -10,11 +10,11 @@
 TODO:
 - AG: Fix DFS Config changes not saving
 
-- "Select All" should not target inactive checkboxes
-- If you press "Selcet All" twice, you get a toast error
+- DONE - "Select All" should not target inactive checkboxes
+- DONE - If you press "Selcet All" twice, you get a toast error
 - Switch to using query paramaters instead of hash tags
-- Within the management area, "View/Edit" needs to pass the ID of the selected config
-- "Enroll All" should not submit the page
+- DONE - Within the management area, "View/Edit" needs to pass the ID of the selected config
+- DONE - "Enroll All" should not submit the page
  */
 var programManagementController = (function ($) {
   var controller = {
@@ -44,21 +44,23 @@ var programManagementController = (function ($) {
         });
       })
     },
+    /** Gets a user config
+     * @async getUserConfigurations.jssp
+     * @callback json_results
+     */
     retrieveUserConfigs: function (callback) {
-      /**
-       * @todo use dynamic userId and programId
-       */
       var controller = this;
-      $.get(controller.api_path + 'getUserConfigurations.jssp?userId=34567&programId=1', function (results) {
+      $.get(controller.api_path + 'getUserConfigurations.jssp?userId=' + controller.user_id + '&programId=' + controller.program_id, function (results) {
         var json_results = JSON.parse(results);
         controller.user_configs = json_results;
         if(typeof callback === 'function') callback(json_results);
       });
     },
+    /** Gets store program data
+     * @async getStoreProgramData.jssp
+     * @callback json_results
+     */
     getStoreProgramData: function (callback) {
-      /**
-       * @todo use dynamic userId and programId
-       */
       var controller = this;
       $.get(controller.api_path + 'getStoreProgramData.jssp?userId=' + controller.user_id + '&programId=' + controller.program_id, function (results) {
         var json_results = JSON.parse(results);
@@ -69,6 +71,9 @@ var programManagementController = (function ($) {
     hideAdditionalOffersIfNeeded: function () {
       var controller = this;
       for(var i = 0; i < $programParticipationStats.length; i++) {
+        // console.log('$programParticipationStats[i].id ' +$programParticipationStats[i].id);
+        // console.warn('controller.program_id ' + controller.program_id);
+        // console.log('$programParticipationStats[i].id ' +$programParticipationStats[i].id);
         if($programParticipationStats[i].id == controller.program_id) {
           if($programParticipationStats[i].programUsesDfs == 0) $(".additional-offer").hide();
         }
@@ -84,18 +89,19 @@ var programManagementController = (function ($) {
       }
     },
     refreshManagementControls: function () {
-      /*
-      1)  Change "Edit" to "New" if the management config dropdown is showing a corporate item
-      2)  Change the href of the "Edit/New" button to contain the ID of the selected config
-       */
+      /**
+       * @todo complete
+       * 1) - DONE - Change "Edit" to "New" if the management config dropdown is showing a corporate item
+       * 2) - DONE -  Change the href of the "Edit/New" button to contain the ID of the selected config
+       **/
       $('.management-dropdown').each(function () {
         var $selectedMgmg = $(this).find(':selected');
-        var $selectedMgmgId = $selectedMgmg.val();
+        var configId = $selectedMgmg.val();
         var $selectedMgmgText = $selectedMgmg.text();
         var $newProgramConfigLink = $(this).parent().next().find('.btn.btn-link');
-        var $configUrl = $newProgramConfigLink.attr('data-baseUrl');
+        var $baseUrl = $newProgramConfigLink.attr('data-baseUrl');
         // Update the Edit/View links
-        $newProgramConfigLink.attr('href', $configUrl + '#programId=' + $selectedMgmgId);
+        $newProgramConfigLink.attr('href', $baseUrl + '&configId=' + configId + '#programId=' + controller.program_id);
         // Corporate Default configs are read-only.
         if($selectedMgmgText === 'Corporate Default') {
           return $newProgramConfigLink.text('View');
@@ -119,7 +125,8 @@ var programManagementController = (function ($) {
           });
         });
       })
-      $('.bulk-apply-program, .bulk-apply-dfs').on('click', function () {
+      $('.bulk-apply-program, .bulk-apply-dfs').on('click', function (e) {
+        e.preventDefault();
         var storeIds = [];
         $.each($(".customCheckbox.checked"), function (i, obj) {
           storeIds.push($(obj).attr('data-storeid'));
@@ -135,7 +142,6 @@ var programManagementController = (function ($) {
         });
       });
       $('.management-dropdown').on('change', function () {
-        console.log('Store level config changed!');
         controller.refreshManagementControls();
       })
     },
