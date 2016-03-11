@@ -79,10 +79,6 @@ $(document).ready(function () {
   $.get('https://adobe-uat-vioc.epsilon.com/jssp/vioc/getStoreSummary.jssp', {
     'userId': userId
   }).done(function (data) {
-    if($('.program-settings-section').length) {
-      var $storeSummary = data;
-      return programFilters.init($storeSummary);
-    }
     try {
       jsonTreeData = JSON.parse(data);
     } catch(e) {

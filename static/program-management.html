@@ -131,7 +131,13 @@
 			text-align: center;
 		}
 	</style>
-	<script src="js/jquery_min.js"></script>
+<script src="js/jquery_min.js"></script>
+<script>
+function getParameterByName(name) {
+    var match = RegExp("[?&]" + name + "=([^&]*)").exec(window.location.search);
+    return match && decodeURIComponent(match[1].replace(/\+/g, " "));
+}
+</script>
 </head>
 
 <body>
@@ -251,7 +257,7 @@
 							<a href="#" title="filter-edit" class="filter-reset"><img src="images/edit-filter.png" alt="Edit" title="Edit" width="16"></a>
 						</div>
 
-						<div class="market filter-select select-option hidden">
+						<div class="market filter-select select-option">
 							<select class="selectbox">
 								<option class="selectboxOption" selected>Select Market</option>
 								<option class="selectboxOption">Market 1</option>
@@ -261,7 +267,7 @@
 							<a href="#" title="filter-edit" class="filter-reset"><img src="images/edit-filter.png" alt="Edit" title="Edit" width="16"></a>
 						</div>
 
-						<div class="area filter-select select-option hidden">
+						<div class="area filter-select select-option">
 							<select class="selectbox">
 								<option class="selectboxOption" selected>Select Area</option>
 								<option class="selectboxOption">Area 1</option>
@@ -316,7 +322,6 @@
 		<script src="js/lib/toastrOpts.js"></script>
 		<script src="js/lib/checkAndRadioBoxes.js"></script>
 		<script src="js/lib/easyResponsiveTabs.js"></script>
-		<script src="js/lib/programFilters.js"></script>
 
 		<!-- Async,API and Marcom hookups -->
 		<script src="js/app/getHashParams.js"></script>
@@ -328,6 +333,7 @@
 		<script src="js/app/getUserConfigurations.js"></script>
 		<script src="js/app/targetingCriteria.js"></script>
 		<script src="js/app/programManagement.js"></script>
+		<script src="js/app/programManagementFilters.js"></script>
 
 		<!-- ** Scripts not needed for Marcom templates ** -->
 		<script type="text/javascript" src="js/css_browser_selector.js"></script>

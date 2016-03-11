@@ -1,5 +1,5 @@
 /** Get Hash Parameters
- * Usage: getHashParams.hashParams || getHashParams.hashParams.programId
+ * Usage: getHashParams.hashParams || getParameterByName('programId', window.location.href) 
  * @return {object} hashParams
  */
 var getHashParams = (function($) {

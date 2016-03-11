@@ -1,6 +1,6 @@
 var getStoreProgramData = (function ($) {
   /* Use getHashParams.js to get programId */
-  var $programId = getHashParams.hashParams.programId;
+  var $programId = getParameterByName('programId', window.location.href) ;
   var makeRequest = function () {
       // Make sure there's a User ID loaded from Marcom before we Init this script.
       if(marcomUserData.$user.externalId === '%%User.ExternalId%%' || $programId === undefined || $programId === null) {
@@ -50,10 +50,10 @@ var getStoreProgramData = (function ($) {
       }
     },
     setHashLinks = function () {
-      var currentProgramId = getHashParams.hashParams.programId;
+      var currentProgramId = getParameterByName('programId', window.location.href) ;
       if($('.js-create-program-hash').length) {
         $('.js-create-program-hash').each(function () {
-          $(this).attr('href', $(this).attr('href') + '#programId=' + currentProgramId);
+          $(this).attr('href', $(this).attr('href') + '&programId=' + currentProgramId);
         });
       }
     },
@@ -61,6 +61,7 @@ var getStoreProgramData = (function ($) {
       if($('.program-settings-section .customCheckbox').length) {
         return $('.program-settings-section .customCheckbox, .store-enroll .btn.btn-primary').click(function () {
           $('.program-settings-footer').toggle($('.program-settings-section td .customCheckbox.checked').length > 1);
+          programManagementController.controller.hideAdditionalOffersIfNeeded()
           $('.program-settings-footer-row td:first-child').html('Adjust ' + $('.program-settings-section td .customCheckbox.checked').length + ' selected store(s) to use:');
         })
       }

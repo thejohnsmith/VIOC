@@ -69,7 +69,7 @@ var customCheckAndRadioBoxes = (function ($) {
      * @return {function} toggleBtns();
      */
     function toggleBtns() {
-      var $programId = getHashParams.hashParams.programId;
+      var $programId = getParameterByName('programId', window.location.href) ;
       var $userId = marcomUserData.$user.externalId || {};
       if($('[data-enrolled="true"] .toggle-btn')) {
         $('[data-enrolled="true"] .toggle-btn').addClass('active').prop('checked', 'checked');

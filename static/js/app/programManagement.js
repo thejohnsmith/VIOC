@@ -22,13 +22,12 @@ var programManagementController = (function ($) {
     user_configs: [],
     store_data: [],
     user_id: marcomUserData.$user.externalId,
-    program_id: getHashParams.hashParams.programId,
+    program_id: getParameterByName('programId', window.location.href) ,
     init: function () {
       var controller = this;
       if(!(controller.user_id > 0)) console.log("Valid user ID not provided to controller.");
       /* If this program doesn't use Additional Offers (aka DFS), hide
       the Additional Offer column and management controls */
-      controller.hideAdditionalOffersIfNeeded();
       controller.retrieveUserConfigs(function (configs) {
         /* Populate the dropdowns with all possible values */
         controller.populateConfigDropdowns();
@@ -66,14 +65,13 @@ var programManagementController = (function ($) {
         var json_results = JSON.parse(results);
         controller.store_data = json_results;
         if(typeof callback === 'function') callback(json_results);
+      }).promise().done(function () {
+        controller.hideAdditionalOffersIfNeeded();
       });
     },
     hideAdditionalOffersIfNeeded: function () {
       var controller = this;
       for(var i = 0; i < $programParticipationStats.length; i++) {
-        // console.log('$programParticipationStats[i].id ' +$programParticipationStats[i].id);
-        // console.warn('controller.program_id ' + controller.program_id);
-        // console.log('$programParticipationStats[i].id ' +$programParticipationStats[i].id);
         if($programParticipationStats[i].id == controller.program_id) {
           if($programParticipationStats[i].programUsesDfs == 0) $(".additional-offer").hide();
         }
@@ -101,7 +99,7 @@ var programManagementController = (function ($) {
         var $newProgramConfigLink = $(this).parent().next().find('.btn.btn-link');
         var $baseUrl = $newProgramConfigLink.attr('data-baseUrl');
         // Update the Edit/View links
-        $newProgramConfigLink.attr('href', $baseUrl + '&configId=' + configId + '#programId=' + controller.program_id);
+        $newProgramConfigLink.attr('href', $baseUrl + '&configId=' + configId + '&programId=' + controller.program_id);
         // Corporate Default configs are read-only.
         if($selectedMgmgText === 'Corporate Default') {
           return $newProgramConfigLink.text('View');
@@ -171,6 +169,7 @@ var programManagementController = (function ($) {
         count++; */
         $(target).append($('<option>').val(config.id).html(config.label));
       }
+      // controller.hideAdditionalOffersIfNeeded();
     }
   }
   return {
