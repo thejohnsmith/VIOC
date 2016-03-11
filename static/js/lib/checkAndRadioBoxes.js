@@ -53,8 +53,8 @@ var customCheckAndRadioBoxes = (function ($) {
     // This would likely be easier to do by making an API request to get programParticipationStats
     // var $('.js-all-selectable.checked').parent().parent().find('.storesParticipating');
   var selectAllCustomBoxes = function () {
-    var $jsAllSelectable = $('.programsummary-table .js-all-selectable:not(.disabled-input)');
-    $('.store-enroll .btn.btn-primary').on('click', function (e) {
+    var $jsAllSelectable = $('.programsummary-table.program-settings-section .js-all-selectable:not(.disabled-input)');
+    $('.programsummary-table.program-settings-section .store-enroll .btn.btn-primary').on('click', function (e) {
       e.preventDefault();
       $jsAllSelectable.addClass('checked').find($('input')).prop('checked', 'checked').focus();
     });
@@ -71,34 +71,50 @@ var customCheckAndRadioBoxes = (function ($) {
     function toggleBtns() {
       var $programId = getHashParams.hashParams.programId;
       var $userId = marcomUserData.$user.externalId || {};
-      $('[data-enrolled="true"] .toggle-btn').addClass('active').prop('checked', 'checked');
-      $('.cb-value').on('click', function () {
+      if($('[data-enrolled="true"] .toggle-btn')) {
+        $('[data-enrolled="true"] .toggle-btn').addClass('active').prop('checked', 'checked');
+      }
+      $('.cb-value').on('click', function (e) {
+        e.preventDefault();
+        e.stopPropagation();
         var $mainParent = $(this).parent('.toggle-btn');
         var $storeId = $(this).attr('data-storeId');
         if($(this).is(':checked')) {
           $($mainParent).addClass('active');
           $(this).prop('checked', 'checked')
-          return setStoreSubscription.makeRequest($userId, $storeId, $programId, 1);
-        } else if($($mainParent).hasClass('active')) {
+          subscribeStore($userId, $storeId, $programId, 1);
+        }
+        if(!$(this).is(':checked')) {
           $($mainParent).removeClass('active');
           $(this).prop('checked', '')
-          return setStoreSubscription.makeRequest($userId, $storeId, $programId, 0);
+          unsubscribeStore($userId, $storeId, $programId, 1);
         }
       });
       $('.enroll-all-stores').on('click', function (e) {
         e.preventDefault();
-        return $('[data-enrolled="false"] .cb-value').click();
+        e.stopPropagation();
+        $('[data-enrolled="false"] .cb-value').each(function () {
+          var $mainParent = $(this).parent('.toggle-btn');
+          var $storeId = $(this).attr('data-storeId');
+          $($mainParent).addClass('active');
+          $(this).prop('checked', 'checked')
+          subscribeStore($userId, $storeId, $programId, 1);
+        });
       });
+    }
+
+    function subscribeStore($userId, $storeId, $programId) {
+      return setStoreSubscription.makeRequest($userId, $storeId, $programId, 1);
+    }
+
+    function unsubscribeStore($userId, $storeId, $programId) {
+      return setStoreSubscription.makeRequest($userId, $storeId, $programId, 0);
     }
     if($('.toggle-btn').length) {
       return toggleBtns();
     }
     return;
   };
-  var enrollStores = function ($selectedPrograms) {
-    removeChecked();
-    return setStoreSubscription.makeRequest($selectedPrograms);
-  }
   var customCheckbox = function () {
     $('.customCheckbox input:checkbox').each(function () {
       $(this).parent().addClass('js-custom');
@@ -116,7 +132,6 @@ var customCheckAndRadioBoxes = (function ($) {
           $(this).addClass('checked');
           $(this).find($('input[type="checkbox"]')).prop('checked', 'checked').focus();
         }
-        // return selectedPrograms();
       }
     });
     combinedHandlers();

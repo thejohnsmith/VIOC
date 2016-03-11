@@ -81,8 +81,8 @@ var getStoreProgramData = (function ($) {
         }
         return total;
       }
-      $('.costEstimateTotal').text(result.sum('costEstimate').toFixed(2));
-      return formatCurrency(), calculateSum('channelEmailTotal'),
+      // $('.costEstimateTotal').text(result.sum('costEstimate').toFixed(2));
+      return formatCurrency('costEstimateTotal'), calculateSum('channelEmailTotal'),
         calculateSum('channelDMTotal'),
         calculateSum('channelSMSTotal')
     },
@@ -97,11 +97,16 @@ var getStoreProgramData = (function ($) {
     },
     /** Adds decimal places to cost numbers
      */
-    formatCurrency = function (argument) {
-      return $('.js-format-currency').each(function (argument) {
-        var $numberInput = parseFloat($(this).text());
-        var $numberOutput = $(this).text($numberInput.toFixed(2));
+    formatCurrency = function (elementsToSum) {
+      var newSum = 0;
+      $('.store-item[data-enrolled="true"] .store-cost .costEstimateTotal').each(function () {
+        newSum += parseFloat($(this).text());
       });
+        $('.grand-total .costEstimateTotal').text(newSum);
+      // return $('.js-format-currency').each(function (argument) {
+      //   var $numberInput = parseFloat($(this).text());
+      //   var $numberOutput = $(this).text($numberInput.toFixed(2));
+      // });
     },
     requestFailed = function () {
       $('.program-select').html('There was a problem fetching your programs.' + 'Please check back again later.');
