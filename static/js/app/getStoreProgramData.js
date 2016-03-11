@@ -68,45 +68,37 @@ var getStoreProgramData = (function ($) {
       // var filter1html = Mustache.to_html($filter1, $storeSummary);
       // $(filter1html).appendTo('.filters-area-section');
       // return handlers();
-
     },
     reloadCheckBoxes = function () {
       return customCheckAndRadioBoxes.customCheckbox();
     },
     calculateTotals = function (result) {
       Array.prototype.sum = function (prop) {
-        var total = 0
-        for(var i = 0, _len = this.length; i < _len; i++) {
-          total += this[i][prop]
+          var total = 0
+          for(var i = 0, _len = this.length; i < _len; i++) {
+            total += this[i][prop]
+          }
+          return total;
         }
-        return total;
-      }
-      // $('.costEstimateTotal').text(result.sum('costEstimate').toFixed(2));
-      return formatCurrency('costEstimateTotal'), calculateSum('channelEmailTotal'),
+        // $('.costEstimateTotal').text(result.sum('costEstimate').toFixed(2));
+      return calculateSum('costEstimateTotal'), calculateSum('channelEmailTotal'),
         calculateSum('channelDMTotal'),
-        calculateSum('channelSMSTotal')
+        calculateSum('channelSMSTotal');
     },
-    calculateSum = function (elementsToSum) {
+    calculateSum = function (e) {
       var newSum = 0;
-      $('.store-item[data-enrolled="true"] .store-counts .' + elementsToSum).each(function () {
+      var newCostSum = 0;
+      $('.store-item[data-enrolled="true"] .store-counts .' + e).each(function () {
         newSum += parseFloat($(this).text());
+      }).promise().done(function () {
+        $('.grand-total .' + e).text(newSum);
       });
-      if($('.grand-total').length) {
-        return $('.grand-total .' + elementsToSum).text(newSum);
-      }
-    },
-    /** Adds decimal places to cost numbers
-     */
-    formatCurrency = function (elementsToSum) {
-      var newSum = 0;
+
       $('.store-item[data-enrolled="true"] .store-cost .costEstimateTotal').each(function () {
-        newSum += parseFloat($(this).text());
+        newCostSum += parseFloat($(this).text());
+      }).promise().done(function () {
+        $('.grand-total .costEstimateTotal').text(newCostSum.toFixed(2));
       });
-        $('.grand-total .costEstimateTotal').text(newSum);
-      // return $('.js-format-currency').each(function (argument) {
-      //   var $numberInput = parseFloat($(this).text());
-      //   var $numberOutput = $(this).text($numberInput.toFixed(2));
-      // });
     },
     requestFailed = function () {
       $('.program-select').html('There was a problem fetching your programs.' + 'Please check back again later.');
@@ -121,7 +113,6 @@ var getStoreProgramData = (function ($) {
     reloadCheckBoxes: reloadCheckBoxes,
     calculateTotals: calculateTotals,
     calculateSum: calculateSum,
-    formatCurrency: formatCurrency,
     requestFailed: requestFailed
   };
 })(jQuery);
