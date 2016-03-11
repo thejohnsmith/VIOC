@@ -17,7 +17,13 @@
 	<link rel="stylesheet" type="text/css" href="css/easy-responsive-tabs.css" />
 	<!--css styles ends-->
 
-	<script src="js/jquery_min.js"></script>
+<script src="js/jquery_min.js"></script>
+<script>
+function getParameterByName(name) {
+    var match = RegExp("[?&]" + name + "=([^&]*)").exec(window.location.search);
+    return match && decodeURIComponent(match[1].replace(/\+/g, " "));
+}
+</script>
 </head>
 
 <body>

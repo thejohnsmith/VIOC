@@ -17,9 +17,9 @@
 
   ex.
   http://localhost:8888/valvoline-vioc/static/program-management.html?uigroup_id...
-  #parentHorizontalTab2#programId=4
+  #parentHorizontalTab2&programId=4
     or
-  #parentHorizontalTab1|#programId=1
+  #parentHorizontalTab1|&programId=1
  */
 
 var getUserConfigurations = (function($) {
@@ -28,8 +28,7 @@ var getUserConfigurations = (function($) {
       if (marcomUserData.$user.externalId === '%%User.ExternalId%%') {
         return;
       }
-      var $programId = getHashParams.hashParams.programId ||
-        getProgramParticipationStats.programId;
+      var $programId = getParameterByName('programId', window.location.href) ;
         if (!$programId) {
           return;
         }

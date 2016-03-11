@@ -1,3 +1,7 @@
+function getParameterByName(name) {
+    var match = RegExp("[?&]" + name + "=([^&]*)").exec(window.location.search);
+    return match && decodeURIComponent(match[1].replace(/\+/g, " "));
+}
  $(window).load(function() {
    jQuery("body").css('opacity', '1');
  });
@@ -142,7 +146,7 @@
       buttonImageOnly: true,
       buttonText: "Select date",
       //defaultDate: "+1w",
-      minDate: 0, 
+      minDate: 0,
       maxDate: "+1Y",
       onClose: function( selectedDate ) {
         $( "#to" ).datepicker( "option", "minDate", selectedDate );
@@ -153,7 +157,7 @@
       buttonImage: "images/calendar.gif",
       buttonImageOnly: true,
       buttonText: "Select date",
-      minDate: 0, 
+      minDate: 0,
       maxDate: "+1Y",
       onClose: function( selectedDate ) {
         $( "#from" ).datepicker( "option", "maxDate", selectedDate );
@@ -162,4 +166,3 @@
   }
 
 });
-

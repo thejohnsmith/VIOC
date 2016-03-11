@@ -5,7 +5,7 @@
  */
 var getProgramParticipationStats = (function ($) {
   /* Use getHashParams.js to get programId */
-  var programId = getHashParams.hashParams.programId;
+  var programId = getParameterByName('programId', window.location.href) ;
   var makeRequest = function () {
       // Make sure there's a User ID loaded from Marcom before we Init this script.
       if(marcomUserData.$user.externalId === '%%User.ExternalId%%') {
@@ -46,7 +46,7 @@ var getProgramParticipationStats = (function ($) {
         return;
       }
       return result.map(function (obj) {
-        var programTitle = getHashParams.hashParams.programId;
+        var programTitle = getParameterByName('programId', window.location.href) ;
         if(JSON.stringify(obj.id) === programId) {
           programTitle = obj.programName;
           return setProgramTitle(programTitle);

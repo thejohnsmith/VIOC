@@ -68,7 +68,7 @@ var programFilters = new function ($) {
       return showFilter($nextFilter);
     },
     setFilterOptions = function ($storeSummary) {
-      var $programId = getHashParams.hashParams.programId;
+      var $programId = getParameterByName('programId', window.location.href) ;
       var acUrl = 'https://adobe-uat-vioc.epsilon.com/jssp/vioc/getStoreProgramData.jssp';
       $.ajax({
         url: acUrl,
