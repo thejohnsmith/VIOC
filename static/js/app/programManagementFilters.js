@@ -8,7 +8,7 @@ var programManagementFilters = (function ($) {
 		store_ids: [],
 		onFilterChange: null,
 
-		init : function () 
+		init : function ()
 		{
 			var controller = this;
 
@@ -16,19 +16,19 @@ var programManagementFilters = (function ($) {
 				console.error("Valid user ID not provided to controller.");
 
 			$(".filter-select").hide();
-			
+
 			$(".filter-reset").on('click', $.proxy(controller.resetFilters, controller));
-			
+
 			controller.getStoreTree(function (store_tree) {
 				controller.setupFilters(store_tree);
 			});
-			
+
 		},
-		
-		setupFilters: function(store_tree) 
+
+		setupFilters: function(store_tree)
 		{
 			var controller = this;
-			
+
 			controller.populateFilter('company', 'All Companies', store_tree, function(children) {
 				controller.populateFilter('market', 'All Markets', children, function(children) {
 					controller.populateFilter('area', 'All Areas', children, function(children) {
@@ -37,89 +37,89 @@ var programManagementFilters = (function ($) {
 					});
 				});
 			});
-			
+
 			controller.updateStoreList(store_tree);
 		},
-		
+
 		resetFilters: function()
 		{
 			var controller = this;
 			$(".filter-select").hide();
 			controller.setupFilters(controller.store_tree);
 		},
-		
+
 		populateFilter : function(dropdownKey, allLabel, values, onChange)
 		{
 			var controller = this;
-			
+
 			var $dd = $(".filter-select." + dropdownKey + " .selectbox");
 
 			// Empty the dropdown and clear event listeners
 			$dd.html("");
 			$dd.off('change');
-			
+
 			// If I was provided null children, hide the dropdown and exit.
 			if (values == null || (typeof values == 'array' && values.length == 0))
 			{
 				$dd.parent().hide();
-				
+
 				if (typeof onChange == 'function')
 						onChange(null);
-					
+
 				return;
 			}
-			
+
 			// Add the "All..." option
 			$dd.append($("<option/>").attr("value","*").text(allLabel));
-			
+
 			// Add the child elements
 			for (var i = 0; i < values.length; i++)
 			{
 				$dd.append($("<option/>").attr("value",i).text(values[i].text));
 			}
-			
-			// Attach an event listener.  When the selected item changes, 
+
+			// Attach an event listener.  When the selected item changes,
 			// grab all of the children and pass them downstream.
 			$dd.on('change', function() {
 				var selected_index = $(this).find('option:selected').val();
-				
+
 				// If the user selected "all", tell the upstream dropdowns to hide
 				if (selected_index == "*")
 				{
 					if (typeof onChange == 'function')
 							onChange(null);
-					
+
 					controller.updateStoreList(values);
 				}
 				// Otherwise, hand this value's children to the next dropdown
 				else
 				{
 					var value = values[selected_index];
-					
+
 					if (typeof onChange == 'function')
 							onChange(value.children);
-						
+
 					controller.updateStoreList([value]);
 				}
 			})
-			
+
 			// Show the dropdown
 			$dd.parent().show();
 		},
-		
+
 		updateStoreList: function(tree_segment) {
 
 			var controller = this;
 
 			controller.store_ids = controller.findStoresRecursively(tree_segment);
-			
+
 			var plural = (controller.store_ids.length == 1) ? "" : "s";
 			$(".filter-results-value").html(controller.store_ids.length + " Result" + plural);
-			
+
 			if (typeof controller.onFilterChange == 'function')
 				controller.onFilterChange(controller.store_ids);
 		},
-		
+
 		findStoresRecursively: function(tree_segment) {
 
 			var stores_found = [];
@@ -140,8 +140,8 @@ var programManagementFilters = (function ($) {
 					stores_found = stores_found.concat(child_store_ids);
 				}
 			}
-			
-			// Return the array 
+
+			// Return the array
 			return stores_found;
 		},
 
@@ -166,5 +166,14 @@ var programManagementFilters = (function ($) {
 
 programManagementFilters.controller.init();
 programManagementFilters.controller.onFilterChange = function(store_ids) {
+var $j = jQuery;
+	$j(".filterable").hide();
+
+	for (var i = 0; i < store_ids.length; i++)
+	{
+		var storeId = store_ids[i];
+		$j("tr[data-filter-storeid=" + storeId + "]").show();
+	}
+
 	console.log("Hey UI, update your stores using %O", store_ids)
 };

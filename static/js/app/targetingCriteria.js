@@ -41,7 +41,7 @@ var submitForm = function () {
 }
 var updateRecipientCount = function (save, callback) {
   var storeIds = [];
-  if($('#jstree').length){
+  if($('#jstree').length) {
     var selectedElements = $('#jstree').jstree().get_selected();
   }
   for(var idx in selectedElements) {
@@ -73,18 +73,18 @@ var updateRecipientCount = function (save, callback) {
   });
 }
 $(document).ready(function () {
-  attachActivityListeners();
-  userId = getParameterByName('userId', window.location.href) || marcomUserData.$user.externalId;
-  // Call and get the store tree:
-  $.get('https://adobe-uat-vioc.epsilon.com/jssp/vioc/getStoreSummary.jssp', {
-    'userId': userId
-  }).done(function (data) {
-    try {
-      jsonTreeData = JSON.parse(data);
-    } catch(e) {
-      alert('Failed to parse JSON data');
-    }
-    if($('#jstree').length) {
+  if($('#jstree').length) {
+    attachActivityListeners();
+    userId = getParameterByName('userId', window.location.href) || marcomUserData.$user.externalId;
+    // Call and get the store tree:
+    $.get('https://adobe-uat-vioc.epsilon.com/jssp/vioc/getStoreSummary.jssp', {
+      'userId': userId
+    }).done(function (data) {
+      try {
+        jsonTreeData = JSON.parse(data);
+      } catch(e) {
+        alert('Failed to parse JSON data');
+      }
       $('#jstree').jstree({
         'plugins': ['wholerow', 'checkbox'],
         'core': {
@@ -93,7 +93,7 @@ $(document).ready(function () {
       }).on('changed.jstree', function (e, data) {
         updateRecipientCount();
       });
-    }
-    updateRecipientCount();
-  });
+      updateRecipientCount();
+    });
+  }
 });

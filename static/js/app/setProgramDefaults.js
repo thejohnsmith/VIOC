@@ -28,6 +28,7 @@ var setProgramDefaults = (function ($) {
       + $selectedProgramNames + '</h4>');
 
       // Refresh the API to display the updated Enrollment(s).
+      // This was causing a problem with the program management page
       getProgramParticipationStats.makeRequest();
 
       // Debugging

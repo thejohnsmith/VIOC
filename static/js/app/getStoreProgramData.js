@@ -40,12 +40,13 @@ var getStoreProgramData = (function ($) {
         $.get('https://files.marcomcentral.app.pti.com/epsilon/static/program-settings.mustache.html', function (templates) {
           var template2 = $(templates).filter('.program-settings-template').html();
           $('.program-settings-section').html(Mustache.render(template2, result));
-          getUserConfigurations.makeRequest();
-          programManagementController.controller.init();
           return reloadCheckBoxes();
         }).done(function () {
           return setHashLinks(),
             programSettingsHandler()
+        }).promise().done(function () {
+          // getUserConfigurations.makeRequest();
+          programManagementController.controller.init();
         });
       }
     },

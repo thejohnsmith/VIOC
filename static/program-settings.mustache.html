@@ -15,7 +15,7 @@
       </thead>
       <tbody>
         {{#.}}
-        <tr>
+        <tr class="filterable" data-filter-storeId="{{storeId}}">
           <td style="padding: 10px 0 0 0">
             <div class="checkbox-area" data-enrolled="">
               <div data-storeId="{{storeId}}" class="customCheckbox js-all-selectable {{^enrolled}}disabled-input{{/enrolled}}">
