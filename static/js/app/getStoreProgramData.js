@@ -1,6 +1,6 @@
 var getStoreProgramData = (function ($) {
   /* Use getHashParams.js to get programId */
-  var $programId = getParameterByName('programId', window.location.href) ;
+  var $programId = getParameterByName('programId', window.location.href);
   var makeRequest = function () {
       // Make sure there's a User ID loaded from Marcom before we Init this script.
       if(marcomUserData.$user.externalId === '%%User.ExternalId%%' || $programId === undefined || $programId === null) {
@@ -33,7 +33,7 @@ var getStoreProgramData = (function ($) {
           var template = $(templates).filter('.program-enrollment-template').html();
           $('.program-enrollment-section').html(Mustache.render(template, result));
         }).done(function () {
-          return calculateTotals(result);
+          return getTotals(result);
         });
       }
       if($('.program-settings-section').length) {
@@ -50,7 +50,7 @@ var getStoreProgramData = (function ($) {
       }
     },
     setHashLinks = function () {
-      var currentProgramId = getParameterByName('programId', window.location.href) ;
+      var currentProgramId = getParameterByName('programId', window.location.href);
       if($('.js-create-program-hash').length) {
         $('.js-create-program-hash').each(function () {
           $(this).attr('href', $(this).attr('href') + '&programId=' + currentProgramId);
@@ -65,36 +65,59 @@ var getStoreProgramData = (function ($) {
           $('.program-settings-footer-row td:first-child').html('Adjust ' + $('.program-settings-section td .customCheckbox.checked').length + ' selected store(s) to use:');
         })
       }
-      // var $filter1 = '{{#.}}{{#filter-type}}<div class="{{filter-type}} filter-select select-option">' + '<select class="selectbox">' + '{{#filter-type}}<option class="selectboxOption" selected>Select {{filter-type}}</option>' + '<option class="selectboxOption" value="{{text}}">{{text}}</option>{{/filter-type}}' + '</select>' + '</div>{{/filter-type}}' + '{{#children}}' + '{{#filter-type}}<div class="{{filter-type}} filter-select select-option hidden">' + '<select class="selectbox">' + '{{#filter-type}}<option class="selectboxOption" selected>Select {{filter-type}}</option>{{/filter-type}}' + '{{#children}}<option class="selectboxOption" value="{{text}}">{{text}}</option>{{/children}}' + '</select>' + '</div>{{/filter-type}}' + '{{/children}}' + '{{#children}}' + '<div class="area filter-select select-option hidden">' + '<select class="selectbox">' + '{{#children}}<option class="selectboxOption" selected>Select Area</option>' + '{{#children}}<option class="selectboxOption" value="{{text}}">{{text}}</option>{{/children}}{{/children}}' + '</select>' + '</div>' + '{{/children}}' + '{{/.}}'
-      // var filter1html = Mustache.to_html($filter1, $storeSummary);
-      // $(filter1html).appendTo('.filters-area-section');
-      // return handlers();
     },
     reloadCheckBoxes = function () {
       return customCheckAndRadioBoxes.customCheckbox();
     },
-    calculateTotals = function (result) {
+    getTotals = function (channel) {
       Array.prototype.sum = function (prop) {
-          var total = 0
-          for(var i = 0, _len = this.length; i < _len; i++) {
-            total += this[i][prop]
-          }
-          return total;
+        var total = 0
+        for(var i = 0, _len = this.length; i < _len; i++) {
+          total += this[i][prop]
         }
-        // $('.costEstimateTotal').text(result.sum('costEstimate').toFixed(2));
-      return calculateSum('costEstimateTotal'), calculateSum('channelEmailTotal'),
-        calculateSum('channelDMTotal'),
-        calculateSum('channelSMSTotal');
+        return total;
+      }
+      var channels = [{
+        channel: 'costEstimateTotal'
+      }, {
+        channel: 'channelEmailTotal'
+      }, {
+        channel: 'channelDMTotal'
+      }, {
+        channel: 'channelSMSTotal'
+      }];
+      for(var i = 0; i < channels.length; i++) {
+        (function (i) {
+          this.output = function () {
+            returnTotals(this.channel);
+          }
+          this.output();
+        }).call(channels[i], i);
+      }
     },
-    calculateSum = function (e) {
+    returnTotals = function (e) {
       var newSum = 0;
       var newCostSum = 0;
+      /**
+       * Added correct currecy decimal places.
+       **/
+      $('.costEstimateTotal').each(function () {
+        var num = Number($(this).text());
+        var n = num.toFixed(2);
+        $(this).text(n)
+      });
+      /**
+       * Calculate the grand total for Email, DM and SMS from all stores enrolled.
+       **/
       $('.store-item[data-enrolled="true"] .store-counts .' + e).each(function () {
         newSum += parseFloat($(this).text());
       }).promise().done(function () {
         $('.grand-total .' + e).text(newSum);
       });
-
+      /**
+       * Calculate grand total for Estimated Monthly Cost.
+       * Adds currecy decimal places
+       **/
       $('.store-item[data-enrolled="true"] .store-cost .costEstimateTotal').each(function () {
         newCostSum += parseFloat($(this).text());
       }).promise().done(function () {
@@ -112,8 +135,8 @@ var getStoreProgramData = (function ($) {
     setHashLinks: setHashLinks,
     programSettingsHandler: programSettingsHandler,
     reloadCheckBoxes: reloadCheckBoxes,
-    calculateTotals: calculateTotals,
-    calculateSum: calculateSum,
+    getTotals: getTotals,
+    returnTotals: returnTotals,
     requestFailed: requestFailed
   };
 })(jQuery);
