@@ -10,7 +10,6 @@
 }
 #CtlBrdCrm {
   float: none;
-  width: 1200px;
   color: #000;
   margin: 0 auto;
   padding: 10px 0;
@@ -25,8 +24,8 @@
 }
 #CtlBrdCrm a:hover {
     color: #1cb7f1;
-    -webkit-transition: 0.5s;
-    transition: 0.5s;
+    -webkit-transition: 0;
+    transition: 0;
 }
 #divSearchCart {
   display: none;
@@ -71,13 +70,13 @@
   padding: 10px;
 }
 body a {
-  -webkit-transition: 0.5s;
-  transition: 0.5s;
+  -webkit-transition: 0;
+  transition: 0;
   color: #555655;
 }
 input[type='button'] {
-  -webkit-transition: 0.5s;
-  transition: 0.5s;
+  -webkit-transition: 0;
+  transition: 0;
   color: #555655;
   border-radius: 0;
 }
