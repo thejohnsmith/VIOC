@@ -56,8 +56,6 @@ body * {
   font-family: 'HelveticaNeueLT-Condensed', sans-serif;
 }
 body a {
-  -webkit-transition: 0.5s;
-  transition: 0.5s;
   color: #555655;
 }
 button, input, select, textarea {

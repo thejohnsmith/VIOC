@@ -9,9 +9,9 @@ jQuery(function ($) {
 	if (containsCatalog) {
 		$('#catalogContent').css('margin','0 auto');
 	}
-	if (addToCart) {
+	if (containsAddToCart) {
 		if ($('#CtlBrdCrm').length) {
-			$('#CtlBrdCrm').css('width','1200px');
+			$('#CtlBrdCrm').css({'width':'1200px','float':'none','margin':'0 auto'});
 		}
 	}
 });
