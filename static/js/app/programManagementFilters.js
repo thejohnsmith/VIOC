@@ -7,9 +7,9 @@ var programManagementFilters = (function ($) {
     onFilterChange: null,
     init: function () {
       var controller = this;
-      if(!(controller.user_id > 0)) console.error("Valid user ID not provided to controller.");
-      $(".filter-select").hide();
-      $(".filter-reset").on('click', $.proxy(controller.resetFilters, controller));
+      if(!(controller.user_id > 0)) console.error('Valid user ID not provided to controller.');
+      $('.filter-select').hide();
+      $('.filter-reset').on('click', $.proxy(controller.resetFilters, controller));
       controller.getStoreTree(function (store_tree) {
         controller.setupFilters(store_tree);
       });
@@ -28,40 +28,40 @@ var programManagementFilters = (function ($) {
     },
     resetFilters: function () {
       var controller = this;
-      $(".filter-select").hide();
+      $('.filter-select').hide();
       controller.setupFilters(controller.store_tree);
     },
     populateFilter: function (dropdownKey, allLabel, values, onChange) {
       var controller = this;
-      var $dd = $(".filter-select." + dropdownKey + " .selectbox");
+      var $dd = $('.filter-select.' + dropdownKey + ' .selectbox');
       // Empty the dropdown and clear event listeners
-      $dd.html("");
+      $dd.html('');
       $dd.off('change');
       // If I was provided null children, hide the dropdown and exit.
-      if(values == null || (typeof values == 'array' && values.length == 0)) {
+      if(values === null || (typeof values === 'array' && values.length === 0)) {
         $dd.parent().hide();
-        if(typeof onChange == 'function') onChange(null);
+        if(typeof onChange === 'function') onChange(null);
         return;
       }
       // Add the "All..." option
-      $dd.append($("<option/>").attr("value", "*").text(allLabel));
+      $dd.append($('<option/>').attr('value', '*').text(allLabel));
       // Add the child elements
       for(var i = 0; i < values.length; i++) {
-        $dd.append($("<option/>").attr("value", i).text(values[i].text));
+        $dd.append($('<option/>').attr('value', i).text(values[i].text));
       }
       // Attach an event listener.  When the selected item changes,
       // grab all of the children and pass them downstream.
       $dd.on('change', function () {
           var selected_index = $(this).find('option:selected').val();
           // If the user selected "all", tell the upstream dropdowns to hide
-          if(selected_index == "*") {
-            if(typeof onChange == 'function') onChange(null);
+          if(selected_index === '*') {
+            if(typeof onChange === 'function') onChange(null);
             controller.updateStoreList(values);
           }
           // Otherwise, hand this value's children to the next dropdown
           else {
             var value = values[selected_index];
-            if(typeof onChange == 'function') onChange(value.children);
+            if(typeof onChange === 'function') onChange(value.children);
             controller.updateStoreList([value]);
           }
         })
@@ -71,9 +71,9 @@ var programManagementFilters = (function ($) {
     updateStoreList: function (tree_segment) {
       var controller = this;
       controller.store_ids = controller.findStoresRecursively(tree_segment);
-      var plural = (controller.store_ids.length == 1) ? "" : "s";
-      $(".filter-results-value").html(controller.store_ids.length + " Result" + plural);
-      if(typeof controller.onFilterChange == 'function') controller.onFilterChange(controller.store_ids);
+      var plural = (controller.store_ids.length === 1) ? '' : 's';
+      $('.filter-results-value').html(controller.store_ids.length + ' Result' + plural);
+      if(typeof controller.onFilterChange === 'function') controller.onFilterChange(controller.store_ids);
     },
     findStoresRecursively: function (tree_segment) {
       var stores_found = [];
@@ -83,7 +83,7 @@ var programManagementFilters = (function ($) {
           stores_found.push(tree_segment[i].id);
         }
         // Call this function with any 'children' and append the results to the array
-        if(tree_segment[i].children != undefined && typeof tree_segment[i].children == "object") {
+        if(tree_segment[i].children != undefined && typeof tree_segment[i].children === 'object') {
           var child_store_ids = controller.findStoresRecursively(tree_segment[i].children);
           stores_found = stores_found.concat(child_store_ids);
         }
@@ -111,9 +111,9 @@ var programManagementFilters = (function ($) {
 programManagementFilters.controller.init();
 programManagementFilters.controller.onFilterChange = function (store_ids) {
   var $j = jQuery;
-  $j(".filterable").hide();
+  $j('.filterable').hide();
   for(var i = 0; i < store_ids.length; i++) {
     var storeId = store_ids[i];
-    $j("tr[data-filter-storeid=" + storeId + "]").show();
+    $j('tr[data-filter-storeid=' + storeId + ']').show();
   }
 };
