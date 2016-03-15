@@ -35,6 +35,7 @@ var customCheckAndRadioBoxes = (function ($) {
       var $selectedProgramNames = $('input:checkbox:checked + label').map(function () {
         return $(this).text();
       }).get().join();
+      console.log('enrollPrograms');
       return enrollPrograms($selectedPrograms, $selectedProgramNames);
     });
   };

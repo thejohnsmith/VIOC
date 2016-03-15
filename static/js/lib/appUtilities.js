@@ -1,10 +1,20 @@
 /* This is meant to run in Marcom only, hence the renaming of jQuery */
 var $j = jQuery;
+
+function getParameterByName(name, url) {
+  if(!url) url = window.location.href;
+  name = name.replace(/[\[\]]/g, '\\$&');
+  var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
+    results = regex.exec(url);
+  if(!results) return undefined;
+  if(!results[2]) return '';
+  return decodeURIComponent(results[2].replace(/\+/g, ' '));
+}
 $j(function () {
   var appUtilities = function () {
       setBrowserTitle(),
-      changeNavBarLink(),
-      setFavicon()
+        changeNavBarLink(),
+        setFavicon()
     },
     setBrowserTitle = function () {
       // var $pageTitle = $j('.page-title').text();

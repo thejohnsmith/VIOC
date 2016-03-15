@@ -17,13 +17,13 @@
                 <table class="inner-table">
                   <tr>
                     <td>Email</td>
-                    <td>DM</td>
+                    {{#hasDM}}<td>DM  {{hasDM}}</td>{{/hasDM}}
                     <td>SMS</td>
                   </tr>
                 </table>
               </th>
-              <th class="store-cost">Estimated
-                <br>Monthly Cost</th>
+              {{#hasDM}}<th class="store-cost">Estimated
+                <br>Monthly Cost</th>{{/hasDM}}
             </tr>
           </table>
         </td>
@@ -32,7 +32,7 @@
     <tbody class="">
       {{#.}}
 
-      <tr>
+      <tr class="filterable" data-filter-storeId="{{storeId}}">
         <td>
           <table>
             <tr>
@@ -53,13 +53,13 @@
                       <table class="inner-table">
                         <tr>
                           <td class="channelEmailTotal">{{channelEmail}}</td>
-                          <td class="channelDMTotal">{{channelDM}}</td>
+                          {{#hasDM}}<td class="channelDMTotal">{{channelDM}}</td>{{/hasDM}}
                           <td class="channelSMSTotal">{{channelSMS}}</td>
                         </tr>
                       </table>
                     </td>
-                    <td class="store-cost"><span>$</span><span class="costEstimateTotal js-format-currency">{{costEstimate}}</span>
-                      <br><a href="javascript:void(0);" title="Details" class="mobie-details-{{storeId}}">Details</a></td>
+                    {{#hasDM}}<td class="store-cost"><span>$</span><span class="costEstimateTotal js-format-currency">{{costEstimate}}</span>
+                      <br><a href="javascript:void(0);" title="Details" class="mobie-details-{{storeId}}">Details</a></td>{{/hasDM}}
                   </tr>
                 </table>
               </td>
@@ -78,10 +78,10 @@
               <td class="store-label">Recipients in Email Channel:</td>
               <td class="store-info">{{channelEmail}}</td>
             </tr>
-            <tr>
+            {{#hasDM}}<tr>
               <td class="store-label">Recipients in DM Channel:</td>
               <td class="store-info">{{channelDM}}</td>
-            </tr>
+            </tr>{{/hasDM}}
             <tr>
               <td class="store-label">Recipients in SMS Channel:</td>
               <td class="store-info">{{channelSMS}}</td>
@@ -106,15 +106,15 @@
                       <tbody>
                         <tr>
                           <td class="channelEmailTotal"></td>
-                          <td class="channelDMTotal"></td>
+                          {{#hasDM}}<td class="channelDMTotal"></td>{{/hasDM}}
                           <td class="channelSMSTotal"></td>
                         </tr>
                       </tbody>
                     </table>
                   </td>
-                  <td class="store-cost">
+                  {{#hasDM}}<td class="store-cost">
                     <span>$</span><span class="costEstimateTotal"></span>
-                  </td>
+                  </td>{{/hasDM}}
                 </tr>
               </tr>
             </table>
