@@ -24,19 +24,15 @@ var setProgramDefaults = (function ($) {
       }
     }).done(function (result) {
       // Display the success message with the proper program names.
-      toastr.success('Your stores have been enrolled in using corporate defaults for the selected program(s):<br><h4>'
-      + $selectedProgramNames + '</h4>');
-
+      toastr.success('Your stores have been enrolled in using corporate defaults for the selected program(s):<br><h4>' + $selectedProgramNames + '</h4>');
       // Refresh the API to display the updated Enrollment(s).
       // This was causing a problem with the program management page
       getProgramParticipationStats.makeRequest();
-
       // Debugging
       // console.log('%c ** Request Success ** ', 'color: #0a9; font-weight: bold;', '\nprogramIdss sent to API:\n' + $selectedPrograms);
     }).fail(function () {
       // Display the error message.
       toastr.error('<strong>Internal error.</strong> Please contact an administrator.');
-
       // Debugging
       // console.log('%c ** Request failed ** ', 'color: #f10; font-weight: bold;', '\nprogramIds tried to send API:\n' + $selectedPrograms);
     });
