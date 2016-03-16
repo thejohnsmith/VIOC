@@ -9,41 +9,41 @@
  */
 var dynamicCalendar = (function ($) {
 
-  var $calendar = $('#calendar'),
-    $calendarTabs = $calendar.find('.nav-tabs'),
-    init = function () {
-      setDateLabel();
-      setImagePath();
-    },
-    getCurrentMonth = function () {
-      var currentMonth = new moment();
-      return currentMonth;
-    },
-    getNextMonth = function () {
-      var nextMonth = new moment().add(1, 'months');
-      return nextMonth;
-    },
-    setDateLabel = function () {
-      var dateLabelCurrent = getCurrentMonth().format('MMMM YYYY');
-      var dateLabelNext = getNextMonth().format('MMMM YYYY');
-      $calendarTabs.find('li:first a').attr('title', dateLabelCurrent).text(dateLabelCurrent);
-      $calendarTabs.find('li:last a').attr('title', dateLabelNext).text(dateLabelNext);
-      return;
-    },
-    setImagePath = function () {
-      // /calendars folder
-      //  "calendar-MM-YYYY.jpg format"
-      var imgCurrent = getCurrentMonth().format('MM-YYYY');
-      var imgNext = getNextMonth().format('MM-YYYY');
-      $('.tab-content:first img').attr('src', 'https://files.marcomcentral.app.pti.com/epsilon/calendars/calendar-' + imgCurrent + '.jpg');
-      $('.tab-content:last img').attr('src', 'https://files.marcomcentral.app.pti.com/epsilon/calendars/calendar-' + imgNext + '.jpg');
-      return;
-    }
-  return {
-    init: init,
-    $calendar: $calendar,
-    getCurrentMonth: getCurrentMonth,
-  };
+	var $calendar = $('#calendar'),
+		$calendarTabs = $calendar.find('.nav-tabs'),
+		init = function () {
+			setDateLabel();
+			setImagePath();
+		},
+		getCurrentMonth = function () {
+			var currentMonth = new moment();
+			return currentMonth;
+		},
+		getNextMonth = function () {
+			var nextMonth = new moment().add(1, 'months');
+			return nextMonth;
+		},
+		setDateLabel = function () {
+			var dateLabelCurrent = getCurrentMonth().format('MMMM YYYY');
+			var dateLabelNext = getNextMonth().format('MMMM YYYY');
+			$calendarTabs.find('li:first a').attr('title', dateLabelCurrent).text(dateLabelCurrent);
+			$calendarTabs.find('li:last a').attr('title', dateLabelNext).text(dateLabelNext);
+			return;
+		},
+		setImagePath = function () {
+			// /calendars folder
+			//  "calendar-MM-YYYY.jpg format"
+			var imgCurrent = getCurrentMonth().format('MM-YYYY');
+			var imgNext = getNextMonth().format('MM-YYYY');
+			$('.tab-content:first img').attr('src', 'https://files.marcomcentral.app.pti.com/epsilon/calendars/calendar-' + imgCurrent + '.jpg');
+			$('.tab-content:last img').attr('src', 'https://files.marcomcentral.app.pti.com/epsilon/calendars/calendar-' + imgNext + '.jpg');
+			return;
+		};
+	return {
+		init: init,
+		$calendar: $calendar,
+		getCurrentMonth: getCurrentMonth
+	};
 })(jQuery);
 
 dynamicCalendar.init();
