@@ -7,11 +7,11 @@ var programManagementFilters = (function ($) {
 		onFilterChange: null,
 		init: function () {
 			var controller = this;
-			if (!(controller.user_id > 0)) console.error(
-				'Valid user ID not provided to controller.');
+			if (!(controller.user_id > 0)) {
+				console.error('Valid user ID not provided to controller.');
+			}
 			$('.filter-select').hide();
-			$('.filter-reset').on('click', $.proxy(controller.resetFilters,
-				controller));
+			$('.filter-reset').on('click', $.proxy(controller.resetFilters, controller));
 			controller.getStoreTree(function (store_tree) {
 				controller.setupFilters(store_tree);
 			});
@@ -75,8 +75,7 @@ var programManagementFilters = (function ($) {
 			var controller = this;
 			controller.store_ids = controller.findStoresRecursively(tree_segment);
 			var plural = (controller.store_ids.length === 1) ? '' : 's';
-			$('.filter-results-value').html(controller.store_ids.length + ' Result' +
-				plural);
+			$('.filter-results-value').html(controller.store_ids.length + ' Result' + plural);
 			if (typeof controller.onFilterChange === 'function') {
 				controller.onFilterChange(controller.store_ids);
 			}
@@ -89,10 +88,8 @@ var programManagementFilters = (function ($) {
 					stores_found.push(tree_segment[i].id);
 				}
 				// Call this function with any 'children' and append the results to the array
-				if (tree_segment[i].children !== undefined && typeof tree_segment[i].children ===
-					'object') {
-					var child_store_ids = controller.findStoresRecursively(tree_segment[i]
-						.children);
+				if (tree_segment[i].children !== undefined && typeof tree_segment[i].children === 'object') {
+					var child_store_ids = controller.findStoresRecursively(tree_segment[i].children);
 					stores_found = stores_found.concat(child_store_ids);
 				}
 			}
@@ -109,7 +106,9 @@ var programManagementFilters = (function ($) {
 				function (results) {
 					var json_results = JSON.parse(results);
 					controller.store_tree = json_results;
-					if (typeof callback === 'function') callback(json_results);
+					if (typeof callback === 'function') {
+						callback(json_results);
+					}
 				});
 		}
 	};
@@ -117,7 +116,9 @@ var programManagementFilters = (function ($) {
 		controller: controller
 	};
 })(jQuery);
+
 programManagementFilters.controller.init();
+
 programManagementFilters.controller.onFilterChange = function (store_ids) {
 	var $j = jQuery;
 	$j('.filterable').hide();

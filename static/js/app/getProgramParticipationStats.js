@@ -11,8 +11,8 @@ var getProgramParticipationStats = (function ($) {
 			if (marcomUserData.$user.externalId === '%%User.ExternalId%%') {
 				return;
 			}
-			var localDevUrl = 'data/getProgramParticipationStats.jssp';
-			var marcomDevUrl = 'https://files.marcomcentral.app.pti.com/epsilon/static/data/getProgramParticipationStats.jssp';
+			// var localDevUrl = 'data/getProgramParticipationStats.jssp';
+			// var marcomDevUrl = 'https://files.marcomcentral.app.pti.com/epsilon/static/data/getProgramParticipationStats.jssp';
 			var acUrl = 'https://adobe-uat-vioc.epsilon.com/jssp/vioc/getProgramParticipationStats.jssp';
 			$.ajax({
 				url: acUrl,
@@ -26,7 +26,6 @@ var getProgramParticipationStats = (function ($) {
 					'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
 				}
 			}).done(function (result) {
-				//upDateProgramsDashboard(result);
 				getProgramTitle(result);
 				loadProgramData(result);
 				loadDashboardData(result);
@@ -177,4 +176,5 @@ var getProgramParticipationStats = (function ($) {
 		requestFailed: requestFailed
 	};
 })(jQuery);
+
 getProgramParticipationStats.makeRequest();

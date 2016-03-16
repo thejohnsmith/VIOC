@@ -4,7 +4,7 @@ var getStoreProgramData = (function ($) {
 	var makeRequest = function () {
 			// Make sure there's a User ID loaded from Marcom before we Init this script.
 			if (marcomUserData.$user.externalId === '%%User.ExternalId%%' || $programId === undefined || $programId === null) {
-				return
+				return;
 			}
 			var localDevUrl = 'data/getStoreProgramData.jssp';
 			var marcomDevUrl = 'https://files.marcomcentral.app.pti.com/epsilon/static/data/getStoreProgramData.jssp';
@@ -43,7 +43,7 @@ var getStoreProgramData = (function ($) {
 					return reloadCheckBoxes();
 				}).done(function () {
 					return setHashLinks(),
-						programSettingsHandler()
+						programSettingsHandler();
 				}).promise().done(function () {
 					// getUserConfigurations.makeRequest();
 					programManagementController.controller.init();
@@ -62,9 +62,9 @@ var getStoreProgramData = (function ($) {
 			if ($('.program-settings-section .customCheckbox').length) {
 				return $('.program-settings-section .customCheckbox, .store-enroll .btn.btn-primary').click(function () {
 					$('.program-settings-footer').toggle($('.program-settings-section td .customCheckbox.checked').length > 1);
-					programManagementController.controller.hideAdditionalOffersIfNeeded()
+					programManagementController.controller.hideAdditionalOffersIfNeeded();
 					$('.program-settings-footer-row td:first-child').html('Adjust ' + $('.program-settings-section td .customCheckbox.checked').length + ' selected store(s) to use:');
-				})
+				});
 			}
 		},
 		reloadCheckBoxes = function () {
@@ -72,12 +72,12 @@ var getStoreProgramData = (function ($) {
 		},
 		getTotals = function (channel) {
 			Array.prototype.sum = function (prop) {
-				var total = 0
+				var total = 0;
 				for (var i = 0, _len = this.length; i < _len; i++) {
-					total += this[i][prop]
+					total += this[i][prop];
 				}
 				return total;
-			}
+			};
 			var channels = [{
 				channel: 'costEstimateTotal'
 			}, {
@@ -91,7 +91,7 @@ var getStoreProgramData = (function ($) {
 				(function (i) {
 					this.output = function () {
 						returnTotals(this.channel);
-					}
+					};
 					this.output();
 				}).call(channels[i], i);
 			}
@@ -105,7 +105,7 @@ var getStoreProgramData = (function ($) {
 			$('.costEstimateTotal').each(function () {
 				var num = Number($(this).text());
 				var n = num.toFixed(2);
-				$(this).text(n)
+				$(this).text(n);
 			});
 			/**
 			 * Calculate the grand total for Email, DM and SMS from all stores enrolled.
@@ -129,7 +129,7 @@ var getStoreProgramData = (function ($) {
 			$('.program-select').html('There was a problem fetching your programs.' + 'Please check back again later.');
 			$('.alert-container').html('<div class="alert-main alert-danger">Error: There was a problem loading the store data.</div>').fadeIn();
 			return console.warn('An internal error has occurred.');
-		}
+		};
 	return {
 		makeRequest: makeRequest,
 		loadStoreProgramData: loadStoreProgramData,
@@ -141,4 +141,5 @@ var getStoreProgramData = (function ($) {
 		requestFailed: requestFailed
 	};
 })(jQuery);
-getStoreProgramData.makeRequest()
+
+getStoreProgramData.makeRequest();

@@ -22,8 +22,7 @@ var getUserConfigurations = (function ($) {
 			}
 			// var localDevUrl = 'data/getUserConfigurations.jssp';
 			// var marcomDevUrl = 'https://files.marcomcentral.app.pti.com/epsilon/static/data/getUserConfigurations.jssp';
-			var acUrl =
-				'https://adobe-uat-vioc.epsilon.com/jssp/vioc/getUserConfigurations.jssp';
+			var acUrl = 'https://adobe-uat-vioc.epsilon.com/jssp/vioc/getUserConfigurations.jssp';
 			$.ajax({
 				url: acUrl,
 				type: 'GET',
@@ -56,8 +55,7 @@ var getUserConfigurations = (function ($) {
 				$.get(
 					'https://files.marcomcentral.app.pti.com/epsilon/static/program-config-options.mustache.html',
 					function (templates) {
-						var template = $(templates).filter(
-							'.program-config-options-template').html();
+						var template = $(templates).filter('.program-config-options-template').html();
 						$('.program-config-options-section').html(Mustache.render(
 							template,
 							result));

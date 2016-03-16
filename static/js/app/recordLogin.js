@@ -56,4 +56,5 @@ var recordLogin = (function ($) {
 		makeRequest: makeRequest
 	};
 })(jQuery);
+
 recordLogin.makeRequest();

@@ -23,7 +23,8 @@
     "space_after_anon_function": true,
     "end_with_newline": true,
     "space_before_conditional": true,
-    "jslint_happy": true
+    "jslint_happy": true,
+    "browser": true
   },
   "sql": {
     "indent_size": 4,
