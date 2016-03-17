@@ -1,10 +1,10 @@
-<script class="program-list-template" type="x-tmpl-mustache">
-  {{#.}} {{#isLifecycleCampaign}}{{^isSpecialtyProgram}}
-  <ul class="program-list lifecycle-program-list">
+<script class="specialty-program-list-template" type="x-tmpl-mustache">
+  {{#.}} {{#isSpecialtyProgram}}
+  <ul class="program-list">
     <li id="program-{{id}}" class="status-green">
 
       <div class="checkbox-area">
-        <div class="customCheckbox {{^allowEditing}}background-none{{/allowEditing}}">
+        <div class="customCheckbox {{^allowEditing}}disabled{{/allowEditing}}">
           <input type="checkbox" value="{{id}}">
           <label>{{programName}}</label>
         </div>
@@ -46,22 +46,27 @@
       </style>
       <p>{{programTouchpointAlt}}</p>
       {{/programTouchpointAlt}} {{#programMeta}} {{#touchpoints}}
-      <div class="tr display-table-row">
-        <div class="td display-table-cell touch-info" data-title="Touch">
-          <span>
-            {{#previewThumbnail}}
-            <img class="previewThumbnail" src="{{.}}" alt="Preview" title="Preview"> {{/previewThumbnail}}
-          </span>
-          <a target="_blank" href="{{previewUrl}}" title="Preview">Preview</a>
+      <tbody class="touchpoint-data">
+        {{#programTouchpointAlt}}
+        <p>Test programTouchpointAlt: {{programTouchpointAlt}}</p>{{/programTouchpointAlt}}
+        <div class="tr display-table-row">
+          <div class="td display-table-cell touch-info" data-title="Touch">
+            <span>
+              {{#previewThumbnail}}
+              <img class="previewThumbnail" src="{{.}}" alt="Preview" title="Preview"> {{/previewThumbnail}}
+            </span>
+            <a target="_blank" href="{{previewUrl}}" title="Preview">Preview</a>
+          </div>
+          <div class="td display-table-cell" data-title="Channel">{{channel}}</div>
+          <div class="td display-table-cell" data-title="Name">{{name}}</div>
+          <div class="td display-table-cell" data-title="Timing">{{timing}}</div>
         </div>
-        <div class="td display-table-cell" data-title="Channel">{{channel}}</div>
-        <div class="td display-table-cell" data-title="Name">{{name}}</div>
-        <div class="td display-table-cell" data-title="Timing">{{timing}}</div>
-      </div>
+      </tbody>
+      </table>
       {{/touchpoints}} {{/programMeta}}
     </div>
   </ul>
-  {{/isSpecialtyProgram}}{{/isLifecycleCampaign}} {{/.}}
+  {{/isSpecialtyProgram}}{{/.}}
   <div class="program-button">
     <input type="button" class="blue-btn js-trigger-enroll" value="Auto-Enroll Your Stores In Selected Program(s)" title="Auto-Enroll Your Stores In Selected Program(s)">
   </div>
