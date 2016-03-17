@@ -1,6 +1,6 @@
-<script class="program-list-template" type="x-tmpl-mustache">
-  {{#.}} {{#isLifecycleCampaign}}{{^isSpecialtyProgram}}
-  <ul class="program-list lifecycle-program-list">
+<script class="specialty-program-list-template" type="x-tmpl-mustache">
+  {{#.}} {{#isSpecialtyProgram}}
+  <ul class="program-list">
     <li id="program-{{id}}" class="status-green">
 
       <div class="checkbox-area">
@@ -37,7 +37,15 @@
       </div>
     </div>
     <!-- Second Tab content: Program Overview -->
+
+
+
     <div class="display-table program-touchpoints-tab-content none">
+    {{#programTouchpointAlt}}
+    <div className="programTouchpointAlt">
+      {{programTouchpointAlt}}
+    </div>
+    {{/programTouchpointAlt}}
       {{#programMeta}} {{#touchpoints}}
       <table>
         <thead>
@@ -48,7 +56,7 @@
             <th>Timing</th>
           </tr>
         </thead>
-        <tbody class="touchpoint-data">
+        <tbody>
           <div class="tr display-table-row">
             <div class="td display-table-cell touch-info" data-title="Touch">
               <span>
@@ -66,7 +74,7 @@
       {{/touchpoints}} {{/programMeta}}
     </div>
   </ul>
-  {{/isSpecialtyProgram}}{{/isLifecycleCampaign}} {{/.}}
+  {{/isSpecialtyProgram}}{{/.}}
   <div class="program-button">
     <input type="button" class="blue-btn js-trigger-enroll" value="Auto-Enroll Your Stores In Selected Program(s)" title="Auto-Enroll Your Stores In Selected Program(s)">
   </div>

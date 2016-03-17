@@ -75,6 +75,16 @@ input[type='button'] {
 input[type='text'], input[type='password'], input[type='search'], textarea, select {
   border: 1px solid #555;
 }
+input[type='text']{
+  border: 1px solid #555;
+  color: #555;
+  padding: 7px 10px;
+  width: 100%;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+  border-radius: 0;
+  box-shadow: none;
+}
 select {
   display: block;
   width: 100%;
@@ -175,6 +185,9 @@ input:focus::-ms-input-placeholder {
 }
 .visible {
   visibility: visible;
+}
+.background-none{
+  background: none !important;
 }
 .pipe {
   color: #555;
@@ -1363,13 +1376,20 @@ header .header-right a:hover {
   background: #EC1C23;
 }
 .settings-section {
-  float: left;
-  max-width: 500px;
-  padding-right: 32px
+  display: inline-block;
+  width: auto;
+  vertical-align: top;
+  margin-right: 3%;
 }
 .results-section {
-  float: left;
-  max-width: 500px
+  display: inline-block;
+  width: 40%;
+  vertical-align: top;
+}
+@media (min-width: 1232px) {
+  .results-section {
+    width: 50%;
+  }
 }
 .results-table th {
   text-align: center;
@@ -1410,9 +1430,7 @@ header .header-right a:hover {
 .settings-section i {
   color: red;
 }
-.settings-table {
-  max-width: 500px;
-}
+/*.settings-table {}*/
 .label-cell {
   min-width: 200px;
   padding: 8px

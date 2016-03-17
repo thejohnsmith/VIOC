@@ -64,11 +64,13 @@ var getProgramParticipationStats = (function ($) {
 		 * @return {string} programTitle found through getProgramTitle.
 		 */
 		setProgramTitle = function (programTitle) {
-			$('.h1.page-title > *').text(programTitle + ' Program').css({
+			$('.h1.page-title span').text(programTitle + ' Program').css({
 				opacity: 0
 			}).removeClass('hidden').animate({
 				opacity: 1
 			});
+			var programSettingsName = getParameterByName('programId', window.location.href)
+			$('.settings-title').text(programSettingsName)
 			return setBreadcrumbTitle(programTitle);
 		},
 		setBreadcrumbTitle = function (programTitle) {
@@ -90,10 +92,18 @@ var getProgramParticipationStats = (function ($) {
 		 * @retrun {function} upDateProgramsDashboard
 		 */
 		loadProgramData = function (result) {
-			if ($('.program-select').length) {
+			if ($('.program-select.lifecycle-program-list').length) {
 				$.get('https://files.marcomcentral.app.pti.com/epsilon/static/program-list.mustache.html', function (templates) {
 					var template = $(templates).filter('.program-list-template').html();
-					$('.program-select').html(Mustache.render(template, result));
+					$('.program-select.lifecycle-program-list').html(Mustache.render(template, result));
+					customCheckAndRadioBoxes.customCheckbox();
+					return upDateProgramsDashboard(result), setProgramTabContent();
+				});
+			}
+			if ($('.program-select.specialty-program-list').length) {
+				$.get('https://files.marcomcentral.app.pti.com/epsilon/static/specialty-program-list.mustache.html', function (templates) {
+					var template = $(templates).filter('.specialty-program-list-template').html();
+					$('.program-select.specialty-program-list').html(Mustache.render(template, result));
 					customCheckAndRadioBoxes.customCheckbox();
 					return upDateProgramsDashboard(result), setProgramTabContent();
 				});

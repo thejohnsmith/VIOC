@@ -68,6 +68,13 @@ button, input, select, textarea {
 input[type='text'], input[type='password'], input[type='search'], textarea {
   border: 1px solid #555;
   font-size: 15px;
+  color: #555;
+  padding: 7px 10px;
+  width: 100%;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+  border-radius: 0;
+  box-shadow: none;
 }
 input[type='button'], input[type='submit'] {
   -webkit-transition: 0.5s;
@@ -229,6 +236,9 @@ a:focus {
 }
 .visible {
   visibility: visible;
+}
+.background-none{
+  background: none !important;
 }
 .js-loading {
   left: 0;
@@ -1554,13 +1564,20 @@ header#nav {
   background: #EC1C23;
 }
 .settings-section {
-  float: left;
-  max-width: 600px;
-  padding-right: 32px
+  display: inline-block;
+  width: auto;
+  vertical-align: top;
+  margin-right: 3%;
 }
 .results-section {
-  float: left;
-  max-width: 600px
+  display: inline-block;
+  width: 40%;
+  vertical-align: top;
+}
+@media (min-width: 1232px) {
+  .results-section {
+    width: 50%;
+  }
 }
 .results-table th {
   text-align: center;
@@ -1601,9 +1618,7 @@ header#nav {
 .settings-section i {
   color: red;
 }
-.settings-table {
-  max-width: 500px;
-}
+/*.settings-table {}*/
 .label-cell {
   min-width: 200px;
   padding: 8px
