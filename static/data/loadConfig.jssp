@@ -1,5 +1,5 @@
 {
-    "configType": "dfs",
+    "configType": "adtl",
     "previewUrl": "http://......pdf",
     "uiLayout": {
         "allowEmailDiscountCode": true,

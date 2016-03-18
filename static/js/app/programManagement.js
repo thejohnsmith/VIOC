@@ -18,7 +18,7 @@ var programManagementController = (function ($) {
 			if (!(controller.user_id > 0)) {
 				console.log('Valid user ID not provided to controller.');
 			}
-			/* If this program doesn't use Additional Offers (aka DFS), hide
+			/* If this program doesn't use Additional Offers (aka Adtl), hide
 			the Additional Offer column and management controls */
 			controller.retrieveUserConfigs(function (configs) {
 				/* Populate the dropdowns with all possible values */
@@ -67,7 +67,7 @@ var programManagementController = (function ($) {
 			var controller = this;
 			for (var i = 0; i < $programParticipationStats.length; i++) {
 				if ($programParticipationStats[i].id === controller.program_id) {
-					if ($programParticipationStats[i].programUsesDfs === 0) {
+					if ($programParticipationStats[i].programUsesAdtl === 0) {
 						$('.additional-offer').hide();
 					}
 				}
@@ -78,7 +78,7 @@ var programManagementController = (function ($) {
 			var controller = this;
 			for (var idx = 0; idx < controller.store_data.length; idx++) {
 				var store = controller.store_data[idx];
-				$('.dropdown-' + store.storeId + '-program option[value="' + store.programConfigId + '"], .dropdown-' + store.storeId + '-dfs  option[value="' + store.dfsConfigId + '"]')
+				$('.dropdown-' + store.storeId + '-program option[value="' + store.programConfigId + '"], .dropdown-' + store.storeId + '-adtl  option[value="' + store.adtlConfigId + '"]')
 					.attr('selected', 'selected');
 			}
 		},
@@ -114,7 +114,7 @@ var programManagementController = (function ($) {
 					});
 				});
 			});
-			$('.bulk-apply-program, .bulk-apply-dfs').on('click', function (e) {
+			$('.bulk-apply-program, .bulk-apply-adtl').on('click', function (e) {
 				e.preventDefault();
 				var storeIds = [];
 				$.each($('.customCheckbox.checked'), function (i, obj) {
@@ -124,8 +124,8 @@ var programManagementController = (function ($) {
 				if ($(this).hasClass('bulk-apply-program')) {
 					configId = $('.program-dropdown.bulk-level-dropdown').val();
 				}
-				if ($(this).hasClass('bulk-apply-dfs')) {
-					configId = $('.dfs-dropdown.bulk-level-dropdown').val();
+				if ($(this).hasClass('bulk-apply-adtl')) {
+					configId = $('.adtl-dropdown.bulk-level-dropdown').val();
 				}
 				controller.saveStoreSubscription([storeIds], configId, function () {
 					toastr.success('Setting changes saved!');
@@ -152,11 +152,11 @@ var programManagementController = (function ($) {
 		populateConfigDropdowns: function () {
 			var controller = this;
 			// Clear all .program-dropdown selects
-			$('.program-dropdown, .dfs-dropdown').html('');
+			$('.program-dropdown, .adtl-dropdown').html('');
 			// Loop through the config data
 			for (var i = 0; i < controller.user_configs.length; i++) {
 				var config = controller.user_configs[i];
-				var target = (config.configType === 'program') ? '.program-dropdown' : '.dfs-dropdown';
+				var target = (config.configType === 'program') ? '.program-dropdown' : '.adtl-dropdown';
 				$(target)
 					.append($('<option>')
 						.val(config.id)

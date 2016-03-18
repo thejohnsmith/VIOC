@@ -16,23 +16,17 @@
 	<link rel="stylesheet" type="text/css" href="css/reset.css">
 	<!--css styles ends-->
 
-<script src="js/jquery_min.js"></script>
-<script>
-function getParameterByName(name) {
-    var match = RegExp("[?&]" + name + "=([^&]*)").exec(window.location.search);
-    return match && decodeURIComponent(match[1].replace(/\+/g, " "));
-}
-</script>
+	<script src="js/jquery_min.js"></script>
+	<script>
+		function getParameterByName(name) {
+			var match = RegExp("[?&]" + name + "=([^&]*)").exec(window.location.search);
+			return match && decodeURIComponent(match[1].replace(/\+/g, " "));
+		}
+	</script>
 </head>
 
 <body>
-	<span class="user-related none"
-		data-user-external-id="34567"
-		data-user-login-id="BetaUser"
-		data-user-first-name="John"
-		data-user-last-name="Smith"
-		data-user-email="john.smith@marcom.com"
-		aria-hidden="true">
+	<span class="user-related none" data-user-external-id="34567" data-user-login-id="BetaUser" data-user-first-name="John" data-user-last-name="Smith" data-user-email="john.smith@marcom.com" aria-hidden="true">
 	</span>
 	<div class="dummy"></div>
 	<div class="wrapper">
@@ -105,7 +99,7 @@ function getParameterByName(name) {
 							</ul>
 						</li>
 					</ul>
-					</div>
+				</div>
 			</div>
 		</header>
 		<!--header ends here-->
@@ -114,10 +108,12 @@ function getParameterByName(name) {
 			<div class="main">
 				<div class="left-container">
 					<section id="welcome">
-            <h3>Welcome <span class="welcome-message-custom">User!</span></h3>
-            <p>VIOC is pleased to present the new VDirect portal. You can access multi-part lifecycle campaigns, recurring additional offers as well as specific email/direct mail templates.</p>
-          </section>
- 					<section id="gettingStartedNow" class="js-hidden">
+						<h3>Welcome
+							<span class="welcome-message-custom">User!</span>
+						</h3>
+						<p>VIOC is pleased to present the new VDirect portal. You can access multi-part lifecycle campaigns, recurring additional offers as well as specific email/direct mail templates.</p>
+					</section>
+					<section id="gettingStartedNow" class="js-hidden">
 						<h1>Get Started Now</h1>
 						<p></p>
 						<div class="youtube-video-area">
@@ -173,43 +169,7 @@ function getParameterByName(name) {
 									</tr>
 								</thead>
 								<tbody class="participation-dashboard-tpl">
-									<!-- <tr class="program-name program-name-lifecycle">
-										<td data-title="Enrolled" data-enrolled="false">
-											<span class="errolled-state" aria-hidden="true">
-											</span>
-										</td>
-										<td data-title="Program">Lifecycle</td>
-										<td data-title="Impact">3.0</td>
-										<td data-title="Opportunity">No</td>
-									</tr> -->
 
-									<!-- <tr class="program-name program-name-facebook">
-										<td data-title="Enrolled" data-enrolled="true">
-											<span class="errolled-state" aria-hidden="true">
-											</span>
-										</td>
-									<td data-title="Program">Facebook1</td>
-									<td data-title="Impact">0.2</td>
-									<td data-title="Opportunity">Yes</td>
-								</tr>
-									<tr class="program-name program-name-asphalt">
-										<td data-title="Enrolled" data-enrolled="false">
-											<span class="errolled-state" aria-hidden="true">
-											</span>
-										</td>
-										<td data-title="Program">Asphalt Adventures</td>
-										<td data-title="Impact">2.3</td>
-										<td data-title="Opportunity">Yes</td>
-									</tr>
-									<tr class="program-name program-name-sms">
-										<td data-title="Enrolled" data-enrolled="false">
-											<span class="errolled-state" aria-hidden="true">
-											</span>
-										</td>
-										<td data-title="Program">SMS</td>
-										<td data-title="Impact">0.25</td>
-										<td data-title="Opportunity">No</td>
-									</tr> -->
 								</tbody>
 							</table>
 						</div>
@@ -266,7 +226,6 @@ function getParameterByName(name) {
 	<script src="js/app/setStoreSubscription.js"></script>
 	<script src="js/app/getUserConfigurations.js"></script>
 	<script src="js/app/targetingCriteria.js"></script>
-
 
 	<!-- ** Scripts not needed for Marcom templates ** -->
 	<script type="text/javascript" src="js/css_browser_selector.js"></script>
