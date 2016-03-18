@@ -49,6 +49,15 @@ var getStoreProgramData = (function ($) {
 					programManagementController.controller.init();
 				});
 			}
+			if ($('.quantity-limit-section').length) {
+				$.get('https://files.marcomcentral.app.pti.com/epsilon/static/quantity-limit-tab.mustache.html', function (templates) {
+					var template3 = $(templates).filter('.quantity-limit-tab-template').html();
+					$('.quantity-limit-tab-section').html(Mustache.render(template3, result));
+					return;
+				}).done(function () {
+					return;
+				}).promise().done(function () {});
+			}
 		},
 		setHashLinks = function () {
 			var currentProgramId = getParameterByName('programId', window.location.href);
