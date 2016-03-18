@@ -49,7 +49,7 @@
 }, {
   "id": 109,
   "programId": 0,
-  "configType": "dfs",
+  "configType": "adtl",
   "label": "Corporate Default",
   "isCorporateDefault": 1
 }, {
@@ -67,13 +67,13 @@
 }, {
   "id": 112,
   "programId": 0,
-  "configType": "dfs",
-  "label": "Summer Special DFS Offers",
+  "configType": "adtl",
+  "label": "Summer Special Adtl Offers",
   "isCorporateDefault": 0
 }, {
   "id": 113,
   "programId": 0,
-  "configType": "dfs",
-  "label": "Winter Special DFS Offers",
+  "configType": "adtl",
+  "label": "Winter Special Adtl Offers",
   "isCorporateDefault": 0
 }]
