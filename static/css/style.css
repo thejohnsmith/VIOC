@@ -75,7 +75,7 @@ input[type='button'] {
 input[type='text'], input[type='password'], input[type='search'], textarea, select {
   border: 1px solid #555;
 }
-input[type='text']{
+input[type='text'] {
   border: 1px solid #555;
   color: #555;
   padding: 7px 10px;
@@ -186,7 +186,7 @@ input:focus::-ms-input-placeholder {
 .visible {
   visibility: visible;
 }
-.background-none{
+.background-none {
   background: none !important;
 }
 .pipe {
@@ -1434,7 +1434,6 @@ header .header-right a:hover {
 .settings-section i {
   color: red;
 }
-/*.settings-table {}*/
 .label-cell {
   min-width: 200px;
   padding: 8px

@@ -10,13 +10,17 @@
         <ul>
           <li><a href="home.aspx" title="Home">Home</a></li>
           <li><a href="https://marcomcentral.app.pti.com/Epsilon_Data_Management/Beta_Epsilon/CustomPage.aspx?uigroup_id=479602&page_id=10792" title="Lifecycle Programs">Lifecycle Programs</a></li>
-          <li><span>Program Management</span></li>
+          <li>
+            <span>Program Management</span>
+          </li>
         </ul>
       </section>
     </div>
     <div class="main">
       <section id="programManagementTabs" class="wide-tabs">
-        <h1 class="h1 page-title"><span>Program Management</span></h1>
+        <h1 class="h1 page-title">
+          <span>Program Management</span>
+        </h1>
         <div class="filters-area">
           <div class="filter-title">Store Filters:</div>
 
@@ -51,8 +55,11 @@
           </div>
 
           <div class="filter-results">
-            <a href="#" title="filter-edit" class="filter-reset"><img src="https://files.marcomcentral.app.pti.com/epsilon/static/marcom_custom/images/edit-filter.png" alt="Edit" title="Edit" width="16"></a>
-            <span class="filter-results-value">3</span></div>
+            <a href="#" title="filter-edit" class="filter-reset">
+              <img src="https://files.marcomcentral.app.pti.com/epsilon/static/marcom_custom/images/edit-filter.png" alt="Edit" title="Edit" width="16">
+            </a>
+            <span class="filter-results-value">3</span>
+          </div>
         </div>
 
         <div id="parentHorizontalTab" class="lifescycle-tab">
@@ -62,18 +69,30 @@
             <li>Program Settings</li>
           </ul>
           <div class="resp-tabs-container hor_1">
+
+            <!-- Enrollment and Cost -->
             <div>
               <div class="programsummary-table" style="display:block">
                 <div class="participation-table program-enrollment-section">
-                  <!-- program-enrollment-template.mustache.html -->
+                  <!-- program-enrollment.mustache.html -->
                 </div>
               </div>
             </div>
+
+            <!-- Program Settings Tab -->
             <div>
               <div class="program-settings-section programsummary-table">
-                <!-- program-settings-template.mustache.html -->
+                <!-- program-settings.mustache.html -->
               </div>
             </div>
+
+            <!-- Print Quantity Limit Tab -->
+            <div>
+              <div class="quantity-limit-tab-section programsummary-table">
+                <!-- quantity-limit-tab.mustache.html -->
+              </div>
+            </div>
+
           </div>
       </section>
       </div>
