@@ -52,11 +52,7 @@ var customCheckAndRadioBoxes = (function ($) {
 	// TO DO: Updated storesParticipating values.
 	// This would likely be easier to do by making an API request to get programParticipationStats
 	var selectAllCustomBoxes = function () {
-		var $jsAllSelectable = $('.programsummary-table.program-settings-section .js-all-selectable:not(.disabled-input)');
-		$('.programsummary-table.program-settings-section .store-enroll .btn.btn-primary').on('click', function (e) {
-			e.preventDefault();
-			$jsAllSelectable.addClass('checked').find($('input')).prop('checked', 'checked').focus();
-		});
+
 		/** Toggle Buttons
 		 * @todo API request to enroll ALL stores.
 		 * @todo API request to enroll & unenroll INDIVIDUAL stores.
