@@ -45,7 +45,6 @@ var getStoreProgramData = (function ($) {
 					return setHashLinks(),
 						programSettingsHandler();
 				}).promise().done(function () {
-					// getUserConfigurations.makeRequest();
 					programManagementController.controller.init();
 				});
 			}
@@ -55,8 +54,9 @@ var getStoreProgramData = (function ($) {
 					$('.quantity-limit-tab-section').html(Mustache.render(template3, result));
 					return;
 				}).done(function () {
+					programSettingsHandler();
 					return;
-				}).promise().done(function () {});
+				});
 			}
 		},
 		setHashLinks = function () {
@@ -68,35 +68,48 @@ var getStoreProgramData = (function ($) {
 			}
 		},
 		programSettingsHandler = function () {
-			var $jsAllSelectable = $('.participation-table .js-all-selectable:not(.disabled-input)');
-			$('.programsummary-table .participation-table .store-enroll .btn.btn-primary').on('click', function (e) {
-				e.preventDefault();
-				$jsAllSelectable.addClass('checked').find($('input')).prop('checked', 'checked').focus();
-			});
-
-			if ($('.program-settings-section .customCheckbox').length) {
-				$('.program-settings-section .customCheckbox, .program-settings-section .store-enroll .btn.btn-primary').click(function () {
-					// Update the visible count of selected programs.
-					var $selectedStoreCount_program = $('.program-settings-footer-selected-count');
-					$selectedStoreCount_program.text($('.program-settings-section td .customCheckbox.checked').length);
-
-					// Show the bulk selection footer
-					$('.program-settings-section .program-settings-footer').toggle($('.program-settings-section td .customCheckbox.checked').length > 1);
-					programManagementController.controller.hideAdditionalOffersIfNeeded();
-				});
-			}
-			if ($('.quantity-limit-tab-section .customCheckbox').length) {
-				console.log('quantity-limit-tab-section yes');
-				$('.quantity-limit-tab-section .customCheckbox, .quantity-limit-tab-section .store-enroll .btn.btn-primary').click(function () {
-					console.log('quantity-limit-tab-section click');
-					// Update the visible count of selected programs.
-					var $selectedStoreCount_quantity = $('.quantity-limit-footer-selected-count');
-					$selectedStoreCount_quantity.text($('.quantity-limit-tab-section td .customCheckbox.checked').length);
-
-					// Show the bulk selection footer
-					$('.quantity-limit-tab-section .program-settings-footer').toggle($('.quantity-limit-tab-section td .customCheckbox.checked').length > 1);
-				});
-			}
+			customCheckAndRadioBoxes.customCheckbox();
+			// 			$('.programsummary-table .store-enroll .btn.btn-primary, .programsummary-table .customCheckbox').on('click', function (e) {
+			// 				e.preventDefault();
+			// 				var $checkboxtype = $(this).attr('data-checkboxtype');
+			// 				var $jsAllSelectable = $('.' + $checkboxtype + '-section .js-all-selectable:not(.disabled-input)');
+			// 				var $selectedStoreCount = $('.' + $checkboxtype + '-section .customCheckbox.checked').length;
+			// 				var $selectedStoreFooter = $('.' + $checkboxtype + '-footer');
+			// 				var $selectedStoreFooterText = $('.' + $checkboxtype + '-footer-selected-count');
+			//
+			// 				console.log('$selectedStoreFooterText ' + $selectedStoreCount);
+			//
+			// 				// Update the visible count of selected programs.
+			// 				$selectedStoreFooterText.text($selectedStoreCount);
+			// 				// Show the bulk selection footer
+			// 				$selectedStoreFooter.toggle($selectedStoreCount > 1);
+			// 				$jsAllSelectable.addClass('checked').find($('input')).prop('checked', 'checked').focus();
+			//
+			// 				// Hide Additional Offers I fNeeded
+			// 				programManagementController.controller.hideAdditionalOffersIfNeeded();
+			// 			});
+			//
+			//
+			// // Working to update the footer count!!
+			// 			$('.program-settings-section .customCheckbox').click(function () {
+			// 				// Update the visible count of selected programs.
+			// 				var $selectedStoreCount_program = $('.program-settings-footer-selected-count');
+			// 				$selectedStoreCount_program.text($('.program-settings-section td .customCheckbox.checked').length);
+			//
+			// 				// Show the bulk selection footer
+			// 				$('.program-settings-section .program-settings-footer').toggle($('.program-settings-section td .customCheckbox.checked').length > 1);
+			// 				programManagementController.controller.hideAdditionalOffersIfNeeded();
+			// 			});
+			// Working to update the footer count!!
+			// $('.quantity-limit-tab-section .customCheckbox').click(function () {
+			// 	// Update the visible count of selected programs.
+			// 	var $selectedStoreCount_quantity = $('.quantity-limit-footer-selected-count');
+			// 	$selectedStoreCount_quantity.text($('.quantity-limit-tab-section td .customCheckbox.checked').length);
+			//
+			// 	// Show the bulk selection footer
+			// 	$('.quantity-limit-footer').toggle($('.quantity-limit-tab-section td .customCheckbox.checked').length > 1);
+			// 	programManagementController.controller.hideAdditionalOffersIfNeeded();
+			// });
 		},
 		reloadCheckBoxes = function () {
 			return customCheckAndRadioBoxes.customCheckbox();

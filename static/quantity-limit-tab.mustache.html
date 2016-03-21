@@ -10,7 +10,7 @@
       <thead>
         <tr>
           <th class="store-enroll">
-            <button class="btn btn-primary btn-sm">Select All</button>
+            <button data-checkboxtype="quantity-limit" class="quantity-limit select-all btn btn-primary btn-sm">Select All</button>
           </th>
           <th class="store">Store</th>
           <th class="print">DM Quantity Limit</th>
@@ -21,12 +21,12 @@
         <tr class="filterable" data-filter-storeId="{{storeId}}">
           <td style="padding: 10px 0 0 0">
             <div class="checkbox-area" data-enrolled="">
-              <div data-storeId="{{storeId}}" class="customCheckbox js-all-selectable {{^enrolled}}disabled-input{{/enrolled}}">
+              <div data-storeId="{{storeId}}" class="quantity-limit customCheckbox js-all-selectable {{^enrolled}}disabled-input{{/enrolled}}">
                 <input {{^enrolled}}readonly{{/enrolled}} data-checkbox-label="" type="checkbox">
               </div>
             </div>
           </td>
-          <td data-storeId="{{storeId}}" class="store program-settings-store" style="padding: 8px">
+          <td data-storeId="{{storeId}}" class="store quantity-limit-store" style="padding: 8px">
             <div class="store-name">{{storeName}}</div>
             <div class="store-number">Store #{{storeId}}</div>
           </td>
@@ -34,7 +34,7 @@
             <div class="container-fluid">
               <div class="row">
                 <div class="col-sm-8">
-                  <input value="{{quantityLimit}}" tabindex="1" data-storeId="{{storeId}}" type="number" placeholder="Enter a limit" class="form-control {{^enrolled}}disabled-input{{/enrolled}}">
+                  <input value="{{quantityLimit}}" tabindex="1" data-storeId="{{storeId}}" type="number" placeholder="Limit" class="form-control {{^enrolled}}disabled-input{{/enrolled}}">
                 </div>
                 <div class="col-sm-2">
                   <button tabindex="1" class="btn btn-small btn-primary">Apply</button>
@@ -44,19 +44,20 @@
           </td>
         </tr>
         {{/.}}
-        <tr class="program-settings-footer-row">
-          <td class="program-settings-footer" colspan="2" style="padding: 0 14px 0;text-align: right;">
-          Set quantity limit on <span class="quantity-limit-footer-selected-count"> 0 </span> selected store(s):
+        <tr class="quantity-limit footer-row">
+
+          <td class="quantity-limit-footer" colspan="2" style="padding: 0 14px 0;text-align: right;">
+            Adjust
+            <span class="quantity-limit-footer-selected-count"> 0 </span> selected store(s) to use:
           </td>
-          <td class="program-settings-footer store-configuration" style="padding: 8px">
+          <td class="quantity-limit-footer store-configuration" style="padding: 8px">
             <div class="container-fluid">
               <div class="row">
                 <div class="col-sm-8">
-                  <select class="form-control program-dropdown bulk-level-dropdown">
-                  </select>
+                  <input value="{{quantityLimit}}" tabindex="1" data-storeId="{{storeId}}" type="number" placeholder="Limit" class="form-control">
                 </div>
                 <div class="col-sm-2">
-                  <button href="#" class="btn btn-small btn-primary bulk-apply-program">Apply</button>
+                  <button tabindex="1" href="#" class="btn btn-small btn-primary bulk-apply-program">Apply</button>
                 </div>
               </div>
             </div>
@@ -65,4 +66,13 @@
       </tbody>
     </table>
   </div>
+  <script>
+    var quantityLimitController = jQuery.extend({}, checkboxController.controller);
+    quantityLimitController.init("quantity-limit", function(storeIds) {
+      console.log("Stores changed: %O", storeIds);
+      var plural = (storeIds.length === 1) ? "" : "s";
+      $j(".quantity-limit.footer-row").toggleClass("none", (storeIds.length < 2));
+      $j(".quantity-limit.footer-row td.quantity-limit-footer:first-child").html("Adjust " + storeIds.length + " selected store" + plural + " to use:");
+    });
+  </script>
 </script>
