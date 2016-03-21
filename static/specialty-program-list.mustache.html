@@ -45,6 +45,14 @@
         }
       </style>
       <p>{{programTouchpointAlt}}</p>
+
+      {{/programTouchpointAlt}} {{^programTouchpointAlt}}
+      <style>
+        #programDetails .participation-table thead {
+          display: table-header-group;
+        }
+      </style>
+
       {{/programTouchpointAlt}} {{#programMeta}} {{#touchpoints}}
       <tbody class="touchpoint-data">
         {{#programTouchpointAlt}}
