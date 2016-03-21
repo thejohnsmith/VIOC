@@ -65,7 +65,7 @@ button, input, select, textarea {
   box-shadow: none;
   white-space: normal;
 }
-input[type='text'], input[type='password'], input[type='search'], textarea {
+input[type='text'], input[type='password'], input[type='search'], input[type='number'], textarea {
   border: 1px solid #555;
   font-size: 15px;
   color: #555;
@@ -75,6 +75,10 @@ input[type='text'], input[type='password'], input[type='search'], textarea {
   transition: 0.5s;
   border-radius: 0;
   box-shadow: none;
+}
+input[type='number'] {
+  border: 1px solid #ccc;
+  border-radius: 4px;
 }
 input[type='button'], input[type='submit'] {
   -webkit-transition: 0.5s;
@@ -99,7 +103,7 @@ select {
   -webkit-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
   transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
 }
-input[type='text']:focus, input[type='password']:focus, input[type='search'], textarea, select:focus {
+input[type='text']:focus, input[type='number']:focus, input[type='password']:focus, input[type='search'], textarea, select:focus {
   border-color: #66afe9;
   outline: 0;
   box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px rgba(102, 175, 233, .6);
@@ -1357,6 +1361,19 @@ header#nav {
 .programsummary-table .mobile-info > td {
   padding-left: 0 !important;
   padding-right: 0 !important;
+}
+.programsummary-table.quantity-limit-tab-section .store-enroll {
+  width: 15%;
+}
+.programsummary-table.quantity-limit-tab-section .store {
+  width: 50%;
+}
+.programsummary-table.quantity-limit-tab-section .print {
+  width: 35%;
+}
+.programsummary-table.quantity-limit-tab-section .store-configuration input[type='number'] {
+  width: 30%;
+  min-width: 100px;
 }
 .program-inputs {
   float: left;

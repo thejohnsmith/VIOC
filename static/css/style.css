@@ -72,10 +72,10 @@ input[type='button'] {
   color: #555655;
   border-radius: 0;
 }
-input[type='text'], input[type='password'], input[type='search'], textarea, select {
+input[type='text'], input[type='password'], input[type='search'], input[type='number'], textarea, select {
   border: 1px solid #555;
 }
-input[type='text'] {
+input[type='text'], input[type='number'] {
   border: 1px solid #555;
   color: #555;
   padding: 7px 10px;
@@ -84,6 +84,15 @@ input[type='text'] {
   transition: 0.5s;
   border-radius: 0;
   box-shadow: none;
+}
+input[type='number'] {
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  height: 34px;
+  padding: 6px 12px;
+  font-size: 12px;
+  line-height: 1.42857143;
+  color: #555;
 }
 select {
   display: block;
@@ -101,7 +110,7 @@ select {
   -webkit-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
   transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
 }
-input[type='text']:focus, input[type='password']:focus, input[type='search']:focus, textarea, select:focus {
+input[type='text']:focus, input[type='password']:focus, input[type='search']:focus, input[type='number']:focus, textarea:focus, select:focus {
   border-color: #66afe9;
   outline: 0;
   box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px rgba(102, 175, 233, .6);
@@ -1166,6 +1175,38 @@ header .header-right a:hover {
 .programsummary-table .mobile-info > td {
   padding-left: 0 !important;
   padding-right: 0 !important;
+}
+.programsummary-table.quantity-limit-tab-section .store-enroll {
+  width: 15%;
+}
+.programsummary-table.quantity-limit-tab-section .store {
+  width: 50%;
+}
+.programsummary-table.quantity-limit-tab-section .print {
+  width: 35%;
+}
+.programsummary-table.quantity-limit-tab-section .store-configuration input[type='number'] {
+  min-width: 100px;
+  width: 100px;
+  right: -10px;
+  margin-bottom: 1em;
+  position: relative;
+}
+.programsummary-table.quantity-limit-tab-section .store-configuration .btn-primary {
+  background-color: rgb(14, 163, 221);
+  border-color: rgba(63, 81, 181, 0.46);
+  padding: 5px 14px 4px;
+  font-size: 12px;
+  line-height: 1.5;
+  border-radius: 3px;
+}
+@media (min-width: 768px) {
+  .programsummary-table.quantity-limit-tab-section .store-configuration input[type='number'] {
+    margin-bottom: 0;
+  }
+  .programsummary-table.quantity-limit-tab-section .store-configuration .col-sm-2 {
+    margin-left: -30px;
+  }
 }
 .program-inputs {
   float: left;

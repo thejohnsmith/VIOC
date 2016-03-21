@@ -69,8 +69,8 @@ var getProgramParticipationStats = (function ($) {
 			}).removeClass('hidden').animate({
 				opacity: 1
 			});
-			var programSettingsName = getParameterByName('programId', window.location.href)
-			$('.settings-title').text(programSettingsName)
+			var programSettingsName = getParameterByName('programId', window.location.href);
+			$('.settings-title').text(programSettingsName);
 			return setBreadcrumbTitle(programTitle);
 		},
 		setBreadcrumbTitle = function (programTitle) {

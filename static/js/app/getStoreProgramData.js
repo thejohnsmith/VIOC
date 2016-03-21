@@ -49,7 +49,7 @@ var getStoreProgramData = (function ($) {
 					programManagementController.controller.init();
 				});
 			}
-			if ($('.quantity-limit-section').length) {
+			if ($('.quantity-limit-tab-section').length) {
 				$.get('https://files.marcomcentral.app.pti.com/epsilon/static/quantity-limit-tab.mustache.html', function (templates) {
 					var template3 = $(templates).filter('.quantity-limit-tab-template').html();
 					$('.quantity-limit-tab-section').html(Mustache.render(template3, result));
@@ -68,11 +68,33 @@ var getStoreProgramData = (function ($) {
 			}
 		},
 		programSettingsHandler = function () {
+			var $jsAllSelectable = $('.participation-table .js-all-selectable:not(.disabled-input)');
+			$('.programsummary-table .participation-table .store-enroll .btn.btn-primary').on('click', function (e) {
+				e.preventDefault();
+				$jsAllSelectable.addClass('checked').find($('input')).prop('checked', 'checked').focus();
+			});
+
 			if ($('.program-settings-section .customCheckbox').length) {
-				return $('.program-settings-section .customCheckbox, .store-enroll .btn.btn-primary').click(function () {
-					$('.program-settings-footer').toggle($('.program-settings-section td .customCheckbox.checked').length > 1);
+				$('.program-settings-section .customCheckbox, .program-settings-section .store-enroll .btn.btn-primary').click(function () {
+					// Update the visible count of selected programs.
+					var $selectedStoreCount_program = $('.program-settings-footer-selected-count');
+					$selectedStoreCount_program.text($('.program-settings-section td .customCheckbox.checked').length);
+
+					// Show the bulk selection footer
+					$('.program-settings-section .program-settings-footer').toggle($('.program-settings-section td .customCheckbox.checked').length > 1);
 					programManagementController.controller.hideAdditionalOffersIfNeeded();
-					$('.program-settings-footer-row td:first-child').html('Adjust ' + $('.program-settings-section td .customCheckbox.checked').length + ' selected store(s) to use:');
+				});
+			}
+			if ($('.quantity-limit-tab-section .customCheckbox').length) {
+				console.log('quantity-limit-tab-section yes');
+				$('.quantity-limit-tab-section .customCheckbox, .quantity-limit-tab-section .store-enroll .btn.btn-primary').click(function () {
+					console.log('quantity-limit-tab-section click');
+					// Update the visible count of selected programs.
+					var $selectedStoreCount_quantity = $('.quantity-limit-footer-selected-count');
+					$selectedStoreCount_quantity.text($('.quantity-limit-tab-section td .customCheckbox.checked').length);
+
+					// Show the bulk selection footer
+					$('.quantity-limit-tab-section .program-settings-footer').toggle($('.quantity-limit-tab-section td .customCheckbox.checked').length > 1);
 				});
 			}
 		},
