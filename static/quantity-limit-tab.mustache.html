@@ -1,0 +1,68 @@
+<!-- Quantity Limits Tab
+    @file quantity-limit-tab.mustache.html
+    @type template/mustache
+    @import portalCustomProgramManager.html
+    @link Beta URL - https://marcomcentral.app.pti.com/Epsilon_Data_Management/Beta_Epsilon/CustomPage.aspx?uigroup_id=479602&page_id=11173&programId=5#parentHorizontalTab3
+-->
+<script class="quantity-limit-tab-template" type="x-tmpl-mustache">
+  <div class="participation-table">
+    <table>
+      <thead>
+        <tr>
+          <th class="store-enroll">
+            <button class="btn btn-primary btn-sm">Select All</button>
+          </th>
+          <th class="store">Store</th>
+          <th class="print">DM Quantity Limit</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#.}}
+        <tr class="filterable" data-filter-storeId="{{storeId}}">
+          <td style="padding: 10px 0 0 0">
+            <div class="checkbox-area" data-enrolled="">
+              <div data-storeId="{{storeId}}" class="customCheckbox js-all-selectable {{^enrolled}}disabled-input{{/enrolled}}">
+                <input {{^enrolled}}readonly{{/enrolled}} data-checkbox-label="" type="checkbox">
+              </div>
+            </div>
+          </td>
+          <td data-storeId="{{storeId}}" class="store program-settings-store" style="padding: 8px">
+            <div class="store-name">{{storeName}}</div>
+            <div class="store-number">Store #{{storeId}}</div>
+          </td>
+          <td class="store-configuration" style="padding: 8px">
+            <div class="container-fluid">
+              <div class="row">
+                <div class="col-sm-8">
+                  <input value="{{quantityLimit}}" tabindex="1" data-storeId="{{storeId}}" type="number" placeholder="Enter a limit" class="form-control {{^enrolled}}disabled-input{{/enrolled}}">
+                </div>
+                <div class="col-sm-2">
+                  <button tabindex="1" class="btn btn-small btn-primary">Apply</button>
+                </div>
+              </div>
+            </div>
+          </td>
+        </tr>
+        {{/.}}
+        <tr class="program-settings-footer-row">
+          <td class="program-settings-footer" colspan="2" style="padding: 0 14px 0;text-align: right;">
+          Set quantity limit on <span class="quantity-limit-footer-selected-count"> 0 </span> selected store(s):
+          </td>
+          <td class="program-settings-footer store-configuration" style="padding: 8px">
+            <div class="container-fluid">
+              <div class="row">
+                <div class="col-sm-8">
+                  <select class="form-control program-dropdown bulk-level-dropdown">
+                  </select>
+                </div>
+                <div class="col-sm-2">
+                  <button href="#" class="btn btn-small btn-primary bulk-apply-program">Apply</button>
+                </div>
+              </div>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</script>

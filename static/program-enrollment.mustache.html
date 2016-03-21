@@ -1,0 +1,128 @@
+<script class="program-enrollment-template" type="x-tmpl-mustache">
+  <table>
+    <thead>
+      <tr>
+        <td>
+          <table>
+            <tr>
+              <th class="store-enroll">
+                <div class="">
+                  <p>Store Enrollment</p>
+                  <button class="enroll-all-stores btn btn-primary btn-sm">Enroll All</button>
+                </div>
+              </th>
+              <th class="store">Store</th>
+              <th class="store-counts">
+                <p>Counts Per Channel</p>
+                <table class="inner-table">
+                  <tr>
+                    <td>Email</td>
+                    {{#hasDM}}<td>DM  {{hasDM}}</td>{{/hasDM}}
+                    <td>SMS</td>
+                  </tr>
+                </table>
+              </th>
+              {{#hasDM}}<th class="store-cost">Estimated
+                <br>Monthly Cost</th>{{/hasDM}}
+            </tr>
+          </table>
+        </td>
+      </tr>
+    </thead>
+    <tbody class="">
+      {{#.}}
+
+      <tr class="filterable" data-filter-storeId="{{storeId}}">
+        <td>
+          <table>
+            <tr>
+              <td>
+                <table>
+                  <tr class="store-item" data-enrolled="{{#enrolled}}true{{/enrolled}}{{^enrolled}}false{{/enrolled}}">
+                    <td class="store-enroll">
+                      <div class="toggle-btn" data-enrolled="{{enrolled}}">
+                        <input type="checkbox" class="cb-value" data-storeId="{{storeId}}" {{#enrolled}}checked{{/enrolled}}>
+                        <span class="round-btn"></span>
+                      </div>
+                    </td>
+                    <td class="store">{{storeName}}
+                      <br>
+                      <div class="store-number">Store #{{storeId}}</div>
+                    </td>
+                    <td class="store-counts">
+                      <table class="inner-table">
+                        <tr>
+                          <td class="channelEmailTotal">{{channelEmail}}</td>
+                          {{#hasDM}}<td class="channelDMTotal">{{channelDM}}</td>{{/hasDM}}
+                          <td class="channelSMSTotal">{{channelSMS}}</td>
+                        </tr>
+                      </table>
+                    </td>
+                    {{#hasDM}}<td class="store-cost"><span>$</span><span class="costEstimateTotal js-format-currency">{{costEstimate}}</span>
+                      <br><a href="javascript:void(0);" title="Details" class="mobie-details-{{storeId}}">Details</a></td>{{/hasDM}}
+                  </tr>
+                </table>
+              </td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr class="mobile-info-{{storeId}}">
+        <td>
+          <table class="mobile-table">
+            <tr>
+              <td class="store-label">Store #</td>
+              <td class="store-info">{{storeId}}</td>
+            </tr>
+            <tr>
+              <td class="store-label">Recipients in Email Channel:</td>
+              <td class="store-info">{{channelEmail}}</td>
+            </tr>
+            {{#hasDM}}<tr>
+              <td class="store-label">Recipients in DM Channel:</td>
+              <td class="store-info">{{channelDM}}</td>
+            </tr>{{/hasDM}}
+            <tr>
+              <td class="store-label">Recipients in SMS Channel:</td>
+              <td class="store-info">{{channelSMS}}</td>
+            </tr>
+            <tr>
+              <td class="store-label">Estimated Monthly Cost:</td>
+              <td class="store-info">{{costEstimate}}</td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      {{/.}}
+      <tr>
+        <tr class="grand-total">
+          <td>
+            <table>
+              <tr>
+                <tr>
+                  <td class="total-label">Total Participants in the Reminder Campaign:</td>
+                  <td class="store-counts">
+                    <table class="inner-table">
+                      <tbody>
+                        <tr>
+                          <td class="channelEmailTotal"></td>
+                          {{#hasDM}}<td class="channelDMTotal"></td>{{/hasDM}}
+                          <td class="channelSMSTotal"></td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </td>
+                  {{#hasDM}}<td class="store-cost">
+                    <span>$</span><span class="costEstimateTotal"></span>
+                  </td>{{/hasDM}}
+                </tr>
+              </tr>
+            </table>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+  <script>
+
+  </script>
+</script>

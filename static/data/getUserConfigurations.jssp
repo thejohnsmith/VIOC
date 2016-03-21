@@ -1,0 +1,79 @@
+[{
+  "id": 101,
+  "programId": 1,
+  "configType": "program",
+  "label": "Corporate Default",
+  "isCorporateDefault": 1
+}, {
+  "id": 102,
+  "programId": 2,
+  "configType": "program",
+  "label": "Corporate Default",
+  "isCorporateDefault": 1
+}, {
+  "id": 103,
+  "programId": 3,
+  "configType": "program",
+  "label": "Corporate Default",
+  "isCorporateDefault": 1
+}, {
+  "id": 104,
+  "programId": 4,
+  "configType": "program",
+  "label": "Corporate Default",
+  "isCorporateDefault": 1
+}, {
+  "id": 105,
+  "programId": 5,
+  "configType": "program",
+  "label": "Corporate Default",
+  "isCorporateDefault": 1
+}, {
+  "id": 106,
+  "programId": 6,
+  "configType": "program",
+  "label": "Corporate Default",
+  "isCorporateDefault": 1
+}, {
+  "id": 107,
+  "programId": 7,
+  "configType": "program",
+  "label": "Corporate Default",
+  "isCorporateDefault": 1
+}, {
+  "id": 108,
+  "programId": 8,
+  "configType": "program",
+  "label": "Corporate Default",
+  "isCorporateDefault": 1
+}, {
+  "id": 109,
+  "programId": 0,
+  "configType": "adtl",
+  "label": "Corporate Default",
+  "isCorporateDefault": 1
+}, {
+  "id": 110,
+  "programId": 10,
+  "configType": "program",
+  "label": "Summer Specials",
+  "isCorporateDefault": 0
+}, {
+  "id": 111,
+  "programId": 11,
+  "configType": "program",
+  "label": "Winter Specials",
+  "isCorporateDefault": 0
+}, {
+  "id": 112,
+  "programId": 0,
+  "configType": "adtl",
+  "label": "Summer Special Adtl Offers",
+  "isCorporateDefault": 0
+}, {
+  "id": 113,
+  "programId": 0,
+  "configType": "adtl",
+  "label": "Winter Special Adtl Offers",
+  "isCorporateDefault": 0
+}]

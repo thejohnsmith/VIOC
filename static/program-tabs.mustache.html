@@ -1,0 +1,39 @@
+<script class="program-tabs-template" type="x-tmpl-mustache">
+  {{#.}} {{#isLifecycleCampaign}}
+  <div class="{{programName}}">
+    <div class="program-overview-img">
+      <img src="{{programImg}}" alt="Program Overview" title="Program Overview">
+    </div>
+    <p class="programDesc">{{programDesc}}</p>
+  </div>
+  <div>
+    <div class="{{id}} participation-table" id="no-more-tables">
+      <table>
+        <thead>
+          <tr>
+            <th>Touch</th>
+            <th>Channel</th>
+            <th>Name</th>
+            <th>Timing</th>
+          </tr>
+        </thead>
+        <tbody>
+          {{#programMeta}} {{#touchpoints}}
+          <tr>
+            <td data-title="Touch" class="touch-info">
+              <span>
+                  <img src="{{previewThumbnail}}" alt="Preview" title="Preview">
+                </span>
+              <a href="{{previewUrl}}" title="Preview">Preview</a>
+            </td>
+            <td data-title="Channel">{{channel}}</td>
+            <td data-title="Name">{{name}}</td>
+            <td data-title="Timing">{{timing}} Days</td>
+          </tr>
+          {{/touchpoints}} {{/programMeta}}
+        </tbody>
+      </table>
+    </div>
+  </div>
+  {{/isLifecycleCampaign}} {{/.}}
+</script>

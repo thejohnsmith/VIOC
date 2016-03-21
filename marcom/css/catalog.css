@@ -1,0 +1,82 @@
+.btn-s {
+    background-position: right -69px;
+}
+.btn-s:hover {
+    background-position: right -23px;
+}
+.btn-s-green,
+.btn-s-green:hover {
+    background-position: right -769px;
+}
+#CtlBrdCrm {
+  float: none;
+  color: #000;
+  margin: 0 auto;
+  padding: 10px 0;
+}
+#CtlBrdCrm a, #CtlBrdCrm div {
+  font-size: 11px;
+  display: inline-block;
+  padding-right: 5px;
+  color: #555655;
+  letter-spacing: 0;
+  font-family: 'HelveticaNeueLT-Condensed', sans-serif;
+}
+#CtlBrdCrm a:hover {
+    color: #1cb7f1;
+    -webkit-transition: 0;
+    transition: 0;
+}
+#divSearchCart {
+  display: none;
+}
+.CheckoutBreadCrumbs {
+  font-size: 11px;
+  color: #555655;
+  letter-spacing: 0;
+  font-family: 'HelveticaNeueLT-Condensed', sans-serif;
+  padding: 20px 12px 15px 0;
+  width: 1200px;
+  margin: 0 auto;
+}
+.CheckoutBreadCrumbs span {
+  padding: 0 5px;
+}
+.CheckoutBreadCrumbs img {
+  vertical-align: middle;
+}
+.CheckoutBreadCrumbsNext {
+    color: #555655;
+}
+.ContentBoxGrey {
+  display: none;
+  margin: 0 auto;
+}
+#CtlBody {
+    padding: 0;
+}
+.ButtonRowFloatR {
+  float: none;
+  padding: 10px 10px;
+  width: 1200px;
+  margin: 0 auto;
+  text-align: right;
+}
+.ButtonRowFloatR:last-child {
+  width: auto;
+  float: right;
+}
+.CtlGridTable3 td {
+  padding: 10px;
+}
+body a {
+  -webkit-transition: 0;
+  transition: 0;
+  color: #555655;
+}
+input[type='button'] {
+  -webkit-transition: 0;
+  transition: 0;
+  color: #555655;
+  border-radius: 0;
+}
