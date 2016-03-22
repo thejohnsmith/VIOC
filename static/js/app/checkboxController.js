@@ -1,7 +1,7 @@
 var checkboxController = (function ($) {
 	var controller = {
 		storeIds: [],
-		cssFamily: "",
+		cssFamily: '',
 		onChange: null,
 		init: function (cssFamily, onChange) {
 			var controller = this;
@@ -12,13 +12,29 @@ var checkboxController = (function ($) {
 		},
 		attachEventHandlers: function () {
 			var controller = this;
-			$("." + controller.cssFamily + ".select-all").on("click", function (e) {
-				$("." + controller.cssFamily + ".customCheckbox").addClass("checked");
+			var $selectAll = $('.programsummary-table .' + controller.cssFamily + '.select-all');
+			var $checkBox = $('.programsummary-table .' + controller.cssFamily + '.customCheckbox:not(.disabled-input)');
+
+			/* Select All */
+			$selectAll.on('click', function (event) {
+				event.preventDefault();
+				if ($(this).is('.not-active')) {
+					$checkBox.each(function () {
+						$(this).addClass('checked');
+					});
+				} else {
+					$checkBox.each(function () {
+						$(this).removeClass('checked');
+					});
+				}
+				$(this).toggleClass('not-active active').text(function (i, text) {
+					return text === 'Select All' ? 'Unselect All' : 'Select All';
+				});
 				controller.recalculateSelectedStores();
-				e.preventDefault();
 			});
 
-			$("." + controller.cssFamily + ".customCheckbox").on("click", function (e) {
+			/* Checkbox Select */
+			$checkBox.on('click', function (e) {
 				setTimeout(function () {
 					controller.recalculateSelectedStores();
 				}, 100);
@@ -28,13 +44,13 @@ var checkboxController = (function ($) {
 		recalculateSelectedStores: function () {
 			var controller = this;
 			controller.storeIds = [];
-			$.each($("." + controller.cssFamily + ".customCheckbox.checked"), function (i, e) {
+			$.each($('.programsummary-table .' + controller.cssFamily + '.customCheckbox.checked'), function (i, e) {
 				var storeId = $(e).attr('data-storeid');
-				console.log("Recalculating.  Store selected: " + storeId);
+				console.log('Recalculating. Store selected: ' + storeId);
 				controller.storeIds.push(storeId);
 			});
-			console.log("Changing store list for " + controller.cssFamily);
-			if (typeof controller.onChange == "function") {
+			console.log('Changing store list for ' + controller.cssFamily);
+			if (typeof controller.onChange === 'function') {
 				controller.onChange(controller.storeIds);
 			}
 		}
