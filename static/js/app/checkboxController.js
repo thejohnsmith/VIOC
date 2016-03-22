@@ -12,13 +12,29 @@ var checkboxController = (function ($) {
 		},
 		attachEventHandlers: function () {
 			var controller = this;
-			$('.programsummary-table .' + controller.cssFamily + '.select-all').on('click', function (e) {
-				$('.programsummary-table .' + controller.cssFamily + '.customCheckbox:not(.disabled-input)').addClass('checked');
+			var $selectAll = $('.programsummary-table .' + controller.cssFamily + '.select-all');
+			var $checkBox = $('.programsummary-table .' + controller.cssFamily + '.customCheckbox:not(.disabled-input)');
+
+			/* Select All */
+			$selectAll.on('click', function (event) {
+				event.preventDefault();
+				if ($(this).is('.not-active')) {
+					$checkBox.each(function () {
+						$(this).addClass('checked');
+					});
+				} else {
+					$checkBox.each(function () {
+						$(this).removeClass('checked');
+					});
+				}
+				$(this).toggleClass('not-active active').text(function (i, text) {
+					return text === 'Select All' ? 'Unselect All' : 'Select All';
+				});
 				controller.recalculateSelectedStores();
-				e.preventDefault();
 			});
 
-			$('.programsummary-table .' + controller.cssFamily + '.customCheckbox:not(.disabled-input)').on('click', function (e) {
+			/* Checkbox Select */
+			$checkBox.on('click', function (e) {
 				setTimeout(function () {
 					controller.recalculateSelectedStores();
 				}, 100);
