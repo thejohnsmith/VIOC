@@ -197,7 +197,7 @@ input:focus::-ms-input-placeholder {
 }
 .disabled-input, .disabled-input:hover {
   opacity: 0.4;
-  cursor: pointer;
+  cursor: default!important;
 }
 .disabled-input > * {
   display: none;
@@ -252,6 +252,9 @@ a:focus {
   position: absolute;
   text-align: center;
   font-size: 20px;
+}
+.dim-mid {
+  opacity: 0.8;
 }
 .pipe {
   color: #555;
@@ -1332,7 +1335,7 @@ header#nav {
   width: 15%;
 }
 .programsummary-table .store-counts {
-  width: 30%;
+  width: 40%;
   padding: 0;
 }
 .programsummary-table .store-cost {
@@ -2573,6 +2576,9 @@ button.toast-close-button {
   }
   .programsummary-table .store-de, .programsummary-table .store-counts {
     display: none;
+  }
+  .store-counts .inner-table, .store-counts .inner-table tr {
+    background: #1CB7F1;
   }
   .programsummary-table .store-details {
     display: block;

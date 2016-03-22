@@ -26,10 +26,12 @@
               </div>
             </div>
           </td>
-          <td data-storeId="{{storeId}}" class="store quantity-limit-store" style="padding: 8px">
+
+          <td data-storeId="{{storeId}}" class="{{^enrolled}}dim-mid{{/enrolled}} store quantity-limit-store" style="padding: 8px">
             <div class="store-name">{{storeName}}</div>
             <div class="store-number">Store #{{storeId}}</div>
           </td>
+
           <td class="store-configuration" style="padding: 8px">
             <div class="container-fluid">
               <div class="row">
@@ -37,7 +39,7 @@
                   <input value="{{quantityLimit}}" tabindex="1" data-storeId="{{storeId}}" type="number" placeholder="Limit" class="form-control {{^enrolled}}disabled-input{{/enrolled}}">
                 </div>
                 <div class="col-sm-2">
-                  <button tabindex="1" class="btn btn-small btn-primary">Apply</button>
+                  <button tabindex="1" class="btn btn-small btn-primary {{^enrolled}}disabled-input{{/enrolled}}">Apply</button>
                 </div>
               </div>
             </div>
@@ -69,7 +71,7 @@
   <script>
     var $j = jQuery;
     var quantityLimitController = jQuery.extend({}, checkboxController.controller);
-    quantityLimitController.init("quantity-limit", function(storeIds) {
+    quantityLimitController.init('quantity-limit', function(storeIds) {
       // console.log("Stores changed: %O", storeIds);
       var plural = (storeIds.length === 1) ? '' : 's';
       $j('.quantity-limit.footer-row')

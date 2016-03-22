@@ -28,16 +28,18 @@
               </div>
             </div>
           </td>
-          <td data-storeId="{{storeId}}" class="store program-settings-store" style="padding: 8px">
+          
+          <td data-storeId="{{storeId}}" class="{{^enrolled}}dim-mid{{/enrolled}} store program-settings-store" style="padding: 8px">
             <div class="store-name">{{storeName}}</div>
             <div class="store-number">Store #{{storeId}}</div>
           </td>
+
           <td class="store-configuration" style="padding: 8px">
             {{#enrolled}}
             <select data-storeId="{{storeId}}" class="form-control program-dropdown store-level-dropdown dropdown-{{storeId}}-program">
             </select>
             {{/enrolled}} {{^enrolled}}
-            <small>Store Not Enrolled</small>{{/enrolled}}
+            <small class="dim-mid">Store Not Enrolled</small>{{/enrolled}}
           </td>
           <td class="store-configuration additional-offer" style="padding: 8px">
             {{#enrolled}}
@@ -45,7 +47,7 @@
             </select>
           </td>
           {{/enrolled}} {{^enrolled}}
-          <small>Store Not Enrolled</small>{{/enrolled}}
+          <small class="dim-mid">Store Not Enrolled</small>{{/enrolled}}
         </tr>
         {{/.}}
         <tr class="program-settings footer-row">

@@ -172,7 +172,7 @@ input:focus::-ms-input-placeholder {
 }
 .disabled-input, .disabled-input:hover {
   opacity: 0.4;
-  cursor: pointer;
+  cursor: default!important;
 }
 .disabled-input > * {
   display: none;
@@ -197,6 +197,9 @@ input:focus::-ms-input-placeholder {
 }
 .background-none {
   background: none !important;
+}
+.dim-mid {
+  opacity: 0.8;
 }
 .pipe {
   color: #555;
@@ -1094,6 +1097,9 @@ header .header-right a:hover {
   background: #1CB7F1;
   border: 0;
 }
+.store-counts.table-header .inner-table, .store-counts.table-header .inner-table tr {
+  background: #1CB7F1;
+}
 .programsummary-table .customCheckbox {
   display: inline-block;
   float: none;
@@ -1145,7 +1151,7 @@ header .header-right a:hover {
   width: 20%;
 }
 .programsummary-table .store-counts {
-  width: 30%;
+  width: 40%;
 }
 .programsummary-table .store-cost {
   widows: 16%;
@@ -2230,6 +2236,9 @@ button.toast-close-button {
   }
   .programsummary-table .store-de, .programsummary-table .store-counts {
     display: none;
+  }
+  .store-counts .inner-table, .store-counts .inner-table tr {
+    background: #1CB7F1;
   }
   .programsummary-table .store-details {
     display: block;
