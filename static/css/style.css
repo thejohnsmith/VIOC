@@ -527,7 +527,7 @@ header .header-right a:hover {
 #participationDashboard .participation-table tbody {
   border-top: 12px solid #F6F6F6;
 }
-.program-settings-footer {
+.program-settings-footer, .quantity-limit-footer {
   color: #fff;
   background: #1cb7f1;
 }

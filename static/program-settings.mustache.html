@@ -130,12 +130,15 @@
     </div>
   </div>
   <script>
+    var $j = jQuery;
     var programSettingsController = jQuery.extend({}, checkboxController.controller);
     programSettingsController.init("program-settings", function(storeIds) {
-      console.log("Stores changed: %O", storeIds);
-      var plural = (storeIds.length === 1) ? "" : "s";
-      $j(".program-settings.footer-row").toggleClass("none", (storeIds.length < 2));
-      $j(".program-settings.footer-row td.program-settings-footer:first-child").html("Adjust " + storeIds.length + " selected store" + plural + " to use:");
+      // console.log("Stores changed: %O", storeIds);
+      var plural = (storeIds.length === 1) ? '' : 's';
+      $j('.program-settings.footer-row')
+        .toggleClass('none', (storeIds.length < 2));
+      $j('.program-settings.footer-row td.program-settings-footer:first-child')
+        .html('Adjust ' + storeIds.length + ' selected store' + plural + ' to use:');
     });
   </script>
 </script>

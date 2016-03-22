@@ -742,7 +742,7 @@ header#nav {
 .program-settings-section .participation-table tbody .customCheckbox {
   margin-left: 5px;
 }
-.program-settings-footer {
+.program-settings-footer, .quantity-limit-footer {
   color: #fff;
   background: #1cb7f1;
 }
@@ -1371,8 +1371,26 @@ header#nav {
   width: 35%;
 }
 .programsummary-table.quantity-limit-tab-section .store-configuration input[type='number'] {
-  width: 30%;
   min-width: 100px;
+  width: 100px;
+  right: -10px;
+  margin-bottom: 1em;
+  position: relative;
+}
+.programsummary-table.quantity-limit-tab-section .store-configuration .btn-primary {
+  background-color: rgb(14, 163, 221);
+  border-color: rgba(63, 81, 181, 0.46);
+  padding: 5px 14px 4px;
+  line-height: 1.5;
+  border-radius: 3px;
+}
+@media (min-width: 768px) {
+  .programsummary-table.quantity-limit-tab-section .store-configuration input[type='number'] {
+    margin-bottom: 0;
+  }
+  .programsummary-table.quantity-limit-tab-section .store-configuration .col-sm-2 {
+    margin-left: -30px;
+  }
 }
 .program-inputs {
   float: left;
