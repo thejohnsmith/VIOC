@@ -69,47 +69,6 @@ var getStoreProgramData = (function ($) {
 		},
 		programSettingsHandler = function () {
 			customCheckAndRadioBoxes.customCheckbox();
-			// 			$('.programsummary-table .store-enroll .btn.btn-primary, .programsummary-table .customCheckbox').on('click', function (e) {
-			// 				e.preventDefault();
-			// 				var $checkboxtype = $(this).attr('data-checkboxtype');
-			// 				var $jsAllSelectable = $('.' + $checkboxtype + '-section .js-all-selectable:not(.disabled-input)');
-			// 				var $selectedStoreCount = $('.' + $checkboxtype + '-section .customCheckbox.checked').length;
-			// 				var $selectedStoreFooter = $('.' + $checkboxtype + '-footer');
-			// 				var $selectedStoreFooterText = $('.' + $checkboxtype + '-footer-selected-count');
-			//
-			// 				console.log('$selectedStoreFooterText ' + $selectedStoreCount);
-			//
-			// 				// Update the visible count of selected programs.
-			// 				$selectedStoreFooterText.text($selectedStoreCount);
-			// 				// Show the bulk selection footer
-			// 				$selectedStoreFooter.toggle($selectedStoreCount > 1);
-			// 				$jsAllSelectable.addClass('checked').find($('input')).prop('checked', 'checked').focus();
-			//
-			// 				// Hide Additional Offers I fNeeded
-			// 				programManagementController.controller.hideAdditionalOffersIfNeeded();
-			// 			});
-			//
-			//
-			// // Working to update the footer count!!
-			// 			$('.program-settings-section .customCheckbox').click(function () {
-			// 				// Update the visible count of selected programs.
-			// 				var $selectedStoreCount_program = $('.program-settings-footer-selected-count');
-			// 				$selectedStoreCount_program.text($('.program-settings-section td .customCheckbox.checked').length);
-			//
-			// 				// Show the bulk selection footer
-			// 				$('.program-settings-section .program-settings-footer').toggle($('.program-settings-section td .customCheckbox.checked').length > 1);
-			// 				programManagementController.controller.hideAdditionalOffersIfNeeded();
-			// 			});
-			// Working to update the footer count!!
-			// $('.quantity-limit-tab-section .customCheckbox').click(function () {
-			// 	// Update the visible count of selected programs.
-			// 	var $selectedStoreCount_quantity = $('.quantity-limit-footer-selected-count');
-			// 	$selectedStoreCount_quantity.text($('.quantity-limit-tab-section td .customCheckbox.checked').length);
-			//
-			// 	// Show the bulk selection footer
-			// 	$('.quantity-limit-footer').toggle($('.quantity-limit-tab-section td .customCheckbox.checked').length > 1);
-			// 	programManagementController.controller.hideAdditionalOffersIfNeeded();
-			// });
 		},
 		reloadCheckBoxes = function () {
 			return customCheckAndRadioBoxes.customCheckbox();

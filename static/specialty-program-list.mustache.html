@@ -1,5 +1,6 @@
 <script class="specialty-program-list-template" type="x-tmpl-mustache">
   {{#.}} {{#isSpecialtyProgram}}
+
   <ul class="program-list">
     <li id="program-{{id}}" class="status-green">
 
@@ -43,6 +44,10 @@
         #programDetails .participation-table thead {
           display: none;
         }
+
+        .participation-table table {
+          background-color: #fff;
+        }
       </style>
       <p>{{programTouchpointAlt}}</p>
 
@@ -50,6 +55,10 @@
       <style>
         #programDetails .participation-table thead {
           display: table-header-group;
+        }
+
+        .participation-table table {
+          background-color: #F6F6F6;
         }
       </style>
 
@@ -78,4 +87,5 @@
   <div class="program-button">
     <input type="button" class="blue-btn js-trigger-enroll" value="Auto-Enroll Your Stores In Selected Program(s)" title="Auto-Enroll Your Stores In Selected Program(s)">
   </div>
+
 </script>
