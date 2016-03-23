@@ -47,6 +47,12 @@ var getProgramParticipationStats = (function ($) {
 			return result.map(function (obj) {
 				var programTitle = getParameterByName('programId', window.location.href);
 				if (JSON.stringify(obj.id) === programId) {
+					/** Update the breadcrumbs_previous text and title for Specialty Programs
+					 */
+					if (obj.isSpecialtyProgram) {
+						isSpecialtyProgram = obj.isSpecialtyProgram;
+						$('.breadcrumbs_previous a').text('Specialty Programs').attr('title', 'Specialty Programs');
+					}
 					programTitle = obj.programName;
 					return setProgramTitle(programTitle);
 				}
@@ -92,23 +98,21 @@ var getProgramParticipationStats = (function ($) {
 		 * @retrun {function} upDateProgramsDashboard
 		 */
 		loadProgramData = function (result) {
-			if ($('.program-select.lifecycle-program-list').length) {
-				$.get('https://files.marcomcentral.app.pti.com/epsilon/static/program-list.mustache.html', function (templates) {
-					var template = $(templates).filter('.program-list-template').html();
-					$('.program-select.lifecycle-program-list').html(Mustache.render(template, result));
-					customCheckAndRadioBoxes.customCheckbox();
-					return upDateProgramsDashboard(result), setProgramTabContent();
-				});
-			}
-			if ($('.program-select.specialty-program-list').length) {
-				$.get('https://files.marcomcentral.app.pti.com/epsilon/static/specialty-program-list.mustache.html', function (templates) {
-					var template = $(templates).filter('.specialty-program-list-template').html();
-					$('.program-select.specialty-program-list').html(Mustache.render(template, result));
-					customCheckAndRadioBoxes.customCheckbox();
-					return upDateProgramsDashboard(result), setProgramTabContent();
-				});
-			}
+			$.get('https://files.marcomcentral.app.pti.com/epsilon/static/program-list.mustache.html', function (templates) {
+				var template = $(templates).filter('.program-list-template').html();
+				$('.program-select.lifecycle-program-list').html(Mustache.render(template, result));
+				customCheckAndRadioBoxes.customCheckbox();
+				return upDateProgramsDashboard(result), setProgramTabContent();
+			});
+
+			$.get('https://files.marcomcentral.app.pti.com/epsilon/static/specialty-program-list.mustache.html', function (templates) {
+				var template = $(templates).filter('.specialty-program-list-template').html();
+				$('.program-select.specialty-program-list').html(Mustache.render(template, result));
+				customCheckAndRadioBoxes.customCheckbox();
+				return upDateProgramsDashboard(result), setProgramTabContent();
+			});
 		},
+
 		/**
 		 * Updates the .program-select properties.
 		 * @param {object} result Json object from API request.
@@ -126,7 +130,7 @@ var getProgramParticipationStats = (function ($) {
 			return $.each(result, function (index, obj) {
 				var $programId = $('#program-' + obj.id);
 				// Make sure to ommit non-lifecycle campaign entries.
-				if (obj.isLifecycleCampaign) {
+				if (obj.isLifecycleCampaign || obj.isSpecialtyProgram) {
 					// No stores participating : Red
 					if (obj.storesParticipating === 0 || obj.storesParticipating === 0 && obj.storesEligible === 0) {
 						$programId.attr('class', programStatus.alert);

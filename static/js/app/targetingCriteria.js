@@ -1,3 +1,5 @@
+var $j = jQuery;
+
 function getParameterByName(name, url) {
 	if (!url) url = window.location.href;
 	name = name.replace(/[\[\]]/g, '\\$&');
@@ -14,10 +16,10 @@ function getParameterByName(name, url) {
 var jsonTreeData = '';
 var userId = '';
 var attachActivityListeners = function () {
-	$('#oilType, #chkActive, #chkInactive, #chkNew, #fleet').change(updateRecipientCount);
-	$('#from, #to').blur(updateRecipientCount);
-	$('#btnCancel').click(cancelSubmission);
-	$('#btnSubmit').click(submitForm);
+	$j('#oilType, #chkActive, #chkInactive, #chkNew, #fleet').change(updateRecipientCount);
+	$j('#from, #to').blur(updateRecipientCount);
+	$j('#btnCancel').click(cancelSubmission);
+	$j('#btnSubmit').click(submitForm);
 };
 var cancelSubmission = function () {
 	if (confirm('Are you sure you wish to cancel?')) {
@@ -45,29 +47,29 @@ var submitForm = function () {
 };
 var updateRecipientCount = function (save, callback) {
 	var storeIds = [];
-	if ($('#jstree').length) {
-		var selectedElements = $('#jstree').jstree().get_selected();
+	if ($j('#jstree').length) {
+		var selectedElements = $j('#jstree').jstree().get_selected();
 	}
 	for (var idx in selectedElements) {
 		if (!isNaN(parseInt(selectedElements[idx]))) storeIds.push(selectedElements[idx]);
 	}
 	var data = {
-		'dateStart': $('#from').val(),
-		'dateEnd': $('#to').val(),
-		'oilType': $('#oilType').val(),
-		'customerActive': ($('#chkActive').is(':checked')) ? 1 : 0,
-		'customerInactive': ($('#chkInactive').is(':checked')) ? 1 : 0,
-		'customerNew': ($('#chkNew').is(':checked')) ? 1 : 0,
-		'oilType': $('#fleet').val(),
+		'dateStart': $j('#from').val(),
+		'dateEnd': $j('#to').val(),
+		'oilType': $j('#oilType').val(),
+		'customerActive': ($j('#chkActive').is(':checked')) ? 1 : 0,
+		'customerInactive': ($j('#chkInactive').is(':checked')) ? 1 : 0,
+		'customerNew': ($j('#chkNew').is(':checked')) ? 1 : 0,
+		'oilType': $j('#fleet').val(),
 		'storeIds': storeIds,
 		'save': 0
 	};
 	if (save === true) data.save = 1;
-	$.get('https://adobe-uat-vioc.epsilon.com/jssp/vioc/getRecipientEstimate.jssp', data).done(function (data) {
+	$j.get('https://adobe-uat-vioc.epsilon.com/jssp/vioc/getRecipientEstimate.jssp', data).done(function (data) {
 		try {
 			data = JSON.parse(data);
-			$('#counter').html(data.recipientCount);
-			$('#btnSubmit').html('Submit (' + data.recipientCount + ' Recipients)');
+			$j('#counter').html(data.recipientCount);
+			$j('#btnSubmit').html('Submit (' + data.recipientCount + ' Recipients)');
 			if (typeof callback === 'function') callback(data.recipientCount, data.saveId);
 		} catch (e) {
 			alert('Failed to parse JSON:' + e);
@@ -76,12 +78,12 @@ var updateRecipientCount = function (save, callback) {
 		alert('Something bad happened');
 	});
 };
-$(document).ready(function () {
-	if ($('#jstree').length) {
+$j(document).ready(function () {
+	if ($j('#jstree').length) {
 		attachActivityListeners();
 		userId = getParameterByName('userId', window.location.href) || marcomUserData.$user.externalId;
 		// Call and get the store tree:
-		$.get('https://adobe-uat-vioc.epsilon.com/jssp/vioc/getStoreSummary.jssp', {
+		$j.get('https://adobe-uat-vioc.epsilon.com/jssp/vioc/getStoreSummary.jssp', {
 			'userId': userId
 		}).done(function (data) {
 			try {
@@ -89,7 +91,7 @@ $(document).ready(function () {
 			} catch (e) {
 				alert('Failed to parse JSON data');
 			}
-			$('#jstree').jstree({
+			$j('#jstree').jstree({
 				'plugins': ['wholerow', 'checkbox'],
 				'core': {
 					'data': jsonTreeData

@@ -38,14 +38,28 @@
     </div>
     <!-- Second Tab content: Program Overview -->
     <div class="display-table program-touchpoints-tab-content none">
-      {{#programTouchpointAlt}}
+    {{#programTouchpointAlt}}
       <style>
         #programDetails .participation-table thead {
           display: none;
         }
+        .participation-table table {
+          background-color: #fff;
+        }
       </style>
       <p>{{programTouchpointAlt}}</p>
-      {{/programTouchpointAlt}} {{#programMeta}} {{#touchpoints}}
+
+      {{/programTouchpointAlt}} {{^programTouchpointAlt}}
+      <style>
+        #programDetails .participation-table thead {
+          display: table-header-group;
+        }
+        .participation-table table{
+          background-color: #F6F6F6;
+        }
+      </style>
+    {{/programTouchpointAlt}}
+      {{#programMeta}} {{#touchpoints}}
       <div class="tr display-table-row">
         <div class="td display-table-cell touch-info" data-title="Touch">
           <span>
