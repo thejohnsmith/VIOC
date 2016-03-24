@@ -1,90 +1,152 @@
 var programConfigController = (function ($) {
-	// var controller = {
-	// 	storeIds: [],
-	// 	cssFamily: '',
-	// 	onChange: null,
-	// 	init: function (cssFamily, onChange) {
-	// 		var controller = this;
-	// 		controller.onChange = onChange;
-	// 		controller.cssFamily = cssFamily;
-	// 		controller.attachEventHandlers();
-	// 		controller.recalculateSelectedStores();
-	// 	},
-	// 	attachEventHandlers: function () {
-	// 		var controller = this;
-	// 		var $selectAll = $('.programsummary-table .' + controller.cssFamily + '.select-all');
-	// 		var $checkBox = $('.programsummary-table .' + controller.cssFamily + '.customCheckbox:not(.disabled-input)').filter(":visible");
-	//
-	// 		/* Select All */
-	// 		$selectAll.on('click', function (event) {
-	// 			event.preventDefault();
-	// 			if ($(this).is('.active')) {
-	// 				// console.log("Button says Select All.  Checking " + $checkBox.length + " boxes.");
-	// 				$checkBox.each(function () {
-	// 					$(this).addClass('checked');
-	// 				});
-	// 			} else {
-	// 				// console.log("Button says Unselect All.  Unchecking " + $checkBox.length + " boxes...");
-	// 				$checkBox.each(function () {
-	// 					$(this).removeClass('checked');
-	// 				});
-	// 			}
-	// 			controller.recalculateSelectedStores();
-	// 		});
-	//
-	// 		/* Checkbox Select */
-	// 		$checkBox.on('click', function (e) {
-	// 			setTimeout(function () {
-	// 				controller.recalculateSelectedStores();
-	// 			}, 100);
-	// 			e.preventDefault();
-	// 		});
-	// 	},
-	// 	recalculateSelectedStores: function () {
-	// 		var controller = this;
-	// 		controller.storeIds = [];
-	// 		$.each($('.programsummary-table .' + controller.cssFamily + '.customCheckbox.checked'), function (i, e) {
-	// 			var storeId = $(e).attr('data-storeid');
-	// 			// console.log('Recalculating. Store selected: ' + storeId);
-	// 			controller.storeIds.push(storeId);
-	// 		});
-	// 		// console.log('Changing store list for ' + controller.cssFamily);
-	// 		if (typeof controller.onChange === 'function') {
-	// 			controller.onChange(controller.storeIds);
-	// 		}
-	// 		controller.updateSelectAllButton();
-	// 	},
-	// 	updateSelectAllButton: function () {
-	//
-	// 		var controller = this;
-	//
-	// 		var $selectAll = $('.programsummary-table .' + controller.cssFamily + '.select-all');
-	//
-	// 		// Get the count of the visible store checkboxes
-	// 		var visible_store_count = $("tr ." + controller.cssFamily + ".customCheckbox:not(.disabled-input)").filter(":visible").length;
-	//
-	// 		if (visible_store_count == 0) {
-	// 			// console.log("Visible store count = 0.  Aborting");
-	// 			return;
-	// 		}
-	//
-	// 		// Determine if it should say "Select All" or "Unselect All"
-	// 		var unselectAll = (controller.storeIds.length === visible_store_count);
-	//
-	// 		// Remove all of the classes from the Select All button
-	// 		$selectAll.removeClass("not-active").removeClass("active");
-	//
-	// 		// Apply the appropriate class and text to the Select All button
-	// 		if (unselectAll) {
-	// 			$selectAll.addClass('not-active').text('Unselect All');
-	// 			$($selectAll).addClass('not-active').text('Unselect All');
-	// 		} else {
-	// 			$selectAll.addClass('active').text('Select All');
-	// 			$($selectAll).addClass('active').text('Select All');
-	// 		}
-	// 	}
-	// };
-	// return {
-	// 	controller: controller
-	// };
+	var controller = {
+		program: {},
+		config: {},
+		saveEnabled: true,
+		api_path: 'https://adobe-uat-vioc.epsilon.com/jssp/vioc/',
+		userId: marcomUserData.$user.externalId,
+		programId: getParameterByName('programId', window.location.href),
+		configId: getParameterByName('configId', window.location.href),
+		// Call GetProgramData and fire callback
+		// If a configID was provided, fire GetConfigData() and then call UpdateUI();
+		// If not, just call UpdateUI();
+		init: function (config) {
+			var controller = this;
+			// NOTE: Can't we just check the Query Params for Config ID?  ?? if(configId.length > 0){ }
+			controller.GetProgramData(function (programId) {
+				controller.GetConfigData(function (configId) {
+					controller.UpdateUI();
+				});
+			});
+		},
+		/** API call to getProgramParticipationStats.jssp
+		 * @var {string} userId
+		 * @return callback
+		 */
+		GetProgramData: function (programId, callback) {
+			var controller = this;
+			$.get(controller.api_path + 'getProgramParticipationStats.jssp?userId=' + controller.userId, function (results) {
+				// NOTE: We may need to parse results.
+				// var json_results = JSON.parse(results);
+
+				// Loop through the API result and find the program that matches program ID (DONE)
+				$.each(results, function (i, result) {
+					// Store the program data in controller.program
+					if (result.id === programId) {
+						controller.program = result;
+					}
+				});
+
+				// fire the callback (DONE)
+				if (typeof callback === 'function') {
+					callback(results);
+				}
+			});
+		},
+		/** API call to loadConfig.jssp
+		 * @var {string} configId
+		 * @var {string} userId
+		 * @return callback
+		 * Call https://adobe-uat-vioc.epsilon.com/jssp/vioc/loadConfig.jssp?userId=34567&configId=10
+		 * Stick the data into controller.config
+		 * Fire the callback
+		 */
+		GetConfigData: function (configId, callback) {
+			var controller = this;
+
+			$.get(controller.api_path + 'loadConfig.jssp?userId=' + controller.userId + 'configId=' + controller.configId, function (results) {
+				// NOTE: We may need to parse results.
+				// var json_results = JSON.parse(results);
+				controller.config = results;
+				if (typeof callback === 'function') {
+					callback(results);
+				}
+			});
+		},
+		UpdateUI: function () {
+			UpdateTitle();
+			UpdateBreadCrumbs();
+			UpdateSettingName();
+			UpdateCreativeDropdowns();
+			UpdateDiscountCodes();
+			UpdateOfferExpiration();
+			UpdateButtons();
+			AttachEventListeners();
+			GeneratePreview();
+		},
+		UpdateTitle: function () {
+			// Update the H1 title to be either:
+			// "Edit " + config.content.label + " Settings"
+			// if there is a config, or
+			// 	"Create Program Settings"
+			// if there is not a config.
+		},
+		UpdateBreadCrumbs: function () {
+			// body...
+		},
+		UpdateSettingName: function () {
+			// body...
+		},
+		UpdateCreativeDropdowns: function () {
+			var controller = this;
+			// Pull the list of email creative from controller.config.uiLayout.emailCreativeChoices and populate .em-creative
+			// Pull the list of DM creative from controller.config.uiLayout.dmCreativeChoices and populate .dm-creative
+			// Hide or show .em-creative-row based on controller.config.uiLayout.hasEmail
+			// Hide or show .dm-creative-row based on controller.config.uiLayout.hasDM
+			// Select the email creative value that matches config.content.emailCreativeName
+			// Select the DM creative value that matches config.content.dmCreativeName
+		},
+		UpdateDiscountCodes: function () {
+			// Note: Your UI will already have all 9 permutations of inputs: Email/DM/SMS #1, Email/DM/SMS #2, Email/DM/SMS #3
+			// Hide high risk if config.uiLayout.usesHighRisk = false   (Easily done via $(".high-risk").hide();
+			// If config.uiLayout.touchpoints < 3, then hide all #3 related items via $("touchpoint-3").hide();
+			// If config.uiLayout.touchpoints < 2, then hide all #2 related items via $("touchpoint-2").hide();
+			// If config.uiLayout.hasEmail == false, then hide all email related items via $(".touchpoint-row.email").hide();
+			// If config.uiLayout.hasDM == false, then hide all email related items via $(".touchpoint-row.dm").hide();
+			// If config.uiLayout.hasSMS == false, then hide all email related items via $(".touchpoint-row.sms").hide();
+			// To populate values, iterate through all values of $(".touchpoint-value").
+			$.each($('.touchpoint-value'), function (i, e) {
+				var value = controller.config.content[$(e).attr('name')];
+				$(e).val(value);
+			});
+		},
+		UpdateOfferExpiration: function () {
+			// Select the expiration value that matches config.content.expiration
+		},
+		UpdateButtons: function () {
+			// If controller.saveEnabled, enable the save button.  If not, disable it.
+		},
+		AttachEventListeners: function () {
+			// Do $("input").on("keyup", DisableSaveButton);
+			// Do $("select").on("change", DisableSaveButton);
+			// When Preview is pressed, call OnPressPreview()
+			// When Save is pressed, call OnPressSave()
+		},
+		GeneratePreview: function (callback) {
+			// Call GetFormData()
+			// Call a new preview API method, passing the form data
+			// Hand that JSON object to a mustache template and render the preview pane.
+			// Call callback()
+		},
+		DisableSaveButton: function () {
+			controller.saveEnabled = false;
+			UpdateButtons();
+		},
+		GetFormData: function () {
+			// Grab all inputs by calling $("input,select") and move their values into a key/value object.
+			// Returns all form data in an easy to POST format.
+		},
+		OnPressPreview: function () {
+			// Call GeneratePreview()  When the callback returns:
+			// Mark controller.saveEnabled = true;
+			// Call UpdateButtons();
+		},
+		OnPressSave: function () {
+			// Call GetFormData()
+			// Save that data to the server.
+		}
+	};
+	return {
+		controller: controller
+	};
 })(jQuery);
