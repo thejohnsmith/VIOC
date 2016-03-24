@@ -134,13 +134,13 @@
 						<tr class="config-name-row">
 							<td class="label-cell">Settings Name<i>*</i>&nbsp;:</td>
 							<td class="value-cell">
-								<input placeholder="Enter a name" name="settings-name" tabindex="0" class="settings-name" type="text" value="Blackstone Oil Settings">
+								<input required placeholder="Enter a name" name="settings-name" tabindex="0" class="settings-name" type="text" value="Blackstone Oil Settings">
 							</td>
 						</tr>
-						<tr class="email-creative-row">
+						<tr class="em-creative-row">
 							<td class="label-cell">Email Creative<i>*</i>&nbsp;:</td>
 							<td class="value-cell">
-								<select class="em-creative" name="email-creative">
+								<select required class="em-creative" name="email-creative">
 									<option disabled>Select an option</option>
 									<option selected>Basic Blue</option>
 								</select>
@@ -149,7 +149,7 @@
 						<tr class="dm-creative-row">
 							<td class="label-cell">Direct Mail Creative<i>*</i>&nbsp;:</td>
 							<td class="value-cell">
-								<select class="dm-creative" name="dm-creative">
+								<select required class="dm-creative" name="dm-creative">
 									<option disabled>Select an option</option>
 									<option selected>Stopwatch</option>
 								</select>
@@ -196,42 +196,42 @@
 									</tr>
 									<tr>
 										<td class="discount-code-subrow email touchpoint-col standard-risk">
-											<input type="text" value="NANA01A" class="touchpoint-value email touchpoint-1 high-risk" name="emStd1Code">
+											<input required type="text" value="NANA01A" placeholder="Enter a code" class="touchpoint-value email touchpoint-1 high-risk" name="emStd1Code">
 										</td>
 										<td class="discount-code-subrow email touchpoint-col high-risk">
-											<input type="text" value="NANA01B" class="touchpoint-value email touchpoint-1 high-risk" name="emHgh1Code">
+											<input required type="text" value="NANA01B" placeholder="Enter a code" class="touchpoint-value email touchpoint-1 high-risk" name="emHgh1Code">
 										</td>
 									</tr>
 									<tr>
 										<td class="discount-code-subrow dm touchpoint-col standard-risk">
-											<input type="text" value="NANA01C" class="touchpoint-value dm touchpoint-1 high-risk" name="dmStd1Code">
+											<input required type="text" value="NANA01C" placeholder="Enter a code" class="touchpoint-value dm touchpoint-1 high-risk" name="dmStd1Code">
 										</td>
 										<td class="discount-code-subrow dm touchpoint-col high-risk">
-											<input type="text" value="NANA01D" class="touchpoint-value dm touchpoint-1 high-risk" name="dmHgh1Code">
+											<input required type="text" value="NANA01D" placeholder="Enter a code" class="touchpoint-value dm touchpoint-1 high-risk" name="dmHgh1Code">
 										</td>
 									</tr>
 									<tr>
 										<td class="discount-code-subrow sms touchpoint-col standard-risk">
-											<input type="text" value="NANA01E" class="touchpoint-value sms touchpoint-1 high-risk" name="smsStd1Code">
+											<input required type="text" value="NANA01E" placeholder="Enter a code" class="touchpoint-value sms touchpoint-1 high-risk" name="smsStd1Code">
 										</td>
 										<td class="discount-code-subrow sms touchpoint-col high-risk">
-											<input type="text" value="NANA01F" class="touchpoint-value sms touchpoint-1 high-risk" name="smsHgh1Code">
+											<input required type="text" value="NANA01F" placeholder="Enter a code" class="touchpoint-value sms touchpoint-1 high-risk" name="smsHgh1Code">
 										</td>
 									</tr>
 									<tr>
 										<td class="discount-code-subrow email touchpoint-col standard-risk">
-											<input type="text" value="NANA01G" class="touchpoint-value email touchpoint-1 high-risk" name="emStd2Code">
+											<input required type="text" value="NANA01G" placeholder="Enter a code" class="touchpoint-value email touchpoint-1 high-risk" name="emStd2Code">
 										</td>
 										<td class="discount-code-subrow email touchpoint-col high-risk">
-											<input type="text" value="NANA01H" class="touchpoint-value email touchpoint-1 high-risk" name="emHgh2Code">
+											<input required type="text" value="NANA01H" placeholder="Enter a code" class="touchpoint-value email touchpoint-1 high-risk" name="emHgh2Code">
 										</td>
 									</tr>
 									<tr>
 										<td class="discount-code-subrow email touchpoint-col standard-risk">
-											<input type="text" value="NANA01I" class="touchpoint-value email touchpoint-1 high-risk" name="emStd3Code">
+											<input required type="text" value="NANA01I" placeholder="Enter a code" class="touchpoint-value email touchpoint-1 high-risk" name="emStd3Code">
 										</td>
 										<td class="discount-code-subrow email touchpoint-col high-risk">
-											<input type="text" value="NANA01J" class="touchpoint-value email touchpoint-1 high-risk" name="emHgh3Code">
+											<input required type="text" value="NANA01J" placeholder="Enter a code" class="touchpoint-value email touchpoint-1 high-risk" name="emHgh3Code">
 										</td>
 									</tr>
 								</table>
@@ -240,7 +240,7 @@
 						<tr class="dm-creative-row">
 							<td class="label-cell">Offer Expiration<i>*</i>&nbsp;:</td>
 							<td class="value-cell">
-								<select class="offer-exp" name="expiration">
+								<select required class="offer-exp" name="expiration">
 									<option disabled>Select an option</option>
 									<option value="30">Plus 30</option>
 									<option value="45">Plus 45</option>
