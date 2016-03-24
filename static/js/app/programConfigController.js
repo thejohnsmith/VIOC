@@ -1,7 +1,12 @@
 var programConfigController = (function ($) {
 	var controller = {
 		program: {},
-		config: {},
+		config: {
+			"content": {},
+			"uiLayout": {},
+			"preview": {}
+		},
+		configLoaded: false,
 		saveEnabled: true,
 		api_path: 'https://adobe-uat-vioc.epsilon.com/jssp/vioc/',
 		userId: marcomUserData.$user.externalId,
@@ -10,13 +15,18 @@ var programConfigController = (function ($) {
 		// Call GetProgramData and fire callback
 		// If a configID was provided, fire GetConfigData() and then call UpdateUI();
 		// If not, just call UpdateUI();
+
 		init: function (config) {
 			var controller = this;
-			// NOTE: Can't we just check the Query Params for Config ID?  ?? if(configId.length > 0){ }
-			controller.GetProgramData(function (programId) {
-				controller.GetConfigData(function (configId) {
+			controller.GetProgramData(controller.programId, function (programId) {
+				if (typeof controller.configId != "undefined") {
+					controller.GetConfigData(controller.configId, function () {
+						controller.UpdateUI()
+					});
+				} else {
 					controller.UpdateUI();
-				});
+				}
+
 			});
 		},
 		/** API call to getProgramParticipationStats.jssp
@@ -27,19 +37,19 @@ var programConfigController = (function ($) {
 			var controller = this;
 			$.get(controller.api_path + 'getProgramParticipationStats.jssp?userId=' + controller.userId, function (results) {
 				// NOTE: We may need to parse results.
-				// var json_results = JSON.parse(results);
+				var json_results = JSON.parse(results);
 
 				// Loop through the API result and find the program that matches program ID (DONE)
-				$.each(results, function (i, result) {
+				$.each(json_results, function (i, result) {
 					// Store the program data in controller.program
-					if (result.id === programId) {
+					if (result.id == programId) {
 						controller.program = result;
 					}
 				});
 
 				// fire the callback (DONE)
 				if (typeof callback === 'function') {
-					callback(results);
+					callback(controller.program);
 				}
 			});
 		},
@@ -54,38 +64,45 @@ var programConfigController = (function ($) {
 		GetConfigData: function (configId, callback) {
 			var controller = this;
 
-			$.get(controller.api_path + 'loadConfig.jssp?userId=' + controller.userId + 'configId=' + controller.configId, function (results) {
+			$.get(controller.api_path + 'loadConfig.jssp?userId=' + controller.userId + '&configId=' + controller.configId, function (results) {
 				// NOTE: We may need to parse results.
-				// var json_results = JSON.parse(results);
-				controller.config = results;
+				var json_results = JSON.parse(results);
+				controller.config = json_results;
+				controller.configLoaded = true;
+				console.log("Config Data: %O", controller.config);
 				if (typeof callback === 'function') {
-					callback(results);
+					callback(json_results);
 				}
 			});
 		},
 		UpdateUI: function () {
-			UpdateTitle();
-			UpdateBreadCrumbs();
-			UpdateSettingName();
-			UpdateCreativeDropdowns();
-			UpdateDiscountCodes();
-			UpdateOfferExpiration();
-			UpdateButtons();
-			AttachEventListeners();
-			GeneratePreview();
+			var controller = this;
+			controller.ShowPreSubmitIfNeeded();
+			controller.UpdateTitle();
+			controller.UpdateBreadCrumbs();
+			controller.UpdateSettingName();
+			controller.UpdateCreativeDropdowns();
+			controller.UpdateDiscountCodes();
+			controller.UpdateOfferExpiration();
+			controller.UpdateButtons();
+			controller.AttachEventListeners();
+			controller.GeneratePreview();
+		},
+		ShowPreSubmitIfNeeded: function () {
+			var controller = this;
+			$(".pre-submit").toggle(!controller.configLoaded);
+			$(".post-submit").toggle(controller.configLoaded);
 		},
 		UpdateTitle: function () {
-			// Update the H1 title to be either:
-			// "Edit " + config.content.label + " Settings"
-			// if there is a config, or
-			// 	"Create Program Settings"
-			// if there is not a config.
+			var controller = this;
+			console.log("Title is: " + controller.config.content.label);
+			$("h1.page-title").html((controller.configLoaded) ? controller.config.content.label : "Create Program Settings");
 		},
 		UpdateBreadCrumbs: function () {
 			// body...
 		},
 		UpdateSettingName: function () {
-			// body...
+			$(".settings-name").val(controller.config.content.label);
 		},
 		UpdateCreativeDropdowns: function () {
 			var controller = this;
@@ -105,6 +122,7 @@ var programConfigController = (function ($) {
 			// If config.uiLayout.hasDM == false, then hide all email related items via $(".touchpoint-row.dm").hide();
 			// If config.uiLayout.hasSMS == false, then hide all email related items via $(".touchpoint-row.sms").hide();
 			// To populate values, iterate through all values of $(".touchpoint-value").
+
 			$.each($('.touchpoint-value'), function (i, e) {
 				var value = controller.config.content[$(e).attr('name')];
 				$(e).val(value);
@@ -150,3 +168,5 @@ var programConfigController = (function ($) {
 		controller: controller
 	};
 })(jQuery);
+
+programConfigController.controller.init();
