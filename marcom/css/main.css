@@ -1377,23 +1377,32 @@ header#nav {
 .programsummary-table.quantity-limit-tab-section .print {
   width: 35%;
 }
+.programsummary-table.quantity-limit-tab-section .store-configuration .col-sm-8 {
+  padding-right: 15px;
+  padding-left: 15px;
+}
 .programsummary-table.quantity-limit-tab-section .store-configuration input[type='number'] {
-  min-width: 100px;
-  width: 100px;
-  right: -10px;
-  margin-bottom: 1em;
+  width: 100%;
+  margin-bottom: 0.6em;
   position: relative;
 }
 .programsummary-table.quantity-limit-tab-section .store-configuration .btn-primary {
   background-color: rgb(14, 163, 221);
   border-color: rgba(63, 81, 181, 0.46);
   padding: 5px 14px 4px;
+  font-size: 12px;
   line-height: 1.5;
   border-radius: 3px;
+  float: right;
 }
 @media (min-width: 768px) {
   .programsummary-table.quantity-limit-tab-section .store-configuration input[type='number'] {
+    width: 80%;
     margin-bottom: 0;
+    height: 29px;
+  }
+  .programsummary-table.quantity-limit-tab-section .store-configuration .btn-primary {
+    float: none;
   }
   .programsummary-table.quantity-limit-tab-section .store-configuration .col-sm-2 {
     margin-left: -30px;
@@ -2193,14 +2202,14 @@ button.toast-close-button {
   border-radius: 0;
   background-position: 15px center;
   background-repeat: no-repeat;
-  box-shadow: 0 0 4px rgba(0,0,0, 0.1);
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.1);
   color: #fff;
   opacity: .95;
   -ms-filter: alpha(Opacity=95);
   filter: alpha(opacity=95)
 }
 #toast-container>:hover {
-  box-shadow: 0 0 4px 12px rgba(0,0,0, 0.4);
+  box-shadow: 0 0 4px 12px rgba(0, 0, 0, 0.4);
   opacity: 1;
   -ms-filter: alpha(Opacity=100);
   filter: alpha(opacity=100);
@@ -3392,7 +3401,6 @@ input[type="submit"].btn-block, input[type="reset"].btn-block, input[type="butto
   -webkit-transition: all .20s ease-in-out;
   transition: all .20s ease-in-out;
 }
-
 .toggle-btn .cb-value {
   position: absolute;
   left: 0;
@@ -3404,7 +3412,7 @@ input[type="submit"].btn-block, input[type="reset"].btn-block, input[type="butto
   cursor: pointer;
 }
 .toggle-btn .cb-value:focus + .round-btn {
-  box-shadow: 0 0 2px 16px rgba(0,0,0, 0.1);
+  box-shadow: 0 0 2px 16px rgba(0, 0, 0, 0.1);
 }
 .copy-right {
   text-align: center;
