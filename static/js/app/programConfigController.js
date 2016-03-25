@@ -1,29 +1,33 @@
+var constants = {
+	lifecyclePageUrl : "CustomPage.aspx?uigroup_id=479602&page_id=10792",
+	specialtyPageUrl : "CustomPage.aspx?uigroup_id=479602&page_id=10793",
+	configPageUrl: "CustomPage.aspx?uigroup_id=479602&page_id=11225",
+	programManagementUrl : "",
+	apiPath: "https://adobe-uat-vioc.epsilon.com/jssp/vioc/",
+	userId: marcomUserData.$user.externalId
+};
+
 var programConfigController = (function ($) {
+
 	var controller = {
+
 		program: {},
-		config: {
-			"content": {},
-			"uiLayout": {},
-			"preview": {}
-		},
+		config: { "content" : {}, "uiLayout": {}, "preview": {} },
 		configLoaded: false,
 		saveEnabled: true,
-		api_path: 'https://adobe-uat-vioc.epsilon.com/jssp/vioc/',
-		userId: marcomUserData.$user.externalId,
+		apiPath: constants.apiPath,
+		userId: constants.userId,
 		programId: getParameterByName('programId', window.location.href),
 		configId: getParameterByName('configId', window.location.href),
-		// Call GetProgramData and fire callback
-		// If a configID was provided, fire GetConfigData() and then call UpdateUI();
-		// If not, just call UpdateUI();
 
 		init: function (config) {
 			var controller = this;
 			controller.GetProgramData(controller.programId, function (programId) {
-				if (typeof controller.configId != "undefined") {
-					controller.GetConfigData(controller.configId, function () {
-						controller.UpdateUI()
-					});
-				} else {
+				if(typeof controller.configId != "undefined"){
+					controller.GetConfigData(controller.configId, function() { controller.UpdateUI() } );
+				}
+				else
+				{
 					controller.UpdateUI();
 				}
 
@@ -35,7 +39,7 @@ var programConfigController = (function ($) {
 		 */
 		GetProgramData: function (programId, callback) {
 			var controller = this;
-			$.get(controller.api_path + 'getProgramParticipationStats.jssp?userId=' + controller.userId, function (results) {
+			$.get(controller.apiPath + 'getProgramParticipationStats.jssp?userId=' + controller.userId, function (results) {
 				// NOTE: We may need to parse results.
 				var json_results = JSON.parse(results);
 
@@ -64,12 +68,12 @@ var programConfigController = (function ($) {
 		GetConfigData: function (configId, callback) {
 			var controller = this;
 
-			$.get(controller.api_path + 'loadConfig.jssp?userId=' + controller.userId + '&configId=' + controller.configId, function (results) {
-				// NOTE: We may need to parse results.
+			$.get(controller.apiPath + 'loadConfig.jssp?userId=' + controller.userId + '&configId=' + controller.configId, function (results) {
+
 				var json_results = JSON.parse(results);
 				controller.config = json_results;
 				controller.configLoaded = true;
-				console.log("Config Data: %O", controller.config);
+
 				if (typeof callback === 'function') {
 					callback(json_results);
 				}
@@ -88,40 +92,77 @@ var programConfigController = (function ($) {
 			controller.AttachEventListeners();
 			controller.GeneratePreview();
 		},
-		ShowPreSubmitIfNeeded: function () {
+		ShowPreSubmitIfNeeded: function() {
 			var controller = this;
 			$(".pre-submit").toggle(!controller.configLoaded);
 			$(".post-submit").toggle(controller.configLoaded);
 		},
 		UpdateTitle: function () {
 			var controller = this;
-			console.log("Title is: " + controller.config.content.label);
-			$("h1.page-title").html((controller.configLoaded) ? controller.config.content.label : "Create Program Settings");
+			var title = (controller.configLoaded) ? "Edit " + controller.config.content.label : "Create Program Settings";
+
+			// Set title
+			$("h1.page-title").html(title);
+
+			// Set 4th Level Breadcrumb
+			$(".breadcrumbs_current a").html(title);
 		},
 		UpdateBreadCrumbs: function () {
-			// body...
+			var controller = this;
+
+			// Set 2nd Level Breadcrumb
+			$(".breadcrumbs_previous:first a").html((controller.program.isSpecialtyProgram) ? "Specialty Programs" : "Lifecycle Programs");
+			$(".breadcrumbs_previous:first a").attr("href", (controller.program.isSpecialtyProgram) ? constants.specialtyPageUrl : constants.lifecyclePageUrl);
+
+			// Set 3rd Level Breadcrumb
+			// :TOOD: Other JS code is messing with this.  Please remove it.
+			$(".breadcrumbs_previous:last a").html(controller.program.programName + " Program");
+			$(".breadcrumbs_previous:last a").attr("href", "javascript:history.go(-1)");
 		},
 		UpdateSettingName: function () {
 			$(".settings-name").val(controller.config.content.label);
 		},
 		UpdateCreativeDropdowns: function () {
 			var controller = this;
-			// Pull the list of email creative from controller.config.uiLayout.emailCreativeChoices and populate .em-creative
-			// Pull the list of DM creative from controller.config.uiLayout.dmCreativeChoices and populate .dm-creative
-			// Hide or show .em-creative-row based on controller.config.uiLayout.hasEmail
-			// Hide or show .dm-creative-row based on controller.config.uiLayout.hasDM
+			console.log("Config: %o", controller.config);
+			console.log("Program: %o", controller.program);
+
+			// Pull the list of email creative from controller.program.uiLayout.emailCreativeChoices and populate .em-creative
+			console.log("Options: %o", controller.program.uiLayout.emailCreativeChoices);
+			for (var value in controller.program.uiLayout.emailCreativeChoices) {
+				 $('.em-creative')
+					  .append($('<option>', { value : value })
+					  .text(controller.program.uiLayout.emailCreativeChoices[value]));
+			}
+
+			// Pull the list of DM creative from controller.program.uiLayout.dmCreativeChoices and populate .dm-creative
+			for (var value in controller.program.uiLayout.dmCreativeChoices) {
+				 $('.dm-creative')
+					  .append($('<option>', { value : value })
+					  .text(controller.program.uiLayout.dmCreativeChoices[value]));
+			}
+
+			// Hide or show .em-creative-row based on controller.program.uiLayout.hasEmail
+			$(".em-creative-row").toggle(controller.program.uiLayout.hasEmail);
+
+			// Hide or show .dm-creative-row based on controller.program.uiLayout.hasDM
+			$(".dm-creative-row").toggle(controller.program.uiLayout.hasDM);
+
 			// Select the email creative value that matches config.content.emailCreativeName
+			$('.em-creative option[value="' + controller.config.content.emailCreativeName + '"]').attr('selected', 'selected');
+
 			// Select the DM creative value that matches config.content.dmCreativeName
+			$('.dm-creative option[value="' + controller.config.content.dmCreativeName + '"]').attr('selected', 'selected');
 		},
 		UpdateDiscountCodes: function () {
-			// Note: Your UI will already have all 9 permutations of inputs: Email/DM/SMS #1, Email/DM/SMS #2, Email/DM/SMS #3
-			// Hide high risk if config.uiLayout.usesHighRisk = false   (Easily done via $(".high-risk").hide();
-			// If config.uiLayout.touchpoints < 3, then hide all #3 related items via $("touchpoint-3").hide();
-			// If config.uiLayout.touchpoints < 2, then hide all #2 related items via $("touchpoint-2").hide();
-			// If config.uiLayout.hasEmail == false, then hide all email related items via $(".touchpoint-row.email").hide();
-			// If config.uiLayout.hasDM == false, then hide all email related items via $(".touchpoint-row.dm").hide();
-			// If config.uiLayout.hasSMS == false, then hide all email related items via $(".touchpoint-row.sms").hide();
-			// To populate values, iterate through all values of $(".touchpoint-value").
+			var controller = this;
+
+			$(".high-risk").toggle(controller.program.uiLayout.usesHighRisk);
+			$("touchpoint-3").toggle((controller.program.uiLayout.touchpoints >= 3));
+			$("touchpoint-2").toggle((controller.program.uiLayout.touchpoints >= 2));
+			$(".touchpoint-row.email").toggle(controller.program.uiLayout.hasEmail);
+			$(".touchpoint-row.dm").toggle(controller.program.uiLayout.hasDM);
+			$(".touchpoint-row.sms").toggle(controller.program.uiLayout.hasSMS);
 
 			$.each($('.touchpoint-value'), function (i, e) {
 				var value = controller.config.content[$(e).attr('name')];
@@ -169,4 +210,5 @@ var programConfigController = (function ($) {
 	};
 })(jQuery);
 
-programConfigController.controller.init();
+if (window.location.href.indexOf(constants.configPageUrl) > -1)
+	programConfigController.controller.init();
