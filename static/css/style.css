@@ -1469,17 +1469,21 @@ header .header-right a:hover {
   display: inline-block;
   width: auto;
   vertical-align: top;
-  margin-right: 3%;
+  min-width: 350px;
+}
+@media (min-width: 960px) {
+  .settings-section {
+    width: 36%;
+    margin-right: 3%;
+  }
+}
+.results-section {
+  width: 56%;
 }
 .results-section {
   display: inline-block;
-  width: 40%;
+  width: 60%;
   vertical-align: top;
-}
-@media (min-width: 1232px) {
-  .results-section {
-    width: 50%;
-  }
 }
 .results-table th {
   text-align: center;
