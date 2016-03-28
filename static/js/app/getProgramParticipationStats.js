@@ -51,7 +51,7 @@ var getProgramParticipationStats = (function ($) {
 					 */
 					if (obj.isSpecialtyProgram) {
 						isSpecialtyProgram = obj.isSpecialtyProgram;
-						$('.breadcrumbs_previous a').text('Specialty Programs').attr('title', 'Specialty Programs');
+						$('.breadcrumbs_previous1 a').text('Specialty Programs').attr('title', 'Specialty Programs');
 					}
 					programTitle = obj.programName;
 					return setProgramTitle(programTitle);

@@ -185,6 +185,17 @@ input:focus::-ms-input-placeholder {
 .disabled-input > * {
   display: none;
 }
+.center-block {
+  display: block;
+  margin-right: auto;
+  margin-left: auto
+}
+.pull-right {
+  float: right!important
+}
+.pull-left {
+  float: left!important
+}
 .js-loading {
   left: 0;
   right: 0;
@@ -194,6 +205,9 @@ input:focus::-ms-input-placeholder {
   text-align: center;
   font-size: 20px;
 }
+.js-content{
+  display: none;
+}
 .js-hidden {
   display: none;
 }
@@ -202,6 +216,9 @@ input:focus::-ms-input-placeholder {
 }
 .visible {
   visibility: visible;
+}
+.text-hidden{
+  text-indent: -999em;
 }
 .background-none {
   background: none !important;
@@ -1206,12 +1223,12 @@ header .header-right a:hover {
   padding-right: 15px;
   padding-left: 15px;
 }
-.programsummary-table.quantity-limit-tab-section .store-configuration input[type='number'] {
+.program-settings-footer select, .programsummary-table.quantity-limit-tab-section .store-configuration input[type='number'] {
   width: 100%;
   margin-bottom: 0.6em;
   position: relative;
 }
-.programsummary-table.quantity-limit-tab-section .store-configuration .btn-primary {
+.programsummary-table.quantity-limit-tab-section .store-configuration .btn-primary, .program-settings-footer .btn-primary {
   background-color: rgb(14, 163, 221);
   border-color: rgba(63, 81, 181, 0.46);
   padding: 5px 14px 4px;
@@ -1221,7 +1238,7 @@ header .header-right a:hover {
   float: right;
 }
 @media (min-width: 768px) {
-  .programsummary-table.quantity-limit-tab-section .store-configuration input[type='number'] {
+  .program-settings-footer select, .programsummary-table.quantity-limit-tab-section .store-configuration input[type='number'] {
     width: 80%;
     margin-bottom: 0;
     height: 29px;

@@ -229,6 +229,17 @@ a:focus {
   text-decoration: none !important;
   outline: none !important;
 }
+.center-block {
+  display: block;
+  margin-right: auto;
+  margin-left: auto
+}
+.pull-right {
+  float: right!important
+}
+.pull-left {
+  float: left!important
+}
 .none {
   display: none;
 }
@@ -237,6 +248,9 @@ a:focus {
 }
 .hidden {
   visibility: hidden;
+}
+.text-hidden{
+  text-indent: -999em;
 }
 .visible {
   visibility: visible;
@@ -252,6 +266,10 @@ a:focus {
   position: absolute;
   text-align: center;
   font-size: 20px;
+  display: block;
+}
+.js-content{
+  display: none;
 }
 .dim-mid {
   opacity: 0.8;
@@ -1381,12 +1399,12 @@ header#nav {
   padding-right: 15px;
   padding-left: 15px;
 }
-.programsummary-table.quantity-limit-tab-section .store-configuration input[type='number'] {
+.program-settings-footer select, .programsummary-table.quantity-limit-tab-section .store-configuration input[type='number'] {
   width: 100%;
   margin-bottom: 0.6em;
   position: relative;
 }
-.programsummary-table.quantity-limit-tab-section .store-configuration .btn-primary {
+.programsummary-table.quantity-limit-tab-section .store-configuration .btn-primary, .program-settings-footer .btn-primary {
   background-color: rgb(14, 163, 221);
   border-color: rgba(63, 81, 181, 0.46);
   padding: 5px 14px 4px;
@@ -1396,7 +1414,7 @@ header#nav {
   float: right;
 }
 @media (min-width: 768px) {
-  .programsummary-table.quantity-limit-tab-section .store-configuration input[type='number'] {
+  .program-settings-footer select, .programsummary-table.quantity-limit-tab-section .store-configuration input[type='number'] {
     width: 80%;
     margin-bottom: 0;
     height: 29px;
