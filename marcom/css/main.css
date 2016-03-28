@@ -1417,10 +1417,11 @@ header#nav {
   .program-settings-footer select, .programsummary-table.quantity-limit-tab-section .store-configuration input[type='number'] {
     width: 80%;
     margin-bottom: 0;
-    height: 29px;
+    height: 31px;
   }
   .programsummary-table.quantity-limit-tab-section .store-configuration .btn-primary {
     float: none;
+    height: 31px;
   }
   .programsummary-table.quantity-limit-tab-section .store-configuration .col-sm-2 {
     margin-left: -30px;
@@ -3406,6 +3407,9 @@ input[type="submit"].btn-block, input[type="reset"].btn-block, input[type="butto
 .toggle-btn.active {
   background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAmUlEQVQ4T6WT0RWDMAhFeZs4ipu0mawZpaO4yevBc6hUIWLNd+4NeQDk5sE/PMkZwFvZywKSTxF5iUgH0C4JHGyF97IggFVSqyCFga0CvQSg70Mdwd8QSSr4sGBMcgavAgdvwQCtApvA2uKr1x7Pu++06ItrF5LXPB/CP4M0kKTwYRIDyRAOR9lJTuF0F0hOAJbKopVHOZN9ACS0UgowIx8ZAAAAAElFTkSuQmCC") no-repeat 10px center #2ecc71;
 }
+.toggle-btn.active .round-btn {
+  left: 45px;
+}
 .toggle-btn .round-btn {
   width: 30px;
   height: 30px;
@@ -3429,7 +3433,7 @@ input[type="submit"].btn-block, input[type="reset"].btn-block, input[type="butto
   z-index: 9;
   cursor: pointer;
 }
-.toggle-btn .cb-value:focus + .round-btn {
+.toggle-btn .cb-value:focus:active + .round-btn {
   box-shadow: 0 0 2px 16px rgba(0, 0, 0, 0.1);
 }
 .copy-right {
