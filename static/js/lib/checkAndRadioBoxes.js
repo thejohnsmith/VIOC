@@ -3,6 +3,7 @@
 // customCheckAndRadioBoxes.radio();
 var customCheckAndRadioBoxes = (function ($) {
 	var combinedHandlers = function () {
+		console.log("Firing combinedHandlers");
 		$('.customCheckbox, .customRadiobox').each(function () {
 			$(this).addClass('js-custom');
 		});
@@ -64,12 +65,16 @@ var customCheckAndRadioBoxes = (function ($) {
 		 * @return {function} toggleBtns();
 		 */
 		function toggleBtns () {
+			console.log("Running toggleBtns");
+
 			var $programId = getParameterByName('programId', window.location.href);
 			var $userId = marcomUserData.$user.externalId || {};
 			if ($('[data-enrolled="true"] .toggle-btn')) {
 				$('[data-enrolled="true"] .toggle-btn').addClass('active').prop('checked', 'checked');
 			}
-			$('.cb-value').on('click', function (e) {
+
+			$('.cb-value').off('click.vioc').on('click.vioc', function (e) {
+				console.log("Firing checkbox click...");
 				e.preventDefault();
 				e.stopPropagation();
 				var $mainParent = $(this).parent('.toggle-btn');
@@ -85,7 +90,7 @@ var customCheckAndRadioBoxes = (function ($) {
 					unsubscribeStore($userId, $storeId, $programId, 1);
 				}
 			});
-			$('.enroll-all-stores').on('click', function (e) {
+			$('.enroll-all-stores').off('click.vioc').on('click.vioc', function (e) {
 				e.preventDefault();
 				e.stopPropagation();
 				$('[data-enrolled="false"] .cb-value').each(function () {
@@ -105,12 +110,11 @@ var customCheckAndRadioBoxes = (function ($) {
 		function unsubscribeStore ($userId, $storeId, $programId) {
 			return setStoreSubscription.makeRequest($userId, $storeId, $programId, 0);
 		}
-		if ($('.toggle-btn').length) {
-			return toggleBtns();
-		}
-		return;
+
+		return toggleBtns();
 	};
 	var customCheckbox = function () {
+		console.log("Firing customCheckbox");
 		$('.customCheckbox input:checkbox').each(function () {
 			$(this).parent().addClass('js-custom');
 			if ($(this).attr('checked') === 'checked') {
@@ -132,6 +136,7 @@ var customCheckAndRadioBoxes = (function ($) {
 		combinedHandlers();
 	};
 	var customRadiobox = function () {
+		console.log("Firing customRadiobox");
 		$('input:radio').each(function () {
 			$(this).wrap('<div class="customRadiobox"></div>');
 			$(this).parent().append('<label>' + $(this).data('radiobox-label') + '</label>');
