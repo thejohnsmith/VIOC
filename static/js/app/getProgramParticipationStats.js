@@ -51,7 +51,12 @@ var getProgramParticipationStats = (function ($) {
 					 */
 					if (obj.isSpecialtyProgram) {
 						isSpecialtyProgram = obj.isSpecialtyProgram;
+						/* Change Breadcrumb text */
 						$('.breadcrumbs_previous1 a').text('Specialty Programs').attr('title', 'Specialty Programs');
+						/* Make nav item active */
+						$('.navBarItem > a').filter(function () {
+							return $(this).text() === 'SPECIALTY PROGRAMS';
+						}).toggleClass('navBarEnhancedLinkColor navBarSelectedLinkColor').parent().toggleClass('navBarEnhancedActiveBackgroundColor navBarEnhancedBackgroundColor').addClass('navBarSelected');
 					}
 					programTitle = obj.programName;
 					return setProgramTitle(programTitle);
