@@ -66,11 +66,11 @@
                         <span class="round-btn"></span>
                       </div>
                     </td>
-                    <td class="store">{{storeName}}
+                    <td class="store {{^enrolled}}dim-mid{{/enrolled}}">{{storeName}}
                       <br>
                       <div class="store-number">Store #{{storeId}}</div>
                     </td>
-                    <td class="store-counts">
+                    <td class="store-counts {{^enrolled}}dim-mid{{/enrolled}}">
                       <table class="inner-table">
                         <tr>
                           {{#hasEmail}}
@@ -81,7 +81,7 @@
                       </table>
                     </td>
                     {{#hasDM}}
-                    <td class="store-cost">
+                    <td class="store-cost {{^enrolled}}dim-mid{{/enrolled}}">
                       <span>$</span>
                       <span class="costEstimateTotal js-format-currency">{{costEstimate}}</span>
                       <br><a href="javascript:void(0);" title="Details" class="mobie-details-{{storeId}}">Details</a></td>{{/hasDM}}

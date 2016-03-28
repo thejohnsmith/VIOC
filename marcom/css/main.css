@@ -66,18 +66,18 @@ button, input, select, textarea {
   white-space: normal;
 }
 input[type='text'], input[type='password'], input[type='search'], input[type='number'], textarea {
-  border: 1px solid #555;
+  border: 1px solid #888;
   font-size: 15px;
   color: #555;
   padding: 7px 10px;
   width: 100%;
   -webkit-transition: 0.5s;
   transition: 0.5s;
-  border-radius: 0;
+  border-radius: 4px;
   box-shadow: none;
 }
 input[type='number'] {
-  border: 1px solid #ccc;
+  border: 1px solid #888;
   border-radius: 4px;
 }
 input[type='button'], input[type='submit'] {
@@ -249,7 +249,7 @@ a:focus {
 .hidden {
   visibility: hidden;
 }
-.text-hidden{
+.text-hidden {
   text-indent: -999em;
 }
 .visible {
@@ -268,7 +268,7 @@ a:focus {
   font-size: 20px;
   display: block;
 }
-.js-content{
+.js-content {
   display: none;
 }
 .dim-mid {
@@ -1160,6 +1160,7 @@ header#nav {
   padding-top: 20px;
 }
 .filters-area {
+  opacity: 0;
   float: left;
   width: 70%;
   margin-bottom: 1em;
@@ -1188,7 +1189,7 @@ header#nav {
   color: #555555;
 }
 .filters-area .filter-select {
-  padding-right: 20px;
+  padding-right: 0;
   vertical-align: initial;
   display: inline-block;
 }
@@ -1204,6 +1205,15 @@ header#nav {
 }
 .filters-area .filter-reset {
   margin-left: 4px;
+  -webkit-transition: all 0.5s ease-out 0s;
+  transition: all 0.5s ease-out 0s;
+  box-shadow: 0 0 3px 3px transparent;
+  border-radius: 20px;
+  display: inline-block;
+}
+.filters-area .filter-reset:hover {
+  box-shadow: 0 0 3px 3px;
+  display: inline-block;
 }
 .select-option .sbHolder {
   position: relative;
@@ -1696,7 +1706,8 @@ header#nav {
 
 .label-cell {
   min-width: 200px;
-  padding: 8px
+  padding: 8px;
+  vertical-align: middle;
 }
 .value-cell {
   padding: 8px
@@ -1707,10 +1718,11 @@ header#nav {
 }
 .discount-code-subrow {
   text-align: right;
-  height: 48px
+  height: 48px;
 }
 .discount-code-table td {
-  padding: 8px
+  padding: 8px 0 8px 0;
+  vertical-align: middle;
 }
 .result-preview {
   padding: 0px;

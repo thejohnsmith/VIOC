@@ -14,6 +14,7 @@ var programManagementFilters = (function ($) {
 			$('.filter-reset').on('click', $.proxy(controller.resetFilters, controller));
 			controller.getStoreTree(function (store_tree) {
 				controller.setupFilters(store_tree);
+				$('.filters-area').css('opacity', 1);
 			});
 		},
 		setupFilters: function (store_tree) {
