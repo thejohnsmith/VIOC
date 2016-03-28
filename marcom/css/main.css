@@ -1204,16 +1204,20 @@ header#nav {
   padding-right: 0;
 }
 .filters-area .filter-reset {
-  margin-left: 4px;
   -webkit-transition: all 0.5s ease-out 0s;
   transition: all 0.5s ease-out 0s;
-  box-shadow: 0 0 3px 3px transparent;
+  box-shadow: inset 0 0 1px 4px transparent, 0 0 3px 3px transparent;
   border-radius: 20px;
   display: inline-block;
+  margin: 0 0.6em;
+  top: 2px;
+  position: relative;
 }
 .filters-area .filter-reset:hover {
-  box-shadow: 0 0 3px 3px;
-  display: inline-block;
+  box-shadow: inset 0 0 1px 4px red, 0 0 7px 1px red;
+}
+.filters-area .filter-reset:hover:active {
+  box-shadow: inset 0 0 1px 4px red;
 }
 .select-option .sbHolder {
   position: relative;

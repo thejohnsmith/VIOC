@@ -23,21 +23,27 @@
     <div class="main">
       <section id="programManagementTabs">
         <h1 class="h1 page-title">
-
         </h1>
         <p>Configure the settings below to control the offer presented within your Additional Offer.</p>
+        <br>
         <form>
-          <input class="settings-name" type="text" placeholder="Enter Name for Layout" />
-          <h4>Additional Offer</h4>
           <div>
             <div class="coupon-form">
               <table>
                 <tr>
                   <td>
-                    <label>Coupon Text:</label>
+                    <label>Offer Name<i>*</i>&nbsp;:</label>
                   </td>
                   <td>
-                    <select class="coupon-text selectbox">
+                    <input class="settings-name" type="text" placeholder="Enter Name for Layout" required>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <label>Coupon Text<i>*</i>&nbsp;:</label>
+                  </td>
+                  <td>
+                    <select class="coupon-text selectbox" required>
                       <option value="2WiperswithOilChange" selected>2 Wipers with Oil Change</option>
                       <option value="AirConditioningCheck">Air Conditioning Check</option>
                       <option value="AirConditioningService">Air Conditioning Service</option>
@@ -90,10 +96,10 @@
                 </tr>
                 <tr>
                   <td>
-                    <label>Discount Type:</label>
+                    <label>Discount Type<i>*</i>&nbsp;:</label>
                   </td>
                   <td>
-                    <select class="coupon-approach selectbox">
+                    <select class="coupon-approach selectbox" required>
                       <option value="DollarOff" selected>$ Off</option>
                       <option value="PercOff">% Off</option>
                     </select>
@@ -101,31 +107,31 @@
                 </tr>
                 <tr>
                   <td>
-                    <label>Discount Amount:</label>
+                    <label>Discount Amount<i>*</i>&nbsp;:</label>
                   </td>
                   <td>
-                    <input class="coupon-amount" name="discount-amount" type="text" />
+                    <input class="coupon-amount" name="discount-amount" type="number" required>
                   </td>
                 </tr>
                 <tr>
                   <td>
-                    <label>Email Coupon Code:</label>
+                    <label>Email Coupon Code<i>*</i>&nbsp;:</label>
                   </td>
                   <td>
-                    <input class="coupon-code" name="email-coupon-code" type="text" />
+                    <input class="coupon-code" name="email-coupon-code" type="text" required>
                   </td>
                 </tr>
 
                 <tr>
                   <td>
-                    <label>Expiration:</label>
+                    <label>Expiration<i>*</i>&nbsp;:</label>
                   </td>
                   <td>
-                    <select class="expiration selectbox">
-                      <option value="Plus15" selected>Send Date Plus 15</option>
-                      <option value="Plus30">Send Date Plus 30</option>
-                      <option value="Plus45">Send Date Plus 45</option>
-                      <option value="Plus60">Send Date Plus 60</option>
+                    <select class="expiration selectbox" required>
+                      <option value="15" selected>Send Date Plus 15</option>
+                      <option value="30">Send Date Plus 30</option>
+                      <option value="45">Send Date Plus 45</option>
+                      <option value="60">Send Date Plus 60</option>
                     </select>
                   </td>
                 </tr>
