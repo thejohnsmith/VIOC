@@ -1724,9 +1724,15 @@ header#nav {
   text-align: right;
   height: 48px;
 }
+.touchpoint-col.high-risk {
+  padding-left: 6px
+}
 .discount-code-table td {
   padding: 8px 0 8px 0;
   vertical-align: middle;
+}
+.discount-code-table .touchpoint-row {
+  font-size: 16px;
 }
 .result-preview {
   padding: 0px;
