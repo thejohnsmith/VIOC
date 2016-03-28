@@ -11,6 +11,7 @@ var programManagementController = (function ($) {
 		api_path: 'https://adobe-uat-vioc.epsilon.com/jssp/vioc/',
 		user_configs: [],
 		store_data: [],
+		program: {},
 		user_id: marcomUserData.$user.externalId,
 		program_id: getParameterByName('programId', window.location.href),
 		init: function () {
@@ -33,6 +34,11 @@ var programManagementController = (function ($) {
 					/* Refresh the bottom section of the page */
 					controller.refreshManagementControls();
 				});
+				/* Get Program Data */
+				// controller.getProgramData(function (program_data) {
+				// 	/* Show quantity limit tab if showQuantityLimitTab is true for current program */
+				// 	controller.showQuantityLimitTab();
+				// });
 			});
 		},
 		/** Gets a user config
@@ -61,6 +67,30 @@ var programManagementController = (function ($) {
 				if (typeof callback === 'function') callback(json_results);
 			}).promise().done(function () {
 				controller.hideAdditionalOffersIfNeeded();
+			});
+		},
+		/** API call to getProgramParticipationStats.jssp
+		 * @var {string} userId
+		 * @return callback
+		 */
+		getProgramData: function (program_id, callback) {
+			var controller = this;
+			$.get(controller.apiPath + 'getProgramParticipationStats.jssp?userId=' + controller.user_id, function (results) {
+				// NOTE: We may need to parse results.
+				var json_results = JSON.parse(results);
+
+				// Loop through the API result and find the program that matches program ID (DONE)
+				$.each(json_results, function (i, result) {
+					// Store the program data in controller.program
+					if (result.id == program_id) {
+						controller.program = result;
+					}
+				});
+
+				// fire the callback (DONE)
+				if (typeof callback === 'function') {
+					callback(controller.program);
+				}
 			});
 		},
 		hideAdditionalOffersIfNeeded: function () {
@@ -138,7 +168,7 @@ var programManagementController = (function ($) {
 				controller.refreshManagementControls();
 			});
 		},
-		saveStoreSubscription (selectedStores, configId, callback) {
+		saveStoreSubscription(selectedStores, configId, callback) {
 			var controller = this;
 			var stringStoreIds = selectedStores.join(',');
 			$.get(controller.api_path + 'setStoreConfig.jssp?userId=' + controller.user_id + '&configId=' + configId + '&programId=' + controller.program_id + '&storeIds=' + stringStoreIds, function (results) {
@@ -161,6 +191,18 @@ var programManagementController = (function ($) {
 					.append($('<option>')
 						.val(config.id)
 						.html(config.label));
+			}
+		},
+		showQuantityLimitTab: function () {
+			var controller = this;
+			for (var i = 0; i < $programParticipationStats.length; i++) {
+				if ($programParticipationStats[i].id === controller.program_id) {
+					console.log('id found: true');
+					if ($programParticipationStats[i].showQuantityLimitTab === 1) {
+						console.log('showQuantityLimitTab: true');
+						$('#programManagementTabs .optional-tab').css('visibility', 'visible');
+					}
+				}
 			}
 		}
 	};

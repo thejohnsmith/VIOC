@@ -1400,6 +1400,9 @@ header#nav {
   padding-left: 0 !important;
   padding-right: 0 !important;
 }
+.lifescycle-tab .optional-tab {
+  visibility: hidden;
+}
 .programsummary-table.quantity-limit-tab-section .store-enroll {
   width: 15%;
 }
