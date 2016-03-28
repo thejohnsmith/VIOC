@@ -82,6 +82,7 @@ var getProgramParticipationStats = (function ($) {
 			});
 			var programSettingsName = getParameterByName('programId', window.location.href);
 			$('.settings-title').text(programSettingsName);
+			customCheckAndRadioBoxes.customCheckbox();
 			return setBreadcrumbTitle(programTitle);
 		},
 		setBreadcrumbTitle = function (programTitle) {
@@ -106,7 +107,7 @@ var getProgramParticipationStats = (function ($) {
 			$.get('https://files.marcomcentral.app.pti.com/epsilon/static/program-list.mustache.html', function (templates) {
 				var template = $(templates).filter('.program-list-template').html();
 				$('.program-select.lifecycle-program-list').html(Mustache.render(template, result));
-				customCheckAndRadioBoxes.customCheckbox();
+				// customCheckAndRadioBoxes.customCheckbox();
 				return upDateProgramsDashboard(result), setProgramTabContent();
 			});
 

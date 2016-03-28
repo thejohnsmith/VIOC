@@ -1,54 +1,40 @@
-h1 {
-	padding: 0;
-	margin: 0;
-}
-
-h4 {
-	color: #E02926;
-	font-weight: bold;
-	font-size: 24px;
-	padding: 10px 0 0 0;
-	margin: 10px 0;
-}
-
 .red {
-	color: #E02926;
+  color: #E02926;
 }
-
-input {
-	padding: 10px;
-	width: 80%;
-	font-family: 'HelveticaNeueLT-LightCond';
-	font-size: 18px;
-}
-
 .resp-tab-content {
-	margin: 0 0 15px 0;
+  margin: 0 0 15px 0;
 }
-
-p {
-	padding: 0 0 10px 0;
-	margin: 0;
-}
-
 #programManagementTabs {
-	padding: 0;
-	margin: 0 0 20px 0;
-	width: 100%;
+  padding: 0;
+  margin: 0 0 20px 0;
+  width: 100%;
 }
-
+#programManagementTabs h4 {
+  color: #E02926;
+  font-weight: bold;
+  font-size: 24px;
+  padding: 10px 0 0 0;
+  margin: 10px 0;
+}
+#programManagementTabs p {
+  padding: 0 0 10px 0;
+  margin: 0;
+}
 #programManagementTabs input {
   margin: 5px 0 15px 0;
+  max-width: 140px;
 }
-
+#programManagementTabs input.settings-name {
+  max-width: 580px;
+}
 #programManagementTabs select {
   width: auto;
   color: #000;
   margin: 5px 0 15px 0;
 }
 .program-button {
-	padding: 0;
-	margin: 0;
+  padding: 0;
+  margin: 0;
 }
 .discountCodeLink {
   font-weight: bold;
@@ -61,57 +47,56 @@ p {
   background: #eee;
   padding: 20px;
 }
-
-.discountCode table,
-#parentHorizontalTab table {
-	width: 100%;
+.discountCode table, #parentHorizontalTab table {
+  width: 100%;
 }
-.discountCode table tr td:first-child,
-#parentHorizontalTab table tr td:first-child {
-	text-align: right;
-	vertical-align: middle;
-	padding: 0 15px 10px 0;
+.discountCode table tr td:first-child, #parentHorizontalTab table tr td:first-child {
+  text-align: right;
+  vertical-align: middle;
+  padding: 0 15px 10px 0;
 }
-.discountCode table tr td:nth-child(odd),
-#parentHorizontalTab table tr td:nth-child(odd) {
-	width: 40%;
+.discountCode table tr td:nth-child(odd), #parentHorizontalTab table tr td:nth-child(odd) {
+  width: 40%;
 }
-
 #parentHorizontalTab {
-	margin: 0;
-	padding: 0;
+  margin: 0;
+  padding: 0;
 }
 .module table tr td:first-child {
-	vertical-align: middle;
-	padding: 0 15px 10px 0;
+  vertical-align: middle;
+  padding: 0 15px 10px 0;
 }
 .module table tr td:nth-child(odd) {
-	width: 30%;
+  width: 30%;
 }
 .module table {
-	width: 100%;
+  width: 100%;
 }
-
 .sidebar p {
-	padding: 20px 0 10px 0;
+  padding: 20px 0 10px 0;
 }
 .sidebar textarea {
-	text-align: left;
-	padding: 10px;
-	font-size: 14px;
-	line-height: 20px;
+  text-align: left;
+  padding: 10px;
+  font-size: 14px;
+  line-height: 20px;
 }
 .resp-tab-content {
-	margin: 0 0 20px 0;
-	width: 80%;
+  margin: 0 0 20px 0;
+  width: 80%;
 }
 .coupon-form {
-	float: left;
-	width: 60%;
+  float: left;
+}
+.coupon-form td {
+  vertical-align: sub;
+}
+.coupon-form td label {
+  margin-right: 1em;
 }
 .coupon-image {
-	float: left;
-	text-align: center;
-	width: 40%;
-	padding: 0 0 3px 0;
+  float: left;
+  text-align: center;
+  width: 40%;
+  padding: 0 0 3px 0;
 }
