@@ -40,9 +40,9 @@ var recordLogin = (function ($) {
 		var $loginCount = results.loginCount;
 		var $newUser = getParameterByName('newUser', window.location.href);
 		if ($newUser > 0) {
-			$loginCount = 6;
+			$loginCount = 1;
 		}
-		if ($loginCount > 5) {
+		if ($loginCount < 5) {
 			// Greater than 5, show "Getting Started Now" version of the home page.
 			$('#welcome + #gettingStartedNow').fadeIn();
 			$('#programSummary').hide();
