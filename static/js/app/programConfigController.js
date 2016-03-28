@@ -1,12 +1,3 @@
-var constants = {
-	lifecyclePageUrl : "CustomPage.aspx?uigroup_id=479602&page_id=10792",
-	specialtyPageUrl : "CustomPage.aspx?uigroup_id=479602&page_id=10793",
-	configPageUrl: "CustomPage.aspx?uigroup_id=479602&page_id=11225",
-	programManagementUrl : "",
-	apiPath: "https://adobe-uat-vioc.epsilon.com/jssp/vioc/",
-	userId: marcomUserData.$user.externalId
-};
-
 var programConfigController = (function ($) {
 
 	var controller = {
@@ -15,8 +6,8 @@ var programConfigController = (function ($) {
 		config: { "content" : {}, "uiLayout": {}, "preview": {} },
 		configLoaded: false,
 		saveEnabled: true,
-		apiPath: constants.apiPath,
-		userId: constants.userId,
+		apiPath: marcomUserData.$constants.apiPath,
+		userId: marcomUserData.$user.externalId,
 		programId: getParameterByName('programId', window.location.href),
 		configId: getParameterByName('configId', window.location.href),
 
@@ -89,8 +80,10 @@ var programConfigController = (function ($) {
 			controller.UpdateDiscountCodes();
 			controller.UpdateOfferExpiration();
 			controller.UpdateButtons();
+			controller.UpdatePreSubmitSidebar();
 			controller.AttachEventListeners();
 			controller.GeneratePreview();
+			controller.ShowUI();
 		},
 		ShowPreSubmitIfNeeded: function() {
 			var controller = this;
@@ -105,19 +98,18 @@ var programConfigController = (function ($) {
 			$("h1.page-title").html(title);
 
 			// Set 4th Level Breadcrumb
-			$(".breadcrumbs_current a").html(title);
+			$(".breadcrumbs_current").html(title);
 		},
 		UpdateBreadCrumbs: function () {
 			var controller = this;
 
 			// Set 2nd Level Breadcrumb
 			$(".breadcrumbs_previous:first a").html((controller.program.isSpecialtyProgram) ? "Specialty Programs" : "Lifecycle Programs");
-			$(".breadcrumbs_previous:first a").attr("href", (controller.program.isSpecialtyProgram) ? constants.specialtyPageUrl : constants.lifecyclePageUrl);
+			$(".breadcrumbs_previous:first a").attr("href", (controller.program.isSpecialtyProgram) ? marcomUserData.$constants.specialtyPageUrl : marcomUserData.$constants.lifecyclePageUrl);
 
 			// Set 3rd Level Breadcrumb
-			// :TOOD: Other JS code is messing with this.  Please remove it.
 			$(".breadcrumbs_previous:last a").html(controller.program.programName + " Program");
-			$(".breadcrumbs_previous:last a").attr("href", "javascript:history.go(-1)");
+			$(".breadcrumbs_previous:last a").attr("href", marcomUserData.$constants.programManagementUrl + "&programId=" + controller.programId);
 		},
 		UpdateSettingName: function () {
 			$(".settings-name").val(controller.config.content.label);
@@ -157,12 +149,13 @@ var programConfigController = (function ($) {
 		UpdateDiscountCodes: function () {
 			var controller = this;
 
-			$(".high-risk").toggle(controller.program.uiLayout.usesHighRisk);
-			$("touchpoint-3").toggle((controller.program.uiLayout.touchpoints >= 3));
-			$("touchpoint-2").toggle((controller.program.uiLayout.touchpoints >= 2));
-			$(".touchpoint-row.email").toggle(controller.program.uiLayout.hasEmail);
-			$(".touchpoint-row.dm").toggle(controller.program.uiLayout.hasDM);
-			$(".touchpoint-row.sms").toggle(controller.program.uiLayout.hasSMS);
+			if (!controller.program.uiLayout.usesHighRisk)		$(".high-risk").hide();
+			if (controller.program.uiLayout.hasEmail != true)   $(".touchpoint-row.email,.results-section .email").hide();
+			if (controller.program.uiLayout.hasDM != true) 		$(".touchpoint-row.dm,.results-section .dm").hide();
+			if (controller.program.uiLayout.hasSMS != true)		$(".touchpoint-row.sms,.results-section .sms").hide();
+			if (controller.program.uiLayout.touchpoints < 3)	$(".touchpoint-3").hide();
+			if (controller.program.uiLayout.touchpoints < 2)	$(".touchpoint-2").hide();
+			if (!controller.program.programUsesAdtl)			$(".results-section .additional-offer").hide();
 
 			$.each($('.touchpoint-value'), function (i, e) {
 				var value = controller.config.content[$(e).attr('name')];
@@ -170,16 +163,26 @@ var programConfigController = (function ($) {
 			});
 		},
 		UpdateOfferExpiration: function () {
-			// Select the expiration value that matches config.content.expiration
+			var controller = this;
+			$('.offer-exp option[value="' + controller.config.content.expiration + '"]').attr('selected', 'selected');
 		},
 		UpdateButtons: function () {
-			// If controller.saveEnabled, enable the save button.  If not, disable it.
+			var controller = this;
+			$(".btn-save").removeClass('disabled');
+			if (!controller.saveEnabled)
+				$(".btn-save").addClass('disabled');
+		},
+		UpdatePreSubmitSidebar : function() {
+			var controller = this;
+			$(".program-overview-img img").attr("src", controller.program.programImg);
+			$(".programDesc").html(controller.program.programDesc);
 		},
 		AttachEventListeners: function () {
-			// Do $("input").on("keyup", DisableSaveButton);
-			// Do $("select").on("change", DisableSaveButton);
-			// When Preview is pressed, call OnPressPreview()
-			// When Save is pressed, call OnPressSave()
+			var controller = this;
+			$("input").on("keyup", function() { controller.DisableSaveButton() });
+			$("select").on("change", function() { controller.DisableSaveButton() });
+			$(".btn-preview").on("click", function() { controller.OnPressPreview() });
+			$(".btn-save").on("click", function() { controller.OnPressSave() });
 		},
 		GeneratePreview: function (callback) {
 			// Call GetFormData()
@@ -188,21 +191,29 @@ var programConfigController = (function ($) {
 			// Call callback()
 		},
 		DisableSaveButton: function () {
+			console.log("Disabling save button...", this);
+			var controller = this;
 			controller.saveEnabled = false;
-			UpdateButtons();
+			controller.UpdateButtons();
 		},
 		GetFormData: function () {
 			// Grab all inputs by calling $("input,select") and move their values into a key/value object.
 			// Returns all form data in an easy to POST format.
 		},
 		OnPressPreview: function () {
+			console.log("Preview pressed!", this);
 			// Call GeneratePreview()  When the callback returns:
 			// Mark controller.saveEnabled = true;
 			// Call UpdateButtons();
 		},
 		OnPressSave: function () {
+			console.log("Save pressed!", this);
 			// Call GetFormData()
 			// Save that data to the server.
+		},
+		ShowUI: function() {
+			$(".js-content").show();
+			$(".js-loading").hide();
 		}
 	};
 	return {
@@ -210,5 +221,9 @@ var programConfigController = (function ($) {
 	};
 })(jQuery);
 
-if (window.location.href.indexOf(constants.configPageUrl) > -1)
+if (window.location.href.indexOf(marcomUserData.$constants.configPageUrl) > -1)
+{
+	$j(".js-content").hide();
+	$j(".js-loading").show();
 	programConfigController.controller.init();
+}
