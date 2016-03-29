@@ -738,7 +738,6 @@ header .header-right a:hover {
   font-size: 19px;
   padding: 7px 15px;
   color: #fff;
-  font-family: 'HelveticaNeueLT-BoldCond';
   cursor: pointer;
   transition: 0.5s;
   -webkit-transition: 0.5s;
@@ -1032,9 +1031,14 @@ header .header-right a:hover {
   top: 2px;
 }
 .filter-reset {
-  position: absolute;
-  right: 0;
+  -webkit-transition: all 0.5s ease-out 0s;
+  transition: all 0.5s ease-out 0s;
+  box-shadow: inset 0 0 1px 4px transparent, 0 0 3px 3px transparent;
+  border-radius: 20px;
+  display: inline-block;
+  margin: 0 0.6em;
   top: 2px;
+  position: relative;
 }
 .select-option .sbHolder {
   position: relative;

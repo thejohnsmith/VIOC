@@ -148,11 +148,16 @@ var programConfigController = (function ($) {
 		},
 		UpdateDiscountCodes: function () {
 			var controller = this;
-
 			if (!controller.program.uiLayout.usesHighRisk)		$(".high-risk").hide();
-			if (controller.program.uiLayout.hasEmail != true)   $(".touchpoint-row.email,.results-section .email").hide();
-			if (controller.program.uiLayout.hasDM != true) 		$(".touchpoint-row.dm,.results-section .dm").hide();
-			if (controller.program.uiLayout.hasSMS != true)		$(".touchpoint-row.sms,.results-section .sms").hide();
+
+			if (!controller.program.uiLayout.usesOffer2)		$(".offer-2").hide();
+			for (var i = 1; i <= 3; i++)
+			{
+				if (controller.program.uiLayout['usesEmail' + i] != true)   $(".touchpoint-" + i + ".email,.touchpoint-" + i + ".results-table .email").hide();
+				if (controller.program.uiLayout['usesDM' + i] != true)   $(".touchpoint-" + i + ".dm,.touchpoint-" + i + ".results-table .dm").hide();
+				if (controller.program.uiLayout['usesSMS' + i] != true)   $(".touchpoint-" + i + ".sms,.touchpoint-" + i + ".results-table .sms").hide();
+			}
+
 			if (controller.program.uiLayout.touchpoints < 3)	$(".touchpoint-3").hide();
 			if (controller.program.uiLayout.touchpoints < 2)	$(".touchpoint-2").hide();
 			if (!controller.program.programUsesAdtl)			$(".results-section .additional-offer").hide();
@@ -161,6 +166,19 @@ var programConfigController = (function ($) {
 				var value = controller.config.content[$(e).attr('name')];
 				$(e).val(value);
 			});
+
+			for (var i = 0; i < controller.program.programMeta.touchpoints.length; i++)
+			{
+				var meta = controller.program.programMeta.touchpoints[i];
+				var channelCode = "";
+				if (meta.channel == "Email") channelCode = "email";
+				if (meta.channel == "Direct Mail") channelCode = "dm";
+				if (meta.channel == "SMS") channelCode = "sms";
+				$(".touchpoint-" + meta.touchpoint + "." + channelCode + ".preview-img").attr('src',meta.previewThumbnail);
+				$(".touchpoint-" + meta.touchpoint + "." + channelCode + ".timing").html(meta.timing);
+				$(".touchpoint-" + meta.touchpoint + "." + channelCode + ".preview").attr('href',meta.previewUrl);
+			}
+
 		},
 		UpdateOfferExpiration: function () {
 			var controller = this;
