@@ -52,7 +52,7 @@ var getProgramParticipationStats = (function ($) {
 					if (obj.isSpecialtyProgram) {
 						isSpecialtyProgram = obj.isSpecialtyProgram;
 						/* Change Breadcrumb text */
-						$('.breadcrumbs_previous1 a').text('Specialty Programs').attr('title', 'Specialty Programs');
+						$('.breadcrumbs_previous1 a').text('Specialty Programs').attr('title', 'Specialty Programs').attr('href', 'CustomPage.aspx?uigroup_id=479602&page_id=10793');
 						/* Make nav item active */
 						$('.navBarItem > a').filter(function () {
 							return $(this).text() === 'SPECIALTY PROGRAMS';
@@ -76,7 +76,7 @@ var getProgramParticipationStats = (function ($) {
 		 */
 		setProgramTitle = function (programTitle) {
 			$('.h1.page-title span').text(programTitle + ' Program').css({
-				opacity: 0
+				opacity: 1
 			}).removeClass('hidden').animate({
 				opacity: 1
 			});
