@@ -30,7 +30,7 @@
     <!-- First Tab content: Program Overview -->
     <div class="program-overview-tab-content none" aria-hidden="true">
       <div class="program-overview-img">
-        <img src="{{programImg}}" alt="Program Overview" title="Program Overview">
+        <img src="{{#programImg}}{{programImg}}{{/programImg}} {{^programImg}}http://placehold.it/700x315{{/programImg}}" alt="Program Overview" title="Program Overview">
       </div>
       <div class="programDesc">
         <p>{{{programDesc}}}</p>
