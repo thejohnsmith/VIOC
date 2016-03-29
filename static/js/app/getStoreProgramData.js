@@ -48,10 +48,20 @@ var getStoreProgramData = (function ($) {
 					programManagementController.controller.init();
 				});
 			}
+			if ($('.proof-settings-tab-section').length) {
+				$.get('https://files.marcomcentral.app.pti.com/epsilon/static/proof-settings-tab.mustache.html', function (templates) {
+					var template3 = $(templates).filter('.proof-settings-tab-template').html();
+					$('.proof-settings-tab-section').html(Mustache.render(template3, result));
+					return;
+				}).done(function () {
+					console.log('proof-settings-tab loaded');
+					return;
+				});
+			}
 			if ($('.quantity-limit-tab-section').length) {
 				$.get('https://files.marcomcentral.app.pti.com/epsilon/static/quantity-limit-tab.mustache.html', function (templates) {
-					var template3 = $(templates).filter('.quantity-limit-tab-template').html();
-					$('.quantity-limit-tab-section').html(Mustache.render(template3, result));
+					var template4 = $(templates).filter('.quantity-limit-tab-template').html();
+					$('.quantity-limit-tab-section').html(Mustache.render(template4, result));
 					return;
 				}).done(function () {
 					programSettingsHandler();

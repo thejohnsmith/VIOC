@@ -1,0 +1,164 @@
+<!-- Proof Settings Tab
+    @file proof-settings-tab.mustache.html
+    @type template/mustache
+    @import portalCustomProgramManager.html
+    @link Beta URL - https://marcomcentral.app.pti.com/Epsilon_Data_Management/Beta_Epsilon/CustomPage.aspx?uigroup_id=479602&page_id=11173&programId=5#parentHorizontalTab3
+-->
+<script class="proof-settings-tab-template" type="x-tmpl-mustache">
+  <div class="participation-table">
+    <table>
+      <thead>
+        <tr>
+          <td>
+            <table>
+              <tr>
+              <th class="store-enroll">
+                <button data-checkboxtype="quantity-limit" class="not-active proof-settings select-all btn btn-primary btn-sm">Select All</button>
+              </th>
+                <th class="store">Store</th>
+                <th class="store-materials table-header">
+                  <table class="inner-table">
+                    <tr class="header-row">
+                      <td class="hasEmail">Email</td>
+                      <td class="hasDM">DM</td>
+                      <td class="hasSMS">SMS</td>
+                    </tr>
+                  </table>
+                </th>
+                <th class="store store-proof">Proof Address</tr>
+            </table>
+          </td>
+        </tr>
+      </thead>
+      <tbody>
+        {{#.}}
+        <style>
+          {{#hasEmail}}
+            .proof-settings-tab-section .hasEmail{display:table-cell;}
+          {{/hasEmail}}
+          {{^hasEmail}}
+            .proof-settings-tab-section .hasEmail{display:none;}
+          {{/hasEmail}}
+
+          {{#hasDM}}
+            .proof-settings-tab-section .hasDM{display:table-cell;}
+          {{/hasDM}}
+          {{^hasDM}}
+            .proof-settings-tab-section .hasDM{display:none;}
+          {{/hasDM}}
+
+          {{#hasSMS}}
+            .proof-settings-tab-section .hasSMS{display:table-cell;}
+          {{/hasSMS}}
+          {{^hasSMS}}
+            .proof-settings-tab-section .hasSMS{display:none;}
+          {{/hasSMS}}
+        </style>
+        <tr class="filterable" data-filter-storeId="{{storeId}}">
+          <td>
+            <table>
+              <tr>
+                <td>
+                  <table>
+                    <tr class="store-item" data-enrolled="{{#enrolled}}true{{/enrolled}}{{^enrolled}}false{{/enrolled}}">
+                      <td class="checkbox-td" style="padding: 10px 0 0 0">
+                        <div class="checkbox-area" data-enrolled="">
+                          <div data-storeId="{{storeId}}" class="program-settings customCheckbox js-all-selectable {{^enrolled}}disabled-input{{/enrolled}}">
+                            <input {{^enrolled}}readonly{{/enrolled}} data-checkbox-label="" type="checkbox">
+                          </div>
+                        </div>
+                      </td>
+                      <td class="store {{^enrolled}}dim-mid{{/enrolled}}">{{storeName}}
+                        <br>
+                        <div class="store-number">Store #{{storeId}}</div>
+                      </td>
+                      <td class="store-materials {{^enrolled}}dim-mid{{/enrolled}}">
+                        <table class="inner-table">
+                          <tr>
+                            {{#hasEmail}}
+                            <td class="channelEmailTotal"><a href="#" class="link-proof btn btn-small btn-primary">Proof</a></td>{{/hasEmail}} {{#hasDM}}
+                            <td class="channelDMTotal"><a href="#" class="link-proof btn btn-small btn-primary">Proof</a></td>{{/hasDM}} {{#hasSMS}}
+                            <td class="channelSMSTotal"><a href="#" class="link-proof btn btn-small btn-primary">Proof</a></td>{{/hasSMS}}
+                          </tr>
+                        </table>
+                      </td>
+                      <td class="store-cost {{^enrolled}}dim-mid{{/enrolled}}">
+                        <div itemscope itemtype="http://schema.org/Person">
+                          <div itemprop="name">Tom Testuser</div>
+                          <a href="mailto:tom.testuser@epsilon.com" itemprop="email">tom.testuser@epsilon.com</a>
+                          <div itemprop="telephone">(214) 555-5555</div>
+                          <div itemprop="address" itemscope itemtype="http://schema.org/PostalAddress">
+                            <span itemprop="streetAddress">123 Test St</span>,
+                            <span itemprop="addressLocality">Dallas</span>,
+                            <span itemprop="addressRegion">TX</span>
+                            <span itemprop="postalCode">75070</span>
+                          </div>
+                        </div>
+                      </td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+        <tr class="mobile-info-{{storeId}}">
+          <td>
+            <table class="mobile-table">
+              <tr>
+                <td class="store-label">Store #</td>
+                <td class="store-info">{{storeId}}</td>
+              </tr>
+              {{#hasEmail}}
+              <tr>
+                <td class="store-label">Recipients in Email Channel:</td>
+                <td class="store-info">{{channelEmail}}</td>
+              </tr>
+              {{/hasEmail}} {{#hasDM}}
+              <tr>
+                <td class="store-label">Recipients in DM Channel:</td>
+                <td class="store-info">{{channelDM}}</td>
+              </tr>{{/hasDM}} {{#hasSMS}}
+              <tr>
+                <td class="store-label">Recipients in SMS Channel:</td>
+                <td class="store-info">{{channelSMS}}</td>
+              </tr>
+              {{/hasSMS}}
+              <tr>
+                <td class="store-label">Estimated Monthly Cost:</td>
+                <td class="store-info">{{costEstimate}}</td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+        {{/.}}
+        <tr>
+          <tr class="grand-total">
+            <td>
+              <table>
+                <tr>
+                  <tr>
+                    <td class="total-label">Request a proof for the <x> selected stores</td>
+                    <td class="store-materials">
+                      <table class="inner-table">
+                        <tbody>
+                          <tr>
+                            <td class="hasEmail"><a href="#" class="link-proof btn btn-small btn-primary">Proof</a></td>
+                            <td class="hasDM"><a href="#" class="link-proof btn btn-small btn-primary">Proof</a></td>
+                            <td class="hasSMS"><a href="#" class="link-proof btn btn-small btn-primary">Proof</a></td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </td>
+                    <td class="hasDM store-cost">
+                      <div class="hidden">$</div>
+                    </td>
+                  </tr>
+                </tr>
+              </table>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+  </div>
+</script>
