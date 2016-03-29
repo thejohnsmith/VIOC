@@ -29,8 +29,8 @@
 }
 #programManagementTabs select {
   width: auto;
-  color: #000;
   margin: 5px 0 15px 0;
+  min-width: 140px;
 }
 .program-button {
   padding: 0;
@@ -99,4 +99,7 @@
   text-align: center;
   width: 40%;
   padding: 0 0 3px 0;
+}
+.coupon-form i {
+  color: red;
 }
