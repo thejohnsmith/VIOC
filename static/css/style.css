@@ -1261,6 +1261,39 @@ header .header-right a:hover {
   border-radius: 3px;
   float: right;
 }
+.proof-settings-tab-section.programsummary-table .store-materials {
+  width: 15%;
+}
+.proof-settings-tab-section.programsummary-table .store-enroll {
+  width: 1%;
+}
+.proof-settings-tab-section.programsummary-table .btn.btn-small {
+  padding: 5px 14px 4px;
+  font-size: 12px;
+}
+.proof-settings-tab-section.programsummary-table .checkbox-td {
+  width: 4%;
+}
+.proof-settings-tab-section.programsummary-table .store {
+  width: 15%;
+}
+.proof-settings-tab-section.programsummary-table .store-cost {
+  width: 12%;
+  font-size: 15px;
+  line-height: 1.2;
+}
+.proof-settings-tab-section.programsummary-table .total-label {
+  width: 23% !important;
+}
+.proof-settings-tab-section.programsummary-table .store-materials-footer {
+  width: 22%;
+  padding-right: 7%;
+}
+.proof-settings-footer, .proof-settings-footer td, .store-materials-footer .inner-table, .store-materials-footer td {
+  color: #fff;
+  background: #1cb7f1;
+  border: none !important;
+}
 @media (min-width: 768px) {
   .program-settings-footer select, .programsummary-table.quantity-limit-tab-section .store-configuration input[type='number'] {
     width: 80%;

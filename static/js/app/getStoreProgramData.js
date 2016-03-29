@@ -54,7 +54,7 @@ var getStoreProgramData = (function ($) {
 					$('.proof-settings-tab-section').html(Mustache.render(template3, result));
 					return;
 				}).done(function () {
-					console.log('proof-settings-tab loaded');
+					programSettingsHandler();
 					return;
 				});
 			}

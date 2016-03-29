@@ -1462,27 +1462,47 @@ header#nav {
 .programsummary-table.quantity-limit-tab-section .store-configuration .btn-primary, .program-settings-footer .btn-primary {
   background-color: rgb(14, 163, 221);
   border-color: rgba(63, 81, 181, 0.46);
-  padding: 5px 14px 4px;
   font-size: 12px;
   line-height: 1.5;
   border-radius: 3px;
   float: right;
 }
-.proof-settings-tab-section.programsummary-table .store-materials{
- width: 15%;
+.proof-settings-tab-section.programsummary-table .store-materials-footer .btn.btn-small {
+  background-color: rgb(14, 163, 221);
+  border-color: rgba(63, 81, 181, 0.46);
 }
-.proof-settings-tab-section.programsummary-table .store-enroll, .proof-settings-tab-section.programsummary-table .checkbox-td {
-  width: 5%;
+.proof-settings-tab-section.programsummary-table .store-materials {
+  width: 15%;
+}
+.proof-settings-tab-section.programsummary-table .store-enroll {
+  width: 1%;
+}
+.proof-settings-tab-section.programsummary-table .btn.btn-small {
+  padding: 5px 14px 4px;
+  font-size: 12px;
+}
+.proof-settings-tab-section.programsummary-table .checkbox-td {
+  width: 4%;
 }
 .proof-settings-tab-section.programsummary-table .store {
   width: 15%;
 }
 .proof-settings-tab-section.programsummary-table .store-cost {
   width: 12%;
-  font-size: 16px;
+  font-size: 15px;
+  line-height: 1.2;
 }
 .proof-settings-tab-section.programsummary-table .total-label {
-    width: 19% !important;
+  width: 23% !important;
+}
+.proof-settings-tab-section.programsummary-table .store-materials-footer {
+  width: 22%;
+  padding-right: 7%;
+}
+.proof-settings-footer, .proof-settings-footer td, .store-materials-footer .inner-table, .store-materials-footer td {
+  color: #fff;
+  background: #1cb7f1;
+  border: none !important;
 }
 @media (min-width: 768px) {
   .program-settings-footer select, .programsummary-table.quantity-limit-tab-section .store-configuration input[type='number'] {
