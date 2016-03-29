@@ -963,13 +963,20 @@ header#nav {
   font-size: 19px;
   padding: 7px 15px;
   color: #fff;
-  font-family: 'HelveticaNeueLT-BoldCond';
   cursor: pointer;
   -webkit-transition: 0.5s;
   transition: 0.5s;
 }
 .program-button .blue-btn:hover {
   background: #045E90;
+}
+.program-button .blue-btn:focus {
+  border: none;
+}
+.program-button .blue-btn:hover:focus {
+  border-color: #66afe9;
+  outline: 0;
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px rgba(102, 175, 233, .6);
 }
 #programSummary .program-select li.status-green .program-status {
   background: #1BB24B;
