@@ -34,11 +34,6 @@ var programManagementController = (function ($) {
 					/* Refresh the bottom section of the page */
 					controller.refreshManagementControls();
 				});
-				/* Get Program Data */
-				// controller.getProgramData(function (program_data) {
-				// 	/* Show quantity limit tab if showQuantityLimitTab is true for current program */
-				// 	controller.showQuantityLimitTab();
-				// });
 			});
 		},
 		/** Gets a user config
@@ -50,7 +45,7 @@ var programManagementController = (function ($) {
 			$.get(controller.api_path + 'getUserConfigurations.jssp?userId=' + controller.user_id + '&programId=' + controller.program_id, function (results) {
 				var json_results = JSON.parse(results);
 				controller.user_configs = json_results;
-				if (typeof callback === 'function') {
+				if (typeof callback == 'function') {
 					callback(json_results);
 				}
 			});
@@ -64,9 +59,10 @@ var programManagementController = (function ($) {
 			$.get(controller.api_path + 'getStoreProgramData.jssp?userId=' + controller.user_id + '&programId=' + controller.program_id, function (results) {
 				var json_results = JSON.parse(results);
 				controller.store_data = json_results;
-				if (typeof callback === 'function') callback(json_results);
+				if (typeof callback == 'function') callback(json_results);
 			}).promise().done(function () {
 				controller.hideAdditionalOffersIfNeeded();
+				controller.showQuantityLimitTabIfNeeded();
 			});
 		},
 		/** API call to getProgramParticipationStats.jssp
@@ -88,7 +84,7 @@ var programManagementController = (function ($) {
 				});
 
 				// fire the callback (DONE)
-				if (typeof callback === 'function') {
+				if (typeof callback == 'function') {
 					callback(controller.program);
 				}
 			});
@@ -96,8 +92,8 @@ var programManagementController = (function ($) {
 		hideAdditionalOffersIfNeeded: function () {
 			var controller = this;
 			for (var i = 0; i < $programParticipationStats.length; i++) {
-				if ($programParticipationStats[i].id === controller.program_id) {
-					if ($programParticipationStats[i].programUsesAdtl === 0) {
+				if ($programParticipationStats[i].id == controller.program_id) {
+					if ($programParticipationStats[i].programUsesAdtl == 0) {
 						$('.additional-offer').hide();
 					}
 				}
@@ -122,7 +118,7 @@ var programManagementController = (function ($) {
 				// Update the Edit/View links
 				$newProgramConfigLink.attr('href', $baseUrl + '&configId=' + configId + '&programId=' + controller.program_id);
 				// Corporate Default configs are read-only.
-				if ($selectedMgmgText === 'Corporate Default') {
+				if ($selectedMgmgText == 'Corporate Default') {
 					return $newProgramConfigLink.text('View');
 				} else {
 					return $newProgramConfigLink.text('Edit');
@@ -174,7 +170,7 @@ var programManagementController = (function ($) {
 			$.get(controller.api_path + 'setStoreConfig.jssp?userId=' + controller.user_id + '&configId=' + configId + '&programId=' + controller.program_id + '&storeIds=' + stringStoreIds, function (results) {
 				var json_results = JSON.parse(results);
 				controller.store_data = json_results;
-				if (typeof callback === 'function') callback(json_results);
+				if (typeof callback == 'function') callback(json_results);
 			});
 		},
 		onSelectAll: function () {},
@@ -186,19 +182,19 @@ var programManagementController = (function ($) {
 			// Loop through the config data
 			for (var i = 0; i < controller.user_configs.length; i++) {
 				var config = controller.user_configs[i];
-				var target = (config.configType === 'program') ? '.program-dropdown' : '.adtl-dropdown';
+				var target = (config.configType == 'program') ? '.program-dropdown' : '.adtl-dropdown';
 				$(target)
 					.append($('<option>')
 						.val(config.id)
 						.html(config.label));
 			}
 		},
-		showQuantityLimitTab: function () {
+		showQuantityLimitTabIfNeeded: function () {
 			var controller = this;
 			for (var i = 0; i < $programParticipationStats.length; i++) {
-				if ($programParticipationStats[i].id === controller.program_id) {
+				if ($programParticipationStats[i].id == controller.program_id) {
 					console.log('id found: true');
-					if ($programParticipationStats[i].showQuantityLimitTab === 1) {
+					if ($programParticipationStats[i].showQuantityLimitTab == 1) {
 						console.log('showQuantityLimitTab: true');
 						$('#programManagementTabs .optional-tab').css('visibility', 'visible');
 					}

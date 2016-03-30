@@ -135,10 +135,10 @@ var programConfigController = (function ($) {
 			}
 
 			// Hide or show .em-creative-row based on controller.program.uiLayout.hasEmail
-			$(".em-creative-row").toggle(controller.program.uiLayout.hasEmail);
+			if (controller.program.hasEmail == 0)	$(".em-creative-row").hide();
 
 			// Hide or show .dm-creative-row based on controller.program.uiLayout.hasDM
-			$(".dm-creative-row").toggle(controller.program.uiLayout.hasDM);
+			if (controller.program.hasDM == 0)		$(".dm-creative-row").hide();
 
 			// Select the email creative value that matches config.content.emailCreativeName
 			$('.em-creative option[value="' + controller.config.content.emailCreativeName + '"]').attr('selected', 'selected');
@@ -178,6 +178,10 @@ var programConfigController = (function ($) {
 				$(".touchpoint-" + meta.touchpoint + "." + channelCode + ".timing").html(meta.timing);
 				$(".touchpoint-" + meta.touchpoint + "." + channelCode + ".preview").attr('href',meta.previewUrl);
 			}
+
+			// Pre-demo hacks.
+			$(".discount-codes-row.touchpoint-row.email.touchpoint-1").show();
+			$j(".touchpoint-label.discount-code-subrow.dm").html($j(".touchpoint-label.discount-code-subrow.dm").html().replace("Direct Touch Point Mail", "Direct Mail Touch Point"));
 
 		},
 		UpdateOfferExpiration: function () {
