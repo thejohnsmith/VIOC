@@ -75,12 +75,11 @@ var additionalOfferController = (function ($) {
 			controller.UpdateTitle();
 			controller.UpdateBreadCrumbs();
 			controller.UpdateSettingName();
+			controller.UpdateDiscountInfo();
 			controller.UpdateOfferExpiration();
-			controller.UpdatePreSubmitSidebar();
 			controller.AttachEventListeners();
-			controller.GeneratePreview();
 			controller.ShowUI();
-		}
+		},
 		UpdateTitle: function () {
 			var controller = this;
 			var title = (controller.configLoaded) ? "Edit " + controller.config.content.label : "Create Additional Offer";
@@ -103,7 +102,16 @@ var additionalOfferController = (function ($) {
 			$(".breadcrumbs_previous:last a").attr("href", marcomUserData.$constants.programManagementUrl + "&programId=" + controller.programId);
 		},
 		UpdateSettingName: function () {
+			var controller = this;
 			$(".settings-name").val(controller.config.content.label);
+		},
+		UpdateDiscountInfo: function() {
+			var controller = this;
+			console.log(controller.config.content);
+			$('.coupon-code').val(controller.config.content.adtlCode);
+			$('.coupon-text option[value="' + controller.config.content.adtlText + '"]').attr('selected', 'selected');
+			$('.coupon-approach option[value="' + controller.config.content.adtlApproach + '"]').attr('selected', 'selected');
+			$('.coupon-amount').val(controller.config.content.adtlValue);
 		},
 		UpdateOfferExpiration: function () {
 			var controller = this;
@@ -111,7 +119,7 @@ var additionalOfferController = (function ($) {
 		},
 		AttachEventListeners: function () {
 			var controller = this;
-			$(".btn-save").on("click", function() { controller.OnPressSave() });
+			$(".save-btn").on("click", function() { controller.OnPressSave() });
 		},
 		GetFormData: function () {
 			// Grab all inputs by calling $("input,select") and move their values into a key/value object.
@@ -120,35 +128,39 @@ var additionalOfferController = (function ($) {
 		ValidateForm: function() {
 			// TODO
 			return true;
-		}
+		},
 		OnPressSave: function () {
+
 			var controller = this;
-			if (ValidateForm() {
-				
+			if (controller.ValidateForm()) {
+
 				saveData = {
 					userId : controller.userId,
 					configType: "adtl",
-					configId: (controller.configId > 0) ? controller.configId : null,
 					programId: 0,
 					label: $(".settings-name").val(),
-					adtlCode: $('.coupon-code').val(),
-					adtlText: $('.coupon-text').val(),
-					adtlApproach: $('.coupon-approach').val(),
-					adtlValue: $('.coupon-amount').val(),
-					expiration: $('.expiration').val()
+					_adtlCode: $('.coupon-code').val(),
+					_adtlText: $('.coupon-text').val(),
+					_adtlApproach: $('.coupon-approach').val(),
+					_adtlValue: $('.coupon-amount').val(),
+					_expiration: $('.expiration').val()
 				};
-				
-				$.get({
+
+				if (controller.configId > 0)
+					saveData.configId = controller.configId;
+
+				$.ajax({
 					url : controller.apiPath + 'saveConfig.jssp',
+					method: "GET",
 					data: saveData,
 					success: function(results) {
 						console.log("Save was successful!");
-						window.location.href = marcomUserData.$constants.programManagementUrl + "&programId=" + controller.programId + "&flashSuccessMsg=Additional%20Offer%20Saved!";
+						window.location.href = marcomUserData.$constants.programManagementUrl + "&programId=" + controller.programId + "&flashSuccessMsg=Additional%20Offer%20Saved!#parentHorizontalTab2";
 					},
 					dataType: "json"
 				});
-				
-			});
+
+			};
 			console.log("Save pressed!", this);
 		},
 		ShowUI: function() {
@@ -163,7 +175,7 @@ var additionalOfferController = (function ($) {
 
 if (window.location.href.indexOf(marcomUserData.$constants.additionalOfferPageUrl) > -1)
 {
-	$j(".js-content").hide();
-	$j(".js-loading").show();
+	jQuery(".js-content").hide();
+	jQuery(".js-loading").show();
 	additionalOfferController.controller.init();
 }
