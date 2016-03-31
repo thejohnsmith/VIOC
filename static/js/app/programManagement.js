@@ -160,9 +160,37 @@ var programManagementController = (function ($) {
 					});
 				});
 			});
+
 			$('.management-dropdown').on('change', function () {
 				controller.refreshManagementControls();
 			});
+
+			// Quantity Limit Handlers
+			$('.apply-quantity-limit').click(this.setSingleQuantityLimit);
+			$('.bulk-apply-quantity-limit').click(this.setBulkQuantityLimit);
+
+		},
+		setSingleQuantityLimit(e) {
+			e.preventDefault();
+			var storeId = $(this).attr('data-storeid');
+			var quantityLimit = $('.quantity-limit-input[data-storeId="' + storeId + '"]').val();
+
+			// Set value and quantityLimit var to zero if input is blank
+			if (quantityLimit.length < 1) {
+				quantityLimit = 0;
+				$('.quantity-limit-input[data-storeId="' + storeId + '"]').val(0);
+			}
+
+			console.log('storeId ' + storeId);
+			console.log('quantityLimit ' + quantityLimit);
+
+			controller.saveStoreMeta([storeId], quantityLimit, function () {
+				toastr.success('Quantity changed to ' + quantityLimit);
+			});
+		},
+		setBulkQuantityLimit(e) {
+			e.preventDefault();
+			console.log('setBulkQuantityLimit clicked');
 		},
 		saveStoreSubscription(selectedStores, configId, callback) {
 			var controller = this;
@@ -193,13 +221,24 @@ var programManagementController = (function ($) {
 			var controller = this;
 			for (var i = 0; i < $programParticipationStats.length; i++) {
 				if ($programParticipationStats[i].id == controller.program_id) {
-					console.log('id found: true');
 					if ($programParticipationStats[i].showQuantityLimitTab == 1) {
-						console.log('showQuantityLimitTab: true');
 						$('#programManagementTabs .optional-tab').css('visibility', 'visible');
 					}
 				}
 			}
+		},
+		saveStoreMeta(selectedStores, quantityLimit, callback) {
+			/**
+			 * @example API CALL https://adobe-uat-vioc.epsilon.com/jssp/vioc/setStoreMeta.jssp?userId=34567&storeIds=1,2,3&quantity_limit=1000
+			 */
+			var controller = this;
+			var stringStoreIds = selectedStores.join(',');
+			var quantityLimit;
+			$.get(controller.api_path + 'setStoreMeta.jssp?userId=' + controller.user_id + '&storeIds=' + stringStoreIds + '&quantity_limit=' + quantityLimit, function (results) {
+				var json_results = JSON.parse(results);
+				controller.store_data = json_results;
+				if (typeof callback == 'function') callback(json_results);
+			});
 		}
 	};
 	return {
