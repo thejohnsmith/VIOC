@@ -36,10 +36,10 @@
             <div class="container-fluid">
               <div class="row">
                 <div class="col-sm-8">
-                  <input value="{{quantityLimit}}" tabindex="1" data-storeId="{{storeId}}" type="number" placeholder="Limit" class="form-control {{^enrolled}}disabled-input{{/enrolled}}">
+                  <input value="{{quantityLimit}}" tabindex="1" data-storeId="{{storeId}}" type="number" class="quantity-limit-input form-control {{^enrolled}}disabled-input{{/enrolled}}">
                 </div>
                 <div class="col-sm-2">
-                  <button tabindex="1" class="btn btn-small btn-primary {{^enrolled}}disabled-input{{/enrolled}}">Apply</button>
+                  <button tabindex="1" data-storeId="{{storeId}}" class="apply-quantity-limit btn btn-small btn-primary {{^enrolled}}disabled-input{{/enrolled}}">Apply</button>
                 </div>
               </div>
             </div>
@@ -56,10 +56,10 @@
             <div class="container-fluid">
               <div class="row">
                 <div class="col-sm-8">
-                  <input value="{{quantityLimit}}" tabindex="1" data-storeId="{{storeId}}" type="number" placeholder="Limit" class="form-control">
+                  <input value="{{quantityLimit}}" tabindex="1" data-storeId="{{storeId}}" type="number" placeholder="Limit" class="bulk-apply-quantity-limit-input form-control">
                 </div>
                 <div class="col-sm-2">
-                  <button tabindex="1" href="#" class="btn btn-small btn-primary bulk-apply-program">Apply</button>
+                  <button tabindex="1" href="#" class="btn btn-small btn-primary bulk-apply-quantity-limit">Apply</button>
                 </div>
               </div>
             </div>
