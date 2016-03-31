@@ -69,9 +69,7 @@ var customCheckAndRadioBoxes = (function ($) {
 
 			var $programId = getParameterByName('programId', window.location.href);
 			var $userId = marcomUserData.$user.externalId || {};
-			if ($('[data-enrolled="true"] .toggle-btn')) {
-				$('[data-enrolled="true"] .toggle-btn').addClass('active').prop('checked', 'checked');
-			}
+
 
 			$('.cb-value').off('click.vioc').on('click.vioc', function (e) {
 				console.log("Firing checkbox click...");

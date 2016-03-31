@@ -32,6 +32,11 @@ var getStoreProgramData = (function ($) {
 				$.get('https://files.marcomcentral.app.pti.com/epsilon/static/program-enrollment.mustache.html', function (templates) {
 					var template = $(templates).filter('.program-enrollment-template').html();
 					$('.program-enrollment-section').html(Mustache.render(template, result));
+
+					// Set the initial state of the toggle buttons.
+					if ($('[data-enrolled="true"] .toggle-btn')) {
+						$('[data-enrolled="true"] .toggle-btn').addClass('active').prop('checked', 'checked');
+					}
 				}).done(function () {
 					return getTotals(result);
 				});
