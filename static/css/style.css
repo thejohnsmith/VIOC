@@ -1296,9 +1296,11 @@ header .header-right a:hover {
 }
 @media (min-width: 768px) {
   .program-settings-footer select, .programsummary-table.quantity-limit-tab-section .store-configuration input[type='number'] {
-    width: 80%;
     margin-bottom: 0;
-    height: 29px;
+    height: 31px;
+  }
+  .programsummary-table.quantity-limit-tab-section .store-configuration input[type='number'] {
+    width: 80%;
   }
   .programsummary-table.quantity-limit-tab-section .store-configuration .btn-primary {
     float: none;
