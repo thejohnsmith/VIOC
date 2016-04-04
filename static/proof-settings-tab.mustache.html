@@ -19,6 +19,7 @@
                 <th class="store-materials table-header">
                   <table class="inner-table">
                     <tr class="header-row">
+                    <p>Monthly Proofs</p>
                       <td class="hasEmail">Email</td>
                       <td class="hasDM">DM</td>
                       <td class="hasSMS">SMS</td>
@@ -76,22 +77,48 @@
                         <table class="inner-table">
                           <tr>
                             {{#hasEmail}}
-                            <td class="channelEmailTotal"><a href="#" class="link-proof btn btn-small btn-primary">Proof</a></td>{{/hasEmail}} {{#hasDM}}
-                            <td class="channelDMTotal"><a href="#" class="link-proof btn btn-small btn-primary">Proof</a></td>{{/hasDM}} {{#hasSMS}}
-                            <td class="channelSMSTotal"><a href="#" class="link-proof btn btn-small btn-primary">Proof</a></td>{{/hasSMS}}
+                            <td class="channelEmailTotal">
+                              <select data-storeId="{{storeId}}" class="link-proof form-control" title="Choose Monthly Proof Settings">
+                                <option value="0/0" selected>None</option>
+                                <option value="0/1">Monthly</option>
+                                <option value="1/1">Tomorrow, then Monthly</option>
+                                <option value="1/0">Tomorrow, then None</option>
+                              </select>
+                            </td>
+                            {{/hasEmail}}
+
+                            {{#hasDM}}
+                            <td class="channelDMTotal">
+                              <select data-storeId="{{storeId}}" class="link-proof form-control" title="Choose Monthly Proof Settings">
+                                <option value="0/0" selected>None</option>
+                                <option value="0/1">Monthly</option>
+                                <option value="1/1">Tomorrow, then Monthly</option>
+                                <option value="1/0">Tomorrow, then None</option>
+                              </select>
+                            </td>{{/hasDM}}
+
+                            {{#hasSMS}}
+                            <td class="channelSMSTotal">
+                              <select data-storeId="{{storeId}}" class="link-proof form-control" title="Choose Monthly Proof Settings">
+                                <option value="0/0" selected>None</option>
+                                <option value="0/1">Monthly</option>
+                                <option value="1/1">Tomorrow, then Monthly</option>
+                                <option value="1/0">Tomorrow, then None</option>
+                              </select>
+                            </td>{{/hasSMS}}
                           </tr>
                         </table>
                       </td>
                       <td class="store-cost {{^enrolled}}dim-mid{{/enrolled}}">
                         <div itemscope itemtype="http://schema.org/Person">
-                          <div itemprop="name">Tom Testuser</div>
-                          <a href="mailto:tom.testuser@epsilon.com" itemprop="email">tom.testuser@epsilon.com</a>
-                          <div itemprop="telephone">(214) 555-5555</div>
+                          <div itemprop="name">{{proofName}}</div>
+                          <a href="{{proofEmail}}" itemprop="email">{{proofEmail}}</a>
+                          <div itemprop="telephone">{{proofPhone}}</div>
                           <div itemprop="address" itemscope itemtype="http://schema.org/PostalAddress">
-                            <span itemprop="streetAddress">123 Test St</span>,
-                            <span itemprop="addressLocality">Dallas</span>,
-                            <span itemprop="addressRegion">TX</span>
-                            <span itemprop="postalCode">75070</span>
+                            <span itemprop="streetAddress">{{proofAddress}}</span>,
+                            <span itemprop="addressLocality">{{proofCity}}</span>,
+                            <span itemprop="addressRegion">{{proofState}}</span>
+                            <span itemprop="postalCode">{{proofZip}}</span>
                           </div>
                         </div>
                       </td>
@@ -142,9 +169,30 @@
                       <table class="inner-table">
                         <tbody>
                           <tr>
-                            <td class="hasEmail"><a href="#" class="link-proof btn btn-small btn-primary">Proof</a></td>
-                            <td class="hasDM"><a href="#" class="link-proof btn btn-small btn-primary">Proof</a></td>
-                            <td class="hasSMS"><a href="#" class="link-proof btn btn-small btn-primary">Proof</a></td>
+                            <td class="hasEmail">
+                              <select class="link-proof form-control" title="Choose Monthly Proof Settings">
+                                <option value="0/0" selected>None</option>
+                                <option value="0/1">Monthly</option>
+                                <option value="1/1">Tomorrow, then Monthly</option>
+                                <option value="1/0">Tomorrow, then None</option>
+                              </select>
+                            </td>
+                            <td class="hasDM">
+                              <select class="link-proof form-control" title="Choose Monthly Proof Settings">
+                                <option value="0/0" selected>None</option>
+                                <option value="0/1">Monthly</option>
+                                <option value="1/1">Tomorrow, then Monthly</option>
+                                <option value="1/0">Tomorrow, then None</option>
+                              </select>
+                            </td>
+                            <td class="hasSMS">
+                              <select class="link-proof form-control" title="Choose Monthly Proof Settings">
+                                <option value="0/0" selected>None</option>
+                                <option value="0/1">Monthly</option>
+                                <option value="1/1">Tomorrow, then Monthly</option>
+                                <option value="1/0">Tomorrow, then None</option>
+                              </select>
+                            </td>
                           </tr>
                         </tbody>
                       </table>

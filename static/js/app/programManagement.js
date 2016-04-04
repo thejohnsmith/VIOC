@@ -61,8 +61,8 @@ var programManagementController = (function ($) {
 				controller.store_data = json_results;
 				if (typeof callback == 'function') callback(json_results);
 			}).promise().done(function () {
-				controller.hideAdditionalOffersIfNeeded();
-				controller.showQuantityLimitTabIfNeeded();
+				controller.getProgramData();
+
 			});
 		},
 		/** API call to getProgramParticipationStats.jssp
@@ -71,9 +71,11 @@ var programManagementController = (function ($) {
 		 */
 		getProgramData: function (program_id, callback) {
 			var controller = this;
-			$.get(controller.apiPath + 'getProgramParticipationStats.jssp?userId=' + controller.user_id, function (results) {
+			$.get(controller.api_path + 'getProgramParticipationStats.jssp?userId=' + controller.user_id, function (results) {
 				// NOTE: We may need to parse results.
 				var json_results = JSON.parse(results);
+				controller.hideAdditionalOffersIfNeeded();
+				controller.showQuantityLimitTabIfNeeded();
 
 				// Loop through the API result and find the program that matches program ID (DONE)
 				$.each(json_results, function (i, result) {
@@ -165,6 +167,11 @@ var programManagementController = (function ($) {
 				controller.refreshManagementControls();
 			});
 
+			// Proof Settings Handler
+			$('select.link-proof.form-control').on('change', function () {
+				controller.refreshProofControls();
+			});
+
 			// Quantity Limit Handlers
 			$('.apply-quantity-limit').click(this.setSingleQuantityLimit);
 			$('.bulk-apply-quantity-limit').click(this.setBulkQuantityLimit);
@@ -181,16 +188,30 @@ var programManagementController = (function ($) {
 				$('.quantity-limit-input[data-storeId="' + storeId + '"]').val(0);
 			}
 
-			console.log('storeId ' + storeId);
-			console.log('quantityLimit ' + quantityLimit);
-
-			controller.saveStoreMeta([storeId], quantityLimit, function () {
+			// Send API Request
+			controller.saveQuantityMeta([storeId], quantityLimit, function () {
 				toastr.success('Quantity changed to ' + quantityLimit);
 			});
 		},
 		setBulkQuantityLimit(e) {
 			e.preventDefault();
-			console.log('setBulkQuantityLimit clicked');
+			var storeIds = [];
+			var bulkQuantityLimit = $('.bulk-apply-quantity-limit-input').val();
+
+			// Collect storeIds from selected stores
+			$.each($('.quantity-limit.customCheckbox.checked'), function (i, obj) {
+				storeIds.push($(obj).attr('data-storeid'));
+			});
+
+			if (bulkQuantityLimit.length < 1) {
+				bulkQuantityLimit = 0;
+				$('.bulk-apply-quantity-limit-input').val(0);
+			}
+
+			// Send API Request
+			controller.saveQuantityMeta([storeIds], bulkQuantityLimit, function () {
+				toastr.success('All quantity limits were changed to ' + bulkQuantityLimit);
+			});
 		},
 		saveStoreSubscription(selectedStores, configId, callback) {
 			var controller = this;
@@ -227,7 +248,7 @@ var programManagementController = (function ($) {
 				}
 			}
 		},
-		saveStoreMeta(selectedStores, quantityLimit, callback) {
+		saveQuantityMeta(selectedStores, quantityLimit, callback) {
 			/**
 			 * @example API CALL https://adobe-uat-vioc.epsilon.com/jssp/vioc/setStoreMeta.jssp?userId=34567&storeIds=1,2,3&quantity_limit=1000
 			 */
@@ -235,9 +256,38 @@ var programManagementController = (function ($) {
 			var stringStoreIds = selectedStores.join(',');
 			var quantityLimit;
 			$.get(controller.api_path + 'setStoreMeta.jssp?userId=' + controller.user_id + '&storeIds=' + stringStoreIds + '&quantity_limit=' + quantityLimit, function (results) {
-				var json_results = JSON.parse(results);
-				controller.store_data = json_results;
-				if (typeof callback == 'function') callback(json_results);
+				try {
+					var json_results = JSON.parse(results);
+					controller.store_data = json_results;
+					if (typeof callback == 'function') callback(json_results);
+				} catch (e) {
+					toastr.error('Failed to parse JSON:' + e);
+				}
+			}).error(function (data) {
+				toastr.error('Saving quantity limit failed.');
+			});
+		},
+		refreshProofControls() {
+			console.log('Proof settings changed');
+		},
+		saveProofMeta(selectedStores, proofSettings, callback) {
+			/**
+			 * @example API CALL https://adobe-uat-vioc.epsilon.com/jssp/vioc/setStoreMeta.jssp?userId=34567&storeIds=1,2,3&proof_tomorrow=1&proof_monthly=1
+			 */
+			var controller = this;
+			var stringStoreIds = selectedStores.join(',');
+			var proofTomorrow;
+			var proofMonthly;
+			$.get(controller.api_path + 'setStoreMeta.jssp?userId=' + controller.user_id + '&storeIds=' + stringStoreIds + '&proof_tomorrow=' + proofTomorrow + '&proof_monthly=' + proofMonthly, function (results) {
+				try {
+					var json_results = JSON.parse(results);
+					controller.store_data = json_results;
+					if (typeof callback == 'function') callback(json_results);
+				} catch (e) {
+					toastr.error('Failed to parse JSON:' + e);
+				}
+			}).error(function (data) {
+				toastr.error('Something bad happened');
 			});
 		}
 	};
