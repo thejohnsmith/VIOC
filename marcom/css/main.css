@@ -1472,7 +1472,7 @@ header#nav {
   border-color: rgba(63, 81, 181, 0.46);
 }
 .proof-settings-tab-section.programsummary-table .store-materials {
-  width: 32%;
+  width: 50%;
 }
 .proof-settings-tab-section.programsummary-table .store-enroll {
   width: 1%;
@@ -1490,7 +1490,7 @@ header#nav {
   float: left;
 }
 .proof-settings-tab-section.programsummary-table .store {
-  width: 32%;
+  /*width: 32%;*/
 }
 .proof-settings-tab-section.programsummary-table .store-cost {
   width: 32%;
@@ -1501,7 +1501,7 @@ header#nav {
   width: 37% !important;
 }
 .proof-settings-tab-section.programsummary-table .store-materials-footer {
-  width: 32%;
+  width: 50%;
   padding-right: 0;
 }
 .proof-settings-footer, .proof-settings-footer td, .store-materials-footer .inner-table, .store-materials-footer td {
@@ -1513,7 +1513,7 @@ header#nav {
   width: 33%;
   max-width: 25px;
 }
-.proof-settings-tab-section.programsummary-table td table td table td table td{
+.proof-settings-tab-section.programsummary-table td table td table td table td {
   border-bottom: none;
 }
 .store-materials.table-header p {
@@ -1521,9 +1521,10 @@ header#nav {
   text-transform: uppercase;
 }
 .link-proof.form-control {
-  width: 60%;
+  width: 80%;
   margin: 0 auto;
-  font-size: 12px;
+  font-size: 13px;
+  height: 45px;
 }
 @media (min-width: 768px) {
   .program-settings-footer select, .programsummary-table.quantity-limit-tab-section .store-configuration input[type='number'] {

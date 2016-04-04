@@ -33,6 +33,7 @@ var programManagementController = (function ($) {
 					controller.attachEventListeners();
 					/* Refresh the bottom section of the page */
 					controller.refreshManagementControls();
+					controller.refreshProofControls();
 				});
 			});
 		},
@@ -168,14 +169,40 @@ var programManagementController = (function ($) {
 			});
 
 			// Proof Settings Handler
+			// data-prooftype="emProofSettings", data-prooftype="dmProofSettings", data-prooftype="smsProofSettings
 			$('select.link-proof.form-control').on('change', function () {
-				controller.refreshProofControls();
+				var storeId = $(this).attr('data-storeid');
+				var proofType = $(this).attr('data-prooftype');
+				var proofVal = $(this).val();
+				var proofSelected = $(this).attr('data-proofSelected');
+
+				console.warn('storeId: ' + storeId);
+				console.warn('proofVal: ' + proofVal);
+				console.warn('proofType: ' + proofType);
+				console.warn('proofSelected: ' + proofSelected);
+
+				controller.saveProofMeta([storeId], proofType, proofVal, function () {
+					toastr.success('Setting changes saved!');
+					controller.setSelectedProof(proofVal);
+					controller.refreshProofControls();
+				});
+
 			});
+
+			$('.bulk-apply-proofSettings').on('change', function (e) {
+					e.preventDefault();
+					console.log('bulk-apply-proofSettings');
+			});
+
 
 			// Quantity Limit Handlers
 			$('.apply-quantity-limit').click(this.setSingleQuantityLimit);
 			$('.bulk-apply-quantity-limit').click(this.setBulkQuantityLimit);
 
+		},
+		setSelectedProof(proofVal) {
+			$(this).attr('data-proofSelected', proofVal);
+			console.log('setSelectedProof val: ' + proofVal);
 		},
 		setSingleQuantityLimit(e) {
 			e.preventDefault();
@@ -268,17 +295,25 @@ var programManagementController = (function ($) {
 			});
 		},
 		refreshProofControls() {
-			console.log('Proof settings changed');
+			console.error('Proof settings changed!!');
+			$('select.link-proof.form-control').each(function () {
+				var storeId = $(this).attr('data-storeid');
+				var proofSelected = $(this).attr('data-proofselected');
+				var proofVal = $(this).val();
+
+				if( $(this).val() === proofSelected ) {
+					$(this).attr('selected', 'selected');
+				}
+
+			});
 		},
-		saveProofMeta(selectedStores, proofSettings, callback) {
+		saveProofMeta(selectedStores, proofType, proofVal, callback) {
 			/**
-			 * @example API CALL https://adobe-uat-vioc.epsilon.com/jssp/vioc/setStoreMeta.jssp?userId=34567&storeIds=1,2,3&proof_tomorrow=1&proof_monthly=1
+			 * @example API CALL https://adobe-uat-vioc.epsilon.com/jssp/vioc/setStoreMeta.jssp?userId=34567&storeIds=1,2,3&proofSettings=1
 			 */
 			var controller = this;
 			var stringStoreIds = selectedStores.join(',');
-			var proofTomorrow;
-			var proofMonthly;
-			$.get(controller.api_path + 'setStoreMeta.jssp?userId=' + controller.user_id + '&storeIds=' + stringStoreIds + '&proof_tomorrow=' + proofTomorrow + '&proof_monthly=' + proofMonthly, function (results) {
+			$.get(controller.api_path + 'setStoreMeta.jssp?userId=' + controller.user_id + '&storeIds=' + stringStoreIds + '&' + proofType + '=' + proofVal, function (results) {
 				try {
 					var json_results = JSON.parse(results);
 					controller.store_data = json_results;
