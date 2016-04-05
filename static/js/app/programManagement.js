@@ -186,7 +186,7 @@ var programManagementController = (function ($) {
 
 			$('.link-proof-bulk').on('change', function (e) {
 				e.preventDefault();
-				console.log('bulk-apply-proofSettings');
+				console.log('link-proof-bulk button pushed!!');
 				// Make sure stores are selected (checked)
 				// Collect storeIds
 				// Collect bulk proof type
@@ -203,21 +203,30 @@ var programManagementController = (function ($) {
 
 				var storeIds = [];
 				var bulkProofType = $(this).attr('data-prooftype');
-				var bulkProofVal = $('.link-proof-bulk').val();
+				var bulkProofVal = $(this).val();
+
+				console.warn('bulkProofType: ' + bulkProofType);
+				console.warn('bulkProofVal: ' + bulkProofVal);
 
 				// Collect storeIds from selected stores
 				$.each($('.proof-settings-tab-section .store-item'), function (i, obj) {
-					var storeSingle = $(obj).find('.link-proof-single');
-					var proofType = storeSingle.attr('data-prooftype');
-					$(obj).find('.link-proof-single').attr('data-proofSelected');
+					var storeId = $(obj).find('.proof-settings.checked').attr('data-storeid');
+					var proofType = $('.link-proof-single[data-storeId="' + storeId + '"]').attr('data-prooftype');
 
-					console.log('bulkProofType: ' + bulkProofType);
+					console.warn('storeId: ' + storeId);
+					console.warn('proofType: ' + proofType);
 
-				});
+					if (proofType == bulkProofType) {
+						console.log('proofType matches bulkProofType');
+						$('.link-proof-single[data-storeId="' + storeId + '"]').attr('data-proofSelected', bulkProofVal);
+					}
 
-				$.each($('.proof-settings.checked'), function (i, obj) {
-					storeIds.push($(obj).attr('data-storeid'));
-					$(obj).attr('data-proofSelected', bulkProofVal);
+					// $('.link-proof-single[data-storeId="' + storeId + '"]').attr('data-proofSelected', bulkProofVal);
+					// $(obj).find('.proof-settings.checked').attr('data-prooftype', bulkProofType).val(bulkProofVal);
+					// $(obj).find('.proof-settings.checked').attr('data-proofSelected', bulkProofVal).attr('selected', 'selected');
+
+					storeIds.push(storeId);
+
 				});
 
 				// Send API Request
@@ -323,7 +332,7 @@ var programManagementController = (function ($) {
 			});
 		},
 		refreshProofControls() {
-			$('select.link-proof.form-control').each(function () {
+			$('.link-proof-single').each(function () {
 				var proofSelected = $(this).attr('data-proofSelected');
 				$(this).val(proofSelected).attr('selected', 'selected');
 			});
