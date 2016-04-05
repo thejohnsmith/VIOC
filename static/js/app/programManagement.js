@@ -174,35 +174,25 @@ var programManagementController = (function ($) {
 				var storeId = $(this).attr('data-storeid');
 				var proofType = $(this).attr('data-prooftype');
 				var proofVal = $(this).val();
-				var proofSelected = $(this).attr('data-proofSelected');
 
-				console.warn('storeId: ' + storeId);
-				console.warn('proofVal: ' + proofVal);
-				console.warn('proofType: ' + proofType);
-				console.warn('proofSelected: ' + proofSelected);
+				// Update data-proofSelected to new proofVal
+				var proofSelected = $(this).attr('data-proofSelected', proofVal);
 
 				controller.saveProofMeta([storeId], proofType, proofVal, function () {
 					toastr.success('Setting changes saved!');
-					controller.setSelectedProof(proofVal);
 					controller.refreshProofControls();
 				});
-
 			});
 
 			$('.bulk-apply-proofSettings').on('change', function (e) {
-					e.preventDefault();
-					console.log('bulk-apply-proofSettings');
+				e.preventDefault();
+				console.log('bulk-apply-proofSettings');
 			});
-
 
 			// Quantity Limit Handlers
 			$('.apply-quantity-limit').click(this.setSingleQuantityLimit);
 			$('.bulk-apply-quantity-limit').click(this.setBulkQuantityLimit);
 
-		},
-		setSelectedProof(proofVal) {
-			$(this).attr('data-proofSelected', proofVal);
-			console.log('setSelectedProof val: ' + proofVal);
 		},
 		setSingleQuantityLimit(e) {
 			e.preventDefault();
@@ -295,16 +285,9 @@ var programManagementController = (function ($) {
 			});
 		},
 		refreshProofControls() {
-			console.error('Proof settings changed!!');
 			$('select.link-proof.form-control').each(function () {
-				var storeId = $(this).attr('data-storeid');
-				var proofSelected = $(this).attr('data-proofselected');
-				var proofVal = $(this).val();
-
-				if( $(this).val() === proofSelected ) {
-					$(this).attr('selected', 'selected');
-				}
-
+				var proofSelected = $(this).attr('data-proofSelected');
+				$(this).val(proofSelected).attr('selected', 'selected');
 			});
 		},
 		saveProofMeta(selectedStores, proofType, proofVal, callback) {
