@@ -170,23 +170,61 @@ var programManagementController = (function ($) {
 
 			// Proof Settings Handler
 			// data-prooftype="emProofSettings", data-prooftype="dmProofSettings", data-prooftype="smsProofSettings
-			$('select.link-proof.form-control').on('change', function () {
+			$('.link-proof-single').on('change', function () {
 				var storeId = $(this).attr('data-storeid');
 				var proofType = $(this).attr('data-prooftype');
 				var proofVal = $(this).val();
 
 				// Update data-proofSelected to new proofVal
-				var proofSelected = $(this).attr('data-proofSelected', proofVal);
+				$(this).attr('data-proofSelected', proofVal);
 
 				controller.saveProofMeta([storeId], proofType, proofVal, function () {
-					toastr.success('Setting changes saved!');
+					toastr.success('Proof settings saved!');
 					controller.refreshProofControls();
 				});
 			});
 
-			$('.bulk-apply-proofSettings').on('change', function (e) {
+			$('.link-proof-bulk').on('change', function (e) {
 				e.preventDefault();
 				console.log('bulk-apply-proofSettings');
+				// Make sure stores are selected (checked)
+				// Collect storeIds
+				// Collect bulk proof type
+				// Collect bulk proof val
+				// Call saveProofMeta passing storeIds, bulk proof type, bulk proof val
+				// Display Toast message
+				// Refresh controls.
+
+				// Make sure stores are selected (checked)
+				if (!$('.proof-settings').hasClass('checked')) {
+					toastr.warning('No stores are selected so changes were not saved.');
+					return;
+				}
+
+				var storeIds = [];
+				var bulkProofType = $(this).attr('data-prooftype');
+				var bulkProofVal = $('.link-proof-bulk').val();
+
+				// Collect storeIds from selected stores
+				$.each($('.proof-settings-tab-section .store-item'), function (i, obj) {
+					var storeSingle = $(obj).find('.link-proof-single');
+					var proofType = storeSingle.attr('data-prooftype');
+					$(obj).find('.link-proof-single').attr('data-proofSelected');
+
+					console.log('bulkProofType: ' + bulkProofType);
+
+				});
+
+				$.each($('.proof-settings.checked'), function (i, obj) {
+					storeIds.push($(obj).attr('data-storeid'));
+					$(obj).attr('data-proofSelected', bulkProofVal);
+				});
+
+				// Send API Request
+				controller.saveProofMeta([storeIds], bulkProofType, bulkProofVal, function () {
+					toastr.success('Bulk Proof settings saved!');
+					controller.refreshProofControls();
+				});
 			});
 
 			// Quantity Limit Handlers

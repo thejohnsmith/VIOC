@@ -64,7 +64,7 @@
                     <tr class="store-item" data-enrolled="{{#enrolled}}true{{/enrolled}}{{^enrolled}}false{{/enrolled}}">
                       <td class="checkbox-td" style="padding: 10px 0 0 0">
                         <div class="checkbox-area" data-enrolled="">
-                          <div data-storeId="{{storeId}}" class="program-settings customCheckbox js-all-selectable {{^enrolled}}disabled-input{{/enrolled}}">
+                          <div data-storeId="{{storeId}}" class="proof-settings customCheckbox js-all-selectable {{^enrolled}}disabled-input{{/enrolled}}">
                             <input {{^enrolled}}readonly{{/enrolled}} data-checkbox-label="" type="checkbox">
                           </div>
                         </div>
@@ -78,8 +78,8 @@
                           <tr>
                             {{#hasEmail}}
                             <td class="channelEmailTotal">
-                              <select data-prooftype="emProofSettings" data-proofSelected="{{emProofSettings}}" data-storeId="{{storeId}}" class="link-proof form-control" title="Choose Monthly Proof Settings">
-                                <option value="0" selected>None</option>
+                              <select data-prooftype="emProofSettings" data-proofSelected="{{emProofSettings}}" data-storeId="{{storeId}}" class="link-proof link-proof-single form-control" title="Choose Monthly Proof Settings">
+                                <option value="0">None</option>
                                 <option value="1">Monthly</option>
                                 <option value="2">Tomorrow, then Monthly</option>
                                 <option value="3">Tomorrow, then None</option>
@@ -89,8 +89,8 @@
 
                             {{#hasDM}}
                             <td class="channelDMTotal">
-                              <select data-prooftype="dmProofSettings" data-proofSelected="{{dmProofSettings}}" data-storeId="{{storeId}}" class="link-proof form-control" title="Choose Monthly Proof Settings">
-                                <option value="0" selected>None</option>
+                              <select data-prooftype="dmProofSettings" data-proofSelected="{{dmProofSettings}}" data-storeId="{{storeId}}" class="link-proof link-proof-single form-control" title="Choose Monthly Proof Settings">
+                                <option value="0">None</option>
                                 <option value="1">Monthly</option>
                                 <option value="2">Tomorrow, then Monthly</option>
                                 <option value="3">Tomorrow, then None</option>
@@ -99,8 +99,8 @@
 
                             {{#hasSMS}}
                             <td class="channelSMSTotal">
-                              <select data-prooftype="smsProofSettings" data-proofSelected="{{smsProofSettings}}" data-storeId="{{storeId}}" class="link-proof form-control" title="Choose Monthly Proof Settings">
-                                <option value="0" selected>None</option>
+                              <select data-prooftype="smsProofSettings" data-proofSelected="{{smsProofSettings}}" data-storeId="{{storeId}}" class="link-proof link-proof-single form-control" title="Choose Monthly Proof Settings">
+                                <option value="0">None</option>
                                 <option value="1">Monthly</option>
                                 <option value="2">Tomorrow, then Monthly</option>
                                 <option value="3">Tomorrow, then None</option>
@@ -170,24 +170,24 @@
                         <tbody class="bulk-apply-proofSettings">
                           <tr>
                             <td class="hasEmail">
-                              <select data-prooftype="emProofSettings" class="link-proof form-control" title="Choose Monthly Proof Settings">
-                                <option value="0" selected>None</option>
+                              <select data-prooftype="emProofSettings" class="link-proof link-proof-bulk form-control" title="Choose Monthly Proof Settings">
+                                <option value="0">None</option>
                                 <option value="1">Monthly</option>
                                 <option value="2">Tomorrow, then Monthly</option>
                                 <option value="3">Tomorrow, then None</option>
                               </select>
                             </td>
                             <td class="hasDM">
-                              <select data-prooftype="dmProofSettings" class="link-proof form-control" title="Choose Monthly Proof Settings">
-                                <option value="0" selected>None</option>
+                              <select data-prooftype="dmProofSettings" class="link-proof link-proof-bulk form-control" title="Choose Monthly Proof Settings">
+                                <option value="0">None</option>
                                 <option value="1">Monthly</option>
                                 <option value="2">Tomorrow, then Monthly</option>
                                 <option value="3">Tomorrow, then None</option>
                               </select>
                             </td>
                             <td class="hasSMS">
-                              <select data-prooftype="smsProofSettings" class="link-proof form-control" title="Choose Monthly Proof Settings">
-                                <option value="0" selected>None</option>
+                              <select data-prooftype="smsProofSettings" class="link-proof link-proof-bulk form-control" title="Choose Monthly Proof Settings">
+                                <option value="0">None</option>
                                 <option value="1">Monthly</option>
                                 <option value="2">Tomorrow, then Monthly</option>
                                 <option value="3">Tomorrow, then None</option>
