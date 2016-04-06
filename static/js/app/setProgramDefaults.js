@@ -9,9 +9,9 @@ var setProgramDefaults = (function ($) {
 	var makeRequest = function ($selectedPrograms, $selectedProgramNames) {
 		// var localDevUrl = 'data/setProgramDefaults.jssp';
 		// var marcomDevUrl = 'https://files.marcomcentral.app.pti.com/epsilon/static/data/setProgramDefaults.jssp';
-		var acUrl = 'https://adobe-uat-vioc.epsilon.com/jssp/vioc/setProgramDefaults.jssp';
+		var apiPath = marcomUserData.$constants.apiPath + 'setProgramDefaults.jssp';
 		$.ajax({
-			url: acUrl,
+			url: apiPath,
 			type: 'GET',
 			contentType: 'application/json',
 			processData: true,

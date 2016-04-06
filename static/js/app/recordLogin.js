@@ -15,9 +15,9 @@ var recordLogin = (function ($) {
 		}
 		// var localDevUrl = 'data/recordLogin.jssp';
 		// var marcomDevUrl = 'https://files.marcomcentral.app.pti.com/epsilon/static/data/recordLogin.jssp';
-		var acUrl = 'https://adobe-uat-vioc.epsilon.com/jssp/vioc/recordLogin.jssp';
+		var apiPath = marcomUserData.$constants.apiPath + 'recordLogin.jssp';
 		$.ajax({
-			url: acUrl,
+			url: apiPath,
 			type: 'GET',
 			headers: {
 				'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
