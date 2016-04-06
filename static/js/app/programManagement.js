@@ -116,15 +116,22 @@ var programManagementController = (function ($) {
 				var $selectedMgmg = $(this).find(':selected');
 				var configId = $selectedMgmg.val();
 				var $selectedMgmgText = $selectedMgmg.text();
-				var $newProgramConfigLink = $(this).parent().next().find('.btn.btn-link');
-				var $baseUrl = $newProgramConfigLink.attr('data-baseUrl');
+				var $editLink = $(this).parent().next().find('.program-edit-link');
+				var $deleteLink = $(this).parent().next().find('.program-delete-link');
+				var $baseUrl = $editLink.attr('data-baseUrl');
+				var defaultMgmg = /Default/.test($selectedMgmgText);
+
 				// Update the Edit/View links
-				$newProgramConfigLink.attr('href', $baseUrl + '&configId=' + configId + '&programId=' + controller.program_id);
-				// Corporate Default configs are read-only.
-				if ($selectedMgmgText == 'Corporate Default') {
-					return $newProgramConfigLink.text('View');
+				$editLink.attr('href', $baseUrl + '&configId=' + configId + '&programId=' + controller.program_id);
+
+				// Corporate Default configs are read-only - swap View and Edit links.
+				if (defaultMgmg) {
+					$deleteLink.addClass('hidden');
+					$editLink.text('View');
 				} else {
-					return $newProgramConfigLink.text('Edit');
+					// Show Delete link
+					$deleteLink.removeClass('hidden');
+					$editLink.text('Edit');
 				}
 			});
 		},
