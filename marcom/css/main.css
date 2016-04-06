@@ -497,6 +497,8 @@ header#nav {
   color: #555655;
   text-transform: uppercase;
   font-size: 10px;
+  -webkit-transition: all 0.5s ease-out 0s;
+  transition: all 0.5s ease-out 0s;
 }
 .header-right a + a {
   position: relative;
@@ -513,6 +515,9 @@ header#nav {
 }
 .header-right a:hover {
   color: #00aeef;
+}
+.btnHelp {
+  cursor: help;
 }
 .header-nav {
   float: left;
@@ -776,6 +781,10 @@ header#nav {
   color: #fff;
   background: #1cb7f1;
 }
+.program-settings.footer-row .program-settings-footer {
+  border-right: 0;
+  padding: 21px;
+}
 .participation-table tr, .participation-table .tr {
   background: #F6F6F6;
   vertical-align: middle;
@@ -792,7 +801,6 @@ header#nav {
 .participation-table td, .participation-table .td {
   text-align: center;
   padding: 7px 11px;
-  border-right: 1px solid #fff;
 }
 .program-enrollment-section td, .program-enrollment-section .td {
   width: 25%;
@@ -1340,7 +1348,6 @@ header#nav {
 }
 .programsummary-table th {
   background: #1cb7f1;
-  border-right: 1px solid #fff;
   color: #fff;
   font-size: 17px;
   font-family: 'HelveticaNeueLT-Condensed';
@@ -1389,9 +1396,6 @@ header#nav {
   border-right: 0;
   padding-top: 10px;
   padding-bottom: 10px;
-}
-.programsummary-table td table td table td {
-  border-bottom: 1px solid #fefefe;
 }
 .programsummary-table td.store {
   padding: 11px;
@@ -1474,6 +1478,7 @@ header#nav {
 .proof-settings-tab-section.programsummary-table .store-materials {
   width: 50%;
 }
+
 .proof-settings-tab-section.programsummary-table .store-enroll {
   width: 1%;
 }
@@ -1489,25 +1494,29 @@ header#nav {
   padding-left: 0;
   float: left;
 }
-.proof-settings-tab-section.programsummary-table .store {
-  /*width: 32%;*/
-}
-.proof-settings-tab-section.programsummary-table .store-cost {
+.proof-settings-tab-section.programsummary-table .store-proof-address {
   width: 32%;
-  font-size: 15px;
-  line-height: 1.2;
+}
+.proof-settings-tab-section.programsummary-table .store-proof-address > * {
+  font-family: 'HelveticaNeueLT-Thin';
+  font-size: 14px;
+  line-height: 1.4;
 }
 .proof-settings-tab-section.programsummary-table .total-label {
-  width: 37% !important;
+  width: 32% !important;
+  padding: 0 8px 0;
 }
 .proof-settings-tab-section.programsummary-table .store-materials-footer {
-  width: 50%;
-  padding-right: 0;
+  width: 46%;
+  padding: 14px 0 7px;
 }
 .proof-settings-footer, .proof-settings-footer td, .store-materials-footer .inner-table, .store-materials-footer td {
   color: #fff;
   background: #1cb7f1;
   border: none !important;
+}
+.proof-settings-footer .hasDM.store-cost {
+  width: 25%;
 }
 .proof-settings-tab-section.programsummary-table .participation-table .header-row td {
   width: 33%;
@@ -1540,6 +1549,14 @@ header#nav {
   }
   .programsummary-table.quantity-limit-tab-section .store-configuration .col-sm-2 {
     margin-left: -30px;
+  }
+}
+@media (min-width: 930px) {
+  .proof-settings-tab-section.programsummary-table .total-label {
+    width: 30% !important;
+  }
+  .proof-settings-tab-section.programsummary-table .store-materials-footer {
+    width: 47%;
   }
 }
 .program-inputs {
