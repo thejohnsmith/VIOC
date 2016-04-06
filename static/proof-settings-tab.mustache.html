@@ -13,7 +13,7 @@
             <table>
               <tr>
               <th class="store-enroll">
-                <button data-checkboxtype="quantity-limit" class="not-active proof-settings select-all btn btn-primary btn-sm">Select All</button>
+                <button data-checkboxtype="proof-settings" class="not-active proof-settings select-all btn btn-primary btn-sm">Select All</button>
               </th>
                 <th class="store">Store</th>
                 <th class="store-materials table-header">
@@ -159,7 +159,7 @@
           </td>
         </tr>
         {{/.}}
-          <tr class="proof-settings-footer">
+          <tr class="proof-settings-footer none">
             <td>
               <table>
                 <tr>
@@ -208,4 +208,15 @@
       </tbody>
     </table>
   </div>
+  <script>
+    var $j = jQuery;
+    var quantityLimitController = jQuery.extend({}, checkboxController.controller);
+    quantityLimitController.init('proof-settings', function(storeIds) {
+      var plural = (storeIds.length === 1) ? '' : 's';
+      $j('.proof-settings-footer')
+        .toggleClass('none', (storeIds.length < 2));
+      $j('.link-proof-bulk').focus();
+    });
+
+  </script>
 </script>

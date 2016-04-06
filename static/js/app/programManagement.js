@@ -215,26 +215,26 @@ var programManagementController = (function ($) {
 				console.warn('bulkProofType: ' + bulkProofType);
 				console.warn('bulkProofVal: ' + bulkProofVal);
 
-				// Collect storeIds from selected stores
-				$.each($('.proof-settings-tab-section .store-item'), function (i, obj) {
-					var storeId = $(obj).find('.proof-settings.checked').attr('data-storeid');
-					var proofType = $('.link-proof-single[data-storeId="' + storeId + '"]').attr('data-prooftype');
-
-					console.warn('storeId: ' + storeId);
-					console.warn('proofType: ' + proofType);
-
-					if (proofType == bulkProofType) {
-						console.log('proofType matches bulkProofType');
-						$('.link-proof-single[data-storeId="' + storeId + '"]').attr('data-proofSelected', bulkProofVal);
-					}
-
-					// $('.link-proof-single[data-storeId="' + storeId + '"]').attr('data-proofSelected', bulkProofVal);
-					// $(obj).find('.proof-settings.checked').attr('data-prooftype', bulkProofType).val(bulkProofVal);
-					// $(obj).find('.proof-settings.checked').attr('data-proofSelected', bulkProofVal).attr('selected', 'selected');
-
-					storeIds.push(storeId);
-
+				// Build a list of selected stores
+				var selectedStores = [];
+				$.each($('.proof-settings-tab-section .store-item').find('.proof-settings.checked'), function (i, obj) {
+					selectedStores.push($(obj).attr('data-storeid'));
 				});
+
+				// Get all single dropdowns matching the bulk proof type selected
+				// Loop through them
+				$.each($('.link-proof-single[data-prooftype="' + bulkProofType + '"]'), function (i, obj) {
+					// If the dropdown's store ID matches a selected store...
+					if ($(obj).attr('data-storeid'), selectedStores) {
+						// Update their data-proofSelectedValue
+						$(obj).attr('data-proofSelected', bulkProofVal);
+
+						// Store their storeId in an array
+						storeIds.push($(obj).attr('data-storeid'));
+					}
+				});
+
+				$('.proof-settings.select-all').click(this.selectMultipleProofSettings);
 
 				// Send API Request
 				controller.saveProofMeta([storeIds], bulkProofType, bulkProofVal, function () {
@@ -247,6 +247,11 @@ var programManagementController = (function ($) {
 			$('.apply-quantity-limit').click(this.setSingleQuantityLimit);
 			$('.bulk-apply-quantity-limit').click(this.setBulkQuantityLimit);
 
+		},
+		selectMultipleProofSettings(e) {
+			e.preventDefault();
+			console.log('test');
+			$('.proof-settings.customCheckbox').addClass('checked');
 		},
 		setSingleQuantityLimit(e) {
 			e.preventDefault();
