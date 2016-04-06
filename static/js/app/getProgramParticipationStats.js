@@ -6,16 +6,15 @@
 var getProgramParticipationStats = (function ($) {
 	/* Use getHashParams.js to get programId */
 	var programId = getParameterByName('programId', window.location.href);
+	var marcomFilePath = marcomUserData.$constants.marcomFilePath;
 	var makeRequest = function () {
 			// Make sure there's a User ID loaded from Marcom before we Init this script.
 			if (marcomUserData.$user.externalId === '%%User.ExternalId%%') {
 				return;
 			}
-			// var localDevUrl = 'data/getProgramParticipationStats.jssp';
-			// var marcomDevUrl = 'https://files.marcomcentral.app.pti.com/epsilon/static/data/getProgramParticipationStats.jssp';
-			var acUrl = 'https://adobe-uat-vioc.epsilon.com/jssp/vioc/getProgramParticipationStats.jssp';
+			var apiPath = marcomUserData.$constants.apiPath + 'getProgramParticipationStats.jssp';
 			$.ajax({
-				url: acUrl,
+				url: apiPath,
 				type: 'GET',
 				dataType: 'json',
 				processData: true,
@@ -90,7 +89,7 @@ var getProgramParticipationStats = (function ($) {
 		},
 		loadDashboardData = function (result) {
 			if ($('.participation-dashboard-tpl').length) {
-				$.get('https://files.marcomcentral.app.pti.com/epsilon/static/participation-dashboard.mustache.html', function (templates) {
+				$.get(marcomFilePath + 'participation-dashboard.mustache.html', function (templates) {
 					var template = $(templates).filter('.participation-dashboard-template').html();
 					$('.participation-dashboard-tpl').html(Mustache.render(template, result));
 					return loadProgramData(result);
@@ -104,14 +103,14 @@ var getProgramParticipationStats = (function ($) {
 		 * @retrun {function} upDateProgramsDashboard
 		 */
 		loadProgramData = function (result) {
-			$.get('https://files.marcomcentral.app.pti.com/epsilon/static/program-list.mustache.html', function (templates) {
+			$.get(marcomFilePath + 'program-list.mustache.html', function (templates) {
 				var template = $(templates).filter('.program-list-template').html();
 				$('.program-select.lifecycle-program-list').html(Mustache.render(template, result));
 				// customCheckAndRadioBoxes.customCheckbox();
 				return upDateProgramsDashboard(result), setProgramTabContent();
 			});
 
-			$.get('https://files.marcomcentral.app.pti.com/epsilon/static/specialty-program-list.mustache.html', function (templates) {
+			$.get(marcomFilePath + 'specialty-program-list.mustache.html', function (templates) {
 				var template = $(templates).filter('.specialty-program-list-template').html();
 				$('.program-select.specialty-program-list').html(Mustache.render(template, result));
 				customCheckAndRadioBoxes.customCheckbox();

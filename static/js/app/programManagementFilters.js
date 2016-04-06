@@ -1,6 +1,6 @@
 var programManagementFilters = (function ($) {
 	var controller = {
-		api_path: 'https://adobe-uat-vioc.epsilon.com/jssp/vioc/',
+		apiPath: marcomUserData.$constants.apiPath,
 		store_tree: [],
 		user_id: marcomUserData.$user.externalId,
 		store_ids: [],
@@ -103,7 +103,7 @@ var programManagementFilters = (function ($) {
 		 */
 		getStoreTree: function (callback) {
 			var controller = this;
-			$.get(controller.api_path + 'getStoreSummary.jssp?userId=' + controller.user_id,
+			$.get(controller.apiPath + 'getStoreSummary.jssp?userId=' + controller.user_id,
 				function (results) {
 					var json_results = JSON.parse(results);
 					controller.store_tree = json_results;

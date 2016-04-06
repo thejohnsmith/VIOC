@@ -8,7 +8,7 @@
  */
 var programManagementController = (function ($) {
 	var controller = {
-		api_path: 'https://adobe-uat-vioc.epsilon.com/jssp/vioc/',
+		apiPath: marcomUserData.$constants.apiPath,
 		user_configs: [],
 		store_data: [],
 		program: {},
@@ -43,7 +43,7 @@ var programManagementController = (function ($) {
 		 */
 		retrieveUserConfigs: function (callback) {
 			var controller = this;
-			$.get(controller.api_path + 'getUserConfigurations.jssp?userId=' + controller.user_id + '&programId=' + controller.program_id, function (results) {
+			$.get(controller.apiPath + 'getUserConfigurations.jssp?userId=' + controller.user_id + '&programId=' + controller.program_id, function (results) {
 				var json_results = JSON.parse(results);
 				controller.user_configs = json_results;
 				if (typeof callback == 'function') {
@@ -57,7 +57,7 @@ var programManagementController = (function ($) {
 		 */
 		getStoreProgramData: function (callback) {
 			var controller = this;
-			$.get(controller.api_path + 'getStoreProgramData.jssp?userId=' + controller.user_id + '&programId=' + controller.program_id, function (results) {
+			$.get(controller.apiPath + 'getStoreProgramData.jssp?userId=' + controller.user_id + '&programId=' + controller.program_id, function (results) {
 				var json_results = JSON.parse(results);
 				controller.store_data = json_results;
 				if (typeof callback == 'function') callback(json_results);
@@ -72,7 +72,7 @@ var programManagementController = (function ($) {
 		 */
 		getProgramData: function (program_id, callback) {
 			var controller = this;
-			$.get(controller.api_path + 'getProgramParticipationStats.jssp?userId=' + controller.user_id, function (results) {
+			$.get(controller.apiPath + 'getProgramParticipationStats.jssp?userId=' + controller.user_id, function (results) {
 				// NOTE: We may need to parse results.
 				var json_results = JSON.parse(results);
 				controller.hideAdditionalOffersIfNeeded();
@@ -287,7 +287,7 @@ var programManagementController = (function ($) {
 		saveStoreSubscription(selectedStores, configId, callback) {
 			var controller = this;
 			var stringStoreIds = selectedStores.join(',');
-			$.get(controller.api_path + 'setStoreConfig.jssp?userId=' + controller.user_id + '&configId=' + configId + '&programId=' + controller.program_id + '&storeIds=' + stringStoreIds, function (results) {
+			$.get(controller.apiPath + 'setStoreConfig.jssp?userId=' + controller.user_id + '&configId=' + configId + '&programId=' + controller.program_id + '&storeIds=' + stringStoreIds, function (results) {
 				var json_results = JSON.parse(results);
 				controller.store_data = json_results;
 				if (typeof callback == 'function') callback(json_results);
@@ -326,7 +326,7 @@ var programManagementController = (function ($) {
 			var controller = this;
 			var stringStoreIds = selectedStores.join(',');
 			var quantityLimit;
-			$.get(controller.api_path + 'setStoreMeta.jssp?userId=' + controller.user_id + '&storeIds=' + stringStoreIds + '&quantity_limit=' + quantityLimit, function (results) {
+			$.get(controller.apiPath + 'setStoreMeta.jssp?userId=' + controller.user_id + '&storeIds=' + stringStoreIds + '&quantity_limit=' + quantityLimit, function (results) {
 				try {
 					var json_results = JSON.parse(results);
 					controller.store_data = json_results;
@@ -350,7 +350,7 @@ var programManagementController = (function ($) {
 			 */
 			var controller = this;
 			var stringStoreIds = selectedStores.join(',');
-			$.get(controller.api_path + 'setStoreMeta.jssp?userId=' + controller.user_id + '&storeIds=' + stringStoreIds + '&' + proofType + '=' + proofVal, function (results) {
+			$.get(controller.apiPath + 'setStoreMeta.jssp?userId=' + controller.user_id + '&storeIds=' + stringStoreIds + '&' + proofType + '=' + proofVal, function (results) {
 				try {
 					var json_results = JSON.parse(results);
 					controller.store_data = json_results;

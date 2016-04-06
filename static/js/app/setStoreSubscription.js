@@ -15,9 +15,9 @@ var setStoreSubscription = (function ($) {
 	var makeRequest = function ($userId, $storeIds, $programId, $subscribe) {
 		// var localDevUrl = 'data/setStoreSubscription.jssp';
 		// var marcomDevUrl = 'https://files.marcomcentral.app.pti.com/epsilon/static/data/setStoreSubscription.jssp';
-		var acUrl = 'https://adobe-uat-vioc.epsilon.com/jssp/vioc/setStoreSubscription.jssp';
+		var apiPath = marcomUserData.$constants.apiPath + 'setStoreSubscription.jssp';
 		$.ajax({
-			url: acUrl,
+			url: apiPath,
 			type: 'GET',
 			contentType: 'application/json',
 			processData: true,

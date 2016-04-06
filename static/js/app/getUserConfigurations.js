@@ -11,7 +11,7 @@
  */
 
 var getUserConfigurations = (function ($) {
-
+	var marcomFilePath = marcomUserData.$constants.marcomFilePath;
 	var makeRequest = function ($programId) {
 			if (marcomUserData.$user.externalId === '%%User.ExternalId%%') {
 				return;
@@ -20,11 +20,9 @@ var getUserConfigurations = (function ($) {
 			if (!programId) {
 				return;
 			}
-			// var localDevUrl = 'data/getUserConfigurations.jssp';
-			// var marcomDevUrl = 'https://files.marcomcentral.app.pti.com/epsilon/static/data/getUserConfigurations.jssp';
-			var acUrl = 'https://adobe-uat-vioc.epsilon.com/jssp/vioc/getUserConfigurations.jssp';
+			var apiPath = marcomUserData.$constants.apiPath + 'getUserConfigurations.jssp';
 			$.ajax({
-				url: acUrl,
+				url: apiPath,
 				type: 'GET',
 				contentType: 'application/json',
 				processData: true,
@@ -52,8 +50,7 @@ var getUserConfigurations = (function ($) {
 				/** Use programId as selected option
 				 *  Display all "configType": "program" as options
 				 */
-				$.get(
-					'https://files.marcomcentral.app.pti.com/epsilon/static/program-config-options.mustache.html',
+				$.get(marcomFilePath + 'program-config-options.mustache.html',
 					function (templates) {
 						var template = $(templates).filter('.program-config-options-template').html();
 						$('.program-config-options-section').html(Mustache.render(

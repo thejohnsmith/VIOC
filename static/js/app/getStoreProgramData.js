@@ -1,16 +1,15 @@
 var getStoreProgramData = (function ($) {
 	/* Use getHashParams.js to get programId */
 	var $programId = getParameterByName('programId', window.location.href);
+	var marcomFilePath = marcomUserData.$constants.marcomFilePath;
 	var makeRequest = function () {
 			// Make sure there's a User ID loaded from Marcom before we Init this script.
 			if (marcomUserData.$user.externalId === '%%User.ExternalId%%' || $programId === undefined || $programId === null) {
 				return;
 			}
-			var localDevUrl = 'data/getStoreProgramData.jssp';
-			var marcomDevUrl = 'https://files.marcomcentral.app.pti.com/epsilon/static/data/getStoreProgramData.jssp';
-			var acUrl = 'https://adobe-uat-vioc.epsilon.com/jssp/vioc/getStoreProgramData.jssp';
+			var apiPath = marcomUserData.$constants.apiPath + 'getStoreProgramData.jssp';
 			$.ajax({
-				url: acUrl,
+				url: apiPath,
 				type: 'GET',
 				dataType: 'json',
 				processData: true,
@@ -29,7 +28,7 @@ var getStoreProgramData = (function ($) {
 		},
 		loadStoreProgramData = function (result) {
 			if ($('.program-enrollment-section').length) {
-				$.get('https://files.marcomcentral.app.pti.com/epsilon/static/program-enrollment.mustache.html', function (templates) {
+				$.get(marcomFilePath + 'program-enrollment.mustache.html', function (templates) {
 					var template = $(templates).filter('.program-enrollment-template').html();
 					$('.program-enrollment-section').html(Mustache.render(template, result));
 
@@ -42,7 +41,7 @@ var getStoreProgramData = (function ($) {
 				});
 			}
 			if ($('.program-settings-section').length) {
-				$.get('https://files.marcomcentral.app.pti.com/epsilon/static/program-settings.mustache.html', function (templates) {
+				$.get(marcomFilePath + 'program-settings.mustache.html', function (templates) {
 					var template2 = $(templates).filter('.program-settings-template').html();
 					$('.program-settings-section').html(Mustache.render(template2, result));
 					return reloadCheckBoxes();
@@ -54,7 +53,7 @@ var getStoreProgramData = (function ($) {
 				});
 			}
 			if ($('.proof-settings-tab-section').length) {
-				$.get('https://files.marcomcentral.app.pti.com/epsilon/static/proof-settings-tab.mustache.html', function (templates) {
+				$.get(marcomFilePath + 'proof-settings-tab.mustache.html', function (templates) {
 					var template3 = $(templates).filter('.proof-settings-tab-template').html();
 					$('.proof-settings-tab-section').html(Mustache.render(template3, result));
 					return;
@@ -64,7 +63,7 @@ var getStoreProgramData = (function ($) {
 				});
 			}
 			if ($('.quantity-limit-tab-section').length) {
-				$.get('https://files.marcomcentral.app.pti.com/epsilon/static/quantity-limit-tab.mustache.html', function (templates) {
+				$.get(marcomFilePath + 'quantity-limit-tab.mustache.html', function (templates) {
 					var template4 = $(templates).filter('.quantity-limit-tab-template').html();
 					$('.quantity-limit-tab-section').html(Mustache.render(template4, result));
 					return;

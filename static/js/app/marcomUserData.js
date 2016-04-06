@@ -13,12 +13,16 @@ var marcomUserData = (function ($) {
 		lastName: $userRelated.data('user-last-name') || '',
 		email: $userRelated.data('user-email') || ''
 	};
+	// Usage: marcomUserData.$constants.apiPath
 	var constants = {
-		lifecyclePageUrl : "CustomPage.aspx?uigroup_id=479602&page_id=10792",
-		specialtyPageUrl : "CustomPage.aspx?uigroup_id=479602&page_id=10793",
-		programManagementUrl : "CustomPage.aspx?uigroup_id=479602&page_id=11173",
-		configPageUrl: "CustomPage.aspx?uigroup_id=479602&page_id=11225",
-		apiPath: "https://adobe-uat-vioc.epsilon.com/jssp/vioc/",
+		lifecyclePageUrl: 'CustomPage.aspx?uigroup_id=479602&page_id=10792',
+		specialtyPageUrl: 'CustomPage.aspx?uigroup_id=479602&page_id=10793',
+		programManagementUrl: 'CustomPage.aspx?uigroup_id=479602&page_id=11173',
+		configPageUrl: 'CustomPage.aspx?uigroup_id=479602&page_id=11225',
+		apiPath: 'https://adobe-uat-vioc.epsilon.com/jssp/vioc/',
+		apiPathLocal: 'data/getStoreProgramData.jssp',
+		marcomFilePath: 'https://files.marcomcentral.app.pti.com/epsilon/static/'
+
 	};
 	return {
 		$user: user,
