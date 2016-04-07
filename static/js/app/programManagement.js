@@ -193,16 +193,7 @@ var programManagementController = (function ($) {
 
 			$('.link-proof-bulk').on('change', function (e) {
 				e.preventDefault();
-				console.log('link-proof-bulk button pushed!!');
-				// Make sure stores are selected (checked)
-				// Collect storeIds
-				// Collect bulk proof type
-				// Collect bulk proof val
-				// Call saveProofMeta passing storeIds, bulk proof type, bulk proof val
-				// Display Toast message
-				// Refresh controls.
-
-				// Make sure stores are selected (checked)
+				// Make sure a store is selected (checked) firstly.
 				if (!$('.proof-settings').hasClass('checked')) {
 					toastr.warning('No stores are selected so changes were not saved.');
 					return;
@@ -212,10 +203,11 @@ var programManagementController = (function ($) {
 				var bulkProofType = $(this).attr('data-prooftype');
 				var bulkProofVal = $(this).val();
 
-				console.warn('bulkProofType: ' + bulkProofType);
-				console.warn('bulkProofVal: ' + bulkProofVal);
+				// console.warn('bulkProofType: ' + bulkProofType);
+				// console.warn('bulkProofVal: ' + bulkProofVal);
 
 				// Build a list of selected stores
+				// @TODO This is not working, not respecting .checked class.
 				var selectedStores = [];
 				$.each($('.proof-settings-tab-section .store-item').find('.proof-settings.checked'), function (i, obj) {
 					selectedStores.push($(obj).attr('data-storeid'));
@@ -250,8 +242,6 @@ var programManagementController = (function ($) {
 		},
 		selectMultipleProofSettings(e) {
 			e.preventDefault();
-			console.log('test');
-			$('.proof-settings.customCheckbox').addClass('checked');
 		},
 		setSingleQuantityLimit(e) {
 			e.preventDefault();
