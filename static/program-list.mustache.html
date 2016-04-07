@@ -4,7 +4,7 @@
     <li id="program-{{id}}" class="status-green">
 
       <div class="checkbox-area">
-        <div class="customCheckbox {{^allowEditing}}background-none{{/allowEditing}}">
+        <div class="customCheckbox {{^allowEditing}}background-none{{/allowEditing}} {{#allowEditing}}allowEditing{{/allowEditing}}">
           <input type="checkbox" value="{{id}}">
           <label>{{programName}}</label>
         </div>

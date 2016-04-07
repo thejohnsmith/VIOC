@@ -146,6 +146,7 @@ var getProgramParticipationStats = (function ($) {
 						// All stores participating : Green
 						if (obj.storesParticipating === obj.storesEligible) {
 							$programId.attr('class', programStatus.success);
+							$programId.find('.customCheckbox').addClass('disabled');
 						}
 					}
 				}

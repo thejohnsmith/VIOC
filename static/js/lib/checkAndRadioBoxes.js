@@ -23,11 +23,15 @@ var customCheckAndRadioBoxes = (function ($) {
 	 * @return {string} $selectedPrograms
 	 */
 	var selectedPrograms = function () {
-		if (!$('.js-trigger-enroll').length) {
-			return;
+		if (!$('.js-trigger-enroll').length || $('.program-select .allowEditing.customCheckbox').length === $('.program-select .status-green .allowEditing.customCheckbox').length) {
+			$('.js-trigger-enroll').addClass('input-disabled').attr('title', 'All Stores are Enrolled.')
+		}
+		else if ($('.program-select .allowEditing.customCheckbox').length === $('.program-select .status-green .allowEditing.customCheckbox').length) {
+			$('.js-trigger-enroll').removeClass('input-disabled').attr('title', 'Auto-Enroll Your Stores In Selected Program(s)')
 		}
 		$('.js-trigger-enroll').on('click', function () {
 			if (!$('input:checkbox:checked').length) {
+				toastr.warning('Please select at least one program to auto-enroll.');
 				return;
 			}
 			var $selectedPrograms = $('input:checkbox:checked').map(function () {
@@ -64,12 +68,11 @@ var customCheckAndRadioBoxes = (function ($) {
 		 * @param {class) .cb-value input type=[checkbox]
 		 * @return {function} toggleBtns();
 		 */
-		function toggleBtns () {
+		function toggleBtns() {
 			console.log("Running toggleBtns");
 
 			var $programId = getParameterByName('programId', window.location.href);
 			var $userId = marcomUserData.$user.externalId || {};
-
 
 			$('.cb-value').off('click.vioc').on('click.vioc', function (e) {
 				console.log("Firing checkbox click...");
@@ -101,25 +104,24 @@ var customCheckAndRadioBoxes = (function ($) {
 			});
 		}
 
-		function subscribeStore ($userId, $storeId, $programId) {
+		function subscribeStore($userId, $storeId, $programId) {
 			return setStoreSubscription.makeRequest($userId, $storeId, $programId, 1);
 		}
 
-		function unsubscribeStore ($userId, $storeId, $programId) {
+		function unsubscribeStore($userId, $storeId, $programId) {
 			return setStoreSubscription.makeRequest($userId, $storeId, $programId, 0);
 		}
 
 		return toggleBtns();
 	};
 	var customCheckbox = function () {
-		console.log("Firing customCheckbox");
-		$('.customCheckbox input:checkbox').each(function () {
+		$('.customCheckbox:not(".disabled") input:checkbox').each(function () {
 			$(this).parent().addClass('js-custom');
 			if ($(this).attr('checked') === 'checked') {
 				$(this).closest('.customCheckbox').addClass('checked');
 			}
 		});
-		$('.customCheckbox').click(function () {
+		$('.customCheckbox:not(".disabled")').click(function () {
 			if (!$(this).children('input[type="checkbox"]').is('[readonly]')) {
 				$(this).find('input').trigger('change');
 				if ($(this).hasClass('checked')) {

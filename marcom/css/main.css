@@ -199,11 +199,11 @@ input:focus::-ms-input-placeholder {
   background-color: #00adee;
   color: #fff;
 }
-.disabled-input, .disabled-input:hover {
+.disabled-input, .disabled-input:hover, .input-disabled, .input-disabled:hover {
   opacity: 0.4;
   cursor: default!important;
 }
-.disabled-input > * {
+.disabled-input > *, .input-disabled > * {
   display: none;
 }
 p {
@@ -968,8 +968,9 @@ header#nav {
   display: inline-block;
   width: 100%;
   background: #1cb7f1;
-  font-size: 19px;
-  padding: 7px 15px;
+  font-size: 17px;
+  padding: 13px 15px;
+  margin: 0 4px 0 0;
   color: #fff;
   cursor: pointer;
   -webkit-transition: 0.5s;
@@ -991,7 +992,7 @@ header#nav {
 }
 #programSummary .program-select li.status-yellow .program-status {
   background: #FFE600;
-  color: #9E9E9E;
+  color: #6D6D6D;
 }
 #programSummary .program-select li.status-red .program-status {
   background: #E1261C;
@@ -1030,9 +1031,16 @@ header#nav {
 #programSummary .program-select--is-active-user label {
   cursor: default!important;
   color: #555!important;
+  width: 100%;
 }
 .program-select--is-active-user .program-button {
   display: none;
+}
+.program-select--is-active-user .customCheckbox.disabled {
+  background: none;
+}
+.program-list .program-info > a {
+  cursor: default;
 }
 .check-box-main {
   float: left;
@@ -2494,11 +2502,6 @@ button.toast-close-button {
   }
   .enumenu_ul li a, ul.navBarEnhanced a {
     font-size: 16px;
-  }
-  .program-button .blue-btn {
-    font-size: 16px;
-    padding-top: 8px;
-    padding-bottom: 6px;
   }
   .program-button {
     padding-left: 0;
