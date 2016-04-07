@@ -5,7 +5,6 @@ var programConfigController = (function ($) {
 		program: {},
 		config: { "content" : {}, "uiLayout": {}, "preview": {} },
 		configLoaded: false,
-		saveEnabled: true,
 		apiPath: marcomUserData.$constants.apiPath,
 		userId: marcomUserData.$user.externalId,
 		programId: getParameterByName('programId', window.location.href),
@@ -79,7 +78,6 @@ var programConfigController = (function ($) {
 			controller.UpdateCreativeDropdowns();
 			controller.UpdateDiscountCodes();
 			controller.UpdateOfferExpiration();
-			controller.UpdateButtons();
 			controller.UpdatePreSubmitSidebar();
 			controller.AttachEventListeners();
 			controller.GeneratePreview();
@@ -165,6 +163,11 @@ var programConfigController = (function ($) {
 			$.each($('.touchpoint-value'), function (i, e) {
 				var value = controller.config.content[$(e).attr('name')];
 				$(e).val(value);
+
+				if (value != "" && typeof value != "undefined")
+				{
+					$(e).val(value).addClass('input-success');
+				}
 			});
 
 			for (var i = 0; i < controller.program.programMeta.touchpoints.length; i++)
@@ -179,20 +182,14 @@ var programConfigController = (function ($) {
 				$(".touchpoint-" + meta.touchpoint + "." + channelCode + ".preview").attr('href',meta.previewUrl);
 			}
 
-			// Pre-demo hacks.
-			$(".discount-codes-row.touchpoint-row.email.touchpoint-1").show();
-			$j(".touchpoint-label.discount-code-subrow.dm").html($j(".touchpoint-label.discount-code-subrow.dm").html().replace("Direct Touch Point Mail", "Direct Mail Touch Point"));
+			// Pre-demo hacks.  Fixed in F-11 and F-12
+			//$(".discount-codes-row.touchpoint-row.email.touchpoint-1").show();
+			//$(".touchpoint-label.discount-code-subrow.dm").html($(".touchpoint-label.discount-code-subrow.dm").html().replace("Direct Touch Point Mail", "Direct Mail Touch Point"));
 
 		},
 		UpdateOfferExpiration: function () {
 			var controller = this;
 			$('.offer-exp option[value="' + controller.config.content.expiration + '"]').attr('selected', 'selected');
-		},
-		UpdateButtons: function () {
-			var controller = this;
-			$(".btn-save").removeClass('disabled');
-			if (!controller.saveEnabled)
-				$(".btn-save").addClass('disabled');
 		},
 		UpdatePreSubmitSidebar : function() {
 			var controller = this;
@@ -201,10 +198,8 @@ var programConfigController = (function ($) {
 		},
 		AttachEventListeners: function () {
 			var controller = this;
-			$("input").on("keyup", function() { controller.DisableSaveButton() });
-			$("select").on("change", function() { controller.DisableSaveButton() });
-			$(".btn-preview").on("click", function() { controller.OnPressPreview() });
-			$(".btn-save").on("click", function() { controller.OnPressSave() });
+			$("input.touchpoint-value").on("blur", function() { controller.ValidateDiscountCode(this) });
+			$(".btn-save").on("click", function(e) { controller.OnPressSave(e) });
 		},
 		GeneratePreview: function (callback) {
 			// Call GetFormData()
@@ -212,26 +207,71 @@ var programConfigController = (function ($) {
 			// Hand that JSON object to a mustache template and render the preview pane.
 			// Call callback()
 		},
-		DisableSaveButton: function () {
-			console.log("Disabling save button...", this);
-			var controller = this;
-			controller.saveEnabled = false;
-			controller.UpdateButtons();
+		ValidateDiscountCode: function(input) {
+			console.log("Validating %o", input);
+			var discountCode = $(input).val();
+			if (discountCode.length == "") return;
+			// :TODO:
+			$.get(controller.apiPath + 'validateDiscountCode.jssp?userId=' + controller.userId + "&code=" + discountCode, function (results) {
+				console.log("validateDiscountCode.jssp returned: " + results + " (" + typeof results + ")");
+				if (results == "true")
+				{
+					$(input).removeClass('input-error');
+					$(input).addClass('input-success');
+				}
+				else
+				{
+					$(input).removeClass('input-success');
+					$(input).addClass('input-error');
+					toastr.error('The discount code "' + discountCode + '" does not exist.  Please contact corporate for assistance.');
+				}
+			});
 		},
 		GetFormData: function () {
 			// Grab all inputs by calling $("input,select") and move their values into a key/value object.
 			// Returns all form data in an easy to POST format.
 		},
-		OnPressPreview: function () {
-			console.log("Preview pressed!", this);
-			// Call GeneratePreview()  When the callback returns:
-			// Mark controller.saveEnabled = true;
-			// Call UpdateButtons();
+		CheckVisibleDiscountCodeValidity : function() {
+			return ($(".touchpoint-value.input-success").filter(":visible").length == $(".touchpoint-value").filter(":visible").length);
 		},
-		OnPressSave: function () {
-			console.log("Save pressed!", this);
-			// Call GetFormData()
+		OnPressSave: function (e) {
+			e.preventDefault();
+			var controller = this;
+			if (!controller.CheckVisibleDiscountCodeValidity())
+			{
+				toastr.error('One or more discount codes are not valid.  Please correct and resubmit.');
+				return;
+			}
+
+			if ($(".settings-name").val() == "")
+			{
+				toastr.error('Please specify a name for your settings.');
+				return;
+			}
+
+			var saveData = {
+				"userId" : controller.userId,
+				"configType": "program",
+				"programId": controller.programId,
+				"label": $(".settings-name").val(),
+				"_expiration": $(".offer-exp").val()
+			}
+
+			$.each($(".touchpoint-value").filter(":visible"), function(i,obj) {
+				saveData["_" + $(obj).attr("name")] = $(obj).val();
+			});
+
 			// Save that data to the server.
+			$.ajax({
+				url : controller.apiPath + 'saveConfig.jssp',
+				method: "GET",
+				data: saveData,
+				success: function(results) {
+					console.log("Save was successful!");
+					window.location.href = marcomUserData.$constants.programManagementUrl + "&programId=" + controller.programId + "&flashSuccessMsg=Settings%20Saved!#parentHorizontalTab2";
+				},
+				dataType: "json"
+			});
 		},
 		ShowUI: function() {
 			$(".js-content").show();
