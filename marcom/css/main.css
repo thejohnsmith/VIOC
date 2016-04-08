@@ -604,6 +604,8 @@ li.navBarItem
 {
     border-right: 1px solid #666;
 }
+
+/* Catalog sectin */
 .catalogRoot.navBarItem
 {
     display: none;
@@ -615,11 +617,67 @@ li.navBarItem
     margin: 0 auto;
     padding: 0 15px;
 }
+#w2p_form a.prefill-rte
+{
+    position: relative;
+
+    display: inline-block;
+    overflow: hidden;
+
+    max-height: 1em;
+}
+#w2p_form a.prefill-rte::before
+{
+    font-size: 1em;
+
+    top: 0;
+    left: 0;
+
+    width: auto;
+    height: 1em;
+
+    content: '...';
+
+    color: #000;
+}
+#CtlBrdCrm td
+{
+    font-family: HelveticaNeueLT-Condensed;
+    font-size: 13px;
+
+    padding-left: 0;
+
+    letter-spacing: 0;
+
+    color: #555655;
+}
 .pflabel
 {
     font-size: 14px;
 }
+/* Colorbox overrides */
+#colorbox,
+#colorbox > *
+{
+    box-sizing: content-box;
+}
+#cboxTitle
+{
+    font-size: 16px;
+}
+#lblError
+{
+    font-size: 15px;
 
+    display: inline-block;
+
+    margin-bottom: 1em;
+}
+.upload_note
+{
+    font-size: 13px;
+    line-height: 1.4;
+}
 #CtlBody
 {
     width: 98%;
