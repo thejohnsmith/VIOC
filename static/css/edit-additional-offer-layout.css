@@ -29,8 +29,11 @@
 }
 #programManagementTabs input
 {
-    max-width: 140px;
-    margin: 5px 0 15px 0;
+  max-width: 140px;
+  margin: 5px 0 15px 0;
+  border-radius: 4px;
+  padding: 6px 12px;
+  color: #fff
 }
 #programManagementTabs input.settings-name
 {
