@@ -74,10 +74,12 @@ var additionalOfferController = (function ($) {
 			var controller = this;
 			controller.UpdateTitle();
 			controller.UpdateBreadCrumbs();
+			controller.ShowTabsAsAppropriate();
 			controller.UpdateSettingName();
 			controller.UpdateDiscountInfo();
 			controller.UpdateOfferExpiration();
 			controller.AttachEventListeners();
+			controller.MinimizeUnusedCoupons();
 			controller.ShowUI();
 		},
 		UpdateTitle: function () {
@@ -101,6 +103,13 @@ var additionalOfferController = (function ($) {
 			$(".breadcrumbs_previous:last a").html(controller.program.programName + " Program");
 			$(".breadcrumbs_previous:last a").attr("href", marcomUserData.$constants.programManagementUrl + "&programId=" + controller.programId);
 		},
+		ShowTabsAsAppropriate: function() {
+			var controller = this;
+			var maxTabs = controller.program.maxAdtlOffers;
+			//if (maxTabs < 4) $(".adtl-offer-4").hide();
+			//if (maxTabs < 3) $(".adtl-offer-3").hide();
+			//if (maxTabs < 2) $(".adtl-offer-2").hide();
+		},
 		UpdateSettingName: function () {
 			var controller = this;
 			$(".settings-name").val(controller.config.content.label);
@@ -108,10 +117,14 @@ var additionalOfferController = (function ($) {
 		UpdateDiscountInfo: function() {
 			var controller = this;
 			console.log(controller.config.content);
-			$('.coupon-code').val(controller.config.content.adtlCode);
-			$('.coupon-text option[value="' + controller.config.content.adtlText + '"]').attr('selected', 'selected');
-			$('.coupon-approach option[value="' + controller.config.content.adtlApproach + '"]').attr('selected', 'selected');
-			$('.coupon-amount').val(controller.config.content.adtlValue);
+			for (var i = 1; i <= 4; i++)
+			{
+				$('[name=adtlText' + i + ']').prepend($("<option>").attr('value','none').html("Not Used")).attr('selected','selected');
+				$('[name=adtlCode' + i + ']').val(controller.config.content['adtlCode' + i]);
+				$('[name=adtlText' + i + '] option[value="' + controller.config.content['adtlText' + i] + '"]').attr('selected', 'selected');
+				$('[name=adtlApproach' + i  + '] option[value="' + controller.config.content['adtlApproach' + i] + '"]').attr('selected', 'selected');
+				$('[name=adtlValue' + i + ']').val(controller.config.content['adtlValue' + i]);
+			}
 		},
 		UpdateOfferExpiration: function () {
 			var controller = this;
@@ -120,6 +133,22 @@ var additionalOfferController = (function ($) {
 		AttachEventListeners: function () {
 			var controller = this;
 			$(".save-btn").on("click", function() { controller.OnPressSave() });
+			$(".adtlText").on("change", function() { controller.MinimizeUnusedCoupons() });
+		},
+		MinimizeUnusedCoupons: function() {
+			for (var i = 1; i <= 4; i++)
+			{
+				if ($('[name=adtlText' + i + ']').val() == "none")
+				{
+					$('[name=adtlText' + i + ']').closest("table").find("tr").hide(); // Hide all of my sibling rows (including myelf)
+					$('[name=adtlText' + i + ']').closest("table").find("tr:first-child").show(); // Reshow myself, since I was hidden with the bulk of my siblings
+				}
+				else
+				{
+					$('[name=adtlText' + i + ']').closest("table").find("tr").show(); // Show me and all of my sibling rows
+				}
+			}
+
 		},
 		GetFormData: function () {
 			// Grab all inputs by calling $("input,select") and move their values into a key/value object.
@@ -139,12 +168,19 @@ var additionalOfferController = (function ($) {
 					configType: "adtl",
 					programId: 0,
 					label: $(".settings-name").val(),
-					_adtlCode: $('.coupon-code').val(),
-					_adtlText: $('.coupon-text').val(),
-					_adtlApproach: $('.coupon-approach').val(),
-					_adtlValue: $('.coupon-amount').val(),
 					_expiration: $('.expiration').val()
 				};
+
+				for (var i = 1; i <= 4; i++)
+				{
+					if ($('[name=adtlText' + i + ']').val() != "none")
+					{
+						saveData["_adtlCode" + i] = $('[name=adtlCode' + i + ']').val();
+						saveData["_adtlText" + i] = $('[name=adtlText' + i + ']').val();
+						saveData["_adtlApproach" + i] = $('[name=adtlApproach' + i + ']').val();
+						saveData["_adtlValue" + i] = $('[name=adtlValue' + i + ']').val();
+					}
+				}
 
 				if (controller.configId > 0)
 					saveData.configId = controller.configId;

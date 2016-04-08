@@ -290,6 +290,10 @@ input.input-error:focus
     margin-right: auto;
     margin-left: auto;
 }
+.inline-block
+{
+    display: inline-block;
+}
 .pull-right
 {
     float: right!important;

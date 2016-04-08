@@ -73,10 +73,10 @@ var programManagementController = (function ($) {
 		getProgramData: function (program_id, callback) {
 			var controller = this;
 			$.get(controller.apiPath + 'getProgramParticipationStats.jssp?userId=' + controller.user_id, function (results) {
-				// NOTE: We may need to parse results.
 				var json_results = JSON.parse(results);
 				controller.hideAdditionalOffersIfNeeded();
 				controller.showQuantityLimitTabIfNeeded();
+				controller.hideStandardOffersIfNeeded();
 
 				// Loop through the API result and find the program that matches program ID (DONE)
 				$.each(json_results, function (i, result) {
@@ -109,6 +109,16 @@ var programManagementController = (function ($) {
 				var store = controller.store_data[idx];
 				$('.dropdown-' + store.storeId + '-program option[value="' + store.programConfigId + '"], .dropdown-' + store.storeId + '-adtl  option[value="' + store.adtlConfigId + '"]')
 					.attr('selected', 'selected');
+			}
+		},
+		hideStandardOffersIfNeeded: function () {
+			var controller = this;
+			for (var i = 0; i < $programParticipationStats.length; i++) {
+				if ($programParticipationStats[i].id == controller.program_id) {
+					if ($programParticipationStats[i].programUsesOffers == 0) {
+						$('.standard-offer').hide();
+					}
+				}
 			}
 		},
 		refreshManagementControls: function () {
