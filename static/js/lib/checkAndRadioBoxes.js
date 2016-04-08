@@ -23,12 +23,7 @@ var customCheckAndRadioBoxes = (function ($) {
 	 * @return {string} $selectedPrograms
 	 */
 	var selectedPrograms = function () {
-		if (!$('.js-trigger-enroll').length || $('.program-select .allowEditing.customCheckbox').length === $('.program-select .status-green .allowEditing.customCheckbox').length) {
-			$('.js-trigger-enroll').addClass('input-disabled').attr('title', 'All Stores are Enrolled.')
-		}
-		else if ($('.program-select .allowEditing.customCheckbox').length === $('.program-select .status-green .allowEditing.customCheckbox').length) {
-			$('.js-trigger-enroll').removeClass('input-disabled').attr('title', 'Auto-Enroll Your Stores In Selected Program(s)')
-		}
+
 		$('.js-trigger-enroll').on('click', function () {
 			if (!$('input:checkbox:checked').length) {
 				toastr.warning('Please select at least one program to auto-enroll.');
