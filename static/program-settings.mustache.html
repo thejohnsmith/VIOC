@@ -14,7 +14,7 @@
             <button data-checkboxtype="program-settings" class="not-active program-settings select-all btn btn-primary btn-sm">Select All</button>
           </th>
           <th class="store">Store</th>
-          <th class="store-configuration">Oil Change Offers / Service Offers</th>
+          <th class="store-configuration standard-offer">Oil Change Offers / Service Offers</th>
           <th class="store-configuration additional-offer">Additional Offers</th>
         </tr>
       </thead>
@@ -34,7 +34,7 @@
             <div class="store-number">Store #{{storeId}}</div>
           </td>
 
-          <td class="store-configuration" style="padding: 21px 8px">
+          <td class="store-configuration standard-offer" style="padding: 21px 8px">
             {{#enrolled}}
             <select data-storeId="{{storeId}}" class="form-control program-dropdown store-level-dropdown dropdown-{{storeId}}-program">
             </select>
@@ -55,7 +55,7 @@
             Adjust
             <span class="program-settings-footer-selected-count"> 0 </span> selected store(s) to use:
           </td>
-          <td class="program-settings-footer store-configuration" style="padding: 21px 8px">
+          <td class="program-settings-footer store-configuration standard-offer" style="padding: 21px 8px">
             <div class="container-fluid">
               <div class="row">
                 <div class="col-sm-8">
@@ -89,7 +89,7 @@
   <br>
   <div class="container well">
     <div class="row">
-      <div class="col-sm-6">
+      <div class="col-sm-6 standard-offer">
         <h1 style="font-size: 20px">Oil Change Offers / Service Offers
           <a class="btn btn-sm btn-link js-create-program-hash" href="CustomPage.aspx?uigroup_id=479602&page_id=11225">
           Create New

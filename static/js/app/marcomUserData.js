@@ -18,6 +18,7 @@ var marcomUserData = (function ($) {
 		lifecyclePageUrl: 'CustomPage.aspx?uigroup_id=479602&page_id=10792',
 		specialtyPageUrl: 'CustomPage.aspx?uigroup_id=479602&page_id=10793',
 		programManagementUrl: 'CustomPage.aspx?uigroup_id=479602&page_id=11173',
+		additionalOfferPageUrl: 'CustomPage.aspx?uigroup_id=479602&page_id=11226',
 		configPageUrl: 'CustomPage.aspx?uigroup_id=479602&page_id=11225',
 		apiPath: 'https://adobe-uat-vioc.epsilon.com/jssp/vioc/',
 		apiPathLocal: 'data/',

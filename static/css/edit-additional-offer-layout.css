@@ -1,105 +1,163 @@
-.red {
-  color: #E02926;
+.red
+{
+    color: #e02926;
 }
-.resp-tab-content {
-  margin: 0 0 15px 0;
+.resp-tab-content
+{
+    margin: 0 0 15px 0;
 }
-#programManagementTabs {
-  padding: 0;
-  margin: 0 0 20px 0;
-  width: 100%;
+#programManagementTabs
+{
+    width: 100%;
+    margin: 0 0 20px 0;
+    padding: 0;
 }
-#programManagementTabs h4 {
-  color: #E02926;
-  font-weight: bold;
-  font-size: 24px;
-  padding: 10px 0 0 0;
-  margin: 10px 0;
+#programManagementTabs h4
+{
+    font-size: 24px;
+    font-weight: bold;
+
+    margin: 10px 0;
+    padding: 10px 0 0 0;
+
+    color: #e02926;
 }
-#programManagementTabs p {
-  padding: 0 0 10px 0;
-  margin: 0;
+#programManagementTabs p
+{
+    margin: 0;
+    padding: 0 0 10px 0;
 }
-#programManagementTabs input {
-  margin: 5px 0 15px 0;
-  max-width: 140px;
+#programManagementTabs input
+{
+    max-width: 140px;
+    margin: 5px 0 15px 0;
 }
-#programManagementTabs input.settings-name {
-  max-width: 580px;
+#programManagementTabs input.settings-name
+{
+    max-width: 580px;
 }
-#programManagementTabs select {
-  width: auto;
-  margin: 5px 0 15px 0;
-  min-width: 140px;
+#programManagementTabs select
+{
+    width: auto;
+    min-width: 140px;
+    margin: 5px 0 15px 0;
 }
-.program-button {
-  padding: 0;
-  margin: 0;
+.program-button
+{
+    margin: 0;
+    padding: 0;
 }
-.discountCodeLink {
-  font-weight: bold;
-  text-decoration: underline;
-  margin: 0;
-  padding: 0;
+.discountCodeLink
+{
+    font-weight: bold;
+
+    margin: 0;
+    padding: 0;
+
+    text-decoration: underline;
 }
-.discountCode {
-  width: 100%;
-  background: #eee;
-  padding: 20px;
+.discountCode
+{
+    width: 100%;
+    padding: 20px;
+
+    background: #eee;
 }
-.discountCode table, #parentHorizontalTab table {
-  width: 100%;
+.discountCode table,
+#parentHorizontalTab table
+{
+    width: 100%;
 }
-.discountCode table tr td:first-child, #parentHorizontalTab table tr td:first-child {
-  text-align: right;
-  vertical-align: middle;
-  padding: 0 15px 10px 0;
+.discountCode table tr td:first-child,
+#parentHorizontalTab table tr td:first-child
+{
+    padding: 0 15px 10px 0;
+
+    text-align: right;
+    vertical-align: middle;
 }
-.discountCode table tr td:nth-child(odd), #parentHorizontalTab table tr td:nth-child(odd) {
-  width: 40%;
+.discountCode table tr td:nth-child(odd),
+#parentHorizontalTab table tr td:nth-child(odd)
+{
+    width: 40%;
 }
-#parentHorizontalTab {
-  margin: 0;
-  padding: 0;
+#parentHorizontalTab table tr .adtl-offer-form-group-label
+{
+    width: 25% !important;
+
+    text-align: left !important;
 }
-.module table tr td:first-child {
-  vertical-align: middle;
-  padding: 0 15px 10px 0;
+#parentHorizontalTab table tr .adtl-offer-form-group-input
+{
+    width: 75% !important;
+
+    text-align: left !important;
 }
-.module table tr td:nth-child(odd) {
-  width: 30%;
+.adtlConfigForm
+{
+    margin-bottom: 1em;
 }
-.module table {
-  width: 100%;
+#parentHorizontalTab
+{
+    margin: 0;
+    padding: 0;
 }
-.sidebar p {
-  padding: 20px 0 10px 0;
+.module table tr td:first-child
+{
+    padding: 0 15px 10px 0;
+
+    vertical-align: middle;
 }
-.sidebar textarea {
-  text-align: left;
-  padding: 10px;
-  font-size: 14px;
-  line-height: 20px;
+.module table tr td:nth-child(odd)
+{
+    width: 30%;
 }
-.resp-tab-content {
-  margin: 0 0 20px 0;
-  width: 80%;
+.module table
+{
+    width: 100%;
 }
-.coupon-form {
-  float: left;
+.sidebar p
+{
+    padding: 20px 0 10px 0;
 }
-.coupon-form td {
-  vertical-align: sub;
+.sidebar textarea
+{
+    font-size: 14px;
+    line-height: 20px;
+
+    padding: 10px;
+
+    text-align: left;
 }
-.coupon-form td label {
-  margin-right: 1em;
+.resp-tab-content
+{
+    width: 80%;
+    margin: 0 0 20px 0;
 }
-.coupon-image {
-  float: left;
-  text-align: center;
-  width: 40%;
-  padding: 0 0 3px 0;
+.coupon-form
+{
+    float: left;
+
+    width: auto;
 }
-.coupon-form i {
-  color: red;
+.coupon-form td
+{
+    vertical-align: sub;
+}
+.coupon-form td label
+{
+    margin-right: 1em;
+}
+.coupon-image
+{
+    float: left;
+
+    width: 40%;
+    padding: 0 0 3px 0;
+
+    text-align: center;
+}
+.coupon-form i
+{
+    color: red;
 }
