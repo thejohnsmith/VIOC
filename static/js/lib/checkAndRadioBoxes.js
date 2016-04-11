@@ -110,6 +110,14 @@ var customCheckAndRadioBoxes = (function ($) {
 		return toggleBtns();
 	};
 	var customCheckbox = function () {
+		if (typeof customCheckAndRadioBoxes === 'function') {
+			
+			$('.disabled.disabled-checked').click(function () {
+				console.warn('click');
+				return;
+			});
+		}
+
 		$('.customCheckbox:not(".disabled") input:checkbox').each(function () {
 			$(this).parent().addClass('js-custom');
 			if ($(this).attr('checked') === 'checked') {
@@ -122,9 +130,14 @@ var customCheckAndRadioBoxes = (function ($) {
 				if ($(this).hasClass('checked')) {
 					$(this).removeClass('checked');
 					$(this).find($('input[type="checkbox"]')).prop('checked', '');
+					$('.program-select .js-trigger-enroll').addClass('input-disabled').attr('title', 'All Stores are Enrolled.');
+					if ($('.program-select .checked:not(".disabled")').length >= 1) {
+						$('.program-select .js-trigger-enroll').removeClass('input-disabled').attr('title', 'Clicking the Auto-Enroll button will result in all offers being set at the default settings');
+					}
 				} else {
 					$(this).addClass('checked');
 					$(this).find($('input[type="checkbox"]')).prop('checked', 'checked').focus();
+					$('.program-select .js-trigger-enroll').removeClass('input-disabled').attr('title', 'Clicking the Auto-Enroll button will result in all offers being set at the default settings');
 				}
 			}
 		});

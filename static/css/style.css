@@ -1169,7 +1169,7 @@ header .header-right a:hover
 {
     display: none;
 }
-.program-select--is-active-user .customCheckbox.disabled
+.program-select--is-active-user .customCheckbox.disabled, .program-select--is-active-user .customCheckbox.disabled.disabled-checked
 {
     background: none;
 }
