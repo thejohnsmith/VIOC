@@ -161,21 +161,7 @@ var getProgramParticipationStats = (function ($) {
 				function handleDashboardError (obj) {
 					return $programId.attr('class', programStatus.error).find('.program-status').html('&#9888;').attr('title', 'An error occurred');
 				}
-			}, enrollAllHandler());
-		},
-		enrollAllHandler = function () {
-			setTimeout(function () {
-				var enrollAllBtn = $('.program-select .js-trigger-enroll');
-				var allowEditingAll = $('.program-select .allowEditing.customCheckbox').length;
-				var allowEditingGreen = $('.program-select .status-green .allowEditing.customCheckbox').length;
-				var allowEditingYellow = $('.program-select .status-yellow .allowEditing.customCheckbox').length;
-				var allowEditingRed = $('.program-select .status-red .allowEditing.customCheckbox').length;
-
-				if (allowEditingAll === allowEditingGreen) {
-					console.warn('enrollAllHandler');
-					$('.program-select .js-trigger-enroll').addClass('input-disabled').attr('title', 'All Stores are Enrolled.');
-				}
-			}, 100);
+			});
 		},
 		setFirstProgramTabContent = function () {
 			var $initialFirstTab = $('#programSummary .program-list:first .program-overview-tab-content').html();

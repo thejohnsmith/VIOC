@@ -3,7 +3,7 @@
 // customCheckAndRadioBoxes.radio();
 var customCheckAndRadioBoxes = (function ($) {
 	var combinedHandlers = function () {
-		console.log("Firing combinedHandlers");
+		// console.log("Firing combinedHandlers");
 		$('.customCheckbox, .customRadiobox').each(function () {
 			$(this).addClass('js-custom');
 		});
@@ -64,13 +64,13 @@ var customCheckAndRadioBoxes = (function ($) {
 		 * @return {function} toggleBtns();
 		 */
 		function toggleBtns() {
-			console.log("Running toggleBtns");
+			// console.log("Running toggleBtns");
 
 			var $programId = getParameterByName('programId', window.location.href);
 			var $userId = marcomUserData.$user.externalId || {};
 
 			$('.cb-value').off('click.vioc').on('click.vioc', function (e) {
-				console.log("Firing checkbox click...");
+				// console.log("Firing checkbox click...");
 				e.preventDefault();
 				e.stopPropagation();
 				var $mainParent = $(this).parent('.toggle-btn');
@@ -110,14 +110,6 @@ var customCheckAndRadioBoxes = (function ($) {
 		return toggleBtns();
 	};
 	var customCheckbox = function () {
-		if (typeof customCheckAndRadioBoxes === 'function') {
-			
-			$('.disabled.disabled-checked').click(function () {
-				console.warn('click');
-				return;
-			});
-		}
-
 		$('.customCheckbox:not(".disabled") input:checkbox').each(function () {
 			$(this).parent().addClass('js-custom');
 			if ($(this).attr('checked') === 'checked') {
@@ -125,6 +117,9 @@ var customCheckAndRadioBoxes = (function ($) {
 			}
 		});
 		$('.customCheckbox:not(".disabled")').click(function () {
+			if ($(this).hasClass('disabled-checked')) {
+				return;
+			}
 			if (!$(this).children('input[type="checkbox"]').is('[readonly]')) {
 				$(this).find('input').trigger('change');
 				if ($(this).hasClass('checked')) {
@@ -144,7 +139,7 @@ var customCheckAndRadioBoxes = (function ($) {
 		combinedHandlers();
 	};
 	var customRadiobox = function () {
-		console.log("Firing customRadiobox");
+		// console.log("Firing customRadiobox");
 		$('input:radio').each(function () {
 			$(this).wrap('<div class="customRadiobox"></div>');
 			$(this).parent().append('<label>' + $(this).data('radiobox-label') + '</label>');
