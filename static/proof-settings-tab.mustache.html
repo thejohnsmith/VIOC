@@ -210,13 +210,14 @@
   </div>
   <script>
     var $j = jQuery;
-    var quantityLimitController = jQuery.extend({}, checkboxController.controller);
-    quantityLimitController.init('proof-settings', function(storeIds) {
-      var plural = (storeIds.length === 1) ? '' : 's';
-      $j('.proof-settings-footer')
-        .toggleClass('none', (storeIds.length < 2));
-      $j('.link-proof-bulk').focus();
-    });
-
+    setTimeout(function () {
+      var quantityLimitController = jQuery.extend({}, checkboxController.controller);
+      quantityLimitController.init('proof-settings', function(storeIds) {
+        var plural = (storeIds.length === 1) ? '' : 's';
+        $j('.proof-settings-footer')
+          .toggleClass('none', (storeIds.length < 2));
+        $j('.link-proof-bulk').focus();
+      });
+    }, 100);
   </script>
 </script>
