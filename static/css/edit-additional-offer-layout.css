@@ -29,6 +29,11 @@
 }
 #programManagementTabs input
 {
+    max-width: 140px;
+    margin: 5px 0 15px 0;
+}
+#programManagementTabs .btn
+{
   max-width: 140px;
   margin: 5px 0 15px 0;
   border-radius: 4px;

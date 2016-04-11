@@ -146,7 +146,7 @@ var getProgramParticipationStats = (function ($) {
 						// All stores participating : Green
 						if (obj.storesParticipating === obj.storesEligible) {
 							$programId.attr('class', programStatus.success);
-							$programId.find('.customCheckbox').addClass('disabled');
+							$programId.find('.customCheckbox').addClass('disabled disabled-checked');
 						}
 					}
 				}
@@ -175,7 +175,7 @@ var getProgramParticipationStats = (function ($) {
 					enrollAllBtn.addClass('input-disabled').attr('title', 'All Stores are Enrolled.');
 				}
 				if (allowEditingYellow >= 1 || allowEditingRed >= 1) {
-					enrollAllBtn.removeClass('input-disabled').attr('title', 'Auto-Enroll Your Stores In Selected Program(s)');
+					enrollAllBtn.removeClass('input-disabled').attr('title', 'Clicking the Auto-Enroll button will result in all offers being set at the default settings');
 				}
 			}, 100);
 		},
