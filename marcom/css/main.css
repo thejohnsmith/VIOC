@@ -1654,10 +1654,12 @@ header#nav
 {
     display: none;
 }
-.program-select--is-active-user .customCheckbox.disabled, .program-select--is-active-user .customCheckbox.disabled.disabled-checked
+.program-select--is-active-user .customCheckbox.disabled,
+.program-select--is-active-user .customCheckbox.disabled.disabled-checked
 {
-    background: none;
     cursor: default;
+
+    background: none;
 }
 .program-list .program-info > a
 {
@@ -1724,7 +1726,8 @@ header#nav
 
     background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAC4AAAAwCAQAAADEbIBXAAABZ0lEQVR4Ae2XtXbDMBRAy8zt5K0cnupJm6cGp1vm0P//QfEdxRjSeVMjTaJr+bHm/nebtVljAQ+fKve06X/3NvdU8fFYcAPvYHiln9FfMexMB94goEef4b1HwMak6DwfIUSXFoYKOXJUMLTohlY/yI8PXiQIHa1ywlJizxInVEO7AhbHQa/QtEcaHA3de0TD7m2yMvLWFt3mcqz/vKRt8cNvbwXyzOHYYjzkGRHOUDVa9M5kJmvx+Wzj+xCBhG897u3bYjkbw0VyOZVfXA4RDTviMo2p/bkhbpUUKUa+fDQ1/EgIJhGeJIZUnWJRVWLOQnTak6+eOMFPhOJFp32JIUtO8CWJOX50+vp3suUc/Vskhcu9qMKxiVncRybFBSrO8MqfG0YmRRE5Z3juj6QPVxeLvkJVTfFKyYn03V8zcOmFXP1kEUpzObc0p5qgFUsLxaJItZxTLESVS2j94l//2aL/4NJ/Kn4BmcJE7kaTy1kAAAAASUVORK5CYII=);
 }
-.customCheckbox.disabled.disabled-checked{
+.customCheckbox.disabled.disabled-checked
+{
     cursor: default;
 
     background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACIAAAAkCAYAAADsHujfAAACe0lEQVR4Ac3WRdKcQABH8Xzu7u7u7u5uDP+4yw1yjOQCuUCukFwub9GLKTINDWyGqt+O7n44z/Jh+/S3rCsfImbRlg8Rh/kQITTlQ8ROPkQIdakm8zyvBOUoSRGxlmThJszjBE9QliccYxYNjhEeKuMEdOEMiuEY7dYIYM41oBw7kMHmbaIftSgy+xWhDgPYRgYyNlGaI+IRpS4RdbiF4GMeZY4HUIEl+NCbn+OP2RHGqGvEI4Qr1Ce8mZte/5jIFXGJwqjBpbiBPP/xxP9wWZ72Ec2hy+UotiBcZV7clzNoGbUJImagoPe/m29dItoh+Gg0E3Yhg3EUOEZMQP/5Uy59O5WZOzTkEMJiYOJjCMeoTRSBt796L838O2ERtRB8VAYmb4GMDMZQECcC9y++bzUxt4xKW8gkhF3Lke5CWY5Q4xQBDJh1jiCM2EL2wnZgonoowMOoQ8RRjgPetIXcQGgKuf7rUEw+6nI8EOe2EB9CeUhIJTwohvnAOjUQHmwhMkoinoppyNEVigLrVEF4ijojFREhRbiBHLSEPJ0PUfdIs8MLq9vlkljW6YBwZgvZhTDq+PbcgSxOUWhZZxrChi1kAsK+Y0gFHqGAB1SHvDhPIAzZdqiGjGrHmH4oSwZtIRENEHzr0xl4qa3G+MquQPDQ5fhl34z66DVDRqtjSCEGURMxdycEH/UuvwJrEG7Bhyn9Zi77A4QF10HFuIRwgcq0EbiCcIqiuINvIdyiJWFEB+4hXKMi6ZFcQsYqqh3H1mIDMs5SnVlzmdagLHsYRTMqUIJKtGAch1CWZefL4RDUggMohl37v2n6oBpMYA838CH4uMYuxlCVdI1/LyFxnppAg7QAAAAASUVORK5CYII=);
@@ -2271,7 +2274,7 @@ input.bulk-apply-quantity-limit-input.form-control:focus:active
     float: right;
 
     border-color: rgba(63, 81, 181, .46);
-    border-radius: 3px;
+    border-radius: 4px;
     background-color: rgb(14, 163, 221);
 }
 .proof-settings-tab-section.programsummary-table .store-materials-footer .btn.btn-small
@@ -2653,7 +2656,7 @@ input.bulk-apply-quantity-limit-input.form-control:focus:active
     text-align: center;
 
     color: #555;
-    border-radius: 0;
+    border-radius: 4px;
     background: #fff;
     box-shadow: none;
 }
@@ -4725,12 +4728,12 @@ fieldset[disabled] .btn-default.focus
     border-color: #2e6da4;
     border-color: rgba(63, 81, 181, .46);
     background-color: #337ab7;
-    border-radius: 0;
 }
 .programsummary-table th.store-enroll .btn-primary
 {
     font-size: 13px;
 
+    min-width: 70px;
     margin: 5px 0;
     padding: 2px 4px;
 
@@ -5064,7 +5067,7 @@ fieldset[disabled] .btn-danger.focus
     font-weight: normal;
 
     color: #337ab7;
-    border-radius: 0;
+    border-radius: 4px;
 }
 .btn-link,
 .btn-link:active,
@@ -5107,7 +5110,7 @@ fieldset[disabled] .btn-link:focus
 
     padding: 10px 16px;
 
-    border-radius: 0;
+    border-radius: 4px;
 }
 .btn-sm,
 .btn-group-sm > .btn
@@ -5117,7 +5120,7 @@ fieldset[disabled] .btn-link:focus
 
     padding: 5px 10px;
 
-    border-radius: 0;
+    border-radius: 4px;
 }
 .btn-xs,
 .btn-group-xs > .btn
@@ -5127,7 +5130,7 @@ fieldset[disabled] .btn-link:focus
 
     padding: 1px 5px;
 
-    border-radius: 0;
+    border-radius: 4px;
 }
 .btn-block
 {

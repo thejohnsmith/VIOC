@@ -150,6 +150,22 @@ var programManagementController = (function ($) {
 		attachEventListeners: function () {
 			// Attach events
 			var controller = this;
+
+
+			/** Delete Link - counts how many programs are using the target config
+				If 0 stores, just prompt "Are you sure you want to delete these settings?"
+				If 1+ stores, prompt "<x> store(s) are using these settings and will be adjusted to use corporate defaults.
+				Are you sure you want to delete these settings?".
+				Once deletion is confirmed, call /deleteConfig.jssp?userId=34567&configId=<x>
+			*/
+			$('.program-delete-link').on('click', function (e) {
+				e.preventDefault;
+				console.warn('program-delete-link clicked');
+				// get target config ID from selected dropdown.
+				// Get number of programs using target config ID.
+				// Show modal window
+			});
+
 			$('.store-level-dropdown').on('change', function () {
 				var storeId = $(this).attr('data-storeid');
 				var configId = $(this).val();
