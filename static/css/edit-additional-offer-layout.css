@@ -43,7 +43,7 @@
 }
 #programManagementTabs input.settings-name
 {
-    max-width: 580px;
+    margin:  0;
 }
 #programManagementTabs select
 {

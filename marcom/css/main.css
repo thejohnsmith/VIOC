@@ -4725,6 +4725,7 @@ fieldset[disabled] .btn-default.focus
     border-color: #2e6da4;
     border-color: rgba(63, 81, 181, .46);
     background-color: #337ab7;
+    border-radius: 0;
 }
 .programsummary-table th.store-enroll .btn-primary
 {
@@ -5106,7 +5107,7 @@ fieldset[disabled] .btn-link:focus
 
     padding: 10px 16px;
 
-    border-radius: 6px;
+    border-radius: 0;
 }
 .btn-sm,
 .btn-group-sm > .btn
@@ -5116,7 +5117,7 @@ fieldset[disabled] .btn-link:focus
 
     padding: 5px 10px;
 
-    border-radius: 3px;
+    border-radius: 0;
 }
 .btn-xs,
 .btn-group-xs > .btn
@@ -5126,7 +5127,7 @@ fieldset[disabled] .btn-link:focus
 
     padding: 1px 5px;
 
-    border-radius: 3px;
+    border-radius: 0;
 }
 .btn-block
 {
