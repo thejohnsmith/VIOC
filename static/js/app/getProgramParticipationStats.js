@@ -158,24 +158,22 @@ var getProgramParticipationStats = (function ($) {
 				// Handle errors
 				// Color : Gray
 				// Displays warning symbol '⚠'
-				function handleDashboardError(obj) {
+				function handleDashboardError (obj) {
 					return $programId.attr('class', programStatus.error).find('.program-status').html('&#9888;').attr('title', 'An error occurred');
 				}
 			}, enrollAllHandler());
 		},
 		enrollAllHandler = function () {
 			setTimeout(function () {
-				var enrollAllBtn = $('.js-trigger-enroll');
-				var allowEditingAll = $('.allowEditing.customCheckbox').length;
-				var allowEditingGreen = $('.allowEditing.customCheckbox').length;
-				var allowEditingYellow = $('.status-yellow .allowEditing.customCheckbox').length;
-				var allowEditingRed = $('.status-red .allowEditing.customCheckbox').length;
+				var enrollAllBtn = $('.program-select .js-trigger-enroll');
+				var allowEditingAll = $('.program-select .allowEditing.customCheckbox').length;
+				var allowEditingGreen = $('.program-select .status-green .allowEditing.customCheckbox').length;
+				var allowEditingYellow = $('.program-select .status-yellow .allowEditing.customCheckbox').length;
+				var allowEditingRed = $('.program-select .status-red .allowEditing.customCheckbox').length;
 
 				if (allowEditingAll === allowEditingGreen) {
-					enrollAllBtn.addClass('input-disabled').attr('title', 'All Stores are Enrolled.');
-				}
-				if (allowEditingYellow >= 1 || allowEditingRed >= 1) {
-					enrollAllBtn.removeClass('input-disabled').attr('title', 'Clicking the Auto-Enroll button will result in all offers being set at the default settings');
+					console.warn('enrollAllHandler');
+					$('.program-select .js-trigger-enroll').addClass('input-disabled').attr('title', 'All Stores are Enrolled.');
 				}
 			}, 100);
 		},
