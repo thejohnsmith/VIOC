@@ -1282,16 +1282,7 @@ header#nav
 .config-select.config-select-program > td,
 .config-select.config-select-additional > td
 {
-    width: 100%;
-}
-
-@media all and (max-width:799px)
-{
-    .config-select.config-select-program > td,
-    .config-select.config-select-additional > td
-    {
-        width: 70%;
-    }
+    width: 70%;
 }
 .participation-table tr,
 .participation-table .tr
@@ -3742,11 +3733,11 @@ button.toast-close-button
     }
     header .header-top .header-left
     {
-        width: 85%;
+        width: 70%;
     }
     header .header-right
     {
-        width: 15%;
+        width: 30%;
     }
     .enumenu_ul li a,
     ul.navBarEnhanced a

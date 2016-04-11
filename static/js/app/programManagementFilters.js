@@ -122,9 +122,9 @@ programManagementFilters.controller.init();
 
 programManagementFilters.controller.onFilterChange = function (store_ids) {
 	var $j = jQuery;
-	$j('.filterable').hide();
+	$j('.filterable').addClass('hide');
 	for (var i = 0; i < store_ids.length; i++) {
 		var storeId = store_ids[i];
-		$j('tr[data-filter-storeid=' + storeId + ']').show();
+		$j('tr[data-filter-storeid=' + storeId + ']').removeClass('hide');
 	}
 };

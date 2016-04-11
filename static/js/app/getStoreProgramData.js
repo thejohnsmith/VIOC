@@ -127,7 +127,7 @@ var getStoreProgramData = (function ($) {
 			/**
 			 * Calculate the grand total for Email, DM and SMS from all stores enrolled.
 			 **/
-			$('.store-item[data-enrolled="true"] .store-counts .' + e).each(function () {
+			$('.filterable:not("hide") .store-item[data-enrolled="true"] .store-counts .' + e).each(function () {
 				newSum += parseFloat($(this).text());
 			}).promise().done(function () {
 				$('.grand-total .' + e).text(newSum);
@@ -136,7 +136,7 @@ var getStoreProgramData = (function ($) {
 			 * Calculate grand total for Estimated Monthly Cost.
 			 * Adds currecy decimal places
 			 **/
-			$('.store-item[data-enrolled="true"] .store-cost .costEstimateTotal').each(function () {
+			$('.filterable:not("hide") .store-item[data-enrolled="true"] .store-cost .costEstimateTotal').each(function () {
 				newCostSum += parseFloat($(this).text());
 			}).promise().done(function () {
 				$('.grand-total .costEstimateTotal').text(newCostSum.toFixed(2));
