@@ -1172,6 +1172,7 @@ header .header-right a:hover
 .program-select--is-active-user .customCheckbox.disabled, .program-select--is-active-user .customCheckbox.disabled.disabled-checked
 {
     background: none;
+    cursor: default;
 }
 .program-list .program-info > a
 {
