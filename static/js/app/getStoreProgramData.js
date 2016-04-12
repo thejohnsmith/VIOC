@@ -2,7 +2,10 @@ var getStoreProgramData = (function ($) {
 	/* Use getHashParams.js to get programId */
 	var $programId = getParameterByName('programId', window.location.href);
 	var marcomFilePath = marcomUserData.$constants.marcomFilePath;
+	var storeProgramData = null;
+
 	var makeRequest = function () {
+			var controller = this;
 			// Make sure there's a User ID loaded from Marcom before we Init this script.
 			if (marcomUserData.$user.externalId === '%%User.ExternalId%%' || $programId === undefined || $programId === null) {
 				return;
@@ -21,47 +24,43 @@ var getStoreProgramData = (function ($) {
 					'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
 				}
 			}).done(function (result) {
+				controller.storeProgramData = result;
 				loadStoreProgramData(result);
 			}).fail(function () {
 				requestFailed();
 			});
 		},
 		loadStoreProgramData = function (result) {
-			if ($('.program-enrollment-section').length) {
-				$.get(marcomFilePath + 'program-enrollment.mustache.html', function (templates) {
-					var template = $(templates).filter('.program-enrollment-template').html();
-					$('.program-enrollment-section').html(Mustache.render(template, result));
+			$.get(marcomFilePath + 'program-enrollment.mustache.html', function (templates) {
+				var template = $(templates).filter('.program-enrollment-template').html();
+				$('.program-enrollment-section').html(Mustache.render(template, result));
 
-					// Set the initial state of the toggle buttons.
-					if ($('[data-enrolled="true"] .toggle-btn')) {
-						$('[data-enrolled="true"] .toggle-btn').addClass('active').prop('checked', 'checked');
-					}
-				}).done(function () {
-					return getTotals(result);
-				});
-			}
-			if ($('.program-settings-section').length) {
-				$.get(marcomFilePath + 'program-settings.mustache.html', function (templates) {
-					var template2 = $(templates).filter('.program-settings-template').html();
-					$('.program-settings-section').html(Mustache.render(template2, result));
-					return reloadCheckBoxes();
-				}).done(function () {
-					return setHashLinks(),
-						programSettingsHandler();
-				}).promise().done(function () {
-					programManagementController.controller.init();
-				});
-			}
-			if ($('.proof-settings-tab-section').length) {
-				$.get(marcomFilePath + 'proof-settings-tab.mustache.html', function (templates) {
-					var template3 = $(templates).filter('.proof-settings-tab-template').html();
-					$('.proof-settings-tab-section').html(Mustache.render(template3, result));
-					return;
-				}).done(function () {
+				// Set the initial state of the toggle buttons.
+				if ($('[data-enrolled="true"] .toggle-btn')) {
+					$('[data-enrolled="true"] .toggle-btn').addClass('active').prop('checked', 'checked');
+				}
+			}).done(function () {
+				return getTotals(result);
+			});
+			$.get(marcomFilePath + 'program-settings.mustache.html', function (templates) {
+				var template2 = $(templates).filter('.program-settings-template').html();
+				$('.program-settings-section').html(Mustache.render(template2, result));
+				return reloadCheckBoxes();
+			}).done(function () {
+				return setHashLinks(),
 					programSettingsHandler();
-					return;
-				});
-			}
+			}).promise().done(function () {
+				programManagementController.controller.init();
+				programManagementFilters.controller.onFilterChange(programManagementFilters.controller.store_ids)
+			});
+			$.get(marcomFilePath + 'proof-settings-tab.mustache.html', function (templates) {
+				var template3 = $(templates).filter('.proof-settings-tab-template').html();
+				$('.proof-settings-tab-section').html(Mustache.render(template3, result));
+				return;
+			}).done(function () {
+				programSettingsHandler();
+				return;
+			});
 			if ($('.quantity-limit-tab-section').length) {
 				$.get(marcomFilePath + 'quantity-limit-tab.mustache.html', function (templates) {
 					var template4 = $(templates).filter('.quantity-limit-tab-template').html();
@@ -127,16 +126,18 @@ var getStoreProgramData = (function ($) {
 			/**
 			 * Calculate the grand total for Email, DM and SMS from all stores enrolled.
 			 **/
-			$('.store-item[data-enrolled="true"] .store-counts .' + e).each(function () {
+			$('.filterable:visible .store-item[data-enrolled="true"] .store-counts .' + e).each(function () {
+				// console.log("Adding " + parseFloat($(this).text()) + " to " + e + " sum.");
 				newSum += parseFloat($(this).text());
 			}).promise().done(function () {
+				// console.log(e + " grand total is now : " + newSum);
 				$('.grand-total .' + e).text(newSum);
 			});
 			/**
 			 * Calculate grand total for Estimated Monthly Cost.
 			 * Adds currecy decimal places
 			 **/
-			$('.store-item[data-enrolled="true"] .store-cost .costEstimateTotal').each(function () {
+			$('.filterable:visible .store-item[data-enrolled="true"] .store-cost .costEstimateTotal').each(function () {
 				newCostSum += parseFloat($(this).text());
 			}).promise().done(function () {
 				$('.grand-total .costEstimateTotal').text(newCostSum.toFixed(2));
@@ -145,7 +146,7 @@ var getStoreProgramData = (function ($) {
 		requestFailed = function () {
 			$('.program-select').html('There was a problem fetching your programs.' + 'Please check back again later.');
 			$('.alert-container').html('<div class="alert-main alert-danger">Error: There was a problem loading the store data.</div>').fadeIn();
-			return console.warn('An internal error has occurred.');
+			return toastr.warning('An internal error has occurred.');
 		};
 	return {
 		makeRequest: makeRequest,
