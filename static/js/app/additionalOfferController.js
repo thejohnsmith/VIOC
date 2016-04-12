@@ -52,7 +52,7 @@ var additionalOfferController = (function ($) {
 		 * @var {string} configId
 		 * @var {string} userId
 		 * @return callback
-		 * Call https://adobe-uat-vioc.epsilon.com/jssp/vioc/loadConfig.jssp?userId=34567&configId=10
+		 * Call https://adobe-uat-vioc.epsilon.com/jssp/vioc/loadConfig.jssp?userId=Zz0fUjXHHr66NXRFDs&configId=10
 		 * Stick the data into controller.config
 		 * Fire the callback
 		 */

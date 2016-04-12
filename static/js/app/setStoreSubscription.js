@@ -1,7 +1,7 @@
 /** Set Store Subscription
  * @overview Subscribes or unsubscribes a store to/from a program
- * Usage: setStoreSubscription.makeRequest(34567, 1, 1, 1);
- * example: https://adobe-uat-vioc.epsilon.com/jssp/vioc/setStoreSubscription.jssp?userId=34567&storeIds=1&programId=1&subscribe=1
+ * Usage: setStoreSubscription.makeRequest(Zz0fUjXHHr66NXRFDs, 1, 1, 1);
+ * example: https://adobe-uat-vioc.epsilon.com/jssp/vioc/setStoreSubscription.jssp?userId=Zz0fUjXHHr66NXRFDs&storeIds=1&programId=1&subscribe=1
  * Find a vioc:user by userId
  * Insert or delete a vioc:programSubscription entry.
  * @param {object} data.userId	098f6bcd4621d373cade4e832627b4f6	The caller's unique Franchisee ID.

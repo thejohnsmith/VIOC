@@ -7,9 +7,6 @@ var programManagementFilters = (function ($) {
 		onFilterChange: null,
 		init: function () {
 			var controller = this;
-			if (!(controller.user_id > 0)) {
-				console.error('Valid user ID not provided to controller.');
-			}
 			$('.filter-select').hide();
 			$('.filter-reset').on('click', $.proxy(controller.resetFilters, controller));
 			controller.getStoreTree(function (store_tree) {
@@ -127,4 +124,5 @@ programManagementFilters.controller.onFilterChange = function (store_ids) {
 		var storeId = store_ids[i];
 		$j('tr[data-filter-storeid=' + storeId + ']').removeClass('hide');
 	}
+	getStoreProgramData.getTotals(getStoreProgramData.storeProgramData)
 };

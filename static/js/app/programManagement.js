@@ -16,9 +16,6 @@ var programManagementController = (function ($) {
 		program_id: getParameterByName('programId', window.location.href),
 		init: function () {
 			var controller = this;
-			if (!(controller.user_id > 0)) {
-				console.log('Valid user ID not provided to controller.');
-			}
 			/* If this program doesn't use Additional Offers (aka Adtl), hide
 			the Additional Offer column and management controls */
 			controller.retrieveUserConfigs(function (configs) {
@@ -122,6 +119,7 @@ var programManagementController = (function ($) {
 			}
 		},
 		refreshManagementControls: function () {
+			var controller = this;
 			$('.management-dropdown').each(function () {
 				var $selectedMgmg = $(this).find(':selected');
 				var configId = $selectedMgmg.val();
@@ -131,12 +129,46 @@ var programManagementController = (function ($) {
 				var $baseUrl = $editLink.attr('data-baseUrl');
 				var defaultMgmg = /Default/.test($selectedMgmgText);
 
+				$deleteLink.off().on('click', function () {
+					var selectedConfigId = $selectedMgmg.val();
+					var isProgram = $selectedMgmg.parent().hasClass('program-dropdown');
+					var targetClass = (isProgram) ? '.program-dropdown' : '.adtl-dropdown';
+					var storeCount = 0;
+					$.each($('.store-level-dropdown' + targetClass), function (i, e) {
+						if ($(e).val() == selectedConfigId) storeCount++;
+					});
+
+					// console.log("Clicked delete on config " + $selectedMgmg.val() + ".  Stores using this config: " + storeCount);
+
+					if (confirm('Are you sure you want to delete these settings?')) {
+						// Do AJAX
+						$.get(controller.apiPath + 'deleteConfig.jssp?userId=' + controller.user_id + '&configId=' + selectedConfigId, function (results) {
+							try {
+								var json_results = JSON.parse(results);
+								controller.store_data = json_results;
+								if (typeof callback == 'function') callback(json_results);
+							} catch (e) {
+								toastr.error('Failed to parse JSON:' + e);
+							}
+						}).error(function (data) {
+							toastr.error('Failed to delete settings.');
+						});
+					}
+					/**
+						If 0 stores, just prompt "Are you sure you want to delete these settings?"
+						If 1+ stores, prompt "<x> store(s) are using these settings and will be adjusted to use corporate defaults.
+						Are you sure you want to delete these settings?".
+						Once deletion is confirmed, call /deleteConfig.jssp?userId=Zz0fUjXHHr66NXRFDs&configId=<x>
+					*/
+
+				});
+
 				// Update the Edit/View links
 				$editLink.attr('href', $baseUrl + '&configId=' + configId + '&programId=' + controller.program_id);
 
 				// Corporate Default configs are read-only - swap View and Edit links.
 				if (defaultMgmg) {
-					$deleteLink.addClass('hidden');
+					//$deleteLink.addClass('hidden');
 					$editLink.text('View');
 				} else {
 					// Show Delete link
@@ -151,13 +183,6 @@ var programManagementController = (function ($) {
 			// Attach events
 			var controller = this;
 
-
-			/** Delete Link - counts how many programs are using the target config
-				If 0 stores, just prompt "Are you sure you want to delete these settings?"
-				If 1+ stores, prompt "<x> store(s) are using these settings and will be adjusted to use corporate defaults.
-				Are you sure you want to delete these settings?".
-				Once deletion is confirmed, call /deleteConfig.jssp?userId=34567&configId=<x>
-			*/
 			$('.program-delete-link').on('click', function (e) {
 				e.preventDefault;
 				console.warn('program-delete-link clicked');
@@ -342,7 +367,7 @@ var programManagementController = (function ($) {
 		},
 		saveQuantityMeta(selectedStores, quantityLimit, callback) {
 			/**
-			 * @example API CALL https://adobe-uat-vioc.epsilon.com/jssp/vioc/setStoreMeta.jssp?userId=34567&storeIds=1,2,3&quantity_limit=1000
+			 * @example API CALL https://adobe-uat-vioc.epsilon.com/jssp/vioc/setStoreMeta.jssp?userId=Zz0fUjXHHr66NXRFDs&storeIds=1,2,3&quantity_limit=1000
 			 */
 			var controller = this;
 			var stringStoreIds = selectedStores.join(',');
@@ -367,7 +392,7 @@ var programManagementController = (function ($) {
 		},
 		saveProofMeta(selectedStores, proofType, proofVal, callback) {
 			/**
-			 * @example API CALL https://adobe-uat-vioc.epsilon.com/jssp/vioc/setStoreMeta.jssp?userId=34567&storeIds=1,2,3&proofSettings=1
+			 * @example API CALL https://adobe-uat-vioc.epsilon.com/jssp/vioc/setStoreMeta.jssp?userId=Zz0fUjXHHr66NXRFDs&storeIds=1,2,3&proofSettings=1
 			 */
 			var controller = this;
 			var stringStoreIds = selectedStores.join(',');
