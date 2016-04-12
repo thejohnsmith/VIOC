@@ -118,9 +118,15 @@ var programManagementController = (function ($) {
 				}
 			}
 		},
+
+
+/* @TODO Use proper default management value!!! */
+
 		refreshManagementControls: function () {
 			var controller = this;
 			$('.management-dropdown').each(function () {
+
+
 				var $selectedMgmg = $(this).find(':selected');
 				var configId = $selectedMgmg.val();
 				var $selectedMgmgText = $selectedMgmg.text();
@@ -129,38 +135,29 @@ var programManagementController = (function ($) {
 				var $baseUrl = $editLink.attr('data-baseUrl');
 				var defaultMgmg = /Default/.test($selectedMgmgText);
 
-				$deleteLink.off().on('click', function () {
+
+				console.warn('controller.user_configs[0].corpDefault: ' + controller.user_configs[0].corpDefault);
+
+				$deleteLink.off().on('click', function (e) {
+					e.preventDefault;
 					var selectedConfigId = $selectedMgmg.val();
 					var isProgram = $selectedMgmg.parent().hasClass('program-dropdown');
 					var targetClass = (isProgram) ? '.program-dropdown' : '.adtl-dropdown';
 					var storeCount = 0;
+
 					$.each($('.store-level-dropdown' + targetClass), function (i, e) {
 						if ($(e).val() == selectedConfigId) storeCount++;
 					});
-
 					// console.log("Clicked delete on config " + $selectedMgmg.val() + ".  Stores using this config: " + storeCount);
-
-					if (confirm('Are you sure you want to delete these settings?')) {
-						// Do AJAX
-						$.get(controller.apiPath + 'deleteConfig.jssp?userId=' + controller.user_id + '&configId=' + selectedConfigId, function (results) {
-							try {
-								var json_results = JSON.parse(results);
-								controller.store_data = json_results;
-								if (typeof callback == 'function') callback(json_results);
-							} catch (e) {
-								toastr.error('Failed to parse JSON:' + e);
-							}
-						}).error(function (data) {
-							toastr.error('Failed to delete settings.');
-						});
+					if (storeCount == 0) {
+						if (confirm('Are you sure you want to delete these settings?')) {
+							controller.deleteSettings();
+						}
+					} else {
+						if (confirm(storeCount + ' store(s) are using these settings and will be adjusted to use corporate defaults.' + ' Are you sure you want to delete these settings?')) {
+							controller.deleteSettings();
+						}
 					}
-					/**
-						If 0 stores, just prompt "Are you sure you want to delete these settings?"
-						If 1+ stores, prompt "<x> store(s) are using these settings and will be adjusted to use corporate defaults.
-						Are you sure you want to delete these settings?".
-						Once deletion is confirmed, call /deleteConfig.jssp?userId=Zz0fUjXHHr66NXRFDs&configId=<x>
-					*/
-
 				});
 
 				// Update the Edit/View links
@@ -168,7 +165,6 @@ var programManagementController = (function ($) {
 
 				// Corporate Default configs are read-only - swap View and Edit links.
 				if (defaultMgmg) {
-					//$deleteLink.addClass('hidden');
 					$editLink.text('View');
 				} else {
 					// Show Delete link
@@ -177,20 +173,26 @@ var programManagementController = (function ($) {
 				}
 			});
 		},
+		deleteSettings: function () {
+			$.get(controller.apiPath + 'deleteConfig.jssp?userId=' + controller.user_id + '&configId=' + selectedConfigId, function (results) {
+				try {
+					var json_results = JSON.parse(results);
+					controller.store_data = json_results;
+					if (typeof callback == 'function') callback(json_results);
+				} catch (e) {
+					toastr.error('Failed to parse JSON:' + e);
+				}
+			}).error(function (data) {
+				toastr.error('Failed to delete settings.');
+			}).done(function (data) {
+				toastr.success('Settings saved!');
+			});
+		},
 		showSuccessToast: function () {},
 		showFailToast: function () {},
 		attachEventListeners: function () {
 			// Attach events
 			var controller = this;
-
-			$('.program-delete-link').on('click', function (e) {
-				e.preventDefault;
-				console.warn('program-delete-link clicked');
-				// get target config ID from selected dropdown.
-				// Get number of programs using target config ID.
-				// Show modal window
-			});
-
 			$('.store-level-dropdown').on('change', function () {
 				var storeId = $(this).attr('data-storeid');
 				var configId = $(this).val();
