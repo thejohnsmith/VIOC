@@ -1,3 +1,4 @@
+// Example usage: checkboxController.controller.init('program-settings', function(storeIds) { console.log(storeIds) });
 var checkboxController = (function ($) {
 	var controller = {
 		storeIds: [],
@@ -13,18 +14,18 @@ var checkboxController = (function ($) {
 		attachEventHandlers: function () {
 			var controller = this;
 			var $selectAll = $('.programsummary-table .' + controller.cssFamily + '.select-all');
-			var $checkBox = $('.programsummary-table .' + controller.cssFamily + '.customCheckbox:not(.disabled-input)');
+			var $checkBox = $('.programsummary-table .' + controller.cssFamily + '.vioc-checkbox');
 
 			/* Select All */
 			$selectAll.on('click', function (event) {
 				event.preventDefault();
-				if ($(this).is('.activate')) {
-					// console.log('Button says Select All.  Checking ' + $checkBox.length + ' boxes.');
+				if ($(this).hasClass('activate')) {
+					console.log('Button says Select All.  Checking ' + $checkBox.length + ' boxes.');
 					$checkBox.each(function () {
 						$(this).addClass('checked');
 					});
 				} else {
-					// console.log('Button says Unselect All.  Unchecking ' + $checkBox.length + ' boxes...');
+					console.log('Button says Unselect All.  Unchecking ' + $checkBox.length + ' boxes...');
 					$checkBox.each(function () {
 						$(this).removeClass('checked');
 					});
@@ -33,7 +34,21 @@ var checkboxController = (function ($) {
 			});
 
 			/* Checkbox Select */
-			$checkBox.on('click', function (e) {
+			$checkBox.off('click').on('click', function (e) {
+
+				// TODO - add code that looks at the current state and flips to the other
+				// ??? Maybe I need to update the hidden input as well ???
+				if ($(e.target).hasClass("disabled")) return; // If it's disabled, ignore the click.
+
+				if ($(e.target).hasClass("checked"))
+				{
+					$(e.target).removeClass("checked"); // Toggle off
+				}
+				else
+				{
+					$(e.target).addClass("checked"); // Toggle on
+				}
+
 				setTimeout(function () {
 					controller.recalculateSelectedStores();
 				}, 100);
@@ -43,13 +58,14 @@ var checkboxController = (function ($) {
 		recalculateSelectedStores: function () {
 			var controller = this;
 			controller.storeIds = [];
-			$.each($('.programsummary-table .' + controller.cssFamily + '.customCheckbox.checked'), function (i, e) {
+			$.each($('.programsummary-table .' + controller.cssFamily + '.vioc-checkbox.checked'), function (i, e) {
 				var storeId = $(e).attr('data-storeid');
 				// console.log('Recalculating. Store selected: ' + storeId);
 				controller.storeIds.push(storeId);
 			});
 			// console.log('Changing store list for ' + controller.cssFamily);
 			if (typeof controller.onChange === 'function') {
+				console.log(controller.storeIds);
 				controller.onChange(controller.storeIds);
 			}
 			controller.updateSelectAllButton();
@@ -59,7 +75,7 @@ var checkboxController = (function ($) {
 			var controller = this;
 			var $selectAll = $('.programsummary-table .' + controller.cssFamily + '.select-all');
 			// Get the count of the visible store checkboxes
-			var visible_store_count = $('.programsummary-table .' + controller.cssFamily + '.customCheckbox:not(.disabled-input)').length;
+			var visible_store_count = $('.programsummary-table .' + controller.cssFamily + '.vioc-checkbox:not(.disabled-input)').length;
 			// Determine if it should say 'Select All' or 'Unselect All'
 			var unselectAll = (controller.storeIds.length === visible_store_count);
 

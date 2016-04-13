@@ -39,10 +39,13 @@
     padding: 6px 12px;
 
     color: #fff;
+    border: 1px solid #337ab7;
+    border-radius: 4px;
+    background-color: #0ea3dd;
 }
 #programManagementTabs input.settings-name
 {
-    margin:  0;
+    margin: 0;
 }
 #programManagementTabs select
 {

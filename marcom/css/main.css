@@ -2321,6 +2321,7 @@ input.bulk-apply-quantity-limit-input.form-control:focus:active
 .proof-settings-tab-section.programsummary-table .store-proof-address
 {
     width: 32%;
+    padding: 0;
 }
 .proof-settings-tab-section.programsummary-table .store-proof-address > *
 {

@@ -70,7 +70,7 @@ var customCheckAndRadioBoxes = (function ($) {
 			var $userId = marcomUserData.$user.externalId || {};
 
 			$('.cb-value').off('click.vioc').on('click.vioc', function (e) {
-				// console.log("Firing checkbox click...");
+				console.log("Firing checkbox click...");
 				e.preventDefault();
 				e.stopPropagation();
 				var $mainParent = $(this).parent('.toggle-btn');
