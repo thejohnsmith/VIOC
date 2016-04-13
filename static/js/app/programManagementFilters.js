@@ -119,10 +119,49 @@ programManagementFilters.controller.init();
 
 programManagementFilters.controller.onFilterChange = function (store_ids) {
 	var $j = jQuery;
+
+	// Hide all rows and then reshow the ones matching the filter
 	$j('.filterable').addClass('hide');
 	for (var i = 0; i < store_ids.length; i++) {
 		var storeId = store_ids[i];
 		$j('tr[data-filter-storeid=' + storeId + ']').removeClass('hide');
 	}
+
+	// See if any checkboxes need to be unchecked
+	var class_checklist = [];
+
+	$j.each($j(".vioc-checkbox"),function(i,e) {
+
+		if (!$j(e).is(":visible") && $j(e).hasClass('checked'))
+		{
+			$j(e).removeClass('checked');
+		}
+
+		// Click the first checkbox in each family of checkboxes to trigger their store recalculation,
+		// which may hide/show/update footers.
+
+		// See what classes are on our current checkbox and tokenize them
+		var ok_to_click = true;
+
+		$j.each($j(e).attr('class').split(" "), function(i,class_name) {
+			if ($j.inArray(class_name, class_checklist) > -1)
+					ok_to_click = false;
+			// Add the classes used to our checklist
+			class_checklist.push(class_name);
+		});
+
+		// If the button has a class that is new to us, trigger a click
+		if (ok_to_click)
+		{
+			console.log("Triggering a click on %o", e);
+			$j(e).trigger('click');
+		}
+	});
+
+	// Recalculate stuff
 	getStoreProgramData.getTotals(getStoreProgramData.storeProgramData)
+
+
+
+
 };

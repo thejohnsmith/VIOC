@@ -62,16 +62,16 @@
                 <td>
                   <table>
                     <tr class="store-item" data-enrolled="{{#enrolled}}true{{/enrolled}}{{^enrolled}}false{{/enrolled}}">
-                      <td class="checkbox-td" style="padding: 10px 0 ">
-                        <div class="checkbox-area" data-enrolled="">
-                          <div data-storeId="{{storeId}}" class="proof-settings customCheckbox js-all-selectable {{^enrolled}}disabled-input{{/enrolled}}">
-                            <input {{^enrolled}}readonly{{/enrolled}} data-checkbox-label="" type="checkbox">
+                      <td class="checkbox-td">
+                        <div class="checkbox-area">
+                          <div data-storeId="{{storeId}}" class="proof-settings vioc-checkbox {{^enrolled}}disabled{{/enrolled}}">
+                            <input {{^enrolled}}readonly{{/enrolled}} type="checkbox">
                           </div>
                         </div>
                       </td>
                       <td class="store {{^enrolled}}dim-mid{{/enrolled}}">{{storeName}}
                         <br>
-                        <div class="store-number">Store #{{storeId}}</div>
+                        <div class="store-number">Store #{{storeNumber}}</div>
                       </td>
                       <td class="store-materials {{^enrolled}}dim-mid{{/enrolled}}">
                         <table class="inner-table">
@@ -129,95 +129,67 @@
             </table>
           </td>
         </tr>
-        <tr class="mobile-info-{{storeId}}">
+        {{/.}}
+        <tr>
           <td>
-            <table class="mobile-table">
-              <tr>
-                <td class="store-label">Store #</td>
-                <td class="store-info">{{storeId}}</td>
-              </tr>
-              {{#hasEmail}}
-              <tr>
-                <td class="store-label">Recipients in Email Channel:</td>
-                <td class="store-info">{{channelEmail}}</td>
-              </tr>
-              {{/hasEmail}} {{#hasDM}}
-              <tr>
-                <td class="store-label">Recipients in DM Channel:</td>
-                <td class="store-info">{{channelDM}}</td>
-              </tr>{{/hasDM}} {{#hasSMS}}
-              <tr>
-                <td class="store-label">Recipients in SMS Channel:</td>
-                <td class="store-info">{{channelSMS}}</td>
-              </tr>
-              {{/hasSMS}}
-              <tr>
-                <td class="store-label">Estimated Monthly Cost:</td>
-                <td class="store-info">{{costEstimate}}</td>
-              </tr>
+            <table>
+              <tbody class="proof-settings-footer">
+                <tr>
+                  <th class="store-enroll" style="padding:0">
+                    <button class="hidden not-active btn btn-primary btn-sm">Select All</button>
+                  </th>
+                  <th class="store" style="padding: 0;width: 26%;">Request a proof for the <x> selected stores:</th>
+                  <th class="store-materials table-header" style="padding:11px 0">
+                  <p class="none">PREFERENCES BY CHANNEL</p>
+                  <table class="inner-table">
+                    <tbody class="bulk-apply-proofSettings">
+                    <tr class="header-row">
+                    <td class="hasEmail">
+                      <select data-prooftype="emProofSettings" class="link-proof link-proof-bulk form-control" title="Choose Monthly Proof Settings">
+                        <option value="0">None</option>
+                        <option value="1">Monthly</option>
+                        <option value="2">Tomorrow, then Monthly</option>
+                        <option value="3">Tomorrow, then None</option>
+                      </select>
+                    </td>
+                    <td class="hasDM">
+                      <select data-prooftype="dmProofSettings" class="link-proof link-proof-bulk form-control" title="Choose Monthly Proof Settings">
+                        <option value="0">None</option>
+                        <option value="1">Monthly</option>
+                        <option value="2">Tomorrow, then Monthly</option>
+                        <option value="3">Tomorrow, then None</option>
+                      </select>
+                    </td>
+                    <td class="hasSMS">
+                      <select data-prooftype="smsProofSettings" class="link-proof link-proof-bulk form-control" title="Choose Monthly Proof Settings">
+                        <option value="0">None</option>
+                        <option value="1">Monthly</option>
+                        <option value="2">Tomorrow, then Monthly</option>
+                        <option value="3">Tomorrow, then None</option>
+                      </select>
+                    </td>
+                    </tr>
+                  </tbody>
+                  </table>
+                </th>
+                <th class="store store-proof" style="padding:0;"><span class="hidden">Proof Address</span></th></tr>
+            </tbody>
             </table>
           </td>
         </tr>
-        {{/.}}
-          <tr class="proof-settings-footer none">
-            <td>
-              <table>
-                <tr>
-                  <tr>
-                    <td class="total-label">Request a proof for the <x> selected stores:</td>
-                    <td class="store-materials-footer store-materials">
-                      <table class="inner-table">
-                        <tbody class="bulk-apply-proofSettings">
-                          <tr>
-                            <td class="hasEmail">
-                              <select data-prooftype="emProofSettings" class="link-proof link-proof-bulk form-control" title="Choose Monthly Proof Settings">
-                                <option value="0">None</option>
-                                <option value="1">Monthly</option>
-                                <option value="2">Tomorrow, then Monthly</option>
-                                <option value="3">Tomorrow, then None</option>
-                              </select>
-                            </td>
-                            <td class="hasDM">
-                              <select data-prooftype="dmProofSettings" class="link-proof link-proof-bulk form-control" title="Choose Monthly Proof Settings">
-                                <option value="0">None</option>
-                                <option value="1">Monthly</option>
-                                <option value="2">Tomorrow, then Monthly</option>
-                                <option value="3">Tomorrow, then None</option>
-                              </select>
-                            </td>
-                            <td class="hasSMS">
-                              <select data-prooftype="smsProofSettings" class="link-proof link-proof-bulk form-control" title="Choose Monthly Proof Settings">
-                                <option value="0">None</option>
-                                <option value="1">Monthly</option>
-                                <option value="2">Tomorrow, then Monthly</option>
-                                <option value="3">Tomorrow, then None</option>
-                              </select>
-                            </td>
-                          </tr>
-                        </tbody>
-                      </table>
-                    </td>
-                    <td class="hasDM store-cost">
-                      <div class="hidden">$</div>
-                    </td>
-                  </tr>
-                </tr>
-              </table>
-            </td>
-          </tr>
       </tbody>
     </table>
   </div>
   <script>
     var $j = jQuery;
     setTimeout(function () {
-      var quantityLimitController = jQuery.extend({}, checkboxController.controller);
-      quantityLimitController.init('proof-settings', function(storeIds) {
+      var proofSettingsController = jQuery.extend({}, checkboxController.controller);
+      proofSettingsController.init('proof-settings', function(storeIds) {
         var plural = (storeIds.length === 1) ? '' : 's';
         $j('.proof-settings-footer')
           .toggleClass('none', (storeIds.length < 2));
         $j('.link-proof-bulk').focus();
       });
-    }, 100);
+    }, 200);
   </script>
 </script>

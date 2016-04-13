@@ -159,7 +159,9 @@ var programConfigController = (function ($) {
 		UpdateDiscountCodes: function () {
 			var controller = this;
 			if (!controller.program.uiLayout.usesHighRisk) {
-				$('.high-risk').hide();
+				$('.high-risk').hide().css({'opacity': 0});
+				// $('.discount-code-table td.touchpoint-col.high-risk').show().addClass('hidden');
+				console.warn($('.touchpoint-col.high-risk'));
 			}
 			if (!controller.program.uiLayout.usesOffer2) {
 				$('.offer-2').hide();

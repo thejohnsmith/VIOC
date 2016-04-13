@@ -20,26 +20,26 @@
         {{#.}}
         <tr class="filterable" data-filter-storeId="{{storeId}}">
           <td style="padding: 21px 8px">
-            <div class="checkbox-area" data-enrolled="">
-              <div data-storeId="{{storeId}}" class="quantity-limit customCheckbox js-all-selectable {{^enrolled}}disabled-input{{/enrolled}}">
-                <input {{^enrolled}}readonly{{/enrolled}} data-checkbox-label="" type="checkbox">
+            <div class="checkbox-area">
+              <div data-storeId="{{storeId}}" class="quantity-limit vioc-checkbox {{^enrolled}}disabled{{/enrolled}}">
+                <input {{^enrolled}}readonly{{/enrolled}} type="checkbox">
               </div>
             </div>
           </td>
 
           <td data-storeId="{{storeId}}" class="{{^enrolled}}dim-mid{{/enrolled}} store quantity-limit-store" style="padding: 21px 8px">
             <div class="store-name">{{storeName}}</div>
-            <div class="store-number">Store #{{storeId}}</div>
+            <div class="store-number">Store #{{storeNumber}}</div>
           </td>
 
           <td class="store-configuration" style="padding: 21px 8px">
             <div class="container-fluid">
               <div class="row">
                 <div class="col-sm-8">
-                  <input value="{{quantityLimit}}" tabindex="1" data-storeId="{{storeId}}" type="number" class="quantity-limit-input form-control {{^enrolled}}disabled-input{{/enrolled}}">
+                  <input value="{{quantityLimit}}" tabindex="1" data-storeId="{{storeId}}" type="number" class="quantity-limit-input form-control {{^enrolled}}disabled{{/enrolled}}">
                 </div>
                 <div class="col-sm-2">
-                  <button tabindex="1" data-storeId="{{storeId}}" class="apply-quantity-limit btn btn-small btn-primary {{^enrolled}}disabled-input{{/enrolled}}">Apply</button>
+                  <button tabindex="1" data-storeId="{{storeId}}" class="apply-quantity-limit btn btn-small btn-primary {{^enrolled}}disabled{{/enrolled}}">Apply</button>
                 </div>
               </div>
             </div>

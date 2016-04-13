@@ -21,17 +21,17 @@
       <tbody>
         {{#.}}
         <tr class="filterable" data-filter-storeId="{{storeId}}">
-          <td style="padding: 10px 0 0 0">
-            <div class="checkbox-area" data-enrolled="">
-              <div data-storeId="{{storeId}}" class="program-settings customCheckbox js-all-selectable {{^enrolled}}disabled-input{{/enrolled}}">
-                <input {{^enrolled}}readonly{{/enrolled}} data-checkbox-label="" type="checkbox">
+          <td>
+            <div class="checkbox-area">
+              <div data-storeId="{{storeId}}" class="program-settings vioc-checkbox {{^enrolled}}disabled{{/enrolled}}">
+                <input {{^enrolled}}readonly{{/enrolled}} type="checkbox">
               </div>
             </div>
           </td>
 
           <td data-storeId="{{storeId}}" class="{{^enrolled}}dim-mid{{/enrolled}} store program-settings-store" style="padding: 21px 8px">
             <div class="store-name">{{storeName}}</div>
-            <div class="store-number">Store #{{storeId}}</div>
+            <div class="store-number">Store #{{storeNumber}}</div>
           </td>
 
           <td class="store-configuration standard-offer" style="padding: 21px 8px">

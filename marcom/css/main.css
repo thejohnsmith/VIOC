@@ -1263,7 +1263,8 @@ header#nav
 {
     border-top: 12px solid #f6f6f6;
 }
-.program-settings-section .participation-table tbody .customCheckbox
+.program-settings-section .participation-table tbody .customCheckbox,
+.program-settings-section .participation-table tbody .vioc-checkbox
 {
     margin-left: 5px;
 }
@@ -1483,7 +1484,8 @@ header#nav
 
     width: 62%;
 }
-.program-select ul li .checkbox-area .customCheckbox
+.program-select ul li .checkbox-area .customCheckbox,
+.program-select ul li .checkbox-area .vioc-checkbox
 {
     width: 100%;
 }
@@ -1623,7 +1625,9 @@ header#nav
     display: block;
 }
 .program-select--is-active-user .customCheckbox,
-.program-select--is-active-user .customCheckbox.checked
+.program-select--is-active-user .customCheckbox.checked,
+.program-select--is-active-user .vioc-checkbox,
+.program-select--is-active-user .vioc-checkbox.checked
 {
     padding-left: 0;
 
@@ -1646,7 +1650,9 @@ header#nav
     display: none;
 }
 .program-select--is-active-user .customCheckbox.disabled,
-.program-select--is-active-user .customCheckbox.disabled.disabled-checked
+.program-select--is-active-user .customCheckbox.disabled.disabled-checked,
+.program-select--is-active-user .vioc-checkbox.disabled,
+.program-select--is-active-user .vioc-checkbox.disabled.disabled-checked
 {
     cursor: default;
 
@@ -1682,7 +1688,8 @@ header#nav
 
     color: #fff;
 }
-.customCheckbox
+.customCheckbox,
+.vioc-checkbox
 {
     display: inline-block;
 
@@ -1696,7 +1703,8 @@ header#nav
     background-position: 0 0;
     background-size: 24px;
 }
-.customCheckbox label
+.customCheckbox label,
+.vioc-checkbox label
 {
     font-size: 20px;
 
@@ -1707,31 +1715,37 @@ header#nav
     cursor: pointer;
     letter-spacing: .2px;
 }
-.customCheckbox.checked
+.customCheckbox.checked,
+.vioc-checkbox.checked
 {
     background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAC4AAAAwCAYAAABuZUjcAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNi1jMDY3IDc5LjE1Nzc0NywgMjAxNS8wMy8zMC0yMzo0MDo0MiAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIDIwMTUgKFdpbmRvd3MpIiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOjQ0RTdDNkZBQTdDQzExRTU5RDdBREY1RjI3REQ5QkVBIiB4bXBNTTpEb2N1bWVudElEPSJ4bXAuZGlkOjQ0RTdDNkZCQTdDQzExRTU5RDdBREY1RjI3REQ5QkVBIj4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6NDRFN0M2RjhBN0NDMTFFNTlEN0FERjVGMjdERDlCRUEiIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6NDRFN0M2RjlBN0NDMTFFNTlEN0FERjVGMjdERDlCRUEiLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz53OhwTAAAFxklEQVR42tSZf2wURRTHZ/eu18spVgiFgAkKKIoYE0z9kRYMVJA/VH4kharxMGhiRW0QpUaMVjESklIlJYQIGlMLMZA0gVp+mGgCBSlILJWgaTAq+KOoQEFUSrnrcX5feEeGcXd2dntNepN8s3czczOfeTvz5s2cJXIsReavsvCI2zkIvRb61c5B6LGJhsW7wjkG/SxURHl2jkE3wtptAx5cgU5Br2fKwgMYOoTHB9ACzqqHtY8OaHCGboAe56xuqFquEwi8rKwsD48SaBp0F3QbNByKSR39AZGFDkFfQPsaGxuTAaApvQdrn5DrWT6Bb8ZjEfQEdL3P8Z6BPoHqMIAffECfZBf4r29wAI/EoxYqz8KCpkW2GarCAE54QFN6HtBr1UZsA+gKPMhCj2XJC4UY7ii3rYP+Hlrv1IilAY7isYE+aix3ENoNddA2DJ2D6HeDoXG8WZRCI9z6SQtr887YvaJXhModiufA2luNwQFdwAuqyKGYXm8NzVe86lMGb4z6uB9aCM11emtd9nXiYP7tImmF5OwWQE9xa9dysXQrNFEpIk/xCrQOwL0BvRG9hdXQDCf4/dEJ4tLlcV0ibwXww37At+HxkJLdDs0E8G/Z8NOz55a/0JE3qu6WZKcdTSeu5HeGCkVbPo1NrAd0ha6NsAL9ogN0EzQP0IksbS6RHUI8SFPmZGiIKOk5IjLwN6ROia7eQT3HwyPe8GrHVlzeSqV8Z3OsePunsZIJ2YKmQAl6hL6ft6LiAOZ2Spr2dySO2TO794WNwZE2Km/gJ3qrWPU0dfag0+VQfragM+lv+xpxJDJGAkpHHAzoDM6LZqri6kppemCu/Y7P70OvQW0AKAoATaHANhU6k34JDxenQwVy1qO8S3tavE7JXwPon6XvK9hH05Q5AJCVUNQn9HRdvc7Q0KTCtUgLzgHTA1LeRWipXAlWP8PwmZ1vCfQNoO4zhJ7qMb6LI1NdNUpenNlcLT4bkitshbUvONQl/yu7w1sp4gPcKgYMCk2ppjD1FxmmR8or4AjUFTyu5C1zqgir02DedPg9udDDAJ0cEPo4vU0Y6zyeW5SyaTpweYe8gAY6NJ3UQ9855NNCagHwamiYD2hKC9kolJqVsmIdeKEyeteEDmgrflWzC1fydDKF3oQ2P5O+tyrl43XgEcV3Cw94subnmip5htBneZpd5RkhOQ4aogO3lNOGSVrMvr4v6SUY4U85A9M0zW73ynIx2TkzrlAYWJ3m+bo+QO9AG/UuZUmTBlTwwT46p0DodABosugzmnJ5Y0vowOVXfpNp77wpVQUAr8RvO13iddrcBsmhjA5cLhztE+JjaK+P+hsBvUFTPpp3Zk9nYSsusBCjjvmwepqPZCaxOh24n/OoU6p8b9WBb1d8cYUfk/NCrfaoRse+eaj7j0e9BQ6HGFdw9c6iMsC8rdVZhy6QAN3ucR4lx3CPvItTLOQKDt9J8fYxeZ6hkUk+rU4L/EmXxVSF8i0GzaxQvFyT7souU/EddRH5NTngaA7P5xN6Ji1Bfq3B6Z/im6evum657G71fhwj+0jxyTeiseoA8E18r7gJmoLv7xr+tFk5Nu52u1/83/UEQB9WojOy3CQ0sF/0Y0K/y5TFTbHKKJ7C3jsnKlLw1KKU7ULD4/sR+ikHj/SWF7TTlj+Do7ZMolN9Ozoo7gfol/H4UMn+EtDLfccq+BEFWXcrwRbB7w0y512Aw1Azu1BLOQtMN23H7dJzIvvlqEO8HMcA9wSEpuCKFuy1Du3eiXbP9QmcO6G44WuXYJ78/hq6b0Fn3R6wQ9m1xV2iT+pjMtrp8WMEy6PTCIcEbodW8rd01fwjv+qz0nFwLAdNBS6/Ja9VA+ClQd6e6V8pdElJUd2wLK1Nuj6epVw6ZR9cGgD9nfI2W9Py2ReFBV9RLATgQ30duRVwkdG8pX97Z0FjeDqElClEcQYdNr7lnbTB5O9C0/SfAAMAXmj6OR+zOhkAAAAASUVORK5CYII=);
 }
-.customCheckbox.disabled
+.customCheckbox.disabled,
+.vioc-checkbox.disabled
 {
     cursor: default;
 
     background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAC4AAAAwCAQAAADEbIBXAAABZ0lEQVR4Ae2XtXbDMBRAy8zt5K0cnupJm6cGp1vm0P//QfEdxRjSeVMjTaJr+bHm/nebtVljAQ+fKve06X/3NvdU8fFYcAPvYHiln9FfMexMB94goEef4b1HwMak6DwfIUSXFoYKOXJUMLTohlY/yI8PXiQIHa1ywlJizxInVEO7AhbHQa/QtEcaHA3de0TD7m2yMvLWFt3mcqz/vKRt8cNvbwXyzOHYYjzkGRHOUDVa9M5kJmvx+Wzj+xCBhG897u3bYjkbw0VyOZVfXA4RDTviMo2p/bkhbpUUKUa+fDQ1/EgIJhGeJIZUnWJRVWLOQnTak6+eOMFPhOJFp32JIUtO8CWJOX50+vp3suUc/Vskhcu9qMKxiVncRybFBSrO8MqfG0YmRRE5Z3juj6QPVxeLvkJVTfFKyYn03V8zcOmFXP1kEUpzObc0p5qgFUsLxaJItZxTLESVS2j94l//2aL/4NJ/Kn4BmcJE7kaTy1kAAAAASUVORK5CYII=);
 }
-.customCheckbox.disabled.disabled-checked
+.customCheckbox.disabled.disabled-checked,
+.vioc-checkbox.disabled.disabled-checked
 {
     cursor: default;
 
     background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACIAAAAkCAYAAADsHujfAAACe0lEQVR4Ac3WRdKcQABH8Xzu7u7u7u5uDP+4yw1yjOQCuUCukFwub9GLKTINDWyGqt+O7n44z/Jh+/S3rCsfImbRlg8Rh/kQITTlQ8ROPkQIdakm8zyvBOUoSRGxlmThJszjBE9QliccYxYNjhEeKuMEdOEMiuEY7dYIYM41oBw7kMHmbaIftSgy+xWhDgPYRgYyNlGaI+IRpS4RdbiF4GMeZY4HUIEl+NCbn+OP2RHGqGvEI4Qr1Ce8mZte/5jIFXGJwqjBpbiBPP/xxP9wWZ72Ec2hy+UotiBcZV7clzNoGbUJImagoPe/m29dItoh+Gg0E3Yhg3EUOEZMQP/5Uy59O5WZOzTkEMJiYOJjCMeoTRSBt796L838O2ERtRB8VAYmb4GMDMZQECcC9y++bzUxt4xKW8gkhF3Lke5CWY5Q4xQBDJh1jiCM2EL2wnZgonoowMOoQ8RRjgPetIXcQGgKuf7rUEw+6nI8EOe2EB9CeUhIJTwohvnAOjUQHmwhMkoinoppyNEVigLrVEF4ijojFREhRbiBHLSEPJ0PUfdIs8MLq9vlkljW6YBwZgvZhTDq+PbcgSxOUWhZZxrChi1kAsK+Y0gFHqGAB1SHvDhPIAzZdqiGjGrHmH4oSwZtIRENEHzr0xl4qa3G+MquQPDQ5fhl34z66DVDRqtjSCEGURMxdycEH/UuvwJrEG7Bhyn9Zi77A4QF10HFuIRwgcq0EbiCcIqiuINvIdyiJWFEB+4hXKMi6ZFcQsYqqh3H1mIDMs5SnVlzmdagLHsYRTMqUIJKtGAch1CWZefL4RDUggMohl37v2n6oBpMYA838CH4uMYuxlCVdI1/LyFxnppAg7QAAAAASUVORK5CYII=);
 }
-.customCheckbox
+.customCheckbox,
+.vioc-checkbox
 {
     float: left;
 }
-.customCheckbox.focused label
+.customCheckbox.focused label,
+.vioc-checkbox.focused label
 {
     color: #483724;
 }
-.customCheckbox > input[type='checkbox']
+.customCheckbox > input[type='checkbox'],
+.vioc-checkbox > input[type='checkbox']
 {
     position: absolute;
     left: -9999px;
@@ -2124,26 +2138,31 @@ header#nav
     border: 0;
     background: #1cb7f1;
 }
-.programsummary-table .customCheckbox
+.programsummary-table .customCheckbox,
+.programsummary-table .vioc-checkbox
 {
     display: inline-block;
     float: none;
 
     padding-left: 24px;
 }
-.programsummary-table th.store-enroll .customCheckbox
+.programsummary-table th.store-enroll .customCheckbox,
+.programsummary-table th.store-enroll .vioc-checkbox
 {
     padding-left: 33px;
 }
-.store-enroll .customCheckbox label
+.store-enroll .customCheckbox label,
+.store-enroll .vioc-checkbox label
 {
     text-decoration: underline;
 }
-.programsummary-table th.store-enroll .customCheckbox.checked
+.programsummary-table th.store-enroll .customCheckbox.checked,
+.programsummary-table th.store-enroll .vioc-checkbox.checked
 {
     background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAC4AAAAwCAYAAABuZUjcAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNi1jMDY3IDc5LjE1Nzc0NywgMjAxNS8wMy8zMC0yMzo0MDo0MiAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6QTI4RjlFMUNBODdFMTFFNTg4N0JCMTI4MjY2RUQ0OEQiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6QTI4RjlFMUJBODdFMTFFNTg4N0JCMTI4MjY2RUQ0OEQiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIDIwMTUgKFdpbmRvd3MpIj4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6NDgyRUMwRTNBN0NDMTFFNTlCRTlCM0FCMjMxNTA5MDYiIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6NDgyRUMwRTRBN0NDMTFFNTlCRTlCM0FCMjMxNTA5MDYiLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz4D8j+OAAAFGklEQVR42tSZXWgUVxTHZ3arlqTFBYVgn4QKtkWUtbQRmgoteYik9qUJMW0RDKJSWAK1W4V+UlqMLT5ES4sUtV+psUn7UAmuoAgLSZVq2tqHqt3QgKAEE9ilJH502/R/zBk5ns7cuTMbxT3wZ/bOnbn3d8/cr3PXnZ6edqrRElXG60Lrqw2coD+BLlYTuAe9BDpBN+6rIugt0BO37tLgvIflQp9Oz9h3Mq9aoMvQozI/UQXdg+xz6Hf9QGRraWmZg8tTUCO0EloK1UG1/MgkNAadh4ahY9BgX1/f3/8jdG9HIE8r6Ks8KC/FBgcwFdAJtUMLIrZ3AjoIdaMBBT9wQCdx+QzaIN77AHrT75PYAD+Ey0dQG5SssBv8Ax2CsmjAJQ+cob+EXhTPXoEehv6KDA7ozQz9oE/2DegUdBYahYp8PwUthpZD9dBcn3cJJtvf3783AJosA30cNAiCgO/HZT93C21HoAPQALw2ZWp4a2trDS7N/PnX6PxkMtnb09Pj4tqmsv6AHoPK1uCAno/LD9BqlUWr1lZ46We5DtgaGpHGZRf0zM1lO5FwMpmM09DQ4Pf4C+hG3weV7wZ4+qiCJq9mALxfPx9nd4kGdAB6D6BrAqBPAPpZU/l+4N+o7nGZPjGgf/UrIOa2OFksFg+nUqk1Pnn/QmmAnzWVn/AZiBp6dRB0TLs5EAOgnUKhMOhBW+3HxZQnuwd5uoBWt/PIr9TmBsweMxVOTTldXV1pZrEOJD5UU15GeJoG6yDgH6kQuj8ImgwzlFMqlR5QDgwG5xVxnRwcaiDS70XQL4DPxvC+B702cFmdmLiay+W8ZBszhXq8U62IW9V+4gYvu/P4ywwBftlsQZONjIxsL5fLchx0GsF5wyS9nZPztLAeXiHJnoTOAP6NkGDEChp2uL6+fjcvbJ61M1ugx2mXt1B1C8dnF0fT1DYF9T50ElpWAfQ14d0D4v4CZgsEbxRp2nYOBG6SXTfnxXzCHifvQ+9CcyJCk+1AuX/y7wHe/3jWaAJPi/RJdJOpkIpeD/DuO9BP3I1soc9BO70E131K5K80gcspLnTih3dO87bUz1ZwxWstB+5mlHdd3ZMMS03gdSI9alnhdu6bldg+KO9zXzLUmcBrRbpoFRC67ijv8uIahWGvBeRJhto7cQS3Q8eBEWyTrZNM4JMinbIOw12X3ns1Rp1fmGYuxTBpAh8T6cWRzhBc9xBH8LY2GrYiKoYxE/g5kV4ew4OvQNctnivzBqsU8pxkOG8CHxbpVVhmayKCU2z4nsVzb0E/hgTmNRxcezZsAj8u0rTyPRfD6zvVwqHtW7nQGKxZnQgcM4EPQuPi3oaYZyXrOfjQdobLtInxOsTvcWbzB8cyS/uTXnGvCZ8sHQP+Aq2E6t5vfCQRto1wuM4mcauX2YzzeDd7zbO4i8vX0Ns8EL+CnubTKBvbpb5gd9ipqNdiqvQlkbcRLd7n3AVD3R28Bbi190fdL9tG+Vl1RrcbBa64C9BUxx59NGcdLKOFl9ULNDUdCYv9KoRewlGPnIKzzGId5RP8XmfmKNgzCpDzd8LzXGae6/DsIDM4kcDFlJRX8EPcD2ezTw8p6LyaDh2rwakKtj70jAh826Gngn4e5ZZsj/jiHjPnOG8gLNTjZbyZvdnk8wh1zQ6Ucy3K2eQ9cbBvqj82OMMvYvh1zuz8ldJrO3tUBK6mr05uwMKIwOMM3E0HqbYvzQq4aECsvwtNe4+o4P8JMACb3eHFKwd1yQAAAABJRU5ErkJggg==);
 }
-.programsummary-table .customCheckbox.focused label
+.programsummary-table .customCheckbox.focused label,
+.programsummary-table .vioc-checkbox.focused label
 {
     color: #fff;
 }
@@ -2291,7 +2310,8 @@ input.bulk-apply-quantity-limit-input.form-control:focus:active
 {
     width: 1%;
 }
-.proof-settings-tab-section.programsummary-table .customCheckbox
+.proof-settings-tab-section.programsummary-table .customCheckbox,
+.proof-settings-tab-section.programsummary-table .vioc-checkbox
 {
     float: left;
 
@@ -2301,6 +2321,7 @@ input.bulk-apply-quantity-limit-input.form-control:focus:active
 .proof-settings-tab-section.programsummary-table .store-proof-address
 {
     width: 32%;
+    padding: 0;
 }
 .proof-settings-tab-section.programsummary-table .store-proof-address > *
 {
@@ -2318,7 +2339,7 @@ input.bulk-apply-quantity-limit-input.form-control:focus:active
     width: 46%;
     padding: 14px 0 7px;
 }
-.proof-settings-footer,
+/*.proof-settings-footer,
 .proof-settings-footer td,
 .store-materials-footer .inner-table,
 .store-materials-footer td
@@ -2326,11 +2347,11 @@ input.bulk-apply-quantity-limit-input.form-control:focus:active
     color: #fff;
     border: none !important;
     background: #1cb7f1;
-}
-.proof-settings-footer .hasDM.store-cost
+}*/
+/*.proof-settings-footer .hasDM.store-cost
 {
     width: 25%;
-}
+}*/
 .proof-settings-tab-section.programsummary-table .participation-table .header-row td
 {
     width: 33%;
@@ -2345,6 +2366,7 @@ input.bulk-apply-quantity-limit-input.form-control:focus:active
     text-decoration: underline;
     text-transform: uppercase;
 }
+
 .link-proof.form-control
 {
     font-size: 13px;
@@ -2353,6 +2375,12 @@ input.bulk-apply-quantity-limit-input.form-control:focus:active
     height: 45px;
     margin: 0 auto;
 }
+/*.bulk-apply-proofSettings,
+.bulk-apply-proofSettings .link-proof-bulk
+{
+    width: auto;
+}*/
+
 @media (min-width: 768px)
 {
     .program-settings-footer select,
@@ -2378,14 +2406,10 @@ input.bulk-apply-quantity-limit-input.form-control:focus:active
 }
 @media (min-width: 930px)
 {
-    .proof-settings-tab-section.programsummary-table .total-label
+    /*.proof-settings-tab-section.programsummary-table .store-materials-footer
     {
-        width: 30% !important;
-    }
-    .proof-settings-tab-section.programsummary-table .store-materials-footer
-    {
-        width: 47%;
-    }
+        width: 36%;
+    }*/
 }
 .program-inputs
 {
@@ -3691,7 +3715,8 @@ button.toast-close-button
         padding-right: 0;
         padding-left: 0;
     }
-    .programsummary-table .customCheckbox label
+    .programsummary-table .customCheckbox label,
+    .programsummary-table .vioc-checkbox label
     {
         font-size: 18px;
 
@@ -3796,13 +3821,15 @@ button.toast-close-button
     {
         margin-left: 5px;
     }
-    .customCheckbox label
+    .customCheckbox label,
+    .vioc-checkbox label
     {
         font-size: 18px;
 
         padding-top: 4px;
     }
-    .customCheckbox
+    .customCheckbox,
+    .vioc-checkbox
     {
         padding-left: 33px;
     }
@@ -3814,7 +3841,8 @@ button.toast-close-button
     {
         padding-right: 12px;
     }
-    .programsummary-table th.store-enroll .customCheckbox
+    .programsummary-table th.store-enroll .customCheckbox,
+    .programsummary-table th.store-enroll .vioc-checkbox
     {
         padding-top: 25px;
         padding-left: 0;
@@ -3825,7 +3853,8 @@ button.toast-close-button
     {
         padding-bottom: 2px;
     }
-    .programsummary-table th.store-enroll .customCheckbox label
+    .programsummary-table th.store-enroll .customCheckbox label,
+    .programsummary-table th.store-enroll .vioc-checkbox label
     {
         font-size: 16px;
     }
@@ -4358,7 +4387,8 @@ font-size: 20px;
     {
         font-size: 18px;
     }
-    .customCheckbox label
+    .customCheckbox label,
+    .vioc-checkbox label
     {
         font-size: 17px;
 
@@ -4394,7 +4424,8 @@ font-size: 20px;
 
         padding-bottom: 8px;
     }
-    .programsummary-table th.store-enroll .customCheckbox label
+    .programsummary-table th.store-enroll .customCheckbox label,
+    .programsummary-table th.store-enroll .vioc-checkbox label
     {
         font-size: 12px;
     }
@@ -5273,11 +5304,13 @@ input[type='button'].btn-block
     margin: 0 auto;
     padding: 10px 0 20px;
 }
-.programsummary-table .customCheckbox
+.programsummary-table .customCheckbox,
+.programsummary-table .vioc-checkbox
 {
     background-position: center center;
 }
-.programsummary-table .customCheckbox
+.programsummary-table .customCheckbox,
+.programsummary-table .vioc-checkbox
 {
     display: inline-block;
     float: none;

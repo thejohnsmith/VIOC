@@ -3,6 +3,7 @@ var additionalOfferController = (function ($) {
 	var controller = {
 
 		program: {},
+		adtl_offers: [],
 		config: { "content" : {}, "uiLayout": {}, "preview": {} },
 		configLoaded: false,
 		saveEnabled: true,
@@ -13,15 +14,17 @@ var additionalOfferController = (function ($) {
 
 		init: function (config) {
 			var controller = this;
-			controller.GetProgramData(controller.programId, function (programId) {
-				if(typeof controller.configId != "undefined"){
-					controller.GetConfigData(controller.configId, function() { controller.UpdateUI() } );
-				}
-				else
-				{
-					controller.UpdateUI();
-				}
+			controller.GetAdditionalOfferText(function (programId) {
+				controller.GetProgramData(controller.programId, function (programId) {
+					if(typeof controller.configId != "undefined"){
+						controller.GetConfigData(controller.configId, function() { controller.UpdateUI() } );
+					}
+					else
+					{
+						controller.UpdateUI();
+					}
 
+				});
 			});
 		},
 		/** API call to getProgramParticipationStats.jssp
@@ -45,6 +48,18 @@ var additionalOfferController = (function ($) {
 				// fire the callback (DONE)
 				if (typeof callback === 'function') {
 					callback(controller.program);
+				}
+			});
+		},
+		GetAdditionalOfferText: function(callback) {
+			var controller = this;
+			$.get(controller.apiPath + 'getAdtlProgramOptions.jssp', function (results) {
+
+				var json_results = JSON.parse(results);
+				controller.adtl_offers = json_results;
+
+				if (typeof callback === 'function') {
+					callback(json_results);
 				}
 			});
 		},
@@ -119,7 +134,16 @@ var additionalOfferController = (function ($) {
 			console.log(controller.config.content);
 			for (var i = 1; i <= 4; i++)
 			{
-				$('[name=adtlText' + i + ']').prepend($("<option>").attr('value','none').html("Not Used")).attr('selected','selected');
+				// Update additional offer text dropdown
+				$('[name=adtlText' + i + ']').html(''); // Clear old options
+				$('[name=adtlText' + i + ']').prepend($("<option>").attr('value','none').html("Not Used"));
+				for (var i2 = 0; i2 < controller.adtl_offers.length; i2++)
+				{
+					var item = controller.adtl_offers[i2];
+					$('[name=adtlText' + i + ']').append($("<option>").attr('value',item.name).html(item.longText));
+				}
+
+				// And now everything else...
 				$('[name=adtlCode' + i + ']').val(controller.config.content['adtlCode' + i]);
 				$('[name=adtlText' + i + '] option[value="' + controller.config.content['adtlText' + i] + '"]').attr('selected', 'selected');
 				$('[name=adtlApproach' + i  + '] option[value="' + controller.config.content['adtlApproach' + i] + '"]').attr('selected', 'selected');
