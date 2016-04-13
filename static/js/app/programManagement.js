@@ -149,14 +149,14 @@ var programManagementController = (function ($) {
 						if ($(e).val() == selectedConfigId) storeCount++;
 					});
 					// console.log("Clicked delete on config " + $selectedMgmg.val() + ".  Stores using this config: " + storeCount);
-					if (storeCount == 0) {
-						if (confirm('Are you sure you want to delete these settings?')) {
-							controller.deleteSettings();
-						}
-					} else {
-						if (confirm(storeCount + ' store(s) are using these settings and will be adjusted to use corporate defaults.' + ' Are you sure you want to delete these settings?')) {
-							controller.deleteSettings();
-						}
+					var message = (storeCount == 0)
+					? 'Are you sure you want to delete these settings?'
+					: storeCount + ' store(s) are using these settings and will be adjusted to use corporate defaults.' + ' Are you sure you want to delete these settings?';
+
+					if (confirm(message)) {
+						controller.deleteSettings(selectedConfigId, function() {
+							getStoreProgramData.makeRequest(); // Repull data, which will refresh the UI
+						});
 					}
 				});
 
@@ -173,19 +173,14 @@ var programManagementController = (function ($) {
 				}
 			});
 		},
-		deleteSettings: function () {
+		deleteSettings: function (selectedConfigId, callback) {
 			$.get(controller.apiPath + 'deleteConfig.jssp?userId=' + controller.user_id + '&configId=' + selectedConfigId, function (results) {
-				try {
-					var json_results = JSON.parse(results);
-					controller.store_data = json_results;
-					if (typeof callback == 'function') callback(json_results);
-				} catch (e) {
-					toastr.error('Failed to parse JSON:' + e);
-				}
 			}).error(function (data) {
 				toastr.error('Failed to delete settings.');
 			}).done(function (data) {
-				toastr.success('Settings saved!');
+				toastr.success('Settings deleted!');
+				if (typeof callback == "function")
+					callback();
 			});
 		},
 		showSuccessToast: function () {},
@@ -270,7 +265,7 @@ var programManagementController = (function ($) {
 				// Loop through them
 				$.each($('.link-proof-single[data-prooftype="' + bulkProofType + '"]'), function (i, obj) {
 					// If the dropdown's store ID matches a selected store...
-					if ($(obj).attr('data-storeid'), selectedStores) {
+					if ($.inArray($(obj).attr('data-storeid'), selectedStores) > -1) {
 						// Update their data-proofSelectedValue
 						$(obj).attr('data-proofSelected', bulkProofVal);
 
@@ -351,8 +346,10 @@ var programManagementController = (function ($) {
 			for (var i = 0; i < controller.user_configs.length; i++) {
 				var config = controller.user_configs[i];
 				var target = (config.configType == 'program') ? '.program-dropdown' : '.adtl-dropdown';
-				$(target).append($('<option>').val(config.id).html(config.label));
-				console.warn('config ' + config.id);
+				$(target)
+					.append($('<option>')
+						.val(config.id)
+						.html(config.label));
 			}
 		},
 		showQuantityLimitTabIfNeeded: function () {
