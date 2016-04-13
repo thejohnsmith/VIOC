@@ -71,7 +71,7 @@
                       </td>
                       <td class="store {{^enrolled}}dim-mid{{/enrolled}}">{{storeName}}
                         <br>
-                        <div class="store-number">Store #{{storeId}}</div>
+                        <div class="store-number">Store #{{storeNumber}}</div>
                       </td>
                       <td class="store-materials {{^enrolled}}dim-mid{{/enrolled}}">
                         <table class="inner-table">
@@ -183,13 +183,13 @@
   <script>
     var $j = jQuery;
     setTimeout(function () {
-      var quantityLimitController = jQuery.extend({}, checkboxController.controller);
-      quantityLimitController.init('proof-settings', function(storeIds) {
+      var proofSettingsController = jQuery.extend({}, checkboxController.controller);
+      proofSettingsController.init('proof-settings', function(storeIds) {
         var plural = (storeIds.length === 1) ? '' : 's';
         $j('.proof-settings-footer')
           .toggleClass('none', (storeIds.length < 2));
         $j('.link-proof-bulk').focus();
       });
-    }, 100);
+    }, 200);
   </script>
 </script>

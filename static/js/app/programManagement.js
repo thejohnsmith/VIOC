@@ -201,7 +201,7 @@ var programManagementController = (function ($) {
 			$('.bulk-apply-program, .bulk-apply-adtl').on('click', function (e) {
 				e.preventDefault();
 				var storeIds = [];
-				$.each($('.customCheckbox.checked'), function (i, obj) {
+				$.each($('.vioc-checkbox.checked'), function (i, obj) {
 					storeIds.push($(obj).attr('data-storeid'));
 				});
 				var configId = 0;
@@ -313,7 +313,7 @@ var programManagementController = (function ($) {
 			var bulkQuantityLimit = $('.bulk-apply-quantity-limit-input').val();
 
 			// Collect storeIds from selected stores
-			$.each($('.quantity-limit.customCheckbox.checked'), function (i, obj) {
+			$.each($('.quantity-limit.vioc-checkbox.checked'), function (i, obj) {
 				storeIds.push($(obj).attr('data-storeid'));
 			});
 
