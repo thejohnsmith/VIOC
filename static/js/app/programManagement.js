@@ -351,10 +351,8 @@ var programManagementController = (function ($) {
 			for (var i = 0; i < controller.user_configs.length; i++) {
 				var config = controller.user_configs[i];
 				var target = (config.configType == 'program') ? '.program-dropdown' : '.adtl-dropdown';
-				$(target)
-					.append($('<option>')
-						.val(config.id)
-						.html(config.label));
+				$(target).append($('<option>').val(config.id).html(config.label));
+				console.warn('config ' + config.id);
 			}
 		},
 		showQuantityLimitTabIfNeeded: function () {

@@ -105,6 +105,10 @@
 {
     margin-bottom: 1em;
 }
+.adtlConfigForm .settings-section
+{
+    display: block;
+}
 #parentHorizontalTab
 {
     margin: 0;
