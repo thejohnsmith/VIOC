@@ -106,11 +106,35 @@
 }
 .adtlConfigForm
 {
-    margin-bottom: 1em;
+    overflow: hidden;
 }
 .adtlConfigForm .settings-section
 {
-    display: block;
+    width: 100%;
+    margin-bottom: 1.5em;
+}
+.adtlConfigForm .results-section
+{
+    width: 100%;
+}
+.adtlConfigForm .label-cell
+{
+    min-width: 120px;
+    padding: 0;
+}
+.adtlConfigForm .value-cell
+{
+    padding: 4px 8px;
+}
+#programManagementTabs .adtlConfigForm .value-cell input,
+#programManagementTabs .adtlConfigForm .value-cell select
+{
+    min-width: 300px;
+    margin: 4px 0;
+}
+.adtlConfigForm .resp-tab-content
+{
+    margin-bottom: .6em;
 }
 #parentHorizontalTab
 {
