@@ -3,6 +3,7 @@ var programConfigController = (function ($) {
 	var controller = {
 
 		program: {},
+		marcomFilePath: marcomUserData.$constants.marcomFilePath,
 		config: {
 			"content": {},
 			"uiLayout": {},
@@ -214,6 +215,18 @@ var programConfigController = (function ($) {
 				$('.touchpoint-' + meta.touchpoint + '.' + channelCode + '.preview').attr('href', meta.previewUrl);
 			}
 
+			for (var tp = 1; tp <= 3; tp++)
+			{
+				if (typeof controller.config.preview['touchpoint'+tp] != 'undefined')
+				{
+					var data = controller.config.preview['touchpoint'+tp].data;
+					for (var cssSelector in data)
+					{
+						$(cssSelector).html(data[cssSelector]);
+					}
+				}
+			}
+
 			// Pre-demo hacks.  Fixed in F-11 and F-12
 			//$(".discount-codes-row.touchpoint-row.email.touchpoint-1").show();
 			//$(".touchpoint-label.discount-code-subrow.dm").html($(".touchpoint-label.discount-code-subrow.dm").html().replace("Direct Touch Point Mail", "Direct Mail Touch Point"));
@@ -238,10 +251,8 @@ var programConfigController = (function ($) {
 			});
 		},
 		GeneratePreview: function (callback) {
-			// Call GetFormData()
-			// Call a new preview API method, passing the form data
-			// Hand that JSON object to a mustache template and render the preview pane.
-			// Call callback()
+			var controller = this;
+			controller.UpdateDiscountCodes();
 		},
 		ValidateDiscountCode: function (input) {
 			console.log('Validating %o', input);
