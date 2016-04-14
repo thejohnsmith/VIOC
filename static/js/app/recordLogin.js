@@ -42,7 +42,7 @@ var recordLogin = (function ($) {
 		if ($newUser > 0) {
 			$loginCount = 1;
 		}
-		if ($loginCount < 5) {
+		if ($loginCount < 3) {
 			// Greater than 5, show "Getting Started Now" version of the home page.
 			$('#welcome + #gettingStartedNow').fadeIn();
 			$('#programSummary').hide();
