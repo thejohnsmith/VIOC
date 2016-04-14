@@ -121,9 +121,9 @@ var additionalOfferController = (function ($) {
 		ShowTabsAsAppropriate: function() {
 			var controller = this;
 			var maxTabs = controller.program.maxAdtlOffers;
-			//if (maxTabs < 4) $(".adtl-offer-4").hide();
-			//if (maxTabs < 3) $(".adtl-offer-3").hide();
-			//if (maxTabs < 2) $(".adtl-offer-2").hide();
+			if (maxTabs < 4) $(".adtl-offer-4").hide();
+			if (maxTabs < 3) $(".adtl-offer-3").hide();
+			if (maxTabs < 2) $(".adtl-offer-2").hide();
 		},
 		UpdateSettingName: function () {
 			var controller = this;
