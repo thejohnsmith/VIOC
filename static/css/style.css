@@ -2602,7 +2602,8 @@ header .header-right a:hover
 }
 .accordion-content p
 {
-    line-height: 15px;
+    line-height: 1.8;
+    font-size: 16px;
 }
 .accordion-title.active > span
 {

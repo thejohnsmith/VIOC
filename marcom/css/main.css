@@ -173,9 +173,7 @@ input[type='submit']
     -webkit-transition: .5s;
             transition: .5s;
 
-    color: #555;
-    border: none;
-    border-radius: 0;
+    color: #fff;
 }
 select
 {
@@ -2902,7 +2900,7 @@ input.bulk-apply-quantity-limit-input.form-control:focus:active
     width: 100%;
     padding: 5px;
 
-    background: #f3f3f3;
+    /*background: #f3f3f3;*/
 }
 .contact-form
 {
@@ -3055,23 +3053,33 @@ input.bulk-apply-quantity-limit-input.form-control:focus:active
 .support-library ul li .support-img
 {
     position: absolute;
-    top: 0;
-    left: 0;
+    top: 10px;
+    left: 20px;
+
+    width: 84px;
 }
 .support-library ul li .support-info
 {
     font-size: 18px;
 
+    display: inline-block;
     float: left;
 
     width: 100%;
+    height: 100px;
     padding-left: 116px;
+
+    background: #F0F0F0;
 }
 .support-library ul li .support-info p
 {
-    padding: 5px 10px;
+    font-size: 20px;
 
-    background: #f5f6f6;
+    display: inline-block;
+
+    width: 100%;
+    height: 100%;
+    padding: 35px 10px;
 }
 .faq
 {
@@ -3132,7 +3140,8 @@ input.bulk-apply-quantity-limit-input.form-control:focus:active
 }
 .accordion-content p
 {
-    line-height: 15px;
+    font-size: 16px;
+    line-height: 1.8;
 }
 .accordion-title.active > span
 {
