@@ -1484,19 +1484,12 @@ header#nav
 {
     float: left;
 
-    width: 62%;
+    width: auto;;
 }
 .program-select ul li .checkbox-area .customCheckbox,
 .program-select ul li .checkbox-area .vioc-checkbox
 {
     width: 100%;
-}
-@media all and (min-width: 1024px)
-{
-    .program-select ul li .checkbox-area
-    {
-        width: 66%;
-    }
 }
 .program-select .program-info
 {
@@ -1504,7 +1497,7 @@ header#nav
 
     float: right;
 
-    width: 29%;
+    width: 40%;
 }
 .program-select .program-info .program-status
 {
@@ -1512,7 +1505,6 @@ header#nav
 
     float: left;
 
-    width: 67.5%;
     padding: 3px 4px;
 
     text-align: center;
@@ -3845,10 +3837,6 @@ button.toast-close-button
     .vioc-checkbox
     {
         padding-left: 33px;
-    }
-    .program-select .program-info
-    {
-        width: 35%;
     }
     .program-select ul li
     {
