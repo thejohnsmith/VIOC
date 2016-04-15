@@ -315,6 +315,7 @@ var programManagementController = (function ($) {
 			// Collect storeIds from selected stores
 			$.each($('.quantity-limit.vioc-checkbox.checked'), function (i, obj) {
 				storeIds.push($(obj).attr('data-storeid'));
+				console.warn('quantity_limit checked storeId: ' + $(obj));
 			});
 
 			if (bulkQuantityLimit.length < 1) {

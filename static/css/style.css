@@ -707,9 +707,14 @@ header .header-right a:hover
     float: left;
 
     width: 100%;
-    height: 239px;
+    background-color: #f3f3f3;
+}
+.youtube-video-area > iframe
+{
+    display: inline-block;
 
-    background: #dcd9d9;
+    max-width: 100%;
+    margin: 0 auto;
 }
 #participationDashboard
 {
