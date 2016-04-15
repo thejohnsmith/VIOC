@@ -34,9 +34,7 @@ var recordLogin = (function ($) {
 				contentType: 'application/json'
 			}).done(function (data) {
 				var results = JSON.parse(data);
-				if ($('#welcome').length) {
 					setLandingPageType(results);
-				}
 			}).fail(function () {
 				return;
 			});
