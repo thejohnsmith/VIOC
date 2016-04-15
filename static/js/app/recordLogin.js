@@ -39,6 +39,8 @@ var recordLogin = (function ($) {
 	var setLandingPageType = function (results) {
 		var $loginCount = results.loginCount;
 		var $newUser = getParameterByName('newUser', window.location.href);
+		var $reportingAccess = results.marcomReportingAccess;
+		console.warn('marcomReportingAccess: ' + $reportingAccess);
 		if ($newUser > 0) {
 			$loginCount = 1;
 		}

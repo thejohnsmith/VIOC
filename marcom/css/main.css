@@ -1153,9 +1153,13 @@ header#nav
     float: left;
 
     width: 100%;
-    height: 239px;
+}
+.youtube-video-area > iframe
+{
+    display: inline-block;
 
-    background: #dcd9d9;
+    max-width: 100%;
+    margin: 0 auto;
 }
 #participationDashboard
 {
@@ -2900,7 +2904,7 @@ input.bulk-apply-quantity-limit-input.form-control:focus:active
     width: 100%;
     padding: 5px;
 
-    /*background: #f3f3f3;*/
+    background: #f3f3f3;
 }
 .contact-form
 {
@@ -3069,7 +3073,7 @@ input.bulk-apply-quantity-limit-input.form-control:focus:active
     height: 100px;
     padding-left: 116px;
 
-    background: #F0F0F0;
+    background: #f0f0f0;
 }
 .support-library ul li .support-info p
 {
