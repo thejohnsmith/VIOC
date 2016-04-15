@@ -10,17 +10,14 @@
 var recordLogin = (function ($) {
 	var makeRequest = function () {
 
-		if (document.cookie.replace(/(?:(?:^|.*;\s*)loginCount\s*\=\s*([^;]*).*$)|^.*$/, "$1") != "")
-		{
+		if (document.cookie.replace(/(?:(?:^|.*;\s*)loginCount\s*\=\s*([^;]*).*$)|^.*$/, '$1') != '') {
 			// We have a cookie containing:
 			var results = {
-				loginCount : document.cookie.replace(/(?:(?:^|.*;\s*)loginCount\s*\=\s*([^;]*).*$)|^.*$/, "$1"),
-				marcomReportingAccess : document.cookie.replace(/(?:(?:^|.*;\s*)marcomReportingAccess\s*\=\s*([^;]*).*$)|^.*$/, "$1")
+				loginCount: document.cookie.replace(/(?:(?:^|.*;\s*)loginCount\s*\=\s*([^;]*).*$)|^.*$/, '$1'),
+				marcomReportingAccess: document.cookie.replace(/(?:(?:^|.*;\s*)marcomReportingAccess\s*\=\s*([^;]*).*$)|^.*$/, '$1')
 			};
 			setLandingPageType(results);
-		}
-		else
-		{
+		} else {
 			// var localDevUrl = 'data/recordLogin.jssp';
 			// var marcomDevUrl = 'https://files.marcomcentral.app.pti.com/epsilon/static/data/recordLogin.jssp';
 			var apiPath = marcomUserData.$constants.apiPath + 'recordLogin.jssp';
@@ -51,19 +48,17 @@ var recordLogin = (function ($) {
 		var $reportingAccess = results.marcomReportingAccess;
 
 		document.cookie = 'loginCount=' + $loginCount;
-		document.cookie = 'reportingAccess=' + $reportingAccess;
+		document.cookie = 'marcomReportingAccess=' + $reportingAccess;
 
 		/* Show Reports main nav link if reportingAccess is 1 */
 		$('.navBarItem > a').filter(function () {
 			return $(this).text() === 'REPORTS';
 		}).addClass('reports-link');
 
-		if(!$reportingAccess) {
-			console.warn('reportingAccess true');
-		  $('.reports-link').addClass('hide');
+		if ($reportingAccess == 0) {
+			$('.reports-link').addClass('hide');
 		}
-		if($reportingAccess) {
-			console.warn('reportingAccess false');
+		if ($reportingAccess == 1) {
 			$('.reports-link').removeClass('hide');
 		}
 
