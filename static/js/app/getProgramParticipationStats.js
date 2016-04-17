@@ -133,11 +133,18 @@ var getProgramParticipationStats = (function ($) {
 				error: ['status-error']
 			};
 
+			// Yellow Highlight
 			$('.program-select .program-list li').on('mouseover', function () {
+			  $('.program-select .program-list li').removeClass('item-highlight');
 			  $(this).addClass('item-highlight');
-			}).on('mouseout', function () {
-			  $(this).removeClass('item-highlight');
 			});
+
+			// Same Highlight, different, using jQueyr
+			// $('.program-select .program-list li').hover(function () {
+			// 	$(this).addClass('item-highlight');
+			// }, function () {
+			// 	$(this).removeClass('item-highlight');
+			// });
 
 			return $.each(result, function (index, obj) {
 				var $programId = $('#program-' + obj.id);

@@ -5447,34 +5447,7 @@ transition: background-color .40s ease-in-out;*/
     color: #6e9bc9;
 }
 
-
-@-webkit-keyframes yellowfade
-{
-    from
-    {
-        background: #fff065;
-    }
-    to
-    {
-        background: transparent;
-    }
-}
-
-
-@keyframes yellowfade
-{
-    from
-    {
-        background: #fff065;
-    }
-    to
-    {
-        background: transparent;
-    }
-}
-
 .item-highlight
 {
-    -webkit-animation: yellowfade 1.4s;
-            animation: yellowfade 1.4s;
+    background-color: #FFF065!important;
 }
