@@ -36,10 +36,10 @@
             <div class="container-fluid">
               <div class="row">
                 <div class="col-sm-8">
-                  <input value="{{quantityLimit}}" tabindex="1" data-storeId="{{storeId}}" type="number" class="quantity-limit-input form-control {{^enrolled}}disabled{{/enrolled}}">
+                  <input value="{{quantityLimit}}" tabindex="1" data-storeId="{{storeId}}" type="number" {{^enrolled}}disabled{{/enrolled}} class="quantity-limit-input form-control {{^enrolled}}input-disabled{{/enrolled}}">
                 </div>
                 <div class="col-sm-2">
-                  <button tabindex="1" data-storeId="{{storeId}}" class="apply-quantity-limit btn btn-small btn-primary {{^enrolled}}disabled{{/enrolled}}">Apply</button>
+                  <button tabindex="1" data-storeId="{{storeId}}" {{^enrolled}}disabled{{/enrolled}} class="apply-quantity-limit btn btn-small btn-primary {{^enrolled}}dim-mid disabled{{/enrolled}}">Apply</button>
                 </div>
               </div>
             </div>
@@ -78,7 +78,6 @@
         .toggleClass('none', (storeIds.length < 2));
       $j('.quantity-limit.footer-row td.quantity-limit-footer:first-child')
         .html('Set quantity limit on ' + storeIds.length + ' selected store' + plural + ':');
-      $j('.bulk-apply-quantity-limit-input').focus();
       });
   </script>
 </script>
