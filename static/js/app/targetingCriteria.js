@@ -83,9 +83,7 @@ $j(document).ready(function () {
 		attachActivityListeners();
 		userId = getParameterByName('userId', window.location.href) || marcomUserData.$user.externalId;
 		// Call and get the store tree:
-		$j.get('https://adobe-uat-vioc.epsilon.com/jssp/vioc/getStoreSummary.jssp', {
-			'userId': userId
-		}).done(function (data) {
+		$j.get('https://adobe-uat-vioc.epsilon.com/jssp/vioc/getStoreSummary.jssp?userId=' + marcomUserData.$user.externalId).done(function (data) {
 			try {
 				jsonTreeData = JSON.parse(data);
 			} catch (e) {

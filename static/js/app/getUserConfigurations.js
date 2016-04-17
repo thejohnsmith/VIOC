@@ -20,14 +20,13 @@ var getUserConfigurations = (function ($) {
 			if (!programId) {
 				return;
 			}
-			var apiPath = marcomUserData.$constants.apiPath + 'getUserConfigurations.jssp';
+			var apiPath = marcomUserData.$constants.apiPath + 'getUserConfigurations.jssp?userId=' + encodeURIComponent(marcomUserData.$user.externalId);
 			$.ajax({
 				url: apiPath,
 				type: 'GET',
 				contentType: 'application/json',
 				processData: true,
 				data: {
-					userId: marcomUserData.$user.externalId,
 					programId: programId
 				},
 				headers: {

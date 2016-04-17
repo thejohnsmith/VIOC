@@ -33,7 +33,7 @@ var additionalOfferController = (function ($) {
 		 */
 		GetProgramData: function (programId, callback) {
 			var controller = this;
-			$.get(controller.apiPath + 'getProgramParticipationStats.jssp?userId=' + controller.userId, function (results) {
+			$.get(controller.apiPath + 'getProgramParticipationStats.jssp?userId=' + encodeURIComponent(controller.userId), function (results) {
 
 				var json_results = JSON.parse(results);
 
@@ -74,7 +74,7 @@ var additionalOfferController = (function ($) {
 		GetConfigData: function (configId, callback) {
 			var controller = this;
 
-			$.get(controller.apiPath + 'loadConfig.jssp?userId=' + controller.userId + '&configId=' + controller.configId, function (results) {
+			$.get(controller.apiPath + 'loadConfig.jssp?userId=' + encodeURIComponent(controller.userId) + '&configId=' + controller.configId, function (results) {
 
 				var json_results = JSON.parse(results);
 				controller.config = json_results;

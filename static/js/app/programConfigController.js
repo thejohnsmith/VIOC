@@ -34,7 +34,7 @@ var programConfigController = (function ($) {
 		 */
 		GetProgramData: function (programId, callback) {
 			var controller = this;
-			$.get(controller.apiPath + 'getProgramParticipationStats.jssp?userId=' + controller.userId, function (results) {
+			$.get(controller.apiPath + 'getProgramParticipationStats.jssp?userId=' + encodeURIComponent(controller.userId), function (results) {
 				// NOTE: We may need to parse results.
 				var json_results = JSON.parse(results);
 
@@ -67,7 +67,7 @@ var programConfigController = (function ($) {
 		GetConfigData: function (configId, callback) {
 			var controller = this;
 
-			$.get(controller.apiPath + 'loadConfig.jssp?userId=' + controller.userId + '&configId=' + controller.configId, function (results) {
+			$.get(controller.apiPath + 'loadConfig.jssp?userId=' + encodeURIComponent(controller.userId) + '&configId=' + controller.configId, function (results) {
 
 				var json_results = JSON.parse(results);
 				controller.config = json_results;
@@ -160,37 +160,55 @@ var programConfigController = (function ($) {
 		UpdateDiscountCodes: function () {
 			var controller = this;
 			if (!controller.program.uiLayout.usesHighRisk) {
-				$('.high-risk').hide().css({'opacity': 0});
+				$('.high-risk:not(.standard-risk)').hide();
+				$('.standard-risk.high-risk').css({'opacity': 0});
 				// $('.discount-code-table td.touchpoint-col.high-risk').show().addClass('hidden');
 				console.warn($('.touchpoint-col.high-risk'));
+				$.each($(".result-label"),function(i,e) {
+					$(e).html($(e).html().replace('- Standard',''));
+				});
 			}
 			if (!controller.program.uiLayout.usesOffer2) {
 				$('.offer-2').hide();
 			}
+
+			var firstActiveTab = null;
+
 			for (var i = 1; i <= 3; i++) {
+				var touchpointIsUsed = false;
+
 				if (controller.program.uiLayout['usesEmail' + i] != true) {
 					$('.touchpoint-' + i + '.email,.touchpoint-' + i + '.results-table .email').hide();
-				}
+				} else { touchpointIsUsed = true }
+
 				if (controller.program.uiLayout['usesDM' + i] != true) {
 					$('.touchpoint-' + i + '.dm,.touchpoint-' + i + '.results-table .dm').hide();
-				}
+				} else { touchpointIsUsed = true }
+
 				if (controller.program.uiLayout['usesSMS' + i] != true) {
 					$('.touchpoint-' + i + '.sms,.touchpoint-' + i + '.results-table .sms').hide();
+				} else { touchpointIsUsed = true }
+
+				if (!touchpointIsUsed)
+				{
+					$('.touchpoint-' + i).hide();
+				}
+				else
+				{
+					if (firstActiveTab == null)
+						firstActiveTab = i;
 				}
 			}
 
-			if (controller.program.uiLayout.touchpoints < 3) {
-				$('.touchpoint-3').hide();
-			}
-			if (controller.program.uiLayout.touchpoints < 2) {
-				$('.touchpoint-2').hide();
-			}
+			$('.touchpoint-' + firstActiveTab + '.resp-tab-item').addClass('resp-tab-active');
+			$('.touchpoint-' + firstActiveTab + '.resp-tab-content').addClass('resp-tab-content-active');
+
 			if (!controller.program.programUsesAdtl) {
 				$('.results-section .additional-offer').hide();
 			}
 
 			$.each($('.touchpoint-value'), function (i, e) {
-				var value = controller.config.content[$(e).attr('name')];
+				var value = controller.config.content[$(e).attr('name').replace('sms','ph')];
 				$(e).val(value);
 
 				if (value != '' && typeof value != 'undefined') {
@@ -222,14 +240,10 @@ var programConfigController = (function ($) {
 					var data = controller.config.preview['touchpoint'+tp].data;
 					for (var cssSelector in data)
 					{
-						$(cssSelector).html(data[cssSelector]);
+						$(cssSelector).html(data[cssSelector] + "&nbsp;");
 					}
 				}
 			}
-
-			// Pre-demo hacks.  Fixed in F-11 and F-12
-			//$(".discount-codes-row.touchpoint-row.email.touchpoint-1").show();
-			//$(".touchpoint-label.discount-code-subrow.dm").html($(".touchpoint-label.discount-code-subrow.dm").html().replace("Direct Touch Point Mail", "Direct Mail Touch Point"));
 
 		},
 		UpdateOfferExpiration: function () {
@@ -257,17 +271,30 @@ var programConfigController = (function ($) {
 		ValidateDiscountCode: function (input) {
 			console.log('Validating %o', input);
 			var discountCode = $(input).val();
-			if (discountCode.length == '') return;
-			// :TODO:
-			$.get(controller.apiPath + 'validateDiscountCode.jssp?userId=' + controller.userId + '&code=' + discountCode, function (results) {
+			var discountCodeName = $(input).attr('name').replace('sms','ph');
+
+			if (discountCode == '')
+			{
+				$(input).removeClass('input-success');
+				$(input).addClass('input-error');
+			};
+
+			$.get(controller.apiPath + 'validateDiscountCode.jssp?userId=' + encodeURIComponent(controller.userId) + '&code=' + discountCode + "&codeName=" + discountCodeName, function (results) {
 				console.log('validateDiscountCode.jssp returned: ' + results + ' (' + typeof results + ')');
-				if (results == 'true') {
+				$('.pre-submit').hide();
+				$('.post-submit').show();
+				var json_results = JSON.parse(results);
+				if (json_results.valid) {
 					$(input).removeClass('input-error');
 					$(input).addClass('input-success');
 				} else {
 					$(input).removeClass('input-success');
 					$(input).addClass('input-error');
 					toastr.error('The discount code "' + discountCode + '" does not exist.  Please contact corporate for assistance.');
+				}
+				for (var cssSelector in json_results.preview)
+				{
+					$(cssSelector).html(json_results.preview[cssSelector] + "&nbsp;");
 				}
 			});
 		},
@@ -298,8 +325,11 @@ var programConfigController = (function ($) {
 			};
 
 			$.each($('.touchpoint-value').filter(':visible'), function (i, obj) {
-				saveData['_' + $(obj).attr('name')] = $(obj).val();
+				saveData['_' + $(obj).attr('name').replace('sms','ph')] = $(obj).val();
 			});
+
+			if (typeof controller.configId != "undefined" && controller.configId > 0)
+				saveData['configId'] = controller.configId;
 
 			// Save that data to the server.
 			$.ajax({

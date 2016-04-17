@@ -764,10 +764,17 @@ header .header-right a:hover
     font-size: 18px;
 
     color: #045e90;
+    display: block;
 }
 .icons-link ul li a:hover
 {
     color: #df2925;
+}
+.icon-area img {
+    padding-bottom: 0.8em;
+}
+.icon-area span {
+    display: block;
 }
 .display-table
 {
@@ -2354,10 +2361,6 @@ header .header-right a:hover
     font-weight: normal;
 
     padding-bottom: 8px;
-}
-.help-get-started .youtube-video-area
-{
-    height: 216px;
 }
 .help-get-started .video-desc
 {
