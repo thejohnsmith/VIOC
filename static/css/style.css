@@ -4508,7 +4508,7 @@ input[type='button'].btn-block
 
 @-webkit-keyframes yellowfade {
   from {
-    background: yellow;
+    background: #FFF065;
   }
   to {
     background: transparent;
@@ -4518,7 +4518,7 @@ input[type='button'].btn-block
 
 @keyframes yellowfade {
   from {
-    background: yellow;
+    background: #FFF065;
   }
   to {
     background: transparent;
@@ -4526,6 +4526,6 @@ input[type='button'].btn-block
 }
 
 .item-highlight {
-  -webkit-animation: yellowfade 1s;
-          animation: yellowfade 1s;
+  -webkit-animation: yellowfade 1.4s;
+          animation: yellowfade 1.4s;
 }
