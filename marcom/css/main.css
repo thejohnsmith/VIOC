@@ -1212,17 +1212,20 @@ header#nav
 {
     font-size: 18px;
 
-    color: #045e90;
     display: block;
+
+    color: #045e90;
 }
 .icons-link ul li a:hover
 {
     color: #df2925;
 }
-.icon-area img {
-    padding-bottom: 0.8em;
+.icon-area img
+{
+    padding-bottom: .8em;
 }
-.icon-area span {
+.icon-area span
+{
     display: block;
 }
 .display-table
@@ -3821,10 +3824,12 @@ button.toast-close-button
 
         width: 100%;
     }
-    .icon-area img {
-        padding-bottom: 0.8em;
+    .icon-area img
+    {
+        padding-bottom: .8em;
     }
-    .icon-area span {
+    .icon-area span
+    {
         display: block;
     }
     .calendar-details p
@@ -5440,4 +5445,36 @@ transition: background-color .40s ease-in-out;*/
     text-decoration: underline;
 
     color: #6e9bc9;
+}
+
+
+@-webkit-keyframes yellowfade
+{
+    from
+    {
+        background: #fff065;
+    }
+    to
+    {
+        background: transparent;
+    }
+}
+
+
+@keyframes yellowfade
+{
+    from
+    {
+        background: #fff065;
+    }
+    to
+    {
+        background: transparent;
+    }
+}
+
+.item-highlight
+{
+    -webkit-animation: yellowfade 1.4s;
+            animation: yellowfade 1.4s;
 }

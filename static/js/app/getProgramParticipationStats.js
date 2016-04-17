@@ -132,6 +132,13 @@ var getProgramParticipationStats = (function ($) {
 				success: ['status-green'],
 				error: ['status-error']
 			};
+
+			$('.program-select .program-list li').on('mouseover', function () {
+			  $(this).addClass('item-highlight');
+			}).on('mouseout', function () {
+			  $(this).removeClass('item-highlight');
+			});
+
 			return $.each(result, function (index, obj) {
 				var $programId = $('#program-' + obj.id);
 				// Make sure to ommit non-lifecycle campaign entries.
