@@ -4525,7 +4525,7 @@ input[type='button'].btn-block
   }
 }
 
-.item-highlight {
-  -webkit-animation: yellowfade 1.4s;
-          animation: yellowfade 1.4s;
+.item-highlight
+{
+    background: #fff065!important;
 }
