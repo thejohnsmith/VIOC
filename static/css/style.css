@@ -1083,6 +1083,13 @@ header .header-right a:hover
 {
     cursor: default;
 }
+.program-button input + small
+{
+  font-size: 14px;
+  font-family: HelveticaNeueLT-LightCond;
+  margin-top: 0.8em;
+  display: inline-block;
+}
 .program-button .blue-btn
 {
     font-size: 15px;

@@ -1561,6 +1561,15 @@ header#nav
 {
     cursor: default;
 }
+.program-button input + small
+{
+    font-family: HelveticaNeueLT-LightCond;
+    font-size: 14px;
+
+    display: inline-block;
+
+    margin-top: .8em;
+}
 .program-button .blue-btn
 {
     font-size: 17px;
@@ -5449,5 +5458,5 @@ transition: background-color .40s ease-in-out;*/
 
 .item-highlight
 {
-    background-color: #FFF065!important;
+    background-color: #fff065!important;
 }
