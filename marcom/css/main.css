@@ -1213,10 +1213,17 @@ header#nav
     font-size: 18px;
 
     color: #045e90;
+    display: block;
 }
 .icons-link ul li a:hover
 {
     color: #df2925;
+}
+.icon-area img {
+    padding-bottom: 0.8em;
+}
+.icon-area span {
+    display: block;
 }
 .display-table
 {
@@ -3813,6 +3820,12 @@ button.toast-close-button
         float: left;
 
         width: 100%;
+    }
+    .icon-area img {
+        padding-bottom: 0.8em;
+    }
+    .icon-area span {
+        display: block;
     }
     .calendar-details p
     {
