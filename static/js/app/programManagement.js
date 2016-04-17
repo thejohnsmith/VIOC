@@ -40,7 +40,7 @@ var programManagementController = (function ($) {
 		 */
 		retrieveUserConfigs: function (callback) {
 			var controller = this;
-			$.get(controller.apiPath + 'getUserConfigurations.jssp?userId=' + controller.user_id + '&programId=' + controller.program_id, function (results) {
+			$.get(controller.apiPath + 'getUserConfigurations.jssp?userId=' + encodeURIComponent(controller.user_id) + '&programId=' + encodeURIComponent(controller.program_id), function (results) {
 				var json_results = JSON.parse(results);
 				controller.user_configs = json_results;
 				if (typeof callback == 'function') {
@@ -54,7 +54,7 @@ var programManagementController = (function ($) {
 		 */
 		getStoreProgramData: function (callback) {
 			var controller = this;
-			$.get(controller.apiPath + 'getStoreProgramData.jssp?userId=' + controller.user_id + '&programId=' + controller.program_id, function (results) {
+			$.get(controller.apiPath + 'getStoreProgramData.jssp?userId=' + encodeURIComponent(controller.user_id) + '&programId=' + controller.program_id, function (results) {
 				var json_results = JSON.parse(results);
 				controller.store_data = json_results;
 				if (typeof callback == 'function') callback(json_results);
@@ -69,10 +69,11 @@ var programManagementController = (function ($) {
 		 */
 		getProgramData: function (program_id, callback) {
 			var controller = this;
-			$.get(controller.apiPath + 'getProgramParticipationStats.jssp?userId=' + controller.user_id, function (results) {
+			$.get(controller.apiPath + 'getProgramParticipationStats.jssp?userId=' + encodeURIComponent(controller.user_id), function (results) {
 				var json_results = JSON.parse(results);
 				controller.hideAdditionalOffersIfNeeded();
 				controller.showQuantityLimitTabIfNeeded();
+				controller.hideProgramSettingsIfNeeded();
 				controller.hideStandardOffersIfNeeded();
 
 				// Loop through the API result and find the program that matches program ID (DONE)
@@ -174,7 +175,7 @@ var programManagementController = (function ($) {
 			});
 		},
 		deleteSettings: function (selectedConfigId, callback) {
-			$.get(controller.apiPath + 'deleteConfig.jssp?userId=' + controller.user_id + '&configId=' + selectedConfigId, function (results) {
+			$.get(controller.apiPath + 'deleteConfig.jssp?userId=' + encodeURIComponent(controller.user_id) + '&configId=' + encodeURIComponent(selectedConfigId), function (results) {
 			}).error(function (data) {
 				toastr.error('Failed to delete settings.');
 			}).done(function (data) {
@@ -288,10 +289,10 @@ var programManagementController = (function ($) {
 			$('.bulk-apply-quantity-limit').click(this.setBulkQuantityLimit);
 
 		},
-		selectMultipleProofSettings(e) {
+		selectMultipleProofSettings: function(e) {
 			e.preventDefault();
 		},
-		setSingleQuantityLimit(e) {
+		setSingleQuantityLimit: function(e) {
 			e.preventDefault();
 			var storeId = $(this).attr('data-storeid');
 			var quantityLimit = $('.quantity-limit-input[data-storeId="' + storeId + '"]').val();
@@ -307,31 +308,33 @@ var programManagementController = (function ($) {
 				toastr.success('Quantity changed to ' + quantityLimit);
 			});
 		},
-		setBulkQuantityLimit(e) {
+		setBulkQuantityLimit: function(e) {
 			e.preventDefault();
 			var storeIds = [];
 			var bulkQuantityLimit = $('.bulk-apply-quantity-limit-input').val();
-
-			// Collect storeIds from selected stores
-			$.each($('.quantity-limit.vioc-checkbox.checked'), function (i, obj) {
-				storeIds.push($(obj).attr('data-storeid'));
-				console.warn('quantity_limit checked storeId: ' + $(obj));
-			});
 
 			if (bulkQuantityLimit.length < 1) {
 				bulkQuantityLimit = 0;
 				$('.bulk-apply-quantity-limit-input').val(0);
 			}
 
+			// Collect storeIds from selected stores
+			$.each($('.quantity-limit.vioc-checkbox.checked'), function (i, obj) {
+				var sid = $(obj).attr('data-storeid');
+				storeIds.push(sid);
+				$(".quantity-limit-input[data-storeid='" + sid + "']").val(bulkQuantityLimit);
+				console.warn('quantity_limit checked storeId: ' + $(obj));
+			});
+
 			// Send API Request
 			controller.saveQuantityMeta([storeIds], bulkQuantityLimit, function () {
 				toastr.success('All quantity limits were changed to ' + bulkQuantityLimit);
 			});
 		},
-		saveStoreSubscription(selectedStores, configId, callback) {
+		saveStoreSubscription: function(selectedStores, configId, callback) {
 			var controller = this;
 			var stringStoreIds = selectedStores.join(',');
-			$.get(controller.apiPath + 'setStoreConfig.jssp?userId=' + controller.user_id + '&configId=' + configId + '&programId=' + controller.program_id + '&storeIds=' + stringStoreIds, function (results) {
+			$.get(controller.apiPath + 'setStoreConfig.jssp?userId=' + encodeURIComponent(controller.user_id) + '&configId=' + configId + '&programId=' + controller.program_id + '&storeIds=' + stringStoreIds, function (results) {
 				var json_results = JSON.parse(results);
 				controller.store_data = json_results;
 				if (typeof callback == 'function') callback(json_results);
@@ -363,14 +366,25 @@ var programManagementController = (function ($) {
 				}
 			}
 		},
-		saveQuantityMeta(selectedStores, quantityLimit, callback) {
+		hideProgramSettingsIfNeeded: function () {
+			var controller = this;
+			for (var i = 0; i < $programParticipationStats.length; i++) {
+				if ($programParticipationStats[i].id == controller.program_id) {
+					if ($programParticipationStats[i].programUsesOffers == 0 && $programParticipationStats[i].programUsesAdtl == 0) {
+						$('[aria-controls="hor_1_tab_item-1"], [aria-labelledby="hor_1_tab_item-1"]').hide();
+						window.location.hash = '#parentHorizontalTab1';
+					}
+				}
+			}
+		},
+		saveQuantityMeta: function(selectedStores, quantityLimit, callback) {
 			/**
 			 * @example API CALL https://adobe-uat-vioc.epsilon.com/jssp/vioc/setStoreMeta.jssp?userId=Zz0fUjXHHr66NXRFDs&storeIds=1,2,3&quantity_limit=1000
 			 */
 			var controller = this;
 			var stringStoreIds = selectedStores.join(',');
 			var quantityLimit;
-			$.get(controller.apiPath + 'setStoreMeta.jssp?userId=' + controller.user_id + '&storeIds=' + stringStoreIds + '&quantity_limit=' + quantityLimit, function (results) {
+			$.get(controller.apiPath + 'setStoreMeta.jssp?userId=' + encodeURIComponent(controller.user_id) + '&storeIds=' + stringStoreIds + '&quantity_limit=' + quantityLimit, function (results) {
 				try {
 					var json_results = JSON.parse(results);
 					controller.store_data = json_results;
@@ -382,19 +396,19 @@ var programManagementController = (function ($) {
 				toastr.error('Saving quantity limit failed.');
 			});
 		},
-		refreshProofControls() {
+		refreshProofControls: function() {
 			$('.link-proof-single').each(function () {
 				var proofSelected = $(this).attr('data-proofSelected');
 				$(this).val(proofSelected).attr('selected', 'selected');
 			});
 		},
-		saveProofMeta(selectedStores, proofType, proofVal, callback) {
+		saveProofMeta: function(selectedStores, proofType, proofVal, callback) {
 			/**
 			 * @example API CALL https://adobe-uat-vioc.epsilon.com/jssp/vioc/setStoreMeta.jssp?userId=Zz0fUjXHHr66NXRFDs&storeIds=1,2,3&proofSettings=1
 			 */
 			var controller = this;
 			var stringStoreIds = selectedStores.join(',');
-			$.get(controller.apiPath + 'setStoreMeta.jssp?userId=' + controller.user_id + '&storeIds=' + stringStoreIds + '&' + proofType + '=' + proofVal, function (results) {
+			$.get(controller.apiPath + 'setStoreMeta.jssp?userId=' + encodeURIComponent(controller.user_id) + '&storeIds=' + stringStoreIds + '&' + proofType + '=' + proofVal, function (results) {
 				try {
 					var json_results = JSON.parse(results);
 					controller.store_data = json_results;

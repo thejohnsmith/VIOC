@@ -127,10 +127,11 @@ var getStoreProgramData = (function ($) {
 			 * Calculate the grand total for Email, DM and SMS from all stores enrolled.
 			 **/
 			$('.filterable:visible .store-item[data-enrolled="true"] .store-counts .' + e).each(function () {
-				// console.log("Adding " + parseFloat($(this).text()) + " to " + e + " sum.");
-				newSum += parseFloat($(this).text());
+				var n = parseFloat($(this).text());
+				n = (isNaN(n)) ? 0 : n;
+				newSum += n;
 			}).promise().done(function () {
-				// console.log(e + " grand total is now : " + newSum);
+				newSum = (isNaN(newSum)) ? "Not Available" : newSum;
 				$('.grand-total .' + e).text(newSum);
 			});
 			/**
@@ -138,9 +139,13 @@ var getStoreProgramData = (function ($) {
 			 * Adds currecy decimal places
 			 **/
 			$('.filterable:visible .store-item[data-enrolled="true"] .store-cost .costEstimateTotal').each(function () {
-				newCostSum += parseFloat($(this).text());
+				var n = parseFloat($(this).text());
+				console.log("Found Total : " + n + " (" + typeof n + ")");
+				newCostSum += (isNaN(n)) ? 0 : n;
 			}).promise().done(function () {
-				$('.grand-total .costEstimateTotal').text(newCostSum.toFixed(2));
+				console.log("grandTotal is " + newCostSum + " (" + typeof newCostSum + ")");
+				var grandTotal = (isNaN(newCostSum)) ? "Not Available" : newCostSum.toFixed(2);
+				$('.grand-total .costEstimateTotal').text(grandTotal);
 			});
 		},
 		requestFailed = function () {

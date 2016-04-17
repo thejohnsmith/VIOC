@@ -100,7 +100,7 @@ var programManagementFilters = (function ($) {
 		 */
 		getStoreTree: function (callback) {
 			var controller = this;
-			$.get(controller.apiPath + 'getStoreSummary.jssp?userId=' + controller.user_id,
+			$.get(controller.apiPath + 'getStoreSummary.jssp?test=1&userId=' + encodeURIComponent(marcomUserData.$user.externalId),
 				function (results) {
 					var json_results = JSON.parse(results);
 					controller.store_tree = json_results;

@@ -34,7 +34,9 @@ var recordLogin = (function ($) {
 				contentType: 'application/json'
 			}).done(function (data) {
 				var results = JSON.parse(data);
+				if ($('#welcome').length) {
 					setLandingPageType(results);
+				}
 			}).fail(function () {
 				return;
 			});
@@ -65,12 +67,12 @@ var recordLogin = (function ($) {
 		}
 		if ($loginCount < 3) {
 			// Greater than 5, show "Getting Started Now" version of the home page.
-			$('#welcome + #gettingStartedNow').fadeIn();
-			$('#programSummary').hide();
+			$('#welcome + #gettingStartedNow.landing-page-only').fadeIn();
+			$('#programSummary.landing-page-only').hide();
 		} else {
 			// Less than 5, show the "Programs" version of the home page.
-			$('#welcome + #gettingStartedNow').hide();
-			$('#programSummary').fadeIn();
+			$('#welcome + #gettingStartedNow.landing-page-only').hide();
+			$('#programSummary.landing-page-only').fadeIn();
 		}
 	};
 	return {
