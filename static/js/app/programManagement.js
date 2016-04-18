@@ -31,6 +31,8 @@ var programManagementController = (function ($) {
 					/* Refresh the bottom section of the page */
 					controller.refreshManagementControls();
 					controller.refreshProofControls();
+					controller.refreshSelectAllButton();
+					controller.refreshStoreRowEnrollment();
 				});
 			});
 		},
@@ -75,6 +77,8 @@ var programManagementController = (function ($) {
 				controller.showQuantityLimitTabIfNeeded();
 				controller.hideProgramSettingsIfNeeded();
 				controller.hideStandardOffersIfNeeded();
+				controller.refreshSelectAllButton();
+				controller.refreshStoreRowEnrollment();
 
 				// Loop through the API result and find the program that matches program ID (DONE)
 				$.each(json_results, function (i, result) {
@@ -288,6 +292,24 @@ var programManagementController = (function ($) {
 			$('.apply-quantity-limit').click(this.setSingleQuantityLimit);
 			$('.bulk-apply-quantity-limit').click(this.setBulkQuantityLimit);
 
+			$('.toggle-btn').off('click.vioc').on('click.vioc', function (e) {
+
+				var $programId = getParameterByName('programId', window.location.href);
+				var $userId = marcomUserData.$user.externalId || {};
+				var $storeId = $(this).attr('data-storeid');
+
+				if ($(this).attr('data-enrolled') == "true") {
+					var $storeId = $(this).attr('data-storeid');
+					$(this).attr('data-enrolled', "false");
+					setStoreSubscription.makeRequest($userId, $storeId, $programId, 0);
+				} else if ($(this).attr('data-enrolled') == "false") {
+					var $storeId = $(this).attr('data-storeid');
+					$(this).attr('data-enrolled', "true");
+					setStoreSubscription.makeRequest($userId, $storeId, $programId, 1)
+				}
+				controller.refreshSelectAllButton();
+				controller.refreshStoreRowEnrollment();
+			});
 		},
 		selectMultipleProofSettings: function(e) {
 			e.preventDefault();
@@ -419,7 +441,64 @@ var programManagementController = (function ($) {
 			}).error(function (data) {
 				toastr.error('Something bad happened');
 			});
+		},
+		refreshSelectAllButton: function() {
+
+			return false;
+
+			// Get the count of the visible store checkboxes
+			var visible_store_count = $('.program-enrollment-section .toggle-btn').length;
+			var enrolled_store_count = $('.program-enrollment-section [data-enrolled="true"].toggle-btn').length;
+
+			if(visible_store_count === enrolled_store_count) {
+				$('.enroll-all-stores.btn').removeClass('activate').text('Unenroll All');
+			} else {
+				$('.enroll-all-stores.btn').addClass('activate').text('Enroll All');
+			}
+		},
+		refreshStoreRowEnrollment: function()
+		{
+			var startTime = Math.floor(Date.now() / 1000);
+			console.log("Starting refreshStoreRowEnrollment at " + startTime);
+			$('div.toggle-btn').each(function () {
+				var enabled = $(this).attr('data-enrolled') == 'true';
+				var storeId = $(this).attr('data-storeid');
+
+				if (enabled) {
+					$(this).addClass('active');
+					$("tr.store-item[data-storeid="+storeId+"]").each(function() {
+						$(this).find(".store-item-dimable").removeClass('dim-mid').attr('data-enrolled', "true");
+						$(this).find(".store-item-dimable input").removeClass('input-disabled').removeAttr("disabled");
+						$(this).find(".store-item-dimable select").removeClass('input-disabled').removeAttr("disabled");
+						$(this).find(".store-item-dimable .apply-quantity-limit").removeClass('disabled').removeAttr("disabled");
+						$(this).find(".store-item-dimable .vioc-checkbox").removeClass('disabled');
+						$(this).find(".store-item-dimable small.not-enrolled").addClass('none');
+						$(this).find(".store-item-dimable .store-level-dropdown").removeClass('none');
+						/*
+						*/
+					});
+				} else {
+					$(this).removeClass('active');
+					$("tr.store-item[data-storeid="+storeId+"]").each(function() {
+						$(this).find(".store-item-dimable").addClass('dim-mid').attr('data-enrolled', "false");
+						$(this).find(".store-item-dimable input").addClass('input-disabled').attr("disabled", true);
+						$(this).find(".store-item-dimable select").addClass('input-disabled').attr("disabled", true);
+						$(this).find(".store-item-dimable .apply-quantity-limit").addClass('disabled').attr("disabled", true);
+						$(this).find(".store-item-dimable .vioc-checkbox").addClass('disabled');
+						$(this).find(".store-item-dimable small.not-enrolled").addClass('none');
+						$(this).find(".store-item-dimable .store-level-dropdown").removeClass('none');
+						/*
+						*/
+					});
+				}
+			});
+			console.log("Ending refreshStoreRowEnrollment, starting total count...");
+			getStoreProgramData.getTotals();
+			console.log("Ending total count...");
+			var endTime = Math.floor(Date.now() / 1000);
+			console.log("Done at " + endTime + ".  Took " + (endTime - startTime))
 		}
+
 	};
 	return {
 		controller: controller
