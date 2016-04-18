@@ -10,9 +10,18 @@
 var recordLogin = (function ($) {
 	var makeRequest = function () {
 
-		if (document.cookie.replace(/(?:(?:^|.*;\s*)loginCount\s*\=\s*([^;]*).*$)|^.*$/, '$1') != '') {
+		var useCookie = false;
+
+		if (document.cookie.replace(/(?:(?:^|.*;\s*)marcomUserId\s*\=\s*([^;]*).*$)|^.*$/, '$1') != '') {
+			cookie_user_id = document.cookie.replace(/(?:(?:^|.*;\s*)marcomUserId\s*\=\s*([^;]*).*$)|^.*$/, '$1');
+			useCookie = (cookie_user_id == marcomUserData.$user.externalId);
+			console.log((useCookie) ? "Cookie matches active user" : "Cookie doesn't match active user");
+		};
+
+		if (useCookie) {
 			// We have a cookie containing:
 			var results = {
+				marcomUserId: document.cookie.replace(/(?:(?:^|.*;\s*)marcomUserId\s*\=\s*([^;]*).*$)|^.*$/, '$1'),
 				loginCount: document.cookie.replace(/(?:(?:^|.*;\s*)loginCount\s*\=\s*([^;]*).*$)|^.*$/, '$1'),
 				marcomReportingAccess: document.cookie.replace(/(?:(?:^|.*;\s*)marcomReportingAccess\s*\=\s*([^;]*).*$)|^.*$/, '$1')
 			};
@@ -46,9 +55,11 @@ var recordLogin = (function ($) {
 		var $loginCount = results.loginCount;
 		var $newUser = getParameterByName('newUser', window.location.href);
 		var $reportingAccess = results.marcomReportingAccess;
+		console.log("results.marcomReportingAccess = " + results.marcomReportingAccess);
 
 		document.cookie = 'loginCount=' + $loginCount;
 		document.cookie = 'marcomReportingAccess=' + $reportingAccess;
+		document.cookie = 'marcomUserId=' + marcomUserData.$user.externalId;
 
 		/* Show Reports main nav link if reportingAccess is 1 */
 		$('.navBarItem > a').filter(function () {
