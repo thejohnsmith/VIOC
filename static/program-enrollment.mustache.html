@@ -53,24 +53,23 @@
           .hasSMS{display:none;}
         {{/hasSMS}}
       </style>
-      <tr class="filterable" data-filter-storeId="{{storeId}}">
+      <tr class="filterable store-item" data-filter-storeId="{{storeId}}" data-storeId="{{storeId}}" data-enrolled="{{#enrolled}}true{{/enrolled}}{{^enrolled}}false{{/enrolled}}">
         <td>
           <table>
             <tr>
               <td>
                 <table>
-                  <tr class="store-item" data-enrolled="{{#enrolled}}true{{/enrolled}}{{^enrolled}}false{{/enrolled}}">
+                  <tr>
                     <td class="store-enroll">
-                      <div class="toggle-btn" data-enrolled="{{enrolled}}">
-                        <input type="checkbox" class="cb-value" data-storeId="{{storeId}}" {{#enrolled}}checked{{/enrolled}}>
+                      <div class="toggle-btn" data-storeId="{{storeId}}" data-enrolled="{{#enrolled}}true{{/enrolled}}{{^enrolled}}false{{/enrolled}}">
                         <span class="round-btn"></span>
                       </div>
                     </td>
-                    <td class="store {{^enrolled}}dim-mid{{/enrolled}}">{{storeName}}
+                    <td class="store store-item-dimable {{^enrolled}}dim-mid{{/enrolled}}">{{storeName}}
                       <br>
                       <div class="store-number">Store #{{storeNumber}}</div>
                     </td>
-                    <td class="store-counts {{^enrolled}}dim-mid{{/enrolled}}">
+                    <td class="store-counts store-item-dimable {{^enrolled}}dim-mid{{/enrolled}}" data-enrolled="{{#enrolled}}true{{/enrolled}}{{^enrolled}}false{{/enrolled}}">
                       <table class="inner-table">
                         <tr>
                           {{#hasEmail}}
@@ -81,7 +80,7 @@
                       </table>
                     </td>
                     {{#hasDM}}
-                    <td class="store-cost {{^enrolled}}dim-mid{{/enrolled}}">
+                    <td class="store-cost store-item-dimable {{^enrolled}}dim-mid{{/enrolled}}">
                       <span>$</span>
                       <span class="costEstimateTotal js-format-currency">{{costEstimate}}</span>
                       <br><a href="javascript:void(0);" title="Details" class="mobie-details-{{storeId}}">Details</a></td>{{/hasDM}}

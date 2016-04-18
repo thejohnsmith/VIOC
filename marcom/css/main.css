@@ -1628,9 +1628,9 @@ header#nav
 {
     color: #1bb24b;
 }
-#programSummary .program-select li.status-yellow:hover label
+#programSummary .program-select li.status-yellow:hover label, .status-yellow.item-highlight:hover label
 {
-    color: #ffe600;
+    color: #555655;
 }
 #programSummary .program-select li.status-red:hover label
 {
@@ -1965,7 +1965,7 @@ header#nav
     float: right;
 
     height: 30px;
-    margin-top: -10px;
+    margin-top: 0;
     padding-left: 36px;
 
     color: #00aeef;

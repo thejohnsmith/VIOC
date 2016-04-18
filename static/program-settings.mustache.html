@@ -20,34 +20,29 @@
       </thead>
       <tbody>
         {{#.}}
-        <tr class="filterable" data-filter-storeId="{{storeId}}">
-          <td>
-            <div class="checkbox-area">
-              <div data-storeId="{{storeId}}" class="program-settings vioc-checkbox {{^enrolled}}disabled{{/enrolled}}">
-                <input {{^enrolled}}readonly{{/enrolled}} type="checkbox">
-              </div>
+        <tr class="filterable store-item" data-filter-storeId="{{storeId}}" data-storeId="{{storeId}}" data-enrolled="{{#enrolled}}true{{/enrolled}}{{^enrolled}}false{{/enrolled}}">
+        <td class="checkbox-td store-item-dimable">
+          <div class="checkbox-area">
+            <div data-storeId="{{storeId}}" class="program-settings vioc-checkbox {{^enrolled}}disabled{{/enrolled}}">
+              <input {{^enrolled}}readonly{{/enrolled}} type="checkbox">
             </div>
-          </td>
+          </div>
+        </td>
 
-          <td data-storeId="{{storeId}}" class="{{^enrolled}}dim-mid{{/enrolled}} store program-settings-store" style="padding: 21px 8px">
+          <td data-storeId="{{storeId}}" class="store-item-dimable {{^enrolled}}dim-mid{{/enrolled}} store program-settings-store" style="padding: 21px 8px">
             <div class="store-name">{{storeName}}</div>
             <div class="store-number">Store #{{storeNumber}}</div>
           </td>
-
-          <td class="store-configuration standard-offer" style="padding: 21px 8px">
-            {{#enrolled}}
-            <select data-storeId="{{storeId}}" class="form-control program-dropdown store-level-dropdown dropdown-{{storeId}}-program">
+          <td class="store-item-dimable store-configuration standard-offer" style="padding: 21px 8px">
+            <select data-storeId="{{storeId}}" class="{{^enrolled}}none{{/enrolled}} form-control program-dropdown store-level-dropdown dropdown-{{storeId}}-program">
             </select>
-            {{/enrolled}} {{^enrolled}}
-            <small class="dim-mid">Store Not Enrolled</small>{{/enrolled}}
+            <small class="{{#enrolled}}none{{/enrolled}} not-enrolled store-item-dimable dim-mid">Store Not Enrolled</small>
           </td>
-          <td class="store-configuration additional-offer" style="padding: 21px 8px">
-            {{#enrolled}}
-            <select data-storeId="{{storeId}}" class="form-control adtl-dropdown store-level-dropdown dropdown-{{storeId}}-adtl">
+          <td class="store-item-dimable store-configuration additional-offer" style="padding: 21px 8px">
+            <select data-storeId="{{storeId}}" class="{{^enrolled}}none{{/enrolled}} form-control adtl-dropdown store-level-dropdown dropdown-{{storeId}}-adtl">
             </select>
+            <small class="not-enrolled store-item-dimable dim-mid {{#enrolled}}none{{/enrolled}}">Store Not Enrolled</small>
           </td>
-          {{/enrolled}} {{^enrolled}}
-          <small class="dim-mid">Store Not Enrolled</small>{{/enrolled}}
         </tr>
         {{/.}}
         <tr class="program-settings footer-row">
