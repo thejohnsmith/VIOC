@@ -68,13 +68,22 @@ var customCheckAndRadioBoxes = (function ($) {
 
 			var $programId = getParameterByName('programId', window.location.href);
 			var $userId = marcomUserData.$user.externalId || {};
+			var visible_store_count = $('.program-enrollment-section .cb-value').length;
+			var enrolled_store_count = $('.program-enrollment-section [data-enrolled="true"] .cb-value').length;
+			// console.warn('number of $stores ' + visible_store_count);
+
+			if(visible_store_count === enrolled_store_count) {
+				$('.enroll-all-stores.btn').addClass('activate').text('Unenroll All');
+				// console.warn('All stores enrolled!!');
+			}
 
 			$('.cb-value').off('click.vioc').on('click.vioc', function (e) {
-				console.log("Firing checkbox click...");
+				// console.log("Firing checkbox click...");
 				e.preventDefault();
 				e.stopPropagation();
 				var $mainParent = $(this).parent('.toggle-btn');
 				var $storeId = $(this).attr('data-storeId');
+				enrolled_store_count = $('.program-enrollment-section [data-enrolled="true"] .cb-value').length;
 				if ($(this).is(':checked')) {
 					$($mainParent).addClass('active');
 					$(this).prop('checked', 'checked');
@@ -86,16 +95,43 @@ var customCheckAndRadioBoxes = (function ($) {
 					unsubscribeStore($userId, $storeId, $programId, 1);
 				}
 			});
+
+
 			$('.enroll-all-stores').off('click.vioc').on('click.vioc', function (e) {
 				e.preventDefault();
 				e.stopPropagation();
-				$('[data-enrolled="false"] .cb-value').each(function () {
-					var $mainParent = $(this).parent('.toggle-btn');
-					var $storeId = $(this).attr('data-storeId');
-					$($mainParent).addClass('active');
-					$(this).prop('checked', 'checked');
-					subscribeStore($userId, $storeId, $programId, 1);
-				});
+
+				// Get the count of the visible store checkboxes
+				enrolled_store_count = $('.program-enrollment-section [data-enrolled="true"] .cb-value').length;
+				// console.warn('visible_store_count: ' + visible_store_count);
+
+				if(visible_store_count === enrolled_store_count) {
+					$('.enroll-all-stores.btn').addClass('activate').text('Unenroll All');
+					// console.warn('All stores enrolled!!');
+				}
+
+				if($(this).hasClass('activate')) {
+					// console.log('has class activate');
+					$('[data-enrolled="true"] .cb-value').each(function () {
+						console.log('all true ones block....');
+						var $mainParent = $(this).parent('.toggle-btn');
+						var $storeId = $(this).attr('data-storeId');
+						$($mainParent).removeClass('active');
+						$(this).prop('checked', '');
+						subscribeStore($userId, $storeId, $programId, 1);
+					});
+					$(this).removeClass('activate');
+				}
+				if(!$(this).hasClass('activate')) {
+					// console.log('Doesn\'t have class activate');
+					$('[data-enrolled="false"] .cb-value').each(function () {
+						var $mainParent = $(this).parent('.toggle-btn');
+						var $storeId = $(this).attr('data-storeId');
+						$($mainParent).addClass('active');
+						$(this).prop('checked', 'checked');
+						subscribeStore($userId, $storeId, $programId, 1);
+					});
+				}
 			});
 		}
 
