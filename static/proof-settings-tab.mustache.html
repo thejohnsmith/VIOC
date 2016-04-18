@@ -55,29 +55,29 @@
             .proof-settings-tab-section .hasSMS{display:none;}
           {{/hasSMS}}
         </style>
-        <tr class="filterable" data-filter-storeId="{{storeId}}">
+        <tr class="filterable store-item" data-filter-storeId="{{storeId}}" data-storeId="{{storeId}}" data-enrolled="{{#enrolled}}true{{/enrolled}}{{^enrolled}}false{{/enrolled}}">
           <td>
             <table>
               <tr>
                 <td>
                   <table>
-                    <tr class="store-item" data-enrolled="{{#enrolled}}true{{/enrolled}}{{^enrolled}}false{{/enrolled}}">
-                      <td class="checkbox-td">
+                    <tr>
+                      <td class="checkbox-td store-item-dimable">
                         <div class="checkbox-area">
                           <div data-storeId="{{storeId}}" class="proof-settings vioc-checkbox {{^enrolled}}disabled{{/enrolled}}">
                             <input {{^enrolled}}readonly{{/enrolled}} type="checkbox">
                           </div>
                         </div>
                       </td>
-                      <td class="store {{^enrolled}}dim-mid{{/enrolled}}">{{storeName}}
+                      <td class="store store-item-dimable {{^enrolled}}dim-mid{{/enrolled}}">{{storeName}}
                         <br>
                         <div class="store-number">Store #{{storeNumber}}</div>
                       </td>
-                      <td class="store-materials {{^enrolled}}dim-mid{{/enrolled}}">
+                      <td class="store-materials store-item-dimable {{^enrolled}}dim-mid{{/enrolled}}">
                         <table class="inner-table">
                           <tr>
                             {{#hasEmail}}
-                            <td class="channelEmailTotal">
+                            <td class="store-item-dimable channelEmailTotal">
                               <select data-prooftype="emProofSettings" data-proofSelected="{{emProofSettings}}" data-storeId="{{storeId}}" class="link-proof link-proof-single form-control" title="Choose Monthly Proof Settings">
                                 <option value="0">None</option>
                                 <option value="1">Monthly</option>
@@ -88,7 +88,7 @@
                             {{/hasEmail}}
 
                             {{#hasDM}}
-                            <td class="channelDMTotal">
+                            <td class="store-item-dimable channelDMTotal">
                               <select data-prooftype="dmProofSettings" data-proofSelected="{{dmProofSettings}}" data-storeId="{{storeId}}" class="link-proof link-proof-single form-control" title="Choose Monthly Proof Settings">
                                 <option value="0">None</option>
                                 <option value="1">Monthly</option>
@@ -98,7 +98,7 @@
                             </td>{{/hasDM}}
 
                             {{#hasSMS}}
-                            <td class="channelSMSTotal">
+                            <td class="store-item-dimable channelSMSTotal">
                               <select data-prooftype="smsProofSettings" data-proofSelected="{{smsProofSettings}}" data-storeId="{{storeId}}" class="link-proof link-proof-single form-control" title="Choose Monthly Proof Settings">
                                 <option value="0">None</option>
                                 <option value="1">Monthly</option>
@@ -109,7 +109,7 @@
                           </tr>
                         </table>
                       </td>
-                      <td class="store-proof-address {{^enrolled}}dim-mid{{/enrolled}}">
+                      <td class="store-proof-address store-item-dimable {{^enrolled}}dim-mid{{/enrolled}}">
                         <div itemscope itemtype="http://schema.org/Person">
                           <div itemprop="name">{{proofName}}</div>
                           <a href="{{proofEmail}}" itemprop="email">{{proofEmail}}</a>
