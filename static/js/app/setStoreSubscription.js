@@ -53,7 +53,7 @@ var setStoreSubscription = (function ($) {
 			// console.log('%c ** Request failed ** ', 'color: #f10; font-weight: bold;', '\nStore IDs sent to API:\n' + $storeIds);
 		}).always(function () {
 			// Updates grand-total values in .program-enrollment-section
-			getStoreProgramData.makeRequest();
+			// getStoreProgramData.makeRequest();
 		});
 	};
 	return {

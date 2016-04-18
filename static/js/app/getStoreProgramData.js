@@ -40,15 +40,15 @@ var getStoreProgramData = (function ($) {
 					$('[data-enrolled="true"] .toggle-btn').addClass('active').prop('checked', 'checked');
 				}
 			}).done(function () {
-				getTotals(result);
+				return getTotals(result);
 			});
 			$.get(marcomFilePath + 'program-settings.mustache.html', function (templates) {
 				var template2 = $(templates).filter('.program-settings-template').html();
 				$('.program-settings-section').html(Mustache.render(template2, result));
-				reloadCheckBoxes();
+				// return reloadCheckBoxes();
 			}).done(function () {
-				setHashLinks(),
-					programSettingsHandler();
+				return setHashLinks(); //,
+					//programSettingsHandler();
 			}).promise().done(function () {
 				programManagementController.controller.init();
 				programManagementFilters.controller.onFilterChange(programManagementFilters.controller.store_ids)
@@ -56,15 +56,19 @@ var getStoreProgramData = (function ($) {
 			$.get(marcomFilePath + 'proof-settings-tab.mustache.html', function (templates) {
 				var template3 = $(templates).filter('.proof-settings-tab-template').html();
 				$('.proof-settings-tab-section').html(Mustache.render(template3, result));
+				return;
 			}).done(function () {
-				programSettingsHandler();
+				// programSettingsHandler();
+				return;
 			});
 			if ($('.quantity-limit-tab-section').length) {
 				$.get(marcomFilePath + 'quantity-limit-tab.mustache.html', function (templates) {
 					var template4 = $(templates).filter('.quantity-limit-tab-template').html();
 					$('.quantity-limit-tab-section').html(Mustache.render(template4, result));
+					return;
 				}).done(function () {
-					programSettingsHandler();
+					// programSettingsHandler();
+					return;
 				});
 			}
 		},
@@ -122,10 +126,12 @@ var getStoreProgramData = (function ($) {
 			/**
 			 * Calculate the grand total for Email, DM and SMS from all stores enrolled.
 			 **/
-			$('.filterable:visible .store-item[data-enrolled="true"] .store-counts .' + e).each(function () {
-				var n = parseFloat($(this).text());
-				n = (isNaN(n)) ? 0 : n;
-				newSum += n;
+			$('.store-counts[data-enrolled="true"] .' + e + ':visible').each(function () {
+				if ($(this).parent().not(".dim-mid") ) {
+					var n = parseFloat($(this).text());
+					n = (isNaN(n)) ? 0 : n;
+					newSum += n;
+				}
 			}).promise().done(function () {
 				newSum = (isNaN(newSum)) ? "Not Available" : newSum;
 				$('.grand-total .' + e).text(newSum);
@@ -134,12 +140,11 @@ var getStoreProgramData = (function ($) {
 			 * Calculate grand total for Estimated Monthly Cost.
 			 * Adds currecy decimal places
 			 **/
-			$('.filterable:visible .store-item[data-enrolled="true"] .store-cost .costEstimateTotal').each(function () {
-				var n = parseFloat($(this).text());
-				// console.log("Found Total : " + n + " (" + typeof n + ")");
+			$('.store-cost:visible').not('.dim-mid').each(function () {
+				var $cost = $(this).find('.costEstimateTotal.js-format-currency');
+				var n = parseFloat($($cost).text());
 				newCostSum += (isNaN(n)) ? 0 : n;
 			}).promise().done(function () {
-				// console.log("grandTotal is " + newCostSum + " (" + typeof newCostSum + ")");
 				var grandTotal = (isNaN(newCostSum)) ? "Not Available" : newCostSum.toFixed(2);
 				$('.grand-total .costEstimateTotal').text(grandTotal);
 			});
