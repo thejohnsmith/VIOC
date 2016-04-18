@@ -40,14 +40,14 @@ var getStoreProgramData = (function ($) {
 					$('[data-enrolled="true"] .toggle-btn').addClass('active').prop('checked', 'checked');
 				}
 			}).done(function () {
-				return getTotals(result);
+				getTotals(result);
 			});
 			$.get(marcomFilePath + 'program-settings.mustache.html', function (templates) {
 				var template2 = $(templates).filter('.program-settings-template').html();
 				$('.program-settings-section').html(Mustache.render(template2, result));
-				return reloadCheckBoxes();
+				reloadCheckBoxes();
 			}).done(function () {
-				return setHashLinks(),
+				setHashLinks(),
 					programSettingsHandler();
 			}).promise().done(function () {
 				programManagementController.controller.init();
@@ -56,19 +56,15 @@ var getStoreProgramData = (function ($) {
 			$.get(marcomFilePath + 'proof-settings-tab.mustache.html', function (templates) {
 				var template3 = $(templates).filter('.proof-settings-tab-template').html();
 				$('.proof-settings-tab-section').html(Mustache.render(template3, result));
-				return;
 			}).done(function () {
 				programSettingsHandler();
-				return;
 			});
 			if ($('.quantity-limit-tab-section').length) {
 				$.get(marcomFilePath + 'quantity-limit-tab.mustache.html', function (templates) {
 					var template4 = $(templates).filter('.quantity-limit-tab-template').html();
 					$('.quantity-limit-tab-section').html(Mustache.render(template4, result));
-					return;
 				}).done(function () {
 					programSettingsHandler();
-					return;
 				});
 			}
 		},
@@ -140,10 +136,10 @@ var getStoreProgramData = (function ($) {
 			 **/
 			$('.filterable:visible .store-item[data-enrolled="true"] .store-cost .costEstimateTotal').each(function () {
 				var n = parseFloat($(this).text());
-				console.log("Found Total : " + n + " (" + typeof n + ")");
+				// console.log("Found Total : " + n + " (" + typeof n + ")");
 				newCostSum += (isNaN(n)) ? 0 : n;
 			}).promise().done(function () {
-				console.log("grandTotal is " + newCostSum + " (" + typeof newCostSum + ")");
+				// console.log("grandTotal is " + newCostSum + " (" + typeof newCostSum + ")");
 				var grandTotal = (isNaN(newCostSum)) ? "Not Available" : newCostSum.toFixed(2);
 				$('.grand-total .costEstimateTotal').text(grandTotal);
 			});
