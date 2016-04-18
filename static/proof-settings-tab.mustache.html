@@ -26,7 +26,7 @@
                     </tr>
                   </table>
                 </th>
-                <th class="store store-proof">Proof Address</tr>
+                <th class="store store-proof">Proof Recipient</tr>
             </table>
           </td>
         </tr>
@@ -111,14 +111,14 @@
                       </td>
                       <td class="store-proof-address store-item-dimable {{^enrolled}}dim-mid{{/enrolled}}">
                         <div itemscope itemtype="http://schema.org/Person">
-                          <div itemprop="name">{{proofName}}</div>
-                          <a href="{{proofEmail}}" itemprop="email">{{proofEmail}}</a>
-                          <div itemprop="telephone">{{proofPhone}}</div>
+                          {{#proofName}}<div itemprop="name">{{proofName}}</div>{{/proofName}}
+                          {{#proofEmail}}<a href="{{proofEmail}}" itemprop="email">{{proofEmail}}</a>{{/proofEmail}}
+                          {{#proofPhone}}<div itemprop="telephone">{{proofPhone}}</div>{{/proofPhone}}
                           <div itemprop="address" itemscope itemtype="http://schema.org/PostalAddress">
-                            <span itemprop="streetAddress">{{proofAddress}}</span>,
-                            <span itemprop="addressLocality">{{proofCity}}</span>,
-                            <span itemprop="addressRegion">{{proofState}}</span>
-                            <span itemprop="postalCode">{{proofZip}}</span>
+                            {{#proofAddress}}<span itemprop="streetAddress">{{proofAddress}}</span>,{{/proofAddress}}
+                            {{#proofCity}}<span itemprop="addressLocality">{{proofCity}}</span>,{{/proofCity}}
+                            {{#proofState}}<span itemprop="addressRegion">{{proofState}}</span>{{/proofState}}
+                            {{#proofZip}}<span itemprop="postalCode">{{proofZip}}</span>{{/proofZip}}
                           </div>
                         </div>
                       </td>
@@ -172,7 +172,7 @@
                   </tbody>
                   </table>
                 </th>
-                <th class="store store-proof" style="padding:0;"><span class="hidden">Proof Address</span></th></tr>
+                <th class="store store-proof" style="padding:0;"><span class="hidden">Proof Recipient</span></th></tr>
             </tbody>
             </table>
           </td>
