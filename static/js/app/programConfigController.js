@@ -99,7 +99,7 @@ var programConfigController = (function ($) {
 		},
 		UpdateTitle: function () {
 			var controller = this;
-			var title = (controller.configLoaded) ? 'Edit ' + controller.config.content.label : 'Create Program Settings';
+			var title = (controller.configLoaded) ? 'Edit ' + controller.config.content.label : ('Create ' + controller.program.programName + ' Settings');
 
 			// Set title
 			$('h1.page-title').html(title);
@@ -117,6 +117,10 @@ var programConfigController = (function ($) {
 			// Set 3rd Level Breadcrumb
 			$('.breadcrumbs_previous:last a').html(controller.program.programName + ' Program');
 			$('.breadcrumbs_previous:last a').attr('href', marcomUserData.$constants.programManagementUrl + '&programId=' + controller.programId);
+
+			// Set navigation
+			var target = (controller.program.isLifecycleCampaign) ? "LIFECYCLE PROGRAMS" : "SPECIALTY PROGRAMS";
+			$("li.navBarItem a:contains('" + target + "')").addClass('navBarSelectedLinkColor').addClass('customColorOverridable').removeClass('navBarEnhancedLinkColor');
 		},
 		UpdateSettingName: function () {
 			$('.settings-name').val(controller.config.content.label);
@@ -258,6 +262,7 @@ var programConfigController = (function ($) {
 		AttachEventListeners: function () {
 			var controller = this;
 			$('input.touchpoint-value').on('blur', function () {
+				$(this).val($(this).val().toUpperCase());
 				controller.ValidateDiscountCode(this);
 			});
 			$('.btn-save').on('click', function (e) {
@@ -284,13 +289,17 @@ var programConfigController = (function ($) {
 				$('.pre-submit').hide();
 				$('.post-submit').show();
 				var json_results = JSON.parse(results);
-				if (json_results.valid) {
+				if (json_results.valid && !json_results.damaged) {
 					$(input).removeClass('input-error');
 					$(input).addClass('input-success');
 				} else {
 					$(input).removeClass('input-success');
 					$(input).addClass('input-error');
-					toastr.error('The discount code "' + discountCode + '" does not exist.  Please contact corporate for assistance.');
+
+					var msg = (json_results.valid)
+						? 'The discount code "' + discountCode + '" is valid in POS, however, it is not a valid discount code for Lifecycle Programs. Please contact Derick Brumbaugh (dnbrumbaugh@ashland.com / 859-357-7268) for assistance.'
+						: 'The discount code "' + discountCode + '" does not exist.  Please contact Derick Brumbaugh (dnbrumbaugh@ashland.com / 859-357-7268) for assistance.';
+					toastr.error(msg);
 				}
 				for (var cssSelector in json_results.preview)
 				{
@@ -320,6 +329,8 @@ var programConfigController = (function ($) {
 				'userId': controller.userId,
 				'configType': 'program',
 				'programId': controller.programId,
+				'emCreativeName': $('.em-creative').val(),
+				'dmCreativeName': $('.dm-creative').val(),
 				'label': $('.settings-name').val(),
 				'_expiration': $('.offer-exp').val()
 			};

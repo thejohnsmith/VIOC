@@ -14,27 +14,29 @@ var programManagementController = (function ($) {
 		program: {},
 		user_id: marcomUserData.$user.externalId,
 		program_id: getParameterByName('programId', window.location.href),
-		init: function () {
+		init: function ()
+		{
 			var controller = this;
-			/* If this program doesn't use Additional Offers (aka Adtl), hide
-			the Additional Offer column and management controls */
-			controller.retrieveUserConfigs(function (configs) {
-				/* Populate the dropdowns with all possible values */
+			controller.retrieveUserConfigs(function (configs)
+			{
 				controller.populateConfigDropdowns();
-				/* Retrieve the store program data */
-				controller.getStoreProgramData(function (store_data) {
-					/* Now that the dropdowns are populated with all possible choices,
-             determine which one should be selected for each store. */
+				controller.getStoreProgramData(function (store_data)
+				{
+					controller.highlightNavSection();
 					controller.highlightSelectedStoreConfiguration();
-					/* Listen for dropdown changes and other events */
 					controller.attachEventListeners();
-					/* Refresh the bottom section of the page */
 					controller.refreshManagementControls();
 					controller.refreshProofControls();
 					controller.refreshSelectAllButton();
 					controller.refreshStoreRowEnrollment();
 				});
 			});
+		},
+		highlightNavSection: function()
+		{
+			var controller = this;
+			var target = (controller.program.isLifecycleCampaign) ? "LIFECYCLE PROGRAMS" : "SPECIALTY PROGRAMS";
+			$("li.navBarItem a:contains('" + target + "')").addClass('navBarSelectedLinkColor').addClass('customColorOverridable').removeClass('navBarEnhancedLinkColor');
 		},
 		/** Gets a user config
 		 * @async getUserConfigurations.jssp
@@ -59,10 +61,9 @@ var programManagementController = (function ($) {
 			$.get(controller.apiPath + 'getStoreProgramData.jssp?userId=' + encodeURIComponent(controller.user_id) + '&programId=' + controller.program_id, function (results) {
 				var json_results = JSON.parse(results);
 				controller.store_data = json_results;
-				if (typeof callback == 'function') callback(json_results);
-			}).promise().done(function () {
-				controller.getProgramData();
-
+				controller.getProgramData(controller.program_id, function() {
+					if (typeof callback == 'function') callback(json_results);
+				});
 			});
 		},
 		/** API call to getProgramParticipationStats.jssp
@@ -193,6 +194,7 @@ var programManagementController = (function ($) {
 		attachEventListeners: function () {
 			// Attach events
 			var controller = this;
+			$('.view-program-summary').on('click', this.onClickProgramSummary);
 			$('.store-level-dropdown').on('change', function () {
 				var storeId = $(this).attr('data-storeid');
 				var configId = $(this).val();
@@ -279,7 +281,7 @@ var programManagementController = (function ($) {
 					}
 				});
 
-				$('.proof-settings.select-all').click(this.selectMultipleProofSettings);
+				//$('.proof-settings.select-all').click(this.selectMultipleProofSettings);
 
 				// Send API Request
 				controller.saveProofMeta([storeIds], bulkProofType, bulkProofVal, function () {
@@ -310,6 +312,53 @@ var programManagementController = (function ($) {
 				controller.refreshSelectAllButton();
 				controller.refreshStoreRowEnrollment();
 			});
+
+			$('.enroll-all-stores').off('click.vioc').on('click.vioc', function (e) {
+				e.preventDefault();
+				e.stopPropagation();
+				var storeIds = [];
+				var $userId = marcomUserData.$user.externalId || {};
+				var $programId = getParameterByName('programId', window.location.href);
+
+				if(!$(this).hasClass('activate')) {
+					$('.toggle-btn[data-enrolled="true"]:visible').each(function () {
+						console.log('all true ones block....');
+						var $storeId = $(this).attr('data-storeid');
+						$(this).attr('data-enrolled', "false");
+						storeIds.push($storeId);
+					});
+					console.log("Unsubscribing stores " + storeIds.join(","));
+					setStoreSubscription.makeRequest($userId, storeIds.join(","), $programId, 0);
+					$(this).addClass('activate');
+				} else if($(this).hasClass('activate')) {
+					$('.toggle-btn[data-enrolled="false"]:visible').each(function () {
+						var $storeId = $(this).attr('data-storeid');
+						$(this).attr('data-enrolled', "true");
+						storeIds.push($storeId);
+					});
+					console.log("Subscribing stores " + storeIds.join(","));
+					setStoreSubscription.makeRequest($userId, storeIds.join(","), $programId, 1);
+					$(this).removeClass('activate');
+				}
+				controller.refreshSelectAllButton();
+				controller.refreshStoreRowEnrollment();
+			});
+
+			$('.quantity-limit-input').on('blur', function(e) {
+				$(this).val(parseFloat($(this).val()));
+			});
+		},
+		onClickProgramSummary: function(e) {
+			var input = prompt("Please specify an email address to deliver the report to:");
+
+			if ((input) != "" && typeof input != 'undefined' && input != false)
+			{
+				$.get(controller.apiPath + 'sendProgramSummaryCSV.jssp?userId=' + encodeURIComponent(controller.user_id) + "&email=" + encodeURIComponent(input)  , function (results) {
+					toastr.success('Your request has been received and will deliver to ' + input + '.  The report may take several minutes to arrive.');
+				}).error(function (data) {
+					toastr.error('Error requesting summary report.');
+				});
+			}
 		},
 		selectMultipleProofSettings: function(e) {
 			e.preventDefault();
@@ -444,11 +493,10 @@ var programManagementController = (function ($) {
 		},
 		refreshSelectAllButton: function() {
 
-			return false;
-
 			// Get the count of the visible store checkboxes
-			var visible_store_count = $('.program-enrollment-section .toggle-btn').length;
-			var enrolled_store_count = $('.program-enrollment-section [data-enrolled="true"].toggle-btn').length;
+			var visible_store_count = $('.program-enrollment-section .toggle-btn:visible').length;
+			var enrolled_store_count = $('.program-enrollment-section [data-enrolled="true"].toggle-btn:visible').length;
+			console.log("visible_store_count = " + visible_store_count + " / enrolled_store_count = " + enrolled_store_count);
 
 			if(visible_store_count === enrolled_store_count) {
 				$('.enroll-all-stores.btn').removeClass('activate').text('Unenroll All');

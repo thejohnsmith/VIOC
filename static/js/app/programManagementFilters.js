@@ -141,27 +141,30 @@ programManagementFilters.controller.onFilterChange = function (store_ids) {
 		// which may hide/show/update footers.
 
 		// See what classes are on our current checkbox and tokenize them
-		var ok_to_click = true;
+		// This is a pattern to only trigger a refresh on certain checkbox families
+		var ok_to_update = false;
 
 		$j.each($j(e).attr('class').split(" "), function(i,class_name) {
-			if ($j.inArray(class_name, class_checklist) > -1)
-					ok_to_click = false;
-			// Add the classes used to our checklist
+			if ($j.inArray(class_name, class_checklist) == -1)
+					ok_to_update = true;
+			// Add the classes used to our checklist.  If we find a new class, it's ok to use it.
 			class_checklist.push(class_name);
 		});
 
-		// If the button has a class that is new to us, trigger a click
-		if (ok_to_click)
+		console.log("Refresh class list: " + class_checklist.join(","));
+
+		// If the button has a class that is new to us, trigger an update. (A special event the checkbox listens for)
+		if (ok_to_update)
 		{
-			console.log("Triggering a click on %o", e);
-			$j(e).trigger('click');
+			console.log("Triggering an update on %o", e);
+			$j(e).trigger('update');
 		}
 	});
 
 	// Recalculate stuff
 	getStoreProgramData.getTotals(getStoreProgramData.storeProgramData)
-
-
+	programManagementController.controller.refreshSelectAllButton();
+	programManagementController.controller.refreshStoreRowEnrollment();
 
 
 };

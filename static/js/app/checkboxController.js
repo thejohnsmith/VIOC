@@ -34,6 +34,13 @@ var checkboxController = (function ($) {
 				controller.recalculateSelectedStores();
 			});
 
+			/* Checkbox Update
+				This is a custom action the filter controller can call to force the checkbox family to refresh.
+			*/
+			$checkBox.off('update').on('update', function (e) {
+				controller.recalculateSelectedStores();
+			});
+
 			/* Checkbox Select */
 			$checkBox.off('click').on('click', function (e) {
 
