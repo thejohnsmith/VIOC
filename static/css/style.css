@@ -2376,9 +2376,12 @@ header .header-right a:hover
     float: left;
 
     width: 100%;
-    padding: 5px;
+    padding: 0;
 
     background: #f3f3f3;
+}
+.help-get-started .video-desc-body{
+  padding: 5px;
 }
 .contact-form
 {
