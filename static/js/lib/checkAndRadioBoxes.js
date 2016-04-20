@@ -29,15 +29,17 @@ var customCheckAndRadioBoxes = (function ($) {
 				toastr.warning('Please select at least one program to auto-enroll.');
 				return;
 			}
-			if (confirm("Unenrolled stores will be opted-in to the selected programs using default settings.  Continue?")) {
-				var $selectedPrograms = $('input:checkbox:checked').map(function () {
-					return $(this).val();
-				}).get().join();
-				var $selectedProgramNames = $('input:checkbox:checked + label').map(function () {
-					return $(this).text();
-				}).get().join();
-				return enrollPrograms($selectedPrograms, $selectedProgramNames);
-			}
+			jConfirm('Unenrolled stores will be opted-in to the selected programs using default settings.  Continue?', 'Please Confirm', function (r) {
+				if(r) {
+					var $selectedPrograms = $('input:checkbox:checked').map(function () {
+						return $(this).val();
+					}).get().join();
+					var $selectedProgramNames = $('input:checkbox:checked + label').map(function () {
+						return $(this).text();
+					}).get().join();
+					return enrollPrograms($selectedPrograms, $selectedProgramNames);
+				}
+			});
 		});
 	};
 	// TO DO: This should be moved to setStoreSubscription.js
