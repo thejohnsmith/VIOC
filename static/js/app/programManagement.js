@@ -14,14 +14,11 @@ var programManagementController = (function ($) {
 		program: {},
 		user_id: marcomUserData.$user.externalId,
 		program_id: getParameterByName('programId', window.location.href),
-		init: function ()
-		{
+		init: function () {
 			var controller = this;
-			controller.retrieveUserConfigs(function (configs)
-			{
+			controller.retrieveUserConfigs(function (configs) {
 				controller.populateConfigDropdowns();
-				controller.getStoreProgramData(function (store_data)
-				{
+				controller.getStoreProgramData(function (store_data) {
 					controller.highlightNavSection();
 					controller.highlightSelectedStoreConfiguration();
 					controller.attachEventListeners();
@@ -32,8 +29,7 @@ var programManagementController = (function ($) {
 				});
 			});
 		},
-		highlightNavSection: function()
-		{
+		highlightNavSection: function () {
 			var controller = this;
 			var target = (controller.program.isLifecycleCampaign) ? "LIFECYCLE PROGRAMS" : "SPECIALTY PROGRAMS";
 			$("li.navBarItem a:contains('" + target + "')").addClass('navBarSelectedLinkColor').addClass('customColorOverridable').removeClass('navBarEnhancedLinkColor');
@@ -61,7 +57,7 @@ var programManagementController = (function ($) {
 			$.get(controller.apiPath + 'getStoreProgramData.jssp?userId=' + encodeURIComponent(controller.user_id) + '&programId=' + controller.program_id, function (results) {
 				var json_results = JSON.parse(results);
 				controller.store_data = json_results;
-				controller.getProgramData(controller.program_id, function() {
+				controller.getProgramData(controller.program_id, function () {
 					if (typeof callback == 'function') callback(json_results);
 				});
 			});
@@ -125,13 +121,11 @@ var programManagementController = (function ($) {
 			}
 		},
 
-
-/* @TODO Use proper default management value!!! */
+		/* @TODO Use proper default management value!!! */
 
 		refreshManagementControls: function () {
 			var controller = this;
 			$('.management-dropdown').each(function () {
-
 
 				var $selectedMgmg = $(this).find(':selected');
 				var configId = $selectedMgmg.val();
@@ -140,7 +134,6 @@ var programManagementController = (function ($) {
 				var $deleteLink = $(this).parent().next().find('.program-delete-link');
 				var $baseUrl = $editLink.attr('data-baseUrl');
 				var defaultMgmg = /Default/.test($selectedMgmgText);
-
 
 				console.warn('controller.user_configs[0].corpDefault: ' + controller.user_configs[0].corpDefault);
 
@@ -155,15 +148,15 @@ var programManagementController = (function ($) {
 						if ($(e).val() == selectedConfigId) storeCount++;
 					});
 					// console.log("Clicked delete on config " + $selectedMgmg.val() + ".  Stores using this config: " + storeCount);
-					var message = (storeCount == 0)
-					? 'Are you sure you want to delete these settings?'
-					: storeCount + ' store(s) are using these settings and will be adjusted to use corporate defaults.' + ' Are you sure you want to delete these settings?';
+					var message = (storeCount == 0) ? 'Are you sure you want to delete these settings?' : storeCount + ' store(s) are using these settings and will be adjusted to use corporate defaults.' + ' Are you sure you want to delete these settings?';
 
-					if (confirm(message)) {
-						controller.deleteSettings(selectedConfigId, function() {
-							getStoreProgramData.makeRequest(); // Repull data, which will refresh the UI
-						});
-					}
+					jConfirm(message, 'Please Confirm', function (r) {
+						if(r) {
+							controller.deleteSettings(selectedConfigId, function () {
+								getStoreProgramData.makeRequest(); // Repull data, which will refresh the UI
+							});
+						}
+					});
 				});
 
 				// Update the Edit/View links
@@ -180,8 +173,7 @@ var programManagementController = (function ($) {
 			});
 		},
 		deleteSettings: function (selectedConfigId, callback) {
-			$.get(controller.apiPath + 'deleteConfig.jssp?userId=' + encodeURIComponent(controller.user_id) + '&configId=' + encodeURIComponent(selectedConfigId), function (results) {
-			}).error(function (data) {
+			$.get(controller.apiPath + 'deleteConfig.jssp?userId=' + encodeURIComponent(controller.user_id) + '&configId=' + encodeURIComponent(selectedConfigId), function (results) {}).error(function (data) {
 				toastr.error('Failed to delete settings.');
 			}).done(function (data) {
 				toastr.success('Settings deleted!');
@@ -320,7 +312,7 @@ var programManagementController = (function ($) {
 				var $userId = marcomUserData.$user.externalId || {};
 				var $programId = getParameterByName('programId', window.location.href);
 
-				if(!$(this).hasClass('activate')) {
+				if (!$(this).hasClass('activate')) {
 					$('.toggle-btn[data-enrolled="true"]:visible').each(function () {
 						console.log('all true ones block....');
 						var $storeId = $(this).attr('data-storeid');
@@ -330,7 +322,7 @@ var programManagementController = (function ($) {
 					console.log("Unsubscribing stores " + storeIds.join(","));
 					setStoreSubscription.makeRequest($userId, storeIds.join(","), $programId, 0);
 					$(this).addClass('activate');
-				} else if($(this).hasClass('activate')) {
+				} else if ($(this).hasClass('activate')) {
 					$('.toggle-btn[data-enrolled="false"]:visible').each(function () {
 						var $storeId = $(this).attr('data-storeid');
 						$(this).attr('data-enrolled', "true");
@@ -344,26 +336,25 @@ var programManagementController = (function ($) {
 				controller.refreshStoreRowEnrollment();
 			});
 
-			$('.quantity-limit-input').on('blur', function(e) {
+			$('.quantity-limit-input').on('blur', function (e) {
 				$(this).val(parseFloat($(this).val()));
 			});
 		},
-		onClickProgramSummary: function(e) {
-			var input = prompt("Please specify an email address to deliver the report to:");
+		onClickProgramSummary: function (e) {
+			var input = jPrompt('Please specify an email address to deliver the report to:');
 
-			if ((input) != "" && typeof input != 'undefined' && input != false)
-			{
-				$.get(controller.apiPath + 'sendProgramSummaryCSV.jssp?userId=' + encodeURIComponent(controller.user_id) + "&email=" + encodeURIComponent(input)  , function (results) {
+			if ((input) != "" && typeof input != 'undefined' && input != false) {
+				$.get(controller.apiPath + 'sendProgramSummaryCSV.jssp?userId=' + encodeURIComponent(controller.user_id) + "&email=" + encodeURIComponent(input), function (results) {
 					toastr.success('Your request has been received and will deliver to ' + input + '.  The report may take several minutes to arrive.');
 				}).error(function (data) {
 					toastr.error('Error requesting summary report.');
 				});
 			}
 		},
-		selectMultipleProofSettings: function(e) {
+		selectMultipleProofSettings: function (e) {
 			e.preventDefault();
 		},
-		setSingleQuantityLimit: function(e) {
+		setSingleQuantityLimit: function (e) {
 			e.preventDefault();
 			var storeId = $(this).attr('data-storeid');
 			var quantityLimit = $('.quantity-limit-input[data-storeId="' + storeId + '"]').val();
@@ -379,7 +370,7 @@ var programManagementController = (function ($) {
 				toastr.success('Quantity changed to ' + quantityLimit);
 			});
 		},
-		setBulkQuantityLimit: function(e) {
+		setBulkQuantityLimit: function (e) {
 			e.preventDefault();
 			var storeIds = [];
 			var bulkQuantityLimit = $('.bulk-apply-quantity-limit-input').val();
@@ -402,7 +393,7 @@ var programManagementController = (function ($) {
 				toastr.success('All quantity limits were changed to ' + bulkQuantityLimit);
 			});
 		},
-		saveStoreSubscription: function(selectedStores, configId, callback) {
+		saveStoreSubscription: function (selectedStores, configId, callback) {
 			var controller = this;
 			var stringStoreIds = selectedStores.join(',');
 			$.get(controller.apiPath + 'setStoreConfig.jssp?userId=' + encodeURIComponent(controller.user_id) + '&configId=' + configId + '&programId=' + controller.program_id + '&storeIds=' + stringStoreIds, function (results) {
@@ -448,7 +439,7 @@ var programManagementController = (function ($) {
 				}
 			}
 		},
-		saveQuantityMeta: function(selectedStores, quantityLimit, callback) {
+		saveQuantityMeta: function (selectedStores, quantityLimit, callback) {
 			/**
 			 * @example API CALL https://adobe-uat-vioc.epsilon.com/jssp/vioc/setStoreMeta.jssp?userId=Zz0fUjXHHr66NXRFDs&storeIds=1,2,3&quantity_limit=1000
 			 */
@@ -467,13 +458,13 @@ var programManagementController = (function ($) {
 				toastr.error('Saving quantity limit failed.');
 			});
 		},
-		refreshProofControls: function() {
+		refreshProofControls: function () {
 			$('.link-proof-single').each(function () {
 				var proofSelected = $(this).attr('data-proofSelected');
 				$(this).val(proofSelected).attr('selected', 'selected');
 			});
 		},
-		saveProofMeta: function(selectedStores, proofType, proofVal, callback) {
+		saveProofMeta: function (selectedStores, proofType, proofVal, callback) {
 			/**
 			 * @example API CALL https://adobe-uat-vioc.epsilon.com/jssp/vioc/setStoreMeta.jssp?userId=Zz0fUjXHHr66NXRFDs&storeIds=1,2,3&proofSettings=1
 			 */
@@ -491,21 +482,20 @@ var programManagementController = (function ($) {
 				toastr.error('Something bad happened');
 			});
 		},
-		refreshSelectAllButton: function() {
+		refreshSelectAllButton: function () {
 
 			// Get the count of the visible store checkboxes
 			var visible_store_count = $('.program-enrollment-section .toggle-btn:visible').length;
 			var enrolled_store_count = $('.program-enrollment-section [data-enrolled="true"].toggle-btn:visible').length;
 			console.log("visible_store_count = " + visible_store_count + " / enrolled_store_count = " + enrolled_store_count);
 
-			if(visible_store_count === enrolled_store_count) {
+			if (visible_store_count === enrolled_store_count) {
 				$('.enroll-all-stores.btn').removeClass('activate').text('Unenroll All');
 			} else {
 				$('.enroll-all-stores.btn').addClass('activate').text('Enroll All');
 			}
 		},
-		refreshStoreRowEnrollment: function()
-		{
+		refreshStoreRowEnrollment: function () {
 			var startTime = Math.floor(Date.now() / 1000);
 			console.log("Starting refreshStoreRowEnrollment at " + startTime);
 			$('div.toggle-btn').each(function () {
@@ -514,7 +504,7 @@ var programManagementController = (function ($) {
 
 				if (enabled) {
 					$(this).addClass('active');
-					$("tr.store-item[data-storeid="+storeId+"]").each(function() {
+					$("tr.store-item[data-storeid=" + storeId + "]").each(function () {
 						$(this).find(".store-item-dimable").removeClass('dim-mid').attr('data-enrolled', "true");
 						$(this).find(".store-item-dimable input").removeClass('input-disabled').removeAttr("disabled");
 						$(this).find(".store-item-dimable select").removeClass('input-disabled').removeAttr("disabled");
@@ -523,11 +513,11 @@ var programManagementController = (function ($) {
 						$(this).find(".store-item-dimable small.not-enrolled").addClass('none');
 						$(this).find(".store-item-dimable .store-level-dropdown").removeClass('none');
 						/*
-						*/
+						 */
 					});
 				} else {
 					$(this).removeClass('active');
-					$("tr.store-item[data-storeid="+storeId+"]").each(function() {
+					$("tr.store-item[data-storeid=" + storeId + "]").each(function () {
 						$(this).find(".store-item-dimable").addClass('dim-mid').attr('data-enrolled', "false");
 						$(this).find(".store-item-dimable input").addClass('input-disabled').attr("disabled", true);
 						$(this).find(".store-item-dimable select").addClass('input-disabled').attr("disabled", true);
@@ -536,7 +526,7 @@ var programManagementController = (function ($) {
 						$(this).find(".store-item-dimable small.not-enrolled").addClass('none');
 						$(this).find(".store-item-dimable .store-level-dropdown").removeClass('none');
 						/*
-						*/
+						 */
 					});
 				}
 			});

@@ -22,14 +22,16 @@ var attachActivityListeners = function () {
 	$j('#btnSubmit').click(submitForm);
 };
 var cancelSubmission = function () {
-	if (confirm('Are you sure you wish to cancel?')) {
-		var cancelUrl = getParameterByName('cancelUrl', window.location.href);
-		if (cancelUrl !== '' && typeof cancelUrl !== 'undefined') {
-			window.location.href = cancelUrl;
-		} else {
-			window.location.href = 'http://www.vioc.com';
+	jConfirm('Are you sure you wish to cancel?', 'Please Confirm', function (r) {
+		if(r) {
+			var cancelUrl = getParameterByName('cancelUrl', window.location.href);
+			if (cancelUrl !== '' && typeof cancelUrl !== 'undefined') {
+				window.location.href = cancelUrl;
+			} else {
+				window.location.href = 'http://www.vioc.com';
+			}
 		}
-	}
+	});
 };
 var submitForm = function () {
 	updateRecipientCount(true, function (recipientCount, saveId) {
