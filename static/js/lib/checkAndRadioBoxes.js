@@ -55,11 +55,6 @@ var customCheckAndRadioBoxes = (function ($) {
 	// This would likely be easier to do by making an API request to get programParticipationStats
 	var selectAllCustomBoxes = function () {
 
-		// ====================================================================================
-		// DISABLED!!!  Functionality moved to programManagement.js
-		// ====================================================================================
-		return false;
-		// ====================================================================================
 
 		/** Toggle Buttons
 		 * @todo API request to enroll ALL stores.
@@ -71,7 +66,14 @@ var customCheckAndRadioBoxes = (function ($) {
 		 * @return {function} toggleBtns();
 		 */
 		function toggleBtns() {
-			// console.log("Running toggleBtns");
+
+		// ====================================================================================
+		// DISABLED!!!  Functionality moved to programManagement.js
+		// ====================================================================================
+		return false;
+		// ====================================================================================
+
+		// console.log("Running toggleBtns");
 
 			var $programId = getParameterByName('programId', window.location.href);
 			var $userId = marcomUserData.$user.externalId || {};
@@ -95,36 +97,15 @@ var customCheckAndRadioBoxes = (function ($) {
 				refreshStoreRowEnrollment();
 			});
 
-
-			$('.enroll-all-stores').off('click.vioc').on('click.vioc', function (e) {
-				e.preventDefault();
-				e.stopPropagation();
-				var storeIds = [];
-
-				if(!$(this).hasClass('activate')) {
-					$('.toggle-btn[data-enrolled="true"]').each(function () {
-						console.log('all true ones block....');
-						var $storeId = $(this).attr('data-storeid');
-						$(this).attr('data-enrolled', "false");
-						storeIds.push($storeId);
-					});
-					subscribeStore($userId, storeIds.join(","), $programId, 1);
-					$(this).addClass('activate');
-				} else if($(this).hasClass('activate')) {
-					$('.toggle-btn[data-enrolled="false"]').each(function () {
-						var $storeId = $(this).attr('data-storeid');
-						$(this).attr('data-enrolled', "true");
-						storeIds.push($storeId);
-					});
-					subscribeStore($userId, storeIds.join(","), $programId, 1);
-				}
-				refreshSelectAllButton();
-				refreshStoreRowEnrollment();
-			});
 		}
 
 		function refreshStoreRowEnrollment()
 		{
+		// ====================================================================================
+		// DISABLED!!!  Functionality moved to programManagement.js
+		// ====================================================================================
+		return false;
+		// ====================================================================================
 			$('.toggle-btn').each(function () {
 				var enabled = $(this).attr('data-enrolled') == 'true';
 				var storeId = $(this).attr('data-storeid');
