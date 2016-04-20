@@ -117,6 +117,10 @@ var additionalOfferController = (function ($) {
 			// Set 3rd Level Breadcrumb
 			$(".breadcrumbs_previous:last a").html(controller.program.programName + " Program");
 			$(".breadcrumbs_previous:last a").attr("href", marcomUserData.$constants.programManagementUrl + "&programId=" + controller.programId);
+
+			// Set navigation
+			var target = (controller.program.isLifecycleCampaign) ? "LIFECYCLE PROGRAMS" : "SPECIALTY PROGRAMS";
+			$("li.navBarItem a:contains('" + target + "')").addClass('navBarSelectedLinkColor').addClass('customColorOverridable').removeClass('navBarEnhancedLinkColor');
 		},
 		ShowTabsAsAppropriate: function() {
 			var controller = this;
