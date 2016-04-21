@@ -48,7 +48,9 @@
         </section>
         <section id="programSummary" class="landing-page-only js-hidden">
           <h1>Lifecycle Programs</h1>
+          <div role="presentation" class="spinner program-select-loading"></div>
           <div class="program-select lifecycle-program-list program-select--is-active-user">
+
             <!-- Mustache Template: program-list.mustache.html -->
           </div>
         </section>
@@ -68,7 +70,7 @@
               </thead>
               <tbody class="participation-dashboard-tpl">
                 <tr class="program-name">
-                  <td data-title="Program" colspan="4">Loading...</td>
+                  <td data-title="Program" colspan="4"><div role="presentation" class="spinner"></div></td>
                 </tr>
               </tbody>
             </table>

@@ -8,42 +8,39 @@
   * @param {class} .active applied to three places: .nav-tabs > li, .nav-tabs > li a, .calendar-paceholder > a
  */
 var dynamicCalendar = (function ($) {
-
-	var $calendar = $('#calendar'),
-		$calendarTabs = $calendar.find('.nav-tabs'),
-		init = function () {
-			setDateLabel();
-			setImagePath();
+	var controller = {
+		calendar: $('#calendar'),
+		calendarTabs: $('#calendar .nav-tabs'),
+		init: function () {
+			controller.setDateLabel();
+			controller.setImagePath();
 		},
-		getCurrentMonth = function () {
+		getCurrentMonth: function () {
 			var currentMonth = new moment();
 			return currentMonth;
 		},
-		getNextMonth = function () {
+		getNextMonth: function () {
 			var nextMonth = new moment().add(1, 'months');
 			return nextMonth;
 		},
-		setDateLabel = function () {
-			var dateLabelCurrent = getCurrentMonth().format('MMMM YYYY');
-			var dateLabelNext = getNextMonth().format('MMMM YYYY');
-			$calendarTabs.find('li:first a').attr('title', dateLabelCurrent).text(dateLabelCurrent);
-			$calendarTabs.find('li:last a').attr('title', dateLabelNext).text(dateLabelNext);
-			return;
+		setDateLabel: function () {
+			var dateLabelCurrent = controller.getCurrentMonth().format('MMMM YYYY');
+			var dateLabelNext = controller.getNextMonth().format('MMMM YYYY');
+			controller.calendarTabs.find('li:first a').attr('title', dateLabelCurrent).text(dateLabelCurrent);
+			controller.calendarTabs.find('li:last a').attr('title', dateLabelNext).text(dateLabelNext);
 		},
-		setImagePath = function () {
+		setImagePath: function () {
 			// /calendars folder
 			//  "calendar-MM-YYYY.jpg format"
-			var imgCurrent = getCurrentMonth().format('MM-YYYY');
-			var imgNext = getNextMonth().format('MM-YYYY');
+			var imgCurrent = controller.getCurrentMonth().format('MM-YYYY');
+			var imgNext = controller.getNextMonth().format('MM-YYYY');
 			$('.tab-content:first img').attr('src', 'https://files.marcomcentral.app.pti.com/epsilon/calendars/calendar-' + imgCurrent + '.jpg');
 			$('.tab-content:last img').attr('src', 'https://files.marcomcentral.app.pti.com/epsilon/calendars/calendar-' + imgNext + '.jpg');
-			return;
-		};
+		}
+	};
 	return {
-		init: init,
-		$calendar: $calendar,
-		getCurrentMonth: getCurrentMonth
+		controller: controller
 	};
 })(jQuery);
 
-dynamicCalendar.init();
+dynamicCalendar.controller.init();
