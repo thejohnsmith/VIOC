@@ -74,14 +74,12 @@ var getProgramParticipationStats = (function ($) {
 		 * @return {string} programTitle found through getProgramTitle.
 		 */
 		setProgramTitle = function (programTitle) {
-			$('.h1.page-title span').text(programTitle + ' Program').css({
-				opacity: 1
-			}).removeClass('hidden').animate({
-				opacity: 1
-			});
+			$('.h1.page-title span').text(programTitle + ' Program').show();
+			$('h1.page-title').removeClass('hidden')
+
 			var programSettingsName = getParameterByName('programId', window.location.href);
 			$('.settings-title').text(programSettingsName);
-			customCheckAndRadioBoxes.customCheckbox();
+			// customCheckAndRadioBoxes.customCheckbox();
 			return setBreadcrumbTitle(programTitle);
 		},
 		setBreadcrumbTitle = function (programTitle) {
@@ -114,7 +112,7 @@ var getProgramParticipationStats = (function ($) {
 				var template = $(templates).filter('.specialty-program-list-template').html();
 				$('.program-select.specialty-program-list').html(Mustache.render(template, result));
 				customCheckAndRadioBoxes.customCheckbox();
-				return upDateProgramsDashboard(result), setProgramTabContent();
+				upDateProgramsDashboard(result), setProgramTabContent();
 			});
 		},
 
