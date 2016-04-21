@@ -199,8 +199,8 @@ select
 input[type='text']:focus,
 input[type='number']:focus,
 input[type='password']:focus,
-input[type='search'],
-textarea,
+input[type='search']:focus,
+textarea:focus,
 select:focus
 {
     border-color: #66afe9;
@@ -247,7 +247,7 @@ textarea:-ms-input-placeholder
     opacity: 1;
     color: #555;
 }
-input:focus
+input:focus, textarea:focus
 {
     border: 1px solid #5f5f60;
     outline: none;
@@ -343,30 +343,30 @@ input:focus::-ms-input-placeholder
     display: none;
 }
 input.input-success,
-input.input-error
+input.input-error, textarea.input-error
 {
     border: 1px solid;
     outline: 0;
 }
-input.input-success
+input.input-success, textarea.input-success
 {
     border-color: #2ecc71;
-    background-color: rgba(0, 255, 10, .11);
+    background-color: rgba(0, 255, 10, .02);
 }
-input.input-success:focus
+input.input-success:focus, textarea.input-success:focus
 {
     border-color: #2ecc71;
-    box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px rgb(46, 204, 113);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px rgba(46, 204, 113, 0.6);
 }
-input.input-error
+input.input-error, textarea.input-error
 {
     border-color: #e74c3c;
-    background-color: rgba(231, 76, 60, .14);
+    background-color: rgba(231, 76, 60, .02);
 }
-input.input-error:focus
+input.input-error:focus, textarea.input-error:focus
 {
     border-color: #e74c3c;
-    box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px rgba(231, 76, 60, .67);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px rgba(231, 76, 60, 0.6);
 }
 p
 {
@@ -2918,9 +2918,13 @@ input.bulk-apply-quantity-limit-input.form-control:focus:active
     float: left;
 
     width: 100%;
-    padding: 5px;
+    padding: 0;
 
     background: #f3f3f3;
+}
+.help-get-started .video-desc-body
+{
+    padding: 5px;
 }
 .contact-form
 {
@@ -2980,47 +2984,14 @@ input.bulk-apply-quantity-limit-input.form-control:focus:active
     width: 100%;
     padding-left: 65px;
 }
-#contact-form-main .inputbox
-{
-    font-family: 'HelveticaNeueLT-Condensed';
-    font-size: 13px;
 
-    width: 100%;
-    padding: 7px 10px;
-
-    -webkit-transition: .5s;
-            transition: .5s;
-
-    color: #555;
-    background: #f3f3f3;
-    box-shadow: none;
-}
-#contact-form-main .textbox:focus
-{
-    border-color: #045e90;
-}
 #contact-form-main .textbox
 {
-    font-family: 'HelveticaNeueLT-Condensed';
-    font-size: 13px;
-
     width: 100%;
-    height: 83px;
+    min-height: 83px;
     padding: 7px 10px;
+    margin-bottom: 1em;
 
-    resize: none;
-    -webkit-transition: .5s;
-            transition: .5s;
-
-    color: #555;
-    background: #f3f3f3;
-    box-shadow: none;
-}
-#contact-form-main .form-submit
-{
-    float: left;
-
-    width: 100%;
 }
 #contact-form-main .form-submit .submit-btn
 {
@@ -5464,7 +5435,7 @@ transition: background-color .40s ease-in-out;*/
 /* jQuery Alerts - http://labs.abeautifulsite.net/archived/jquery-alerts/jquery.alerts-1.1/ */
 #popup_container
 {
-    font-family: 'HelveticaNeueLT-Condensed', sans-serif;
+    font-family: 'HelveticaNeueLT-BoldCond', sans-serif;
     font-size: 12px;
 
     min-width: 300px;

@@ -182,13 +182,11 @@
   </div>
   <script>
     var $j = jQuery;
-    setTimeout(function () {
       var proofSettingsController = jQuery.extend({}, checkboxController.controller);
       proofSettingsController.init('proof-settings', function(storeIds) {
         var plural = (storeIds.length === 1) ? '' : 's';
         $j('.proof-settings-footer')
           .toggleClass('none', (storeIds.length < 2));
       });
-    }, 200);
   </script>
 </script>
