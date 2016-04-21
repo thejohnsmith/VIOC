@@ -39,32 +39,33 @@
               </small>
             </h4>
             <div id="contact-form-main">
-              <div class="form-main">
-                <label>Name</label>
-                <div class="form-input">
-                  <input type="text" class="inputbox" tabindex="1" name="name">
+              <div class="form-main" role="presentation">
+                <label for="name">Name</label>
+                <div class="form-input" role="presentation">
+                  <input id="name" type="text" class="required-field form-field inputbox" tabindex="1" name="name" aria-required="true" aria-invalid="false" required>
                 </div>
               </div>
-              <div class="form-main">
-                <label>Email</label>
-                <div class="form-input">
-                  <input type="text" class="inputbox" tabindex="2" name="email">
+              <div class="form-main" role="presentation">
+                <label for="email">Email</label>
+                <div class="form-input" role="presentation">
+                  <input id="email" type="text" class="required-field form-field inputbox" tabindex="2" name="email" aria-required="true" aria-invalid="false" required>
                 </div>
               </div>
-              <div class="form-main">
-                <label>Phone</label>
-                <div class="form-input">
-                  <input type="text" class="inputbox" tabindex="3" name="phone">
+              <div class="form-main" role="presentation">
+                <label for="phone">Phone</label>
+                <div class="form-input" role="presentation">
+                  <input id="phone" type="text" class="required-field form-field inputbox" tabindex="3" name="phone" aria-required="true" aria-invalid="false" required>
                 </div>
               </div>
-              <div class="form-main">
-                <label></label>
-                <div class="form-input">
-                  <textarea class="textbox" placeholder="Tell us what you need help with" tabindex="4" name="message"></textarea>
+              <div class="form-main" role="presentation">
+                <label for="message" class="hidden">Contact message textarea</label>
+                <div class="form-input" role="presentation">
+                  <textarea id="message" class="required-field form-field textbox" placeholder="Tell us what you need help with" tabindex="4" name="message" aria-multiline="true" aria-required="true" aria-invalid="false" required></textarea>
                 </div>
               </div>
-              <div class="form-submit">
-                <input type="submit" class="submit-btn" value="Submit" title="Submit" tabindex="5" id="submit-btn">
+              <div class="form-submit pull-right">
+                <label for="submit-btn" class="hidden">Use the submit button to send your message.</label>
+                <input id="submit-btn" type="submit" class="btn-submit btn btn-small btn-primary" value="Submit" title="Submit" tabindex="5">
               </div>
               <div class="successmsg">Thank you
                 <br>We will contact you soon.</div>
@@ -150,7 +151,7 @@
               <ul class="accordion-content">
                 <li>
                   <p>
-                    From the Lifecycle Programs Summary Page, click the red Edit button to the right of the colored participation indicator box.  This Edit button links to the Program Details section of WARP Drive and can also be accessed from the Home Page in the same manner.  On the Program Details page, click the “View Program Summary” button in the upper right corner.  A CSV file containing all settings for this program will open in a new window. (See WARP Drive Manual for more details)
+                    From the Lifecycle Programs Summary Page, click the red Edit button to the right of the colored participation indicator box. This Edit button links to the Program Details section of WARP Drive and can also be accessed from the Home Page in the same manner. On the Program Details page, click the “View Program Summary” button in the upper right corner. A CSV file containing all settings for this program will open in a new window. (See WARP Drive Manual for more details)
                   </p>
                 </li>
               </ul>
@@ -163,12 +164,11 @@
               <ul class="accordion-content">
                 <li>
                   <p>
-                    On the Lifecycle Programs Summary Page, hovering over the names of the Lifecycle Programs on the left side of the page will change what is displayed on both the Program Overview and the View Touch Points tabs.  On the View Touch Points tab, the Preview button will open a PDF document in a separate window, showing the different creative options available for the emails, postcards and text messages. (See WARP Drive Manual for more details)
+                    On the Lifecycle Programs Summary Page, hovering over the names of the Lifecycle Programs on the left side of the page will change what is displayed on both the Program Overview and the View Touch Points tabs. On the View Touch Points tab, the Preview button will open a PDF document in a separate window, showing the different creative options available for the emails, postcards and text messages. (See WARP Drive Manual for more details)
                   </p>
                 </li>
               </ul>
             </li>
-
 
             <li class="accordion-head">
               <h3 class="accordion-subhead">
@@ -183,7 +183,7 @@
               <ul class="accordion-content">
                 <li>
                   <p>
-                    Lifecycle Program emails and text messages are sent daily to those customers who qualify for the programs.  Lifecycle Program, State Inspection and Fleet postcards are sent weekly to those customers who qualify for the programs.  Fleet Owner emails are sent on a monthly basis, and Reactivation email and postcard are sent on the 2nd and 4th weeks of each month (twice per month).  The homepage of WARP Drive also includes a calendar visual so you can see when each of the programs will reach your customers.
+                    Lifecycle Program emails and text messages are sent daily to those customers who qualify for the programs. Lifecycle Program, State Inspection and Fleet postcards are sent weekly to those customers who qualify for the programs. Fleet Owner emails are sent on a monthly basis, and Reactivation email and postcard are sent on the 2nd and 4th weeks of each month (twice per month). The homepage of WARP Drive also includes a calendar visual so you can see when each of the programs will reach your customers.
                   </p>
                 </li>
               </ul>
@@ -196,7 +196,7 @@
               <ul class="accordion-content">
                 <li>
                   <p>
-                    Lifecycle Program and Fleet Owner emails and Lifecycle Program text messages are free.  Lifecycle Program, State Inspection and Fleet postcards, as well as postage for these mailings, are paid for by franchise systems.  On Demand Marketing emails are paid for by the franchise systems.
+                    Lifecycle Program and Fleet Owner emails and Lifecycle Program text messages are free. Lifecycle Program, State Inspection and Fleet postcards, as well as postage for these mailings, are paid for by franchise systems. On Demand Marketing emails are paid for by the franchise systems.
                   </p>
                 </li>
               </ul>
