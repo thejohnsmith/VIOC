@@ -133,7 +133,12 @@ var programManagementController = (function ($) {
 				var $editLink = $(this).parent().next().find('.program-edit-link');
 				var $deleteLink = $(this).parent().next().find('.program-delete-link');
 				var $baseUrl = $editLink.attr('data-baseUrl');
-				var defaultMgmg = /Default/.test($selectedMgmgText);
+
+				var defaultMgmg = false;
+				$.each(controller.user_configs, function(i, config) {
+					if (config.corpDefault == 1 && config.id == configId)
+						defaultMgmg = true;
+				});
 
 				console.warn('controller.user_configs[0].corpDefault: ' + controller.user_configs[0].corpDefault);
 
@@ -163,11 +168,14 @@ var programManagementController = (function ($) {
 				$editLink.attr('href', $baseUrl + '&configId=' + configId + '&programId=' + controller.program_id);
 
 				// Corporate Default configs are read-only - swap View and Edit links.
+				$deleteLink.removeClass('hidden'); // :JOHN:  Delete this after removing "hidden" class from the Delete links
+
 				if (defaultMgmg) {
 					$editLink.text('View');
+					$deleteLink.hide();
 				} else {
 					// Show Delete link
-					$deleteLink.removeClass('hidden');
+					$deleteLink.show();
 					$editLink.text('Edit');
 				}
 			});
