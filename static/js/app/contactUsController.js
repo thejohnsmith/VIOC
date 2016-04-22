@@ -48,9 +48,9 @@ var contactUsController = (function ($) {
 		bulkValidate: function () {
 			console.warn('bulk fired');
 			var notEmptyFields = true;
-      // @TODO properly iterate over all inputs, if all pass fire executeFormSubmit, else return.
-      // var contactFormFieldCount = controller.contactFormField.length;
-      // var contactFormFieldError = $('#contact-form-main .required-field.input-error').length;
+			// @TODO properly iterate over all inputs, if all pass fire executeFormSubmit, else return.
+			// var contactFormFieldCount = controller.contactFormField.length;
+			// var contactFormFieldError = $('#contact-form-main .required-field.input-error').length;
 			controller.contactFormField.each(function (input) {
 				var inputValue = $(this).val();
 				if (inputValue === '') {
@@ -105,4 +105,6 @@ var contactUsController = (function ($) {
 	};
 })(jQuery);
 
-contactUsController.controller.init();
+if (window.location.href.indexOf(marcomUserData.$constants.helpPageUrl) > -1) {
+	contactUsController.controller.init();
+}
