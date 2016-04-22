@@ -184,7 +184,14 @@ var additionalOfferController = (function ($) {
 		},
 		ValidateForm: function() {
 			// TODO
-			return true;
+			// Added alert prompt here for now. Can be moved to single function when validation rules are created.
+			// Alert should always fire on save.
+			var messagePOS = 'Have you established this code in POS?';
+			jConfirm(messagePOS, 'Please Confirm', function (r) {
+				if (r) {
+					return true;
+				}
+			});
 		},
 		OnPressSave: function () {
 
