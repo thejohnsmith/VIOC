@@ -3179,7 +3179,7 @@ input.error,
 {
     border-color: #f00 !important;
 }
-.successmsg
+.formmsg
 {
     font-size: 22px;
     font-weight: normal;
@@ -3195,8 +3195,25 @@ input.error,
 
     text-align: center;
 
+    color: #555;
+    border: 2px solid #555;
+    border-radius: 4px;
+}
+.successmsg
+{
     color: #2aace3;
     border: 2px solid #2aace3;
+}
+.errormsg
+{
+    font-size: 16px;
+
+    margin: 0 0 1em;
+
+    text-align: left;
+
+    color: #e74c3c;
+    border: 2px solid #e74c3c;
 }
 .total-label
 {
