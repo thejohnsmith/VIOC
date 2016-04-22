@@ -3050,6 +3050,31 @@ input.bulk-apply-quantity-limit-input.form-control:focus:active
 
     width: 100%;
 }
+.support-link:link,
+.support-link:visited
+{
+    display: inline-block;
+
+    width: 100%;
+    height: 100%;
+
+    -webkit-transition: all .5s;
+            transition: all .5s;
+
+    color: #045e90;
+    border: 1px solid transparent;
+}
+.support-link:hover
+{
+    color: #2aace3;
+    border-color: #2aace3;
+}
+.support-link:hover:active
+{
+    color: #555655;
+    border-color: #fff;
+    box-shadow: 0 5px 10px 2px rgba(0, 0, 0, .1);
+}
 .support-library ul li
 {
     position: relative;
