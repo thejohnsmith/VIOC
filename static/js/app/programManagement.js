@@ -26,6 +26,7 @@ var programManagementController = (function ($) {
 					controller.refreshProofControls();
 					controller.refreshSelectAllButton();
 					controller.refreshStoreRowEnrollment();
+					controller.ShowUI();
 				});
 			});
 		},
@@ -543,8 +544,11 @@ var programManagementController = (function ($) {
 			console.log("Ending total count...");
 			var endTime = Math.floor(Date.now() / 1000);
 			console.log("Done at " + endTime + ".  Took " + (endTime - startTime))
+		},
+		ShowUI: function () {
+			$('.js-content').show();
+			$('.js-loading').hide();
 		}
-
 	};
 	return {
 		controller: controller
