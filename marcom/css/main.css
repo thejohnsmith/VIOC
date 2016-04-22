@@ -374,6 +374,10 @@ textarea.input-error:focus
     border-color: #e74c3c;
     box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px rgba(231, 76, 60, .6);
 }
+.required-asterisk
+{
+    color: red;
+}
 p
 {
     line-height: 24px;
@@ -474,6 +478,7 @@ a:focus
 .js-content
 {
     display: none;
+
     -webkit-transition: all .5s cubic-bezier(.68, -.55, .27, 1.55) 0s;
             transition: all .5s cubic-bezier(.68, -.55, .27, 1.55) 0s;
 }
@@ -2925,6 +2930,10 @@ input.bulk-apply-quantity-limit-input.form-control:focus:active
 {
     padding: 5px;
 }
+.help-get-started + .contact-form
+{
+    margin-top: 1em;
+}
 .contact-form
 {
     float: left;
@@ -2943,10 +2952,22 @@ input.bulk-apply-quantity-limit-input.form-control:focus:active
 {
     font-size: 27px;
     font-weight: normal;
+    line-height: 1.4;
 
     padding-left: 35px;
 
     color: #2aace3;
+}
+.contact-form h4 > small
+{
+    font-size: 17px;
+    line-height: 1.4;
+
+    color: #898a88;
+}
+.help-left-container
+{
+    width: 40%;
 }
 #contact-form-main
 {
@@ -2954,6 +2975,7 @@ input.bulk-apply-quantity-limit-input.form-control:focus:active
 
     width: 100%;
     padding-top: 15px;
+    padding-right: 10px;
 }
 #contact-form-main .form-main
 {
@@ -2962,26 +2984,24 @@ input.bulk-apply-quantity-limit-input.form-control:focus:active
     float: left;
 
     width: 100%;
-    padding-bottom: 5px;
+    padding-bottom: 1em;
 }
 #contact-form-main .form-main label
 {
     font-size: 19px;
 
     position: absolute;
-    top: 5px;
+    top: 4px;
     left: 0;
 
-    width: 65px;
-
-    color: #045e90;
+    width: 100px;
 }
 #contact-form-main .form-main .form-input
 {
     float: right;
 
     width: 100%;
-    padding-left: 65px;
+    padding-left: 100px;
 }
 
 #contact-form-main .textbox
@@ -3893,10 +3913,6 @@ button.toast-close-button
     {
         font-size: 15px;
         line-height: 22px;
-    }
-    .help-left-container
-    {
-        width: 40%;
     }
     .contact-form h5
     {
