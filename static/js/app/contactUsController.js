@@ -1,7 +1,5 @@
 /** Contact Us Form Controller
  *  @file contactUsController.js
- *  @todo  -- Need this to be functional and sending emails to WarpDriveHelp@epsilon.com;
- *  					upon send, user should see a green "Your request has been submitted." alert box
  */
 
 var contactUsController = (function ($) {
@@ -9,18 +7,16 @@ var contactUsController = (function ($) {
 		apiPath: marcomUserData.$constants.apiPath,
 		contactFormField: $('#contact-form-main .required-field'),
 		contactFormSubmit: $('#contact-form-main #submit-btn'),
+		successmsg: $('.successmsg'),
+		errormsg: $('.errormsg'),
+		successClass: 'input-success',
+		errorClass: 'input-error',
+		ariaInvalid: 'aria-invalid',
 		init: function () {
 			var controller = this;
-			console.log('I work!');
-
 			controller.attachEventListeners();
 		},
 		attachEventListeners: function () {
-			// Single input field changed
-			controller.contactFormField.on('keyup blur', function () {
-				controller.singleValidate(this);
-			});
-
 			// Submit Button pressed
 			controller.contactFormSubmit.click(this.onSubmit);
 		},
@@ -29,53 +25,38 @@ var contactUsController = (function ($) {
 		 *  Toggle ARIA invalid true/false
 		 */
 		singleValidate: function (input) {
+			var isValid = true;
 			var inputValue = $(input).val();
-			console.log('input value is: ' + inputValue);
 			if (inputValue === '') {
-				$(input).removeClass('input-success')
-					.addClass('input-error')
-					.attr('aria-invalid', 'true');
+				$(input).removeClass(controller.successClass)
+					.addClass(controller.errorClass)
+					.attr(controller.ariaInvalid, 'true');
+				isValid = false;
 			} else {
-				$(input).addClass('input-success')
-					.removeClass('input-error')
-					.attr('aria-invalid', 'false');
+				$(input).addClass(controller.successClass)
+					.removeClass(controller.errorClass)
+					.attr(controller.ariaInvalid, 'false');
+				isValid = true;
 			}
 		},
-		/** Validate all fields
-		 *  Toggle error/succes classes,
-		 *  Toggle ARIA invalid true/false
-		 */
 		bulkValidate: function () {
-			console.warn('bulk fired');
 			var notEmptyFields = true;
-			// @TODO properly iterate over all inputs, if all pass fire executeFormSubmit, else return.
-			// var contactFormFieldCount = controller.contactFormField.length;
-			// var contactFormFieldError = $('#contact-form-main .required-field.input-error').length;
-			controller.contactFormField.each(function (input) {
-				var inputValue = $(this).val();
-				if (inputValue === '') {
-					$(input).removeClass('input-success')
-						.addClass('input-error')
-						.attr('aria-invalid', 'true');
-				} else {
-					$(input).addClass('input-success')
-						.removeClass('input-error')
-						.attr('aria-invalid', 'false');
-				}
+			controller.contactFormField.each(function (i, input) {
+				if (!controller.singleValidate(input))
+					notEmptyFields = false;
 			});
-			return notEmptyFields;
+			return notEmptyFields = true;
 		},
 		onSubmit: function (e) {
 			e.preventDefault();
-			console.log('Submit pressed');
-
 			// Check all fields
 			if (controller.bulkValidate()) {
 				controller.executeFormSubmit();
+			} else {
+				toastr.error('Please complete all fields.');
 			}
 		},
 		executeFormSubmit: function () {
-			// https://adobe-uat-vioc.epsilon.com/jssp/vioc/sendContactUs.jssp?name=Anthony&email=anthony.gill@epsilon.com&phone=5555555555&comments=I%20work!
 			var saveData = {
 				'name': $('#name').val(),
 				'email': $('#email').val(),
@@ -86,18 +67,37 @@ var contactUsController = (function ($) {
 				url: controller.apiPath + 'sendContactUs.jssp',
 				method: 'GET',
 				data: saveData,
-				dataType: 'json'
-			}).done(function () {
-				console.log('Save was successful!');
-				controller.clearFields();
-				toastr.success('Your request has been submitted.');
-			}).fail(function () {
-				console.error('Save was unsuccessful!');
-				toastr.warning('Your message was not sent. Please check that all fields have been filled.');
+				dataType: 'json',
+				statusCode: {
+					400: function () {
+						controller.showError();
+					},
+					200: function () {
+						controller.showSuccess();
+						controller.clearFields();
+					}
+				},
+				error: function (jqXHR, textStatus, errorThrown) {
+					console.warn(jqXHR.status);
+					console.warn(jqXHR.statusText);
+					console.warn(jqXHR.responseText);
+					// controller.errormsg.html('<p>' + JSON.parse(jqXHR.responseText).error + '</p>');
+				}
 			});
 		},
 		clearFields: function () {
-			controller.contactFormField.removeClass('input-error').attr('aria-invalid', 'false').val('');
+			controller.contactFormField
+				.removeClass(controller.errorClass)
+				.attr(controller.ariaInvalid, 'false')
+				.val('');
+		},
+		showSuccess: function () {
+			controller.successmsg.fadeIn();
+			toastr.success('Your request has been submitted.');
+		},
+		showError: function () {
+			// controller.errormsg.fadeIn();
+			toastr.error('Your message was not sent. Please check that all fields have been filled.');
 		}
 	};
 	return {
