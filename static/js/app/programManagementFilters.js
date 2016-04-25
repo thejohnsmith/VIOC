@@ -10,24 +10,23 @@ var programManagementFilters = (function ($) {
 			$('.filter-select').hide();
 			$('.filter-reset').on('click', $.proxy(controller.resetFilters, controller));
 			controller.getStoreTree(function (store_tree) {
-				controller.setupFilters(store_tree);
-				$('.filters-area').css('opacity', 1);
+				controller.setupFilters(store_tree, function() {
+					$('.filters-area').css('opacity', 1);
+					controller.reloadDefaultsFromCookie();
+					programManagementController.controller.init()
+				});
 			});
 		},
-		setupFilters: function (store_tree) {
+		setupFilters: function (store_tree, callback) {
 			var controller = this;
-			controller.populateFilter('company', 'All Companies', store_tree,
-				function (children) {
-					controller.populateFilter('market', 'All Markets', children, function (
-						children) {
-						controller.populateFilter('area', 'All Areas', children, function (
-							children) {
-							// console.log("Stores to show:");
-							// console.log(children);
+			controller.populateFilter('company', 'All Companies', store_tree, function (children) {
+					controller.populateFilter('market', 'All Marketing Areas', children, function (children) {
+						controller.populateFilter('area', 'All Stores', children, function() {
 						});
 					});
 				});
-			controller.updateStoreList(store_tree);
+			if (typeof callback == "function")
+				callback();
 		},
 		resetFilters: function () {
 			var controller = this;
@@ -52,10 +51,39 @@ var programManagementFilters = (function ($) {
 			for (var i = 0; i < values.length; i++) {
 				$dd.append($('<option/>').attr('value', i).text(values[i].text));
 			}
+			/* E-80
+				1)  Grab the cookie for this filter   (i.e. "filter_" + name)  filter_company = 2
+				2)  Select the option index that matches the value
+				3)  If the index is greater than 0, show the filter
+				4)  Do we need to somehow fire the onChange() event so the stores are output?
+			*/
 			// Attach an event listener.  When the selected item changes,
 			// grab all of the children and pass them downstream.
 			$dd.on('change', function () {
 				var selected_index = $(this).find('option:selected').val();
+
+				var dd_type = "";
+				if ($(this).parent().attr("class").indexOf("company") > -1) dd_type = "company";
+				if ($(this).parent().attr("class").indexOf("market") > -1) 	dd_type = "market";    // Name is out of date.  Is really "marketing area";
+				if ($(this).parent().attr("class").indexOf("area") > -1) 	dd_type = "area";  // Name is out of date.  Is really "store"
+
+				if (dd_type == "company")
+				{
+					document.cookie = "filter_company=" + selected_index;
+					document.cookie = "filter_market=*";
+					document.cookie = "filter_area=*";
+				}
+				else if (dd_type == "market")
+				{
+					document.cookie = "filter_market=" + selected_index;
+					document.cookie = "filter_area=*";
+				}
+				else {
+					document.cookie = "filter_area=" + selected_index;
+				}
+
+
+
 				// If the user selected "all", tell the upstream dropdowns to hide
 				if (selected_index === '*') {
 					if (typeof onChange === 'function') onChange(null);
@@ -77,6 +105,57 @@ var programManagementFilters = (function ($) {
 			if (typeof controller.onFilterChange === 'function') {
 				controller.onFilterChange(controller.store_ids);
 			}
+		},
+		reloadDefaultsFromCookie: function() {
+			// These values contain the index of the last item we selected.
+			var company_filter = document.cookie.replace(/(?:(?:^|.*;\s*)filter_company\s*\=\s*([^;]*).*$)|^.*$/, '$1');
+			var market_filter = document.cookie.replace(/(?:(?:^|.*;\s*)filter_market\s*\=\s*([^;]*).*$)|^.*$/, '$1');
+			var area_filter = document.cookie.replace(/(?:(?:^|.*;\s*)filter_area\s*\=\s*([^;]*).*$)|^.*$/, '$1');
+
+			console.log("Running reloadDefaultsFromCookie : %s, %s, %s", company_filter, market_filter, area_filter);
+
+			if (company_filter != "")
+				$j(".company.filter-select select option[value='" + company_filter + "']").prop("selected", "selected")
+
+			$(".company.filter-select select").trigger("change");
+
+			if ($(".company.filter-select select").val() != "*")
+			{
+				$(".company.filter-select").show();
+			}
+			else
+			{
+				return;
+			}
+
+			if (market_filter != "")
+				$j(".market.filter-select select option[value='" + market_filter + "']").prop("selected", "selected")
+
+			$(".market.filter-select select").trigger("change");
+
+			if ($(".market.filter-select select").val() != "*")
+			{
+				$(".market.filter-select").show();
+			}
+			else
+			{
+				return;
+			}
+
+			if (area_filter != "")
+				$j(".area.filter-select select option[value='" + area_filter + "']").prop("selected", "selected")
+
+			$(".area.filter-select select").trigger("change");
+
+			if ($(".area.filter-select select").val() != "*")
+			{
+				$(".area.filter-select").show();
+			}
+			else
+			{
+				return;
+			}
+
 		},
 		findStoresRecursively: function (tree_segment) {
 			var stores_found = [];
@@ -151,8 +230,6 @@ programManagementFilters.controller.onFilterChange = function (store_ids) {
 			class_checklist.push(class_name);
 		});
 
-		console.log("Refresh class list: " + class_checklist.join(","));
-
 		// If the button has a class that is new to us, trigger an update. (A special event the checkbox listens for)
 		if (ok_to_update)
 		{
@@ -162,9 +239,23 @@ programManagementFilters.controller.onFilterChange = function (store_ids) {
 	});
 
 	// Recalculate stuff
-	getStoreProgramData.getTotals(getStoreProgramData.storeProgramData)
+	getStoreProgramData.getTotals(getStoreProgramData.storeProgramData);
 	programManagementController.controller.refreshSelectAllButton();
 	programManagementController.controller.refreshStoreRowEnrollment();
 
+	var targetStores = [];
+
+	if (programManagementController.controller.store_data.length > 0)
+	{
+		$j.each(programManagementController.controller.store_data, function(idx, store)
+		{
+			if ($j.inArray(store.storeId.toString(), store_ids) > -1)
+			{
+				targetStores.push(store);
+			}
+		});
+		console.log("Calling buildUI(targetStores) on ", targetStores);
+		programManagementController.controller.buildUI(targetStores);
+	}
 
 };
