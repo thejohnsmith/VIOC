@@ -26,9 +26,7 @@ var programManagementController = (function ($) {
 			controller.retrieveUserConfigs(function (configs) {
 			controller.timeDebug("Getting store program data...");
 				controller.getStoreProgramData(function (store_data) {
-					controller.timeDebug("About to start buildUI...");
-					controller.buildUI(controller.store_data);
-					controller.timeDebug("Done with buildUI...");
+					// Trigger a filter change, which will triger a UI refresh
 					programManagementFilters.controller.onFilterChange(programManagementFilters.controller.store_ids);
 					controller.timeDebug("PMC Init Complete.");
 				});
@@ -213,46 +211,70 @@ var programManagementController = (function ($) {
 		buildUI : function (result, callback) {
 			var controller = this;
 
-			controller.getMustacheTemplate('program-enrollment.mustache.html', '.program-enrollment-template', function(template) {
-				$('.program-enrollment-section').html(Mustache.render(template, result));
-
-				// Set the initial state of the toggle buttons.
-				if ($('[data-enrolled="true"] .toggle-btn')) {
-					$('[data-enrolled="true"] .toggle-btn').addClass('active').prop('checked', 'checked');
+			controller.getMustacheTemplate(
+					'program-enrollment.mustache.html',
+					'.program-enrollment-template',
+					'.program-enrollment-section',
+					result,
+				function(template) {
+					if ($('[data-enrolled="true"] .toggle-btn')) {
+						$('[data-enrolled="true"] .toggle-btn').addClass('active').prop('checked', 'checked');
 				}
 			});
 
-			controller.getMustacheTemplate('program-settings.mustache.html', '.program-settings-template', function(template) {
-				$('.program-settings-section').html(Mustache.render(template, result));
-				controller.setHashLinks();
-				controller.initBuiltUI();
+			controller.getMustacheTemplate(
+					'program-settings.mustache.html',
+					'.program-settings-template',
+					'.program-settings-section',
+					result,
+				function(template) {
+					controller.setHashLinks();
+					controller.initBuiltUI();
 			});
 
-			controller.getMustacheTemplate('proof-settings-tab.mustache.html', '.proof-settings-tab-template', function(template) {
-				$('.proof-settings-tab-section').html(Mustache.render(template, result));
-			});
+			controller.getMustacheTemplate(
+					'proof-settings-tab.mustache.html',
+					'.proof-settings-tab-template',
+					'.proof-settings-tab-section',
+					result,
+				function(template) {
+					// Do nothing
+				});
 
 			if ($('.quantity-limit-tab-section').length) {
-				controller.getMustacheTemplate('quantity-limit-tab.mustache.html', '.quantity-limit-tab-template', function(template) {
-					$('.quantity-limit-tab-section').html(Mustache.render(template, result));
-				});
+				controller.getMustacheTemplate(
+						'quantity-limit-tab.mustache.html',
+						'.quantity-limit-tab-template',
+						'.quantity-limit-tab-section',
+						result,
+					function(template) {
+						// Do nothing
+					});
 			}
 		},
 
-		getMustacheTemplate: function(filename, css_selector, callback) {
+		getMustacheTemplate: function(filename, extraction_css_selector, target_css_selector, data, callback) {
 			var controller = this;
 			var template_key = filename.replace(".","");
+
+			var fillContent = function(template, data) {
+				controller.timeDebug("Filling " + target_css_selector + ' with ' + data.length + ' data elements.')
+				$(target_css_selector).html(Mustache.render(template, data));
+				controller.timeDebug("Done filling " + target_css_selector + ' with ' + data.length + ' data elements.')
+			}
 
 			if (typeof controller[template_key] != 'undefined' && controller[template_key] != "")
 			{
 				console.log("Loading cached version of " + template_key);
-				callback(controller[template_key])
+				fillContent(controller[template_key], data);
+				callback(controller[template_key]);
 			}
 			else
 			{
 
 				$.get(controller.filePath + filename, function (templates) {
-					controller[template_key] = $(templates).filter(css_selector).html();
+					controller[template_key] = $(templates).filter(extraction_css_selector).html();
+					fillContent(controller[template_key], data);
 					callback(controller[template_key]);
 				});
 			}
@@ -664,7 +686,8 @@ var programManagementController = (function ($) {
 			}
 		},
 		refreshStoreRowEnrollment: function () {
-			$('div.toggle-btn').each(function () {
+
+		$('div.toggle-btn').each(function () {
 				var enabled = $(this).attr('data-enrolled') == 'true';
 				var storeId = $(this).attr('data-storeid');
 
@@ -699,7 +722,7 @@ var programManagementController = (function ($) {
 			// console.log("Ending refreshStoreRowEnrollment, starting total count...");
 			getStoreProgramData.getTotals();
 			// console.log("Ending total count...");
-			controller.timeDebug("Finished refreshStoreRowEnrollment.  ")
+			controller.timeDebug("Finished refreshStoreRowEnrollment.")
 		},
 		ShowUI: function () {
 			$('.js-content').show();
