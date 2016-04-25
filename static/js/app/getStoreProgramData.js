@@ -5,6 +5,9 @@ var getStoreProgramData = (function ($) {
 	var storeProgramData = null;
 
 	var makeRequest = function () {
+
+			return false;
+
 			var controller = this;
 			// Make sure there's a User ID loaded from Marcom before we Init this script.
 			if (marcomUserData.$user.externalId === '%%User.ExternalId%%' || $programId === undefined || $programId === null) {
@@ -25,52 +28,10 @@ var getStoreProgramData = (function ($) {
 				}
 			}).done(function (result) {
 				controller.storeProgramData = result;
-				loadStoreProgramData(result);
+				buildUI(result);
 			}).fail(function () {
 				requestFailed();
 			});
-		},
-		loadStoreProgramData = function (result) {
-			$.get(marcomFilePath + 'program-enrollment.mustache.html', function (templates) {
-				var template = $(templates).filter('.program-enrollment-template').html();
-				$('.program-enrollment-section').html(Mustache.render(template, result));
-
-				// Set the initial state of the toggle buttons.
-				if ($('[data-enrolled="true"] .toggle-btn')) {
-					$('[data-enrolled="true"] .toggle-btn').addClass('active').prop('checked', 'checked');
-				}
-			}).done(function () {
-				return getTotals(result);
-			});
-			$.get(marcomFilePath + 'program-settings.mustache.html', function (templates) {
-				var template2 = $(templates).filter('.program-settings-template').html();
-				$('.program-settings-section').html(Mustache.render(template2, result));
-				// return reloadCheckBoxes();
-			}).done(function () {
-				return setHashLinks(); //,
-					//programSettingsHandler();
-			}).promise().done(function () {
-				programManagementController.controller.init();
-				programManagementFilters.controller.onFilterChange(programManagementFilters.controller.store_ids)
-			});
-			$.get(marcomFilePath + 'proof-settings-tab.mustache.html', function (templates) {
-				var template3 = $(templates).filter('.proof-settings-tab-template').html();
-				$('.proof-settings-tab-section').html(Mustache.render(template3, result));
-				return;
-			}).done(function () {
-				// programSettingsHandler();
-				return;
-			});
-			if ($('.quantity-limit-tab-section').length) {
-				$.get(marcomFilePath + 'quantity-limit-tab.mustache.html', function (templates) {
-					var template4 = $(templates).filter('.quantity-limit-tab-template').html();
-					$('.quantity-limit-tab-section').html(Mustache.render(template4, result));
-					return;
-				}).done(function () {
-					// programSettingsHandler();
-					return;
-				});
-			}
 		},
 		setHashLinks = function () {
 			var currentProgramId = getParameterByName('programId', window.location.href);
@@ -126,14 +87,18 @@ var getStoreProgramData = (function ($) {
 			/**
 			 * Calculate the grand total for Email, DM and SMS from all stores enrolled.
 			 **/
-			$('.store-counts[data-enrolled="true"] .' + e + ':visible').each(function () {
+			var target = '.store-counts[data-enrolled="true"] .' + e + ':visible';
+			console.log("Rows matching target of " + target  + " is " + $(target).length);
+			$(target).each(function () {
 				if ($(this).parent().not(".dim-mid") ) {
 					var n = parseFloat($(this).text());
 					n = (isNaN(n)) ? 0 : n;
+					console.log(e + " field contains " + n);
 					newSum += n;
 				}
 			}).promise().done(function () {
 				newSum = (isNaN(newSum)) ? "Not Available" : newSum;
+				console.log("Total for " + e + " is  " + newSum);
 				$('.grand-total .' + e).text(newSum);
 			});
 			/**
@@ -143,9 +108,13 @@ var getStoreProgramData = (function ($) {
 			$('.store-cost:visible').not('.dim-mid').each(function () {
 				var $cost = $(this).find('.costEstimateTotal.js-format-currency');
 				var n = parseFloat($($cost).text());
+
+				n = (isNaN(n)) ? 0 : n;
 				newCostSum += (isNaN(n)) ? 0 : n;
+				console.log("newCostSum is " + newCostSum);
 			}).promise().done(function () {
 				var grandTotal = (isNaN(newCostSum)) ? "Not Available" : newCostSum.toFixed(2);
+				console.log("grandTotal is " + grandTotal);
 				$('.grand-total .costEstimateTotal').text(grandTotal);
 			});
 		},
@@ -156,7 +125,6 @@ var getStoreProgramData = (function ($) {
 		};
 	return {
 		makeRequest: makeRequest,
-		loadStoreProgramData: loadStoreProgramData,
 		setHashLinks: setHashLinks,
 		programSettingsHandler: programSettingsHandler,
 		reloadCheckBoxes: reloadCheckBoxes,

@@ -9,6 +9,7 @@
 var programManagementController = (function ($) {
 	var controller = {
 		apiPath: marcomUserData.$constants.apiPath,
+		filePath: marcomUserData.$constants.marcomFilePath,
 		user_configs: [],
 		store_data: [],
 		program: {},
@@ -17,18 +18,22 @@ var programManagementController = (function ($) {
 		init: function () {
 			var controller = this;
 			controller.retrieveUserConfigs(function (configs) {
-				controller.populateConfigDropdowns();
 				controller.getStoreProgramData(function (store_data) {
-					controller.highlightNavSection();
-					controller.highlightSelectedStoreConfiguration();
-					controller.attachEventListeners();
-					controller.refreshManagementControls();
-					controller.refreshProofControls();
-					controller.refreshSelectAllButton();
-					controller.refreshStoreRowEnrollment();
-					controller.ShowUI();
+					controller.buildUI(controller.store_data);
+					programManagementFilters.controller.onFilterChange(programManagementFilters.controller.store_ids);
 				});
 			});
+		},
+		initBuiltUI: function() {
+			controller.populateConfigDropdowns();
+			controller.highlightNavSection();
+			controller.highlightSelectedStoreConfiguration();
+			controller.attachEventListeners();
+			controller.refreshManagementControls();
+			controller.refreshProofControls();
+			controller.refreshSelectAllButton();
+			controller.refreshStoreRowEnrollment();
+			controller.ShowUI();
 		},
 		highlightNavSection: function () {
 			var controller = this;
@@ -159,7 +164,7 @@ var programManagementController = (function ($) {
 					jConfirm(message, 'Please Confirm', function (r) {
 						if(r) {
 							controller.deleteSettings(selectedConfigId, function () {
-								getStoreProgramData.makeRequest(); // Repull data, which will refresh the UI
+								controller.buildUI(controller.store_data);
 							});
 						}
 					});
@@ -190,6 +195,139 @@ var programManagementController = (function ($) {
 					callback();
 			});
 		},
+		buildUI : function (result, callback) {
+			var controller = this;
+			$.get(controller.filePath + 'program-enrollment.mustache.html', function (templates) {
+				var template = $(templates).filter('.program-enrollment-template').html();
+				$('.program-enrollment-section').html(Mustache.render(template, result));
+
+				// Set the initial state of the toggle buttons.
+				if ($('[data-enrolled="true"] .toggle-btn')) {
+					$('[data-enrolled="true"] .toggle-btn').addClass('active').prop('checked', 'checked');
+				}
+			}).done(function () {
+				return controller.getTotals(result);
+			});
+
+			$.get(controller.filePath + 'program-settings.mustache.html', function (templates) {
+				var template2 = $(templates).filter('.program-settings-template').html();
+				$('.program-settings-section').html(Mustache.render(template2, result));
+				// return reloadCheckBoxes();
+			}).done(function () {
+				controller.setHashLinks();
+				return
+			}).promise().done(function () {
+				return controller.initBuiltUI();
+			});
+			$.get(controller.filePath + 'proof-settings-tab.mustache.html', function (templates) {
+				var template3 = $(templates).filter('.proof-settings-tab-template').html();
+				$('.proof-settings-tab-section').html(Mustache.render(template3, result));
+				return;
+			}).done(function () {
+				return;
+			});
+			if ($('.quantity-limit-tab-section').length) {
+				$.get(controller.filePath + 'quantity-limit-tab.mustache.html', function (templates) {
+					var template4 = $(templates).filter('.quantity-limit-tab-template').html();
+					$('.quantity-limit-tab-section').html(Mustache.render(template4, result));
+					return;
+				}).done(function () {
+					return;
+				});
+			}
+		},
+
+
+		setHashLinks : function () {
+			var currentProgramId = getParameterByName('programId', window.location.href);
+			if ($('.js-create-program-hash').length) {
+				$('.js-create-program-hash').each(function () {
+					$(this).attr('href', $(this).attr('href') + '&programId=' + currentProgramId);
+				});
+			}
+		},
+		programSettingsHandler : function () {
+			customCheckAndRadioBoxes.customCheckbox();
+		},
+		reloadCheckBoxes : function () {
+			return customCheckAndRadioBoxes.customCheckbox();
+		},
+		getTotals : function (channel) {
+			var controller = this;
+
+			Array.prototype.sum = function (prop) {
+				var total = 0;
+				for (var i = 0, _len = this.length; i < _len; i++) {
+					total += this[i][prop];
+				}
+				return total;
+			};
+			var channels = [{
+				channel: 'costEstimateTotal'
+			}, {
+				channel: 'channelEmailTotal'
+			}, {
+				channel: 'channelDMTotal'
+			}, {
+				channel: 'channelSMSTotal'
+			}];
+			for (var i = 0; i < channels.length; i++) {
+				(function (i) {
+					this.output = function () {
+						controller.returnTotals(this.channel);
+					};
+					this.output();
+				}).call(channels[i], i);
+			}
+		},
+		returnTotals : function (e) {
+			var newSum = 0;
+			var newCostSum = 0;
+			/**
+			 * Added correct currecy decimal places.
+			 **/
+			$('.costEstimateTotal').each(function () {
+				var num = Number($(this).text());
+				var n = num.toFixed(2);
+				$(this).text(n);
+			});
+			/**
+			 * Calculate the grand total for Email, DM and SMS from all stores enrolled.
+			 **/
+			var target = '.store-counts[data-enrolled="true"] .' + e + ':visible';
+			console.log("Rows matching target of " + target  + " is " + $(target).length);
+			$(target).each(function () {
+				if ($(this).parent().not(".dim-mid") ) {
+					var n = parseFloat($(this).text());
+					n = (isNaN(n)) ? 0 : n;
+					console.log(e + " field contains " + n);
+					newSum += n;
+				}
+			}).promise().done(function () {
+				newSum = (isNaN(newSum)) ? "Not Available" : newSum;
+				console.log("Total for " + e + " is  " + newSum);
+				$('.grand-total .' + e).text(newSum);
+			});
+			/**
+			 * Calculate grand total for Estimated Monthly Cost.
+			 * Adds currecy decimal places
+			 **/
+			$('.store-cost:visible').not('.dim-mid').each(function () {
+				var $cost = $(this).find('.costEstimateTotal.js-format-currency');
+				var n = parseFloat($($cost).text());
+
+				n = (isNaN(n)) ? 0 : n;
+				newCostSum += (isNaN(n)) ? 0 : n;
+				console.log("newCostSum is " + newCostSum);
+			}).promise().done(function () {
+				var grandTotal = (isNaN(newCostSum)) ? "Not Available" : newCostSum.toFixed(2);
+				console.log("grandTotal is " + grandTotal);
+				$('.grand-total .costEstimateTotal').text(grandTotal);
+			});
+		},
+
+
+
 		showSuccessToast: function () {},
 		showFailToast: function () {},
 		attachEventListeners: function () {
