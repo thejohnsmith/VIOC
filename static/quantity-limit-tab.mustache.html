@@ -79,5 +79,7 @@
       $j('.quantity-limit.footer-row td.quantity-limit-footer:first-child')
         .html('Set quantity limit on ' + storeIds.length + ' selected store' + plural + ':');
       });
+      // Prevent the Enter key from throwing errors.
+      appUtilities.routeEnterKeyToNext($j('.quantity-limit-input'));
   </script>
 </script>

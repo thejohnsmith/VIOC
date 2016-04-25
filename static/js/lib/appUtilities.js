@@ -43,17 +43,27 @@ var appUtilities = (function ($) {
 		 *  Used by calling appUtilities.setPrettyPhone();
 		 *  @param {class} .prettyPhone class needed for phone formatting.
 		 *  @returns {string} Formats phone to xxx-xxx-xxxx
-		*/
+		 */
 		setPrettyPhone: function () {
 			$('.prettyPhone').text(function (i, text) {
 				text = text.replace(/(\d{3})(\d{3})(\d{4})/, '$1-$2-$3');
 				return text;
 			});
+		},
+		routeEnterKeyToNext: function (inputItem) {
+			inputItem.keypress(function (event) {
+				if (event.keyCode === 13) {
+					console.warn('Form Submission needs to occur using the Submit button.');
+					event.preventDefault();
+					$(this).closest('button').click();
+				}
+			});
 		}
 	};
 	return {
 		controller: controller,
-		setPrettyPhone: controller.setPrettyPhone
+		setPrettyPhone: controller.setPrettyPhone,
+		routeEnterKeyToNext: controller.routeEnterKeyToNext
 	};
 })(jQuery);
 
