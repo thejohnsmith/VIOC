@@ -113,7 +113,7 @@
                         <div itemscope itemtype="http://schema.org/Person">
                           {{#proofName}}<div itemprop="name">{{proofName}}</div>{{/proofName}}
                           {{#proofEmail}}<a href="{{proofEmail}}" itemprop="email">{{proofEmail}}</a>{{/proofEmail}}
-                          {{#proofPhone}}<div itemprop="telephone">{{proofPhone}}</div>{{/proofPhone}}
+                          <div class="prettyPhone" itemprop="telephone">6128675309{{proofPhone}}</div>
                           <div itemprop="address" itemscope itemtype="http://schema.org/PostalAddress">
                             {{#proofAddress}}<span itemprop="streetAddress">{{proofAddress}}</span>,{{/proofAddress}}
                             {{#proofCity}}<span itemprop="addressLocality">{{proofCity}}</span>,{{/proofCity}}
@@ -187,6 +187,9 @@
         var plural = (storeIds.length === 1) ? '' : 's';
         $j('.proof-settings-footer')
           .toggleClass('none', (storeIds.length < 2));
+          
+        // Apply formatting to phone numbers.
+        appUtilities.setPrettyPhone();
       });
   </script>
 </script>
