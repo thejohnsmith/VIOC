@@ -5,7 +5,10 @@
  * @todo Add overview in this documentation.
  * @example programManagementController.controller.init(user_id);
  * @return {object} controller
+ dnbrumbaugh@ashland.com
+ dbrumbaugh_47285
  */
+
 var programManagementController = (function ($) {
 	var controller = {
 		apiPath: marcomUserData.$constants.apiPath,
@@ -15,12 +18,19 @@ var programManagementController = (function ($) {
 		program: {},
 		user_id: marcomUserData.$user.externalId,
 		program_id: getParameterByName('programId', window.location.href),
+		start_time: null,
 		init: function () {
 			var controller = this;
+			controller.start_time = Math.floor(Date.now() / 1000);
+			controller.timeDebug("Starting PMC.  Getting user configs...");
 			controller.retrieveUserConfigs(function (configs) {
+			controller.timeDebug("Getting store program data...");
 				controller.getStoreProgramData(function (store_data) {
+					controller.timeDebug("About to start buildUI...");
 					controller.buildUI(controller.store_data);
+					controller.timeDebug("Done with buildUI...");
 					programManagementFilters.controller.onFilterChange(programManagementFilters.controller.store_ids);
+					controller.timeDebug("PMC Init Complete.");
 				});
 			});
 		},
@@ -28,6 +38,10 @@ var programManagementController = (function ($) {
 			controller.populateConfigDropdowns();
 			controller.highlightNavSection();
 			controller.highlightSelectedStoreConfiguration();
+			controller.hideAdditionalOffersIfNeeded();
+			controller.showQuantityLimitTabIfNeeded();
+			controller.hideProgramSettingsIfNeeded();
+			controller.hideStandardOffersIfNeeded();
 			controller.attachEventListeners();
 			controller.refreshManagementControls();
 			controller.refreshProofControls();
@@ -60,7 +74,9 @@ var programManagementController = (function ($) {
 		 */
 		getStoreProgramData: function (callback) {
 			var controller = this;
+			controller.timeDebug("Triggering getStoreProgramData API call..");
 			$.get(controller.apiPath + 'getStoreProgramData.jssp?userId=' + encodeURIComponent(controller.user_id) + '&programId=' + controller.program_id, function (results) {
+			controller.timeDebug("API call complete.");
 				var json_results = JSON.parse(results);
 				controller.store_data = json_results;
 				controller.getProgramData(controller.program_id, function () {
@@ -74,14 +90,12 @@ var programManagementController = (function ($) {
 		 */
 		getProgramData: function (program_id, callback) {
 			var controller = this;
+			controller.timeDebug("Triggering getProgramData API call..");
 			$.get(controller.apiPath + 'getProgramParticipationStats.jssp?userId=' + encodeURIComponent(controller.user_id), function (results) {
+			controller.timeDebug("getProgramData API call complete!");
 				var json_results = JSON.parse(results);
-				controller.hideAdditionalOffersIfNeeded();
-				controller.showQuantityLimitTabIfNeeded();
-				controller.hideProgramSettingsIfNeeded();
-				controller.hideStandardOffersIfNeeded();
-				controller.refreshSelectAllButton();
-				controller.refreshStoreRowEnrollment();
+				//controller.refreshSelectAllButton();
+				//controller.refreshStoreRowEnrollment();
 
 				// Loop through the API result and find the program that matches program ID (DONE)
 				$.each(json_results, function (i, result) {
@@ -91,6 +105,7 @@ var programManagementController = (function ($) {
 					}
 				});
 
+				controller.timeDebug("getProgramData firing callback...");
 				// fire the callback (DONE)
 				if (typeof callback == 'function') {
 					callback(controller.program);
@@ -197,46 +212,52 @@ var programManagementController = (function ($) {
 		},
 		buildUI : function (result, callback) {
 			var controller = this;
-			$.get(controller.filePath + 'program-enrollment.mustache.html', function (templates) {
-				var template = $(templates).filter('.program-enrollment-template').html();
+
+			controller.getMustacheTemplate('program-enrollment.mustache.html', '.program-enrollment-template', function(template) {
 				$('.program-enrollment-section').html(Mustache.render(template, result));
 
 				// Set the initial state of the toggle buttons.
 				if ($('[data-enrolled="true"] .toggle-btn')) {
 					$('[data-enrolled="true"] .toggle-btn').addClass('active').prop('checked', 'checked');
 				}
-			}).done(function () {
-				return controller.getTotals(result);
 			});
 
-			$.get(controller.filePath + 'program-settings.mustache.html', function (templates) {
-				var template2 = $(templates).filter('.program-settings-template').html();
-				$('.program-settings-section').html(Mustache.render(template2, result));
-				// return reloadCheckBoxes();
-			}).done(function () {
+			controller.getMustacheTemplate('program-settings.mustache.html', '.program-settings-template', function(template) {
+				$('.program-settings-section').html(Mustache.render(template, result));
 				controller.setHashLinks();
-				return
-			}).promise().done(function () {
-				return controller.initBuiltUI();
+				controller.initBuiltUI();
 			});
-			$.get(controller.filePath + 'proof-settings-tab.mustache.html', function (templates) {
-				var template3 = $(templates).filter('.proof-settings-tab-template').html();
-				$('.proof-settings-tab-section').html(Mustache.render(template3, result));
-				return;
-			}).done(function () {
-				return;
+
+			controller.getMustacheTemplate('proof-settings-tab.mustache.html', '.proof-settings-tab-template', function(template) {
+				$('.proof-settings-tab-section').html(Mustache.render(template, result));
 			});
+
 			if ($('.quantity-limit-tab-section').length) {
-				$.get(controller.filePath + 'quantity-limit-tab.mustache.html', function (templates) {
-					var template4 = $(templates).filter('.quantity-limit-tab-template').html();
-					$('.quantity-limit-tab-section').html(Mustache.render(template4, result));
-					return;
-				}).done(function () {
-					return;
+				controller.getMustacheTemplate('quantity-limit-tab.mustache.html', '.quantity-limit-tab-template', function(template) {
+					$('.quantity-limit-tab-section').html(Mustache.render(template, result));
 				});
 			}
 		},
 
+		getMustacheTemplate: function(filename, css_selector, callback) {
+			var controller = this;
+			var template_key = filename.replace(".","");
+
+			if (typeof controller[template_key] != 'undefined' && controller[template_key] != "")
+			{
+				console.log("Loading cached version of " + template_key);
+				callback(controller[template_key])
+			}
+			else
+			{
+
+				$.get(controller.filePath + filename, function (templates) {
+					controller[template_key] = $(templates).filter(css_selector).html();
+					callback(controller[template_key]);
+				});
+			}
+
+		},
 
 		setHashLinks : function () {
 			var currentProgramId = getParameterByName('programId', window.location.href);
@@ -634,7 +655,7 @@ var programManagementController = (function ($) {
 			// Get the count of the visible store checkboxes
 			var visible_store_count = $('.program-enrollment-section .toggle-btn:visible').length;
 			var enrolled_store_count = $('.program-enrollment-section [data-enrolled="true"].toggle-btn:visible').length;
-			console.log("visible_store_count = " + visible_store_count + " / enrolled_store_count = " + enrolled_store_count);
+			// console.log("visible_store_count = " + visible_store_count + " / enrolled_store_count = " + enrolled_store_count);
 
 			if (visible_store_count === enrolled_store_count) {
 				$('.enroll-all-stores.btn').removeClass('activate').text('Unenroll All');
@@ -643,8 +664,6 @@ var programManagementController = (function ($) {
 			}
 		},
 		refreshStoreRowEnrollment: function () {
-			var startTime = Math.floor(Date.now() / 1000);
-			console.log("Starting refreshStoreRowEnrollment at " + startTime);
 			$('div.toggle-btn').each(function () {
 				var enabled = $(this).attr('data-enrolled') == 'true';
 				var storeId = $(this).attr('data-storeid');
@@ -677,15 +696,18 @@ var programManagementController = (function ($) {
 					});
 				}
 			});
-			console.log("Ending refreshStoreRowEnrollment, starting total count...");
+			// console.log("Ending refreshStoreRowEnrollment, starting total count...");
 			getStoreProgramData.getTotals();
-			console.log("Ending total count...");
-			var endTime = Math.floor(Date.now() / 1000);
-			console.log("Done at " + endTime + ".  Took " + (endTime - startTime))
+			// console.log("Ending total count...");
+			controller.timeDebug("Finished refreshStoreRowEnrollment.  ")
 		},
 		ShowUI: function () {
 			$('.js-content').show();
 			$('.js-loading').hide();
+		},
+		timeDebug: function(message)
+		{
+			console.log("[TimeDebug] " + message + " : " + (Math.floor(Date.now() / 1000) - controller.start_time).toString() + " seconds");
 		}
 	};
 	return {
