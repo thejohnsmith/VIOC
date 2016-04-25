@@ -8,20 +8,18 @@
     <div class="items">
         {{#coupon}}
         <div class="item">
-            <img id="coupon1_imgLogo" src="images/viocSquareLogo.gif" />
+            <img title="Valvoline Logo" src="images/viocSquareLogo.gif">
             <h1><span class="js-amount">{{amount}}</span></h1>
             <div class="mouse">
                 <div class="js-text">
                     {{{text}}}
                 </div>
-                <div style="position:relative;">
-                    <div class="coupon-detail">
-                        <span class="js-expiration right">{{expiration}}</span>
-                        <span class="js-code left">{{code}}</span>
-                    </div>
-                    <div class="js-disclaimer clear">
-                        {{disclaimer}}
-                    </div>
+                <div class="item-detail">
+                    <span class="js-expiration right">{{expiration}}</span>
+                    <span class="js-code left">{{code}}</span>
+                </div>
+                <div class="js-disclaimer clear">
+                    {{disclaimer}}
                 </div>
             </div>
         </div>
