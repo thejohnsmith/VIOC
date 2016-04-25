@@ -14,30 +14,47 @@ function getParameterByName(name, url) {
 	}
 	return decodeURIComponent(results[2].replace(/\+/g, ' '));
 }
-$j(function () {
-	var appUtilities = function () {
-			setBrowserTitle(),
-				changeNavBarLink(),
-				setFavicon();
+
+var appUtilities = (function ($) {
+	var controller = {
+		init: function () {
+			controller.setBrowserTitle();
+			controller.changeNavBarLink();
+			controller.setFavicon();
+			controller.setPrettyPhone();
 		},
-		setBrowserTitle = function () {
-			// var $pageTitle = $j('.page-title').text();
+		setBrowserTitle: function () {
 			var $pageTitle = '' || $j('.wrapper h1').first().text();
-			return $j('title').html('VIOC Warp Drive' + ' - ' + $pageTitle);
+			return $('title').html('VIOC Warp Drive' + ' - ' + $pageTitle);
 		},
-		/* Adds a new destination to the Reports link in main navigation */
-		changeNavBarLink = function () {
-			$j('.navBarItem > a').filter(function () {
-				return $j(this).text() === 'REPORTS';
+		changeNavBarLink: function () {
+			$('.navBarItem > a').filter(function () {
+				return $(this).text() === 'REPORTS';
 			}).attr('href', 'https://bo-vioc.epsilon.com').attr('target', '_blank');
 
-			$j('.navBarItem > a').filter(function () {
-				return $j(this).text() === 'ON DEMAND MARKETING';
-			}).attr('href', 'https://marcomcentral.app.pti.com/Epsilon_Data_Management/Beta_Epsilon/catalog.aspx?uigroup_id=479602&folder_id=1633307');
+			$('.navBarItem > a').filter(function () {
+				return $(this).text() === 'ON DEMAND MARKETING';
+			}).attr('href', 'catalog.aspx?uigroup_id=479602&folder_id=1633307');
 		},
-		/* Inserts a the site favicon */
-		setFavicon = function () {
+		setFavicon: function () {
 			return $j('head').append('<link rel="icon" href="https://files.marcomcentral.app.pti.com/epsilon/static/images/favicon.ico" type="image/x-icon">');
-		};
-	return appUtilities();
-});
+		},
+		/** Phone Number Formatting
+		 *  Used by calling appUtilities.setPrettyPhone();
+		 *  @param {class} .prettyPhone class needed for phone formatting.
+		 *  @returns {string} Formats phone to xxx-xxx-xxxx
+		*/
+		setPrettyPhone: function () {
+			$('.prettyPhone').text(function (i, text) {
+				text = text.replace(/(\d{3})(\d{3})(\d{4})/, '$1-$2-$3');
+				return text;
+			});
+		}
+	};
+	return {
+		controller: controller,
+		setPrettyPhone: controller.setPrettyPhone
+	};
+})(jQuery);
+
+appUtilities.controller.init();
