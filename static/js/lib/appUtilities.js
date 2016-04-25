@@ -53,9 +53,12 @@ var appUtilities = (function ($) {
 		routeEnterKeyToNext: function (inputItem) {
 			inputItem.keypress(function (event) {
 				if (event.keyCode === 13) {
-					console.warn('Form Submission needs to occur using the Submit button.');
 					event.preventDefault();
-					$(this).closest('button').click();
+					var storeId = $(this).attr('data-storeid');
+					if (storeId) {
+						$('.btn[data-storeid="' + storeId + '"]').click();
+						console.warn('Form Submission needs to occur using the Submit button.');
+					}
 				}
 			});
 		}
