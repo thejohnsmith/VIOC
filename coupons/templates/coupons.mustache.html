@@ -6,24 +6,25 @@
 -->
 <script class="coupons-template" type="x-tmpl-mustache">
     <div class="items">
-        {{#.}}
-
+        {{#coupon}}
         <div class="item">
             <img id="coupon1_imgLogo" src="images/viocSquareLogo.gif" />
             <h1><span class="js-amount">{{amount}}</span></h1>
             <div class="mouse">
                 <div class="js-text">
-                    {{text}}
+                    {{{text}}}
                 </div>
                 <div style="position:relative;">
-                    <span class="js-expiration right">{{expiration}}</span>
-                    <span class="js-code left">{{code}}</span>
+                    <div class="coupon-detail">
+                        <span class="js-expiration right">{{expiration}}</span>
+                        <span class="js-code left">{{code}}</span>
+                    </div>
                     <div class="js-disclaimer clear">
                         {{disclaimer}}
                     </div>
                 </div>
             </div>
         </div>
-        {{/.}}
+        {{/coupon}}
     </div>
 </script>

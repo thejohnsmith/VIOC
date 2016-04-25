@@ -37,7 +37,9 @@ var couponPageController = (function ($) {
                 });
             }
         },
-        mockCoupons: [{
+        /* Adding coupon as an object fixes the need to use {#.}/{/.} in mustache. */
+        mockCoupons: {
+          coupon: [ {
             "amount": "$10 Off",
             "text": "Valvoline&trade; Full-Service Full Synthetic or Synthetic Blend Oil Change",
             "code": "NANA29A",
@@ -62,6 +64,7 @@ var couponPageController = (function ($) {
             "expiration": "3/4/2016",
             "disclaimer": "Plus Tax. Not valid with any other same-service offers/discounts, including fleets. Good at participating locations. Includes up to 5 quarts of Synthetic Blend, Full Synthetic or Diesel oil (diesel quarts may vary; see store for details), filter (prem. extra), lube and maintenance check."
         }]
+      }
     };
     return {
         controller: controller
