@@ -95,10 +95,13 @@ var programManagementFilters = (function ($) {
 				}
 			});
 			// Show the dropdown
-			$dd.parent().show();
+			if (dropdownKey != 'area') // Hack.  David wants the area dropdown hidden since we reorganized the filters per VIOC's request.  I don't want to rip it out, so I'm just suppressing it.
+				$dd.parent().show();
 		},
 		updateStoreList: function (tree_segment) {
 			var controller = this;
+			$('.area.filter-select').hide(); // Hack - Always hide this, per David.
+
 			controller.store_ids = controller.findStoresRecursively(tree_segment);
 			var plural = (controller.store_ids.length === 1) ? '' : 's';
 			$('.filter-results-value').html(controller.store_ids.length + ' Result' + plural);
@@ -188,6 +191,7 @@ var programManagementFilters = (function ($) {
 					}
 				});
 		}
+
 	};
 	return {
 		controller: controller
@@ -247,15 +251,23 @@ programManagementFilters.controller.onFilterChange = function (store_ids) {
 
 	if (programManagementController.controller.store_data.length > 0)
 	{
+		var lastStoreChecksum = "";
+
 		$j.each(programManagementController.controller.store_data, function(idx, store)
 		{
 			if ($j.inArray(store.storeId.toString(), store_ids) > -1)
 			{
 				targetStores.push(store);
+				lastStoreChecksum += store.storeId.toString() + "|";
 			}
 		});
-		console.log("Calling buildUI(targetStores) on ", targetStores);
-		programManagementController.controller.buildUI(targetStores);
+
+		if (typeof programManagementController.controller.lastStoreChecksum == "undefined" || programManagementController.controller.lastStoreChecksum != lastStoreChecksum)
+		{
+			programManagementController.controller.lastStoreChecksum = lastStoreChecksum;
+			console.log("Calling buildUI(targetStores) on ", targetStores);
+			programManagementController.controller.buildUI(targetStores);
+		}
 	}
 
 };
