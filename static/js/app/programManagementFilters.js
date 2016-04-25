@@ -5,6 +5,7 @@ var programManagementFilters = (function ($) {
 		user_id: marcomUserData.$user.externalId,
 		store_ids: [],
 		onFilterChange: null,
+		largeDataSet : false,
 		init: function () {
 			var controller = this;
 			$('.filter-select').hide();
@@ -19,7 +20,8 @@ var programManagementFilters = (function ($) {
 		},
 		setupFilters: function (store_tree, callback) {
 			var controller = this;
-			controller.populateFilter('company', 'All Companies', store_tree, function (children) {
+			var companyAllLabel = (controller.largeDataSet) ? "" : "All Companies";
+			controller.populateFilter('company', companyAllLabel, store_tree, function (children) {
 					controller.populateFilter('market', 'All Marketing Areas', children, function (children) {
 						controller.populateFilter('area', 'All Stores', children, function() {
 						});
@@ -45,8 +47,10 @@ var programManagementFilters = (function ($) {
 				if (typeof onChange === 'function') onChange(null);
 				return;
 			}
-			// Add the "All..." option
-			$dd.append($('<option/>').attr('value', '*').text(allLabel));
+			// Add the "All..." option if one was provided
+			if (allLabel != "")
+				$dd.append($('<option/>').attr('value', '*').text(allLabel));
+
 			// Add the child elements
 			for (var i = 0; i < values.length; i++) {
 				$dd.append($('<option/>').attr('value', i).text(values[i].text));
@@ -184,6 +188,9 @@ var programManagementFilters = (function ($) {
 			var controller = this;
 			$.get(controller.apiPath + 'getStoreSummary.jssp?test=1&userId=' + encodeURIComponent(marcomUserData.$user.externalId),
 				function (results) {
+					console.log("Tree data set length : " + results.length);
+					if (results.length > 50000)
+						controller.largeDataSet = true;
 					var json_results = JSON.parse(results);
 					controller.store_tree = json_results;
 					if (typeof callback === 'function') {

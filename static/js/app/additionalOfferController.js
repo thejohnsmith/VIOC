@@ -182,22 +182,21 @@ var additionalOfferController = (function ($) {
 			// Grab all inputs by calling $("input,select") and move their values into a key/value object.
 			// Returns all form data in an easy to POST format.
 		},
-		ValidateForm: function() {
+		ValidateForm: function(callback) {
 			// TODO
 			// Added alert prompt here for now. Can be moved to single function when validation rules are created.
 			// Alert should always fire on save.
 			var messagePOS = 'Have you established this code in POS?';
 			jConfirm(messagePOS, 'Please Confirm', function (r) {
 				if (r) {
-					return true;
+					callback();
 				}
 			});
 		},
 		OnPressSave: function () {
 
 			var controller = this;
-			if (controller.ValidateForm()) {
-
+			controller.ValidateForm(function() {
 				saveData = {
 					userId : controller.userId,
 					configType: "adtl",
@@ -231,7 +230,7 @@ var additionalOfferController = (function ($) {
 					dataType: "json"
 				});
 
-			};
+			})
 			console.log("Save pressed!", this);
 		},
 		ShowUI: function() {
