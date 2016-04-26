@@ -4,5 +4,5 @@
     @import index.html
 -->
 <script class="map-template" type="x-tmpl-mustache">
-    <img id="MapImage" src="https://utilities.vioc.com/images/NewMaps/040099VEM.jpg" style="border-width:0px;margin-left:-50px;" />
+    <img id="MapImage" src="{{#map_image}}{{map_image}}{{/map_image}}{{^map_image}}http://placehold.it/344x252 {{/map_image}}" style="border-width:0px;margin-left:-50px;">
 </script>
