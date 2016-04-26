@@ -1,12 +1,7 @@
 /** Program Management
  * @file programManagement.js
- * @requires getStoreProgramData.jssp
- * @NOTE ** In order for this script to run it needs to have markup from program-settings.mustache.html
- * @todo Add overview in this documentation.
  * @example programManagementController.controller.init(user_id);
  * @return {object} controller
- dnbrumbaugh@ashland.com
- dbrumbaugh_47285
  */
 
 var programManagementController = (function ($) {
@@ -24,7 +19,7 @@ var programManagementController = (function ($) {
 			controller.start_time = Math.floor(Date.now() / 1000);
 			controller.timeDebug("Starting PMC.  Getting user configs...");
 			controller.retrieveUserConfigs(function (configs) {
-			controller.timeDebug("Getting store program data...");
+				controller.timeDebug("Getting store program data...");
 				controller.getStoreProgramData(function (store_data) {
 					// Trigger a filter change, which will triger a UI refresh
 					programManagementFilters.controller.onFilterChange(programManagementFilters.controller.store_ids);
@@ -32,7 +27,7 @@ var programManagementController = (function ($) {
 				});
 			});
 		},
-		initBuiltUI: function() {
+		initBuiltUI: function () {
 			controller.populateConfigDropdowns();
 			controller.highlightNavSection();
 			controller.highlightSelectedStoreConfiguration();
@@ -74,7 +69,7 @@ var programManagementController = (function ($) {
 			var controller = this;
 			controller.timeDebug("Triggering getStoreProgramData API call..");
 			$.get(controller.apiPath + 'getStoreProgramData.jssp?userId=' + encodeURIComponent(controller.user_id) + '&programId=' + controller.program_id, function (results) {
-			controller.timeDebug("API call complete.");
+				controller.timeDebug("API call complete.");
 				var json_results = JSON.parse(results);
 				controller.store_data = json_results;
 				controller.getProgramData(controller.program_id, function () {
@@ -90,7 +85,7 @@ var programManagementController = (function ($) {
 			var controller = this;
 			controller.timeDebug("Triggering getProgramData API call..");
 			$.get(controller.apiPath + 'getProgramParticipationStats.jssp?userId=' + encodeURIComponent(controller.user_id), function (results) {
-			controller.timeDebug("getProgramData API call complete!");
+				controller.timeDebug("getProgramData API call complete!");
 				var json_results = JSON.parse(results);
 				//controller.refreshSelectAllButton();
 				//controller.refreshStoreRowEnrollment();
@@ -139,9 +134,6 @@ var programManagementController = (function ($) {
 				}
 			}
 		},
-
-		/* @TODO Use proper default management value!!! */
-
 		refreshManagementControls: function () {
 			var controller = this;
 			$('.management-dropdown').each(function () {
@@ -154,12 +146,12 @@ var programManagementController = (function ($) {
 				var $baseUrl = $editLink.attr('data-baseUrl');
 
 				var defaultMgmg = false;
-				$.each(controller.user_configs, function(i, config) {
+				$.each(controller.user_configs, function (i, config) {
 					if (config.corpDefault == 1 && config.id == configId)
 						defaultMgmg = true;
 				});
 
-				console.warn('controller.user_configs[0].corpDefault: ' + controller.user_configs[0].corpDefault);
+				// console.warn('controller.user_configs[0].corpDefault: ' + controller.user_configs[0].corpDefault);
 
 				$deleteLink.off().on('click', function (e) {
 					e.preventDefault;
@@ -175,7 +167,7 @@ var programManagementController = (function ($) {
 					var message = (storeCount == 0) ? 'Are you sure you want to delete these settings?' : storeCount + ' store(s) are using these settings and will be adjusted to use corporate defaults.' + ' Are you sure you want to delete these settings?';
 
 					jConfirm(message, 'Please Confirm', function (r) {
-						if(r) {
+						if (r) {
 							controller.deleteSettings(selectedConfigId, function () {
 								controller.buildUI(controller.store_data);
 							});
@@ -208,11 +200,11 @@ var programManagementController = (function ($) {
 					callback();
 			});
 		},
-		buildUI : function (result, callback) {
+		buildUI: function (result, callback) {
 			var controller = this;
 			controller.templatesLoaded = 0;
-			var allTemplateLoaded = function() {
-				console.log("Firing initBuildUI()");
+			var allTemplateLoaded = function () {
+				// console.log("Firing initBuildUI()");
 				if ($('[data-enrolled="true"] .toggle-btn')) {
 					$('[data-enrolled="true"] .toggle-btn').addClass('active').prop('checked', 'checked');
 				}
@@ -221,62 +213,75 @@ var programManagementController = (function ($) {
 			};
 
 			controller.getMustacheTemplate(
-					'program-enrollment.mustache.html',
-					'.program-enrollment-template',
-					'.program-enrollment-section',
-					result,
-				function(template) {
-					if (++controller.templatesLoaded == 4) { allTemplateLoaded() } else { console.log("Loaded " + controller.templatesLoaded + " /4 templates") };
-			});
+				'program-enrollment.mustache.html',
+				'.program-enrollment-template',
+				'.program-enrollment-section',
+				result,
+				function (template) {
+					if (++controller.templatesLoaded == 4) {
+						allTemplateLoaded()
+					} else {
+						// console.log("Loaded " + controller.templatesLoaded + " /4 templates");
+					};
+				});
 
 			controller.getMustacheTemplate(
-					'program-settings.mustache.html',
-					'.program-settings-template',
-					'.program-settings-section',
-					result,
-				function(template) {
-					if (++controller.templatesLoaded == 4) { allTemplateLoaded() } else { console.log("Loaded " + controller.templatesLoaded + " /4 templates") };
-			});
+				'program-settings.mustache.html',
+				'.program-settings-template',
+				'.program-settings-section',
+				result,
+				function (template) {
+					if (++controller.templatesLoaded == 4) {
+						allTemplateLoaded()
+					} else {
+						// console.log("Loaded " + controller.templatesLoaded + " /4 templates");
+					};
+				});
 
 			controller.getMustacheTemplate(
-					'proof-settings-tab.mustache.html',
-					'.proof-settings-tab-template',
-					'.proof-settings-tab-section',
-					result,
-				function(template) {
-					if (++controller.templatesLoaded == 4) { allTemplateLoaded() } else { console.log("Loaded " + controller.templatesLoaded + " /4 templates") };
+				'proof-settings-tab.mustache.html',
+				'.proof-settings-tab-template',
+				'.proof-settings-tab-section',
+				result,
+				function (template) {
+					if (++controller.templatesLoaded == 4) {
+						allTemplateLoaded()
+					} else {
+						// console.log("Loaded " + controller.templatesLoaded + " /4 templates");
+					};
 				});
 
 			if ($('.quantity-limit-tab-section').length) {
 				controller.getMustacheTemplate(
-						'quantity-limit-tab.mustache.html',
-						'.quantity-limit-tab-template',
-						'.quantity-limit-tab-section',
-						result,
-					function(template) {
-						if (++controller.templatesLoaded == 4) { allTemplateLoaded() } else { console.log("Loaded " + controller.templatesLoaded + " /4 templates") };
+					'quantity-limit-tab.mustache.html',
+					'.quantity-limit-tab-template',
+					'.quantity-limit-tab-section',
+					result,
+					function (template) {
+						if (++controller.templatesLoaded == 4) {
+							allTemplateLoaded()
+						} else {
+							// console.log("Loaded " + controller.templatesLoaded + " /4 templates");
+						};
 					});
 			}
 		},
 
-		getMustacheTemplate: function(filename, extraction_css_selector, target_css_selector, data, callback) {
+		getMustacheTemplate: function (filename, extraction_css_selector, target_css_selector, data, callback) {
 			var controller = this;
-			var template_key = filename.replace(".","");
+			var template_key = filename.replace(".", "");
 
-			var fillContent = function(template, data) {
+			var fillContent = function (template, data) {
 				controller.timeDebug("Filling " + target_css_selector + ' with ' + data.length + ' data elements.')
 				$(target_css_selector).html(Mustache.render(template, data));
 				controller.timeDebug("Done filling " + target_css_selector + ' with ' + data.length + ' data elements.')
 			}
 
-			if (typeof controller[template_key] != 'undefined' && controller[template_key] != "")
-			{
-				console.log("Loading cached version of " + template_key);
+			if (typeof controller[template_key] != 'undefined' && controller[template_key] != '') {
+				// console.log("Loading cached version of " + template_key);
 				fillContent(controller[template_key], data);
 				callback(controller[template_key]);
-			}
-			else
-			{
+			} else {
 
 				$.get(controller.filePath + filename, function (templates) {
 					controller[template_key] = $(templates).filter(extraction_css_selector).html();
@@ -286,8 +291,7 @@ var programManagementController = (function ($) {
 			}
 
 		},
-
-		setHashLinks : function () {
+		setHashLinks: function () {
 			var currentProgramId = getParameterByName('programId', window.location.href);
 			if ($('.js-create-program-hash').length) {
 				$('.js-create-program-hash').each(function () {
@@ -295,13 +299,13 @@ var programManagementController = (function ($) {
 				});
 			}
 		},
-		programSettingsHandler : function () {
+		programSettingsHandler: function () {
 			customCheckAndRadioBoxes.customCheckbox();
 		},
-		reloadCheckBoxes : function () {
+		reloadCheckBoxes: function () {
 			return customCheckAndRadioBoxes.customCheckbox();
 		},
-		getTotals : function (channel) {
+		getTotals: function (channel) {
 			var controller = this;
 
 			Array.prototype.sum = function (prop) {
@@ -329,7 +333,7 @@ var programManagementController = (function ($) {
 				}).call(channels[i], i);
 			}
 		},
-		returnTotals : function (e) {
+		returnTotals: function (e) {
 			var newSum = 0;
 			var newCostSum = 0;
 			/**
@@ -344,17 +348,17 @@ var programManagementController = (function ($) {
 			 * Calculate the grand total for Email, DM and SMS from all stores enrolled.
 			 **/
 			var target = '.store-counts[data-enrolled="true"] .' + e + ':visible';
-			console.log("Rows matching target of " + target  + " is " + $(target).length);
+			// console.log("Rows matching target of " + target  + " is " + $(target).length);
 			$(target).each(function () {
-				if ($(this).parent().not(".dim-mid") ) {
+				if ($(this).parent().not(".dim-mid")) {
 					var n = parseFloat($(this).text());
 					n = (isNaN(n)) ? 0 : n;
-					console.log(e + " field contains " + n);
+					// console.log(e + " field contains " + n);
 					newSum += n;
 				}
 			}).promise().done(function () {
 				newSum = (isNaN(newSum)) ? "Not Available" : newSum;
-				console.log("Total for " + e + " is  " + newSum);
+				// console.log("Total for " + e + " is  " + newSum);
 				$('.grand-total .' + e).text(newSum);
 			});
 			/**
@@ -367,15 +371,13 @@ var programManagementController = (function ($) {
 
 				n = (isNaN(n)) ? 0 : n;
 				newCostSum += (isNaN(n)) ? 0 : n;
-				console.log("newCostSum is " + newCostSum);
+				// console.log("newCostSum is " + newCostSum);
 			}).promise().done(function () {
 				var grandTotal = (isNaN(newCostSum)) ? "Not Available" : newCostSum.toFixed(2);
-				console.log("grandTotal is " + grandTotal);
+				// console.log("grandTotal is " + grandTotal);
 				$('.grand-total .costEstimateTotal').text(grandTotal);
 			});
 		},
-
-
 
 		showSuccessToast: function () {},
 		showFailToast: function () {},
@@ -510,7 +512,7 @@ var programManagementController = (function ($) {
 
 				if (!$(this).hasClass('activate')) {
 					$('.toggle-btn[data-enrolled="true"]:visible').each(function () {
-						console.log('all true ones block....');
+						// console.log('all true ones block....');
 						var $storeId = $(this).attr('data-storeid');
 						$(this).attr('data-enrolled', "false");
 						storeIds.push($storeId);
@@ -524,7 +526,7 @@ var programManagementController = (function ($) {
 						$(this).attr('data-enrolled', "true");
 						storeIds.push($storeId);
 					});
-					console.log("Subscribing stores " + storeIds.join(","));
+					// console.log("Subscribing stores " + storeIds.join(","));
 					setStoreSubscription.makeRequest($userId, storeIds.join(","), $programId, 1);
 					$(this).removeClass('activate');
 				}
@@ -537,15 +539,23 @@ var programManagementController = (function ($) {
 			});
 		},
 		onClickProgramSummary: function (e) {
-			var input = jPrompt('Please specify an email address to deliver the report to:');
-
-			if ((input) != "" && typeof input != 'undefined' && input != false) {
-				$.get(controller.apiPath + 'sendProgramSummaryCSV.jssp?userId=' + encodeURIComponent(controller.user_id) + "&email=" + encodeURIComponent(input), function (results) {
-					toastr.success('Your request has been received and will deliver to ' + input + '.  The report may take several minutes to arrive.');
-				}).error(function (data) {
-					toastr.error('Error requesting summary report.');
-				});
-			}
+			var input;
+			jPrompt('Please specify an email address to deliver the report to:', '', 'Enter your email', function (r) {
+				try {
+					input = r;
+					if (input != '' && typeof input != 'undefined' && input != false && input.length >= 5) {
+						$.get(controller.apiPath + 'sendProgramSummaryCSV.jssp?userId=' + encodeURIComponent(controller.user_id) + "&email=" + encodeURIComponent(input), function (results) {
+							toastr.success('Your request has been received and will deliver to ' + input + '.  The report may take several minutes to arrive.');
+						}).error(function (data) {
+							toastr.error('Error requesting summary report.');
+						});
+					} else {
+						toastr.warning('Please enter a valid email address.');
+					}
+				} catch (r) {
+					console.warn('The user left the input blank.');
+				}
+			});
 		},
 		selectMultipleProofSettings: function (e) {
 			e.preventDefault();
@@ -692,8 +702,10 @@ var programManagementController = (function ($) {
 			}
 		},
 		refreshStoreRowEnrollment: function () {
-
-		$('div.toggle-btn').each(function () {
+			/**
+			 * @TODO REFACTOR FOR PERFORMANCE!!
+			 */
+			$('div.toggle-btn').each(function () {
 				var enabled = $(this).attr('data-enrolled') == 'true';
 				var storeId = $(this).attr('data-storeid');
 
@@ -707,8 +719,7 @@ var programManagementController = (function ($) {
 						$(this).find(".store-item-dimable .vioc-checkbox").removeClass('disabled');
 						$(this).find(".store-item-dimable small.not-enrolled").addClass('none');
 						$(this).find(".store-item-dimable .store-level-dropdown").removeClass('none');
-						/*
-						 */
+
 					});
 				} else {
 					$(this).removeClass('active');
@@ -720,8 +731,6 @@ var programManagementController = (function ($) {
 						$(this).find(".store-item-dimable .vioc-checkbox").addClass('disabled');
 						$(this).find(".store-item-dimable small.not-enrolled").addClass('none');
 						$(this).find(".store-item-dimable .store-level-dropdown").removeClass('none');
-						/*
-						 */
 					});
 				}
 			});
@@ -732,9 +741,8 @@ var programManagementController = (function ($) {
 			$('.js-content').show();
 			$('.js-loading').hide();
 		},
-		timeDebug: function(message)
-		{
-			console.log("[TimeDebug] " + message + " : " + (Math.floor(Date.now() / 1000) - controller.start_time).toString() + " seconds");
+		timeDebug: function (message) {
+			console.warn("[TimeDebug] " + message + " : " + (Math.floor(Date.now() / 1000) - controller.start_time).toString() + " seconds");
 		}
 	};
 	return {
