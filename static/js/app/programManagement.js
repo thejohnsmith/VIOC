@@ -53,6 +53,10 @@ var programManagementController = (function ($) {
 		 */
 		retrieveUserConfigs: function (callback) {
 			var controller = this;
+			if(!controller.program_id) {
+				console.warn('No program Id found,');
+				return;
+			}
 			$.get(controller.apiPath + 'getUserConfigurations.jssp?userId=' + encodeURIComponent(controller.user_id) + '&programId=' + encodeURIComponent(controller.program_id), function (results) {
 				var json_results = JSON.parse(results);
 				controller.user_configs = json_results;
@@ -742,7 +746,7 @@ var programManagementController = (function ($) {
 			$('.js-loading').hide();
 		},
 		timeDebug: function (message) {
-			console.warn("[TimeDebug] " + message + " : " + (Math.floor(Date.now() / 1000) - controller.start_time).toString() + " seconds");
+			// console.warn("[TimeDebug] " + message + " : " + (Math.floor(Date.now() / 1000) - controller.start_time).toString() + " seconds");
 		}
 	};
 	return {

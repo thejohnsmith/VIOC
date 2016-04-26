@@ -15,7 +15,7 @@ var recordLogin = (function ($) {
 		if (document.cookie.replace(/(?:(?:^|.*;\s*)marcomUserId\s*\=\s*([^;]*).*$)|^.*$/, '$1') != '') {
 			cookie_user_id = document.cookie.replace(/(?:(?:^|.*;\s*)marcomUserId\s*\=\s*([^;]*).*$)|^.*$/, '$1');
 			useCookie = (cookie_user_id == marcomUserData.$user.externalId);
-			console.log((useCookie) ? "Cookie matches active user" : "Cookie doesn't match active user");
+			// console.log((useCookie) ? "Cookie matches active user" : "Cookie doesn't match active user");
 		};
 
 		if (useCookie) {
@@ -55,7 +55,7 @@ var recordLogin = (function ($) {
 		var $loginCount = results.loginCount;
 		var $newUser = getParameterByName('newUser', window.location.href);
 		var $reportingAccess = results.marcomReportingAccess;
-		console.log("results.marcomReportingAccess = " + results.marcomReportingAccess);
+		// console.log("results.marcomReportingAccess = " + results.marcomReportingAccess);
 
 		document.cookie = 'loginCount=' + $loginCount;
 		document.cookie = 'marcomReportingAccess=' + $reportingAccess;

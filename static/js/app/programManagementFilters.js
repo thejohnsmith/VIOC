@@ -5,13 +5,13 @@ var programManagementFilters = (function ($) {
 		user_id: marcomUserData.$user.externalId,
 		store_ids: [],
 		onFilterChange: null,
-		largeDataSet : false,
+		largeDataSet: false,
 		init: function () {
 			var controller = this;
 			$('.filter-select').hide();
 			$('.filter-reset').on('click', $.proxy(controller.resetFilters, controller));
 			controller.getStoreTree(function (store_tree) {
-				controller.setupFilters(store_tree, function() {
+				controller.setupFilters(store_tree, function () {
 					$('.filters-area').css('opacity', 1);
 					controller.reloadDefaultsFromCookie();
 					programManagementController.controller.init()
@@ -22,11 +22,10 @@ var programManagementFilters = (function ($) {
 			var controller = this;
 			var companyAllLabel = (controller.largeDataSet) ? "" : "All Companies";
 			controller.populateFilter('company', companyAllLabel, store_tree, function (children) {
-					controller.populateFilter('market', 'All Marketing Areas', children, function (children) {
-						controller.populateFilter('area', 'All Stores', children, function() {
-						});
-					});
+				controller.populateFilter('market', 'All Marketing Areas', children, function (children) {
+					controller.populateFilter('area', 'All Stores', children, function () {});
 				});
+			});
 			if (typeof callback == "function")
 				callback();
 		},
@@ -68,25 +67,19 @@ var programManagementFilters = (function ($) {
 
 				var dd_type = "";
 				if ($(this).parent().attr("class").indexOf("company") > -1) dd_type = "company";
-				if ($(this).parent().attr("class").indexOf("market") > -1) 	dd_type = "market";    // Name is out of date.  Is really "marketing area";
-				if ($(this).parent().attr("class").indexOf("area") > -1) 	dd_type = "area";  // Name is out of date.  Is really "store"
+				if ($(this).parent().attr("class").indexOf("market") > -1) dd_type = "market"; // Name is out of date.  Is really "marketing area";
+				if ($(this).parent().attr("class").indexOf("area") > -1) dd_type = "area"; // Name is out of date.  Is really "store"
 
-				if (dd_type == "company")
-				{
+				if (dd_type == "company") {
 					document.cookie = "filter_company=" + selected_index;
 					document.cookie = "filter_market=*";
 					document.cookie = "filter_area=*";
-				}
-				else if (dd_type == "market")
-				{
+				} else if (dd_type == "market") {
 					document.cookie = "filter_market=" + selected_index;
 					document.cookie = "filter_area=*";
-				}
-				else {
+				} else {
 					document.cookie = "filter_area=" + selected_index;
 				}
-
-
 
 				// If the user selected "all", tell the upstream dropdowns to hide
 				if (selected_index === '*') {
@@ -113,25 +106,22 @@ var programManagementFilters = (function ($) {
 				controller.onFilterChange(controller.store_ids);
 			}
 		},
-		reloadDefaultsFromCookie: function() {
+		reloadDefaultsFromCookie: function () {
 			// These values contain the index of the last item we selected.
 			var company_filter = document.cookie.replace(/(?:(?:^|.*;\s*)filter_company\s*\=\s*([^;]*).*$)|^.*$/, '$1');
 			var market_filter = document.cookie.replace(/(?:(?:^|.*;\s*)filter_market\s*\=\s*([^;]*).*$)|^.*$/, '$1');
 			var area_filter = document.cookie.replace(/(?:(?:^|.*;\s*)filter_area\s*\=\s*([^;]*).*$)|^.*$/, '$1');
 
-			console.log("Running reloadDefaultsFromCookie : %s, %s, %s", company_filter, market_filter, area_filter);
+			// console.log("Running reloadDefaultsFromCookie : %s, %s, %s", company_filter, market_filter, area_filter);
 
 			if (company_filter != "")
 				$j(".company.filter-select select option[value='" + company_filter + "']").prop("selected", "selected")
 
 			$(".company.filter-select select").trigger("change");
 
-			if ($(".company.filter-select select").val() != "*")
-			{
+			if ($(".company.filter-select select").val() != "*") {
 				$(".company.filter-select").show();
-			}
-			else
-			{
+			} else {
 				return;
 			}
 
@@ -140,12 +130,9 @@ var programManagementFilters = (function ($) {
 
 			$(".market.filter-select select").trigger("change");
 
-			if ($(".market.filter-select select").val() != "*")
-			{
+			if ($(".market.filter-select select").val() != "*") {
 				$(".market.filter-select").show();
-			}
-			else
-			{
+			} else {
 				return;
 			}
 
@@ -154,12 +141,9 @@ var programManagementFilters = (function ($) {
 
 			$(".area.filter-select select").trigger("change");
 
-			if ($(".area.filter-select select").val() != "*")
-			{
+			if ($(".area.filter-select select").val() != "*") {
 				$(".area.filter-select").show();
-			}
-			else
-			{
+			} else {
 				return;
 			}
 
@@ -188,7 +172,7 @@ var programManagementFilters = (function ($) {
 			var controller = this;
 			$.get(controller.apiPath + 'getStoreSummary.jssp?test=1&userId=' + encodeURIComponent(marcomUserData.$user.externalId),
 				function (results) {
-					console.log("Tree data set length : " + results.length);
+					// console.log("Tree data set length : " + results.length);
 					if (results.length > 50000)
 						controller.largeDataSet = true;
 					var json_results = JSON.parse(results);
@@ -220,10 +204,9 @@ programManagementFilters.controller.onFilterChange = function (store_ids) {
 	// See if any checkboxes need to be unchecked
 	var class_checklist = [];
 
-	$j.each($j(".vioc-checkbox"),function(i,e) {
+	$j.each($j(".vioc-checkbox"), function (i, e) {
 
-		if (!$j(e).is(":visible") && $j(e).hasClass('checked'))
-		{
+		if (!$j(e).is(":visible") && $j(e).hasClass('checked')) {
 			$j(e).removeClass('checked');
 		}
 
@@ -234,17 +217,16 @@ programManagementFilters.controller.onFilterChange = function (store_ids) {
 		// This is a pattern to only trigger a refresh on certain checkbox families
 		var ok_to_update = false;
 
-		$j.each($j(e).attr('class').split(" "), function(i,class_name) {
+		$j.each($j(e).attr('class').split(" "), function (i, class_name) {
 			if ($j.inArray(class_name, class_checklist) == -1)
-					ok_to_update = true;
+				ok_to_update = true;
 			// Add the classes used to our checklist.  If we find a new class, it's ok to use it.
 			class_checklist.push(class_name);
 		});
 
 		// If the button has a class that is new to us, trigger an update. (A special event the checkbox listens for)
-		if (ok_to_update)
-		{
-			console.log("Triggering an update on %o", e);
+		if (ok_to_update) {
+			// console.log("Triggering an update on %o", e);
 			$j(e).trigger('update');
 		}
 	});
@@ -255,23 +237,19 @@ programManagementFilters.controller.onFilterChange = function (store_ids) {
 
 	var targetStores = [];
 
-	if (programManagementController.controller.store_data.length > 0)
-	{
+	if (programManagementController.controller.store_data.length > 0) {
 		var lastStoreChecksum = "";
 
-		$j.each(programManagementController.controller.store_data, function(idx, store)
-		{
-			if ($j.inArray(store.storeId.toString(), store_ids) > -1)
-			{
+		$j.each(programManagementController.controller.store_data, function (idx, store) {
+			if ($j.inArray(store.storeId.toString(), store_ids) > -1) {
 				targetStores.push(store);
 				lastStoreChecksum += store.storeId.toString() + "|";
 			}
 		});
 
-		if (typeof programManagementController.controller.lastStoreChecksum == "undefined" || programManagementController.controller.lastStoreChecksum != lastStoreChecksum)
-		{
+		if (typeof programManagementController.controller.lastStoreChecksum == "undefined" || programManagementController.controller.lastStoreChecksum != lastStoreChecksum) {
 			programManagementController.controller.lastStoreChecksum = lastStoreChecksum;
-			console.log("Calling buildUI(targetStores) on ", targetStores);
+			// console.log("Calling buildUI(targetStores) on ", targetStores);
 			programManagementController.controller.buildUI(targetStores);
 		}
 	}
