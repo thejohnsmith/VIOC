@@ -6,8 +6,8 @@
 -->
 <script class="coupons-template" type="x-tmpl-mustache">
     <div class="items">
-        {{#coupon}}
-        <div class="item">
+        {{#coupons}}
+        <div class="item" data-couponId="{{id}}">
             <img title="Valvoline Logo" src="images/viocSquareLogo.gif">
             <h1><span class="js-amount">{{amount}}</span></h1>
             <div class="mouse">
@@ -15,7 +15,7 @@
                     {{{text}}}
                 </div>
                 <div class="item-detail">
-                    <span class="js-expiration right">{{expiration}}</span>
+                    <span class="js-expiration right">{{exp}}</span>
                     <span class="js-code left">{{code}}</span>
                 </div>
                 <div class="js-disclaimer clear">
@@ -23,6 +23,6 @@
                 </div>
             </div>
         </div>
-        {{/coupon}}
+        {{/coupons}}
     </div>
 </script>
