@@ -35,21 +35,37 @@ var couponPageController = (function ($) {
         },
         buildUI: function (result, callback) {
             var controller = this;
-            controller.getMustacheTemplate('../../templates/features.mustache.html', '.features-template', function (template1) {
-                console.warn('features...');
-                $('.features-section').html(Mustache.render(template1, controller.features));
+            /**
+             * STORE dependent TEMPLATES
+             * @uses {object} controller.stores
+             *
+             *
+             **  Page Header */
+            controller.getMustacheTemplate('../../templates/page-header.mustache.html', '.page-header-template', function (template) {
+                $('.page-header-section').html(Mustache.render(template, controller.stores));
             });
+            /** Coupons */
             controller.getMustacheTemplate('../../templates/coupons.mustache.html', '.coupons-template', function (template) {
                 $('.coupons-section').html(Mustache.render(template, controller.stores));
             });
+            /** Map Image */
             controller.getMustacheTemplate('../../templates/map.mustache.html', '.map-template', function (template) {
-                $('.map-section').html(Mustache.render(template, result));
+                $('.map-section').html(Mustache.render(template, controller.stores));
             });
             controller.getMustacheTemplate('../../templates/services.mustache.html', '.services-template', function (template) {
-                $('.services-section').html(Mustache.render(template, result));
+                $('.services-section').html(Mustache.render(template, controller.features));
             });
             controller.getMustacheTemplate('../../templates/additionalOffer.mustache.html', '.additionalOffer-template', function (template) {
-                $('.additionalOffer-section').html(Mustache.render(template, result));
+                $('.additionalOffer-section').html(Mustache.render(template, controller.features));
+            });
+            /**
+             * FEATURE dependent TEMPLATES
+             * @uses {object} controller.features
+             *
+             *
+             **  Features Section */
+            controller.getMustacheTemplate('../../templates/features.mustache.html', '.features-template', function (template) {
+                $('.features-section').html(Mustache.render(template, controller.features));
             });
         },
         getMustacheTemplate: function (filename, css_selector, callback) {
