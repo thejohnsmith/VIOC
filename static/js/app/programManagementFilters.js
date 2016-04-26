@@ -250,7 +250,6 @@ programManagementFilters.controller.onFilterChange = function (store_ids) {
 	});
 
 	// Recalculate stuff
-	getStoreProgramData.getTotals(getStoreProgramData.storeProgramData);
 	programManagementController.controller.refreshSelectAllButton();
 	programManagementController.controller.refreshStoreRowEnrollment();
 

@@ -44,8 +44,8 @@ var programManagementController = (function ($) {
 			controller.refreshManagementControls();
 			controller.refreshProofControls();
 			controller.refreshSelectAllButton();
-			controller.refreshStoreRowEnrollment();
 			controller.ShowUI();
+			controller.refreshStoreRowEnrollment();
 		},
 		highlightNavSection: function () {
 			var controller = this;
@@ -210,6 +210,15 @@ var programManagementController = (function ($) {
 		},
 		buildUI : function (result, callback) {
 			var controller = this;
+			controller.templatesLoaded = 0;
+			var allTemplateLoaded = function() {
+				console.log("Firing initBuildUI()");
+				if ($('[data-enrolled="true"] .toggle-btn')) {
+					$('[data-enrolled="true"] .toggle-btn').addClass('active').prop('checked', 'checked');
+				}
+				controller.setHashLinks();
+				controller.initBuiltUI();
+			};
 
 			controller.getMustacheTemplate(
 					'program-enrollment.mustache.html',
@@ -217,9 +226,7 @@ var programManagementController = (function ($) {
 					'.program-enrollment-section',
 					result,
 				function(template) {
-					if ($('[data-enrolled="true"] .toggle-btn')) {
-						$('[data-enrolled="true"] .toggle-btn').addClass('active').prop('checked', 'checked');
-				}
+					if (++controller.templatesLoaded == 4) { allTemplateLoaded() } else { console.log("Loaded " + controller.templatesLoaded + " /4 templates") };
 			});
 
 			controller.getMustacheTemplate(
@@ -228,8 +235,7 @@ var programManagementController = (function ($) {
 					'.program-settings-section',
 					result,
 				function(template) {
-					controller.setHashLinks();
-					controller.initBuiltUI();
+					if (++controller.templatesLoaded == 4) { allTemplateLoaded() } else { console.log("Loaded " + controller.templatesLoaded + " /4 templates") };
 			});
 
 			controller.getMustacheTemplate(
@@ -238,7 +244,7 @@ var programManagementController = (function ($) {
 					'.proof-settings-tab-section',
 					result,
 				function(template) {
-					// Do nothing
+					if (++controller.templatesLoaded == 4) { allTemplateLoaded() } else { console.log("Loaded " + controller.templatesLoaded + " /4 templates") };
 				});
 
 			if ($('.quantity-limit-tab-section').length) {
@@ -248,7 +254,7 @@ var programManagementController = (function ($) {
 						'.quantity-limit-tab-section',
 						result,
 					function(template) {
-						// Do nothing
+						if (++controller.templatesLoaded == 4) { allTemplateLoaded() } else { console.log("Loaded " + controller.templatesLoaded + " /4 templates") };
 					});
 			}
 		},
@@ -719,9 +725,7 @@ var programManagementController = (function ($) {
 					});
 				}
 			});
-			// console.log("Ending refreshStoreRowEnrollment, starting total count...");
-			getStoreProgramData.getTotals();
-			// console.log("Ending total count...");
+			controller.getTotals();
 			controller.timeDebug("Finished refreshStoreRowEnrollment.")
 		},
 		ShowUI: function () {
