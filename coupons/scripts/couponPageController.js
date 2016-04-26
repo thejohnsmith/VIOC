@@ -4,7 +4,8 @@
  */
 var couponPageController = (function ($) {
     var controller = {
-        pageData: {},
+        features: {},
+        stores: {},
         rId: getParameterByName('r', window.location.href),
         blrId: getParameterByName('blrid', window.location.href),
         apiPath: 'https://adobe-uat-vioc.epsilon.com/jssp/vioc/',
@@ -19,8 +20,12 @@ var couponPageController = (function ($) {
             $.get(controller.apiPath + 'getCouponPageData.jssp', function (results) {
                 var json_results = JSON.parse(results);
                 $.each(json_results, function (i, result) {
-                    // Store the page content data in controller.pageData
-                    controller.pageData = result;
+                    // Store the page content data in controller.stores
+                    if(i === 'features') {
+                        controller.features = result;
+                    } else {
+                        controller.stores = result;
+                    }
                 });
                 // fire the callback (DONE)
                 if(typeof callback === 'function') {
@@ -30,8 +35,12 @@ var couponPageController = (function ($) {
         },
         buildUI: function (result, callback) {
             var controller = this;
+            controller.getMustacheTemplate('../../templates/features.mustache.html', '.features-template', function (template1) {
+                console.warn('features...');
+                $('.features-section').html(Mustache.render(template1, controller.features));
+            });
             controller.getMustacheTemplate('../../templates/coupons.mustache.html', '.coupons-template', function (template) {
-                $('.coupons-section').html(Mustache.render(template, controller.pageData));
+                $('.coupons-section').html(Mustache.render(template, controller.stores));
             });
             controller.getMustacheTemplate('../../templates/map.mustache.html', '.map-template', function (template) {
                 $('.map-section').html(Mustache.render(template, result));
