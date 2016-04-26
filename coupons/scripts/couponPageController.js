@@ -4,15 +4,34 @@
  */
 var couponPageController = (function ($) {
     var controller = {
+        pageData: {},
+        rId: getParameterByName('r', window.location.href),
+        blrId: getParameterByName('blrid', window.location.href),
+        apiPath: 'https://adobe-uat-vioc.epsilon.com/jssp/vioc/',
         init: function () {
             var controller = this;
-            controller.buildUI();
+            controller.GetPageData(controller.rId, controller.blrId, function (rId, blrId) {
+                controller.buildUI();
+            });
+        },
+        GetPageData: function (rId, blrId, callback) {
+            var controller = this;
+            $.get(controller.apiPath + 'getCouponPageData.jssp', function (results) {
+                var json_results = JSON.parse(results);
+                $.each(json_results, function (i, result) {
+                    // Store the page content data in controller.pageData
+                    controller.pageData = result;
+                });
+                // fire the callback (DONE)
+                if(typeof callback === 'function') {
+                    callback(controller.program);
+                }
+            });
         },
         buildUI: function (result, callback) {
             var controller = this;
-
             controller.getMustacheTemplate('../../templates/coupons.mustache.html', '.coupons-template', function (template) {
-                $('.coupons-section').html(Mustache.render(template, controller.mockCoupons));
+                $('.coupons-section').html(Mustache.render(template, controller.pageData));
             });
             controller.getMustacheTemplate('../../templates/map.mustache.html', '.map-template', function (template) {
                 $('.map-section').html(Mustache.render(template, result));
@@ -36,38 +55,23 @@ var couponPageController = (function ($) {
                     callback(controller[template_key]);
                 });
             }
-        },
-        /* Adding coupon as an object fixes the need to use {#.}/{/.} in mustache. */
-        mockCoupons: {
-          coupon: [ {
-            "amount": "$10 Off",
-            "text": "Valvoline&trade; Full-Service Full Synthetic or Synthetic Blend Oil Change",
-            "code": "NANA29A",
-            "expiration": "3/4/2016",
-            "disclaimer": "Plus Tax. Not valid with any other same-service offers/discounts. $$$Plus Tax. Not valid with any other same-service offers/discounts, including fleets. Good at participating locations. Includes up to 5 quarts of Synthetic Blend, Full Synthetic or Diesel oil (diesel quarts may vary; see store for details), filter (prem. extra), lube and maintenance check."
-        }, {
-            "amount": "$9 Off",
-            "text": "Valvoline&trade; Full-Service Full Synthetic or Synthetic Blend Oil Change",
-            "code": "NANA29B",
-            "expiration": "12/31/2016",
-            "disclaimer": "Including fleets. Good at participating locations. Includes up to 5 quarts of Synthetic Blend, Full Synthetic or Diesel oil (diesel quarts may vary; see store for details), filter (prem. extra), lube and maintenance check."
-        }, {
-            "amount": "$8 Off",
-            "text": "Valvoline&trade; Full-Service Full Synthetic or Synthetic Blend Oil Change",
-            "code": "NANA29C",
-            "expiration": "3/4/2016",
-            "disclaimer": "Plus Tax. Not valid with any other same-service offers/discounts, including fleets. Good at participating locations. Includes up to 5 quarts of Synthetic Blend, Full Synthetic or Diesel oil (diesel quarts may vary; see store for details), filter (prem. extra), lube and maintenance check."
-        }, {
-            "amount": "$7 Off",
-            "text": "Valvoline&trade; Full-Service Full Synthetic or Synthetic Blend Oil Change",
-            "code": "NANA29C",
-            "expiration": "3/4/2016",
-            "disclaimer": "Plus Tax. Not valid with any other same-service offers/discounts, including fleets. Good at participating locations. Includes up to 5 quarts of Synthetic Blend, Full Synthetic or Diesel oil (diesel quarts may vary; see store for details), filter (prem. extra), lube and maintenance check."
-        }]
-      }
+        }
     };
     return {
         controller: controller
     };
-
 })(jQuery);
+
+function getParameterByName(name, url) {
+    if(!url) url = window.location.href;
+    name = name.replace(/[\[\]]/g, '\\$&');
+    var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)');
+    var results = regex.exec(url);
+    if(!results) {
+        return undefined;
+    }
+    if(!results[2]) {
+        return '';
+    }
+    return decodeURIComponent(results[2].replace(/\+/g, ' '));
+}
