@@ -4,7 +4,11 @@ var additionalOfferController = (function ($) {
 
 		program: {},
 		adtl_offers: [],
-		config: { "content" : {}, "uiLayout": {}, "preview": {} },
+		config: {
+			"content": {},
+			"uiLayout": {},
+			"preview": {}
+		},
 		configLoaded: false,
 		saveEnabled: true,
 		apiPath: marcomUserData.$constants.apiPath,
@@ -16,11 +20,11 @@ var additionalOfferController = (function ($) {
 			var controller = this;
 			controller.GetAdditionalOfferText(function (programId) {
 				controller.GetProgramData(controller.programId, function (programId) {
-					if(typeof controller.configId != "undefined"){
-						controller.GetConfigData(controller.configId, function() { controller.UpdateUI() } );
-					}
-					else
-					{
+					if (typeof controller.configId != "undefined") {
+						controller.GetConfigData(controller.configId, function () {
+							controller.UpdateUI()
+						});
+					} else {
 						controller.UpdateUI();
 					}
 
@@ -51,7 +55,7 @@ var additionalOfferController = (function ($) {
 				}
 			});
 		},
-		GetAdditionalOfferText: function(callback) {
+		GetAdditionalOfferText: function (callback) {
 			var controller = this;
 			$.get(controller.apiPath + 'getAdtlProgramOptions.jssp', function (results) {
 
@@ -122,7 +126,7 @@ var additionalOfferController = (function ($) {
 			var target = (controller.program.isLifecycleCampaign) ? "LIFECYCLE PROGRAMS" : "SPECIALTY PROGRAMS";
 			$("li.navBarItem a:contains('" + target + "')").addClass('navBarSelectedLinkColor').addClass('customColorOverridable').removeClass('navBarEnhancedLinkColor');
 		},
-		ShowTabsAsAppropriate: function() {
+		ShowTabsAsAppropriate: function () {
 			var controller = this;
 			var maxTabs = controller.program.maxAdtlOffers;
 			if (maxTabs < 4) $(".adtl-offer-4").hide();
@@ -133,24 +137,22 @@ var additionalOfferController = (function ($) {
 			var controller = this;
 			$(".settings-name").val(controller.config.content.label);
 		},
-		UpdateDiscountInfo: function() {
+		UpdateDiscountInfo: function () {
 			var controller = this;
-			console.log(controller.config.content);
-			for (var i = 1; i <= 4; i++)
-			{
+			// console.log(controller.config.content);
+			for (var i = 1; i <= 4; i++) {
 				// Update additional offer text dropdown
 				$('[name=adtlText' + i + ']').html(''); // Clear old options
-				$('[name=adtlText' + i + ']').prepend($("<option>").attr('value','none').html("Not Used"));
-				for (var i2 = 0; i2 < controller.adtl_offers.length; i2++)
-				{
+				$('[name=adtlText' + i + ']').prepend($("<option>").attr('value', 'none').html("Not Used"));
+				for (var i2 = 0; i2 < controller.adtl_offers.length; i2++) {
 					var item = controller.adtl_offers[i2];
-					$('[name=adtlText' + i + ']').append($("<option>").attr('value',item.name).html(item.longText));
+					$('[name=adtlText' + i + ']').append($("<option>").attr('value', item.name).html(item.longText));
 				}
 
 				// And now everything else...
 				$('[name=adtlCode' + i + ']').val(controller.config.content['adtlCode' + i]);
 				$('[name=adtlText' + i + '] option[value="' + controller.config.content['adtlText' + i] + '"]').attr('selected', 'selected');
-				$('[name=adtlApproach' + i  + '] option[value="' + controller.config.content['adtlApproach' + i] + '"]').attr('selected', 'selected');
+				$('[name=adtlApproach' + i + '] option[value="' + controller.config.content['adtlApproach' + i] + '"]').attr('selected', 'selected');
 				$('[name=adtlValue' + i + ']').val(controller.config.content['adtlValue' + i]);
 			}
 		},
@@ -160,19 +162,19 @@ var additionalOfferController = (function ($) {
 		},
 		AttachEventListeners: function () {
 			var controller = this;
-			$(".save-btn").on("click", function() { controller.OnPressSave() });
-			$(".adtlText").on("change", function() { controller.MinimizeUnusedCoupons() });
+			$(".save-btn").on("click", function () {
+				controller.OnPressSave()
+			});
+			$(".adtlText").on("change", function () {
+				controller.MinimizeUnusedCoupons()
+			});
 		},
-		MinimizeUnusedCoupons: function() {
-			for (var i = 1; i <= 4; i++)
-			{
-				if ($('[name=adtlText' + i + ']').val() == "none")
-				{
+		MinimizeUnusedCoupons: function () {
+			for (var i = 1; i <= 4; i++) {
+				if ($('[name=adtlText' + i + ']').val() == "none") {
 					$('[name=adtlText' + i + ']').closest("table").find("tr").hide(); // Hide all of my sibling rows (including myelf)
 					$('[name=adtlText' + i + ']').closest("table").find("tr:first-child").show(); // Reshow myself, since I was hidden with the bulk of my siblings
-				}
-				else
-				{
+				} else {
 					$('[name=adtlText' + i + ']').closest("table").find("tr").show(); // Show me and all of my sibling rows
 				}
 			}
@@ -182,7 +184,7 @@ var additionalOfferController = (function ($) {
 			// Grab all inputs by calling $("input,select") and move their values into a key/value object.
 			// Returns all form data in an easy to POST format.
 		},
-		ValidateForm: function(callback) {
+		ValidateForm: function (callback) {
 			// TODO
 			// Added alert prompt here for now. Can be moved to single function when validation rules are created.
 			// Alert should always fire on save.
@@ -196,19 +198,17 @@ var additionalOfferController = (function ($) {
 		OnPressSave: function () {
 
 			var controller = this;
-			controller.ValidateForm(function() {
+			controller.ValidateForm(function () {
 				saveData = {
-					userId : controller.userId,
+					userId: controller.userId,
 					configType: "adtl",
 					programId: 0,
 					label: $(".settings-name").val(),
 					_expiration: $('.expiration').val()
 				};
 
-				for (var i = 1; i <= 4; i++)
-				{
-					if ($('[name=adtlText' + i + ']').val() != "none")
-					{
+				for (var i = 1; i <= 4; i++) {
+					if ($('[name=adtlText' + i + ']').val() != "none") {
 						saveData["_adtlCode" + i] = $('[name=adtlCode' + i + ']').val();
 						saveData["_adtlText" + i] = $('[name=adtlText' + i + ']').val();
 						saveData["_adtlApproach" + i] = $('[name=adtlApproach' + i + ']').val();
@@ -220,10 +220,10 @@ var additionalOfferController = (function ($) {
 					saveData.configId = controller.configId;
 
 				$.ajax({
-					url : controller.apiPath + 'saveConfig.jssp',
+					url: controller.apiPath + 'saveConfig.jssp',
 					method: "GET",
 					data: saveData,
-					success: function(results) {
+					success: function (results) {
 						console.log("Save was successful!");
 						window.location.href = marcomUserData.$constants.programManagementUrl + "&programId=" + controller.programId + "&flashSuccessMsg=Additional%20Offer%20Saved!#parentHorizontalTab2";
 					},
@@ -231,9 +231,9 @@ var additionalOfferController = (function ($) {
 				});
 
 			})
-			console.log("Save pressed!", this);
+			// console.log("Save pressed!", this);
 		},
-		ShowUI: function() {
+		ShowUI: function () {
 			$(".js-content").show();
 			$(".js-loading").hide();
 		}
@@ -243,8 +243,7 @@ var additionalOfferController = (function ($) {
 	};
 })(jQuery);
 
-if (window.location.href.indexOf(marcomUserData.$constants.additionalOfferPageUrl) > -1)
-{
+if (window.location.href.indexOf(marcomUserData.$constants.additionalOfferPageUrl) > -1) {
 	jQuery(".js-content").hide();
 	jQuery(".js-loading").show();
 	additionalOfferController.controller.init();
