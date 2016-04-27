@@ -53,10 +53,10 @@ var couponPageController = (function ($) {
                 $('.map-section').html(Mustache.render(template, controller.stores));
             });
             controller.getMustacheTemplate('../../templates/services.mustache.html', '.services-template', function (template) {
-                $('.services-section').html(Mustache.render(template, controller.features));
+                $('.services-section').html(Mustache.render(template, controller.stores));
             });
             controller.getMustacheTemplate('../../templates/additionalOffer.mustache.html', '.additionalOffer-template', function (template) {
-                $('.additionalOffer-section').html(Mustache.render(template, controller.features));
+                $('.additionalOffer-section').html(Mustache.render(template, controller.stores));
             });
             /**
              * FEATURE dependent TEMPLATES

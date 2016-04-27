@@ -5,7 +5,7 @@
 -->
 <script class="coupons-template" type="x-tmpl-mustache">
     <div class="items">
-        {{#coupons}}
+        {{#coupons}}{{^isAdtlOffer}}
         <div class="item" data-couponId="{{id}}">
             <img title="Valvoline Logo" src="images/viocSquareLogo.gif">
             <h1><span class="js-amount">{{amount}}</span></h1>
@@ -22,6 +22,7 @@
                 </div>
             </div>
         </div>
+        {{/isAdtlOffer}}
         {{/coupons}}
     </div>
 </script>
