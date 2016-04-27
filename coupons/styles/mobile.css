@@ -44,7 +44,25 @@ sup {
 .clear {
   clear: both;
 }
-
+.clearFix, .cf, .clear-fix {
+  overflow: auto;
+  zoom: 1;
+}
+.hidden-mobile {
+  display: none;
+}
+.inline-block{
+  display: inline-block;
+  width: 100%;
+}
+.ellipsis {
+  overflow: hidden;
+  white-space: nowrap;
+  height: 1.4em;
+  width: 100%;
+  display: inline-block;
+  text-overflow: ellipsis;
+}
 header {
   font-size: 22px;
   background: #0281aa;
@@ -52,32 +70,37 @@ header {
   padding: 8px 10px;
 }
 
-article section#contact {
+article #contact {
   font-size: 17px;
   color: #0281aa;
   margin: 20px;
 }
-article section#contact p {
+article #contact p {
   margin: 0;
 }
-article section#contact #contact-address {
-  float: left;
-  width: 60%;
+.address-section h3 {
+  margin-top: 0;
+  font-size: 17px;
+  display: inline-block;
 }
-article section#contact #contact-address a {
+.address-section, .address-bottom, article #contact #contact-address{
+  width: 100%;
+  display: inline-block;
+}
+.address-body, .address-bottom a, article #contact #contact-address a {
   color: #0281aa;
   margin-top: 10px;
   display: inline-block;
 }
-article section#contact #contact-address a.address-temp {
+.address-body, article #contact #contact-address a.address-temp {
   text-decoration: none;
   cursor: default;
   margin-top: 0;
 }
-article section#contact #contact-drive {
+article #contact #contact-drive {
   float: right;
 }
-article section#contact #contact-drive a {
+article #contact #contact-drive a {
   color: #0281aa;
   background: #f2f2f2;
   border: 1px solid #bebebe;
@@ -90,21 +113,22 @@ article section#contact #contact-drive a {
   background-position: center 15px;
   background-repeat: no-repeat;
 }
-@media (min-resolution: 2dppx), (min-resolution: 192dpi), (-webkit-min-device-pixel-ratio: 2) {
-  article section#contact #contact-drive a {
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 2dppx), (min-resolution: 192dpi) {
+  article #contact #contact-drive a {
     background-image: url("../images/drive-icon_x2.png");
     background-size: 24px 27px;
     background-position: center 15px;
     background-repeat: no-repeat;
   }
 }
-article section.coupon {
+article .coupon {
   border: 3px solid #ec1d25;
   margin: 20px;
   padding: 8px 10px;
   color: #ec1d25;
+  min-height: 128px;
 }
-article section.coupon h1 {
+article .coupon h1 {
   font-size: 55px;
   margin: 0;
   line-height: 57px;
@@ -112,155 +136,155 @@ article section.coupon h1 {
   width: 100px;
   float: left;
 }
-article section.coupon h1 sup {
+.js-amount, article .coupon h1 sup {
   font-size: 28px;
   position: relative;
   top: -2px;
   vertical-align: super;
 }
-article section.coupon h2 {
+article .coupon h2 {
   font-size: 15px;
   float: left;
   width: 60%;
   margin: 0;
 }
-article section.coupon .disc {
+article .coupon .disc {
   text-align: center;
   margin-top: 30px;
   margin-bottom: 10px;
   font-size: 10px;
   font-weight: 700;
 }
-article section.coupon .codes {
+article .coupon .codes {
   font-size: 12px;
 }
-article section.coupon .codes a {
+article .coupon .codes a {
   color: #ec1d25;
   text-decoration: none;
 }
-article section#disclaimers {
+article #disclaimers {
   color: #666;
   margin: 20px;
   font-family: 'Arial';
   font-size: 11px;
 }
-article section#services {
+article #services {
   margin: 20px;
 }
-article section#services h1 {
+article #services h1 {
   margin: 0;
   margin-top: 10px;
   padding-top: 10px;
   border-top: 1px solid #666;
 }
-article section#services h1:first-child {
+article #services h1:first-child {
   margin-top: 0;
   padding-top: 0;
   border-top: 0;
 }
-article section#services h1 a {
+article #services h1 a {
   text-decoration: none;
   color: #0281aa;
   font-weight: 400;
   font-size: 24px;
 }
-article section#services .details {
+article #services .details {
   color: #333;
   display: none;
   margin: 0;
   font-family: arial;
   font-size: 14px;
 }
-article section#services .details.open {
+article #services .details.open {
   display: block;
 }
-article section#services .details p {
+article #services .details p {
   margin: 0;
   padding: 5px 0 10px 0;
 }
-article section#store-hours {
+article #store-hours {
   margin: 20px;
 }
-article section#store-hours table {
+article #store-hours table {
   border: 3px solid #ec1d25;
   width: 100%;
   border-spacing: 0;
   padding: 0;
 }
-article section#store-hours table th, article section#store-hours table td {
+article #store-hours table th, article #store-hours table td {
   padding: 4px 10px;
 }
-article section#store-hours table th {
+article #store-hours table th {
   background: #ec1d25;
   color: #fff;
   text-align: left;
   font-weight: 400;
   font-size: 20px;
 }
-article section#store-hours table td {
+article #store-hours table td {
   font-weight: 400;
   font-size: 18px;
 }
-article section#store-services {
+article #store-services {
   margin: 20px;
 }
-article section#store-services #motor-vehicle-inspection a {
+article #store-services #motor-vehicle-inspection a {
   min-height: 51px;
   background-image: url("../images/motor-vehicle.jpg");
   background-position: left top;
   background-repeat: no-repeat;
 }
-@media (min-resolution: 2dppx), (min-resolution: 192dpi), (-webkit-min-device-pixel-ratio: 2) {
-  article section#store-services #motor-vehicle-inspection a {
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 2dppx), (min-resolution: 192dpi) {
+  article #store-services #motor-vehicle-inspection a {
     background-image: url("../images/motor-vehicle_x2.jpg");
     background-size: 98px 51px;
     background-position: left top;
     background-repeat: no-repeat;
   }
 }
-article section#store-services #stars a {
+article #store-services #stars a {
   min-height: 57px;
   background-image: url("../images/stars.jpg");
   background-position: left top;
   background-repeat: no-repeat;
 }
-@media (min-resolution: 2dppx), (min-resolution: 192dpi), (-webkit-min-device-pixel-ratio: 2) {
-  article section#store-services #stars a {
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 2dppx), (min-resolution: 192dpi) {
+  article #store-services #stars a {
     background-image: url("../images/stars_x2.jpg");
     background-size: 98px 57px;
     background-position: left top;
     background-repeat: no-repeat;
   }
 }
-article section#store-services #nextgen a {
+article #store-services #nextgen a {
   min-height: 42px;
   background-image: url("../images/nextgen.jpg");
   background-position: left top;
   background-repeat: no-repeat;
 }
-@media (min-resolution: 2dppx), (min-resolution: 192dpi), (-webkit-min-device-pixel-ratio: 2) {
-  article section#store-services #nextgen a {
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 2dppx), (min-resolution: 192dpi) {
+  article #store-services #nextgen a {
     background-image: url("../images/nextgen_x2.jpg");
     background-size: 98px 42px;
     background-position: left top;
     background-repeat: no-repeat;
   }
 }
-article section#store-services #engine-guarantee a {
+article #store-services #engine-guarantee a {
   min-height: 70px;
   background-image: url("../images/engine-guarantee.jpg");
   background-position: left top;
   background-repeat: no-repeat;
 }
-@media (min-resolution: 2dppx), (min-resolution: 192dpi), (-webkit-min-device-pixel-ratio: 2) {
-  article section#store-services #engine-guarantee a {
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 2dppx), (min-resolution: 192dpi) {
+  article #store-services #engine-guarantee a {
     background-image: url("../images/engine-guarantee_x2.jpg");
     background-size: 98px 70px;
     background-position: left top;
     background-repeat: no-repeat;
   }
 }
-article section#store-services a {
+article #store-services a {
   margin-bottom: 20px;
   display: block;
   font-size: 14px;
@@ -270,7 +294,7 @@ article section#store-services a {
   line-height: 16px;
   clear: both;
 }
-article section#store-services a img {
+article #store-services a img {
   float: left;
   margin-bottom: 20px;
   margin-top: -5px;
@@ -283,15 +307,12 @@ footer {
   width: 100%;
   background: #004a91;
   /* Old browsers */
-  background: -moz-linear-gradient(top, #004a91 0%, #115698 51%, #004a91 51%, #004a91 100%);
   /* FF3.6+ */
   background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #004a91), color-stop(51%, #115698), color-stop(51%, #004a91), color-stop(100%, #004a91));
   /* Chrome,Safari4+ */
   background: -webkit-linear-gradient(top, #004a91 0%, #115698 51%, #004a91 51%, #004a91 100%);
   /* Chrome10+,Safari5.1+ */
-  background: -o-linear-gradient(top, #004a91 0%, #115698 51%, #004a91 51%, #004a91 100%);
   /* Opera 11.10+ */
-  background: -ms-linear-gradient(top, #004a91 0%, #115698 51%, #004a91 51%, #004a91 100%);
   /* IE10+ */
   background: linear-gradient(to bottom, #004a91 0%, #115698 51%, #004a91 51%, #004a91 100%);
   /* W3C */
@@ -303,7 +324,7 @@ footer nav {
   padding: 2px;
   text-align: right;
 }
-@media (min-resolution: 2dppx), (min-resolution: 192dpi), (-webkit-min-device-pixel-ratio: 2) {
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 2dppx), (min-resolution: 192dpi) {
   footer nav {
     background-image: url("../images/logo_x2.jpg");
     background-size: 53px 48px;
@@ -332,7 +353,7 @@ footer nav a#nav-offers {
   background-position: center 5px;
   background-repeat: no-repeat;
 }
-@media (min-resolution: 2dppx), (min-resolution: 192dpi), (-webkit-min-device-pixel-ratio: 2) {
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 2dppx), (min-resolution: 192dpi) {
   footer nav a#nav-offers {
     background-image: url("../images/offers-icon_x2.png");
     background-size: 14px 24px;
@@ -345,7 +366,7 @@ footer nav a#nav-store {
   background-position: center 5px;
   background-repeat: no-repeat;
 }
-@media (min-resolution: 2dppx), (min-resolution: 192dpi), (-webkit-min-device-pixel-ratio: 2) {
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 2dppx), (min-resolution: 192dpi) {
   footer nav a#nav-store {
     background-image: url("../images/store-icon_x2.png");
     background-size: 13px 24px;
@@ -358,7 +379,7 @@ footer nav a#nav-services {
   background-position: center 5px;
   background-repeat: no-repeat;
 }
-@media (min-resolution: 2dppx), (min-resolution: 192dpi), (-webkit-min-device-pixel-ratio: 2) {
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 2dppx), (min-resolution: 192dpi) {
   footer nav a#nav-services {
     background-image: url("../images/services-icon_x2.png");
     background-size: 31px 22px;

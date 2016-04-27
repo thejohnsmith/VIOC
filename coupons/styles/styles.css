@@ -54,10 +54,11 @@ img
 
     vertical-align: top;
 }
-.hidden
+.hidden, .hidden-desktop
 {
     display: none;
 }
+
 #main
 {
     width: 100%;
@@ -464,10 +465,10 @@ input.button
 }
 #coupons .coupon
 {
-    width: 228px;
+    /*width: 228px;
     height: 191px;
     padding-right: 0;
-    padding-left: 0;
+    padding-left: 0;*/
 }
 #coupons .squareCoupon
 {
