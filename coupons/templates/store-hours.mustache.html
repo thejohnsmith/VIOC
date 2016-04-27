@@ -1,0 +1,63 @@
+<!-- Store hours Template
+    @file store-hours.mustache.html
+    @type template/mustache
+    @import index.html
+-->
+<script class="store-hours-template" type="x-tmpl-mustache">
+    <table class="a-center" cellpadding="0" cellspacing="0" border="0" width="490">
+        <tr>
+            <th colspan="7">Hours of Operation</th>
+            <th>Phone</th>
+        </tr>
+        <tr>
+            {{#hours}}
+            <td width="48">
+                {{#Monday}}
+                <b>Mon</b> {{#open}}{{open}}{{/open}} {{#close}}{{close}}
+                <br>{{/close}} {{#closed}}{{closed}}
+                <br>{{/closed}} {{/Monday}}
+            </td>
+            <td width="48">
+                {{#Tuesday}}
+                <b>Mon</b> {{#open}}{{open}}{{/open}} {{#close}}{{close}}
+                <br>{{/close}} {{#closed}}{{closed}}
+                <br>{{/closed}} {{/Tuesday}}
+            </td>
+            <td width="48">
+                {{#Wednesday}}
+                <b>Mon</b> {{#open}}{{open}}{{/open}} {{#close}}{{close}}
+                <br>{{/close}} {{#closed}}{{closed}}
+                <br>{{/closed}} {{/Wednesday}}
+            </td>
+            <td width="48">
+                {{#Thursday}}
+                <b>Mon</b> {{#open}}{{open}}{{/open}} {{#close}}{{close}}
+                <br>{{/close}} {{#closed}}{{closed}}
+                <br>{{/closed}} {{/Thursday}}
+            </td>
+            <td width="48">
+                {{#Friday}}
+                <b>Mon</b> {{#open}}{{open}}{{/open}} {{#close}}{{close}}
+                <br>{{/close}} {{#closed}}{{closed}}
+                <br>{{/closed}} {{/Friday}}
+            </td>
+            <td width="48">
+                {{#Saturday}}
+                <b>Mon</b> {{#open}}{{open}}{{/open}} {{#close}}{{close}}
+                <br>{{/close}} {{#closed}}{{closed}}
+                <br>{{/closed}} {{/Saturday}}
+            </td>
+            <td width="48">
+                {{#Sunday}}
+                <b>Mon</b> {{#open}}{{open}}{{/open}} {{#close}}{{close}}
+                <br>{{/close}} {{#closed}}{{closed}}
+                <br>{{/closed}} {{/Sunday}}
+            </td>
+            {{/hours}}
+
+            <td>
+                {{#phone}}<strong>{{phone}}</strong>{{/phone}}
+            </td>
+        </tr>
+    </table>
+</script>

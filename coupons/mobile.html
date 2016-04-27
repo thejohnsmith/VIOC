@@ -15,106 +15,18 @@
     <header>
         Valvoline Instant Oil Change
     </header>
+
     <article>
 
         <section id="contact">
-            <div id="contact-address">
-                <p>
-                    <a href="http://coupons.vioc.com/marketing/m/Mobile.aspx?rid=MXqC_GLSj&amp;p=26&amp;s=70066&amp;v=20160128HTG&amp;utm_campaign=Lapsed2&amp;utm_source=VIOC&amp;utm_medium=Email&amp;utm_term=BasicBlue&amp;cid=63654&amp;mid=274295899#" class="address-temp"><span id="ctlHeader_lblAddressLine1">1109 State Route 28</span></a>
-                    <br>
-                    <a href="http://coupons.vioc.com/marketing/m/Mobile.aspx?rid=MXqC_GLSj&amp;p=26&amp;s=70066&amp;v=20160128HTG&amp;utm_campaign=Lapsed2&amp;utm_source=VIOC&amp;utm_medium=Email&amp;utm_term=BasicBlue&amp;cid=63654&amp;mid=274295899#" class="address-temp"><span id="ctlHeader_lblCityStateZip">Milford, OH 45150  </span></a>
-                    <br>
-                    <a id="ctlHeader_lnkPhone" onclick="_gaq.push([&#39;_trackEvent&#39;, &#39;Mobile&#39;, &#39;Header&#39;, &#39;PhoneNumber&#39;]);" href="tel:513-575-1817">513-575-1817</a>
-                </p>
-            </div>
-            <div id="contact-drive">
-                <a id="ctlHeader_lnkAddress" onclick="_gaq.push([&#39;_trackEvent&#39;, &#39;Mobile&#39;, &#39;Header&#39;, &#39;DriveButton&#39;]);" href="http://maps.google.com/?q=1109+State+Route+28%2c+Milford%2c+OH">Drive</a>
-            </div>
+          <section class="address-section">
+          </section>
         </section>
-        <div class="clear"></div>
 
         <section id="offers">
-
-            <section class="coupon">
-                <h1><sup> $11 off  </sup></h1>
-                <h2>Valvoline™ Full-Service Full Synthetic or Synthetic Blend Oil Change*</h2>
-                <div class="clear"></div>
-                <div class="disc">Valid at participating locations only. See store for details.</div>
-                <div class="codes">
-                    <div class="left">NANA98B </div>
-                    <div class="right"><b>EXP:</b> <a>3/4/2016 </a></div>
-                </div>
-                <div class="clear"></div>
-            </section>
-
-            <section class="coupon">
-                <h1><sup> $9 off  </sup></h1>
-                <h2>Valvoline™ Full-Service Conventional Oil Change**</h2>
-                <div class="clear"></div>
-                <div class="disc">Valid at participating locations only. See store for details.</div>
-                <div class="codes">
-                    <div class="left">NANA56B </div>
-                    <div class="right"><b>EXP:</b> <a>3/4/2016 </a></div>
-                </div>
-                <div class="clear"></div>
-            </section>
-
-            <section class="coupon">
-                <h1><sup> $10 off  </sup></h1>
-                <h2>Automatic Transmission Fluid Exchange Service***</h2>
-                <div class="clear"></div>
-                <div class="disc">Valid at participating locations only. See store for details.</div>
-                <div class="codes">
-                    <div class="left">NANA77B </div>
-                    <div class="right"><b>EXP:</b> <a>3/19/2016 </a></div>
-                </div>
-                <div class="clear"></div>
-            </section>
-
-            <section class="coupon">
-                <h1><sup> $5 off  </sup></h1>
-                <h2>Each Gearbox Fluid Exchange Service****</h2>
-                <div class="clear"></div>
-                <div class="disc">Valid at participating locations only. See store for details.</div>
-                <div class="codes">
-                    <div class="left">NANA25B </div>
-                    <div class="right"><b>EXP:</b> <a>3/19/2016 </a></div>
-                </div>
-                <div class="clear"></div>
-            </section>
-
-            <section class="coupon">
-                <h1><sup> 1000  </sup></h1>
-                <h2>Speedy Rewards Points with Oil Change Purchase*****</h2>
-                <div class="clear"></div>
-                <div class="disc">Valid at participating locations only. See store for details.</div>
-                <div class="codes">
-                    <div class="left">1000 </div>
-                    <div class="right"><b>EXP:</b> <a>3/4/2016 </a></div>
-                </div>
-                <div class="clear"></div>
-            </section>
-
-
-            <section id="disclaimers">
-
-                <p>*Plus Tax. Not valid with any other same-service offers/discounts, including fleets. Good at participating locations. Includes up to 5 quarts of Synthetic Blend, Full Synthetic or Diesel oil (diesel quarts may vary; see store for details),
-                    filter (prem. extra), lube and maintenance check.</p>
-
-                <p>**Plus Tax. Not valid with any other same-service offers/discounts, including fleets. Good at participating locations. Includes up to 5 quarts of Conventional oil, filter (prem. extra), lube and maintenance check.</p>
-
-                <p>***Plus Tax. Not valid with any other same-service offers/discounts, including fleets. Good at participating locations. </p>
-
-                <p>****Plus Tax. Not valid with any other same-service offers/discounts, including fleets. Good at participating locations. </p>
-
-                <p>*****Plus Tax. Not valid with any other same-service offers/discounts, including fleets. Good at participating locations. Includes up to 5 qts. of oil (diesel qts. may vary; see store for details), filter (prem. extra), lube &amp; maint.
-                    check.</p>
-
-            </section>
-
+          <section class="coupons-section">
+          </section>
         </section>
-
-
 
         <section id="services" style="display:none;">
 
@@ -214,7 +126,15 @@
         </section>
 
         <script type="text/javascript" src="scripts/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/2.2.1/mustache.min.js"></script>
         <script type="text/javascript" src="scripts/couponPageController.js"></script>
+        <script>
+            /* Epsilon 2016 */
+            if (typeof couponPageController.controller.init() == 'function') {
+                console.warn('CouponPageController is ready.');
+                couponPageController.controller.init();
+            }
+        </script>
         <script type="text/javascript">
             (function($) {
 
@@ -287,13 +207,11 @@
             <section id="store-services">
 
                 <div class="ad">
-                    <img id="ctlStore_rptFeatures_ctl00_ImageFeature" alt="" src="images/feature_speedyRewards.jpg" style="width:114px;border-width:0px;"> Earn Speedy Rewards Points
-                    at this location!
+                    <img id="ctlStore_rptFeatures_ctl00_ImageFeature" alt="" src="images/feature_speedyRewards.jpg" style="width:114px;border-width:0px;"> Earn Speedy Rewards Points at this location!
                 </div>
 
                 <div class="ad">
-                    <img id="ctlStore_rptFeatures_ctl01_ImageFeature" alt="" src="images/feature_fleetServices.jpg" style="width:114px;border-width:0px;"> Easy, Speedy Service for
-                    Fleets
+                    <img id="ctlStore_rptFeatures_ctl01_ImageFeature" alt="" src="images/feature_fleetServices.jpg" style="width:114px;border-width:0px;"> Easy, Speedy Service for Fleets
                 </div>
 
                 <div class="clear"></div>
@@ -318,13 +236,13 @@
     <footer>
         <nav>
             <a href="http://coupons.vioc.com/marketing/m/Mobile.aspx?rid=MXqC_GLSj&amp;p=26&amp;s=70066&amp;v=20160128HTG&amp;utm_campaign=Lapsed2&amp;utm_source=VIOC&amp;utm_medium=Email&amp;utm_term=BasicBlue&amp;cid=63654&amp;mid=274295899#offers" id="nav-offers"
-                onclick="_gaq.push([&#39;_trackEvent&#39;, &#39;Mobile&#39;, &#39;Footer&#39;, &#39;Offers&#39;]);" class="current">Offers</a>
+                class="current">Offers</a>
             <span class="divider"></span>
-            <a href="http://coupons.vioc.com/marketing/m/Mobile.aspx?rid=MXqC_GLSj&amp;p=26&amp;s=70066&amp;v=20160128HTG&amp;utm_campaign=Lapsed2&amp;utm_source=VIOC&amp;utm_medium=Email&amp;utm_term=BasicBlue&amp;cid=63654&amp;mid=274295899#store" id="nav-store"
-                onclick="_gaq.push([&#39;_trackEvent&#39;, &#39;Mobile&#39;, &#39;Footer&#39;, &#39;Store&#39;]);">Store</a>
+            <a href="http://coupons.vioc.com/marketing/m/Mobile.aspx?rid=MXqC_GLSj&amp;p=26&amp;s=70066&amp;v=20160128HTG&amp;utm_campaign=Lapsed2&amp;utm_source=VIOC&amp;utm_medium=Email&amp;utm_term=BasicBlue&amp;cid=63654&amp;mid=274295899#store" id="nav-store">
+              Store</a>
             <span class="divider"></span>
-            <a href="http://coupons.vioc.com/marketing/m/Mobile.aspx?rid=MXqC_GLSj&amp;p=26&amp;s=70066&amp;v=20160128HTG&amp;utm_campaign=Lapsed2&amp;utm_source=VIOC&amp;utm_medium=Email&amp;utm_term=BasicBlue&amp;cid=63654&amp;mid=274295899#services" id="nav-services"
-                onclick="_gaq.push([&#39;_trackEvent&#39;, &#39;Mobile&#39;, &#39;Footer&#39;, &#39;Services&#39;]);">Services</a>
+            <a href="http://coupons.vioc.com/marketing/m/Mobile.aspx?rid=MXqC_GLSj&amp;p=26&amp;s=70066&amp;v=20160128HTG&amp;utm_campaign=Lapsed2&amp;utm_source=VIOC&amp;utm_medium=Email&amp;utm_term=BasicBlue&amp;cid=63654&amp;mid=274295899#services" id="nav-services">
+              Services</a>
         </nav>
     </footer>
     <script type="text/javascript">

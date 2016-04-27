@@ -40,9 +40,13 @@ var couponPageController = (function ($) {
              * @uses {object} controller.stores
              *
              *
-             **  Page Header */
-            controller.getMustacheTemplate('../../templates/page-header.mustache.html', '.page-header-template', function (template) {
-                $('.page-header-section').html(Mustache.render(template, controller.stores));
+             **  Address */
+            controller.getMustacheTemplate('../../templates/address.mustache.html', '.address-template', function (template) {
+                $('.address-section').html(Mustache.render(template, controller.stores));
+            });
+            /** Store Hours */
+            controller.getMustacheTemplate('../../templates/store-hours.mustache.html', '.store-hours-template', function (template) {
+                $('.store-hours-section').html(Mustache.render(template, controller.stores));
             });
             /** Coupons */
             controller.getMustacheTemplate('../../templates/coupons.mustache.html', '.coupons-template', function (template) {
