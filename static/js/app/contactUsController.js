@@ -25,18 +25,17 @@ var contactUsController = (function ($) {
 		 *  Toggle ARIA invalid true/false
 		 */
 		singleValidate: function (input) {
-			var isValid = true;
 			var inputValue = $(input).val();
-			if (inputValue === '') {
+			if (inputValue == '') {
 				$(input).removeClass(controller.successClass)
 					.addClass(controller.errorClass)
 					.attr(controller.ariaInvalid, 'true');
-				isValid = false;
+				return false;
 			} else {
 				$(input).addClass(controller.successClass)
 					.removeClass(controller.errorClass)
 					.attr(controller.ariaInvalid, 'false');
-				isValid = true;
+				return true;
 			}
 		},
 		bulkValidate: function () {
@@ -45,7 +44,7 @@ var contactUsController = (function ($) {
 				if (!controller.singleValidate(input))
 					notEmptyFields = false;
 			});
-			return notEmptyFields = true;
+			return (notEmptyFields);
 		},
 		onSubmit: function (e) {
 			e.preventDefault();
@@ -63,6 +62,7 @@ var contactUsController = (function ($) {
 				'phone': $('#phone').val(),
 				'comments': $('#message').val()
 			};
+			controller.contactFormSubmit.attr("disabled","disabled");
 			$.ajax({
 				url: controller.apiPath + 'sendContactUs.jssp',
 				method: 'GET',
@@ -81,6 +81,7 @@ var contactUsController = (function ($) {
 					console.warn(jqXHR.status);
 					console.warn(jqXHR.statusText);
 					console.warn(jqXHR.responseText);
+					controller.contactFormSubmit.attr("disabled",null);
 					// controller.errormsg.html('<p>' + JSON.parse(jqXHR.responseText).error + '</p>');
 				}
 			});
@@ -93,10 +94,12 @@ var contactUsController = (function ($) {
 		},
 		showSuccess: function () {
 			controller.successmsg.fadeIn();
+			controller.contactFormSubmit.attr("disabled",null);
 			toastr.success('Your request has been submitted.');
 		},
 		showError: function () {
 			// controller.errormsg.fadeIn();
+			controller.contactFormSubmit.attr("disabled",null);
 			toastr.error('Your message was not sent. Please check that all fields have been filled.');
 		}
 	};

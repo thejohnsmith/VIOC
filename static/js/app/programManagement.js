@@ -173,7 +173,7 @@ var programManagementController = (function ($) {
 					jConfirm(message, 'Please Confirm', function (r) {
 						if (r) {
 							controller.deleteSettings(selectedConfigId, function () {
-								controller.buildUI(controller.store_data);
+								controller.hardUIRefresh();
 							});
 						}
 					});
@@ -677,6 +677,8 @@ var programManagementController = (function ($) {
 		saveProofMeta: function (selectedStores, proofType, proofVal, callback) {
 			/**
 			 * @example API CALL https://adobe-uat-vioc.epsilon.com/jssp/vioc/setStoreMeta.jssp?userId=Zz0fUjXHHr66NXRFDs&storeIds=1,2,3&proofSettings=1
+			 * @example NEW CALL setProofPreferences?userId=foo&storeIds=1,2,3&programId=bah&em=1&dm=1&sms=1
+			 * $.get(controller.apiPath + 'setProofPreferences.jssp?userId=' + encodeURIComponent(controller.user_id) + '&storeIds=' + stringStoreIds + '&programId=' + controller.program_id + '&' + proofType + '=' + proofVal, function (results) {
 			 */
 			var controller = this;
 			var stringStoreIds = selectedStores.join(',');
@@ -741,6 +743,29 @@ var programManagementController = (function ($) {
 			controller.getTotals();
 			controller.timeDebug("Finished refreshStoreRowEnrollment.")
 		},
+
+		hardUIRefresh: function() {
+
+			var controller = this;
+
+			controller.getStoreProgramData(function() {
+				controller.retrieveUserConfigs(function() {
+
+					var targetStores = [];
+					var store_ids = programManagementFilters.controller.store_ids;
+
+					$j.each(controller.store_data, function (idx, store) {
+						if ($j.inArray(store.storeId.toString(), store_ids) > -1) {
+							targetStores.push(store);
+						}
+					});
+
+					controller.buildUI(targetStores);
+				});
+			});
+
+		},
+
 		ShowUI: function () {
 			$('.js-content').show();
 			$('.js-loading').hide();

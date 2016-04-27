@@ -88,6 +88,7 @@ var programConfigController = (function ($) {
 			controller.UpdateDiscountCodes();
 			controller.UpdateOfferExpiration();
 			controller.UpdatePreSubmitSidebar();
+			controller.UpdateSaveButton();
 			controller.AttachEventListeners();
 			controller.GeneratePreview();
 			controller.ShowUI();
@@ -259,6 +260,11 @@ var programConfigController = (function ($) {
 			$('.program-overview-img img').attr('src', controller.program.programImg);
 			$('.programDesc').html(controller.program.programDesc);
 		},
+		UpdateSaveButton: function() {
+			var controller = this;
+			if (controller.config.content.corpDefault == "1")
+				$('.btn-save').html("Save as New");
+		},
 		AttachEventListeners: function () {
 			var controller = this;
 			$('input.touchpoint-value').on('blur', function () {
@@ -325,6 +331,26 @@ var programConfigController = (function ($) {
 				toastr.error('Please specify a name for your settings.');
 				return;
 			}
+
+			if (controller.config.content.corpDefault == 0)
+			{
+				ExecuteSave();
+			}
+			else
+			{
+				var new_label = ($('.settings-name').val() != controller.config.content.label)
+					? $('.settings-name').val()
+					: ("Custom " + controller.config.content.label);
+
+				jConfirm("This is a factory-defined setting and may not be changed.  Instead, the system will create a new setting named \"" + new_label + "\" which will contain your custom settings.  Proceed?", 'Create New Settings?', function (r) {
+					if (r) {
+						controller.ExecuteSave();
+					}
+				});
+			}
+		},
+		ExecuteSave: function() {
+
 			var saveData = {
 				'userId': controller.userId,
 				'configType': 'program',

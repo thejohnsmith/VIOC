@@ -99,6 +99,7 @@ var additionalOfferController = (function ($) {
 			controller.UpdateOfferExpiration();
 			controller.AttachEventListeners();
 			controller.MinimizeUnusedCoupons();
+			controller.UpdateSaveButton();
 			controller.ShowUI();
 		},
 		UpdateTitle: function () {
@@ -180,6 +181,11 @@ var additionalOfferController = (function ($) {
 			}
 
 		},
+		UpdateSaveButton: function() {
+			var controller = this;
+			if (controller.config.content.corpDefault == "1")
+				$('.save-btn').val("Save as New");
+		},
 		GetFormData: function () {
 			// Grab all inputs by calling $("input,select") and move their values into a key/value object.
 			// Returns all form data in an easy to POST format.
@@ -188,10 +194,27 @@ var additionalOfferController = (function ($) {
 			// TODO
 			// Added alert prompt here for now. Can be moved to single function when validation rules are created.
 			// Alert should always fire on save.
-			var messagePOS = 'Have you established this code in POS?';
-			jConfirm(messagePOS, 'Please Confirm', function (r) {
+			jConfirm('Have you established this code in POS?', 'Please Confirm', function (r) {
 				if (r) {
-					callback();
+
+					if (controller.config.content.corpDefault == 0)
+					{
+						callback();
+					}
+					else
+					{
+						var new_label = ($('.settings-name').val() != controller.config.content.label)
+							? $('.settings-name').val()
+							: ("Custom " + controller.config.content.label);
+
+						jConfirm("This is a factory-defined setting and may not be changed.  Instead, the system will create a new setting named \"" + new_label + "\" which will contain your custom settings.  Proceed?", 'Create New Settings?', function (r) {
+							if (r) {
+								callback()();
+							}
+						});
+					}
+
+
 				}
 			});
 		},
