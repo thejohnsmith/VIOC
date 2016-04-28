@@ -950,9 +950,9 @@ body > div#screen
     background-position: 8px 6px;
 
     -webkit-box-flex: 1;
-    -webkit-flex: 1 0 400px;
-        -ms-flex: 1 0 400px;
-            flex: 1 0 400px;
+    -webkit-flex: 1 0 200px;
+        -ms-flex: 1 0 200px;
+            flex: 1 0 200px;
 }
 @media (min-width: 410px)
 {

@@ -1,17 +1,20 @@
-/* couponPageController.js
- *
- * Check: if (typeof(value) !== "undefined" && value)
+/* Coupon Page Controller
+ * @filename couponPageController.js
+ * @description Loads templates with data from custom Adobe API.
+ * @author John Smith, Epsilon
+ * @TODO Add if (typeof(value) !== "undefined" && value)
  */
-var couponPageController = (function ($) {
+couponPageController = (function ($) {
+    'use strict';
     var controller = {
         features: {},
         stores: {},
-        rId: getParameterByName('r', window.location.href),
-        blrId: getParameterByName('blrid', window.location.href),
         apiPath: 'https://adobe-uat-vioc.epsilon.com/jssp/vioc/',
         init: function () {
             var controller = this;
-            controller.GetPageData(controller.rId, controller.blrId, function (rId, blrId) {
+            var rId = controller.getParameterByName('r', window.location.href);
+            var blrId = controller.getParameterByName('blrid', window.location.href);
+            controller.GetPageData(controller.rId, controller.blrId, function () {
                 controller.buildUI();
             });
         },
@@ -60,11 +63,11 @@ var couponPageController = (function ($) {
             controller.getMustacheTemplate('../../templates/map.mustache.html', '.map-template', function (template) {
                 $('.map-section').html(Mustache.render(template, controller.stores));
             });
-            controller.getMustacheTemplate('../../templates/services.mustache.html', '.services-template', function (template) {
-                $('.services-section').html(Mustache.render(template, controller.stores));
-            });
             controller.getMustacheTemplate('../../templates/additionalOffer.mustache.html', '.additionalOffer-template', function (template) {
                 $('.additionalOffer-section').html(Mustache.render(template, controller.stores));
+            });
+            controller.getMustacheTemplate('../../templates/services.mustache.html', '.services-template', function (template) {
+                $('.services-section').html(Mustache.render(template, controller.stores));
             });
             /**
              * FEATURE dependent TEMPLATES
@@ -88,23 +91,26 @@ var couponPageController = (function ($) {
                     callback(controller[template_key]);
                 });
             }
+        },
+        getParameterByName: function (name, url) {
+            var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)');
+            var results = regex.exec(url);
+            if(!url) {
+                url = window.location.href;
+            }
+            name = name.replace(/[\[\]]/g, '\\$&');
+            if(!results) {
+                return undefined;
+            }
+            if(!results[2]) {
+                return '';
+            }
+            return decodeURIComponent(results[2].replace(/\+/g, ' '));
         }
+
     };
     return {
-        controller: controller
+        controller: controller,
+        init: controller.init
     };
 })(jQuery);
-
-function getParameterByName(name, url) {
-    if(!url) url = window.location.href;
-    name = name.replace(/[\[\]]/g, '\\$&');
-    var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)');
-    var results = regex.exec(url);
-    if(!results) {
-        return undefined;
-    }
-    if(!results[2]) {
-        return '';
-    }
-    return decodeURIComponent(results[2].replace(/\+/g, ' '));
-}
