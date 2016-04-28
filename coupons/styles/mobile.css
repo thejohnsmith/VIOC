@@ -99,9 +99,11 @@ article #contact p {
   margin: 0;
 }
 .address-section h3 {
-  margin-top: 0;
+  margin: 0 auto;
   font-size: 17px;
   display: inline-block;
+  width: 70%;
+  width: calc(100% - 90px);
 }
 .address-section, .address-bottom, article #contact #contact-address{
   width: 100%;
@@ -175,6 +177,7 @@ article .coupon .disc {
   font-size: 10px;
   font-weight: 700;
 }
+/* TODO: This is a HACK! Until we decide how to split-up the short/long fine print. -JS 04-27-16 */
 .disc .ellipsis {
   width: 50%;
 }
@@ -228,6 +231,7 @@ article #services .details p {
 }
 article #store-hours {
   margin: 20px;
+  max-width: 400px;
 }
 article #store-hours table {
   border: 3px solid #ec1d25;
@@ -244,6 +248,7 @@ article #store-hours table th {
   text-align: left;
   font-weight: 400;
   font-size: 20px;
+  width: 100px;
 }
 article #store-hours table td {
   font-weight: 400;
@@ -251,6 +256,14 @@ article #store-hours table td {
 }
 article #store-services {
   margin: 20px;
+}
+.ad-copy {
+  display: inline-block;
+  vertical-align: bottom;
+  width: 60%;
+}
+.ad-img + .ad-copy {
+  width: 60%;
 }
 article #store-services #motor-vehicle-inspection a {
   min-height: 51px;
@@ -345,8 +358,12 @@ footer nav {
   background-image: url("../images/logo.jpg");
   background-position: 4px 4px;
   background-repeat: no-repeat;
-  padding: 2px;
+  padding: 0;
+  display: table;
   text-align: right;
+  width: 80%;
+  width: calc(100% - 59px);
+  padding-left: 59px;
 }
 @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 2dppx), (min-resolution: 192dpi) {
   footer nav {
@@ -358,19 +375,19 @@ footer nav {
 }
 footer nav a {
   color: #fff;
-  font-size: 12px;
-  display: inline-block;
-  width: 24%;
+  font-size: 14px;
+  display: table-cell;
+  width: 33%;
   padding: 2px;
   padding-top: 33px;
   vertical-align: top;
   text-decoration: none;
   text-align: center;
-  text-shadow: -1px -1px 0 rgba(0, 0, 0, 0.5);
+  -webkit-font-smoothing: antialiased;
 }
 footer nav a.current {
-  background: rgba(255, 255, 255, 0.25);
-  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.05);
+  box-shadow: inset 0 0 0px 1px rgba(3, 169, 244, 0.08);
 }
 footer nav a#nav-offers {
   background-image: url("../images/offers-icon.png");
@@ -412,7 +429,7 @@ footer nav a#nav-services {
   }
 }
 footer nav .divider {
-  display: inline-block;
+  display: none;
   height: 50px;
   width: 0px;
   border-left: 1px solid #668bae;
