@@ -48,6 +48,10 @@ var couponPageController = (function ($) {
             controller.getMustacheTemplate('../../templates/store-hours.mustache.html', '.store-hours-template', function (template) {
                 $('.store-hours-section').html(Mustache.render(template, controller.stores));
             });
+            /** Store Hours */
+            controller.getMustacheTemplate('../../templates/mobile-store-hours.mustache.html', '.mobile-store-hours-template', function (template) {
+                $('.mobile-store-hours-section').html(Mustache.render(template, controller.stores));
+            });
             /** Coupons */
             controller.getMustacheTemplate('../../templates/coupons.mustache.html', '.coupons-template', function (template) {
                 $('.coupons-section').html(Mustache.render(template, controller.stores));

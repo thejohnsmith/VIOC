@@ -54,7 +54,8 @@ img
 
     vertical-align: top;
 }
-.hidden, .hidden-desktop
+.hidden,
+.hidden-desktop
 {
     display: none;
 }
@@ -554,7 +555,7 @@ input.button
 }
 #coupons #services
 {
-    height: 228px;
+    min-height: 142px;
 }
 #coupons #services h3
 {
@@ -562,7 +563,6 @@ input.button
 
     padding-bottom: 5px;
     padding-left: 31px;
-
     background: url('../images/services.png') 0 0;
     background-repeat: no-repeat;
 }
