@@ -6,14 +6,16 @@
 <script class="services-template" type="x-tmpl-mustache">
 
 <!--  Desktop version -->
-    <ul class="hidden-mobile">
-        {{#services}}
-        <li>
-            <a href="{{#url}}{{url}}{{/url}}">{{#text}}{{text}}{{/text}}</a>
-        </li>
-        {{/services}}
-    </ul>
-
+  <div class="hidden-mobile">
+      <h3 class="hidden-mobile">Services</h3>
+      <ul class="hidden-mobile">
+          {{#services}}
+          <li>
+              <a href="{{#url}}{{url}}{{/url}}">{{#text}}{{text}}{{/text}}</a>
+          </li>
+          {{/services}}
+      </ul>
+  </div>
 
 <!--  Mobile version -->
     {{#services}}
@@ -38,6 +40,7 @@
       *       after the template loads.
       */
       (function() {
+        if($('.service')){
           $('.service').on('click', function(e) {
               e.preventDefault();
               if ($(this).parent().next('.details').hasClass('open')) {
@@ -52,11 +55,12 @@
                   });
               }
           });
+        }
+        if($('.address-temp')){
           $('.address-temp').on('click', function(e) {
-
               e.preventDefault();
-
           });
+        }
       })();
     </script>
 </script>
