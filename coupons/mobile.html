@@ -170,39 +170,8 @@
 
 
         <section id="store" style="display:none;">
-            <section id="store-hours">
-                <table>
-                    <tbody>
-                        <tr>
-                            <th>Monday</th>
-                            <td><span id="ctlStore_lblMon">8am - 7:30pm</span></td>
-                        </tr>
-                        <tr>
-                            <th>Tuesday</th>
-                            <td><span id="ctlStore_lblTue">8am - 7:30pm</span></td>
-                        </tr>
-                        <tr>
-                            <th>Wednesday</th>
-                            <td><span id="ctlStore_lblWed">8am - 7:30pm</span></td>
-                        </tr>
-                        <tr>
-                            <th>Thursday</th>
-                            <td><span id="ctlStore_lblThu">8am - 7:30pm</span></td>
-                        </tr>
-                        <tr>
-                            <th>Friday</th>
-                            <td><span id="ctlStore_lblFri">8am - 7:30pm</span></td>
-                        </tr>
-                        <tr>
-                            <th>Saturday</th>
-                            <td><span id="ctlStore_lblSat">8am - 6pm</span></td>
-                        </tr>
-                        <tr>
-                            <th>Sunday</th>
-                            <td><span id="ctlStore_lblSun">9:30am - 5:30pm</span></td>
-                        </tr>
-                    </tbody>
-                </table>
+            <section class="mobile-store-hours-section" id="store-hours">
+
             </section>
             <section id="store-services">
 
@@ -228,7 +197,7 @@
                 document.getElementById('store').style.display = "none";
                 document.getElementById('services').style.display = "none";
 
-                document.getElementById((location.hash).replace('#', '')).style.display = "block";
+                // document.getElementById((location.hash).replace('#', '')).style.display = "block";
             }
 
         })();
@@ -246,10 +215,10 @@
         </nav>
     </footer>
     <script type="text/javascript">
-        (function() {
-            if (location.hash != "") document.getElementById('nav-' + (location.hash).replace('#', '')).setAttribute('class', 'current');
-            else document.getElementById('nav-offers').setAttribute('class', 'current');
-        })();
+        // (function() {
+        //     if (location.hash != "") document.getElementById('nav-' + (location.hash).replace('#', '')).setAttribute('class', 'current');
+        //     else document.getElementById('nav-offers').setAttribute('class', 'current');
+        // })();
     </script>
     <script type="text/javascript">
         (function() {
@@ -258,7 +227,7 @@
 
                 e.preventDefault();
 
-                location.hash = $(this).attr('href');
+                // location.hash = $(this).attr('href');
 
                 $(this).addClass('current').siblings('a').removeClass('current');
 

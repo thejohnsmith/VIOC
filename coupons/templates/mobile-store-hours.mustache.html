@@ -1,0 +1,62 @@
+<!-- Mobile Store hours Template
+    @file mobile-store-hours.mustache.html
+    @type template/mustache
+    @import index.html
+-->
+<script class="mobile-store-hours-template" type="x-tmpl-mustache">
+<table>
+    <tbody>
+    {{#hours}}
+        <tr>
+            {{#Monday}}
+            <th>Monday</th>
+            {{^closed}}<td><span id="ctlStore_lblMon">{{#open}}{{open}}{{/open}} - {{#close}}{{close}}{{/close}}</span></td>{{/closed}}
+            {{#closed}}<td>Closed</td>{{/closed}}
+            {{/Monday}}
+        </tr>
+        <tr>
+            {{#Tuesday}}
+            <th>Tuesday</th>
+            {{^closed}}<td><span id="ctlStore_lblTue">{{#open}}{{open}}{{/open}} - {{#close}}{{close}}{{/close}}</span></td>{{/closed}}
+            {{#closed}}<td>Closed</td>{{/closed}}
+            {{/Tuesday}}
+        </tr>
+        <tr>
+            {{#Wednesday}}
+            <th>Wednesday</th>
+            {{^closed}}<td><span id="ctlStore_lblWed">{{#open}}{{open}}{{/open}} - {{#close}}{{close}}{{/close}}</span></td>{{/closed}}
+            {{#closed}}<td>Closed</td>{{/closed}}
+            {{/Wednesday}}
+        </tr>
+        <tr>
+            {{#Thursday}}
+            <th>Thursday</th>
+            {{^closed}}<td><span id="ctlStore_lblThu">{{#open}}{{open}}{{/open}} - {{#close}}{{close}}{{/close}}</span></td>{{/closed}}
+            {{#closed}}<td>Closed</td>{{/closed}}
+            {{/Thursday}}
+        </tr>
+        <tr>
+            {{#Friday}}
+            <th>Friday</th>
+            {{^closed}}<td><span id="ctlStore_lblFri">{{#open}}{{open}}{{/open}} - {{#close}}{{close}}{{/close}}</span></td>{{/closed}}
+            {{#closed}}<td>Closed</td>{{/closed}}
+            {{/Friday}}
+        </tr>
+        <tr>
+            {{#Saturday}}
+            <th>Saturday</th>
+            {{^closed}}<td><span id="ctlStore_lblSat">{{#open}}{{open}}{{/open}} - {{#close}}{{close}}{{/close}}</span></td>{{/closed}}
+            {{#closed}}<td>Closed</td>{{/closed}}
+            {{/Saturday}}
+        </tr>
+        <tr>
+            {{#Sunday}}
+            <th>Sunday</th>
+            {{^closed}}<td><span id="ctlStore_lblSun">{{#open}}{{open}}{{/open}} - {{#close}}{{close}}{{/close}}</span></td>{{/closed}}
+            {{#closed}}<td>Closed</td>{{/closed}}
+            {{/Sunday}}
+        </tr>
+    </tbody>
+    {{/hours}}
+</table>
+</script>
