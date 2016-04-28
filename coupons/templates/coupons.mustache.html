@@ -4,6 +4,8 @@
     @import index.html
 -->
 <script class="coupons-template" type="x-tmpl-mustache">
+
+    <!--  Desktop version -->
     <div class="items">
         {{#coupons}}{{^isAdtlOffer}}
         <div class="item coupon" data-couponId="{{id}}">
@@ -29,6 +31,7 @@
         {{/isAdtlOffer}} {{/coupons}}
     </div>
 
+    <!--  Mobile version -->
     <section class="hidden-desktop" id="disclaimers">
         {{#coupons}}
         <p><small><sup class="disclaimer-key"> {{id}} </sup></small>{{disclaimer}}</p>

@@ -4,20 +4,26 @@
     @import index.html
 -->
 <script class="additionalOffer-template" type="x-tmpl-mustache">
-{{#coupons}}
-  {{#isAdtlOffer}}
-  <div class="item" data-couponId="{{id}}">
-    <img src="images/checkboxB.jpg" width="24" height="19" />
-    <span style="font-weight:bold; margin-left:10px;">
-    <font face="Arial, Helvetica, sans-serif" style="font-size:14px; font-weight:bold; color:#333333;">Special offers in-store!</font></span>
-    <div id="aodOffer">
-        {{{text}}}
-    </div>
-    <div id="aodCouponCode">{{code}}</div>
-    <div id="aodExpirationDate">{{exp}}</div>
-    <div class="clear"></div>
-    <div id="aodDisclaimer">{{disclaimer}}</div>
-    </div>
-  {{/isAdtlOffer}}
+  {{#coupons}}
+      {{#isAdtlOffer}}
+      <div class="item" data-couponId="{{id}}">
+        <img src="images/checkboxB.jpg" width="24" height="19">
+        <span style="font-weight:bold; margin-left:10px;">
+          <strong>Special offers in-store!</strong>
+        </span>
+        <div id="aodOffer">
+            {{{text}}}
+        </div>
+        <div id="aodCouponCode">
+          {{code}}
+        </div>
+        <div id="aodExpirationDate">
+          {{exp}}
+        </div>
+        <div id="aodDisclaimer">
+          {{disclaimer}}
+        </div>
+      </div>
+      {{/isAdtlOffer}}
   {{/coupons}}
 </script>
