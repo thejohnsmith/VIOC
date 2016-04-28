@@ -4,11 +4,59 @@
     @import index.html
 -->
 <script class="services-template" type="x-tmpl-mustache">
-    <ul>
+
+<!--  Desktop version -->
+    <ul class="hidden-mobile">
         {{#services}}
         <li>
             <a href="{{#url}}{{url}}{{/url}}">{{#text}}{{text}}{{/text}}</a>
         </li>
         {{/services}}
     </ul>
+
+
+<!--  Mobile version -->
+    {{#services}}
+      <h1 class="hidden-desktop">
+        <a href="{{#url}}{{url}}{{/url}}" class="service hidden-desktop">
+          {{#text}}{{text}}{{/text}}
+        </a>
+      </h1>
+
+      {{#desc}}
+      <div class="details hidden-desktop">
+          <p>{{{desc}}}</p>
+      </div>
+      {{/desc}}
+    {{/services}}
+
+
+    <script type="text/javascript">
+    /** Initialize the Accordions
+      * HACK!
+      * @TODO Move this into controller and call the initialzer
+      *       after the template loads.
+      */
+      (function() {
+          $('.service').on('click', function(e) {
+              e.preventDefault();
+              if ($(this).parent().next('.details').hasClass('open')) {
+                  $(this).parent().next('.details').slideUp('fast', function() {
+                      $(this).removeClass('open').removeAttr('style');
+                  });
+              } else {
+                  $(this).parent().next('.details').slideDown('fast', function() {
+                      $(this).addClass('open').removeAttr('style');
+                  }).siblings('.details').slideUp('fast', function() {
+                      $(this).removeClass('open').removeAttr('style');
+                  });
+              }
+          });
+          $('.address-temp').on('click', function(e) {
+
+              e.preventDefault();
+
+          });
+      })();
+    </script>
 </script>

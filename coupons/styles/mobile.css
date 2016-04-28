@@ -40,7 +40,6 @@ sup {
 .right {
   float: right;
 }
-
 .clear {
   clear: both;
 }
@@ -48,7 +47,7 @@ sup {
   overflow: auto;
   zoom: 1;
 }
-.hidden-mobile {
+.hidden-mobile, .js-hidden {
   display: none;
 }
 .inline-block{
@@ -164,9 +163,9 @@ article .coupon h1 {
   vertical-align: super;
 }
 article .coupon h2 {
-  font-size: 15px;
+  font-size: 18px;
   float: left;
-  width: 60%;
+  width: 65%;
   margin: 0;
 }
 article .coupon .disc {
@@ -176,6 +175,9 @@ article .coupon .disc {
   font-size: 10px;
   font-weight: 700;
 }
+.disc .ellipsis {
+  width: 50%;
+}
 article .coupon .codes {
   font-size: 12px;
 }
@@ -184,10 +186,11 @@ article .coupon .codes a {
   text-decoration: none;
 }
 article #disclaimers {
-  color: #666;
   margin: 20px;
+  color: #666;
   font-family: 'Arial';
   font-size: 11px;
+  padding-bottom: 0.4em;
 }
 article #services {
   margin: 20px;
