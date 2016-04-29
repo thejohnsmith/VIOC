@@ -135,7 +135,7 @@ var programConfigController = (function ($) {
 			for (var value in controller.program.uiLayout.emailCreativeChoices) {
 				$('.em-creative')
 					.append($('<option>', {
-							value: value
+							value: value.split(" ").join("")
 						})
 						.text(controller.program.uiLayout.emailCreativeChoices[value]));
 			}
