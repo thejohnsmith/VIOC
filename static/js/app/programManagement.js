@@ -357,12 +357,12 @@ var programManagementController = (function ($) {
 				if ($(this).parent().not(".dim-mid")) {
 					var n = parseFloat($(this).text());
 					n = (isNaN(n)) ? 0 : n;
-					// console.log(e + " field contains " + n);
+					console.log(e + " field contains " + n);
 					newSum += n;
 				}
 			}).promise().done(function () {
 				newSum = (isNaN(newSum)) ? "Not Available" : newSum;
-				// console.log("Total for " + e + " is  " + newSum);
+				console.log("Total for " + e + " is  " + newSum);
 				$('.grand-total .' + e).text(newSum);
 			});
 			/**
@@ -375,10 +375,10 @@ var programManagementController = (function ($) {
 
 				n = (isNaN(n)) ? 0 : n;
 				newCostSum += (isNaN(n)) ? 0 : n;
-				// console.log("newCostSum is " + newCostSum);
+				console.log("newCostSum is " + newCostSum);
 			}).promise().done(function () {
 				var grandTotal = (isNaN(newCostSum)) ? "Not Available" : newCostSum.toFixed(2);
-				// console.log("grandTotal is " + grandTotal);
+				console.log("grandTotal is " + grandTotal);
 				$('.grand-total .costEstimateTotal').text(grandTotal);
 			});
 		},
