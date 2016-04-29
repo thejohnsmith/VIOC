@@ -88,7 +88,6 @@ var programConfigController = (function ($) {
 			controller.UpdateDiscountCodes();
 			controller.UpdateOfferExpiration();
 			controller.UpdatePreSubmitSidebar();
-			controller.UpdateSaveButton();
 			controller.AttachEventListeners();
 			controller.GeneratePreview();
 			controller.ShowUI();
@@ -145,7 +144,7 @@ var programConfigController = (function ($) {
 			for (var value in controller.program.uiLayout.dmCreativeChoices) {
 				$('.dm-creative')
 					.append($('<option>', {
-							value: value
+							value: value.split(" ").join("")
 						})
 						.text(controller.program.uiLayout.dmCreativeChoices[value]));
 			}
@@ -208,8 +207,9 @@ var programConfigController = (function ($) {
 			$('.touchpoint-' + firstActiveTab + '.resp-tab-item').addClass('resp-tab-active');
 			$('.touchpoint-' + firstActiveTab + '.resp-tab-content').addClass('resp-tab-content-active');
 
-			if (!controller.program.programUsesAdtl) {
-				$('.results-section .additional-offer').hide();
+			if (!controller.program.programUsesService) {
+				$('.results-section .additional-offer').hide(); // The CSS class should really be "service-offer".  Delete this once that has been fixed.
+				$('.results-section .service-offer').hide();
 			}
 
 			$.each($('.touchpoint-value'), function (i, e) {
@@ -259,11 +259,6 @@ var programConfigController = (function ($) {
 			var controller = this;
 			$('.program-overview-img img').attr('src', controller.program.programImg);
 			$('.programDesc').html(controller.program.programDesc);
-		},
-		UpdateSaveButton: function() {
-			var controller = this;
-			if (controller.config.content.corpDefault == "1")
-				$('.btn-save').html("Save as New");
 		},
 		AttachEventListeners: function () {
 			var controller = this;
@@ -331,26 +326,6 @@ var programConfigController = (function ($) {
 				toastr.error('Please specify a name for your settings.');
 				return;
 			}
-
-			if (controller.config.content.corpDefault == 0)
-			{
-				ExecuteSave();
-			}
-			else
-			{
-				var new_label = ($('.settings-name').val() != controller.config.content.label)
-					? $('.settings-name').val()
-					: ("Custom " + controller.config.content.label);
-
-				jConfirm("This is a factory-defined setting and may not be changed.  Instead, the system will create a new setting named \"" + new_label + "\" which will contain your custom settings.  Proceed?", 'Create New Settings?', function (r) {
-					if (r) {
-						controller.ExecuteSave();
-					}
-				});
-			}
-		},
-		ExecuteSave: function() {
-
 			var saveData = {
 				'userId': controller.userId,
 				'configType': 'program',
