@@ -208,7 +208,6 @@ var programConfigController = (function ($) {
 			$('.touchpoint-' + firstActiveTab + '.resp-tab-content').addClass('resp-tab-content-active');
 
 			if (!controller.program.programUsesService) {
-				$('.results-section .additional-offer').hide(); // The CSS class should really be "service-offer".  Delete this once that has been fixed.
 				$('.results-section .service-offer').hide();
 			}
 
