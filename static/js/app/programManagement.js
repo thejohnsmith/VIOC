@@ -674,15 +674,13 @@ var programManagementController = (function ($) {
 				$(this).val(proofSelected).attr('selected', 'selected');
 			});
 		},
+		/** Save Proof Meta
+		 * @example API CALL https://adobe-uat-vioc.epsilon.com/jssp/vioc/setProofPreferences?userId=foo&storeIds=1,2,3&programId=bah&em=1&dm=1&sms=1
+		 */
 		saveProofMeta: function (selectedStores, proofType, proofVal, callback) {
-			/**
-			 * @example API CALL https://adobe-uat-vioc.epsilon.com/jssp/vioc/setStoreMeta.jssp?userId=Zz0fUjXHHr66NXRFDs&storeIds=1,2,3&proofSettings=1
-			 * @example NEW CALL setProofPreferences?userId=foo&storeIds=1,2,3&programId=bah&em=1&dm=1&sms=1
-			 * $.get(controller.apiPath + 'setProofPreferences.jssp?userId=' + encodeURIComponent(controller.user_id) + '&storeIds=' + stringStoreIds + '&programId=' + controller.program_id + '&' + proofType + '=' + proofVal, function (results) {
-			 */
 			var controller = this;
 			var stringStoreIds = selectedStores.join(',');
-			$.get(controller.apiPath + 'setStoreMeta.jssp?userId=' + encodeURIComponent(controller.user_id) + '&storeIds=' + stringStoreIds + '&' + proofType + '=' + proofVal, function (results) {
+			$.get(controller.apiPath + 'setProofPreferences.jssp?userId=' + encodeURIComponent(controller.user_id) + '&storeIds=' + stringStoreIds + '&programId=' + controller.program_id + '&' + proofType + '=' + proofVal, function (results) {
 				try {
 					var json_results = JSON.parse(results);
 					controller.store_data = json_results;

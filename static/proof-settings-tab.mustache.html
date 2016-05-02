@@ -78,7 +78,7 @@
                           <tr>
                             {{#hasEmail}}
                             <td class="store-item-dimable channelEmailTotal">
-                              <select data-prooftype="emProofSettings" data-proofSelected="{{emProofSettings}}" data-storeId="{{storeId}}" class="link-proof link-proof-single form-control" title="Choose Monthly Proof Settings">
+                              <select data-prooftype="em" data-proofSelected="{{emProofSettings}}" data-storeId="{{storeId}}" class="link-proof link-proof-single form-control" title="Choose Monthly Proof Settings">
                                 <option value="0">None</option>
                                 <option value="1">Monthly</option>
                                 <option value="2">Tomorrow, then Monthly</option>
@@ -89,7 +89,7 @@
 
                             {{#hasDM}}
                             <td class="store-item-dimable channelDMTotal">
-                              <select data-prooftype="dmProofSettings" data-proofSelected="{{dmProofSettings}}" data-storeId="{{storeId}}" class="link-proof link-proof-single form-control" title="Choose Monthly Proof Settings">
+                              <select data-prooftype="dm" data-proofSelected="{{dmProofSettings}}" data-storeId="{{storeId}}" class="link-proof link-proof-single form-control" title="Choose Monthly Proof Settings">
                                 <option value="0">None</option>
                                 <option value="1">Monthly</option>
                                 <option value="2">Tomorrow, then Monthly</option>
@@ -99,7 +99,7 @@
 
                             {{#hasSMS}}
                             <td class="store-item-dimable channelSMSTotal">
-                              <select data-prooftype="smsProofSettings" data-proofSelected="{{smsProofSettings}}" data-storeId="{{storeId}}" class="link-proof link-proof-single form-control" title="Choose Monthly Proof Settings">
+                              <select data-prooftype="sms" data-proofSelected="{{smsProofSettings}}" data-storeId="{{storeId}}" class="link-proof link-proof-single form-control" title="Choose Monthly Proof Settings">
                                 <option value="0">None</option>
                                 <option value="1">Monthly</option>
                                 <option value="2">Tomorrow, then Monthly</option>
@@ -145,7 +145,7 @@
                     <tbody class="bulk-apply-proofSettings">
                     <tr class="header-row">
                     <td class="hasEmail">
-                      <select data-prooftype="emProofSettings" class="link-proof link-proof-bulk form-control" title="Choose Monthly Proof Settings">
+                      <select data-prooftype="em" class="link-proof link-proof-bulk form-control" title="Choose Monthly Proof Settings">
                         <option value="0">None</option>
                         <option value="1">Monthly</option>
                         <option value="2">Tomorrow, then Monthly</option>
@@ -153,7 +153,7 @@
                       </select>
                     </td>
                     <td class="hasDM">
-                      <select data-prooftype="dmProofSettings" class="link-proof link-proof-bulk form-control" title="Choose Monthly Proof Settings">
+                      <select data-prooftype="dm" class="link-proof link-proof-bulk form-control" title="Choose Monthly Proof Settings">
                         <option value="0">None</option>
                         <option value="1">Monthly</option>
                         <option value="2">Tomorrow, then Monthly</option>
@@ -161,7 +161,7 @@
                       </select>
                     </td>
                     <td class="hasSMS">
-                      <select data-prooftype="smsProofSettings" class="link-proof link-proof-bulk form-control" title="Choose Monthly Proof Settings">
+                      <select data-prooftype="sms" class="link-proof link-proof-bulk form-control" title="Choose Monthly Proof Settings">
                         <option value="0">None</option>
                         <option value="1">Monthly</option>
                         <option value="2">Tomorrow, then Monthly</option>
