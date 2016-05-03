@@ -49,6 +49,7 @@ var submitForm = function () {
 };
 var updateRecipientCount = function (save, callback) {
 	var storeIds = [];
+	var apiPath = marcomUserData.$constants.apiPath;
 	if ($j('#jstree').length) {
 		var selectedElements = $j('#jstree').jstree().get_selected();
 	}
@@ -67,7 +68,7 @@ var updateRecipientCount = function (save, callback) {
 		'save': 0
 	};
 	if (save === true) data.save = 1;
-	$j.get('https://adobe-uat-vioc.epsilon.com/jssp/vioc/getRecipientEstimate.jssp', data).done(function (data) {
+	$j.get(apiPath + 'getRecipientEstimate.jssp', data).done(function (data) {
 		try {
 			data = JSON.parse(data);
 			$j('#counter').html(data.recipientCount);
@@ -81,11 +82,12 @@ var updateRecipientCount = function (save, callback) {
 	});
 };
 $j(document).ready(function () {
+	var apiPath = marcomUserData.$constants.apiPath;
 	if ($j('#jstree').length) {
 		attachActivityListeners();
 		userId = getParameterByName('userId', window.location.href) || marcomUserData.$user.externalId;
 		// Call and get the store tree:
-		$j.get('https://adobe-uat-vioc.epsilon.com/jssp/vioc/getStoreSummary.jssp?userId=' + marcomUserData.$user.externalId).done(function (data) {
+		$j.get(apiPath + 'getStoreSummary.jssp?userId=' + marcomUserData.$user.externalId).done(function (data) {
 			try {
 				jsonTreeData = JSON.parse(data);
 			} catch (e) {

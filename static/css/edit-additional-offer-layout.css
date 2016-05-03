@@ -1,202 +1,39 @@
-.red
-{
-    color: #e02926;
-}
-.resp-tab-content
-{
-    margin: 0 0 15px 0;
-}
-#programManagementTabs
-{
-    width: 100%;
-    margin: 0 0 20px 0;
-    padding: 0;
-}
-#programManagementTabs h4
-{
-    font-size: 24px;
-    font-weight: bold;
-
-    margin: 10px 0;
-    padding: 10px 0 0 0;
-
-    color: #e02926;
-}
-#programManagementTabs p
-{
-    margin: 0;
-    padding: 0 0 10px 0;
-}
-#programManagementTabs input
-{
-    max-width: 140px;
-    margin: 5px 0 15px 0;
-}
-#programManagementTabs .btn
-{
-    max-width: 140px;
-    margin: 5px 0 15px 0;
-    padding: 6px 12px;
-
-    color: #fff;
-    border: 1px solid #337ab7;
-    border-radius: 4px;
-    background-color: #0ea3dd;
-}
-#programManagementTabs input.settings-name
-{
-    margin: 0;
-}
-#programManagementTabs select
-{
-    width: auto;
-    min-width: 140px;
-    margin: 5px 0 15px 0;
-}
-.program-button
-{
-    margin: 0;
-    padding: 0;
-}
-.discountCodeLink
-{
-    font-weight: bold;
-
-    margin: 0;
-    padding: 0;
-
-    text-decoration: underline;
-}
-.discountCode
-{
-    width: 100%;
-    padding: 20px;
-
-    background: #eee;
-}
-.discountCode table,
-#parentHorizontalTab table
-{
-    width: 100%;
-}
+.red{color:#e02926;}
+.resp-tab-content{margin:0 0 15px 0;}
+#programManagementTabs{width:100%;margin:0 0 20px 0;padding:0;}
+#programManagementTabs h4{font-size:24px;font-weight:bold;margin:10px 0;padding:10px 0 0 0;color:#e02926;}
+#programManagementTabs p{margin:0;padding:0 0 10px 0;}
+#programManagementTabs input{max-width:140px;margin:5px 0 15px 0;}
+#programManagementTabs .btn{max-width:140px;margin:5px 0 15px 0;padding:6px 12px;color:#fff;border:1px solid #337ab7;border-radius:4px;background-color:#0ea3dd;}
+#programManagementTabs input.settings-name{margin:0;}
+#programManagementTabs select{width:auto;min-width:140px;margin:5px 0 15px 0;}
+.program-button{margin:0;padding:0;}
+.discountCodeLink{font-weight:bold;margin:0;padding:0;text-decoration:underline;}
+.discountCode{width:100%;padding:20px;background:#eee;}
+.discountCode table,#parentHorizontalTab table{width:100%;}
 .discountCode table tr td:first-child,
-#parentHorizontalTab table tr td:first-child
-{
-    padding: 0 15px 10px 0;
-
-    text-align: right;
-    vertical-align: middle;
-}
+#parentHorizontalTab table tr td:first-child{padding:0 15px 10px 0;text-align:right;vertical-align:middle;}
 .discountCode table tr td:nth-child(odd),
-#parentHorizontalTab table tr td:nth-child(odd)
-{
-    width: 40%;
-}
-#parentHorizontalTab table tr .adtl-offer-form-group-label
-{
-    width: 25% !important;
-
-    text-align: left !important;
-}
-#parentHorizontalTab table tr .adtl-offer-form-group-input
-{
-    width: 75% !important;
-
-    text-align: left !important;
-}
-.adtlConfigForm
-{
-    overflow: hidden;
-}
-.adtlConfigForm .settings-section
-{
-    width: 100%;
-    margin-bottom: 1.5em;
-}
-.adtlConfigForm .results-section
-{
-    width: 100%;
-}
-.adtlConfigForm .label-cell
-{
-    min-width: 120px;
-    padding: 0;
-}
-.adtlConfigForm .value-cell
-{
-    padding: 4px 8px;
-}
+#parentHorizontalTab table tr td:nth-child(odd){width:40%;}
+#parentHorizontalTab table tr .adtl-offer-form-group-label{width:25% !important;text-align:left !important;}
+#parentHorizontalTab table tr .adtl-offer-form-group-input{width:75% !important;text-align:left !important;}
+.adtlConfigForm{overflow:hidden;}
+.adtlConfigForm .settings-section{width:100%;margin-bottom:1.5em;}
+.adtlConfigForm .results-section{width:100%;}
+.adtlConfigForm .label-cell{min-width:120px;padding:0;}
+.adtlConfigForm .value-cell{padding:4px 8px;}
 #programManagementTabs .adtlConfigForm .value-cell input,
-#programManagementTabs .adtlConfigForm .value-cell select
-{
-    min-width: 300px;
-    margin: 4px 0;
-}
-.adtlConfigForm .resp-tab-content
-{
-    margin-bottom: .6em;
-}
-#parentHorizontalTab
-{
-    margin: 0;
-    padding: 0;
-}
-.module table tr td:first-child
-{
-    padding: 0 15px 10px 0;
-
-    vertical-align: middle;
-}
-.module table tr td:nth-child(odd)
-{
-    width: 30%;
-}
-.module table
-{
-    width: 100%;
-}
-.sidebar p
-{
-    padding: 20px 0 10px 0;
-}
-.sidebar textarea
-{
-    font-size: 14px;
-    line-height: 20px;
-
-    padding: 10px;
-
-    text-align: left;
-}
-.resp-tab-content
-{
-    width: 80%;
-    margin: 0 0 20px 0;
-}
-.coupon-form
-{
-    float: left;
-
-    width: auto;
-}
-.coupon-form td
-{
-    vertical-align: sub;
-}
-.coupon-form td label
-{
-    margin-right: 1em;
-}
-.coupon-image
-{
-    float: left;
-
-    width: 40%;
-    padding: 0 0 3px 0;
-
-    text-align: center;
-}
-.coupon-form i
-{
-    color: red;
-}
+#programManagementTabs .adtlConfigForm .value-cell select{min-width:300px;margin:4px 0;}
+.adtlConfigForm .resp-tab-content{margin-bottom:.6em;}
+#parentHorizontalTab{margin:0;padding:0;}
+.module table tr td:first-child{padding:0 15px 10px 0;vertical-align:middle;}
+.module table tr td:nth-child(odd){width:30%;}
+.module table{width:100%;}
+.sidebar p{padding:20px 0 10px 0;}
+.sidebar textarea{font-size:14px;line-height:20px;padding:10px;text-align:left;}
+.resp-tab-content{width:80%;margin:0 0 20px 0;}
+.coupon-form{float:left;width:auto;}
+.coupon-form td{vertical-align:sub;}
+.coupon-form td label{margin-right:1em;}
+.coupon-image{float:left;width:40%;padding:0 0 3px 0;text-align:center;}
+.coupon-form i{color:red;}
