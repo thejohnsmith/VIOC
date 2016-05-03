@@ -12,11 +12,12 @@ var jsonTreeData = '';
 var userId = '';
 
 $(document).ready(function() {
-
+	var apiPath = marcomUserData.$constants.apiPath;
+	console.warn('apiPath: ' + apiPath);
 	userId = getParameterByName('userId', window.location.href);
 
 	// Call and get the store tree:
-	$.get( "https://adobe-uat-vioc.epsilon.com/jssp/vioc/getStoreSummary.jssp?userId=" + encodeURIComponent(marcomUserData.$user.externalId) )
+	$.get( apiPath + "getStoreSummary.jssp?userId=" + encodeURIComponent(marcomUserData.$user.externalId) )
 	  .done(function( data ) {
 
 		try {
