@@ -21,6 +21,7 @@ var marcomUserData = (function ($) {
 		additionalOfferPageUrl: 'CustomPage.aspx?uigroup_id=479602&page_id=11226',
 		configPageUrl: 'CustomPage.aspx?uigroup_id=479602&page_id=11225',
 		helpPageUrl: 'CustomPage.aspx?uigroup_id=479602&page_id=10798',
+		onDemandUrl: 'catalog.aspx?uigroup_id=479602&folder_id=1633307',
 		apiPath: 'https://adobe-uat-vioc.epsilon.com/jssp/vioc/',
 		apiPathLocal: 'data/',
 		marcomFilePath: 'https://files.marcomcentral.app.pti.com/epsilon/static/'
