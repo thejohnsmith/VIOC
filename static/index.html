@@ -17,16 +17,16 @@
 	<!--css styles ends-->
 
 	<script src="js/jquery_min.js"></script>
+	<script>
+		function getParameterByName(name) {
+			var match = RegExp("[?&]" + name + "=([^&]*)").exec(window.location.search);
+			return match && decodeURIComponent(match[1].replace(/\+/g, " "));
+		}
+	</script>
 </head>
 
 <body>
-	<span class="user-related none"
-		data-user-external-id="654321"
-		data-user-login-id="BetaUser"
-		data-user-first-name="John"
-		data-user-last-name="Smith"
-		data-user-email="john.smith@marcom.com"
-		aria-hidden="true">
+	<span class="user-related none" data-user-external-id="Zz0fUjXHHr66NXRFDs" data-user-login-id="BetaUser" data-user-first-name="John" data-user-last-name="Smith" data-user-email="john.smith@marcom.com" aria-hidden="true">
 	</span>
 	<div class="dummy"></div>
 	<div class="wrapper">
@@ -42,7 +42,7 @@
 						</div>
 						<div class="header-info">
 							<h2>Warp Drive</h2>
-							<h3><b>W</b>inning <b>A</b>CQUISITION &amp; <b>R</b>ETENTION <b>P</b>ROGRAMS (WARP)</h3>
+							<h3><b>W</b>inning <b>A</b>CQUISITION &amp; <b>R</b>ETENTION <b>P</b>ROGRAMS</h3>
 						</div>
 					</div>
 					<div class="header-right">
@@ -55,29 +55,27 @@
 					<ul class="enumenu_ul menu">
 						<li><a href="program-overview.html" title="LIFECYCLE PROGRAMS">LIFECYCLE PROGRAMS</a>
 							<ul>
-								<li><a href="#" title="">Sub Menu 1</a></li>
-								<li><a href="#" title="">Sub Menu 2</a></li>
-								<li><a href="#" title="">Sub Menu 3</a></li>
-								<li><a href="#" title="">Sub Menu 4</a></li>
-								<li><a href="#" title="">Sub Menu 5</a></li>
+								<li><a href="#" title="Reminder">Reminder</a></li>
+								<li><a href="#" title="Lapsed">Lapsed</a></li>
+								<li><a href="#" title="Relapsed">Relapsed</a></li>
+								<li><a href="#" title="Lost">Lost</a></li>
+								<li><a href="#" title="Reactivation">Reactivation</a></li>
+								<li><a href="#" title="Lifecycle Test">Lifecycle Test</a></li>
+								<li><a href="#" title="Post Visit">Post Visit</a></li>
+								<li><a href="#" title="Pre-Reminder">Pre-Reminder</a></li>
 							</ul>
 						</li>
 						<li><a href="#" title="SPECIALTY PROGRAMS">SPECIALTY PROGRAMS</a>
 							<ul>
-								<li><a href="#" title="">Sub Menu 1</a></li>
-								<li><a href="#" title="">Sub Menu 2</a></li>
-								<li><a href="#" title="">Sub Menu 3</a></li>
-								<li><a href="#" title="">Sub Menu 4</a></li>
-								<li><a href="#" title="">Sub Menu 5</a></li>
+								<li><a href="#" title="Fleet">Fleet</a></li>
+								<li><a href="#" title="Inspection">Inspection</a></li>
+								<li><a href="#" title="Asphalt Adventures">Asphalt Adventures</a></li>
+								<li><a href="#" title="Facebook">Facebook</a></li>
 							</ul>
 						</li>
 						<li><a href="#" title="ON DEMAND MARKETING">ON DEMAND MARKETING</a>
 							<ul>
-								<li><a href="#" title="">Sub Menu 1</a></li>
-								<li><a href="#" title="">Sub Menu 2</a></li>
-								<li><a href="#" title="">Sub Menu 3</a></li>
-								<li><a href="#" title="">Sub Menu 4</a></li>
-								<li><a href="#" title="">Sub Menu 5</a></li>
+								<li><a href="#" title="For demo purposes">For demo purposes</a></li>
 							</ul>
 						</li>
 						<li><a href="#" title="MANAGE WEBPAGES">MANAGE WEBPAGES</a>
@@ -89,14 +87,7 @@
 								<li><a href="#" title="">Sub Menu 5</a></li>
 							</ul>
 						</li>
-						<li><a href="#" title="REPORTS">REPORTS</a>
-							<ul>
-								<li><a href="#" title="">Sub Menu 1</a></li>
-								<li><a href="#" title="">Sub Menu 2</a></li>
-								<li><a href="#" title="">Sub Menu 3</a></li>
-								<li><a href="#" title="">Sub Menu 4</a></li>
-								<li><a href="#" title="">Sub Menu 5</a></li>
-							</ul>
+						<li><a href="https://bo-vioc.epsilon.com" title="REPORTS">REPORTS</a>
 						</li>
 						<li><a href="help.html" title="HELP">HELP</a>
 							<ul>
@@ -116,48 +107,50 @@
 		<div class="mid-container">
 			<div class="main">
 				<div class="left-container">
-					<section id="welcome">
-            <h3>Welcome <span class="welcome-message-custom">User!</span></h3>
-            <p>VIOC is pleased to present the new VDirect portal. You can access multi-part lifecycle campaigns, recurring additional offers as well as specific email/direct mail templates.</p>
-          </section>
- 					<section id="gettingStartedNow" class="js-hidden">
+					<section id="welcome" class="landing-page-only">
+						<h3>Welcome
+							<span class="welcome-message-custom">User!</span>
+						</h3>
+						<p>VIOC is pleased to present the new VDirect portal. You can access multi-part lifecycle campaigns, recurring additional offers as well as specific email/direct mail templates.</p>
+					</section>
+					<section id="gettingStartedNow" class="js-hidden-false">
 						<h1>Get Started Now</h1>
 						<p></p>
 						<div class="youtube-video-area">
-
+							<img class="video-placeholder" alt="video not available at this time" src="https://files.marcomcentral.app.pti.com/epsilon/previews/Video_Placeholder.png">
 						</div>
 						<div class="icons-link">
 							<ul>
 								<li>
-									<a href="#" title="Getting Started Guide">
-										<div class="icon-area">
+									<span class="icon-area">
+										<a href="CustomPage.aspx?uigroup_id=479602&page_id=10798">
 											<img src="https://files.marcomcentral.app.pti.com/epsilon/static/marcom_custom/images/ico-getting-started.png" alt="Getting Started Guide" title="Getting Started Guide" width="65">
-										</div>
-										<span>Getting Started Guide</span>
-									</a>
+											<span>Getting Started Guide</span>
+										</a>
+									</span>
 								</li>
 								<li>
-									<a href="#" title="FAQ">
-										<div class="icon-area">
+									<span class="icon-area">
+										<a href="CustomPage.aspx?uigroup_id=479602&page_id=10798">
 											<img src="https://files.marcomcentral.app.pti.com/epsilon/static/marcom_custom/images/ico-faq.png" alt="FAQ" title="FAQ" width="65">
-										</div>
-										<span>FAQ</span>
-									</a>
+											<span>FAQ</span>
+										</a>
+									</span>
 								</li>
 								<li>
-									<a href="#" title="Additional Documents">
-										<div class="icon-area">
+									<span class="icon-area">
+										<a href="CustomPage.aspx?uigroup_id=479602&page_id=10798">
 											<img src="https://files.marcomcentral.app.pti.com/epsilon/static/marcom_custom/images/ico-documents.png" alt="Additional Documents" title="Additional Documents" width="65">
-										</div>
-										<span>Additional Documents</span>
-									</a>
+											<span>Additional Documents</span>
+										</a>
+									</span>
 								</li>
 							</ul>
 						</div>
 					</section>
-					<section id="programSummary" class="js-hidden">
-						<h1>Programs</h1>
-						<div class="program-select program-select--is-active-user">
+					<section id="programSummary" class="landing-page-only js-hidden">
+						<h1>Lifecycle Programs</h1>
+						<div class="program-select lifecycle-program-list program-select--is-active-user">
 							<!-- Mustache Template: program-list.mustache.html -->
 						</div>
 					</section>
@@ -171,47 +164,12 @@
 									<tr>
 										<th>Enrolled</th>
 										<th>Program</th>
-										<th>Impact</th>
-										<th>Opportunity</th>
+										<th>Estimated Impact (OCPD)</th>
+										<th>Additional Opportunity</th>
 									</tr>
 								</thead>
-								<tbody>
-									<tr class="program-name-lifecycle">
-										<td data-title="Enrolled" data-enrolled="false">
-											<span class="errolled-state" aria-hidden="true">
-											</span>
-										</td>
-										<td data-title="Program">Lifecycle</td>
-										<td data-title="Impact">3.0 OCPD</td>
-										<td data-title="Opportunity">No</td>
-									</tr>
-									<tr class="program-name-imn">
-										<td data-title="Enrolled" data-enrolled="false">
-											<span class="errolled-state" aria-hidden="true">
-											</span>
-										</td>
-										<td data-title="Program">IMN</td>
-										<td data-title="Impact">0.25</td>
-										<td data-title="Opportunity">No</td>
-									</tr>
-									<tr class="program-name-facebook">
-										<td data-title="Enrolled" data-enrolled="true">
-											<span class="errolled-state" aria-hidden="true">
-											</span>
-										</td>
-										<td data-title="Program">Facebook</td>
-										<td data-title="Impact">0.2</td>
-										<td data-title="Opportunity">Yes</td>
-									</tr>
-									<tr class="program-name-sem">
-										<td data-title="Enrolled" data-enrolled="false">
-											<span class="errolled-state" aria-hidden="true">
-											</span>
-										</td>
-										<td data-title="Program">SEM</td>
-										<td data-title="Impact">2.3</td>
-										<td data-title="Opportunity">Yes</td>
-									</tr>
+								<tbody class="participation-dashboard-tpl">
+
 								</tbody>
 							</table>
 						</div>
@@ -222,9 +180,9 @@
 							<p>Upcoming campaigns and in-home dates</p>
 							<div class="tab-links">
 								<ul class="nav-tabs">
-									<li class="active"><a href="#tab1" title="Oct 2015" class="active">Oct 2015</a>
+									<li class="active"><a href="#tab1" title="Apr 2016" class="active">Apr 2016</a>
 									</li>
-									<li><a href="#tab2" title="Nov 2015">Nov 2015</a>
+									<li><a href="#tab2" title="May 2016">May 2016</a>
 									</li>
 								</ul>
 							</div>
@@ -250,18 +208,24 @@
 	<!-- Dependencies -->
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/2.2.1/mustache.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.11.1/moment.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.2/toastr.min.js"></script>
 	<script src="js/lib/toastrOpts.js"></script>
 	<script src="js/lib/checkAndRadioBoxes.js"></script>
 	<script src="js/lib/easyResponsiveTabs.js"></script>
 	<script src="js/lib/navTabs.js"></script>
+	<script src="js/lib/appUtilities.js"></script>
+	<script src="js/lib/dynamicCalendar.js"></script>
 
 	<!-- Async,API and Marcom hookups -->
+	<script src="js/app/getHashParams.js"></script>
 	<script src="js/app/marcomUserData.js"></script>
 	<script src="js/app/recordLogin.js"></script>
 	<script src="js/app/getProgramParticipationStats.js"></script>
 	<script src="js/app/getStoreProgramData.js"></script>
+	<script src="js/app/setProgramDefaults.js"></script>
 	<script src="js/app/setStoreSubscription.js"></script>
+	<script src="js/app/getUserConfigurations.js"></script>
+	<script src="js/app/targetingCriteria.js"></script>
 
 	<!-- ** Scripts not needed for Marcom templates ** -->
 	<script type="text/javascript" src="js/css_browser_selector.js"></script>

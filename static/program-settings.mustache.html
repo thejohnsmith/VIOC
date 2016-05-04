@@ -11,68 +11,66 @@
         <tr>
           <th class="store-enroll">
             <p>Program Select</p>
-            <button class="btn btn-primary btn-sm">Select All</button>
+            <button data-checkboxtype="program-settings" class="activate not-active program-settings select-all btn btn-primary btn-sm">Select All</button>
           </th>
           <th class="store">Store</th>
-          <th class="store-configuration">Oil Change Offers</th>
+          <th class="store-configuration standard-offer">Oil Change Offers / Service Offers</th>
           <th class="store-configuration additional-offer">Additional Offers</th>
         </tr>
       </thead>
       <tbody>
         {{#.}}
-        <tr class="filterable" data-filter-storeId="{{storeId}}">
-          <td style="padding: 10px 0 0 0">
-            <div class="checkbox-area" data-enrolled="">
-              <div data-storeId="{{storeId}}" class="customCheckbox js-all-selectable {{^enrolled}}disabled-input{{/enrolled}}">
-                <input {{^enrolled}}readonly{{/enrolled}} data-checkbox-label="" type="checkbox">
-              </div>
+        <tr class="filterable store-item" data-filter-storeId="{{storeId}}" data-storeId="{{storeId}}" data-enrolled="{{#enrolled}}true{{/enrolled}}{{^enrolled}}false{{/enrolled}}">
+        <td class="checkbox-td store-item-dimable">
+          <div class="checkbox-area">
+            <div data-storeId="{{storeId}}" class="program-settings vioc-checkbox {{^enrolled}}disabled{{/enrolled}}">
+              <input {{^enrolled}}readonly{{/enrolled}} type="checkbox">
             </div>
-          </td>
-          <td data-storeId="{{storeId}}" class="store program-settings-store" style="padding: 8px">
+          </div>
+        </td>
+
+          <td data-storeId="{{storeId}}" class="store-item-dimable {{^enrolled}}dim-mid{{/enrolled}} store program-settings-store" style="padding: 21px 8px">
             <div class="store-name">{{storeName}}</div>
-            <div class="store-number">Store #{{storeId}}</div>
+            <div class="store-number">Store #{{storeNumber}}</div>
           </td>
-          <td class="store-configuration" style="padding: 8px">
-            {{#enrolled}}
-            <select data-storeId="{{storeId}}" class="form-control program-dropdown store-level-dropdown dropdown-{{storeId}}-program">
+          <td class="store-item-dimable store-configuration standard-offer" style="padding: 21px 8px">
+            <select data-storeId="{{storeId}}" class="{{^enrolled}}none{{/enrolled}} form-control program-dropdown store-level-dropdown dropdown-{{storeId}}-program">
             </select>
-            {{/enrolled}} {{^enrolled}}
-            <small>Store Not Enrolled</small>{{/enrolled}}
+            <small class="{{#enrolled}}none{{/enrolled}} not-enrolled store-item-dimable dim-mid">Store Not Enrolled</small>
           </td>
-          <td class="store-configuration additional-offer" style="padding: 8px">
-            {{#enrolled}}
-            <select data-storeId="{{storeId}}" class="form-control adtl-dropdown store-level-dropdown dropdown-{{storeId}}-adtl">
+          <td class="store-item-dimable store-configuration additional-offer" style="padding: 21px 8px">
+            <select data-storeId="{{storeId}}" class="{{^enrolled}}none{{/enrolled}} form-control adtl-dropdown store-level-dropdown dropdown-{{storeId}}-adtl">
             </select>
+            <small class="not-enrolled store-item-dimable dim-mid {{#enrolled}}none{{/enrolled}}">Store Not Enrolled</small>
           </td>
-          {{/enrolled}} {{^enrolled}}
-          <small>Store Not Enrolled</small>{{/enrolled}}
         </tr>
         {{/.}}
-        <tr class="program-settings-footer-row">
-          <td class="program-settings-footer" colspan="2" style="padding: 0 14px 0;text-align: right;">
-            Adjust <span class="program-settings-footer-selected-count"> 0 </span> selected store(s) to use:
+        <tr class="program-settings footer-row">
+          <td class="program-settings-footer" colspan="2" style="text-align: right;">
+            Adjust
+            <span class="program-settings-footer-selected-count"> 0 </span> selected store(s) to use:
           </td>
-          <td class="program-settings-footer store-configuration" style="padding: 8px">
+          <td class="program-settings-footer store-configuration standard-offer" style="padding: 21px 8px">
             <div class="container-fluid">
               <div class="row">
                 <div class="col-sm-8">
                   <select class="form-control program-dropdown bulk-level-dropdown">
                   </select>
                 </div>
-                <div class="col-sm-2">
+                <div class="col-sm-2 pull-right">
                   <button href="#" class="btn btn-small btn-primary bulk-apply-program">Apply</button>
                 </div>
               </div>
             </div>
           </td>
-          <td class="program-settings-footer store-configuration additional-offer" style="padding: 8px">
+          <td class="program-settings-footer store-configuration additional-offer" style="padding: 21px 8px">
             <div class="container-fluid additional-offer">
               <div class="row additional-offer">
                 <div class="col-sm-8">
                   <select class="form-control program-config-options-section adtl-dropdown bulk-level-dropdown">
                   </select>
                 </div>
-                <div class="col-sm-2">
+                <div class="col-sm-2 pull-right">
                   <button href="#" class="btn btn-small btn-primary bulk-apply-adtl">Apply</button>
                 </div>
               </div>
@@ -86,9 +84,9 @@
   <br>
   <div class="container well">
     <div class="row">
-      <div class="col-sm-6">
-        <h1 style="font-size: 20px">Oil Change Offers
-        <a class="btn btn-sm btn-link js-create-program-hash" href="CustomPage.aspx?uigroup_id=479602&page_id=11225">
+      <div class="col-sm-6 standard-offer">
+        <h1 style="font-size: 20px">Oil Change Offers / Service Offers
+          <a class="btn btn-sm btn-link js-create-program-hash configPageUrl" href="#">
           Create New
         </a>
         </h1>
@@ -99,8 +97,11 @@
               </select>
             </td>
             <td>
-              <a class="btn btn-sm btn-link js-create-program-hash" data-baseUrl="CustomPage.aspx?uigroup_id=479602&page_id=11225" href="CustomPage.aspx?uigroup_id=479602&page_id=11225">
+              <a class="btn btn-sm btn-link js-create-program-hash program-edit-link configPageUrl" href="#">
                 Edit
+              </a>
+              <a class="btn btn-sm btn-link js-create-program-hash hidden program-delete-link configPageUrl" href="#">
+                Delete
               </a>
             </td>
           </tr>
@@ -108,19 +109,22 @@
       </div>
       <div class="col-sm-6 additional-offer">
         <h1 style="font-size: 20px">Additional Offers
-        <a class="btn btn-sm btn-link" href="CustomPage.aspx?uigroup_id=479602&page_id=11226">
+          <a class="btn btn-sm btn-link js-create-program-hash additionalOfferPageUrl" href="#">
           Create New
         </a>
         </h1>
         <table width="100%" padding="4" border="0">
           <tr class="config-select config-select-additional">
             <td>
-              <select class="form-control program-dropdown management-dropdown">
+              <select class="form-control adtl-dropdown management-dropdown">
               </select>
             </td>
             <td>
-              <a class="btn btn-sm btn-link" data-baseurl="CustomPage.aspx?uigroup_id=479602&page_id=11226" href="CustomPage.aspx?uigroup_id=479602&page_id=11226">
+              <a class="btn btn-sm btn-link program-edit-link additionalOfferPageUrl" href="#">
               Edit
+            </a>
+            <a class="btn btn-sm btn-link js-create-program-hash hidden program-delete-link configPageUrl" href="#">
+              Delete
             </a>
             </td>
           </tr>
@@ -128,4 +132,16 @@
       </div>
     </div>
   </div>
+  <script>
+    var $j = jQuery;
+    var programSettingsController = jQuery.extend({}, checkboxController.controller);
+    programSettingsController.init("program-settings", function(storeIds) {
+      // console.log("Stores changed: %O", storeIds);
+      var plural = (storeIds.length === 1) ? '' : 's';
+      $j('.program-settings.footer-row')
+        .toggleClass('none', (storeIds.length < 2));
+      $j('.program-settings.footer-row td.program-settings-footer:first-child')
+        .html('Adjust ' + storeIds.length + ' selected store' + plural + ' to use:');
+    });
+  </script>
 </script>

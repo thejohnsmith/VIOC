@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html>
+
+<head id="Head1">
+    <title>Valvoline Instant Oil Change | Oil Change Locations | Oil Change Coupons</title>
+
+    <link href="https://fonts.googleapis.com/css?family=Arimo:400,700" rel="stylesheet" type="text/css" />
+    <link href="styles/locator.css" type="text/css" rel="stylesheet" />
+    <link href="styles/styles.css" type="text/css" rel="stylesheet" />
+    <link rel='shortcut icon' href='favicon.ico' type='image/x-icon' />
+
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js"></script>
+    <script type="text/javascript">
+        jQuery.noConflict();
+        jQuery('body').hide();
+        // Check for mobile devices and show correct landing version
+        (function(a) {
+            (jQuery.browser = jQuery.browser || {}).mobile =
+                /(android|bb\d+|meego).+mobile|avantgo|bada\/|blackberry|blazer|ipad|compal|elaine|fennec|hiptop|iemobile|ip(hone|od)|iris|kindle|lge |maemo|midp|mmp|mobile.+firefox|netfront|opera m(ob|in)i|palm( os)?|phone|p(ixi|re)\/|plucker|pocket|psp|series(4|6)0|symbian|treo|up\.(browser|link)|vodafone|wap|windows ce|xda|xiino/i
+                .test(a) ||
+                /1207|6310|6590|3gso|4thp|50[1-6]i|770s|802s|a wa|abac|ac(er|oo|s\-)|ai(ko|rn)|al(av|ca|co)|amoi|an(ex|ny|yw)|aptu|ar(ch|go)|as(te|us)|attw|au(di|\-m|r |s )|avan|be(ck|ll|nq)|bi(lb|rd)|bl(ac|az)|br(e|v)w|bumb|bw\-(n|u)|c55\/|capi|ccwa|cdm\-|cell|chtm|cldc|cmd\-|co(mp|nd)|craw|da(it|ll|ng)|dbte|dc\-s|devi|dica|dmob|do(c|p)o|ds(12|\-d)|el(49|ai)|em(l2|ul)|er(ic|k0)|esl8|ez([4-7]0|os|wa|ze)|fetc|fly(\-|_)|g1 u|g560|gene|gf\-5|g\-mo|go(\.w|od)|gr(ad|un)|haie|hcit|hd\-(m|p|t)|hei\-|hi(pt|ta)|hp( i|ip)|hs\-c|ht(c(\-| |_|a|g|p|s|t)|tp)|hu(aw|tc)|i\-(20|go|ma)|i230|iac( |\-|\/)|ibro|idea|ig01|ikom|im1k|inno|ipaq|iris|ja(t|v)a|jbro|jemu|jigs|kddi|keji|kgt( |\/)|klon|kpt |kwc\-|kyo(c|k)|le(no|xi)|lg( g|\/(k|l|u)|50|54|\-[a-w])|libw|lynx|m1\-w|m3ga|m50\/|ma(te|ui|xo)|mc(01|21|ca)|m\-cr|me(rc|ri)|mi(o8|oa|ts)|mmef|mo(01|02|bi|de|do|t(\-| |o|v)|zz)|mt(50|p1|v )|mwbp|mywa|n10[0-2]|n20[2-3]|n30(0|2)|n50(0|2|5)|n7(0(0|1)|10)|ne((c|m)\-|on|tf|wf|wg|wt)|nok(6|i)|nzph|o2im|op(ti|wv)|oran|owg1|p800|pan(a|d|t)|pdxg|pg(13|\-([1-8]|c))|phil|pire|pl(ay|uc)|pn\-2|po(ck|rt|se)|prox|psio|pt\-g|qa\-a|qc(07|12|21|32|60|\-[2-7]|i\-)|qtek|r380|r600|raks|rim9|ro(ve|zo)|s55\/|sa(ge|ma|mm|ms|ny|va)|sc(01|h\-|oo|p\-)|sdk\/|se(c(\-|0|1)|47|mc|nd|ri)|sgh\-|shar|sie(\-|m)|sk\-0|sl(45|id)|sm(al|ar|b3|it|t5)|so(ft|ny)|sp(01|h\-|v\-|v )|sy(01|mb)|t2(18|50)|t6(00|10|18)|ta(gt|lk)|tcl\-|tdg\-|tel(i|m)|tim\-|t\-mo|to(pl|sh)|ts(70|m\-|m3|m5)|tx\-9|up(\.b|g1|si)|utst|v400|v750|veri|vi(rg|te)|vk(40|5[0-3]|\-v)|vm40|voda|vulc|vx(52|53|60|61|70|80|81|83|85|98)|w3c(\-| )|webc|whit|wi(g |nc|nw)|wmlb|wonu|x700|yas\-|your|zeto|zte\-/i
+                .test(a.substr(0, 4))
+        })(navigator.userAgent || navigator.vendor || window.opera);
+        if (jQuery.browser.mobile) {
+            window.location.href = window.location.href + 'mobile.html';
+        } else {
+            jQuery('body').show();
+        }
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/2.2.1/mustache.min.js"></script>
+    <!-- <script type="text/javascript" src="http://ext.catalystdirect.com/digitalcrm/digital-crm.js"></script> -->
+    <script type="text/javascript" src="scripts/googleMaps.js"></script>
+    <!-- <script type="text/javascript" src="http://find.catdir.com/scripts/jquery.valvoline.js"></script> -->
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
+    <script type="text/javascript" src="scripts/mootools.js"></script>
+    <script type="text/javascript" src="scripts/default.js"></script>
+
+    <!-- Epsilon 2016-->
+    <script type="text/javascript" src="scripts/couponPageController.js"></script>
+
+
+
+    <!--Buddy Media Scripting-->
+    <!-- <script id="spinback-spincycle" type="text/javascript" src="http://conversion.buddymedia.com/js/spincycleinit.js?cid=099DC6" async="true" defer="true">
+        pn: Valvoline Instant Oil Change Coupons
+        pid: 3
+        plp: http: //coupons.vioc.com/marketing/default.aspx?rid=MXqC_GLSj&p=26&s=70066&v=20160128HTG&utm_campaign=Lapsed2&utm_source=VIOC&utm_medium=Email&utm_term=BasicBlue&cid=63654&mid=274295899
+            pi: http: //store.catdir.com/images/features/feature_viocBM.jpg
+            pd: I got this money - saving coupon
+        for service at a Valvoline Instant Oil Change center!I 'm ready for my fast, convenient oil change.
+        fc: http: //coupons.vioc.com/marketing/default.aspx?rid=MXqC_GLSj&p=26&s=70066&v=20160128HTG&utm_campaign=Lapsed2&utm_source=VIOC&utm_medium=Email&utm_term=BasicBlue&cid=63654&mid=274295899
+    </script>
+
+    <!--Open Graph Protocol definitions-->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="http://coupons.vioc.com/marketing/default.aspx?rid=MXqC_GLSj&p=26&s=70066&v=20160128HTG&utm_campaign=Lapsed2&utm_source=VIOC&utm_medium=Email&utm_term=BasicBlue&cid=63654&mid=274295899" />
+    <meta property="og:image" content="http://store.catdir.com/images/features/feature_viocBM.jpg" />
+    <meta property="og:site_name" content="Valvoline Instant Oil Change Coupons" />
+    <meta property="og:title" content="Valvoline Instant Oil Change Coupons" />
+
+    <script type="text/javascript">
+        jQuery.fn.equalHeights = function() {
+            var highest = 0;
+            jQuery(this).each(function() {
+                if (jQuery(this).height() > highest) {
+                    highest = jQuery(this).height();
+                }
+            });
+            jQuery(this).height(highest);
+        }
+        jQuery(document).ready(function() {
+            jQuery('.squareCoupon').equalHeights();
+        });
+
+        jQuery(document).ready(function() {
+            jQuery('input[type="text"]').val(jQuery('input[type="text"]').attr('placeholder'));
+
+            jQuery('input[type="text"]').css('color', '#aaa');
+
+            jQuery('input[type="text"]').focus(function() {
+                console.log('this is in focus');
+                jQuery('input[type="text"]').css('color', '#333333');
+
+                if (jQuery(this).val() == jQuery(this).attr('placeholder')) {
+
+                    jQuery(this).val('');
+                }
+
+            });
+            jQuery('input[type="text"]').blur(function() {
+
+                if (jQuery(this).val() == '') {
+
+                    jQuery(this).val(jQuery(this).attr('placeholder'));
+                    jQuery('input[type="text"]').css('color', '#aaa');
+                }
+
+            });
+
+            jQuery('#tn-print').click(function() {
+
+                window.print();
+            });
+
+        });
+    </script>
+</head>
+
+<body>
+
+    <!-- Google Tag Manager -->
+    <noscript>
+        <iframe src="//www.googletagmanager.com/ns.html?id=GTM-MMWW8Q" height="0" width="0" style="display:none;visibility:hidden"></iframe>
+    </noscript>
+    <script>
+        // (function(w, d, s, l, i) {
+        //     w[l] = w[l] || [];
+        //     w[l].push({
+        //         'gtm.start': new Date().getTime(),
+        //         event: 'gtm.js'
+        //     });
+        //     var f = d.getElementsByTagName(s)[0],
+        //         j = d.createElement(s),
+        //         dl = l != 'dataLayer' ? '&l=' + l : '';
+        //     j.async = true;
+        //     j.src =
+        //         '//www.googletagmanager.com/gtm.js?id=' + i + dl;
+        //     f.parentNode.insertBefore(j, f);
+        // })(window, document, 'script', 'dataLayer', 'GTM-MMWW8Q');
+    </script>
+    <!-- End Google Tag Manager -->
+
+    <div id="fb-root"></div>
+    <div id="main">
+        <div class="aligner">
+            <div id="left-col" class="a-center b2ib">
+                <div id="left-col-print">
+                    <img src="https://files.marcomcentral.app.pti.com/epsilon/static/marcom_custom/images/logo.png" width="90" height="78" alt="" />
+                    <!--<img id="facebook-print-img" src="images/facebook.png" alt=""/>-->
+                </div>
+                <a href="http://vioc.com" id="logo-link"></a>
+                <div id="share-this" class="a-center">
+                    <a class="sb_email"></a>
+                    <a class="sb_facebook"></a>
+                    <div class="g-plusone" data-size="medium"></div>
+                    <script type="text/javascript">
+                        (function() {
+                            var po = document.createElement('script');
+                            po.type = 'text/javascript';
+                            po.async = true;
+                            po.src = 'https://apis.google.com/js/plusone.js';
+                            var s = document.getElementsByTagName('script')[0];
+                            s.parentNode.insertBefore(po, s);
+                        })();
+                    </script>
+                </div>
+
+                <section class="features-section">
+                </section>
+
+            </div>
+            <div id="right-col" class="b2ib">
+                <div id="top-nav" class="a-right">
+                    <a href="#" id="tn-print">Print</a>
+                </div>
+                <div id="head">
+                    <h1>Fast Service, Valvoline Quality</h1>
+                    <section class="address-section">
+                    </section>
+
+                    <section class="store-hours-section">
+
+                    </section>
+                </div>
+
+                <div id="coupons">
+                    <section class="coupons-section">
+                        <div role="presentation" class="spinner js-loading"></div>
+                    </section>
+
+                    <div id="find-a-location" class="b2ib a-center no_geo">
+                        <section class="map-section">
+                        </section>
+                    </div>
+
+                    <div id="services" class="b2ib">
+                        <section class="services-section">
+                        </section>
+                    </div>
+                </div>
+
+                <div id="foot">
+                    <div id="additionalOffer">
+                        <section class="additionalOffer-section">
+                        </section>
+                    </div>
+                    <div id="stars" class="a-center">
+                        <img src="images/4_6Stars.jpg" alt="">
+                        <br>
+                        <span style="white-space:nowrap; line-height:16px; margin:auto;">Based on a survey of over 250,000</span>
+                        <br><span style="white-space:nowrap; line-height:16px; margin:auto;">Valvoline Instant Oil<sup>&trade;</sup> Change</span>
+                        <br><span style="white-space:nowrap; line-height:16px; margin:auto;">customers annually.</span>
+                        <br>
+                        <br>
+                        <img src="images/years_under_the_hood.png" alt="">
+                    </div>
+                    <div class="clear"></div>
+                </div>
+            </div>
+            <!-- END #right-col -->
+        </div>
+        <!-- END #main .aligner -->
+    </div>
+    <!-- END #main -->
+    <script type="text/javascript">
+        var switchTo5x = false;
+    </script>
+    <!-- <script type="text/javascript" src="https://w.sharethis.com/button/buttons.js"></script> -->
+    <script type="text/javascript">
+        // stLight.options({
+        //     publisher: "22bd6268-c689-4421-9196-1e4ae9a35e66"
+        // });
+    </script>
+    <script language="JavaScript" type="text/javascript">
+        // function featureTracker(type, pageview, url, target) {
+        //     var pagename = "/" + type + "/" + pageview
+        //     _gaq.push(['_trackPageview', pagename]);
+        //
+        //     if (typeof(url) != "undefined") {
+        //         target = "_self";
+        //         window.open(url, target);
+        //     }
+        // }
+    </script>
+    <!-- Google Analytics -->
+    <script type="text/javascript">
+        // var _gaq = _gaq || [];
+        // var domainNameArray = window.location.hostname.split(".")
+        // var currentDomain = '.' + domainNameArray[domainNameArray.length - 2] + '.' + domainNameArray[domainNameArray.length - 1];
+        //
+        // _gaq.push(
+        //     ['_setAccount', 'UA-25751454-1'], ['_setDomainName', currentDomain]
+        // );
+        //
+        // _gaq.push(['_trackPageview']);
+        //
+        //
+        // (function() {
+        //     var ga = document.createElement('script');
+        //     ga.type = 'text/javascript';
+        //     ga.async = true;
+        //     ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        //     var s = document.getElementsByTagName('script')[0];
+        //     s.parentNode.insertBefore(ga, s);
+        // })();
+    </script>
+    <script type="text/javascript">
+        jQuery('link[href*=Default]').remove();
+    </script>
+
+    <!-- Web Tracking script -->
+    <script type="text/javascript" src="https://utilities.vioc.com/personalize/scripts.js"></script>
+    <script type="text/javascript">
+        var sParameter = getQueryStringValue('s');
+        var pParameter = getQueryStringValue('p');
+        var vParameter = getQueryStringValue('v');
+        var recipientID = getQueryStringValue('rid');
+        LogEvent('Coupon', sParameter, pParameter, vParameter, recipientID);
+    </script>
+
+    <script>
+        /* Epsilon 2016 */
+        if (typeof couponPageController.controller.init() === 'undefined') {
+            console.warn('CouponPageController is ready.');
+            couponPageController.controller.init();
+        }
+    </script>
+</body>
+
+</html>

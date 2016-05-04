@@ -17,12 +17,18 @@
 	<link rel="stylesheet" type="text/css" href="css/easy-responsive-tabs.css" />
 	<!--css styles ends-->
 
-	<script src="js/jquery_min.js"></script>
+<script src="js/jquery_min.js"></script>
+<script>
+function getParameterByName(name) {
+    var match = RegExp("[?&]" + name + "=([^&]*)").exec(window.location.search);
+    return match && decodeURIComponent(match[1].replace(/\+/g, " "));
+}
+</script>
 </head>
 
 <body>
 	<span class="user-related none"
-		data-user-external-id="654321"
+		data-user-external-id="Zz0fUjXHHr66NXRFDs"
 		data-user-login-id="BetaUser"
 		data-user-first-name="John"
 		data-user-last-name="Smith"
@@ -43,7 +49,7 @@
 						</div>
 						<div class="header-info">
 							<h2>Warp Drive</h2>
-							<h3><b>W</b>inning <b>A</b>CQUISITION &amp; <b>R</b>ETENTION <b>P</b>ROGRAMS (WARP)</h3>
+							<h3><b>W</b>inning <b>A</b>CQUISITION &amp; <b>R</b>ETENTION <b>P</b>ROGRAMS</h3>
 						</div>
 					</div>
 					<div class="header-right">
@@ -129,32 +135,33 @@
 				<div class="left-container">
 					<div id="programSummary">
 						<h1>Lifecycle Programs</h1>
-						<div class="program-select">
+						<div class="program-select lifecycle-program-list">
 							<!-- Mustache Template: program-list.mustache.html -->
-						</div>
-						<div class="program-button">
-							<input type="button" class="blue-btn js-trigger-enroll" value="Auto-Enroll Your Stores In Selected Program(s)" title="Auto-Enroll Your Stores In Selected Program(s)">
 						</div>
 					</div>
 				</div>
 				<div class="right-container">
 					<section id="programDetails">
+						<!-- <div class="js-loading" style="text-align:right;">Loading...</div> -->
+
 						<div id="parentHorizontalTab" class="lifescycle-tab">
 							<ul class="resp-tabs-list hor_1">
 								<li>Program Overview</li>
 								<li>View Touch Points</li>
 							</ul>
+
 							<div class="resp-tabs-container hor_1">
 								<div>
 									<div class="program-overview-img">
-										<img src="images/lifecycle-overview.jpg" alt="Program Overview" title="Program Overview">
+										<img class="hidden" src="images/programOverview700x315.jpg" alt="Program Overview" title="Program Overview">
 									</div>
-									<p>Description information about the lifecyle program -</p>
-									<p>Nequi sita eos explita tenditae nim accum landiti qui commoluptur Occus et quo blamenti idebit ilit remolorum nosapis dolupta testem earum imus magnatiam, volupta tquuntur,sunt,nulluptibus que conemfugiam, simporeium ute repernatem faccate consequi
-										beatemquia conse cupta nusdand ucillaborrum vid ut eum renti repro ent vella doluptat maionest officipsunto cone labores di ut offictusanda corentio. Nem ratenes et eosti simusdaectem quis ipsaers pelesti ommo.</p>
+									<!-- Dynamically updated using the first Program's data-programDesc value -->
+									<p class="programDesc"></p>
+
 								</div>
 								<div>
 									<div class="participation-table" id="no-more-tables">
+
 										<table>
 											<thead>
 												<tr>
@@ -165,39 +172,7 @@
 												</tr>
 											</thead>
 											<tbody>
-												<tr>
-													<td data-title="Touch" class="touch-info">
-														<span>
-															<img src="images/review-bg.jpg" alt="Preview" title="Preview">
-														</span>
-														<a href="#" title="Preview">Preview</a>
-													</td>
-													<td data-title="Channel">Email</td>
-													<td data-title="Name">Reminder</td>
-													<td data-title="Timing">35-110 Days</td>
-												</tr>
-												<tr>
-													<td data-title="Touch" class="touch-info">
-														<span>
-															<img src="images/review-bg.jpg" alt="Preview" title="Preview">
-														</span>
-														<a href="#" title="Preview">Preview</a>
-													</td>
-													<td data-title="Channel">Direct Mail</td>
-													<td data-title="Name">Reminder</td>
-													<td data-title="Timing">35-110 Days</td>
-												</tr>
-												<tr>
-													<td data-title="Touch" class="touch-info">
-														<span>
-															<img src="images/review-bg.jpg" alt="Preview" title="Preview">
-														</span>
-														<a href="#" title="Preview">Preview</a>
-													</td>
-													<td data-title="Channel">SMS</td>
-													<td data-title="Name">Reminder</td>
-													<td data-title="Timing">35-110 Days</td>
-												</tr>
+
 											</tbody>
 										</table>
 									</div>
@@ -221,18 +196,23 @@
 	<!-- Dependencies -->
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/2.2.1/mustache.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.11.1/moment.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.2/toastr.min.js"></script>
 	<script src="js/lib/toastrOpts.js"></script>
 	<script src="js/lib/checkAndRadioBoxes.js"></script>
 	<script src="js/lib/easyResponsiveTabs.js"></script>
 	<script src="js/lib/navTabs.js"></script>
+	<script src="js/lib/appUtilities.js"></script>
+	<script src="js/lib/dynamicCalendar.js"></script>
 
 	<!-- Async,API and Marcom hookups -->
+	<script src="js/app/getHashParams.js"></script>
 	<script src="js/app/marcomUserData.js"></script>
 	<script src="js/app/recordLogin.js"></script>
 	<script src="js/app/getProgramParticipationStats.js"></script>
 	<script src="js/app/getStoreProgramData.js"></script>
+	<script src="js/app/setProgramDefaults.js"></script>
 	<script src="js/app/setStoreSubscription.js"></script>
+	<script src="js/app/getUserConfigurations.js"></script>
 
 	<!-- ** Scripts not needed for Marcom templates ** -->
 	<script type="text/javascript" src="js/css_browser_selector.js"></script>

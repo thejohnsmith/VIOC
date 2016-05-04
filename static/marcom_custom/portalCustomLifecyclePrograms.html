@@ -1,3 +1,8 @@
+<!-- Lifecycle Programs: Left-side List, Right-side Tabs (overview & Touch Points)
+    @file portalCustomLifecyclePrograms.html
+    Beta URL:
+    https://marcomcentral.app.pti.com/Epsilon_Data_Management/Beta_Epsilon/CustomPage.aspx?uigroup_id=479602&page_id=10792
+-->
 <div class="wrapper">
   <div class="mid-container">
     <div class="main">
@@ -14,11 +19,9 @@
       <div class="left-container">
         <div id="programSummary">
           <h1>Lifecycle Programs</h1>
-          <div class="program-select program-select--is-active-user">
+          <div role="presentation" class="spinner program-select-loading"></div>
+          <div class="program-select lifecycle-program-list">
             <!-- Mustache Template: program-list.mustache.html -->
-          </div>
-          <div class="program-button">
-            <input type="button" class="blue-btn js-trigger-enroll" value="Auto-Enroll Your Stores In Selected Program(s)" title="Auto-Enroll Your Stores In Selected Program(s)">
           </div>
         </div>
       </div>
@@ -32,11 +35,9 @@
             <div class="resp-tabs-container hor_1">
               <div>
                 <div class="program-overview-img">
-                  <img src="https://files.marcomcentral.app.pti.com/epsilon/static/marcom_custom/images/lifecycle-overview.jpg" alt="Program Overview" title="Program Overview">
+                  <img class="hidden" src="https://files.marcomcentral.app.pti.com/epsilon/static/images/programOverview700x315.jpg" alt="Program Overview" title="Program Overview">
                 </div>
-                <p>Description information about the lifecyle program -</p>
-                <p>Nequi sita eos explita tenditae nim accum landiti qui commoluptur Occus et quo blamenti idebit ilit remolorum nosapis dolupta testem earum imus magnatiam, volupta tquuntur,sunt,nulluptibus que conemfugiam, simporeium ute repernatem faccate
-                  consequi beatemquia conse cupta nusdand ucillaborrum vid ut eum renti repro ent vella doluptat maionest officipsunto cone labores di ut offictusanda corentio. Nem ratenes et eosti simusdaectem quis ipsaers pelesti ommo.</p>
+                <p class="programDesc"><div role="presentation" class="spinner program-select-loading"></div></p>
               </div>
               <div>
                 <div class="participation-table" id="no-more-tables">
@@ -50,39 +51,6 @@
                       </tr>
                     </thead>
                     <tbody>
-                      <tr>
-                        <td data-title="Touch" class="touch-info">
-                          <span>
-                          <img src="https://files.marcomcentral.app.pti.com/epsilon/static/marcom_custom/images/review-bg.jpg" alt="Preview" title="Preview">
-                        </span>
-                          <a href="#" title="Preview">Preview</a>
-                        </td>
-                        <td data-title="Channel">Email</td>
-                        <td data-title="Name">Reminder</td>
-                        <td data-title="Timing">35-110 Days</td>
-                      </tr>
-                      <tr>
-                        <td data-title="Touch" class="touch-info">
-                          <span>
-                          <img src="https://files.marcomcentral.app.pti.com/epsilon/static/marcom_custom/images/review-bg.jpg" alt="Preview" title="Preview">
-                        </span>
-                          <a href="#" title="Preview">Preview</a>
-                        </td>
-                        <td data-title="Channel">Direct Mail</td>
-                        <td data-title="Name">Reminder</td>
-                        <td data-title="Timing">35-110 Days</td>
-                      </tr>
-                      <tr>
-                        <td data-title="Touch" class="touch-info">
-                          <span>
-                          <img src="https://files.marcomcentral.app.pti.com/epsilon/static/marcom_custom/images/review-bg.jpg" alt="Preview" title="Preview">
-                        </span>
-                          <a href="#" title="Preview">Preview</a>
-                        </td>
-                        <td data-title="Channel">SMS</td>
-                        <td data-title="Name">Reminder</td>
-                        <td data-title="Timing">35-110 Days</td>
-                      </tr>
                     </tbody>
                   </table>
                 </div>

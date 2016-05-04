@@ -18,12 +18,18 @@
 	<link rel="stylesheet" type="text/css" href="css/jquery.mCustomScrollbar.css">
 	<!--css styles ends-->
 
-	<script src="js/jquery_min.js"></script>
+<script src="js/jquery_min.js"></script>
+<script>
+function getParameterByName(name) {
+    var match = RegExp("[?&]" + name + "=([^&]*)").exec(window.location.search);
+    return match && decodeURIComponent(match[1].replace(/\+/g, " "));
+}
+</script>
 </head>
 
 <body>
 	<span class="user-related none"
-		data-user-external-id="654321"
+		data-user-external-id="Zz0fUjXHHr66NXRFDs"
 		data-user-login-id="BetaUser"
 		data-user-first-name="John"
 		data-user-last-name="Smith"
@@ -44,7 +50,7 @@
 						</div>
 						<div class="header-info">
 							<h2>Warp Drive</h2>
-							<h3><b>W</b>inning <b>A</b>CQUISITION &amp; <b>R</b>ETENTION <b>P</b>ROGRAMS (WARP)</h3>
+							<h3><b>W</b>inning <b>A</b>CQUISITION &amp; <b>R</b>ETENTION <b>P</b>ROGRAMS</h3>
 						</div>
 					</div>
 					<div class="header-right">
@@ -151,10 +157,10 @@
 									<div class="filters-area">
 										<div class="filter-select select-option">
 											<select class="selectbox">
-												<option selected>Primary Filter</option>
-												<option>Source</option>
-												<option>Channel</option>
-												<option>Cost</option>
+												<option class="selectboxOption" selected>Primary Filter</option>
+												<option class="selectboxOption">Source</option>
+												<option class="selectboxOption">Channel</option>
+												<option class="selectboxOption">Cost</option>
 											</select>
 											<a href="#" title="filter-edit" class="filter-reset">
 												<img src="images/edit-filter.png" alt="Edit" title="Edit" width="16">
@@ -162,10 +168,10 @@
 										</div>
 										<div class="filter-select select-option">
 											<select class="selectbox">
-												<option selected>Secondary Filter</option>
-												<option>Source</option>
-												<option>Channel</option>
-												<option>Cost</option>
+												<option class="selectboxOption" selected>Secondary Filter</option>
+												<option class="selectboxOption">Source</option>
+												<option class="selectboxOption">Channel</option>
+												<option class="selectboxOption">Cost</option>
 											</select>
 											<a href="#" title="filter-edit" class="filter-reset">
 												<img src="images/edit-filter.png" alt="Edit" title="Edit" width="16">
@@ -612,13 +618,14 @@
 	<!-- Dependencies -->
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/2.2.1/mustache.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.11.1/moment.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.2/toastr.min.js"></script>
 	<script src="js/lib/toastrOpts.js"></script>
 	<script src="js/lib/checkAndRadioBoxes.js"></script>
 	<script src="js/lib/easyResponsiveTabs.js"></script>
 	<script src="js/lib/navTabs.js"></script>
 
 	<!-- Async,API and Marcom hookups -->
+	<script src="js/app/getHashParams.js"></script>
 	<script src="js/app/marcomUserData.js"></script>
 	<script src="js/app/recordLogin.js"></script>
 	<script src="js/app/getProgramParticipationStats.js"></script>

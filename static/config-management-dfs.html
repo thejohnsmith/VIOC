@@ -16,15 +16,61 @@
 	<link rel="stylesheet" type="text/css" href="css/reset.css">
 	<link rel="stylesheet" type="text/css" href="css/easy-responsive-tabs.css" />
 	<link rel="stylesheet" type="text/css" href="css/jquery.mCustomScrollbar.css">
-	<link rel="stylesheet" type="text/css" href="css/edit-additional-offer-layout.css">
+	<style>
+	.red{color:#e02926;}
+	.resp-tab-content{margin:0 0 15px 0;}
+	#programManagementTabs{width:100%;margin:0 0 20px 0;padding:0;}
+	#programManagementTabs h4{font-size:24px;font-weight:bold;margin:10px 0;padding:10px 0 0 0;color:#e02926;}
+	#programManagementTabs p{margin:0;padding:0 0 10px 0;}
+	#programManagementTabs input{max-width:140px;margin:5px 0 15px 0;}
+	#programManagementTabs .btn{max-width:140px;margin:5px 0 15px 0;padding:6px 12px;color:#fff;border:1px solid #337ab7;border-radius:4px;background-color:#0ea3dd;}
+	#programManagementTabs input.settings-name{margin:0;}
+	#programManagementTabs select{width:auto;min-width:140px;margin:5px 0 15px 0;}
+	.program-button{margin:0;padding:0;}
+	.discountCodeLink{font-weight:bold;margin:0;padding:0;text-decoration:underline;}
+	.discountCode{width:100%;padding:20px;background:#eee;}
+	.discountCode table,#parentHorizontalTab table{width:100%;}
+	.discountCode table tr td:first-child,
+	#parentHorizontalTab table tr td:first-child{padding:0 15px 10px 0;text-align:right;vertical-align:middle;}
+	.discountCode table tr td:nth-child(odd),
+	#parentHorizontalTab table tr td:nth-child(odd){width:40%;}
+	#parentHorizontalTab table tr .adtl-offer-form-group-label{width:25% !important;text-align:left !important;}
+	#parentHorizontalTab table tr .adtl-offer-form-group-input{width:75% !important;text-align:left !important;}
+	.adtlConfigForm{overflow:hidden;}
+	.adtlConfigForm .settings-section{width:100%;margin-bottom:1.5em;}
+	.adtlConfigForm .results-section{width:100%;}
+	.adtlConfigForm .label-cell{min-width:120px;padding:0;}
+	.adtlConfigForm .value-cell{padding:4px 8px;}
+	#programManagementTabs .adtlConfigForm .value-cell input,
+	#programManagementTabs .adtlConfigForm .value-cell select{min-width:300px;margin:4px 0;}
+	.adtlConfigForm .resp-tab-content{margin-bottom:.6em;}
+	#parentHorizontalTab{margin:0;padding:0;}
+	.module table tr td:first-child{padding:0 15px 10px 0;vertical-align:middle;}
+	.module table tr td:nth-child(odd){width:30%;}
+	.module table{width:100%;}
+	.sidebar p{padding:20px 0 10px 0;}
+	.sidebar textarea{font-size:14px;line-height:20px;padding:10px;text-align:left;}
+	.resp-tab-content{width:80%;margin:0 0 20px 0;}
+	.coupon-form{float:left;width:auto;}
+	.coupon-form td{vertical-align:sub;}
+	.coupon-form td label{margin-right:1em;}
+	.coupon-image{float:left;width:40%;padding:0 0 3px 0;text-align:center;}
+	.coupon-form i{color:red;}
+	</style>
 	<!--css styles ends-->
 
-	<script src="js/jquery_min.js"></script>
+<script src="js/jquery_min.js"></script>
+<script>
+function getParameterByName(name) {
+    var match = RegExp("[?&]" + name + "=([^&]*)").exec(window.location.search);
+    return match && decodeURIComponent(match[1].replace(/\+/g, " "));
+}
+</script>
 </head>
 
 <body>
 	<span class="user-related none"
-		data-user-external-id="654321"
+		data-user-external-id="Zz0fUjXHHr66NXRFDs"
 		data-user-login-id="BetaUser"
 		data-user-first-name="John"
 		data-user-last-name="Smith"
@@ -45,12 +91,14 @@
 						</div>
 						<div class="header-info">
 							<h2>Warp Drive</h2>
-							<h3><b>W</b>inning <b>A</b>CQUISITION &amp; <b>R</b>ETENTION <b>P</b>ROGRAMS (WARP)</h3>
+							<h3><b>W</b>inning <b>A</b>CQUISITION &amp; <b>R</b>ETENTION <b>P</b>ROGRAMS</h3>
 						</div>
 					</div>
 					<div class="header-right">
-						<a href="#" title="Contact Us">Contact Us</a>
-					</div>
+	          <a class="btnHelp" href="CustomPage.aspx?uigroup_id=479602&amp;page_id=10798" title="Help">Help</a>
+	          <a class="btnContactUs" href="CustomPage.aspx?uigroup_id=479602&amp;page_id=10798" title="Contact Us">Contact Us</a>
+	          <a class="btnLogOut" id="ctl00_ctl08_btnLogOut" href="javascript:__doPostBack('ctl00$ctl08$btnLogOut','')">Log Out</a>
+	        </div>
 				</div>
 			</div>
 			<div class="header-nav">
@@ -121,483 +169,165 @@
 					<ul>
 						<li><a href="index.html" title="Home">Home</a></li>
 						<li>
-							<span>Edit Program Layout</span>
+							<a href="program-overview.html" title="Lifecycle Programs">Lifecycle Programs</a>
+						</li>
+						 <li>
+							<a href="#" title="Additional Offers">Additional Offers</a>
+						</li>
+						<li>
+							Edit Additional Offers
 						</li>
 					</ul>
 				</section>
 			</div>
 			<div class="main">
 				<section id="programManagementTabs">
-				<h1 class="h1 page-title"><span>Edit Reminder Program Layout</span></h1>
-				<p>This layout configures the look-and-feel of the program-specific coupons. See the preview below to see which coupons are included in this layout.</p>
+				<h1 class="h1 page-title"><span>Edit Additional Offers</span></h1>
+				<p>This layout defines the look-and-feel of the program-specific coupons. See the preview below to see which coupons are included.</p>
 				<form>
-					<input type="text" placeholder="Enter Name for Layout" />
-				</form>
-				<h4>Coupons</h4>
-				<div id="parentHorizontalTab" class="lifescycle-tab">
-					<ul class="resp-tabs-list hor_1">
-						<li>Transmission</li>
-						<li>Gearbox</li>
-						<li>Fuel System</li>
-						<li>Radiator</li>
-						<li>Additional Offer</li>
-					</ul>
-					<div class="resp-tabs-container hor_1">
-						<div>
-							<section id="programManagement">
-								<div class="filters-area">
-									<div class="filter-select select-option">
-										<select class="selectbox">
-											<option selected>Primary Filter</option>
-											<option>Source</option>
-											<option>Channel</option>
-											<option>Cost</option>
-										</select>
-										<a href="#" title="filter-edit" class="filter-reset">
-											<img src="images/edit-filter.png" alt="Edit" title="Edit" width="16">
-										</a>
-									</div>
-									<div class="filter-select select-option">
-										<select class="selectbox">
-											<option selected>Secondary Filter</option>
-											<option>Source</option>
-											<option>Channel</option>
-											<option>Cost</option>
-										</select>
-										<a href="#" title="filter-edit" class="filter-reset">
-											<img src="images/edit-filter.png" alt="Edit" title="Edit" width="16">
-										</a>
-									</div>
-								</div>
-								<div class="view-program-summary">
-									<a href="#" title="View Program Summary">View Program Summary</a>
-								</div>
-								<div class="programsummary-table">
-									<div class="participation-table">
-										<table>
-											<thead>
-												<tr>
-													<td>
-														<table>
-															<tr>
-																<th class="store">Store</th>
-																<th class="store-de">Store#</th>
-																<!-- <th class="store-enroll">
-																	<div class="checkbox-area">
-																		<div class="customCheckbox">
-																			<input data-checkbox-label="Enroll All Stores" type="checkbox">
-																			<label>Enroll All Stores</label>
-																		</div>
-																	</div>
-																	<p>Enroll</p>
-																</th> -->
-																<th class="store-enroll">
-																	<div class="checkbox-area">
-																		<div class="customCheckbox js-trigger-all-selectable">
-																			<input class="" data-checkbox-label="Enroll All Stores" type="checkbox">
-																			<label>Enroll All Stores</label>
-																		</div>
-																	</div>
-																	<p>Enroll</p>
-																</th>
-																<th class="store-counts">
-																	<p>Counts Per Channel</p>
-																	<table class="inner-table">
-																		<tr>
-																			<td>Email</td>
-																			<td>DM</td>
-																			<td>SMS</td>
-																		</tr>
-																	</table>
-																</th>
-																<th class="store-cost">Estimated
-																	<br>Monthly Cost</th>
-															</tr>
-														</table>
-													</td>
-												</tr>
-											</thead>
+					<input type="text" placeholder="Enter Name for Settings" />
 
-											<tbody class="storeProgramData">
-												<script id="programDataTpl" type="x-tmpl-mustache">
-													{{#.}}
-													<tr>
-														<td>
-															<table>
-																<tr>
-																	<td>
-																		<table>
-																			<tr>
-																				<td class="store">{{storeName}}</td>
-																				<td class="store-de">{{storeId}}</td>
-																				<td class="store-enroll">
-																					<div class="checkbox-area" data-enrolled="{{enrolled}}">
-																						<div class="customCheckbox js-all-selectable">
-																							<input data-checkbox-label="" type="checkbox" style="position: absolute; left: -999999px;">
-																						</div>
-																					</div>
-																				</td>
-																				<td class="store-counts">
-																					<table class="inner-table">
-																						<tr>
-																							<td>{{channelEmail}}</td>
-																							<td>{{channelDM}}</td>
-																							<td>{{channelSMS}}</td>
-																						</tr>
-																					</table>
-																				</td>
-																				<td class="store-cost"><span>$</span><span class="js-format-currency">{{costEstimate}}</span>
-																					<br><a href="javascript:void(0);" title="Details" class="mobie-details-{{storeId}}">Details</a></td>
-																			</tr>
-																		</table>
-																	</td>
-																</tr>
-															</table>
-														</td>
-													</tr>
-													<tr class="mobile-info-{{storeId}}">
-														<td>
-															<table class="mobile-table">
-																<tr>
-																	<td class="store-label">Store #</td>
-																	<td class="store-info">{{storeId}}</td>
-																</tr>
-																<tr>
-																	<td class="store-label">Recipients in Email Channel:</td>
-																	<td class="store-info">{{channelEmail}}</td>
-																</tr>
-																<tr>
-																	<td class="store-label">Recipients in DM Channel:</td>
-																	<td class="store-info">{{channelDM}}</td>
-																</tr>
-																<tr>
-																	<td class="store-label">Recipients in SMS Channel:</td>
-																	<td class="store-info">{{channelSMS}}</td>
-																</tr>
-																<tr>
-																	<td class="store-label">Estimated Monthly Cost:</td>
-																	<td class="store-info">{{costEstimate}}</td>
-																</tr>
-															</table>
-														</td>
-													</tr>
-													{{/.}}
-													<tr>
-														<tr class="grand-total">
-															<td>
-																<table>
-																	<tr>
-																		<td class="total-label">
-																			<span class="control-option">To select more then one store press CTRL+click</span>Total Participants in the Reminder Campaign:</td>
-																		<td class="store-counts">
-																			<table class="inner-table">
-																				<tr>
-																					<td class="channelEmailTotal"></td>
-																					<td class="channelDMTotal"></td>
-																					<td class="channelSMSTotal"></td>
-																				</tr>
-																			</table>
-																		</td>
-																		<td class="store-cost">
-																			<span>$</span><span class="costEstimateTotal js-format-currency"></span></td>
-																	</tr>
-																</table>
-															</td>
-														</tr>
-												</script>
-											</tbody>
+					<h4>Coupons</h4>
+					<div id="parentHorizontalTab" class="lifescycle-tab">
+						<ul class="resp-tabs-list hor_1">
 
-										</table>
-									</div>
+							<li>Additional Offer</li>
+						</ul>
+						<div class="resp-tabs-container hor_1">
+							<div>
+								<div class="coupon-form">
+									<table>
+										<tr>
+											<td><label>Coupon Text:</label> </td>
+											<td>
+												<select class="selectbox">
+													<option value="2WiperswithOilChange" selected>2 Wipers with Oil Change</option>
+													<option value="AirConditioningCheck">Air Conditioning Check</option>
+													<option value="AirConditioningService">Air Conditioning Service</option>
+													<option value="AirConditioningServiceMsg">Air Conditioning Serivce Message</option>
+													<option value="AirFilterCabinFilter">Air Filter & Cabin Filter</option>
+													<option value="AirFilterWipers">Air Filter & Wipers</option>
+													<option value="AirFilterorWiperReplacement">Air Filter or Wiper Replacement</option>
+													<option value="AirFilterCabinAirFilterWipers">Air Filter, Cabin Air Filter & Wipers</option>
+													<option value="AllProductsandServices">All Products & Services</option>
+													<option value="AnyOilChangeStateInspection">ANY Oil Change and State Inspection</option>
+													<option value="AnyOilChangeTireRotation">ANY Oil Change and Tire Rotation</option>
+													<option value="AnyOilChangeFuelSystemCleaning">Any Oil Change with Fuel System Cleaning</option>
+													<option value="AnyOilChange5qts">Any Oil Change, 5qts</option>
+													<option value="AutoTransFluidExchangeService">Automatic Transmission Fluid Exchange Service</option>
+													<option value="CarWash">Car Wash</option>
+													<option value="ConventionalOilChangeStateInspection">Conventional Oil Change with State Inspection</option>
+													<option value="ConventionalOilChange5qts">Conventional Oil Change, 5qts.</option>
+													<option value="CustAppreciationOilChangeSpecial">Customer Appreciation Oil Change Special</option>
+													<option value="DieselOilChange">Diesel Oil Change</option>
+													<option value="EachGearboxFluidExchangeService">Each Gearbox Fluid Exchange Service</option>
+													<option value="EarlyBird10amTWT5qts">Early Bird: 10am Tues, Wed, Thurs, 5qts.</option>
+													<option value="EarlyBirdAnyOC10amTWT5qts">Early Bird: Any OC 10am Tues, Wed, Thurs, 5qts.</option>
+													<option value="EarnSpeedyRewardsPoints">Earn Speedy Rewards Points</option>
+													<option value="EmissionsTest">Emissions Test</option>
+													<option value="EntireInvoice">Entire Invoice</option>
+													<option value="FuelSavingsPackage">Fuel Savings Package: Oil Change, Tire Rotation & Fuel System Cleaning</option>
+													<option value="FuelSysCleaningServiceFullServiceOilChange">FUEL SYS CLEANING SERVICE with Any Full-Service Oil Change</option>
+													<option value="FuelSystemCleaningAirFilter">Fuel System Cleaning & Air Filter</option>
+													<option value="FuelSystemCleaningService">Fuel System Cleaning Service</option>
+													<option value="FuelSystemCleaningOilChangeAirFilter">Fuel System Cleaning, Oil Change & Air Filter</option>
+													<option value="FullSynthetic5qts">Full Synthetic, 5 qts.</option>
+													<option value="FullSynthetic6qts">Full Synthetic, 6qts.</option>
+													<option value="OilChangeAirFilter">Oil Change and Air Filter</option>
+													<option value="Premium5qtsOrDiesel">Premium 5qts. OR Diesel</option>
+													<option value="Premium6qtsOrDiesel">Premium 6qts. OR Diesel</option>
+													<option value="PremiumFullServiceOilChangeFreeTireRotation">Premium Full-Service Oil Change and FREE Tire Rotation</option>
+													<option value="PremiumOilChange5qts">Premium Oil Change, 5qts.</option>
+													<option value="RadiatorFluidExchangeService">Radiator Fluid Exchange Service</option>
+													<option value="RadiatorServiceAnyOilChange">Radiator Servce and ANY Oil Change</option>
+													<option value="SelectPrevMaintenence">Selct Prev Maint: Gear, Rad, ATF, Srp, Fuel Sys, CAF, AF, Fuel Flt</option>
+													<option value="SpeedyPoints">Speedy Points</option>
+													<option value="SyntheticBlend5qts">Synthetic Blend, 5 qts.</option>
+													<option value="SyntheticBlend6qts">Synthetic Blend, 6 qts.</option>
+													<option value="TireRotationAnyOilChange">Tire Rotation and ANY Oil Change</option>
+													<option value="TireRoationConventionalOilChange">Tire Roation and Conventional Oil Change</option>
+													<option value="TransmissionAnyOilChange">Transmission and ANY Oil Change</option>
+													<option value="TransRadACSerpBeltPowerSteer">Transmission, Radiator, AC, Serp Belt Replacement and Power Steering</option>
+												</select>
+											</td>
+										</tr>
+										<tr>
+											<td><label>Discount Type:</label></td>
+											<td>
+												<select class="selectbox">
+													<option value="DollarOff" selected>$ Off</option>
+													<option value="PercOff">% Off</option>
+												</select>
+											</td>
+										</tr>
+										<tr>
+											<td>
+												<label>Discount Amount:</label>
+											</td>
+											<td>
+												<input name="discount-amount" type="text" />
+											</td>
+										</tr>
+										<tr>
+											<td>
+												<label>Email Discount Code:</label>
+											</td>
+											<td>
+												<input name="email-coupon-code" type="text" />
+											</td>
+										</tr>
+										<tr>
+											<td>
+												<label>Direct Mail Discount Code: </label>
+											</td>
+											<td>
+												<input name="direct-mail-discount-code" type="text" />
+											</td>
+										</tr>
+									</table>
 								</div>
-							</section>
-						</div>
-						<div>
-							<div class="program-inputs">
-								<div class="steps-main step-1">
-									<h4>Step 1
-										<span>Select Filters</span>
-									</h4>
-									<div class="program-filters">
-										<div class="filter-select select-option">
-											<select class="selectbox">
-												<option selected>Company</option>
-												<option>Source</option>
-												<option>Channel</option>
-												<option>Cost</option>
-											</select>
-										</div>
-										<div class="filter-select select-option">
-											<select class="selectbox">
-												<option selected>Region/Market</option>
-												<option>Source</option>
-												<option>Channel</option>
-												<option>Cost</option>
-											</select>
-										</div>
-										<div class="filter-select select-option">
-											<select class="selectbox">
-												<option selected>Area</option>
-												<option>Source</option>
-												<option>Channel</option>
-												<option>Cost</option>
-											</select>
-										</div>
-									</div>
-								</div>
-								<div class="steps-main step-2">
-									<h4>Step 2
-										<span>Store Selection</span>
-									</h4>
-									<div class="store-columns">
-										<div class="store-columns-main">
-											<p>Available</p>
-											<div class="store-list">
-												<ul class="content mCustomScrollbar">
-													<li>Store 1</li>
-													<li>Store 2</li>
-													<li>Store 3</li>
-													<li>Store 4</li>
-													<li>Store 5</li>
-													<li>Store 6</li>
-													<li>Store 7</li>
-													<li>Store 8</li>
-													<li>Store 9</li>
-													<li>Store 10</li>
-												</ul>
-												<div class="store-btn">
-													<input type="button" value="Add All" title="Add All">
-												</div>
-											</div>
-										</div>
-										<div class="store-columns-main">
-											<p>Selected</p>
-											<div class="store-list">
-												<ul class="content mCustomScrollbar">
-													<li>Store 1</li>
-													<li>Store 2</li>
-													<li>Store 3</li>
-												</ul>
-												<div class="store-btn">
-													<input type="button" value="Remove All" title="Remove All">
-												</div>
-											</div>
-										</div>
-									</div>
-									<p class="note-area">
-										<span>Tip:</span>To select more than one store, use CTRL + Click</p>
-								</div>
-								<div class="steps-main step-3">
-									<h4>Step 3
-										<span>Program Inputs</span>
-									</h4>
-									<div class="program-input-select">
-										<div class="program-input-row">
-											<label>Creative</label>
-											<div class="program-input-main">
-												<div class="filter-select select-option">
-													<select class="selectbox">
-														<option selected>Mural</option>
-														<option>Option 1</option>
-														<option>Option 22</option>
-														<option>Option 3</option>
-													</select>
-												</div>
-											</div>
-										</div>
-										<div class="program-input-row">
-											<label>Offer 1 - Standard</label>
-											<div class="program-input-main">
-												<div class="program-three-col">
-													<div class="filter-select select-option">
-														<select class="selectbox">
-															<option selected>$</option>
-															<option>%</option>
-														</select>
-													</div>
-													<div class="program-input-text">
-														<input type="text" class="inputbox" placeholder="7">
-													</div>
-													<div class="program-input-text">
-														<input type="text" class="inputbox" placeholder="NDM49">
-													</div>
-												</div>
-											</div>
-										</div>
-										<div class="program-input-row">
-											<label>Offer 2 - Standard</label>
-											<div class="program-input-main">
-												<div class="program-three-col">
-													<div class="filter-select select-option">
-														<select class="selectbox">
-															<option selected>%</option>
-															<option>$</option>
-														</select>
-													</div>
-													<div class="program-input-text">
-														<input type="text" class="inputbox" placeholder="5">
-													</div>
-													<div class="program-input-text">
-														<input type="text" class="inputbox" placeholder="NA-776">
-													</div>
-												</div>
-											</div>
-										</div>
-										<div class="program-input-row">
-											<label>Offer 1 - High Risk</label>
-											<div class="program-input-main">
-												<div class="program-three-col">
-													<div class="filter-select select-option">
-														<select class="selectbox">
-															<option selected>$</option>
-															<option>%</option>
-														</select>
-													</div>
-													<div class="program-input-text">
-														<input type="text" class="inputbox" placeholder="11">
-													</div>
-													<div class="program-input-text">
-														<input type="text" class="inputbox" placeholder="NA779">
-													</div>
-												</div>
-											</div>
-										</div>
-										<div class="program-input-row">
-											<label>Offer 2 - High Risk</label>
-											<div class="program-input-main">
-												<div class="program-three-col">
-													<div class="filter-select select-option">
-														<select class="selectbox">
-															<option selected>%</option>
-															<option>$</option>
-														</select>
-													</div>
-													<div class="program-input-text">
-														<input type="text" class="inputbox" placeholder="5">
-													</div>
-													<div class="program-input-text">
-														<input type="text" class="inputbox" placeholder="NA778">
-													</div>
-												</div>
-											</div>
-										</div>
-										<div class="program-input-row">
-											<label>Offer Exp</label>
-											<div class="program-input-main">
-												<div class="filter-select select-option">
-													<select class="selectbox">
-														<option selected>Plus 45</option>
-														<option>Option 1</option>
-														<option>Option 22</option>
-														<option>Option 3</option>
-													</select>
-												</div>
-											</div>
-										</div>
-										<div class="program-input-row">
-											<label>Transmission</label>
-											<div class="program-input-main">
-												<div class="program-three-col">
-													<div class="filter-select select-option">
-														<select class="selectbox">
-															<option selected>$</option>
-															<option>%</option>
-														</select>
-													</div>
-													<div class="program-input-text">
-														<input type="text" class="inputbox" placeholder="10">
-													</div>
-													<div class="program-input-text">
-														<input type="text" class="inputbox" placeholder="NA780">
-													</div>
-												</div>
-											</div>
-										</div>
-										<div class="program-input-row">
-											<label>Each Gearbox</label>
-											<div class="program-input-main">
-												<div class="program-three-col">
-													<div class="filter-select select-option">
-														<select class="selectbox">
-															<option selected>%</option>
-															<option>$</option>
-														</select>
-													</div>
-													<div class="program-input-text">
-														<input type="text" class="inputbox" placeholder="5">
-													</div>
-													<div class="program-input-text">
-														<input type="text" class="inputbox" placeholder="NA783">
-													</div>
-												</div>
-											</div>
-										</div>
-										<div class="program-input-row">
-											<label>Fuel System</label>
-											<div class="program-input-main">
-												<div class="program-three-col">
-													<div class="filter-select select-option">
-														<select class="selectbox">
-															<option selected>$</option>
-															<option>%</option>
-														</select>
-													</div>
-													<div class="program-input-text">
-														<input type="text" class="inputbox" placeholder="10">
-													</div>
-													<div class="program-input-text">
-														<input type="text" class="inputbox" placeholder="NA781">
-													</div>
-												</div>
-											</div>
-										</div>
-										<div class="program-input-row">
-											<label>Radiator</label>
-											<div class="program-input-main">
-												<div class="program-three-col">
-													<div class="filter-select select-option">
-														<select class="selectbox">
-															<option selected>$</option>
-															<option>%</option>
-														</select>
-													</div>
-													<div class="program-input-text">
-														<input type="text" class="inputbox" placeholder="10">
-													</div>
-													<div class="program-input-text">
-														<input type="text" class="inputbox" placeholder="NA782">
-													</div>
-												</div>
-											</div>
-										</div>
-										<div class="program-input-row">
-											<label>Offer Exp</label>
-											<div class="program-input-main">
-												<div class="filter-select select-option">
-													<select class="selectbox">
-														<option selected>Plus 45</option>
-														<option>Option 1</option>
-														<option>Option 22</option>
-														<option>Option 3</option>
-													</select>
-												</div>
-											</div>
-										</div>
-										<div class="save-updates">
-											<input type="button" class="save-update-btn" title="Save Updates" value="Save Updates">
-										</div>
-									</div>
+								<div class="coupon-image">
+									<img src="images/dfs-coupon.png" width="286" height="259" alt="Coupon" />
 								</div>
 							</div>
 						</div>
 					</div>
+					<div class="module">
+						<h4>Settings</h4>
+						<table>
+							<tr>
+								<td>
+									<label>When should these coupons expire?</label>
+								</td>
+								<td>
+									<select class="selectbox">
+										<option value="Plus15" selected>Send Date Plus 15</option>
+										<option value="Plus30">Plus 30</option>
+										<option value="Plus45">Plus 45</option>
+										<option value="Plus60">Plus 60</option>
+									</select>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<div class="program-button"><input class="blue-btn" type="submit" id="save" name="save" value="Save Settings"></div>
+								</td>
+								<td>
+
+								</td>
+							</tr>
+						</table>
+					</div>
+				</form>
 				</div>
+
 			</section>
-			<div class="sidebar">
-	          		<div class="sidebar-module sidebar-module-inset">
-	          			<img src="images/coupon-program-layout.png" width="298" height="856" />
-	          		</div>
-				</div>
+			<div class="sidebar hidden">
+          		<div class="sidebar-module sidebar-module-inset">
+          			<img src="images/coupon-dfs-layout.png" width="298" height="auto" />
+	          		<p>This layout is used by the following stores:</p>
+	          		<textarea rows="10" cols="37">El Derado and Lake Forest (Store #000151)</textarea>
+	          	</div>
 			</div>
 		</div>
 
@@ -616,12 +346,13 @@
 	<!-- Dependencies -->
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/2.2.1/mustache.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.11.1/moment.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.2/toastr.min.js"></script>
 	<script src="js/lib/toastrOpts.js"></script>
 	<script src="js/lib/checkAndRadioBoxes.js"></script>
 	<script src="js/lib/easyResponsiveTabs.js"></script>
 
 	<!-- Async,API and Marcom hookups -->
+	<script src="js/app/getHashParams.js"></script>
 	<script src="js/app/marcomUserData.js"></script>
 	<script src="js/app/recordLogin.js"></script>
 	<script src="js/app/getProgramParticipationStats.js"></script>
@@ -637,6 +368,7 @@
 	<script type="text/javascript" src="js/jquery.validate.js"></script>
 	<script type="text/javascript" src="js/placeholder.js"></script>
 	<script type="text/javascript" src="js/general.js"></script>
+	<script type="text/javascript" src="js/discountCode.js"></script>
 </body>
 
 </html>

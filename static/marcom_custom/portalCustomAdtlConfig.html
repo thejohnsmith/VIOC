@@ -2,302 +2,485 @@
     Beta URL:
     https://marcomcentral.app.pti.com/Epsilon_Data_Management/Beta_Epsilon/CustomPage.aspx?uigroup_id=479602&page_id=11226
 -->
-<link href="https://files.marcomcentral.app.pti.com/epsilon/static/css/edit-additional-offer-layout.css" rel="stylesheet" type="text/css" />
+<style>
+.red{color:#e02926;}
+.resp-tab-content{margin:0 0 15px 0;}
+#programManagementTabs{width:100%;margin:0 0 20px 0;padding:0;}
+#programManagementTabs h4{font-size:24px;font-weight:bold;margin:10px 0;padding:10px 0 0 0;color:#e02926;}
+#programManagementTabs p{margin:0;padding:0 0 10px 0;}
+#programManagementTabs input{max-width:140px;margin:5px 0 15px 0;}
+#programManagementTabs .btn{max-width:140px;margin:5px 0 15px 0;padding:6px 12px;color:#fff;border:1px solid #337ab7;border-radius:4px;background-color:#0ea3dd;}
+#programManagementTabs input.settings-name{margin:0;}
+#programManagementTabs select{width:auto;min-width:140px;margin:5px 0 15px 0;}
+.program-button{margin:0;padding:0;}
+.discountCodeLink{font-weight:bold;margin:0;padding:0;text-decoration:underline;}
+.discountCode{width:100%;padding:20px;background:#eee;}
+.discountCode table,#parentHorizontalTab table{width:100%;}
+.discountCode table tr td:first-child,
+#parentHorizontalTab table tr td:first-child{padding:0 15px 10px 0;text-align:right;vertical-align:middle;}
+.discountCode table tr td:nth-child(odd),
+#parentHorizontalTab table tr td:nth-child(odd){width:40%;}
+#parentHorizontalTab table tr .adtl-offer-form-group-label{width:25% !important;text-align:left !important;}
+#parentHorizontalTab table tr .adtl-offer-form-group-input{width:75% !important;text-align:left !important;}
+.adtlConfigForm{overflow:hidden;}
+.adtlConfigForm .settings-section{width:100%;margin-bottom:1.5em;}
+.adtlConfigForm .results-section{width:100%;}
+.adtlConfigForm .label-cell{min-width:120px;padding:0;}
+.adtlConfigForm .value-cell{padding:4px 8px;}
+#programManagementTabs .adtlConfigForm .value-cell input,
+#programManagementTabs .adtlConfigForm .value-cell select{min-width:300px;margin:4px 0;}
+.adtlConfigForm .resp-tab-content{margin-bottom:.6em;}
+#parentHorizontalTab{margin:0;padding:0;}
+.module table tr td:first-child{padding:0 15px 10px 0;vertical-align:middle;}
+.module table tr td:nth-child(odd){width:30%;}
+.module table{width:100%;}
+.sidebar p{padding:20px 0 10px 0;}
+.sidebar textarea{font-size:14px;line-height:20px;padding:10px;text-align:left;}
+.resp-tab-content{width:80%;margin:0 0 20px 0;}
+.coupon-form{float:left;width:auto;}
+.coupon-form td{vertical-align:sub;}
+.coupon-form td label{margin-right:1em;}
+.coupon-image{float:left;width:40%;padding:0 0 3px 0;text-align:center;}
+.coupon-form i{color:red;}
+</style>
 <div class="wrapper">
   <div class="mid-container">
-    <div class="main">
+    <div role="presentation" class="spinner js-loading"></div>
+    <div class="main js-content">
       <section id="breadcrumbs">
         <ul>
-          <li><a href="home.aspx" title="Home">Home</a></li>
-          <li><a href="https://marcomcentral.app.pti.com/Epsilon_Data_Management/Beta_Epsilon/CustomPage.aspx?uigroup_id=479602&page_id=10792" title="Lifecycle Programs">Lifecycle Programs</a></li>
-          <li><span>Due For Service</span></li>
-          <li>Edit <span>Additional Offer</span> Layout</li>
+          <li class="breadcrumbs_root"><a href="home.aspx" title="Home">Home</a></li>
+          <li class="breadcrumbs_previous">
+            <a href="CustomPage.aspx?uigroup_id=479602&page_id=10792" title="Lifecycle Programs"></a>
+          </li>
+          <li class="breadcrumbs_previous">
+            <a href="CustomPage.aspx?uigroup_id=479602&page_id=11173&programId=1"></a>
+          </li>
+          <li class="breadcrumbs_current">Edit
+            <span> Unknown </span> Settings</li>
         </ul>
       </section>
     </div>
-    <div class="main">
+    <div class="main js-content">
       <section id="programManagementTabs">
-        <h1 class="h1 page-title"><span>Edit Additional Offer Layout</span></h1>
-        <p>This layout configures the look-and-feel of the program-specific coupons. See the preview below to see which coupons are included in this layout.</p>
-        <form>
-          <input type="text" placeholder="Enter Name for Layout" />
-          <h4>Coupons</h4>
-          <div id="parentHorizontalTab" class="lifescycle-tab">
-            <ul class="resp-tabs-list hor_1">
-              <li>Transmission</li>
-              <li>Gearbox</li>
-              <li>Fuel System</li>
-              <li>Radiator</li>
-              <li>Additional Offer</li>
-            </ul>
-            <div class="resp-tabs-container hor_1">
-              <div>
-                <div class="coupon-form">
-                  <table>
-                    <tr>
-                      <td>
-                        <label>Discount Type:</label>
-                      </td>
-                      <td>
-                        <select class="selectbox">
-                          <option value="DollarOff" selected>$ Off</option>
-                          <option value="PercOff">% Off</option>
-                        </select>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <label>Discount Amount:</label>
-                      </td>
-                      <td>
-                        <input name="discount-amount" type="text" />
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <label>Email Coupon Code:</label>
-                      </td>
-                      <td>
-                        <input name="email-coupon-code" type="text" />
-                      </td>
-                    </tr>
-                  </table>
-                </div>
-                <div class="coupon-image">
-                  <img src="https://files.marcomcentral.app.pti.com/epsilon/static/images/dfs-coupon.png" width="286" height="259" alt="Coupon" />
-                </div>
-              </div>
-              <div>
-                <div class="coupon-form">
-                  <table>
-                    <tr>
-                      <td>
-                        <label>Discount Type:</label>
-                      </td>
-                      <td>
-                        <select class="selectbox">
-                          <option value="DollarOff" selected>$ Off</option>
-                          <option value="PercOff">% Off</option>
-                        </select>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <label>Discount Amount:</label>
-                      </td>
-                      <td>
-                        <input name="discount-amount" type="text" />
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <label>Email Coupon Code:</label>
-                      </td>
-                      <td>
-                        <input name="email-coupon-code" type="text" />
-                      </td>
-                    </tr>
-                  </table>
-                </div>
-                <div class="coupon-image">
-                  <img src="https://files.marcomcentral.app.pti.com/epsilon/static/images/dfs-coupon.png" width="286" height="259" alt="Coupon" />
-                </div>
-              </div>
-              <div>
-                <div class="coupon-form">
-                  <table>
-                    <tr>
-                      <td>
-                        <label>Discount Type:</label>
-                      </td>
-                      <td>
-                        <select class="selectbox">
-                          <option value="DollarOff" selected>$ Off</option>
-                          <option value="PercOff">% Off</option>
-                        </select>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <label>Discount Amount:</label>
-                      </td>
-                      <td>
-                        <input name="discount-amount" type="text" />
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <label>Email Coupon Code:</label>
-                      </td>
-                      <td>
-                        <input name="email-coupon-code" type="text" />
-                      </td>
-                    </tr>
-                  </table>
-                </div>
-                <div class="coupon-image">
-                  <img src="https://files.marcomcentral.app.pti.com/epsilon/static/images/dfs-coupon.png" width="286" height="259" alt="Coupon" />
-                </div>
-              </div>
-              <div>
-                <div class="coupon-form">
-                  <table>
-                    <tr>
-                      <td>
-                        <label>Discount Type:</label>
-                      </td>
-                      <td>
-                        <select class="selectbox">
-                          <option value="DollarOff" selected>$ Off</option>
-                          <option value="PercOff">% Off</option>
-                        </select>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <label>Discount Amount:</label>
-                      </td>
-                      <td>
-                        <input name="discount-amount" type="text" />
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <label>Email Coupon Code:</label>
-                      </td>
-                      <td>
-                        <input name="email-coupon-code" type="text" />
-                      </td>
-                    </tr>
-                  </table>
-                </div>
-                <div class="coupon-image">
-                  <img src="https://files.marcomcentral.app.pti.com/epsilon/static/images/dfs-coupon.png" width="286" height="259" alt="Coupon" />
-                </div>
-              </div>
-              <div>
-                <div class="coupon-form">
-                  <table>
-                    <tr>
-                      <td>
-                        <label>Coupon Text:</label>
-                      </td>
-                      <td>
-                        <select class="selectbox">
-                          <option value="2WiperswithOilChange" selected>2 Wipers with Oil Change</option>
-                          <option value="AirConditioningCheck">Air Conditioning Check</option>
-                          <option value="AirConditioningService">Air Conditioning Service</option>
-                          <option value="AirConditioningServiceMsg">Air Conditioning Serivce Message</option>
-                          <option value="AirFilterCabinFilter">Air Filter & Cabin Filter</option>
-                          <option value="AirFilterWipers">Air Filter & Wipers</option>
-                          <option value="AirFilterorWiperReplacement">Air Filter or Wiper Replacement</option>
-                          <option value="AirFilterCabinAirFilterWipers">Air Filter, Cabin Air Filter & Wipers</option>
-                          <option value="AllProductsandServices">All Products & Services</option>
-                          <option value="AnyOilChangeStateInspection">ANY Oil Change and State Inspection</option>
-                          <option value="AnyOilChangeTireRotation">ANY Oil Change and Tire Rotation</option>
-                          <option value="AnyOilChangeFuelSystemCleaning">Any Oil Change with Fuel System Cleaning</option>
-                          <option value="AnyOilChange5qts">Any Oil Change, 5qts</option>
-                          <option value="AutoTransFluidExchangeService">Automatic Transmission Fluid Exchange Service</option>
-                          <option value="CarWash">Car Wash</option>
-                          <option value="ConventionalOilChangeStateInspection">Conventional Oil Change with State Inspection</option>
-                          <option value="ConventionalOilChange5qts">Conventional Oil Change, 5qts.</option>
-                          <option value="CustAppreciationOilChangeSpecial">Customer Appreciation Oil Change Special</option>
-                          <option value="DieselOilChange">Diesel Oil Change</option>
-                          <option value="EachGearboxFluidExchangeService">Each Gearbox Fluid Exchange Service</option>
-                          <option value="EarlyBird10amTWT5qts">Early Bird: 10am Tues, Wed, Thurs, 5qts.</option>
-                          <option value="EarlyBirdAnyOC10amTWT5qts">Early Bird: Any OC 10am Tues, Wed, Thurs, 5qts.</option>
-                          <option value="EarnSpeedyRewardsPoints">Earn Speedy Rewards Points</option>
-                          <option value="EmissionsTest">Emissions Test</option>
-                          <option value="EntireInvoice">Entire Invoice</option>
-                          <option value="FuelSavingsPackage">Fuel Savings Package: Oil Change, Tire Rotation & Fuel System Cleaning</option>
-                          <option value="FuelSysCleaningServiceFullServiceOilChange">FUEL SYS CLEANING SERVICE with Any Full-Service Oil Change</option>
-                          <option value="FuelSystemCleaningAirFilter">Fuel System Cleaning & Air Filter</option>
-                          <option value="FuelSystemCleaningService">Fuel System Cleaning Service</option>
-                          <option value="FuelSystemCleaningOilChangeAirFilter">Fuel System Cleaning, Oil Change & Air Filter</option>
-                          <option value="FullSynthetic5qts">Full Synthetic, 5 qts.</option>
-                          <option value="FullSynthetic6qts">Full Synthetic, 6qts.</option>
-                          <option value="OilChangeAirFilter">Oil Change and Air Filter</option>
-                          <option value="Premium5qtsOrDiesel">Premium 5qts. OR Diesel</option>
-                          <option value="Premium6qtsOrDiesel">Premium 6qts. OR Diesel</option>
-                          <option value="PremiumFullServiceOilChangeFreeTireRotation">Premium Full-Service Oil Change and FREE Tire Rotation</option>
-                          <option value="PremiumOilChange5qts">Premium Oil Change, 5qts.</option>
-                          <option value="RadiatorFluidExchangeService">Radiator Fluid Exchange Service</option>
-                          <option value="RadiatorServiceAnyOilChange">Radiator Servce and ANY Oil Change</option>
-                          <option value="SelectPrevMaintenence">Selct Prev Maint: Gear, Rad, ATF, Srp, Fuel Sys, CAF, AF, Fuel Flt</option>
-                          <option value="SpeedyPoints">Speedy Points</option>
-                          <option value="SyntheticBlend5qts">Synthetic Blend, 5 qts.</option>
-                          <option value="SyntheticBlend6qts">Synthetic Blend, 6 qts.</option>
-                          <option value="TireRotationAnyOilChange">Tire Rotation and ANY Oil Change</option>
-                          <option value="TireRoationConventionalOilChange">Tire Roation and Conventional Oil Change</option>
-                          <option value="TransmissionAnyOilChange">Transmission and ANY Oil Change</option>
-                          <option value="TransRadACSerpBeltPowerSteer">Transmission, Radiator, AC, Serp Belt Replacement and Power Steering</option>
-                        </select>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <label>Discount Type:</label>
-                      </td>
-                      <td>
-                        <select class="selectbox">
-                          <option value="DollarOff" selected>$ Off</option>
-                          <option value="PercOff">% Off</option>
-                        </select>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <label>Discount Amount:</label>
-                      </td>
-                      <td>
-                        <input name="discount-amount" type="text" />
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <label>Email Coupon Code:</label>
-                      </td>
-                      <td>
-                        <input name="email-coupon-code" type="text" />
-                      </td>
-                    </tr>
-                  </table>
-                </div>
-                <div class="coupon-image">
-                  <img src="https://files.marcomcentral.app.pti.com/epsilon/static/images/dfs-coupon.png" width="286" height="259" alt="Coupon" />
-                </div>
-              </div>
+        <h1 class="h1 page-title">
+        </h1>
+        <p>Configure the settings below to control the offer presented within your Additional Offer.</p>
+        <br>
+
+        <div class="adtlConfigForm">
+          <section class="settings-section">
+            <div class="label-cell inline-block">
+              <label>Offer Name <i>*</i>&nbsp;:</label>
             </div>
-          </div>
-          <div class="module">
-            <h4>Settings</h4>
-            <table>
-              <tr>
-                <td>
-                  <label>When should these coupons expire?</label>
-                </td>
-                <td>
-                  <select class="selectbox">
-                    <option value="Plus15" selected>Send Date Plus 15</option>
-                    <option value="Plus30">Send Date Plus 30</option>
-                    <option value="Plus45">Send Date Plus 45</option>
-                    <option value="Plus60">Send Date Plus 60</option>
-                  </select>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <div class="program-button">
-                    <input class="blue-btn" type="submit" id="save" name="save" value="Save Layout">
+            <div class="value-cell inline-block">
+              <input class="settings-name" type="text" placeholder="Enter Name for Layout" required>
+            </div>
+
+            <div>
+              <div class="label-cell inline-block">
+                <label>Expiration <i>*</i>&nbsp;:</label>
+              </div>
+
+              <div class="value-cell inline-block">
+              <select class="expiration selectbox" required>
+                <option value="15">Send Date Plus 15</option>
+                <option value="30">Send Date Plus 30</option>
+                <option value="45">Send Date Plus 45</option>
+                <option value="60">Send Date Plus 60</option>
+              </select>
+            </div>
+            </div>
+          </section>
+          <form>
+            <section class="results-section post-submit">
+              <div id="parentHorizontalTab" class="results-section lifescycle-tab">
+                <ul class="resp-tabs-list hor_1">
+                  <li class="adtl-offer-1">Additional Offer 1</li>
+                  <li class="adtl-offer-2">Additional Offer 2</li>
+                  <li class="adtl-offer-3">Additional Offer 3</li>
+                  <li class="adtl-offer-4">Additional Offer 4</li>
+                </ul>
+                <div class="resp-tabs-container hor_1">
+
+                  <div class="adtl-offer-1 coupon-form">
+                    <table>
+                      <tr>
+                        <td class="adtl-offer-form-group-label">
+                          <label>Coupon Text <i>*</i>&nbsp;:</label>
+                        </td>
+                        <td>
+                          <select name="adtlText1" class="adtlText selectbox" required>
+                            <option value="2WiperswithOilChange">2 Wipers with Oil Change</option>
+                            <option value="AirConditioningCheck">Air Conditioning Check</option>
+                            <option value="AirConditioningService">Air Conditioning Service</option>
+                            <option value="AirConditioningServiceMsg">Air Conditioning Serivce Message</option>
+                            <option value="AirFilterCabinFilter">Air Filter & Cabin Filter</option>
+                            <option value="AirFilterWipers">Air Filter & Wipers</option>
+                            <option value="AirFilterorWiperReplacement">Air Filter or Wiper Replacement</option>
+                            <option value="AirFilterCabinAirFilterWipers">Air Filter, Cabin Air Filter & Wipers</option>
+                            <option value="AllProductsandServices">All Products & Services</option>
+                            <option value="AnyOilChangeStateInspection">ANY Oil Change and State Inspection</option>
+                            <option value="AnyOilChangeTireRotation">ANY Oil Change and Tire Rotation</option>
+                            <option value="AnyOilChangeFuelSystemCleaning">Any Oil Change with Fuel System Cleaning</option>
+                            <option value="AnyOilChange5qts">Any Oil Change, 5qts</option>
+                            <option value="AutoTransFluidExchangeService">Automatic Transmission Fluid Exchange Service</option>
+                            <option value="CarWash">Car Wash</option>
+                            <option value="ConventionalOilChangeStateInspection">Conventional Oil Change with State Inspection</option>
+                            <option value="ConventionalOilChange5qts">Conventional Oil Change, 5qts.</option>
+                            <option value="CustAppreciationOilChangeSpecial">Customer Appreciation Oil Change Special</option>
+                            <option value="DieselOilChange">Diesel Oil Change</option>
+                            <option value="EachGearboxFluidExchangeService">Each Gearbox Fluid Exchange Service</option>
+                            <option value="EarlyBird10amTWT5qts">Early Bird: 10am Tues, Wed, Thurs, 5qts.</option>
+                            <option value="EarlyBirdAnyOC10amTWT5qts">Early Bird: Any OC 10am Tues, Wed, Thurs, 5qts.</option>
+                            <option value="EarnSpeedyRewardsPoints">Earn Speedy Rewards Points</option>
+                            <option value="EmissionsTest">Emissions Test</option>
+                            <option value="EntireInvoice">Entire Invoice</option>
+                            <option value="FuelSavingsPackage">Fuel Savings Package: Oil Change, Tire Rotation & Fuel System Cleaning</option>
+                            <option value="FuelSysCleaningServiceFullServiceOilChange">FUEL SYS CLEANING SERVICE with Any Full-Service Oil Change</option>
+                            <option value="FuelSystemCleaningAirFilter">Fuel System Cleaning & Air Filter</option>
+                            <option value="FuelSystemCleaningService">Fuel System Cleaning Service</option>
+                            <option value="FuelSystemCleaningOilChangeAirFilter">Fuel System Cleaning, Oil Change & Air Filter</option>
+                            <option value="FullSynthetic5qts">Full Synthetic, 5 qts.</option>
+                            <option value="FullSynthetic6qts">Full Synthetic, 6qts.</option>
+                            <option value="OilChangeAirFilter">Oil Change and Air Filter</option>
+                            <option value="Premium5qtsOrDiesel">Premium 5qts. OR Diesel</option>
+                            <option value="Premium6qtsOrDiesel">Premium 6qts. OR Diesel</option>
+                            <option value="PremiumFullServiceOilChangeFreeTireRotation">Premium Full-Service Oil Change and FREE Tire Rotation</option>
+                            <option value="PremiumOilChange5qts">Premium Oil Change, 5qts.</option>
+                            <option value="RadiatorFluidExchangeService">Radiator Fluid Exchange Service</option>
+                            <option value="RadiatorServiceAnyOilChange">Radiator Servce and ANY Oil Change</option>
+                            <option value="SelectPrevMaintenence">Selct Prev Maint: Gear, Rad, ATF, Srp, Fuel Sys, CAF, AF, Fuel Flt</option>
+                            <option value="SpeedyPoints">Speedy Points</option>
+                            <option value="SyntheticBlend5qts">Synthetic Blend, 5 qts.</option>
+                            <option value="SyntheticBlend6qts">Synthetic Blend, 6 qts.</option>
+                            <option value="TireRotationAnyOilChange">Tire Rotation and ANY Oil Change</option>
+                            <option value="TireRoationConventionalOilChange">Tire Roation and Conventional Oil Change</option>
+                            <option value="TransmissionAnyOilChange">Transmission and ANY Oil Change</option>
+                            <option value="TransRadACSerpBeltPowerSteer">Transmission, Radiator, AC, Serp Belt Replacement and Power Steering</option>
+                          </select>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="adtl-offer-form-group-label">
+                          <label>Discount Type <i>*</i>&nbsp;:</label>
+                        </td>
+                        <td class="adtl-offer-form-group-input">
+                          <select name="adtlApproach1" class="adtlApproach selectbox" required>
+                            <option value="PERCENT">% Off</option>
+                            <option value="DOLLAR">$ Off</option>
+                            <option value="PRICE_POINT">Price Point</option>
+                            <option value="POINTS">Speedy Rewards Points</option>
+                          </select>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="adtl-offer-form-group-label">
+                          <label>Discount Amount <i>*</i>&nbsp;:</label>
+                        </td>
+                        <td class="adtl-offer-form-group-input">
+                          <input name="adtlValue1" class="adtlValue" type="number" required>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="adtl-offer-form-group-label">
+                          <label>Coupon Code <i>*</i>&nbsp;:</label>
+                        </td>
+                        <td class="adtl-offer-form-group-input">
+                          <input name="adtlCode1" class="adtlCode" type="text" required>
+                        </td>
+                      </tr>
+                    </table>
                   </div>
-                </td>
-                <td>
-                </td>
-              </tr>
-            </table>
-          </div>
-        </form>
+                  <!-- Offer-1 -->
+
+                  <div class="adtl-offer-2 coupon-form">
+                    <table>
+                      <tr>
+                        <td class="adtl-offer-form-group-label">
+                          <label>Coupon Text <i>*</i>&nbsp;:</label>
+                        </td>
+                        <td>
+                          <select name="adtlText2" class="adtlText selectbox" required>
+                            <option value="2WiperswithOilChange">2 Wipers with Oil Change</option>
+                            <option value="AirConditioningCheck">Air Conditioning Check</option>
+                            <option value="AirConditioningService">Air Conditioning Service</option>
+                            <option value="AirConditioningServiceMsg">Air Conditioning Serivce Message</option>
+                            <option value="AirFilterCabinFilter">Air Filter & Cabin Filter</option>
+                            <option value="AirFilterWipers">Air Filter & Wipers</option>
+                            <option value="AirFilterorWiperReplacement">Air Filter or Wiper Replacement</option>
+                            <option value="AirFilterCabinAirFilterWipers">Air Filter, Cabin Air Filter & Wipers</option>
+                            <option value="AllProductsandServices">All Products & Services</option>
+                            <option value="AnyOilChangeStateInspection">ANY Oil Change and State Inspection</option>
+                            <option value="AnyOilChangeTireRotation">ANY Oil Change and Tire Rotation</option>
+                            <option value="AnyOilChangeFuelSystemCleaning">Any Oil Change with Fuel System Cleaning</option>
+                            <option value="AnyOilChange5qts">Any Oil Change, 5qts</option>
+                            <option value="AutoTransFluidExchangeService">Automatic Transmission Fluid Exchange Service</option>
+                            <option value="CarWash">Car Wash</option>
+                            <option value="ConventionalOilChangeStateInspection">Conventional Oil Change with State Inspection</option>
+                            <option value="ConventionalOilChange5qts">Conventional Oil Change, 5qts.</option>
+                            <option value="CustAppreciationOilChangeSpecial">Customer Appreciation Oil Change Special</option>
+                            <option value="DieselOilChange">Diesel Oil Change</option>
+                            <option value="EachGearboxFluidExchangeService">Each Gearbox Fluid Exchange Service</option>
+                            <option value="EarlyBird10amTWT5qts">Early Bird: 10am Tues, Wed, Thurs, 5qts.</option>
+                            <option value="EarlyBirdAnyOC10amTWT5qts">Early Bird: Any OC 10am Tues, Wed, Thurs, 5qts.</option>
+                            <option value="EarnSpeedyRewardsPoints">Earn Speedy Rewards Points</option>
+                            <option value="EmissionsTest">Emissions Test</option>
+                            <option value="EntireInvoice">Entire Invoice</option>
+                            <option value="FuelSavingsPackage">Fuel Savings Package: Oil Change, Tire Rotation & Fuel System Cleaning</option>
+                            <option value="FuelSysCleaningServiceFullServiceOilChange">FUEL SYS CLEANING SERVICE with Any Full-Service Oil Change</option>
+                            <option value="FuelSystemCleaningAirFilter">Fuel System Cleaning & Air Filter</option>
+                            <option value="FuelSystemCleaningService">Fuel System Cleaning Service</option>
+                            <option value="FuelSystemCleaningOilChangeAirFilter">Fuel System Cleaning, Oil Change & Air Filter</option>
+                            <option value="FullSynthetic5qts">Full Synthetic, 5 qts.</option>
+                            <option value="FullSynthetic6qts">Full Synthetic, 6qts.</option>
+                            <option value="OilChangeAirFilter">Oil Change and Air Filter</option>
+                            <option value="Premium5qtsOrDiesel">Premium 5qts. OR Diesel</option>
+                            <option value="Premium6qtsOrDiesel">Premium 6qts. OR Diesel</option>
+                            <option value="PremiumFullServiceOilChangeFreeTireRotation">Premium Full-Service Oil Change and FREE Tire Rotation</option>
+                            <option value="PremiumOilChange5qts">Premium Oil Change, 5qts.</option>
+                            <option value="RadiatorFluidExchangeService">Radiator Fluid Exchange Service</option>
+                            <option value="RadiatorServiceAnyOilChange">Radiator Servce and ANY Oil Change</option>
+                            <option value="SelectPrevMaintenence">Selct Prev Maint: Gear, Rad, ATF, Srp, Fuel Sys, CAF, AF, Fuel Flt</option>
+                            <option value="SpeedyPoints">Speedy Points</option>
+                            <option value="SyntheticBlend5qts">Synthetic Blend, 5 qts.</option>
+                            <option value="SyntheticBlend6qts">Synthetic Blend, 6 qts.</option>
+                            <option value="TireRotationAnyOilChange">Tire Rotation and ANY Oil Change</option>
+                            <option value="TireRoationConventionalOilChange">Tire Roation and Conventional Oil Change</option>
+                            <option value="TransmissionAnyOilChange">Transmission and ANY Oil Change</option>
+                            <option value="TransRadACSerpBeltPowerSteer">Transmission, Radiator, AC, Serp Belt Replacement and Power Steering</option>
+                          </select>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="adtl-offer-form-group-label">
+                          <label>Discount Type <i>*</i>&nbsp;:</label>
+                        </td>
+                        <td>
+                          <select name="adtlApproach2" class="adtlApproach selectbox" required>
+                            <option value="PERCENT">% Off</option>
+                            <option value="DOLLAR">$ Off</option>
+                            <option value="PRICE_POINT">Price Point</option>
+                          </select>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="adtl-offer-form-group-label">
+                          <label>Discount Amount <i>*</i>&nbsp;:</label>
+                        </td>
+                        <td>
+                          <input name="adtlValue2" class="adtlValue" type="number" required>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="adtl-offer-form-group-label">
+                          <label>Coupon Code <i>*</i>&nbsp;:</label>
+                        </td>
+                        <td>
+                          <input name="adtlCode2" class="adtlCode" type="text" required>
+                        </td>
+                      </tr>
+                    </table>
+                  </div>
+                  <!-- Offer-2 -->
+
+                  <div class="adtl-offer-3 coupon-form">
+                    <table>
+                      <tr>
+                        <td class="adtl-offer-form-group-label">
+                          <label>Coupon Text <i>*</i>&nbsp;:</label>
+                        </td>
+                        <td>
+                          <select name="adtlText3" class="adtlText selectbox" required>
+                            <option value="2WiperswithOilChange">2 Wipers with Oil Change</option>
+                            <option value="AirConditioningCheck">Air Conditioning Check</option>
+                            <option value="AirConditioningService">Air Conditioning Service</option>
+                            <option value="AirConditioningServiceMsg">Air Conditioning Serivce Message</option>
+                            <option value="AirFilterCabinFilter">Air Filter & Cabin Filter</option>
+                            <option value="AirFilterWipers">Air Filter & Wipers</option>
+                            <option value="AirFilterorWiperReplacement">Air Filter or Wiper Replacement</option>
+                            <option value="AirFilterCabinAirFilterWipers">Air Filter, Cabin Air Filter & Wipers</option>
+                            <option value="AllProductsandServices">All Products & Services</option>
+                            <option value="AnyOilChangeStateInspection">ANY Oil Change and State Inspection</option>
+                            <option value="AnyOilChangeTireRotation">ANY Oil Change and Tire Rotation</option>
+                            <option value="AnyOilChangeFuelSystemCleaning">Any Oil Change with Fuel System Cleaning</option>
+                            <option value="AnyOilChange5qts">Any Oil Change, 5qts</option>
+                            <option value="AutoTransFluidExchangeService">Automatic Transmission Fluid Exchange Service</option>
+                            <option value="CarWash">Car Wash</option>
+                            <option value="ConventionalOilChangeStateInspection">Conventional Oil Change with State Inspection</option>
+                            <option value="ConventionalOilChange5qts">Conventional Oil Change, 5qts.</option>
+                            <option value="CustAppreciationOilChangeSpecial">Customer Appreciation Oil Change Special</option>
+                            <option value="DieselOilChange">Diesel Oil Change</option>
+                            <option value="EachGearboxFluidExchangeService">Each Gearbox Fluid Exchange Service</option>
+                            <option value="EarlyBird10amTWT5qts">Early Bird: 10am Tues, Wed, Thurs, 5qts.</option>
+                            <option value="EarlyBirdAnyOC10amTWT5qts">Early Bird: Any OC 10am Tues, Wed, Thurs, 5qts.</option>
+                            <option value="EarnSpeedyRewardsPoints">Earn Speedy Rewards Points</option>
+                            <option value="EmissionsTest">Emissions Test</option>
+                            <option value="EntireInvoice">Entire Invoice</option>
+                            <option value="FuelSavingsPackage">Fuel Savings Package: Oil Change, Tire Rotation & Fuel System Cleaning</option>
+                            <option value="FuelSysCleaningServiceFullServiceOilChange">FUEL SYS CLEANING SERVICE with Any Full-Service Oil Change</option>
+                            <option value="FuelSystemCleaningAirFilter">Fuel System Cleaning & Air Filter</option>
+                            <option value="FuelSystemCleaningService">Fuel System Cleaning Service</option>
+                            <option value="FuelSystemCleaningOilChangeAirFilter">Fuel System Cleaning, Oil Change & Air Filter</option>
+                            <option value="FullSynthetic5qts">Full Synthetic, 5 qts.</option>
+                            <option value="FullSynthetic6qts">Full Synthetic, 6qts.</option>
+                            <option value="OilChangeAirFilter">Oil Change and Air Filter</option>
+                            <option value="Premium5qtsOrDiesel">Premium 5qts. OR Diesel</option>
+                            <option value="Premium6qtsOrDiesel">Premium 6qts. OR Diesel</option>
+                            <option value="PremiumFullServiceOilChangeFreeTireRotation">Premium Full-Service Oil Change and FREE Tire Rotation</option>
+                            <option value="PremiumOilChange5qts">Premium Oil Change, 5qts.</option>
+                            <option value="RadiatorFluidExchangeService">Radiator Fluid Exchange Service</option>
+                            <option value="RadiatorServiceAnyOilChange">Radiator Servce and ANY Oil Change</option>
+                            <option value="SelectPrevMaintenence">Selct Prev Maint: Gear, Rad, ATF, Srp, Fuel Sys, CAF, AF, Fuel Flt</option>
+                            <option value="SpeedyPoints">Speedy Points</option>
+                            <option value="SyntheticBlend5qts">Synthetic Blend, 5 qts.</option>
+                            <option value="SyntheticBlend6qts">Synthetic Blend, 6 qts.</option>
+                            <option value="TireRotationAnyOilChange">Tire Rotation and ANY Oil Change</option>
+                            <option value="TireRoationConventionalOilChange">Tire Roation and Conventional Oil Change</option>
+                            <option value="TransmissionAnyOilChange">Transmission and ANY Oil Change</option>
+                            <option value="TransRadACSerpBeltPowerSteer">Transmission, Radiator, AC, Serp Belt Replacement and Power Steering</option>
+                          </select>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="adtl-offer-form-group-label">
+                          <label>Discount Type <i>*</i>&nbsp;:</label>
+                        </td>
+                        <td>
+                          <select name="adtlApproach3" class="adtlApproach selectbox" required>
+                            <option value="PERCENT">% Off</option>
+                            <option value="DOLLAR">$ Off</option>
+                            <option value="PRICE_POINT">Price Point</option>
+                          </select>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="adtl-offer-form-group-label">
+                          <label>Discount Amount <i>*</i>&nbsp;:</label>
+                        </td>
+                        <td>
+                          <input name="adtlValue3" class="adtlValue" type="number" required>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="adtl-offer-form-group-label">
+                          <label>Coupon Code <i>*</i>&nbsp;:</label>
+                        </td>
+                        <td>
+                          <input name="adtlCode3" class="adtlCode" type="text" required>
+                        </td>
+                      </tr>
+                    </table>
+                  </div>
+                  <!-- Offer-3 -->
+
+                  <div class="adtl-offer-4 coupon-form">
+                    <table>
+                      <tr>
+                        <td class="adtl-offer-form-group-label">
+                          <label>Coupon Text <i>*</i>&nbsp;:</label>
+                        </td>
+                        <td>
+                          <select name="adtlText4" class="adtlText selectbox" required>
+                            <option value="2WiperswithOilChange">2 Wipers with Oil Change</option>
+                            <option value="AirConditioningCheck">Air Conditioning Check</option>
+                            <option value="AirConditioningService">Air Conditioning Service</option>
+                            <option value="AirConditioningServiceMsg">Air Conditioning Serivce Message</option>
+                            <option value="AirFilterCabinFilter">Air Filter & Cabin Filter</option>
+                            <option value="AirFilterWipers">Air Filter & Wipers</option>
+                            <option value="AirFilterorWiperReplacement">Air Filter or Wiper Replacement</option>
+                            <option value="AirFilterCabinAirFilterWipers">Air Filter, Cabin Air Filter & Wipers</option>
+                            <option value="AllProductsandServices">All Products & Services</option>
+                            <option value="AnyOilChangeStateInspection">ANY Oil Change and State Inspection</option>
+                            <option value="AnyOilChangeTireRotation">ANY Oil Change and Tire Rotation</option>
+                            <option value="AnyOilChangeFuelSystemCleaning">Any Oil Change with Fuel System Cleaning</option>
+                            <option value="AnyOilChange5qts">Any Oil Change, 5qts</option>
+                            <option value="AutoTransFluidExchangeService">Automatic Transmission Fluid Exchange Service</option>
+                            <option value="CarWash">Car Wash</option>
+                            <option value="ConventionalOilChangeStateInspection">Conventional Oil Change with State Inspection</option>
+                            <option value="ConventionalOilChange5qts">Conventional Oil Change, 5qts.</option>
+                            <option value="CustAppreciationOilChangeSpecial">Customer Appreciation Oil Change Special</option>
+                            <option value="DieselOilChange">Diesel Oil Change</option>
+                            <option value="EachGearboxFluidExchangeService">Each Gearbox Fluid Exchange Service</option>
+                            <option value="EarlyBird10amTWT5qts">Early Bird: 10am Tues, Wed, Thurs, 5qts.</option>
+                            <option value="EarlyBirdAnyOC10amTWT5qts">Early Bird: Any OC 10am Tues, Wed, Thurs, 5qts.</option>
+                            <option value="EarnSpeedyRewardsPoints">Earn Speedy Rewards Points</option>
+                            <option value="EmissionsTest">Emissions Test</option>
+                            <option value="EntireInvoice">Entire Invoice</option>
+                            <option value="FuelSavingsPackage">Fuel Savings Package: Oil Change, Tire Rotation & Fuel System Cleaning</option>
+                            <option value="FuelSysCleaningServiceFullServiceOilChange">FUEL SYS CLEANING SERVICE with Any Full-Service Oil Change</option>
+                            <option value="FuelSystemCleaningAirFilter">Fuel System Cleaning & Air Filter</option>
+                            <option value="FuelSystemCleaningService">Fuel System Cleaning Service</option>
+                            <option value="FuelSystemCleaningOilChangeAirFilter">Fuel System Cleaning, Oil Change & Air Filter</option>
+                            <option value="FullSynthetic5qts">Full Synthetic, 5 qts.</option>
+                            <option value="FullSynthetic6qts">Full Synthetic, 6qts.</option>
+                            <option value="OilChangeAirFilter">Oil Change and Air Filter</option>
+                            <option value="Premium5qtsOrDiesel">Premium 5qts. OR Diesel</option>
+                            <option value="Premium6qtsOrDiesel">Premium 6qts. OR Diesel</option>
+                            <option value="PremiumFullServiceOilChangeFreeTireRotation">Premium Full-Service Oil Change and FREE Tire Rotation</option>
+                            <option value="PremiumOilChange5qts">Premium Oil Change, 5qts.</option>
+                            <option value="RadiatorFluidExchangeService">Radiator Fluid Exchange Service</option>
+                            <option value="RadiatorServiceAnyOilChange">Radiator Servce and ANY Oil Change</option>
+                            <option value="SelectPrevMaintenence">Selct Prev Maint: Gear, Rad, ATF, Srp, Fuel Sys, CAF, AF, Fuel Flt</option>
+                            <option value="SpeedyPoints">Speedy Points</option>
+                            <option value="SyntheticBlend5qts">Synthetic Blend, 5 qts.</option>
+                            <option value="SyntheticBlend6qts">Synthetic Blend, 6 qts.</option>
+                            <option value="TireRotationAnyOilChange">Tire Rotation and ANY Oil Change</option>
+                            <option value="TireRoationConventionalOilChange">Tire Roation and Conventional Oil Change</option>
+                            <option value="TransmissionAnyOilChange">Transmission and ANY Oil Change</option>
+                            <option value="TransRadACSerpBeltPowerSteer">Transmission, Radiator, AC, Serp Belt Replacement and Power Steering</option>
+                          </select>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="adtl-offer-form-group-label">
+                          <label>Discount Type <i>*</i>&nbsp;:</label>
+                        </td>
+                        <td>
+                          <select name="adtlApproach4" class="adtlApproach selectbox" required>
+                            <option value="PERCENT">% Off</option>
+                            <option value="DOLLAR">$ Off</option>
+                            <option value="PRICE_POINT">Price Point</option>
+                          </select>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="adtl-offer-form-group-label">
+                          <label>Discount Amount <i>*</i>&nbsp;:</label>
+                        </td>
+                        <td>
+                          <input name="adtlValue4" class="adtlValue" type="number" required>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="adtl-offer-form-group-label">
+                          <label>Coupon Code <i>*</i>&nbsp;:</label>
+                        </td>
+                        <td>
+                          <input name="adtlCode4" class="adtlCode" type="text" required>
+                        </td>
+                      </tr>
+                    </table>
+                  </div>
+                  <!-- Offer-4 -->
+
+                </div>
+                <div class="module">
+                  <table>
+                    <tr>
+                      <td>
+                        <div class="program-button">
+                          <input class="save-btn btn btn-primary pull-left" type="submit" id="save" name="save" value="Save">
+                        </div>
+                      </td>
+                    </tr>
+                  </table>
+                </div>
+            </section>
+            </div>
+
+          </form>
+        </div>
+      </section>
     </div>
-    </section>
   </div>
-</div>

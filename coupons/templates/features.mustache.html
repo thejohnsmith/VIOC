@@ -1,0 +1,17 @@
+<!-- Features Template
+    @file features.mustache.html
+    @type template/mustache
+    @import index.html
+-->
+<script class="features-template" type="x-tmpl-mustache">
+    <div id="ads">
+        {{#.}}
+            <div class="ad">
+                {{#img}}<img class="ad-img" alt="{{text}}" src="{{img}}">{{/img}}
+                {{#text}}
+                    <span class="ad-copy">{{text}}</span>
+                {{/text}}
+            </div>
+        {{/.}}
+    </div>
+</script>

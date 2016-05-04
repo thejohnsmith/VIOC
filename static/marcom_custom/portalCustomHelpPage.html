@@ -1,3 +1,8 @@
+<!-- Help Page
+    @file portalCustomProgramHelpPage.html
+    Beta URL:
+    https://marcomcentral.app.pti.com/Epsilon_Data_Management/Beta_Epsilon/CustomPage.aspx?uigroup_id=479602&page_id=10798
+-->
 <div class="wrapper">
   <div class="mid-container">
     <div class="main">
@@ -17,45 +22,63 @@
           <div class="help-get-started">
             <h6>Get Started Now</h6>
             <div class="youtube-video-area">
-
+              <img class="video-placeholder" alt="video not available at this time" src="https://files.marcomcentral.app.pti.com/epsilon/previews/Video_Placeholder.png">
             </div>
             <div class="video-desc">
-              <p>Descriptive text goes here</p>
+              <!-- <div class="video-desc-body">
+                <p>Descriptive text goes here</p>
+              </div> -->
             </div>
           </div>
           <div class="contact-form">
             <h5>Need Personalized Support?</h5>
-            <h4>800-VIOC-ROX or complete form</h4>
+            <h4>Call 888-853-8911
+              <br> M-F 9am-5pm Central
+              <br>
+              <small>or complete the form below and a representative will be in touch
+              </small>
+            </h4>
             <div id="contact-form-main">
-              <div class="form-main">
-                <label>Name</label>
-                <div class="form-input">
-                  <input type="text" class="inputbox" tabindex="1" name="name">
+              <div class="form-head pull-right">
+                <p><i class="required-asterisk"> * </i>
+                  <small>All fields required</small>
+                </p>
+              </div>
+              <div class="form-main" role="presentation">
+                <label for="name">Name <i class="required-asterisk">* </i> :</label>
+                <div class="form-input" role="presentation">
+                  <input id="name" type="text" class="required-field form-field inputbox" tabindex="1" name="name" aria-required="true" aria-invalid="false" required>
                 </div>
               </div>
-              <div class="form-main">
-                <label>Email</label>
-                <div class="form-input">
-                  <input type="text" class="inputbox" tabindex="2" name="email">
+              <div class="form-main" role="presentation">
+                <label for="email">Email <i class="required-asterisk">* </i> :</label>
+                <div class="form-input" role="presentation">
+                  <input id="email" type="text" class="required-field form-field inputbox" tabindex="2" name="email" aria-required="true" aria-invalid="false" required>
                 </div>
               </div>
-              <div class="form-main">
-                <label>Phone</label>
-                <div class="form-input">
-                  <input type="text" class="inputbox" tabindex="3" name="phone">
+              <div class="form-main" role="presentation">
+                <label for="phone">Phone <i class="required-asterisk">* </i> :</label>
+                <div class="form-input" role="presentation">
+                  <input id="phone" type="text" class="required-field form-field inputbox" tabindex="3" name="phone" aria-required="true" aria-invalid="false" required>
                 </div>
               </div>
-              <div class="form-main">
-                <label></label>
-                <div class="form-input">
-                  <textarea class="textbox" placeholder="Tell us what you need help with" tabindex="4" name="message"></textarea>
+              <div class="form-main" role="presentation">
+                <label for="message">Message <i class="required-asterisk">* </i> :</label>
+                <div class="form-input" role="presentation">
+                  <textarea id="message" class="required-field form-field textbox" placeholder="Tell us what you need help with" tabindex="4" name="message" aria-multiline="true" aria-required="true" aria-invalid="false" required></textarea>
                 </div>
               </div>
-              <div class="form-submit">
-                <input type="submit" class="submit-btn" value="Submit" title="Submit" tabindex="5" id="submit-btn">
+              <div class="formmsg errormsg">
+
               </div>
-              <div class="successmsg">Thank you
-                <br>We will contact you soon.</div>
+              <div class="form-submit pull-right">
+                <label for="submit-btn" class="hidden">Use the submit button to send your message.</label>
+                <input id="submit-btn" type="submit" class="btn-submit btn btn-small btn-primary" value="Submit" title="Submit" tabindex="5">
+              </div>
+              <div class="formmsg successmsg">
+                Thank you
+                <br>We will contact you soon.
+              </div>
             </div>
           </div>
         </section>
@@ -65,60 +88,34 @@
           <h1>Support Library</h1>
           <ul>
             <li>
-              <div class="support-img">
-                <img src="https://files.marcomcentral.app.pti.com/epsilon/static/marcom_custom/images/support-img.png" alt="Support Library" title="Support Library">
-              </div>
-              <div class="support-info">
-                <p>Topic-specific supporting text goes here. Sam a qui ratis aut iusam, qui diam quatium adis doluptatis quid elitius, qui vel milibus, sit omnimusantur accuptas dest ommoluptas natium eaquam nonsequ odist, to blabo.</p>
-              </div>
+              <a class="support-link" target="_blank" href="https://files.marcomcentral.app.pti.com/epsilon/pdfs/WARP_Drive_Glossary_of_Terms.pdf">
+                <div class="support-img">
+                  <img src="https://files.marcomcentral.app.pti.com/epsilon/static/marcom_custom/images/ico-documents.png" alt="Glossary of Terms" title="Glossary of Terms">
+                </div>
+                <div class="support-info">
+                  <p>Glossary of Terms</p>
+                </div>
+              </a>
             </li>
             <li>
-              <div class="support-img">
-                <img src="https://files.marcomcentral.app.pti.com/epsilon/static/marcom_custom/images/support-img.png" alt="Support Library" title="Support Library">
-              </div>
-              <div class="support-info">
-                <p>Topic-specific supporting text goes here. Sam a qui ratis aut iusam, qui diam quatium adis doluptatis quid elitius, qui vel milibus, sit omnimusantur accuptas dest ommoluptas natium eaquam nonsequ odist, to blabo.</p>
-              </div>
+              <a class="support-link" target="_blank" href="#">
+                <div class="support-img">
+                  <img src="https://files.marcomcentral.app.pti.com/epsilon/static/marcom_custom/images/ico-documents.png" alt="WARP Manual" title="WARP Manual">
+                </div>
+                <div class="support-info">
+                  <p>WARP Manual</p>
+                </div>
+              </a>
             </li>
             <li>
-              <div class="support-img">
-                <img src="https://files.marcomcentral.app.pti.com/epsilon/static/marcom_custom/images/support-img.png" alt="Support Library" title="Support Library">
-              </div>
-              <div class="support-info">
-                <p>Topic-specific supporting text goes here. Sam a qui ratis aut iusam, qui diam quatium adis doluptatis quid elitius, qui vel milibus, sit omnimusantur accuptas dest ommoluptas natium eaquam nonsequ odist, to blabo.</p>
-              </div>
-            </li>
-          </ul>
-        </div>
-        <div class="faq">
-          <h1>FAQs</h1>
-          <ul id="top-accordian" class="accordion">
-            <li class="title">
-              <a href="#one" class="accordion-title">How do I ... Item 1</a>
-              <ul class="accordion-content">
-                <li>
-                  <p>Doing item 2 is easy, just... a qui ratis aut iusam, qui diam quatium adis doluptatis quid elitius, qui vel milibus, sit omnimusantur accuptas dest ommolupt aquam abo. Sam, qui diam quatium adis doluptatis quid elitius, qui vel milibus,
-                    sit omnimusantur accuptas dest omm. <a href="#" title="Read More">Read More</a></p>
-                </li>
-              </ul>
-            </li>
-            <li class="title">
-              <a href="#one" class="accordion-title">How do I ... Item 2</a>
-              <ul class="accordion-content">
-                <li>
-                  <p>Doing item 2 is easy, just... a qui ratis aut iusam, qui diam quatium adis doluptatis quid elitius, qui vel milibus, sit omnimusantur accuptas dest ommolupt aquam abo. Sam, qui diam quatium adis doluptatis quid elitius, qui vel milibus,
-                    sit omnimusantur accuptas dest omm. <a href="#" title="Read More">Read More</a></p>
-                </li>
-              </ul>
-            </li>
-            <li class="title">
-              <a href="#one" class="accordion-title">How do I ... Item 3</a>
-              <ul class="accordion-content">
-                <li>
-                  <p>Doing item 2 is easy, just... a qui ratis aut iusam, qui diam quatium adis doluptatis quid elitius, qui vel milibus, sit omnimusantur accuptas dest ommolupt aquam abo. Sam, qui diam quatium adis doluptatis quid elitius, qui vel milibus,
-                    sit omnimusantur accuptas dest omm. <a href="#" title="Read More">Read More</a></p>
-                </li>
-              </ul>
+              <a class="support-link" target="_blank" href="https://files.marcomcentral.app.pti.com/epsilon/pdfs/WARP_Drive_FAQs.pdf">
+                <div class="support-img">
+                  <img src="https://files.marcomcentral.app.pti.com/epsilon/static/marcom_custom/images/ico-documents.png" alt="Frequently Asked Questions" title="Frequently Asked Questions">
+                </div>
+                <div class="support-info">
+                  <p>Frequently Asked Questions</p>
+                </div>
+              </a>
             </li>
           </ul>
         </div>

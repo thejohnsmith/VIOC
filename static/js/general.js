@@ -1,3 +1,7 @@
+function getParameterByName(name) {
+    var match = RegExp("[?&]" + name + "=([^&]*)").exec(window.location.search);
+    return match && decodeURIComponent(match[1].replace(/\+/g, " "));
+}
  $(window).load(function() {
    jQuery("body").css('opacity', '1');
  });
@@ -12,30 +16,6 @@
    });
  });
  $(document).ready(function() {
-
-   //  $('.nav-tabs > li > a').on('click', function(event) {
-   //    event.preventDefault(); //stop browser to take action for clicked anchor
-   //
-   //    //get displaying tab content jQuery selector
-   //    var active_tab_selector = $('.nav-tabs > .active > a').attr('href');
-   //
-   //    //find actived navigation and remove 'active' css
-   //    var actived_nav = $('.nav-tabs > .active');
-   //    actived_nav.removeClass('active');
-   //
-   //    //add 'active' css into clicked navigation
-   //    $(this).parents('li').addClass('active');
-   //
-   //    //hide displaying tab content
-   //    $(active_tab_selector).removeClass('active');
-   //    $(active_tab_selector).addClass('hide');
-   //
-   //    //show target tab content
-   //    var target_tab_selector = $(this).attr('href');
-   //    $(target_tab_selector).removeClass('hide');
-   //    $(target_tab_selector).addClass('active');
-   //  });
-
    $('.next').on('click', function() {
      if ($('.nav').find('.active').next().length == 0) {
        $('.nav').find('li').first().find('a').trigger('click');
@@ -159,4 +139,30 @@
      }, 50)
    });
 
- });
+  if ($('.last-service-date').length) {
+    $( "#from" ).datepicker({
+      showOn: "button",
+      buttonImage: "images/calendar.gif",
+      buttonImageOnly: true,
+      buttonText: "Select date",
+      //defaultDate: "+1w",
+      minDate: 0,
+      maxDate: "+1Y",
+      onClose: function( selectedDate ) {
+        $( "#to" ).datepicker( "option", "minDate", selectedDate );
+      }
+    });
+    $( "#to" ).datepicker({
+      showOn: "button",
+      buttonImage: "images/calendar.gif",
+      buttonImageOnly: true,
+      buttonText: "Select date",
+      minDate: 0,
+      maxDate: "+1Y",
+      onClose: function( selectedDate ) {
+        $( "#from" ).datepicker( "option", "maxDate", selectedDate );
+      }
+    });
+  }
+
+});

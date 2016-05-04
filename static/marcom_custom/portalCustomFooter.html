@@ -1,26 +1,62 @@
-<div class="push"></div>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/2.2.1/mustache.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.11.1/moment.min.js"></script>
-<script src="https://files.marcomcentral.app.pti.com/epsilon/static/js/marcomUserData.js"></script>
-<script src="https://files.marcomcentral.app.pti.com/epsilon/static/js/easyResponsiveTabs.js"></script>
-<script src="https://files.marcomcentral.app.pti.com/epsilon/static/js/recordLogin.js"></script>
-<script src="https://files.marcomcentral.app.pti.com/epsilon/static/js/getProgramParticipationStats.js"></script>
-<script src="https://files.marcomcentral.app.pti.com/epsilon/static/js/getStoreProgramData.js"></script>
-<script src="https://files.marcomcentral.app.pti.com/epsilon/static/js/setStoreSubscription.js"></script>
-<script src="https://files.marcomcentral.app.pti.com/epsilon/static/js/customchecknradiobox.js"></script>
+<!-- Previous Version (BACKUP) -->
 
-<!--  Newest -->
 <!-- Dependencies -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/2.2.1/mustache.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.11.1/moment.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.2/toastr.min.js"></script>
 <script src="https://files.marcomcentral.app.pti.com/epsilon/static/js/lib/toastrOpts.js"></script>
 <script src="https://files.marcomcentral.app.pti.com/epsilon/static/js/lib/checkAndRadioBoxes.js"></script>
 <script src="https://files.marcomcentral.app.pti.com/epsilon/static/js/lib/easyResponsiveTabs.js"></script>
+<script src="https://files.marcomcentral.app.pti.com/epsilon/static/js/lib/navTabs.js"></script>
+<script src="https://files.marcomcentral.app.pti.com/epsilon/static/js/lib/appUtilities.js"></script>
+<script src="https://files.marcomcentral.app.pti.com/epsilon/static/js/lib/dynamicCalendar.js"></script>
+<!-- <script src="https://files.marcomcentral.app.pti.com/epsilon/static/js/lib/programFilters.js"></script> -->
+<!-- <script src="https://files.marcomcentral.app.pti.com/epsilon/static/js/app/targetingCriteria.js"></script> -->
 
 <!-- Async,API and Marcom hookups -->
+<script src="https://files.marcomcentral.app.pti.com/epsilon/static/js/app/getHashParams.js"></script>
 <script src="https://files.marcomcentral.app.pti.com/epsilon/static/js/app/marcomUserData.js"></script>
 <script src="https://files.marcomcentral.app.pti.com/epsilon/static/js/app/recordLogin.js"></script>
-<script src="https://files.marcomcentral.app.pti.com/epsilon/static/js/app/getProgramParticipationStats.js"></script>
 <script src="https://files.marcomcentral.app.pti.com/epsilon/static/js/app/getStoreProgramData.js"></script>
+<script src="https://files.marcomcentral.app.pti.com/epsilon/static/js/app/getProgramParticipationStats.js"></script>
+<script src="https://files.marcomcentral.app.pti.com/epsilon/static/js/app/getUserConfigurations.js"></script>
+<script src="https://files.marcomcentral.app.pti.com/epsilon/static/js/app/setProgramDefaults.js"></script>
 <script src="https://files.marcomcentral.app.pti.com/epsilon/static/js/app/setStoreSubscription.js"></script>
+<script src="https://files.marcomcentral.app.pti.com/epsilon/static/js/app/programManagement.js"></script>
+<script src="https://files.marcomcentral.app.pti.com/epsilon/static/js/app/overrideCatalogStyles.js"></script>
+<script src="https://files.marcomcentral.app.pti.com/epsilon/static/js/app/programManagementFilters.js"></script>
+<script src="https://files.marcomcentral.app.pti.com/epsilon/static/js/app/programConfigController.js"></script>
+<script src="https://files.marcomcentral.app.pti.com/epsilon/static/js/app/additionalOfferController.js"></script>
+<script src="https://files.marcomcentral.app.pti.com/epsilon/static/js/app/checkboxController.js"></script>
+
+
+<!--  Latest/New Version -->
+
+<!-- Dependencies -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/2.2.1/mustache.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.11.1/moment.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.2/toastr.min.js"></script>
+<script src="https://files.marcomcentral.app.pti.com/epsilon/static/js/lib/toastrOpts.js"></script>
+<script src="https://files.marcomcentral.app.pti.com/epsilon/static/js/lib/jquery.alerts.js"></script>
+<script src="https://files.marcomcentral.app.pti.com/epsilon/static/js/lib/checkAndRadioBoxes.js"></script>
+<script src="https://files.marcomcentral.app.pti.com/epsilon/static/js/lib/easyResponsiveTabs.js"></script>
+<script src="https://files.marcomcentral.app.pti.com/epsilon/static/js/lib/navTabs.js"></script>
+<script src="https://files.marcomcentral.app.pti.com/epsilon/static/js/lib/appUtilities.js"></script>
+<script src="https://files.marcomcentral.app.pti.com/epsilon/static/js/lib/dynamicCalendar.js"></script>
+
+<!-- Async,API and Marcom hookups -->
+<script src="https://files.marcomcentral.app.pti.com/epsilon/static/js/app/getHashParams.js"></script>
+<script src="https://files.marcomcentral.app.pti.com/epsilon/static/js/app/marcomUserData.js"></script>
+<script src="https://files.marcomcentral.app.pti.com/epsilon/static/js/app/recordLogin.js"></script>
+<script src="https://files.marcomcentral.app.pti.com/epsilon/static/js/app/getStoreProgramData.js"></script>
+<script src="https://files.marcomcentral.app.pti.com/epsilon/static/js/app/getProgramParticipationStats.js"></script>
+<script src="https://files.marcomcentral.app.pti.com/epsilon/static/js/app/getUserConfigurations.js"></script>
+<script src="https://files.marcomcentral.app.pti.com/epsilon/static/js/app/setProgramDefaults.js"></script>
+<script src="https://files.marcomcentral.app.pti.com/epsilon/static/js/app/setStoreSubscription.js"></script>
+<script src="https://files.marcomcentral.app.pti.com/epsilon/static/js/app/programManagement.js"></script>
+<script src="https://files.marcomcentral.app.pti.com/epsilon/static/js/app/overrideCatalogStyles.js"></script>
+<script src="https://files.marcomcentral.app.pti.com/epsilon/static/js/app/programManagementFilters.js"></script>
+<script src="https://files.marcomcentral.app.pti.com/epsilon/static/js/app/programConfigController.js"></script>
+<script src="https://files.marcomcentral.app.pti.com/epsilon/static/js/app/additionalOfferController.js"></script>
+<script src="https://files.marcomcentral.app.pti.com/epsilon/static/js/app/checkboxController.js"></script>
+<script src="https://files.marcomcentral.app.pti.com/epsilon/static/js/app/contactUsController.js"></script>

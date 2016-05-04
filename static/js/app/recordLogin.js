@@ -7,79 +7,88 @@
      data-user-last-name="%%User.LastName%%"
      data-user-email="%%User.Email%%"
  */
-var recordLogin = (function($) {
-  var makeRequest = function() {
-    var localDevUrl =
-      'data/recordLogin.jssp';
-    var marcomDevUrl =
-      'https://files.marcomcentral.app.pti.com/epsilon/static/data/recordLogin.jssp';
-    var acUrl =
-      'https://adobe-uat-vioc.epsilon.com/jssp/vioc/recordLogin.jssp';
-    $.ajax({
-      url: acUrl,
-      type: 'GET',
-      headers: {
-        'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
-      },
-      data: {
-        userId: marcomUserData.$user.externalId
-      },
-      processData: true,
-      contentType: 'application/json'
-    }).done(function(data) {
-      results = JSON.parse(data);
-      getLoginDays(results);
-    }).fail(function() {
-      return;
-    });
-  };
+var recordLogin = (function ($) {
+	var makeRequest = function () {
 
-  var getLoginDays = function(results) {
-    var loginDays = {
-      'x': results.firstPortalLogin,
-      'y': results.lastPortalLogin
-    };
+		var useCookie = false;
 
-    var getDateRange = function(loginDays) {
-        var fistDay = moment(loginDays.x);
-        var lastDay = moment(loginDays.y);
-        var range = lastDay.diff(fistDay, 'days');
+		if (document.cookie.replace(/(?:(?:^|.*;\s*)marcomUserId\s*\=\s*([^;]*).*$)|^.*$/, '$1') != '') {
+			cookie_user_id = document.cookie.replace(/(?:(?:^|.*;\s*)marcomUserId\s*\=\s*([^;]*).*$)|^.*$/, '$1');
+			useCookie = (cookie_user_id == marcomUserData.$user.externalId);
+			// console.log((useCookie) ? "Cookie matches active user" : "Cookie doesn't match active user");
+		};
 
-        /* Make sure the moment library has loaded */
-        if (typeof moment === 'undefined') {
-          console.log('%c ** Error ** ',
-            'color: #f10; font-weight: bold;',
-            '\nmoment.js was not loaded.');
-          return showGettingStarted();
-        }
+		if (useCookie) {
+			// We have a cookie containing:
+			var results = {
+				marcomUserId: document.cookie.replace(/(?:(?:^|.*;\s*)marcomUserId\s*\=\s*([^;]*).*$)|^.*$/, '$1'),
+				loginCount: document.cookie.replace(/(?:(?:^|.*;\s*)loginCount\s*\=\s*([^;]*).*$)|^.*$/, '$1'),
+				marcomReportingAccess: document.cookie.replace(/(?:(?:^|.*;\s*)marcomReportingAccess\s*\=\s*([^;]*).*$)|^.*$/, '$1')
+			};
+			setLandingPageType(results);
+		} else {
+			// var localDevUrl = 'data/recordLogin.jssp';
+			// var marcomDevUrl = 'https://files.marcomcentral.app.pti.com/epsilon/static/data/recordLogin.jssp';
+			var apiPath = marcomUserData.$constants.apiPath + 'recordLogin.jssp';
+			$.ajax({
+				url: apiPath,
+				type: 'GET',
+				headers: {
+					'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
+				},
+				data: {
+					userId: marcomUserData.$user.externalId
+				},
+				processData: true,
+				contentType: 'application/json'
+			}).done(function (data) {
+				var results = JSON.parse(data);
+				if ($('#welcome').length) {
+					setLandingPageType(results);
+				}
+			}).fail(function () {
+				return;
+			});
+		}
+	};
+	var setLandingPageType = function (results) {
+		var $loginCount = results.loginCount;
+		var $newUser = getParameterByName('newUser', window.location.href);
+		var $reportingAccess = results.marcomReportingAccess;
+		// console.log("results.marcomReportingAccess = " + results.marcomReportingAccess);
 
-        /* Switch sections of home page depending on login times.
-         * If time between last login and first login is greater than 5 days: show Getting Started section.
-         * If time is less then show the Program Summary section.
-         */
-        if (range > 5) {
-          // Greater than 5, show "Getting Started Now" version of the home page.
-          return showGettingStarted();
-        } else {
-          // Less than 5, show the "Programs" version of the home page.
-          return showPrograms();
-        }
-      },
-      showGettingStarted = function() {
-        $('#gettingStartedNow').fadeIn();
-        $('#programSummary').hide();
-      },
-      showPrograms = function() {
-        $('#gettingStartedNow').hide();
-        $('#programSummary').fadeIn();
-      }
+		document.cookie = 'loginCount=' + $loginCount;
+		document.cookie = 'marcomReportingAccess=' + $reportingAccess;
+		document.cookie = 'marcomUserId=' + marcomUserData.$user.externalId;
 
-    return getDateRange(loginDays);
-  }
+		/* Show Reports main nav link if reportingAccess is 1 */
+		$('.navBarItem > a').filter(function () {
+			return $(this).text() === 'REPORTS';
+		}).addClass('reports-link');
 
-  return {
-    makeRequest: makeRequest
-  };
+		if ($reportingAccess == 0) {
+			$('.reports-link').addClass('hide');
+		}
+		if ($reportingAccess == 1) {
+			$('.reports-link').removeClass('hide');
+		}
+
+		if ($newUser > 0) {
+			$loginCount = 1;
+		}
+		if ($loginCount < 3) {
+			// Greater than 5, show "Getting Started Now" version of the home page.
+			$('#welcome + #gettingStartedNow.landing-page-only').fadeIn();
+			$('#programSummary.landing-page-only').hide();
+		} else {
+			// Less than 5, show the "Programs" version of the home page.
+			$('#welcome + #gettingStartedNow.landing-page-only').hide();
+			$('#programSummary.landing-page-only').fadeIn();
+		}
+	};
+	return {
+		makeRequest: makeRequest
+	};
 })(jQuery);
 
 recordLogin.makeRequest();

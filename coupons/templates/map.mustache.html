@@ -1,0 +1,10 @@
+<!-- Map Template
+    @file map.mustache.html
+    @type template/mustache
+    @import index.html
+-->
+<script class="map-template" type="x-tmpl-mustache">
+<div class="item">
+    <img id="MapImage" src="{{#map_image}}{{map_image}}{{/map_image}}{{^map_image}}http://placehold.it/344x252 {{/map_image}}" style="border-width:0px;margin-left:-50px;">
+  </div>
+</script>
