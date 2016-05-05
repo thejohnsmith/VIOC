@@ -131,6 +131,14 @@ var getProgramParticipationStats = (function ($) {
 				error: ['status-error']
 			};
 
+			/** Update the Url's to use variable links from $constants.
+				*	@param {data} programId is retreived from inline data attr: data-programId={mustache_Id}
+				*/
+			$('.program-edit a').each(function() {
+        var programId = $(this).attr('data-programId');
+        $(this).attr('href', marcomUserData.$constants.programManagementUrl + '&programId=' + programId);
+      });
+
 			// Yellow Highlight
 			$('.program-select .program-list li').on('mouseover', function () {
 			  $('.program-select .program-list li').removeClass('item-highlight');

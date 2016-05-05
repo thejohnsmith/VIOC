@@ -53,7 +53,7 @@ var programManagementController = (function ($) {
 		 */
 		retrieveUserConfigs: function (callback) {
 			var controller = this;
-			if (!controller.program_id) {
+			if(!controller.program_id) {
 				console.warn('No program Id found,');
 				return;
 			}
@@ -71,7 +71,7 @@ var programManagementController = (function ($) {
 		 */
 		getStoreProgramData: function (callback) {
 			var controller = this;
-			controller.timeDebug('Triggering getStoreProgramData API call..');
+			controller.timeDebug("Triggering getStoreProgramData API call..");
 			$.get(controller.apiPath + 'getStoreProgramData.jssp?userId=' + encodeURIComponent(controller.user_id) + '&programId=' + controller.program_id, function (results) {
 				controller.timeDebug("API call complete.");
 				var json_results = JSON.parse(results);
@@ -91,6 +91,8 @@ var programManagementController = (function ($) {
 			$.get(controller.apiPath + 'getProgramParticipationStats.jssp?userId=' + encodeURIComponent(controller.user_id), function (results) {
 				controller.timeDebug("getProgramData API call complete!");
 				var json_results = JSON.parse(results);
+				//controller.refreshSelectAllButton();
+				//controller.refreshStoreRowEnrollment();
 
 				// Loop through the API result and find the program that matches program ID (DONE)
 				$.each(json_results, function (i, result) {
@@ -145,8 +147,8 @@ var programManagementController = (function ($) {
 				var $editLink = $(this).parent().next().find('.program-edit-link');
 				var $deleteLink = $(this).parent().next().find('.program-delete-link');
 				var configPageUrl = marcomUserData.$constants.configPageUrl;
+				var additionalOfferPageUrl = marcomUserData.$constants.additionalOfferPageUrl;
 				var defaultMgmg = false;
-
 				$.each(controller.user_configs, function (i, config) {
 					if (config.corpDefault == 1 && config.id == configId)
 						defaultMgmg = true;
@@ -162,6 +164,7 @@ var programManagementController = (function ($) {
 					$.each($('.store-level-dropdown' + targetClass), function (i, e) {
 						if ($(e).val() == selectedConfigId) storeCount++;
 					});
+					// console.log("Clicked delete on config " + $selectedMgmg.val() + ".  Stores using this config: " + storeCount);
 					var message = (storeCount == 0) ? 'Are you sure you want to delete these settings?' : storeCount + ' store(s) are using these settings and will be adjusted to use corporate defaults.' + ' Are you sure you want to delete these settings?';
 
 					jConfirm(message, 'Please Confirm', function (r) {
@@ -172,8 +175,12 @@ var programManagementController = (function ($) {
 						}
 					});
 				});
+
 				// Update the Edit/View links
 				$editLink.attr('href', configPageUrl + '&configId=' + configId + '&programId=' + controller.program_id);
+				$('.program-new-link').attr('href', configPageUrl + '&programId=' + controller.program_id);
+				$('.adtl-new-link').attr('href', additionalOfferPageUrl + '&programId=' + controller.program_id);
+
 				// Corporate Default configs are read-only - swap View and Edit links.
 				if (defaultMgmg) {
 					$editLink.text('View');
@@ -198,6 +205,7 @@ var programManagementController = (function ($) {
 			var controller = this;
 			controller.templatesLoaded = 0;
 			var allTemplateLoaded = function () {
+				// console.log("Firing initBuildUI()");
 				if ($('[data-enrolled="true"] .toggle-btn')) {
 					$('[data-enrolled="true"] .toggle-btn').addClass('active').prop('checked', 'checked');
 				}
@@ -262,23 +270,27 @@ var programManagementController = (function ($) {
 
 		getMustacheTemplate: function (filename, extraction_css_selector, target_css_selector, data, callback) {
 			var controller = this;
-			var template_key = filename.replace('.', '');
+			var template_key = filename.replace(".", "");
+
 			var fillContent = function (template, data) {
-				controller.timeDebug('Filling ' + target_css_selector + ' with ' + data.length + ' data elements.');
+				controller.timeDebug("Filling " + target_css_selector + ' with ' + data.length + ' data elements.')
 				$(target_css_selector).html(Mustache.render(template, data));
-				controller.timeDebug('Done filling ' + target_css_selector + ' with ' + data.length + ' data elements.');
+				controller.timeDebug("Done filling " + target_css_selector + ' with ' + data.length + ' data elements.')
 			}
 
 			if (typeof controller[template_key] != 'undefined' && controller[template_key] != '') {
+				// console.log("Loading cached version of " + template_key);
 				fillContent(controller[template_key], data);
 				callback(controller[template_key]);
 			} else {
+
 				$.get(controller.filePath + filename, function (templates) {
 					controller[template_key] = $(templates).filter(extraction_css_selector).html();
 					fillContent(controller[template_key], data);
 					callback(controller[template_key]);
 				});
 			}
+
 		},
 		setHashLinks: function () {
 			var currentProgramId = getParameterByName('programId', window.location.href);
@@ -337,14 +349,17 @@ var programManagementController = (function ($) {
 			 * Calculate the grand total for Email, DM and SMS from all stores enrolled.
 			 **/
 			var target = '.store-counts[data-enrolled="true"] .' + e + ':visible';
+			// console.log("Rows matching target of " + target  + " is " + $(target).length);
 			$(target).each(function () {
 				if ($(this).parent().not(".dim-mid")) {
 					var n = parseFloat($(this).text());
 					n = (isNaN(n)) ? 0 : n;
+					// console.log(e + " field contains " + n);
 					newSum += n;
 				}
 			}).promise().done(function () {
 				newSum = (isNaN(newSum)) ? "Not Available" : newSum;
+				// console.log("Total for " + e + " is  " + newSum);
 				$('.grand-total .' + e).text(newSum);
 			});
 			/**
@@ -357,8 +372,10 @@ var programManagementController = (function ($) {
 
 				n = (isNaN(n)) ? 0 : n;
 				newCostSum += (isNaN(n)) ? 0 : n;
+				// console.log("newCostSum is " + newCostSum);
 			}).promise().done(function () {
-				var grandTotal = (isNaN(newCostSum)) ? 'Not Available' : newCostSum.toFixed(2);
+				var grandTotal = (isNaN(newCostSum)) ? "Not Available" : newCostSum.toFixed(2);
+				// console.log("grandTotal is " + grandTotal);
 				$('.grand-total .costEstimateTotal').text(grandTotal);
 			});
 		},
@@ -405,6 +422,7 @@ var programManagementController = (function ($) {
 			});
 
 			// Proof Settings Handler
+			// data-prooftype="emProofSettings", data-prooftype="dmProofSettings", data-prooftype="smsProofSettings
 			$('.link-proof-single').on('change', function () {
 				var storeId = $(this).attr('data-storeid');
 				var proofType = $(this).attr('data-prooftype');
@@ -431,7 +449,11 @@ var programManagementController = (function ($) {
 				var bulkProofType = $(this).attr('data-prooftype');
 				var bulkProofVal = $(this).val();
 
+				// console.warn('bulkProofType: ' + bulkProofType);
+				// console.warn('bulkProofVal: ' + bulkProofVal);
+
 				// Build a list of selected stores
+				// @TODO This is not working, not respecting .checked class.
 				var selectedStores = [];
 				$.each($('.proof-settings-tab-section .store-item').find('.proof-settings.checked'), function (i, obj) {
 					selectedStores.push($(obj).attr('data-storeid'));
@@ -450,6 +472,8 @@ var programManagementController = (function ($) {
 					}
 				});
 
+				//$('.proof-settings.select-all').click(this.selectMultipleProofSettings);
+
 				// Send API Request
 				controller.saveProofMeta([storeIds], bulkProofType, bulkProofVal, function () {
 					toastr.success('Bulk Proof settings saved!');
@@ -462,17 +486,18 @@ var programManagementController = (function ($) {
 			$('.bulk-apply-quantity-limit').click(this.setBulkQuantityLimit);
 
 			$('.toggle-btn').off('click.vioc').on('click.vioc', function (e) {
+
 				var $programId = getParameterByName('programId', window.location.href);
 				var $userId = marcomUserData.$user.externalId || {};
 				var $storeId = $(this).attr('data-storeid');
 
-				if ($(this).attr('data-enrolled') == 'true') {
+				if ($(this).attr('data-enrolled') == "true") {
 					var $storeId = $(this).attr('data-storeid');
-					$(this).attr('data-enrolled', 'false');
+					$(this).attr('data-enrolled', "false");
 					setStoreSubscription.makeRequest($userId, $storeId, $programId, 0);
-				} else if ($(this).attr('data-enrolled') == 'false') {
+				} else if ($(this).attr('data-enrolled') == "false") {
 					var $storeId = $(this).attr('data-storeid');
-					$(this).attr('data-enrolled', 'true');
+					$(this).attr('data-enrolled', "true");
 					setStoreSubscription.makeRequest($userId, $storeId, $programId, 1)
 				}
 				controller.refreshSelectAllButton();
@@ -488,10 +513,12 @@ var programManagementController = (function ($) {
 
 				if (!$(this).hasClass('activate')) {
 					$('.toggle-btn[data-enrolled="true"]:visible').each(function () {
+						// console.log('all true ones block....');
 						var $storeId = $(this).attr('data-storeid');
 						$(this).attr('data-enrolled', "false");
 						storeIds.push($storeId);
 					});
+					console.log("Unsubscribing stores " + storeIds.join(","));
 					setStoreSubscription.makeRequest($userId, storeIds.join(","), $programId, 0);
 					$(this).addClass('activate');
 				} else if ($(this).hasClass('activate')) {
@@ -500,6 +527,7 @@ var programManagementController = (function ($) {
 						$(this).attr('data-enrolled', "true");
 						storeIds.push($storeId);
 					});
+					// console.log("Subscribing stores " + storeIds.join(","));
 					setStoreSubscription.makeRequest($userId, storeIds.join(","), $programId, 1);
 					$(this).removeClass('activate');
 				}
@@ -517,7 +545,7 @@ var programManagementController = (function ($) {
 				try {
 					input = r;
 					if (input != '' && typeof input != 'undefined' && input != false && input.length >= 5) {
-						$.get(controller.apiPath + 'sendProgramSummaryCSV.jssp?userId=' + encodeURIComponent(controller.user_id) + '&email=' + encodeURIComponent(input), function (results) {
+						$.get(controller.apiPath + 'sendProgramSummaryCSV.jssp?userId=' + encodeURIComponent(controller.user_id) + "&email=" + encodeURIComponent(input), function (results) {
 							toastr.success('Your request has been received and will deliver to ' + input + '.  The report may take several minutes to arrive.');
 						}).error(function (data) {
 							toastr.error('Error requesting summary report.');
@@ -662,9 +690,11 @@ var programManagementController = (function ($) {
 			});
 		},
 		refreshSelectAllButton: function () {
+
 			// Get the count of the visible store checkboxes
 			var visible_store_count = $('.program-enrollment-section .toggle-btn:visible').length;
 			var enrolled_store_count = $('.program-enrollment-section [data-enrolled="true"].toggle-btn:visible').length;
+			// console.log("visible_store_count = " + visible_store_count + " / enrolled_store_count = " + enrolled_store_count);
 
 			if (visible_store_count === enrolled_store_count) {
 				$('.enroll-all-stores.btn').removeClass('activate').text('Unenroll All');
@@ -709,11 +739,13 @@ var programManagementController = (function ($) {
 			controller.timeDebug("Finished refreshStoreRowEnrollment.")
 		},
 
-		hardUIRefresh: function () {
+		hardUIRefresh: function() {
+
 			var controller = this;
 
-			controller.getStoreProgramData(function () {
-				controller.retrieveUserConfigs(function () {
+			controller.getStoreProgramData(function() {
+				controller.retrieveUserConfigs(function() {
+
 					var targetStores = [];
 					var store_ids = programManagementFilters.controller.store_ids;
 
@@ -722,9 +754,11 @@ var programManagementController = (function ($) {
 							targetStores.push(store);
 						}
 					});
+
 					controller.buildUI(targetStores);
 				});
 			});
+
 		},
 
 		ShowUI: function () {
