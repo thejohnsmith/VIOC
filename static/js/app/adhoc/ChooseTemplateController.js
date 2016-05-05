@@ -1,4 +1,10 @@
+var pageAnchor = "#ctl00_content_CtlPager_lblItemsPerPage";
+var pageKey = "catalog.aspx";
+
 /* Choose Template Controller
+ * Note: The On-Demand Marketing URL for Beta is:
+	https://marcomcentral.app.pti.com/Epsilon_Data_Management/Beta_Epsilon/catalog.aspx?uigroup_id=479602&folder_id=1633307
+
  * @description - Loads templates with data from custom Adobe API.
  * @filename - ChooseTemplateController.js
  * @author - Anthony Gill, John Smith : Epsilon 2016
@@ -24,25 +30,12 @@ ChooseTemplateController = (function ($) {
 		intervalHandle: null,
 		init: function () {
 			var controller = this;
-			controller.WatchForAnchor(function () {
-				controller.WatchForPageReady(function () {
-					controller.AdjustUI();
-				});
+			controller.WatchForPageReady(function () {
+				controller.AdjustUI();
 			});
 		},
 		isPageReady: function () {
-			console.warn('isPageReady: true.');
-			return true;
-		},
-		WatchForAnchor: function (callback) {
-			var controller = this;
-			console.warn('Watching for: Anchors...');
-			if (controller.templateAnchor) {
-				// ...
-			}
-			if (typeof callback === 'function') {
-				callback();
-			}
+			return $(pageAnchor).length > 0;
 		},
 		WatchForPageReady: function (callback) {
 			var controller = this;
@@ -63,4 +56,7 @@ ChooseTemplateController = (function ($) {
 	};
 })(jQuery);
 
-ChooseTemplateController.controller.init();
+// Only execute this controller on a certain page
+if (window.location.href.indexOf(pageKey) > -1) {
+	ChooseTemplateController.controller.init();
+}
