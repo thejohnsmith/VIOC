@@ -21,13 +21,13 @@
       <tbody>
         {{#.}}
         <tr class="filterable store-item" data-filter-storeId="{{storeId}}" data-storeId="{{storeId}}" data-enrolled="{{#enrolled}}true{{/enrolled}}{{^enrolled}}false{{/enrolled}}">
-          <td class="checkbox-td store-item-dimable">
-            <div class="checkbox-area">
-              <div data-storeId="{{storeId}}" class="program-settings vioc-checkbox {{^enrolled}}disabled{{/enrolled}}">
-                <input {{^enrolled}}readonly{{/enrolled}} type="checkbox">
-              </div>
+        <td class="checkbox-td store-item-dimable">
+          <div class="checkbox-area">
+            <div data-storeId="{{storeId}}" class="program-settings vioc-checkbox {{^enrolled}}disabled{{/enrolled}}">
+              <input {{^enrolled}}readonly{{/enrolled}} type="checkbox">
             </div>
-          </td>
+          </div>
+        </td>
 
           <td data-storeId="{{storeId}}" class="store-item-dimable {{^enrolled}}dim-mid{{/enrolled}} store program-settings-store" style="padding: 21px 8px">
             <div class="store-name">{{storeName}}</div>
@@ -86,7 +86,7 @@
     <div class="row">
       <div class="col-sm-6 standard-offer">
         <h1 style="font-size: 20px">Oil Change Offers / Service Offers
-          <a class="btn btn-sm btn-link js-create-program-hash program-new-link" href="">
+          <a class="btn btn-sm btn-link js-create-program-hash" href="CustomPage.aspx?uigroup_id=479602&page_id=11225">
           Create New
         </a>
         </h1>
@@ -97,10 +97,10 @@
               </select>
             </td>
             <td>
-              <a class="btn btn-sm btn-link js-create-program-hash program-edit-link" href="">
+              <a class="btn btn-sm btn-link js-create-program-hash program-edit-link" data-baseUrl="CustomPage.aspx?uigroup_id=479602&page_id=11225" href="CustomPage.aspx?uigroup_id=479602&page_id=11225">
                 Edit
               </a>
-              <a class="btn btn-sm btn-link js-create-program-hash program-delete-link" href="">
+              <a class="btn btn-sm btn-link js-create-program-hash hidden program-delete-link" data-baseUrl="CustomPage.aspx?uigroup_id=479602&page_id=11225" href="#">
                 Delete
               </a>
             </td>
@@ -109,7 +109,7 @@
       </div>
       <div class="col-sm-6 additional-offer">
         <h1 style="font-size: 20px">Additional Offers
-          <a class="btn btn-sm btn-link js-create-program-hash adtl-new-link" href="">
+          <a class="btn btn-sm btn-link js-create-program-hash" href="CustomPage.aspx?uigroup_id=479602&page_id=11226">
           Create New
         </a>
         </h1>
@@ -120,10 +120,10 @@
               </select>
             </td>
             <td>
-              <a class="btn btn-sm btn-link program-edit-link" href="">
+              <a class="btn btn-sm btn-link program-edit-link" data-baseurl="CustomPage.aspx?uigroup_id=479602&page_id=11226" href="CustomPage.aspx?uigroup_id=479602&page_id=11226">
               Edit
             </a>
-              <a class="btn btn-sm btn-link js-create-program-hash program-delete-link" href="">
+            <a class="btn btn-sm btn-link js-create-program-hash hidden program-delete-link" data-baseUrl="CustomPage.aspx?uigroup_id=479602&page_id=11225" href="#">
               Delete
             </a>
             </td>
