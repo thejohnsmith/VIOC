@@ -1,7 +1,12 @@
 /** Program Management
  * @file programManagement.js
+ * @requires getStoreProgramData.jssp
+ * @NOTE ** In order for this script to run it needs to have markup from program-settings.mustache.html
+ * @todo Add overview in this documentation.
  * @example programManagementController.controller.init(user_id);
  * @return {object} controller
+ dnbrumbaugh@ashland.com
+ dbrumbaugh_47285
  */
 
 var programManagementController = (function ($) {
@@ -39,8 +44,8 @@ var programManagementController = (function ($) {
 			controller.refreshManagementControls();
 			controller.refreshProofControls();
 			controller.refreshSelectAllButton();
-			controller.ShowUI();
 			controller.refreshStoreRowEnrollment();
+			controller.ShowUI();
 		},
 		highlightNavSection: function () {
 			var controller = this;
@@ -53,7 +58,7 @@ var programManagementController = (function ($) {
 		 */
 		retrieveUserConfigs: function (callback) {
 			var controller = this;
-			if(!controller.program_id) {
+			if (!controller.program_id) {
 				console.warn('No program Id found,');
 				return;
 			}
@@ -138,21 +143,27 @@ var programManagementController = (function ($) {
 				}
 			}
 		},
+
+		/* @TODO Use proper default management value!!! */
+
 		refreshManagementControls: function () {
 			var controller = this;
 			$('.management-dropdown').each(function () {
+
 				var $selectedMgmg = $(this).find(':selected');
 				var configId = $selectedMgmg.val();
 				var $selectedMgmgText = $selectedMgmg.text();
 				var $editLink = $(this).parent().next().find('.program-edit-link');
 				var $deleteLink = $(this).parent().next().find('.program-delete-link');
-				var configPageUrl = marcomUserData.$constants.configPageUrl;
-				var additionalOfferPageUrl = marcomUserData.$constants.additionalOfferPageUrl;
+				var $baseUrl = $editLink.attr('data-baseUrl');
+
 				var defaultMgmg = false;
 				$.each(controller.user_configs, function (i, config) {
 					if (config.corpDefault == 1 && config.id == configId)
 						defaultMgmg = true;
 				});
+
+				// console.warn('controller.user_configs[0].corpDefault: ' + controller.user_configs[0].corpDefault);
 
 				$deleteLink.off().on('click', function (e) {
 					e.preventDefault;
@@ -165,23 +176,23 @@ var programManagementController = (function ($) {
 						if ($(e).val() == selectedConfigId) storeCount++;
 					});
 					// console.log("Clicked delete on config " + $selectedMgmg.val() + ".  Stores using this config: " + storeCount);
-					var message = (storeCount == 0) ? 'Are you sure you want to delete these settings?' : storeCount + ' store(s) are using these settings and will be adjusted to use corporate defaults.' + ' Are you sure you want to delete these settings?';
+					var message = (storeCount == 0) ? 'Are you sure you want to delete these settings?' : storeCount + ' store(s) are using these settings and will be adjusted to use default settings.' + ' Are you sure you want to delete these settings?';
 
 					jConfirm(message, 'Please Confirm', function (r) {
 						if (r) {
 							controller.deleteSettings(selectedConfigId, function () {
-								controller.hardUIRefresh();
+								controller.buildUI(controller.store_data);
 							});
 						}
 					});
 				});
 
 				// Update the Edit/View links
-				$editLink.attr('href', configPageUrl + '&configId=' + configId + '&programId=' + controller.program_id);
-				$('.program-new-link').attr('href', configPageUrl + '&programId=' + controller.program_id);
-				$('.adtl-new-link').attr('href', additionalOfferPageUrl + '&programId=' + controller.program_id);
+				$editLink.attr('href', $baseUrl + '&configId=' + configId + '&programId=' + controller.program_id);
 
 				// Corporate Default configs are read-only - swap View and Edit links.
+				$deleteLink.removeClass('hidden'); // :JOHN:  Delete this after removing "hidden" class from the Delete links
+
 				if (defaultMgmg) {
 					$editLink.text('View');
 					$deleteLink.hide();
@@ -278,7 +289,7 @@ var programManagementController = (function ($) {
 				controller.timeDebug("Done filling " + target_css_selector + ' with ' + data.length + ' data elements.')
 			}
 
-			if (typeof controller[template_key] != 'undefined' && controller[template_key] != '') {
+			if (typeof controller[template_key] != 'undefined' && controller[template_key] != "") {
 				// console.log("Loading cached version of " + template_key);
 				fillContent(controller[template_key], data);
 				callback(controller[template_key]);
@@ -292,6 +303,7 @@ var programManagementController = (function ($) {
 			}
 
 		},
+
 		setHashLinks: function () {
 			var currentProgramId = getParameterByName('programId', window.location.href);
 			if ($('.js-create-program-hash').length) {
@@ -518,7 +530,7 @@ var programManagementController = (function ($) {
 						$(this).attr('data-enrolled', "false");
 						storeIds.push($storeId);
 					});
-					console.log("Unsubscribing stores " + storeIds.join(","));
+					// console.log("Unsubscribing stores " + storeIds.join(","));
 					setStoreSubscription.makeRequest($userId, storeIds.join(","), $programId, 0);
 					$(this).addClass('activate');
 				} else if ($(this).hasClass('activate')) {
@@ -545,7 +557,7 @@ var programManagementController = (function ($) {
 				try {
 					input = r;
 					if (input != '' && typeof input != 'undefined' && input != false && input.length >= 5) {
-						$.get(controller.apiPath + 'sendProgramSummaryCSV.jssp?userId=' + encodeURIComponent(controller.user_id) + "&email=" + encodeURIComponent(input), function (results) {
+						$.get(controller.apiPath + 'sendProgramSummaryCSV.jssp?userId=' + encodeURIComponent(controller.user_id) + '&email=' + encodeURIComponent(input), function (results) {
 							toastr.success('Your request has been received and will deliver to ' + input + '.  The report may take several minutes to arrive.');
 						}).error(function (data) {
 							toastr.error('Error requesting summary report.');
@@ -690,11 +702,9 @@ var programManagementController = (function ($) {
 			});
 		},
 		refreshSelectAllButton: function () {
-
 			// Get the count of the visible store checkboxes
 			var visible_store_count = $('.program-enrollment-section .toggle-btn:visible').length;
 			var enrolled_store_count = $('.program-enrollment-section [data-enrolled="true"].toggle-btn:visible').length;
-			// console.log("visible_store_count = " + visible_store_count + " / enrolled_store_count = " + enrolled_store_count);
 
 			if (visible_store_count === enrolled_store_count) {
 				$('.enroll-all-stores.btn').removeClass('activate').text('Unenroll All');
@@ -739,13 +749,11 @@ var programManagementController = (function ($) {
 			controller.timeDebug("Finished refreshStoreRowEnrollment.")
 		},
 
-		hardUIRefresh: function() {
-
+		hardUIRefresh: function () {
 			var controller = this;
 
-			controller.getStoreProgramData(function() {
-				controller.retrieveUserConfigs(function() {
-
+			controller.getStoreProgramData(function () {
+				controller.retrieveUserConfigs(function () {
 					var targetStores = [];
 					var store_ids = programManagementFilters.controller.store_ids;
 
@@ -754,11 +762,9 @@ var programManagementController = (function ($) {
 							targetStores.push(store);
 						}
 					});
-
 					controller.buildUI(targetStores);
 				});
 			});
-
 		},
 
 		ShowUI: function () {

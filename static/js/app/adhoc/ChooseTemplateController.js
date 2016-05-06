@@ -1,6 +1,3 @@
-var pageAnchor = "#ctl00_content_CtlPager_lblItemsPerPage";
-var pageKey = "catalog.aspx";
-
 /* Choose Template Controller
  * Note: The On-Demand Marketing URL for Beta is:
 	https://marcomcentral.app.pti.com/Epsilon_Data_Management/Beta_Epsilon/catalog.aspx?uigroup_id=479602&folder_id=1633307
@@ -24,6 +21,9 @@ var pageKey = "catalog.aspx";
   e. WatchForPageReady() should check the value of a IsPageReady() function every 500ms via a SetInterval()
       When the condition is met, cancel the SetInterval and then fire the callback.
  */
+ var pageAnchor = '#ctl00_content_CtlPager_lblItemsPerPage';
+ var pageKey = 'catalog.aspx';
+
 ChooseTemplateController = (function ($) {
 	'use strict';
 	var controller = {
