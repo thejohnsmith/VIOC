@@ -189,7 +189,13 @@ var programManagementFilters = (function ($) {
 	};
 })(jQuery);
 
-programManagementFilters.controller.init();
+/** MAIN INIT.
+ * Run only if url matches Program Managmenet page or filter classes exist.
+ */
+var $j = jQuery;
+if (window.location.href.indexOf(marcomUserData.$constants.programManagementUrl) > -1 || $j('.filter-select').length || $j('.filterable').length) {
+	programManagementFilters.controller.init();
+}
 
 programManagementFilters.controller.onFilterChange = function (store_ids) {
 	var $j = jQuery;
