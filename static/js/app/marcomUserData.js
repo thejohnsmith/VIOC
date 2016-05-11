@@ -25,6 +25,7 @@ var marcomUserData = (function ($) {
 		loginPage2Url: 'login.aspx?uigroup_id=479602',
 		forgotPassPageUrl: 'forgotpassword.aspx?uigroup_id=479602',
 		onDemandUrl: 'catalog.aspx?uigroup_id=479602&folder_id=1633307',
+		apiPath_UAT: 'https://adobe-uat-vioc.epsilon.com/jssp/vioc/',
 		apiPath: 'https://adobe-uat-vioc.epsilon.com/jssp/vioc/',
 		apiPathLocal: 'data/',
 		marcomFilePath: 'https://files.marcomcentral.app.pti.com/epsilon/static/'
