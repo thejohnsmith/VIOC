@@ -9,8 +9,11 @@
  */
 var recordLogin = (function ($) {
 	var makeRequest = function () {
-
 		var useCookie = false;
+		// Abort if login is current page.
+		if (window.location.href.indexOf(marcomUserData.$constants.loginPageUrl) > -1 || window.location.href.indexOf(marcomUserData.$constants.loginPage2Url) > -1 || window.location.href.indexOf(marcomUserData.$constants.forgotPassPageUrl) > -1) {
+			return false;
+		}
 
 		if (document.cookie.replace(/(?:(?:^|.*;\s*)marcomUserId\s*\=\s*([^;]*).*$)|^.*$/, '$1') != '') {
 			cookie_user_id = document.cookie.replace(/(?:(?:^|.*;\s*)marcomUserId\s*\=\s*([^;]*).*$)|^.*$/, '$1');

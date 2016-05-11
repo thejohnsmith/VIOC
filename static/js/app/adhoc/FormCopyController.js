@@ -1,15 +1,15 @@
-/* Catalog Controller
+/* FormCopy Controller
  * @NOTE - The On-Demand Marketing URL for Beta is:
  * @URL - https://marcomcentral.app.pti.com/Epsilon_Data_Management/Beta_Epsilon/catalog.aspx?uigroup_id=479602&folder_id=1633307
  *
  * @description - Loads templates with data from custom Adobe API.
- * @filename - CatalogController.js
+ * @filename - FormCopyController.js
  * @author - Anthony Gill, John Smith : Epsilon 2016
  */
  var pageAnchor = '#ctl00_content_CtlPager_lblItemsPerPage';
- var pageKey = 'catalog.aspx';
+ var pageKey = 'addToCart.aspx';
 
-CatalogController = (function ($) {
+FormCopyController = (function ($) {
 	'use strict';
 	var controller = {
 		intervalHandle: null,
@@ -43,5 +43,5 @@ CatalogController = (function ($) {
 
 // Only execute this controller on a certain page
 if (window.location.href.indexOf(pageKey) > -1) {
-	CatalogController.controller.init();
+	FormCopyController.controller.init();
 }

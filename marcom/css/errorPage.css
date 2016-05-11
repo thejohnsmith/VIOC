@@ -13,10 +13,17 @@
 #CtlFooter, .MastHead, .btnLogOut, .btnContactUs, td > #Warning {
   display: none;
 }
-.CtlSearchGroup {
+#CtlBody {
+  width: 100%;
+}
+.CtlSearchGroup{
   border: none;
   font-size: 18px;
-  margin: 0;
+  background: none;
+  width: 100%;
+  display: inline-block;
+  margin: 0 auto;
+  max-width: 1200px;
 }
 .left-container {
   position: relative;

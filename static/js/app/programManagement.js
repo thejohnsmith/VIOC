@@ -222,6 +222,7 @@ var programManagementController = (function ($) {
 				}
 				controller.setHashLinks();
 				controller.initBuiltUI();
+				controller.getTotals();
 			};
 
 			controller.getMustacheTemplate(
