@@ -1,14 +1,9 @@
 /** Contact Us Form Controller
  *  @file contactUsController.js
  */
-
 var contactUsController = (function ($) {
 	var controller = {
 		apiPath: marcomUserData.$constants.apiPath,
-		contactFormField: $('#contact-form-main .required-field'),
-		contactFormSubmit: $('#contact-form-main #submit-btn'),
-		successmsg: $('.successmsg'),
-		errormsg: $('.errormsg'),
 		successClass: 'input-success',
 		errorClass: 'input-error',
 		ariaInvalid: 'aria-invalid',
@@ -18,7 +13,7 @@ var contactUsController = (function ($) {
 		},
 		attachEventListeners: function () {
 			// Submit Button pressed
-			controller.contactFormSubmit.click(this.onSubmit);
+			$('#submit-btn').click(this.onSubmit);
 		},
 		/** Check for empty input fields
 		 *  Toggle error/succes classes,
@@ -40,7 +35,7 @@ var contactUsController = (function ($) {
 		},
 		bulkValidate: function () {
 			var notEmptyFields = true;
-			controller.contactFormField.each(function (i, input) {
+			$('.required-field').each(function (i, input) {
 				if (!controller.singleValidate(input))
 					notEmptyFields = false;
 			});
@@ -62,7 +57,7 @@ var contactUsController = (function ($) {
 				'phone': $('#phone').val(),
 				'comments': $('#message').val()
 			};
-			controller.contactFormSubmit.attr("disabled","disabled");
+			$('#submit-btn').attr("disabled", "disabled");
 			$.ajax({
 				url: controller.apiPath + 'sendContactUs.jssp',
 				method: 'GET',
@@ -78,28 +73,28 @@ var contactUsController = (function ($) {
 					}
 				},
 				error: function (jqXHR, textStatus, errorThrown) {
-					console.warn(jqXHR.status);
-					console.warn(jqXHR.statusText);
-					console.warn(jqXHR.responseText);
-					controller.contactFormSubmit.attr("disabled",null);
+					$('#submit-btn').attr("disabled", null);
+					// console.warn(jqXHR.status);
+					// console.warn(jqXHR.statusText);
+					// console.warn(jqXHR.responseText);
 					// controller.errormsg.html('<p>' + JSON.parse(jqXHR.responseText).error + '</p>');
 				}
 			});
 		},
 		clearFields: function () {
-			controller.contactFormField
+			$('.required-field')
 				.removeClass(controller.errorClass)
 				.attr(controller.ariaInvalid, 'false')
 				.val('');
 		},
 		showSuccess: function () {
-			controller.successmsg.fadeIn();
-			controller.contactFormSubmit.attr("disabled",null);
+			$('.successmsg').fadeIn();
+			$('#submit-btn').attr("disabled", null);
 			toastr.success('Your request has been submitted.');
 		},
 		showError: function () {
 			// controller.errormsg.fadeIn();
-			controller.contactFormSubmit.attr("disabled",null);
+			$('#submit-btn').attr("disabled", null);
 			toastr.error('Your message was not sent. Please check that all fields have been filled.');
 		}
 	};
@@ -108,6 +103,7 @@ var contactUsController = (function ($) {
 	};
 })(jQuery);
 
-if (window.location.href.indexOf(marcomUserData.$constants.helpPageUrl) > -1) {
-	contactUsController.controller.init();
-}
+// if (window.location.href.indexOf(marcomUserData.$constants.helpPageUrl) > -1) {
+// 	console.warn('calling contactUsController from parent script.');
+// 	contactUsController.controller.init();
+// }
