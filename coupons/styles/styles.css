@@ -300,10 +300,10 @@ input.button
 }
 #ads .ad img
 {
+    max-width: 100%;
     margin: auto;
     margin-bottom: 3px;
     margin-left: -12px;
-    max-width: 100%;
 }
 
 #right-col
@@ -554,7 +554,8 @@ input.button
 {
     text-align: left !important;
 }
-#coupons #services, .map-section
+#coupons #services,
+.map-section
 {
     min-height: 142px;
 }
@@ -564,6 +565,7 @@ input.button
 
     padding-bottom: 5px;
     padding-left: 31px;
+
     background: url('../images/services.png') 0 0;
     background-repeat: no-repeat;
 }
@@ -612,6 +614,8 @@ input.button
     font-family: Arial, Helvetica, sans-serif;
     font-size: 11px;
     font-weight: normal;
+
+    display: inline-block;
 
     margin-top: 10px;
 
