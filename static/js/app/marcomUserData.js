@@ -5,8 +5,8 @@
  */
 
 var marcomUserData = (function ($) {
-	var $userRelated = $('.user-related');
 	var constants;
+	var $userRelated = $('.user-related');
 	var user = {
 		externalId: $userRelated.data('user-external-id') || '',
 		loginId: $userRelated.data('user-login-id') || '',
@@ -80,14 +80,9 @@ var marcomUserData = (function ($) {
 			apiPathLocal: 'data/',
 			marcomFilePath: 'https://files.marcomcentral.app.pti.com/epsilon/static/'
 		} : constants;
-
-	var controller = {
-		// marcomUserData.controller.initPage(pageProperties);
-	};
 	return {
 		$user: user,
 		$constants: constants,
-		controller: controller,
 		environmentKind: environment.kind
 	};
 })(jQuery);
