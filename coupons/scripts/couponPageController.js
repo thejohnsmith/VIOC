@@ -48,13 +48,17 @@ couponPageController = (function ($) {
                 $('.address-section').html(Mustache.render(template, controller.stores));
             });
             /** Store Hours */
-            controller.getMustacheTemplate('../../templates/store-hours.mustache.html', '.store-hours-template', function (template) {
-                $('.store-hours-section').html(Mustache.render(template, controller.stores));
-            });
-            /** Store Hours */
-            controller.getMustacheTemplate('../../templates/mobile-store-hours.mustache.html', '.mobile-store-hours-template', function (template) {
-                $('.mobile-store-hours-section').html(Mustache.render(template, controller.stores));
-            });
+            if($('.type-desktop').length) {
+                controller.getMustacheTemplate('../../templates/store-hours.mustache.html', '.store-hours-template', function (template) {
+                    $('.store-hours-section').html(Mustache.render(template, controller.stores));
+                });
+            }
+            /** MOBILE Store Hours */
+            if($('.type-mobile').length) {
+                controller.getMustacheTemplate('../../templates/mobile-store-hours.mustache.html', '.mobile-store-hours-template', function (template) {
+                    $('.mobile-store-hours-section').html(Mustache.render(template, controller.stores));
+                });
+            }
             /** Coupons */
             controller.getMustacheTemplate('../../templates/coupons.mustache.html', '.coupons-template', function (template) {
                 $('.coupons-section').html(Mustache.render(template, controller.stores));
@@ -107,7 +111,6 @@ couponPageController = (function ($) {
             }
             return decodeURIComponent(results[2].replace(/\+/g, ' '));
         }
-
     };
     return {
         controller: controller,
