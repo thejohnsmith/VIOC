@@ -9,7 +9,7 @@ couponPageController = (function ($) {
     var controller = {
         features: {},
         stores: {},
-        apiPath: 'https://adobe-uat-vioc.epsilon.com/jssp/vioc/',
+        apiPath: 'https://adobe-prod-vioc.epsilon.com/jssp/vioc/',
         init: function () {
             var controller = this;
             var rId = controller.getParameterByName('r', window.location.href);
