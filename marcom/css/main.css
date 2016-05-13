@@ -594,6 +594,10 @@ ul.navBarEnhanced a:hover
 {
     color: #ec1c23!important;
 }
+.navBarEnhancedBackgroundColor
+{
+    background-color: #e3e3e2;
+}
 .navBarEnhancedActiveBackgroundColor,
 #navBarEnhanced ~ .menu
 {
