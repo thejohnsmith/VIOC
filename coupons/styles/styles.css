@@ -288,7 +288,7 @@ input.button
     line-height: 12px;
 
     position: relative;
-    top: 21px;
+    top: 30px;
 
     margin-top: 35px;
 
@@ -303,6 +303,7 @@ input.button
     margin: auto;
     margin-bottom: 3px;
     margin-left: -12px;
+    max-width: 100%;
 }
 
 #right-col
