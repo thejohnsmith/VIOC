@@ -1,7 +1,7 @@
 <!-- Store hours Template
-    @file store-hours.mustache.html
-    @type template/mustache
-    @import index.html
+@file store-hours.mustache.html
+@type template/mustache
+@import index.html
 -->
 <script class="store-hours-template" type="x-tmpl-mustache">
     <table class="a-center" cellpadding="0" cellspacing="0" border="0" width="490">
@@ -11,50 +11,77 @@
         </tr>
         <tr>
             {{#hours}}
-            <td width="48">
-                {{#Monday}}
-                <b>Mon</b> {{#open}}{{open}}{{/open}} {{#close}}{{close}}
-                <br>{{/close}} {{#closed}}<strong>Closed</strong>
-                <br>{{/closed}} {{/Monday}}
-            </td>
-            <td width="48">
-                {{#Tuesday}}
-                <b>Tues</b> {{#open}}{{open}}{{/open}} {{#close}}{{close}}
-                <br>{{/close}} {{#closed}}<strong>Closed</strong>
-                <br>{{/closed}} {{/Tuesday}}
-            </td>
-            <td width="48">
-                {{#Wednesday}}
-                <b>Wed</b> {{#open}}{{open}}{{/open}} {{#close}}{{close}}
-                <br>{{/close}} {{#closed}}<strong>Closed</strong>
-                <br>{{/closed}} {{/Wednesday}}
-            </td>
-            <td width="48">
-                {{#Thursday}}
-                <b>Thurs</b> {{#open}}{{open}}{{/open}} {{#close}}{{close}}
-                <br>{{/close}} {{#closed}}<strong>Closed</strong>
-                <br>{{/closed}} {{/Thursday}}
-            </td>
-            <td width="48">
-                {{#Friday}}
-                <b>Fri</b> {{#open}}{{open}}{{/open}} {{#close}}{{close}}
-                <br>{{/close}} {{#closed}}<strong>Closed</strong>
-                <br>{{/closed}} {{/Friday}}
-            </td>
-            <td width="48">
-                {{#Saturday}}
-                <b>Sat</b> {{#open}}{{open}}{{/open}} {{#close}}{{close}}
-                <br>{{/close}} {{#closed}}<strong>Closed</strong>
-                <br>{{/closed}} {{/Saturday}}
-            </td>
-            <td width="48">
-                {{#Sunday}}
-                <b>Sun</b> {{#open}}{{open}}{{/open}} {{#close}}{{close}}
-                <br>{{/close}} {{#closed}}<strong>Closed</strong>
-                <br>{{/closed}} {{/Sunday}}
-            </td>
+                <td width="48">
+                    {{#Monday}}
+                        <b>Mon</b> {{^closed}}
+                        {{#open}}{{open}}{{/open}}
+                        <br>
+                        {{#close}}{{close}}{{/close}}
+                        {{/closed}}
+                        {{#closed}}<strong>Closed</strong><br>{{/closed}}
+                    {{/Monday}}
+                </td>
+                <td width="48">
+                    {{#Tuesday}}
+                        <b>Tues</b> {{^closed}}
+                        {{#open}}{{open}}{{/open}}
+                        <br>
+                        {{#close}}{{close}}{{/close}}
+                        {{/closed}}
+                        {{#closed}}<strong>Closed</strong><br>{{/closed}}
+                    {{/Tuesday}}
+                </td>
+                <td width="48">
+                    {{#Wednesday}}
+                        <b>Wed</b> {{^closed}}
+                        {{#open}}{{open}}{{/open}}
+                        <br>
+                        {{#close}}{{close}}{{/close}}
+                        {{/closed}}
+                        {{#closed}}<strong>Closed</strong><br>{{/closed}}
+                    {{/Wednesday}}
+                </td>
+                <td width="48">
+                    {{#Thursday}}
+                        <b>Thurs</b> {{^closed}}
+                        {{#open}}{{open}}{{/open}}
+                        <br>
+                        {{#close}}{{close}}{{/close}}
+                        {{/closed}}
+                        {{#closed}}<strong>Closed</strong><br>{{/closed}}
+                    {{/Thursday}}
+                </td>
+                <td width="48">
+                    {{#Friday}}
+                        <b>Fri</b> {{^closed}}
+                        {{#open}}{{open}}{{/open}}
+                        <br>
+                        {{#close}}{{close}}{{/close}}
+                        {{/closed}}
+                        {{#closed}}<strong>Closed</strong><br>{{/closed}}
+                    {{/Friday}}
+                </td>
+                <td width="48">
+                    {{#Saturday}}
+                        <b>Sat</b> {{^closed}}
+                        {{#open}}{{open}}{{/open}}
+                        <br>
+                        {{#close}}{{close}}{{/close}}
+                        {{/closed}}
+                        {{#closed}}<strong>Closed</strong><br>{{/closed}}
+                    {{/Saturday}}
+                </td>
+                <td width="48">
+                    {{#Sunday}}
+                        <b>Sun</b> {{^closed}}
+                        {{#open}}{{open}}{{/open}}
+                        <br>
+                        {{#close}}{{close}}{{/close}}
+                        {{/closed}}
+                        {{#closed}}<strong>Closed</strong><br>{{/closed}}
+                    {{/Sunday}}
+                </td>
             {{/hours}}
-
             <td>
                 {{#phone}}<strong>{{phone}}</strong>{{/phone}}
             </td>
