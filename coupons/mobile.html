@@ -13,76 +13,76 @@
     <meta name="msapplication-navbutton-color" content="#0281aa">
 </head>
 
-<body>
+<body class="type-mobile">
     <header class="page-header">
         Valvoline Instant Oil Change
     </header>
 
-<article class="page-main">
-    <section id="contact">
-        <section class="address-section">
+    <article class="page-main">
+        <section id="contact">
+            <section class="address-section">
+            </section>
         </section>
-    </section>
 
-    <section id="offers">
-        <section class="coupons-section">
+        <section id="offers">
+            <section class="coupons-section">
+            </section>
         </section>
-    </section>
 
-    <section id="services" class="js-hidden">
-        <section class="services-section">
+        <section id="services" class="js-hidden">
+            <section class="services-section">
+            </section>
         </section>
-    </section>
-    <section id="store" class="js-hidden">
-        <section class="mobile-store-hours-section" id="store-hours">
+        <section id="store" class="js-hidden">
+            <section class="mobile-store-hours-section" id="store-hours">
+            </section>
+            <section id="store-services">
+                <section class="features-section">
+                </section>
+            </section>
         </section>
-        <section id="store-services">
-          <section class="features-section">
-          </section>
-        </section>
-    </section>
-</article>
-        <script type="text/javascript" src="scripts/jquery.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/2.2.1/mustache.min.js"></script>
-        <script type="text/javascript" src="scripts/couponPageController.js"></script>
-        <script>
-            /* Epsilon 2016 */
-            if (typeof couponPageController.controller.init() == 'function') {
-                console.warn('CouponPageController is ready.');
-                couponPageController.controller.init();
-            }
-        </script>
-        <script type="text/javascript">
-            (function($) {
+    </article>
+    <script type="text/javascript" src="scripts/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/2.2.1/mustache.min.js"></script>
+    <script type="text/javascript" src="scripts/couponPageController.js"></script>
+    <script>
+        /* Epsilon 2016 */
+        if (typeof couponPageController.controller.init() == 'function') {
+            console.warn('CouponPageController is ready.');
+            couponPageController.controller.init();
+        }
+    </script>
+    <script type="text/javascript">
+        (function($) {
 
-                $('a.service').on('click', function(e) {
+            $('a.service').on('click', function(e) {
 
-                    e.preventDefault();
+                e.preventDefault();
 
-                    if ($(this).parent().next('.details').hasClass('open')) {
+                if ($(this).parent().next('.details').hasClass('open')) {
 
-                        $(this).parent().next('.details').slideUp('fast', function() {
+                    $(this).parent().next('.details').slideUp('fast', function() {
 
-                            $(this).removeClass('open').removeAttr('style');
+                        $(this).removeClass('open').removeAttr('style');
 
-                        });
-                    } else {
+                    });
+                } else {
 
-                        $(this).parent().next('.details').slideDown('fast', function() {
+                    $(this).parent().next('.details').slideDown('fast', function() {
 
-                            $(this).addClass('open').removeAttr('style');
+                        $(this).addClass('open').removeAttr('style');
 
-                        }).siblings('.details').slideUp('fast', function() {
+                    }).siblings('.details').slideUp('fast', function() {
 
-                            $(this).removeClass('open').removeAttr('style');
+                        $(this).removeClass('open').removeAttr('style');
 
-                        });
+                    });
 
-                    }
+                }
 
-                });
+            });
 
-            })(jQuery);
+        })(jQuery);
 
         (function() {
 

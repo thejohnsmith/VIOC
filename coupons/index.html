@@ -106,7 +106,7 @@
     </script>
 </head>
 
-<body>
+<body class="type-desktop">
 
     <!-- Google Tag Manager -->
     <noscript>
@@ -270,10 +270,9 @@
 
     <script>
         /* Epsilon 2016 */
-        if (typeof couponPageController.controller.init() === 'undefined') {
-            console.warn('CouponPageController is ready.');
-            couponPageController.controller.init();
-        }
+        (function() {
+          couponPageController.controller.init();
+        })();
     </script>
 </body>
 
