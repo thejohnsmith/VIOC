@@ -69,12 +69,12 @@ var recordLogin = (function ($) {
 			return $(this).text() === 'REPORTS';
 		}).addClass('reports-link');
 
-		if ($reportingAccess == 0) {
-			$('.reports-link').addClass('hide');
-		}
-		if ($reportingAccess == 1) {
-			$('.reports-link').removeClass('hide');
-		}
+		// if ($reportingAccess == 0) {
+		// 	$('.reports-link').addClass('hide');
+		// }
+		// if ($reportingAccess == 1) {
+		// 	$('.reports-link').removeClass('hide');
+		// }
 
 		if ($newUser > 0) {
 			$loginCount = 1;

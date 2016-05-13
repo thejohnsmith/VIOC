@@ -36,15 +36,15 @@ var programManagementController = (function ($) {
 			controller.populateConfigDropdowns();
 			controller.highlightNavSection();
 			controller.highlightSelectedStoreConfiguration();
-			controller.hideAdditionalOffersIfNeeded();
 			controller.showQuantityLimitTabIfNeeded();
 			controller.hideProgramSettingsIfNeeded();
-			controller.hideStandardOffersIfNeeded();
 			controller.attachEventListeners();
 			controller.refreshManagementControls();
 			controller.refreshProofControls();
 			controller.refreshSelectAllButton();
 			controller.refreshStoreRowEnrollment();
+			controller.hideStandardOffersIfNeeded();
+			controller.hideAdditionalOffersIfNeeded();
 			controller.ShowUI();
 		},
 		highlightNavSection: function () {
@@ -149,20 +149,21 @@ var programManagementController = (function ($) {
 		refreshManagementControls: function () {
 			var controller = this;
 			$('.management-dropdown').each(function () {
-
 				var $selectedMgmg = $(this).find(':selected');
 				var configId = $selectedMgmg.val();
-				var $selectedMgmgText = $selectedMgmg.text();
 				var $editLink = $(this).parent().next().find('.program-edit-link');
 				var $deleteLink = $(this).parent().next().find('.program-delete-link');
 				var $baseUrl = $editLink.attr('data-baseUrl');
-
 				var defaultMgmg = false;
 				$.each(controller.user_configs, function (i, config) {
 					if (config.corpDefault == 1 && config.id == configId)
 						defaultMgmg = true;
 				});
 
+				// Debugging
+				// console.warn('$baseUrl: ' + $baseUrl);
+				// console.warn('config page link: ' + marcomUserData.$constants.configPageUrl);
+				// console.warn('adtl offer link: ' + marcomUserData.$constants.additionalOfferPageUrl);
 				// console.warn('controller.user_configs[0].corpDefault: ' + controller.user_configs[0].corpDefault);
 
 				$deleteLink.off().on('click', function (e) {
@@ -191,8 +192,6 @@ var programManagementController = (function ($) {
 				$editLink.attr('href', $baseUrl + '&configId=' + configId + '&programId=' + controller.program_id);
 
 				// Corporate Default configs are read-only - swap View and Edit links.
-				$deleteLink.removeClass('hidden'); // :JOHN:  Delete this after removing "hidden" class from the Delete links
-
 				if (defaultMgmg) {
 					$editLink.text('View');
 					$deleteLink.hide();
@@ -752,7 +751,6 @@ var programManagementController = (function ($) {
 
 		hardUIRefresh: function () {
 			var controller = this;
-
 			controller.getStoreProgramData(function () {
 				controller.retrieveUserConfigs(function () {
 					var targetStores = [];

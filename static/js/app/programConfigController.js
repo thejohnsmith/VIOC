@@ -131,6 +131,7 @@ var programConfigController = (function ($) {
 			console.log('Program: %o', controller.program);
 
 			// Pull the list of email creative from controller.program.uiLayout.emailCreativeChoices and populate .em-creative
+			console.log("controller.program.uiLayout = " + typeof controller.program.uiLayout + " contains " + JSON.stringify(controller.program.uiLayout) )
 			console.log('Options: %o', controller.program.uiLayout.emailCreativeChoices);
 			for (var value in controller.program.uiLayout.emailCreativeChoices) {
 				$('.em-creative')
