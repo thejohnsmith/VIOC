@@ -29,8 +29,8 @@ var marcomUserData = (function ($) {
 		(environment == 20951) ? 'UAT' :
 		'PROD';
 
-	console.warn('Environment: ' + environment);
-	console.warn('URL: ' + window.location.href);
+	// console.warn('Environment: ' + environment);
+	// console.warn('URL: ' + window.location.href);
 
 	/** PRODUCTION URLs
 	 * @kind {string} Production or User Acceptance Testing (Beta_Epsilon)

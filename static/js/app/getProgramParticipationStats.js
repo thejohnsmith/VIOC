@@ -46,12 +46,15 @@ var getProgramParticipationStats = (function ($) {
 			return result.map(function (obj) {
 				var programTitle = getParameterByName('programId', window.location.href);
 				if (JSON.stringify(obj.id) === programId) {
+					/* Change Breadcrumb text */
+					$('.breadcrumbs_previous1 a').attr('title', 'Lifecycle Programs').attr('href', marcomUserData.$constants.lifecyclePageUrl);
+					
 					/** Update the breadcrumbs_previous text and title for Specialty Programs
 					 */
 					if (obj.isSpecialtyProgram) {
 						isSpecialtyProgram = obj.isSpecialtyProgram;
 						/* Change Breadcrumb text */
-						$('.breadcrumbs_previous1 a').text('Specialty Programs').attr('title', 'Specialty Programs').attr('href', 'CustomPage.aspx?uigroup_id=479602&page_id=10793');
+						$('.breadcrumbs_previous1 a').text('Specialty Programs').attr('title', 'Specialty Programs').attr('href', marcomUserData.$constants.specialtyPageUrl);
 						/* Make nav item active */
 						$('.navBarItem > a').filter(function () {
 							return $(this).text() === 'SPECIALTY PROGRAMS';
