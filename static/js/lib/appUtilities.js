@@ -19,7 +19,7 @@ var appUtilities = (function ($) {
 	var controller = {
 		init: function () {
 			controller.setBrowserTitle();
-			controller.changeNavBarLink();
+			// controller.changeNavBarLink();
 			controller.setFavicon();
 			controller.setPrettyPhone();
 		},
@@ -32,9 +32,11 @@ var appUtilities = (function ($) {
 				return $(this).text() === 'REPORTS';
 			}).attr('href', 'https://bo-vioc.epsilon.com').attr('target', '_blank');
 
-			$('.navBarItem > a').filter(function () {
-				return $(this).text() === 'ON DEMAND MARKETING';
-			}).attr('href', 'catalog.aspx?uigroup_id=479602&folder_id=1633307');
+			// $('.navBarItem > a').filter(function () {
+			// 	return $(this).text() === 'ON DEMAND MARKETING';
+			// }).attr('href', marcomUserData.$constants.onDemandUrl);
+
+			$('.header-right .btnHelp, .header-right .btnContactUs').attr('href', marcomUserData.$constants.helpPageUrl);
 		},
 		setFavicon: function () {
 			return $j('head').append('<link rel="icon" href="https://files.marcomcentral.app.pti.com/epsilon/static/images/favicon.ico" type="image/x-icon">');
@@ -65,6 +67,7 @@ var appUtilities = (function ($) {
 	};
 	return {
 		controller: controller,
+		changeNavBarLink: controller.changeNavBarLink,
 		setPrettyPhone: controller.setPrettyPhone,
 		routeEnterKeyToNext: controller.routeEnterKeyToNext
 	};

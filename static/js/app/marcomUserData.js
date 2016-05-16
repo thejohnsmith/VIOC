@@ -91,3 +91,8 @@ var marcomUserData = (function ($) {
 if (getParameterByName('flashSuccessMsg', window.location.href) != '') {
 	toastr.success(getParameterByName('flashSuccessMsg', window.location.href));
 }
+
+/* Update the hard-coded URL's in the utility navigation. */
+if (typeof appUtilities === 'object') {
+	appUtilities.changeNavBarLink();
+}
