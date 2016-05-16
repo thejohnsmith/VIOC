@@ -219,8 +219,15 @@ var additionalOfferController = (function ($) {
 			});
 		},
 		OnPressSave: function () {
-
 			var controller = this;
+
+			// Make sure at least the first offer has been select.
+			if ($('[name=adtlText1]').val() == "none") {
+				jAlert('At least one offer is required.');
+				console.warn('found first dropdown = none');
+				return;
+			}
+
 			controller.ValidateForm(function () {
 				saveData = {
 					userId: controller.userId,
@@ -232,10 +239,33 @@ var additionalOfferController = (function ($) {
 
 				for (var i = 1; i <= 4; i++) {
 					if ($('[name=adtlText' + i + ']').val() != "none") {
-						saveData["_adtlCode" + i] = $('[name=adtlCode' + i + ']').val();
+						if($('[name=adtlCode' + i + ']').val() == null || $('[name=adtlCode' + i + ']').val() == ''){
+							jAlert('Coupon Code is required.');
+							console.warn('adtlcode: ' + $('[name=adtlCode' + i + ']').val());
+							$('[name=adtlCode' + i + ']').addClass('error');
+							return false;
+						}
+						else{
+							saveData["_adtlCode" + i] = $('[name=adtlCode' + i + ']').val();
+							$('[name=adtlCode' + i + ']').removeClass('error');
+						}
+
 						saveData["_adtlText" + i] = $('[name=adtlText' + i + ']').val();
+						console.warn('adtlText: ' + $('[name=adtlText' + i + ']').val());
+
 						saveData["_adtlApproach" + i] = $('[name=adtlApproach' + i + ']').val();
-						saveData["_adtlValue" + i] = $('[name=adtlValue' + i + ']').val();
+						console.warn('adtlApproach: ' + $('[name=adtlApproach' + i + ']').val());
+
+						if($('[name=adtlValue' + i + ']').val() == null || $('[name=adtlValue' + i + ']').val() == ''){
+							jAlert('Discount Ammount is required.');
+							console.warn('adtlValue: ' + $('[name=adtlValue' + i + ']').val());
+							$('[name=adtlValue' + i + ']').addClass('error');
+							return false;
+						}
+						else{
+							saveData["adtlValue" + i] = $('[name=adtlValue' + i + ']').val();
+							$('[name=adtlValue' + i + ']').removeClass('error');
+						}
 					}
 				}
 
