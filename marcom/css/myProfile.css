@@ -1,0 +1,67 @@
+.ContentBoxGrey {
+  background: 0 0
+}
+#CtlBody, #ENUSmain .Error, .CtlGridTable3, .UserBudgetProfile {
+  border: none;
+  background: 0 0
+}
+.CtlAddrEdit .InputArea {
+  position: relative;
+  padding-left: .6em
+}
+#ENUSmain .Error {
+  font-family: HelveticaNeueLT-LightCond, sans-serif;
+  font-size: 14px;
+  font-style: normal;
+  max-width: 620px;
+  margin: 0 auto
+}
+.RedBoldSm {
+  position: absolute;
+  left: 0;
+  top: 0
+}
+#ctl00_content_TextUserAttributeList_lblUserName, .ContentBoxGrey, .CtlAddrEdit {
+  font-family: HelveticaNeueLT-Thin, sans-serif
+}
+#navBarEnhanced, .header-right {
+  visibility: hidden
+}
+#CtlBrdCrm {
+  display: none
+}
+#CtlBody {
+  max-width: 700px;
+  margin: 0 auto;
+  box-shadow: 0 0 37px 10px rgba(0, 0, 0, .18)
+}
+.ContentBoxLarge {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto
+}
+#ctl00_content_TextUserAttributeList_lblUserName {
+  font-size: 20px;
+  display: inline-block;
+  width: 100%;
+  min-width: 300px;
+  margin: 0 auto;
+  padding: 12px 12px 6px;
+  text-align: center
+}
+.ContentBoxGrey, .CtlAddrEdit {
+  clear: both;
+  width: auto;
+  min-width: 300px;
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 6px 12px;
+  border: none
+}
+#ctl00_content_TextUserAttributeList_divButtons {
+  width: auto!important;
+  max-width: 600px
+}
+#CtlFooter {
+  background: 0 0
+}
