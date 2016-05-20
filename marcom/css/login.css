@@ -34,7 +34,18 @@
   border: none
 }
 .CtlSearchGroup td.header {
-  padding-bottom: 8px
+  padding-bottom: 1em;
+  font-size: 20px;
+}
+#ctl00_content_ForgotPassword_divSecurityQuestion td {
+  padding: 0 0 4px;
+}
+span#ctl00_content_ForgotPassword_ForgotPWSecurityQuestionInstruction {
+  padding-bottom: 1.5em;
+  display: block;
+}
+#ctl00_content_ForgotPassword_ForgotPWSecurityQuestionInstruction br, #ctl00_content_ForgotPassword_divSecurityQuestion br {
+  display: none;
 }
 #CtlLogIn .CtlSearchGroup {
   background: 0 0;
@@ -52,24 +63,16 @@ A.pbtn {
   font-family: 'HelveticaNeueLT-Condensed';
   height: auto!important
 }
-A.pbtn SPAN {
-  color: #00aeef;
-  background: 0 0;
-  border: 2px solid #00aeef;
-  text-align: center;
-  width: auto;
-  height: auto;
+a.pbtn span, a.pbtn.primary span {
   font-size: 15px!important;
-  padding: 4px 8px
-}
-A.pbtn.primary SPAN {
   max-width: 140px;
   margin: 0 0 15px;
   padding: 6px 12px;
   color: #fff;
   border: 1px solid #337ab7;
   border-radius: 4px;
-  background-color: #0ea3dd
+  background: #0ea3dd;
+  box-sizing: content-box;
 }
 .CtlSearchGroup td {
   padding: 0 6px
