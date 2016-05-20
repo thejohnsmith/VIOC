@@ -105,7 +105,7 @@
 
 			switch( type ) {
 				case 'alert':
-					$("#popup_message").after('<div idclass="btn btn-primary btn-sm" ="popup_panel"><input type="button" value="' + $.alerts.okButton + '" id="popup_ok" /></div>');
+					$("#popup_message").addClass('popup_ok_message').after('<div class="popup_ok_parent"><div class="btn btn-primary btn-sm popup_panel"><input type="button" value="' + $.alerts.okButton + '" id="popup_ok" /></div></div>');
 					$("#popup_ok").click( function() {
 						$.alerts._hide();
 						callback(true);

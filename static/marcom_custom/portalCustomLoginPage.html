@@ -6,10 +6,15 @@
 -->
 <link href="https://files.marcomcentral.app.pti.com/epsilon/marcom/css/login.css" rel="stylesheet" type="text/css" />
 
+<!--
+  CURRENT CUSTOM CONTENT: Login Page
+-->
+
 <script>
   var $j = jQuery;
   $j(function() {
     $j('.logo a').attr('href', '#');
-    $j('#ctl00_content_Login_txtPassword').after('<a href="' + marcomUserData.$constants.forgotPassPageUrl + '" style="margin-top: -14px;display: inline-block;width: 100%;font-size: 13px;">Forgot Password</a>')
+    $j('#ctl00_content_Login_txtPassword').after('<a href="' + marcomUserData.$constants.forgotPassPageUrl + '" style="margin-top: -14px;display: inline-block;width: 100%;font-size: 13px;">Forgot Password</a>');
+    $j('head').append('<link rel="icon" href="' + marcomUserData.$constants.marcomFilePath + 'images/favicon.ico" type="image/x-icon">');
   });
 </script>

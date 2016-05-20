@@ -181,7 +181,7 @@ var additionalOfferController = (function ($) {
 			}
 
 		},
-		UpdateSaveButton: function() {
+		UpdateSaveButton: function () {
 			var controller = this;
 			if (controller.config.content.corpDefault == "1")
 				$('.save-btn').val("Save as New");
@@ -197,23 +197,17 @@ var additionalOfferController = (function ($) {
 			jConfirm('Have you established this code in POS?', 'Please Confirm', function (r) {
 				if (r) {
 
-					if (controller.config.content.corpDefault == 0)
-					{
+					if (controller.config.content.corpDefault == 0) {
 						callback();
-					}
-					else
-					{
-						var new_label = ($('.settings-name').val() != controller.config.content.label)
-							? $('.settings-name').val()
-							: ("Custom " + controller.config.content.label);
+					} else {
+						var new_label = ($('.settings-name').val() != controller.config.content.label) ? $('.settings-name').val() : ("Custom " + controller.config.content.label);
 
 						jConfirm("This is a factory-defined setting and may not be changed.  Instead, the system will create a new setting named \"" + new_label + "\" which will contain your custom settings.  Proceed?", 'Create New Settings?', function (r) {
 							if (r) {
-								callback()();
+								callback();
 							}
 						});
 					}
-
 
 				}
 			});
@@ -229,62 +223,60 @@ var additionalOfferController = (function ($) {
 			}
 
 			controller.ValidateForm(function () {
-				saveData = {
-					userId: controller.userId,
-					configType: "adtl",
-					programId: 0,
-					label: $(".settings-name").val(),
-					_expiration: $('.expiration').val()
-				};
+					saveData = {
+						userId: controller.userId,
+						configType: "adtl",
+						programId: 0,
+						label: $(".settings-name").val(),
+						_expiration: $('.expiration').val()
+					};
 
-				for (var i = 1; i <= 4; i++) {
-					if ($('[name=adtlText' + i + ']').val() != "none") {
-						if($('[name=adtlCode' + i + ']').val() == null || $('[name=adtlCode' + i + ']').val() == ''){
-							jAlert('Coupon Code is required.');
-							console.warn('adtlcode: ' + $('[name=adtlCode' + i + ']').val());
-							$('[name=adtlCode' + i + ']').addClass('error');
-							return false;
-						}
-						else{
-							saveData["_adtlCode" + i] = $('[name=adtlCode' + i + ']').val();
-							$('[name=adtlCode' + i + ']').removeClass('error');
-						}
+					for (var i = 1; i <= 4; i++) {
+						if ($('[name=adtlText' + i + ']').val() != "none") {
+							if ($('[name=adtlCode' + i + ']').val() == null || $('[name=adtlCode' + i + ']').val() == '') {
+								jAlert('Coupon Code is required.');
+								console.warn('adtlcode: ' + $('[name=adtlCode' + i + ']').val());
+								$('[name=adtlCode' + i + ']').addClass('error');
+								return false;
+							} else {
+								saveData["_adtlCode" + i] = $('[name=adtlCode' + i + ']').val();
+								$('[name=adtlCode' + i + ']').removeClass('error');
+							}
 
-						saveData["_adtlText" + i] = $('[name=adtlText' + i + ']').val();
-						console.warn('adtlText: ' + $('[name=adtlText' + i + ']').val());
+							saveData["_adtlText" + i] = $('[name=adtlText' + i + ']').val();
+							console.warn('adtlText: ' + $('[name=adtlText' + i + ']').val());
 
-						saveData["_adtlApproach" + i] = $('[name=adtlApproach' + i + ']').val();
-						console.warn('adtlApproach: ' + $('[name=adtlApproach' + i + ']').val());
+							saveData["_adtlApproach" + i] = $('[name=adtlApproach' + i + ']').val();
+							console.warn('adtlApproach: ' + $('[name=adtlApproach' + i + ']').val());
 
-						if($('[name=adtlValue' + i + ']').val() == null || $('[name=adtlValue' + i + ']').val() == ''){
-							jAlert('Discount Ammount is required.');
-							console.warn('adtlValue: ' + $('[name=adtlValue' + i + ']').val());
-							$('[name=adtlValue' + i + ']').addClass('error');
-							return false;
-						}
-						else{
-							saveData["adtlValue" + i] = $('[name=adtlValue' + i + ']').val();
-							$('[name=adtlValue' + i + ']').removeClass('error');
+							if ($('[name=adtlValue' + i + ']').val() == null || $('[name=adtlValue' + i + ']').val() == '') {
+								jAlert('Discount Ammount is required.');
+								console.warn('adtlValue: ' + $('[name=adtlValue' + i + ']').val());
+								$('[name=adtlValue' + i + ']').addClass('error');
+								return false;
+							} else {
+								saveData["adtlValue" + i] = $('[name=adtlValue' + i + ']').val();
+								$('[name=adtlValue' + i + ']').removeClass('error');
+							}
 						}
 					}
-				}
 
-				if (controller.configId > 0)
-					saveData.configId = controller.configId;
+					if (controller.configId > 0)
+						saveData.configId = controller.configId;
 
-				$.ajax({
-					url: controller.apiPath + 'saveConfig.jssp',
-					method: "GET",
-					data: saveData,
-					success: function (results) {
-						console.log("Save was successful!");
-						window.location.href = marcomUserData.$constants.programManagementUrl + "&programId=" + controller.programId + "&flashSuccessMsg=Additional%20Offer%20Saved!#parentHorizontalTab2";
-					},
-					dataType: "json"
-				});
+					$.ajax({
+						url: controller.apiPath + 'saveConfig.jssp',
+						method: "GET",
+						data: saveData,
+						success: function (results) {
+							console.log("Save was successful!");
+							window.location.href = marcomUserData.$constants.programManagementUrl + "&programId=" + controller.programId + "&flashSuccessMsg=Additional%20Offer%20Saved!#parentHorizontalTab2";
+						},
+						dataType: "json"
+					});
 
-			})
-			// console.log("Save pressed!", this);
+				})
+				// console.log("Save pressed!", this);
 		},
 		ShowUI: function () {
 			$(".js-content").show();
