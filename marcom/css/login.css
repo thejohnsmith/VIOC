@@ -8,7 +8,7 @@ br {
   display: none;
   height: 0;
 }
-#CtlLogIn>p>a, #ctl00_content_ForgotPassword_ForgotPWSecurityQuestionInstruction br, #ctl00_content_ForgotPassword_divSecurityQuestion br, .CtlLogIn br, .header-right, a#ctl00_content_Login_btnRecoverPassword {
+#CtlLogIn>p>a, #ctl00_content_ForgotPassword_ForgotPWSecurityQuestionInstruction br, #ctl00_content_ForgotPassword_divSecurityQuestion br, .CtlLogIn br, .header-right, a#ctl00_content_Login_btnRecoverPassword, td:empty {
   display: none
 }
 .logo a:hover {
@@ -22,7 +22,7 @@ br {
   box-shadow: 0 0 37px 10px rgba(0, 0, 0, .18);
   min-width: 300px;
   max-width: 450px;
-  padding: 6px 12px
+  padding: 6px 12px 20px
 }
 #CtlLogIn h4 {
   font-size: 26px

@@ -240,6 +240,7 @@ a:focus {
   visibility: hidden
 }
 .text-hidden {
+  direction: ltr;
   text-indent: -999em
 }
 .visible {
@@ -427,7 +428,7 @@ ul.navBarEnhanced li:last-child {
   border-right: none
 }
 ul.navBarEnhanced li:nth-child(0) {
-  border-right: left
+  border-right: none
 }
 #pageContent {
   max-width: 1200px;

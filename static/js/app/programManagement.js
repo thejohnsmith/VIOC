@@ -151,6 +151,7 @@ var programManagementController = (function ($) {
 			$('.management-dropdown').each(function () {
 				var $selectedMgmg = $(this).find(':selected');
 				var configId = $selectedMgmg.val();
+				var $selectedMgmgText = $selectedMgmg.text();
 				var $editLink = $(this).parent().next().find('.program-edit-link');
 				var $deleteLink = $(this).parent().next().find('.program-delete-link');
 				var $baseUrl = $editLink.attr('data-baseUrl');
@@ -160,10 +161,6 @@ var programManagementController = (function ($) {
 						defaultMgmg = true;
 				});
 
-				// Debugging
-				// console.warn('$baseUrl: ' + $baseUrl);
-				// console.warn('config page link: ' + marcomUserData.$constants.configPageUrl);
-				// console.warn('adtl offer link: ' + marcomUserData.$constants.additionalOfferPageUrl);
 				// console.warn('controller.user_configs[0].corpDefault: ' + controller.user_configs[0].corpDefault);
 
 				$deleteLink.off().on('click', function (e) {

@@ -86,7 +86,7 @@
     <div class="row">
       <div class="col-sm-6 standard-offer">
         <h1 style="font-size: 20px">Oil Change Offers / Service Offers
-          <a class="btn btn-sm btn-link js-create-program-hash configPageUrl" href="CustomPage.aspx?uigroup_id=479602&page_id=11225">
+          <a class="btn btn-sm btn-link js-create-program-hash configPageUrl" data-baseUrl="" href="">
           Create New
         </a>
         </h1>
@@ -97,10 +97,10 @@
               </select>
             </td>
             <td>
-              <a class="btn btn-sm btn-link js-create-program-hash program-edit-link configPageUrl" data-baseUrl="CustomPage.aspx?uigroup_id=479602&page_id=11225" href="CustomPage.aspx?uigroup_id=479602&page_id=11225">
+              <a class="btn btn-sm btn-link js-create-program-hash program-edit-link configPageUrl" data-baseUrl="" href="">
                 Edit
               </a>
-              <a class="btn btn-sm btn-link js-create-program-hash program-delete-link" data-baseUrl="CustomPage.aspx?uigroup_id=479602&page_id=11225" href="#">
+              <a class="btn btn-sm btn-link js-create-program-hash program-delete-link configPageUrl" data-baseUrl="" href="">
                 Delete
               </a>
             </td>
@@ -109,7 +109,7 @@
       </div>
       <div class="col-sm-6 additional-offer">
         <h1 style="font-size: 20px">Additional Offers
-          <a class="btn btn-sm btn-link js-create-program-hash additionalOfferPageUrl" href="CustomPage.aspx?uigroup_id=479602&page_id=11226">
+          <a class="btn btn-sm btn-link js-create-program-hash additionalOfferPageUrl" data-baseurl="" href="">
           Create New
         </a>
         </h1>
@@ -120,10 +120,10 @@
               </select>
             </td>
             <td>
-              <a class="btn btn-sm btn-link program-edit-link additionalOfferPageUrl" data-baseurl="CustomPage.aspx?uigroup_id=479602&page_id=11226" href="CustomPage.aspx?uigroup_id=479602&page_id=11226">
+              <a class="btn btn-sm btn-link program-edit-link additionalOfferPageUrl" data-baseurl="" href="">
               Edit
             </a>
-            <a class="btn btn-sm btn-link js-create-program-hash program-delete-link" data-baseUrl="CustomPage.aspx?uigroup_id=479602&page_id=11225" href="#">
+            <a class="btn btn-sm btn-link js-create-program-hash program-delete-link configPageUrl" data-baseUrl="" href="">
               Delete
             </a>
             </td>
@@ -144,8 +144,8 @@
         .html('Adjust ' + storeIds.length + ' selected store' + plural + ' to use:');
 
         // Assign correct links to Create/View/Edit/Delete
-        $j('.configPageUrl').attr('href', marcomUserData.$constants.configPageUrl).attr('data-baseUrl', marcomUserData.$constants.configPageUrl);
-        $j('.additionalOfferPageUrl').attr('href', marcomUserData.$constants.additionalOfferPageUrl).attr('data-baseUrl', marcomUserData.$constants.additionalOfferPageUrl);
+        $j('.configPageUrl').attr('data-baseUrl', marcomUserData.$constants.configPageUrl).attr('href', marcomUserData.$constants.additionalOfferPageUrl);
+        $j('.additionalOfferPageUrl').attr('data-baseUrl', marcomUserData.$constants.additionalOfferPageUrl).attr('href', marcomUserData.$constants.additionalOfferPageUrl);
     });
   </script>
 </script>

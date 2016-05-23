@@ -36,6 +36,7 @@ var getStoreProgramData = (function ($) {
 		setHashLinks = function () {
 			var currentProgramId = getParameterByName('programId', window.location.href);
 			if ($('.js-create-program-hash').length) {
+				console.warn('setHashLinks fn is running from getStoreProgramData!');
 				$('.js-create-program-hash').each(function () {
 					$(this).attr('href', $(this).attr('href') + '&programId=' + currentProgramId);
 				});

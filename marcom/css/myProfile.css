@@ -1,3 +1,6 @@
+.logo a:hover {
+  cursor: default
+}
 .ContentBoxGrey {
   background: 0 0
 }
@@ -15,6 +18,11 @@
   font-style: normal;
   max-width: 620px;
   margin: 0 auto
+}
+.Confirmation {
+  max-width: 80%;
+  margin: 1em auto;
+  text-align: center;
 }
 .RedBoldSm {
   position: absolute;
