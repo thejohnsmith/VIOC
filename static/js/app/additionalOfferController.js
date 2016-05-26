@@ -221,6 +221,16 @@ var additionalOfferController = (function ($) {
 				console.warn('found first dropdown = none');
 				return;
 			}
+			if ($('[name=adtlValue1]').val() == "none") {
+				jAlert('Discount Amount is required.');
+				console.warn('adtlValue = none');
+				return;
+			}
+			if ($('[name=adtlCode1]').val() == "none") {
+				jAlert('Additional code is required.');
+				console.warn('adtlCode1 = none');
+				return;
+			}
 
 			controller.ValidateForm(function () {
 					saveData = {
@@ -232,32 +242,19 @@ var additionalOfferController = (function ($) {
 					};
 
 					for (var i = 1; i <= 4; i++) {
-						if ($('[name=adtlText' + i + ']').val() != "none") {
-							if ($('[name=adtlCode' + i + ']').val() == null || $('[name=adtlCode' + i + ']').val() == '') {
-								jAlert('Coupon Code is required.');
-								console.warn('adtlcode: ' + $('[name=adtlCode' + i + ']').val());
-								$('[name=adtlCode' + i + ']').addClass('error');
-								return false;
-							} else {
-								saveData["_adtlCode" + i] = $('[name=adtlCode' + i + ']').val();
-								$('[name=adtlCode' + i + ']').removeClass('error');
-							}
+						// dropdown must has a selected offer
+						if ($('.adtl-offer-1 [name=adtlText' + i + ']').val() != "none") {
+							saveData["_adtlText" + i] = $('.adtl-offer-1 [name=adtlText' + i + ']').val();
+							console.warn('adtlText: ' + $('.adtl-offer-1 [name=adtlText' + i + ']').val());
 
-							saveData["_adtlText" + i] = $('[name=adtlText' + i + ']').val();
-							console.warn('adtlText: ' + $('[name=adtlText' + i + ']').val());
+							saveData["_adtlApproach" + i] = $('.adtl-offer-1 .adtl-offer-1').val();
+							console.warn('adtlApproach: ' + $('.adtl-offer-1 [name=adtlApproach' + i + ']').val());
 
-							saveData["_adtlApproach" + i] = $('[name=adtlApproach' + i + ']').val();
-							console.warn('adtlApproach: ' + $('[name=adtlApproach' + i + ']').val());
+							saveData["_adtlValue" + i] = $('.adtl-offer-1 .adtlValue').val();
+							console.warn('adtlValue: ' + $('.adtl-offer-1 .adtlValue').val());
 
-							if ($('[name=adtlValue' + i + ']').val() == null || $('[name=adtlValue' + i + ']').val() == '') {
-								jAlert('Discount Ammount is required.');
-								console.warn('adtlValue: ' + $('[name=adtlValue' + i + ']').val());
-								$('[name=adtlValue' + i + ']').addClass('error');
-								return false;
-							} else {
-								saveData["adtlValue" + i] = $('[name=adtlValue' + i + ']').val();
-								$('[name=adtlValue' + i + ']').removeClass('error');
-							}
+							saveData["_adtlCode" + i] = $('.adtl-offer-form-group-input:visible .adtlCode').val();
+							console.warn('adtlCode: ' + $('.adtl-offer-form-group-input:visible .adtlCode').val());
 						}
 					}
 

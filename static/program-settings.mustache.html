@@ -142,10 +142,6 @@
         .toggleClass('none', (storeIds.length < 2));
       $j('.program-settings.footer-row td.program-settings-footer:first-child')
         .html('Adjust ' + storeIds.length + ' selected store' + plural + ' to use:');
-
-        // Assign correct links to Create/View/Edit/Delete
-        $j('.configPageUrl').attr('data-baseUrl', marcomUserData.$constants.configPageUrl).attr('href', marcomUserData.$constants.additionalOfferPageUrl);
-        $j('.additionalOfferPageUrl').attr('data-baseUrl', marcomUserData.$constants.additionalOfferPageUrl).attr('href', marcomUserData.$constants.additionalOfferPageUrl);
     });
   </script>
 </script>
