@@ -2033,6 +2033,9 @@ input.bulk-apply-quantity-limit-input.form-control:focus:active {
   color: #e74c3c;
   border: 2px solid #e74c3c
 }
+p.errormsg {
+  padding: 6px 12px;
+}
 .total-label {
   position: relative
 }
