@@ -9,18 +9,21 @@ couponPageController = (function ($) {
     var controller = {
         features: {},
         stores: {},
+		offerCode: "",
 		templatePath: 'https://files.marcomcentral.app.pti.com/epsilon/coupons/templates',
         apiPath: 'https://adobe-prod-vioc.epsilon.com/jssp/vioc/',
         init: function () {
             var controller = this;
-            var id = controller.getParameterByName('id', window.location.href);
-            controller.GetPageData(id, function () {
+            var pfid = controller.getParameterByName('pfid', window.location.href);
+            var rid = controller.getParameterByName('rid', window.location.href);
+            controller.GetPageData(pfid, rid, function () {
+				controller.getCodes();
                 controller.buildUI();
             });
         },
-        GetPageData: function (id, callback) {
+        GetPageData: function (pfid, rid, callback) {
             var controller = this;
-            $.get(controller.apiPath + 'getCouponPageData.jssp?id=' + encodeURIComponent(id), function (results) {
+            $.get(controller.apiPath + 'getCouponPageData.jssp?pfid=' + encodeURIComponent(pfid) + '&rid=' + encodeURIComponent(rid), function (results) {
                 var json_results = JSON.parse(results);
                 $.each(json_results, function (i, result) {
                     // Store the page content data in controller.stores
@@ -36,6 +39,16 @@ couponPageController = (function ($) {
                 }
             });
         },
+		getCodes: function() {
+			var controller = this;
+			for (var i = 0; i < controller.stores.coupons.length; i++)
+			{
+				var coupon = controller.stores.coupons[i];
+
+				if (!coupon.isAdtlOffer)
+					controller.offerCode = coupon.code;
+			}
+		},
         buildUI: function (result, callback) {
             var controller = this;
             /**
@@ -62,17 +75,36 @@ couponPageController = (function ($) {
             /** Coupons */
             controller.getMustacheTemplate(controller.templatePath + '/coupons.mustache.html', '.coupons-template', function (template) {
                 $('.coupons-section').html(Mustache.render(template, controller.stores));
+				console.log("Set barcode");
+				$('#coupon-barcode img').attr('src', 'https://web02.vioc.epsilon.com/' + controller.offerCode + '.png');
+				$(".coupon h2.hidden-desktop").html($(".coupon h2.hidden-desktop").html().replace("*","")); // Remove "*"  from mobile version
+				$("#disclaimers.hidden-desktop").html($("#disclaimers.hidden-desktop").html().replace("*","")); // Remove "*"  from mobile version
             });
             /** Map Image */
             controller.getMustacheTemplate(controller.templatePath + '/map.mustache.html', '.map-template', function (template) {
                 $('.map-section').html(Mustache.render(template, controller.stores));
             });
-            controller.getMustacheTemplate(controller.templatePath + '/additionalOffer.mustache.html', '.additionalOffer-template', function (template) {
-                $('.additionalOffer-section').html(Mustache.render(template, controller.stores));
-            });
-            controller.getMustacheTemplate(controller.templatePath + '/services.mustache.html', '.services-template', function (template) {
-                $('.services-section').html(Mustache.render(template, controller.stores));
-            });
+			if (controller.additionalCode != "")
+			{
+				controller.getMustacheTemplate(controller.templatePath + '/additionalOffer.mustache.html', '.additionalOffer-template', function (template) {
+					$('.additionalOffer-section').html(Mustache.render(template, controller.stores));
+				});
+			}
+			else
+			{
+				$("#additionalOffer-barcode").hide();
+				$("#additionalOffer").hide();
+			}
+			if (controller.stores.services.length > 0)
+			{
+				controller.getMustacheTemplate(controller.templatePath + '/services.mustache.html', '.services-template', function (template) {
+					$('.services-section').html(Mustache.render(template, controller.stores));
+				});
+			}
+			else
+			{
+				$("#services").hide()
+			}
             /**
              * FEATURE dependent TEMPLATES
              * @uses {object} controller.features
@@ -117,3 +149,8 @@ couponPageController = (function ($) {
         init: controller.init
     };
 })(jQuery);
+
+function hideMap()
+{
+	jQuery('#MapImage').parent().parent().parent().hide()
+}
