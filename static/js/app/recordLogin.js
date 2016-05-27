@@ -50,6 +50,7 @@ var recordLogin = (function ($) {
 					setLandingPageType(results);
 				}
 			}).fail(function () {
+				toastr.error('An internal error has occurred.');
 				return;
 			});
 		}
