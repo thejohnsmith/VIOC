@@ -162,6 +162,6 @@ a.pbtn span:hover:focus {
   color: #004890;
   background: #ececec
 }
-.btn-s SPAN.img-next {
+.btn-s SPAN.img-next, #ctl00_content_CtlAddToCart_ProductOrderInfoController_divProductOrderInfo {
   display: none;
 }
