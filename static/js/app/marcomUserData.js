@@ -5,8 +5,8 @@
  */
 
 var marcomUserData = (function ($) {
-	var $userRelated = $('.user-related');
 	var constants;
+	var $userRelated = $('.user-related');
 	var user = {
 		externalId: $userRelated.data('user-external-id') || '',
 		loginId: $userRelated.data('user-login-id') || '',
@@ -29,8 +29,8 @@ var marcomUserData = (function ($) {
 		(environment == 20951) ? 'UAT' :
 		'PROD';
 
-	console.warn('Environment: ' + environment);
-	console.warn('URL: ' + window.location.href);
+	// console.warn('Environment: ' + environment);
+	// console.warn('URL: ' + window.location.href);
 
 	/** PRODUCTION URLs
 	 * @kind {string} Production or User Acceptance Testing (Beta_Epsilon)
@@ -42,6 +42,8 @@ var marcomUserData = (function ($) {
 		(environment == 'PROD') ?
 		constants = {
 			kind: 'PROD',
+			homePageUrl: 'home.aspx',
+			homePageGroupUrl: 'home.aspx?uigroup_id=478656',
 			lifecyclePageUrl: 'CustomPage.aspx?uigroup_id=478656&page_id=12293',
 			specialtyPageUrl: 'CustomPage.aspx?uigroup_id=478656&page_id=12294',
 			programManagementUrl: 'CustomPage.aspx?uigroup_id=478656&page_id=12300',
@@ -66,6 +68,8 @@ var marcomUserData = (function ($) {
 		(environment == 'UAT') ?
 		constants = {
 			kind: 'UAT',
+			homePageUrl: 'home.aspx',
+			homePageGroupUrl: 'home.aspx?uigroup_id=479602',
 			lifecyclePageUrl: 'CustomPage.aspx?uigroup_id=479602&page_id=10792',
 			specialtyPageUrl: 'CustomPage.aspx?uigroup_id=479602&page_id=10793',
 			programManagementUrl: 'CustomPage.aspx?uigroup_id=479602&page_id=11173',
@@ -80,14 +84,9 @@ var marcomUserData = (function ($) {
 			apiPathLocal: 'data/',
 			marcomFilePath: 'https://files.marcomcentral.app.pti.com/epsilon/static/'
 		} : constants;
-
-	var controller = {
-		// marcomUserData.controller.initPage(pageProperties);
-	};
 	return {
 		$user: user,
 		$constants: constants,
-		controller: controller,
 		environmentKind: environment.kind
 	};
 })(jQuery);
@@ -95,4 +94,14 @@ var marcomUserData = (function ($) {
 /* Monitor for flash messages */
 if (getParameterByName('flashSuccessMsg', window.location.href) != '') {
 	toastr.success(getParameterByName('flashSuccessMsg', window.location.href));
+}
+
+/* Update the hard-coded URL's in the utility navigation. */
+if (typeof appUtilities === 'object') {
+	appUtilities.changeNavBarLink();
+}
+
+/* Run the login controller */
+if (jQuery('#homePageLanding').length >= 1) {
+	recordLogin.makeRequest();
 }

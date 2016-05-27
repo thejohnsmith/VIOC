@@ -21,5 +21,6 @@ module.exports = {
 	"env": {
 		"browser": true
 	},
+	"allow-null": false,
 	"extends": "eslint:recommended"
 };

@@ -50,6 +50,7 @@ var recordLogin = (function ($) {
 					setLandingPageType(results);
 				}
 			}).fail(function () {
+				toastr.error('An internal error has occurred.');
 				return;
 			});
 		}
@@ -58,6 +59,9 @@ var recordLogin = (function ($) {
 		var $loginCount = results.loginCount;
 		var $newUser = getParameterByName('newUser', window.location.href);
 		var $reportingAccess = results.marcomReportingAccess;
+
+		/* Dubugging */
+		// console.warn('Login Count is ' + $loginCount);
 		// console.log("results.marcomReportingAccess = " + results.marcomReportingAccess);
 
 		document.cookie = 'loginCount=' + $loginCount;
@@ -93,5 +97,3 @@ var recordLogin = (function ($) {
 		makeRequest: makeRequest
 	};
 })(jQuery);
-
-recordLogin.makeRequest();

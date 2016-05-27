@@ -9,7 +9,7 @@
     <div class="items">
         {{#coupons}}{{^isAdtlOffer}}
         <div class="item coupon" data-couponId="{{id}}">
-            <img class="hidden-mobile" title="Valvoline Logo" src="images/viocSquareLogo.gif">
+            <img class="hidden-mobile" title="Valvoline Logo" src="https://files.marcomcentral.app.pti.com/epsilon/coupons/images/viocSquareLogo.gif">
             <h1><span class="js-amount">{{amount}}</span></h1>
             <h2 class="hidden-desktop">{{{text}}}
             {{#disclaimer}}<span class="hidden-desktop"><small><sup class="disclaimer-key"> {{id}}</sup></small></span>
@@ -18,14 +18,15 @@
                 <div class="hidden-mobile js-text">
                     {{{text}}}
                 </div>
-                <div class="hidden-desktop disc"><span class="ellipsis">{{disclaimer}}</span></div>
+                <div class="hidden-desktop disc"><span class="ellipsis">Valid at participating locations only. See store for details.</span></div>
                 <div class="item-detail codes clearFix">
-                    <span class="js-expiration right"><strong class="hidden-desktop">EXP: </strong>{{exp}}</span>
+                    <span class="js-expiration right">Exp {{exp}}</span>
                     <span class="js-code left">{{code}}</span>
                 </div>
                 <div class="hidden-mobile js-disclaimer clear">
                     {{disclaimer}}
                 </div>
+				<div class="a-center hidden-mobile" id="coupon-barcode"><img width="120" src=""/></div>
             </div>
         </div>
         {{/isAdtlOffer}} {{/coupons}}

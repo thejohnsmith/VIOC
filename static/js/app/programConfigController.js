@@ -45,7 +45,7 @@ var programConfigController = (function ($) {
 						controller.program = result;
 					}
 					if (!controller.program.programUsesOffers) {
-						console.warn('does not use offers');
+						// console.warn('does not use offers');
 						$('.standard-offer').hide();
 					}
 				});
@@ -127,12 +127,12 @@ var programConfigController = (function ($) {
 		},
 		UpdateCreativeDropdowns: function () {
 			var controller = this;
-			console.log('Config: %o', controller.config);
-			console.log('Program: %o', controller.program);
+			// console.log('Config: %o', controller.config);
+			// console.log('Program: %o', controller.program);
 
 			// Pull the list of email creative from controller.program.uiLayout.emailCreativeChoices and populate .em-creative
-			console.log("controller.program.uiLayout = " + typeof controller.program.uiLayout + " contains " + JSON.stringify(controller.program.uiLayout) )
-			console.log('Options: %o', controller.program.uiLayout.emailCreativeChoices);
+			// console.log("controller.program.uiLayout = " + typeof controller.program.uiLayout + " contains " + JSON.stringify(controller.program.uiLayout) )
+			// console.log('Options: %o', controller.program.uiLayout.emailCreativeChoices);
 			for (var value in controller.program.uiLayout.emailCreativeChoices) {
 				$('.em-creative')
 					.append($('<option>', {
@@ -168,7 +168,7 @@ var programConfigController = (function ($) {
 				$('.high-risk:not(.standard-risk)').hide();
 				$('.standard-risk.high-risk').css({'opacity': 0});
 				// $('.discount-code-table td.touchpoint-col.high-risk').show().addClass('hidden');
-				console.warn($('.touchpoint-col.high-risk'));
+				// console.warn($('.touchpoint-col.high-risk'));
 				$.each($(".result-label"),function(i,e) {
 					$(e).html($(e).html().replace('- Standard',''));
 				});
@@ -275,7 +275,7 @@ var programConfigController = (function ($) {
 			controller.UpdateDiscountCodes();
 		},
 		ValidateDiscountCode: function (input) {
-			console.log('Validating %o', input);
+			// console.log('Validating %o', input);
 			var discountCode = $(input).val();
 			var discountCodeName = $(input).attr('name').replace('sms','ph');
 
@@ -286,7 +286,7 @@ var programConfigController = (function ($) {
 			};
 
 			$.get(controller.apiPath + 'validateDiscountCode.jssp?userId=' + encodeURIComponent(controller.userId) + '&code=' + discountCode + "&codeName=" + discountCodeName, function (results) {
-				console.log('validateDiscountCode.jssp returned: ' + results + ' (' + typeof results + ')');
+				// console.log('validateDiscountCode.jssp returned: ' + results + ' (' + typeof results + ')');
 				$('.pre-submit').hide();
 				$('.post-submit').show();
 				var json_results = JSON.parse(results);
@@ -349,7 +349,7 @@ var programConfigController = (function ($) {
 				method: 'GET',
 				data: saveData,
 				success: function (results) {
-					console.log('Save was successful!');
+					// console.log('Save was successful!');
 					window.location.href = marcomUserData.$constants.programManagementUrl + '&programId=' + controller.programId + '&flashSuccessMsg=Settings%20Saved!#parentHorizontalTab2';
 				},
 				dataType: 'json'

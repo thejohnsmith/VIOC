@@ -265,7 +265,12 @@ article #store-services {
   width: 60%;
 }
 .ad-img + .ad-copy {
-  width: 60%;
+  width: 100%;
+  display: inline-block;
+  margin-bottom: 3em;
+}
+.ad-img img {
+  max-width: 100%;
 }
 article #store-services #motor-vehicle-inspection a {
   min-height: 51px;

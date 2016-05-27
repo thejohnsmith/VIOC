@@ -71,7 +71,6 @@ var checkboxController = (function ($) {
 			});
 			// console.log('Changing store list for ' + controller.cssFamily);
 			if (typeof controller.onChange === 'function') {
-				// console.log(controller.storeIds);
 				controller.onChange(controller.storeIds);
 			}
 			controller.updateSelectAllButton();

@@ -1,77 +1,69 @@
 #CtlHead {
-  width: 100%;
+  width: 100%
 }
-.searchHolder {
+.NavTop:before, .searchHolder {
   display: none!important
 }
-.NavTop:before {
-  display: none!important
-}
-.ButtonRowClearR, .btnContactUs {
+br {
   display: none;
+  height: 0;
+}
+#CtlLogIn>p>a, #ctl00_content_ForgotPassword_ForgotPWSecurityQuestionInstruction br, #ctl00_content_ForgotPassword_divSecurityQuestion br, .CtlLogIn br, .header-right, a#ctl00_content_Login_btnRecoverPassword, td:empty {
+  display: none
+}
+.logo a:hover {
+  cursor: default
 }
 #CtlLogIn {
   width: auto;
   clear: both;
   margin: 6% auto;
   font-family: 'HelveticaNeueLT-Thin', sans-serif;
-  box-shadow: 0 0 37px 10px rgba(0, 0, 0, 0.18);
+  box-shadow: 0 0 37px 10px rgba(0, 0, 0, .18);
   min-width: 300px;
   max-width: 450px;
-  padding: 6px 12px;
+  padding: 6px 12px 20px
 }
 #CtlLogIn h4 {
-  font-size: 26px;
+  font-size: 26px
 }
-#CtlLogIn > p > a, .header-right {
-  display: none;
+#CtlLogIn h4 strong span {
+  padding: 0 0 .4em;
+  font-size: 20px;
+  display: block
+}
+.CartAlert {
+  color: #e74c3c;
+  background: 0 0;
+  margin-bottom: 1em;
+  display: inline-block;
+  width: 100%
 }
 #CtlLogIn .CtlSearchGroup, .CtlSearchGroup td.header {
-  border: none;
+  border: none
 }
 .CtlSearchGroup td.header {
-  padding-bottom: 8px;
+  padding-bottom: 1em;
+  font-size: 20px
+}
+#ctl00_content_ForgotPassword_divSecurityQuestion td {
+  padding: 0 0 4px
+}
+span#ctl00_content_ForgotPassword_ForgotPWSecurityQuestionInstruction {
+  padding: 1em 0 1.4em;
+  display: block
 }
 #CtlLogIn .CtlSearchGroup {
-  background: none;
+  background: 0 0;
   margin: 0!important;
   padding: 0 4px 0 0;
-  width: 100%;
-}
-.pbtn, .btn-s:hover {
-  background: none;
-}
-A.pbtn {
-  padding: 0;
-}
-.pbtn {
-  font-family: 'HelveticaNeueLT-Condensed';
-  height: auto!important;
-}
-A.pbtn SPAN {
-  color: #00aeef;
-  background: none;
-  border: 2px solid #00aeef;
-  text-align: center;
-  width: auto;
-  height: auto;
-  font-size: 15px!important;
-}
-A.pbtn.primary SPAN {
-  max-width: 140px;
-  margin: 0 0 15px 0;
-  padding: 6px 12px;
-
-  color: #fff;
-  border: 1px solid #337ab7;
-  border-radius: 4px;
-  background-color: #0ea3dd;
+  width: 100%
 }
 .CtlSearchGroup td {
-  padding: 0 6px;
+  padding: 0 6px
 }
 .header-right .btnLogOut:before {
-  content: none;
+  content: none
 }
 .CtlSearchGroup td input, .CtlSearchGroup td select {
   border-color: #66afe9;
@@ -79,24 +71,53 @@ A.pbtn.primary SPAN {
   color: #555;
   font-size: 13px;
   padding: 7px 10px;
-  /*font-family: 'HelveticaNeueLT-Thin', sans-serif;*/
-  font-weight: normal;
-  margin-bottom: 18px;
+  font-weight: 400;
+  margin-bottom: 18px
 }
-.CtlSearchGroup td input:focus, .CtlSearchGroup td select:focus, A.pbtn SPAN:hover {
-  border-color: rgb(0, 188, 212);
-  box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px rgba(102, 175, 233, 0.8);
+#ctl00_content_ForgotPassword_StringControl1 {
+  font-size: 16px
 }
-A.pbtn SPAN:hover:focus {
-  border-color: rgba(0, 72, 144, 0.72);
-  box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px rgba(0, 0, 0, 0.64);
+.ButtonRowClearR {
+  padding: 0
+}
+.btn-s:hover, .pbtn {
+  background: 0 0
+}
+.pbtn {
+  font-family: 'HelveticaNeueLT-Condensed';
+  height: auto!important;
+  padding: 0
+}
+a.pbtn span, a.pbtn.primary span {
+  font-size: 15px!important;
+  max-width: 140px;
+  margin: 0 0 15px;
+  padding: 6px 12px;
+  color: #fff;
+  border: 1px solid #337ab7;
+  border-radius: 4px;
+  background: #0ea3dd;
+  box-sizing: content-box;
+  -webkit-transition: .5s;
+  transition: .5s
+}
+.CtlSearchGroup td input:focus, .CtlSearchGroup td select:focus, a.pbtn span:hover {
+  border-color: #00bcd4;
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px rgba(102, 175, 233, .8)
+}
+a.pbtn span:hover {
+  color: #fff
+}
+a.pbtn span:hover:focus {
+  border-color: rgba(0, 72, 144, .72);
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px rgba(0, 0, 0, .64);
   color: #004890;
-  background: #ECECEC;
+  background: #ececec
 }
 #ctl00_content_Login_txtMessage {
   background: #fff;
   color: red;
   padding: 0 15px;
   display: inline-block;
-  text-align: right;
+  text-align: right
 }

@@ -8,9 +8,10 @@ var getProgramParticipationStats = (function ($) {
 	var programId = getParameterByName('programId', window.location.href);
 	var marcomFilePath = marcomUserData.$constants.marcomFilePath;
 	var makeRequest = function () {
+
 			// Make sure there's a User ID loaded from Marcom before we Init this script.
-			if (marcomUserData.$user.externalId === '%%User.ExternalId%%') {
-				return;
+			if (marcomUserData.$user.externalId === '%%User.ExternalId%%' || window.location.href.indexOf(marcomUserData.$constants.helpPageUrl) > -1) {
+				return false;
 			}
 			var apiPath = marcomUserData.$constants.apiPath + 'getProgramParticipationStats.jssp';
 			$.ajax({
@@ -46,12 +47,15 @@ var getProgramParticipationStats = (function ($) {
 			return result.map(function (obj) {
 				var programTitle = getParameterByName('programId', window.location.href);
 				if (JSON.stringify(obj.id) === programId) {
+					/* Change Breadcrumb text */
+					$('.breadcrumbs_previous1 a').attr('title', 'Lifecycle Programs').attr('href', marcomUserData.$constants.lifecyclePageUrl);
+
 					/** Update the breadcrumbs_previous text and title for Specialty Programs
 					 */
 					if (obj.isSpecialtyProgram) {
 						isSpecialtyProgram = obj.isSpecialtyProgram;
 						/* Change Breadcrumb text */
-						$('.breadcrumbs_previous1 a').text('Specialty Programs').attr('title', 'Specialty Programs').attr('href', 'CustomPage.aspx?uigroup_id=479602&page_id=10793');
+						$('.breadcrumbs_previous1 a').text('Specialty Programs').attr('title', 'Specialty Programs').attr('href', marcomUserData.$constants.specialtyPageUrl);
 						/* Make nav item active */
 						$('.navBarItem > a').filter(function () {
 							return $(this).text() === 'SPECIALTY PROGRAMS';
@@ -132,17 +136,17 @@ var getProgramParticipationStats = (function ($) {
 			};
 
 			/** Update the Url's to use variable links from $constants.
-				*	@param {data} programId is retreived from inline data attr: data-programId={mustache_Id}
-				*/
-			$('.program-edit a').each(function() {
-        var programId = $(this).attr('data-programId');
-        $(this).attr('href', marcomUserData.$constants.programManagementUrl + '&programId=' + programId);
-      });
+			 *	@param {data} programId is retreived from inline data attr: data-programId={mustache_Id}
+			 */
+			$('.program-edit a').each(function () {
+				var programId = $(this).attr('data-programId');
+				$(this).attr('href', marcomUserData.$constants.programManagementUrl + '&programId=' + programId);
+			});
 
 			// Yellow Highlight
 			$('.program-select .program-list li').on('mouseover', function () {
-			  $('.program-select .program-list li').removeClass('item-highlight');
-			  $(this).addClass('item-highlight');
+				$('.program-select .program-list li').removeClass('item-highlight');
+				$(this).addClass('item-highlight');
 			});
 
 			// Same Highlight, different, using jQueyr
@@ -178,7 +182,7 @@ var getProgramParticipationStats = (function ($) {
 				// Handle errors
 				// Color : Gray
 				// Displays warning symbol '⚠'
-				function handleDashboardError (obj) {
+				function handleDashboardError(obj) {
 					return $programId.attr('class', programStatus.error).find('.program-status').html('&#9888;').attr('title', 'An error occurred');
 				}
 			});
@@ -202,9 +206,10 @@ var getProgramParticipationStats = (function ($) {
 			});
 		},
 		requestFailed = function () {
-			$('.program-select').html('There was a problem fetching your programs.' + 'Please check back again later.');
-			$('.alert-container').html('<programss="alert-main alert-danger">DANGER: An error occured</div>').fadeIn();
-			// Display a success toast, with a title
+			$('#programSummary').fadeIn();
+			$('.program-select').html('<p class="errormsg">** There was a problem fetching your programs!' + 'Please check back again later. **</p>');
+			$('.spinner').hide();
+			toastr.error('An internal error has occurred.');
 			return console.warn('An internal error has occurred.');
 		};
 	return {

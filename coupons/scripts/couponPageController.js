@@ -9,18 +9,21 @@ couponPageController = (function ($) {
     var controller = {
         features: {},
         stores: {},
+		offerCode: "",
+		templatePath: 'https://files.marcomcentral.app.pti.com/epsilon/coupons/templates',
         apiPath: 'https://adobe-prod-vioc.epsilon.com/jssp/vioc/',
         init: function () {
             var controller = this;
-            var rId = controller.getParameterByName('r', window.location.href);
-            var blrId = controller.getParameterByName('blrid', window.location.href);
-            controller.GetPageData(controller.rId, controller.blrId, function () {
+            var pfid = controller.getParameterByName('pfid', window.location.href);
+            var rid = controller.getParameterByName('rid', window.location.href);
+            controller.GetPageData(pfid, rid, function () {
+				controller.getCodes();
                 controller.buildUI();
             });
         },
-        GetPageData: function (rId, blrId, callback) {
+        GetPageData: function (pfid, rid, callback) {
             var controller = this;
-            $.get(controller.apiPath + 'getCouponPageData.jssp', function (results) {
+            $.get(controller.apiPath + 'getCouponPageData.jssp?pfid=' + encodeURIComponent(pfid) + '&rid=' + encodeURIComponent(rid), function (results) {
                 var json_results = JSON.parse(results);
                 $.each(json_results, function (i, result) {
                     // Store the page content data in controller.stores
@@ -36,6 +39,16 @@ couponPageController = (function ($) {
                 }
             });
         },
+		getCodes: function() {
+			var controller = this;
+			for (var i = 0; i < controller.stores.coupons.length; i++)
+			{
+				var coupon = controller.stores.coupons[i];
+
+				if (!coupon.isAdtlOffer)
+					controller.offerCode = coupon.code;
+			}
+		},
         buildUI: function (result, callback) {
             var controller = this;
             /**
@@ -44,38 +57,61 @@ couponPageController = (function ($) {
              *
              *
              **  Address */
-            controller.getMustacheTemplate('../../templates/address.mustache.html', '.address-template', function (template) {
+            controller.getMustacheTemplate(controller.templatePath + '/address.mustache.html', '.address-template', function (template) {
                 $('.address-section').html(Mustache.render(template, controller.stores));
             });
             /** Store Hours */
-            controller.getMustacheTemplate('../../templates/store-hours.mustache.html', '.store-hours-template', function (template) {
-                $('.store-hours-section').html(Mustache.render(template, controller.stores));
-            });
-            /** Store Hours */
-            controller.getMustacheTemplate('../../templates/mobile-store-hours.mustache.html', '.mobile-store-hours-template', function (template) {
-                $('.mobile-store-hours-section').html(Mustache.render(template, controller.stores));
-            });
+            if($('.type-desktop').length) {
+                controller.getMustacheTemplate(controller.templatePath + '/store-hours.mustache.html', '.store-hours-template', function (template) {
+                    $('.store-hours-section').html(Mustache.render(template, controller.stores));
+                });
+            }
+            /** MOBILE Store Hours */
+            if($('.type-mobile').length) {
+                controller.getMustacheTemplate(controller.templatePath + '/mobile-store-hours.mustache.html', '.mobile-store-hours-template', function (template) {
+                    $('.mobile-store-hours-section').html(Mustache.render(template, controller.stores));
+                });
+            }
             /** Coupons */
-            controller.getMustacheTemplate('../../templates/coupons.mustache.html', '.coupons-template', function (template) {
+            controller.getMustacheTemplate(controller.templatePath + '/coupons.mustache.html', '.coupons-template', function (template) {
                 $('.coupons-section').html(Mustache.render(template, controller.stores));
+				console.log("Set barcode");
+				$('#coupon-barcode img').attr('src', 'https://web02.vioc.epsilon.com/' + controller.offerCode + '.png');
+				$(".coupon h2.hidden-desktop").html($(".coupon h2.hidden-desktop").html().replace("*","")); // Remove "*"  from mobile version
+				$("#disclaimers.hidden-desktop").html($("#disclaimers.hidden-desktop").html().replace("*","")); // Remove "*"  from mobile version
             });
             /** Map Image */
-            controller.getMustacheTemplate('../../templates/map.mustache.html', '.map-template', function (template) {
+            controller.getMustacheTemplate(controller.templatePath + '/map.mustache.html', '.map-template', function (template) {
                 $('.map-section').html(Mustache.render(template, controller.stores));
             });
-            controller.getMustacheTemplate('../../templates/additionalOffer.mustache.html', '.additionalOffer-template', function (template) {
-                $('.additionalOffer-section').html(Mustache.render(template, controller.stores));
-            });
-            controller.getMustacheTemplate('../../templates/services.mustache.html', '.services-template', function (template) {
-                $('.services-section').html(Mustache.render(template, controller.stores));
-            });
+			if (controller.additionalCode != "")
+			{
+				controller.getMustacheTemplate(controller.templatePath + '/additionalOffer.mustache.html', '.additionalOffer-template', function (template) {
+					$('.additionalOffer-section').html(Mustache.render(template, controller.stores));
+				});
+			}
+			else
+			{
+				$("#additionalOffer-barcode").hide();
+				$("#additionalOffer").hide();
+			}
+			if (controller.stores.services.length > 0)
+			{
+				controller.getMustacheTemplate(controller.templatePath + '/services.mustache.html', '.services-template', function (template) {
+					$('.services-section').html(Mustache.render(template, controller.stores));
+				});
+			}
+			else
+			{
+				$("#services").hide()
+			}
             /**
              * FEATURE dependent TEMPLATES
              * @uses {object} controller.features
              *
              *
              **  Features Section */
-            controller.getMustacheTemplate('../../templates/features.mustache.html', '.features-template', function (template) {
+            controller.getMustacheTemplate(controller.templatePath + '/features.mustache.html', '.features-template', function (template) {
                 $('.features-section').html(Mustache.render(template, controller.features));
             });
         },
@@ -86,7 +122,7 @@ couponPageController = (function ($) {
                 console.log('Loading cached version of ' + template_key);
                 callback(controller[template_key])
             } else {
-                $.get(controller.filePath + filename, function (templates) {
+                $.get(filename, function (templates) {
                     controller[template_key] = $(templates).filter(css_selector).html();
                     callback(controller[template_key]);
                 });
@@ -107,10 +143,14 @@ couponPageController = (function ($) {
             }
             return decodeURIComponent(results[2].replace(/\+/g, ' '));
         }
-
     };
     return {
         controller: controller,
         init: controller.init
     };
 })(jQuery);
+
+function hideMap()
+{
+	jQuery('#MapImage').parent().parent().parent().hide()
+}

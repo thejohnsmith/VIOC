@@ -181,7 +181,7 @@ var additionalOfferController = (function ($) {
 			}
 
 		},
-		UpdateSaveButton: function() {
+		UpdateSaveButton: function () {
 			var controller = this;
 			if (controller.config.content.corpDefault == "1")
 				$('.save-btn').val("Save as New");
@@ -197,64 +197,83 @@ var additionalOfferController = (function ($) {
 			jConfirm('Have you established this code in POS?', 'Please Confirm', function (r) {
 				if (r) {
 
-					if (controller.config.content.corpDefault == 0)
-					{
+					if (controller.config.content.corpDefault == 0) {
 						callback();
-					}
-					else
-					{
-						var new_label = ($('.settings-name').val() != controller.config.content.label)
-							? $('.settings-name').val()
-							: ("Custom " + controller.config.content.label);
+					} else {
+						var new_label = ($('.settings-name').val() != controller.config.content.label) ? $('.settings-name').val() : ("Custom " + controller.config.content.label);
 
 						jConfirm("This is a factory-defined setting and may not be changed.  Instead, the system will create a new setting named \"" + new_label + "\" which will contain your custom settings.  Proceed?", 'Create New Settings?', function (r) {
 							if (r) {
-								callback()();
+								callback();
 							}
 						});
 					}
-
 
 				}
 			});
 		},
 		OnPressSave: function () {
-
 			var controller = this;
+
+			// Make sure at least the first offer has been select.
+			if ($('[name=adtlText1]').val() == "none") {
+				jAlert('At least one offer is required.');
+				console.warn('found first dropdown = none');
+				return;
+			}
+			if ($('[name=adtlValue1]').val() == "none") {
+				jAlert('Discount Amount is required.');
+				console.warn('adtlValue = none');
+				return;
+			}
+			if ($('[name=adtlCode1]').val() == "none") {
+				jAlert('Additional code is required.');
+				console.warn('adtlCode1 = none');
+				return;
+			}
+
 			controller.ValidateForm(function () {
-				saveData = {
-					userId: controller.userId,
-					configType: "adtl",
-					programId: 0,
-					label: $(".settings-name").val(),
-					_expiration: $('.expiration').val()
-				};
+					saveData = {
+						userId: controller.userId,
+						configType: "adtl",
+						programId: 0,
+						label: $(".settings-name").val(),
+						_expiration: $('.expiration').val()
+					};
 
-				for (var i = 1; i <= 4; i++) {
-					if ($('[name=adtlText' + i + ']').val() != "none") {
-						saveData["_adtlCode" + i] = $('[name=adtlCode' + i + ']').val();
-						saveData["_adtlText" + i] = $('[name=adtlText' + i + ']').val();
-						saveData["_adtlApproach" + i] = $('[name=adtlApproach' + i + ']').val();
-						saveData["_adtlValue" + i] = $('[name=adtlValue' + i + ']').val();
+					for (var i = 1; i <= 4; i++) {
+						// dropdown must has a selected offer
+						if ($('.adtl-offer-1 [name=adtlText' + i + ']').val() != "none") {
+							saveData["_adtlText" + i] = $('.adtl-offer-1 [name=adtlText' + i + ']').val();
+							console.warn('adtlText: ' + $('.adtl-offer-1 [name=adtlText' + i + ']').val());
+
+							saveData["_adtlApproach" + i] = $('.adtl-offer-1 .adtl-offer-1').val();
+							console.warn('adtlApproach: ' + $('.adtl-offer-1 [name=adtlApproach' + i + ']').val());
+
+							saveData["_adtlValue" + i] = $('.adtl-offer-1 .adtlValue').val();
+							console.warn('adtlValue: ' + $('.adtl-offer-1 .adtlValue').val());
+
+							saveData["_adtlCode" + i] = $('.adtl-offer-form-group-input:visible .adtlCode').val();
+							console.warn('adtlCode: ' + $('.adtl-offer-form-group-input:visible .adtlCode').val());
+						}
 					}
-				}
 
-				if (controller.configId > 0)
-					saveData.configId = controller.configId;
+					if (controller.configId > 0)
+						saveData.configId = controller.configId;
 
-				$.ajax({
-					url: controller.apiPath + 'saveConfig.jssp',
-					method: "GET",
-					data: saveData,
-					success: function (results) {
-						console.log("Save was successful!");
-						window.location.href = marcomUserData.$constants.programManagementUrl + "&programId=" + controller.programId + "&flashSuccessMsg=Additional%20Offer%20Saved!#parentHorizontalTab2";
-					},
-					dataType: "json"
-				});
+					$.ajax({
+						url: controller.apiPath + 'saveConfig.jssp',
+						method: "GET",
+						data: saveData,
+						success: function (results) {
+							console.log("Save was successful!");
+							window.location.href = marcomUserData.$constants.programManagementUrl + "&programId=" + controller.programId + "&flashSuccessMsg=Additional%20Offer%20Saved!#parentHorizontalTab2";
+						},
+						dataType: "json"
+					});
 
-			})
-			// console.log("Save pressed!", this);
+				})
+				// console.log("Save pressed!", this);
 		},
 		ShowUI: function () {
 			$(".js-content").show();

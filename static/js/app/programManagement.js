@@ -16,6 +16,8 @@ var programManagementController = (function ($) {
 		user_configs: [],
 		store_data: [],
 		program: {},
+		configUrl: marcomUserData.$constants.configPageUrl,
+		adtlUrl: marcomUserData.$constants.additionalOfferPageUrl,
 		user_id: marcomUserData.$user.externalId,
 		program_id: getParameterByName('programId', window.location.href),
 		start_time: null,
@@ -148,26 +150,26 @@ var programManagementController = (function ($) {
 
 		refreshManagementControls: function () {
 			var controller = this;
+			$('.configPageUrl').attr('href', controller.configUrl);
+			$('.additionalOfferPageUrl').attr('href', controller.adtlUrl);
+			controller.setHashLinks();
 			$('.management-dropdown').each(function () {
 				var $selectedMgmg = $(this).find(':selected');
 				var configId = $selectedMgmg.val();
+				var $selectedMgmgText = $selectedMgmg.text();
 				var $editLink = $(this).parent().next().find('.program-edit-link');
 				var $deleteLink = $(this).parent().next().find('.program-delete-link');
-				var $baseUrl = $editLink.attr('data-baseUrl');
+				var $baseUrl = $editLink.attr('href');
 				var defaultMgmg = false;
 				$.each(controller.user_configs, function (i, config) {
 					if (config.corpDefault == 1 && config.id == configId)
 						defaultMgmg = true;
 				});
 
-				// Debugging
-				// console.warn('$baseUrl: ' + $baseUrl);
-				// console.warn('config page link: ' + marcomUserData.$constants.configPageUrl);
-				// console.warn('adtl offer link: ' + marcomUserData.$constants.additionalOfferPageUrl);
 				// console.warn('controller.user_configs[0].corpDefault: ' + controller.user_configs[0].corpDefault);
 
 				$deleteLink.off().on('click', function (e) {
-					e.preventDefault;
+					e.preventDefault();
 					var selectedConfigId = $selectedMgmg.val();
 					var isProgram = $selectedMgmg.parent().hasClass('program-dropdown');
 					var targetClass = (isProgram) ? '.program-dropdown' : '.adtl-dropdown';
@@ -182,13 +184,18 @@ var programManagementController = (function ($) {
 					jConfirm(message, 'Please Confirm', function (r) {
 						if (r) {
 							controller.deleteSettings(selectedConfigId, function () {
+								controller.hardUIRefresh();
 								controller.buildUI(controller.store_data);
 							});
 						}
 					});
 				});
 
-				// Update the Edit/View links
+				/** Update the Edit/View links
+					* @ex: (prod)
+					* programManagementUrl: 'CustomPage.aspx?uigroup_id=478656&page_id=12300',
+					* additionalOfferPageUrl: 'CustomPage.aspx?uigroup_id=478656&page_id=12302',
+					*/
 				$editLink.attr('href', $baseUrl + '&configId=' + configId + '&programId=' + controller.program_id);
 
 				// Corporate Default configs are read-only - swap View and Edit links.
@@ -207,6 +214,7 @@ var programManagementController = (function ($) {
 				toastr.error('Failed to delete settings.');
 			}).done(function (data) {
 				toastr.success('Settings deleted!');
+				$('option[value="' + selectedConfigId + '"]').remove();
 				if (typeof callback == "function")
 					callback();
 			});
