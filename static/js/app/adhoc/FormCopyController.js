@@ -37,7 +37,8 @@
        $('.ButtonAddToCart.addToCartBtn > *').html('Send Immediately');
        // Change Add To Cart text on submit button to, 'Send Immediately'/
        $('td').filter(function() {
-         return $.trim($(this).html()) == '';
+         $.trim($(this).html()) == '&nbsp;';
+         $.trim($(this).html()) == '';
        }).remove();
      }
  	};
@@ -49,7 +50,7 @@
  // Only execute this controller on a certain page
  if (window.location.href.indexOf(pageKey) > -1) {
    var $j = jQuery;
-   $j('#catalogContent').hide();
-   $j('.js-loading').show();
+  //  $j('#catalogContent').hide();
+  //  $j('.js-loading').show();
  	ChooseTemplateController.controller.init();
  }
