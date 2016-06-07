@@ -11,7 +11,8 @@
       <ul class="hidden-mobile">
           {{#services}}
           <li>
-              <a href="{{#url}}{{url}}{{/url}}">{{#text}}{{text}}{{/text}}</a>
+              {{#url}}<a target="_blank" href="{{url}}">{{#text}}{{text}}{{/text}}</a>{{/url}}
+              {{^url}}{{#text}}{{text}}{{/text}}{{/url}}
           </li>
           {{/services}}
       </ul>
@@ -20,9 +21,8 @@
 <!--  Mobile version -->
     {{#services}}
       <h1 class="hidden-desktop">
-        <a href="{{#url}}{{url}}{{/url}}" class="service hidden-desktop">
-          {{#text}}{{text}}{{/text}}
-        </a>
+        {{#url}}<a target="_blank" href="{{url}}" class="service hidden-desktop">{{#text}}{{text}}{{/text}}</a>{{/url}}
+        {{^url}}<span class="service hidden-desktop">{{#text}}{{text}}{{/text}}</span>{{/url}}
       </h1>
 
       {{#desc}}
