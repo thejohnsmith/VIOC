@@ -1,8 +1,7 @@
 /* Coupon Page Controller
  * @filename couponPageController.js
  * @description Loads templates with data from custom Adobe API.
- * @author John Smith, Epsilon
- * @TODO Add if (typeof(value) !== "undefined" && value)
+ * @author Anthony Gill, John Smith, Epsilon
  */
 couponPageController = (function ($) {
     'use strict';
@@ -77,8 +76,16 @@ couponPageController = (function ($) {
                 $('.coupons-section').html(Mustache.render(template, controller.stores));
 				console.log("Set barcode");
 				$('#coupon-barcode img').attr('src', 'https://web02.vioc.epsilon.com/' + controller.offerCode + '.png');
-				$(".coupon h2.hidden-desktop").html($(".coupon h2.hidden-desktop").html().replace("*","")); // Remove "*"  from mobile version
-				$("#disclaimers.hidden-desktop").html($("#disclaimers.hidden-desktop").html().replace("*","")); // Remove "*"  from mobile version
+
+				$.each($(".coupon h2.hidden-desktop"), function(i,e) {
+					var content = $(e).html().replace("*","");
+					$(e).html(content);
+				}); // Remove "*"  from mobile version
+
+				$.each($("#disclaimers.hidden-desktop p"), function(i,e) {
+					var content = $(e).html().replace("*","");
+					$(e).html(content);
+				}); // Remove "*"  from mobile version
             });
             /** Map Image */
             controller.getMustacheTemplate(controller.templatePath + '/map.mustache.html', '.map-template', function (template) {

@@ -7,10 +7,14 @@
     <div id="ads">
         {{#.}}
             <div class="ad">
-                {{#img}}<img class="ad-img" alt="{{text}}" src="{{img}}">{{/img}}
+				<div style="text-align: center">
+                {{#img}}<img class="ad-img" align="center" style="margin-left:auto; margin-right: auto; text-align:center" alt="{{text}}" src="{{img}}">{{/img}}
+				</div>
+				<div style="text-align: center">
                 {{#text}}
                     <span class="ad-copy">{{text}}</span>
                 {{/text}}
+				</div>
             </div>
         {{/.}}
     </div>
