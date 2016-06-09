@@ -209,6 +209,15 @@ var additionalOfferController = (function ($) {
 			console.warn('controller.saveData: ' + controller.saveDate);
 			var new_label = ($('.settings-name').val() !== controller.config.content.label) ? $('.settings-name').val() : ('Custom ' + controller.config.content.label);
 
+			/**
+			 * 1. Offer Name field required {content.label}
+			 * 	* If Admin can edit, allow Corp Default changes {content.corpDefault} && {content.editable}
+			 * 	* If not Admin, Add 'custom-' to Config Label
+			 * 2. Discount Ammount field required {adtlValue}
+			 * 3. Coupon Code field required {adtlCode}
+			 * 4. Confirm POS code established Alert.
+			 */
+
 			// Make sure at least the first offer has been select.
 			// if ($('.adtlText:visible').val() == 'Not Used' || $('.adtlText:visible').val() == '') {
 			// 	jAlert('At least one offer is required.');
@@ -227,29 +236,35 @@ var additionalOfferController = (function ($) {
 			}
 
 			// if ($('.adtlCode:visible').val() !== 'undefined' && $('.adtlCode:visible').val() !== '' || $('.adtlText:visible').val() == 'Not Used') {
-				jConfirm('Have you established this code in POS?', 'Please Confirm', function (r) {
-					if (r) {
-
-						if (controller.config.content.corpDefault == 0) {
-							callback();
-						} else if ($('.settings-name').val() == controller.config.content.label) {
-							jConfirm("This is a factory-defined setting and may not be changed.  Instead, the system will create a new setting named \"" + new_label + "\" which will contain your custom settings.  Proceed?", 'Create New Settings?', function (r) {
-								if (r) {
-									callback();
-								}
-							});
-						} else {
-							console.warn('controller.config.content.label: ' + controller.config.content.label);
-							console.warn('new_label: ' + new_label);
-							jConfirm('You did not enter an Offer Name. The system will create a new setting named "Custom Settings". Proceed?', 'Create New Settings?', function (r) {
-								if (r) {
-									callback();
-								}
-							});
-						}
-
+			jConfirm('Have you established this code in POS?', 'Please Confirm', function (r) {
+				if (r) {
+					console.warn('r is true');
+					if (controller.config.content.corpDefault == 1 && controller.config.content.editable == 'true') {
+						console.warn('Admin is editing corpDefault, editable = ' + controller.config.content.editable);
+						new_label = $('.settings-name').val();
+						console.warn('New Label = ' + new_label);
+						callback();
 					}
-				});
+					if (controller.config.content.corpDefault == 0) {
+						callback();
+					} else if ($('.settings-name').val() == controller.config.content.label) {
+						jConfirm("This is a factory-defined setting and may not be changed.  Instead, the system will create a new setting named \"" + new_label + "\" which will contain your custom settings.  Proceed?", 'Create New Settings?', function (r) {
+							if (r) {
+								callback();
+							}
+						});
+					} else {
+						console.warn('controller.config.content.label: ' + controller.config.content.label);
+						console.warn('new_label: ' + new_label);
+						jConfirm('You did not enter an Offer Name. The system will create a new setting named "Custom Settings". Proceed?', 'Create New Settings?', function (r) {
+							if (r) {
+								callback();
+							}
+						});
+					}
+
+				}
+			});
 			// }
 		},
 		OnPressSave: function () {
