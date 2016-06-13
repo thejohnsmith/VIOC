@@ -18,7 +18,7 @@ body, html {
 .mobile {
 	display: none;
 }
-#mobile-sem {
+#mobile-sem, #locations_area{
     display: none;
 }
 
@@ -82,12 +82,12 @@ strong, h1, h2, h3, h4, h5 {
 	font-size: .9em;
 }
 #header .page {
-	
+
 	text-align: left;
 }
 #header ul {
 	margin: 0px;
-	border-left: 1px solid #ffffff;
+	/*border-left: 1px solid #ffffff;*/
 	display: -moz-inline-stack;
     display: inline-block;
     zoom: 1;
@@ -190,7 +190,7 @@ strong, h1, h2, h3, h4, h5 {
 	top: 0;
 }
 #header a.current {
-	
+
 	background-color: #ff0d01;
 	color: #fff;
 }
@@ -490,7 +490,7 @@ sup {
 
 
 .main {
-	
+
 	text-align: left;
 	color: #666666;
 	background-image: url("../images/bg-gradient.jpg");
@@ -499,26 +499,26 @@ sup {
 	background-color: #FFF;
 }
 .main .page {
-	
+
 	background-image: url("../images/bg_pylon.png");
 	background-repeat: repeat-y;
 	background-position: 6.3% bottom;
 	background-size: 6% 100%;
 }
 .main.plated {
-	
+
 	background-image: url("../images/bg_metal.jpg");
 	background-repeat: repeat-x;
 	background-position: center bottom;
 	background-color: #FFF;
 }
 .main .page .pylon {
-	
+
 	position: absolute;
 }
 
 .main .services a {
-	
+
 	width: 33%;
 	float: left;
 	font-size: 18px;
@@ -526,21 +526,21 @@ sup {
 	font-weight: bold;
 }
 .main .services .description {
-	
+
 	display: none;
 }
 .main h1 sup {
-	
+
 	font-size: 16px !important;
 }
 .main table {
-	
+
 	width: 100%;
 	text-align: center;
 	margin-bottom: 25px;
 }
 .main table th {
-	
+
 	background: #1381a8;
 	width: 96px;
 	color: #fff;
@@ -549,7 +549,7 @@ sup {
 	padding: 7px 0;
 }
 .main table td {
-	
+
 	background: #c9e9f5;
 	width: 96px;
 	color: #666;
@@ -557,7 +557,7 @@ sup {
 	padding: 10px 0;
 }
 .main table td.blank {
-	
+
 	background: none;
 	width: 3px;
 }
@@ -582,7 +582,7 @@ sup {
 	opacity: 1;
 }
 #modal {
-	
+
 	background: #fff;
 	border-radius: 7px;
 	position: absolute;
@@ -610,7 +610,7 @@ sup {
 	min-height: 450px;
 }
 #modal a.close-button {
-	
+
 	background: url('../images/modal-close.png') top left no-repeat;
 	width: 45px;
 	height: 45px;
@@ -626,7 +626,7 @@ sup {
 	font-size: 1.6em;
 }
 #modal h3 {
-	
+
 	color: #fc161c;
 	font-size: 19px;
 	font-family: 'Oswald';
@@ -634,7 +634,7 @@ sup {
 	margin-bottom: 1px;
 }
 #modal p {
-	
+
 	font-size: 16px;
 	line-height: 20px;
 	margin-top: 20px;
@@ -691,11 +691,11 @@ sup {
 	background-color: #ff0d01;
 }
 #modal h3 + p {
-	
+
 	margin-top: 0;
 }
 #modal ul {
-	
+
 	font-size: 16px;
 	line-height: 20px;
 	margin-bottom: 30px;
@@ -704,7 +704,7 @@ sup {
 	margin-left: 30px;
 }
 #modal cite {
-	
+
 	margin-top: 40px;
 	font-size: 14px;
 	line-height: 20px;
@@ -714,21 +714,21 @@ sup {
 
 
 .coupon-area {
-	
+
 	position: relative;
 	top: 325px;
 	z-index: 50;
 	text-align: center;
 }
 .coupon-area .coupon {
-	
+
 	background: #fff;
 	width: 156px;
 	min-height: 110px;
 	text-align: center;
 }
 .coupon-area .coupon h2 {
-	
+
 	font-size: 32px;
 	margin-top: 5px;
 	margin-bottom: 0;
@@ -745,13 +745,13 @@ sup {
     top: -2px;
 }
 .coupon-area .coupon h2 sup {
-	
+
 	font-size: 16px !important;
 	position: relative;
 	top: -2px;
 }
 .coupon-area .coupon p {
-	
+
 	padding: 0 10px;
 	font-size: 13px;
 	font-family: 'Oswald';
@@ -760,7 +760,7 @@ sup {
 	line-height: 16px;
 }
 .coupon-area .coupon .details {
-	
+
 	color: #fff;
 	font-family: 'Oswald';
 	font-size: 14px;
@@ -768,41 +768,41 @@ sup {
 	height: 21px;
 }
 .coupon-area .coupon .details .left {
-	
+
 	position: absolute;
 	left: 8px;
 }
 .coupon-area .coupon .details .right {
-	
+
 	position: absolute;
 	right: 6px;
 }
 .coupon-area .coupon.blue {
-	
+
 	border: 2px solid #0c2577;
 }
 .coupon-area .coupon.blue h2 {
-	
+
 	color: #0c2577;
 }
 .coupon-area .coupon.blue .details {
-	
+
 	background: #0c2577;
 }
 .coupon-area .coupon.red {
-	
+
 	border: 2px solid #ff0d01;
 }
 .coupon-area .coupon.red h2 {
-	
+
 	color: #ff0d01;
 }
 .coupon-area .coupon.red .details {
-	
+
 	background: #ff0d01;
 }
 .coupon-area .print-icon {
-	
+
 	background: url('../images/print-icon.png') top left no-repeat;
 	width: 44px;
 	height: 44px;
@@ -878,7 +878,7 @@ sup {
 
 /* Recommend area */
 #recommend_area {
-	
+
 	background: #ffffff;
 	background: #eeeeee url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2ZmZmZmZiIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNkZGRkZGQiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
 	background: -moz-linear-gradient(top,  #ffffff 0%, #dddddd 100%);
@@ -888,15 +888,15 @@ sup {
 	background: -ms-linear-gradient(top,  #ffffff 0%,#dddddd 100%);
 	background: linear-gradient(to bottom,  #ffffff 0%,#dddddd 100%);
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#dddddd',GradientType=0 );
-	
+
 	text-align: left;
 }
 #recommend_area .page {
-	
+
 	padding: 30px 0 35px;
 }
 #recommend_area p {
-	
+
 	font-size: 16px;
 	line-height: 20px;
 	padding-left: 180px;
@@ -904,7 +904,7 @@ sup {
 	float: left;
 }
 #recommend_area img {
-	
+
 	margin-right: 50px;
 }
 /* Recommend area */
@@ -913,29 +913,29 @@ sup {
 
 
 #content_area {
-	
+
 	margin-left: 170px;
 	border-left: 2px solid #ccc;
 	border-right: 2px solid #ccc;
 	padding: 20px 30px;
-	
+
 	background-color: #f7f7f7;
 	background-image: url('../images/content-bg.jpg');
 	background-position: top left;
 	background-repeat: no-repeat;
-	
+
 	font-size: 16px;
 	color: #333;
-	
+
 }
 #content_area h1 {
-	
+
 	font-size: 32px;
 	font-weight: normal;
 	margin-bottom: 0;
 }
 #content_area h2 {
-	
+
 	margin-top: 0;
 	margin-bottom: 35px;
 	font-size: 18px;
@@ -943,7 +943,7 @@ sup {
 	color: #666;
 }
 #content_area h3 {
-	
+
 	margin-top: 0;
 	margin-bottom: 5px;
 	font-size: 18px;
@@ -951,16 +951,16 @@ sup {
 	color: #ff0d01;
 }
 #content_area ul {
-	
+
 	list-style-type: disc;
 	margin-left: 25px;
 }
 #content_area ul li {
-	
+
 	margin: 3px 0;
 }
 #content_area p {
-	
+
 	font-size: 16px;
 	color: #333;
 	line-height: 20px;
@@ -969,18 +969,18 @@ sup {
 }
 
 #content_area .product {
-	
+
 	float: left;
 	margin-left: 30px;
 	width: 211px;
 	margin-top: 25px;
 }
 #content_area .product:first-child {
-	
+
 	margin-left: 0;
 }
 #content_area cite {
-	
+
 	font-size: 14px;
 	line-height: 18px;
 }
@@ -1389,31 +1389,149 @@ sup {
 	background: none;
 }
 
-.hidevioc { display: none; }
-#with-us { float:left; list-style-type:none; }
-#with-us li { float:left; margin:0 8px 0 0; position:relative; }
-#with-us .connect { padding:7px 0 0; }
-#with-us .email { width:32px; height:32px; background:transparent url(../images/email-icon.png) no-repeat; z-index:100; position: relative; }
-#with-us .email #email-form { background:transparent url(../images/hover-bg.png) no-repeat; position:absolute; width:184px; height:119px; top:-102px; padding:15px 0 0 20px; z-index: 900; }
-#with-us .email .close { display: block; width: 32px; height: 32px; position: absolute; left: 0px; bottom: 0px; z-index: 1000; }
-#with-us .email #email-form p { line-height:13px; }
-#with-us .phone { width:32px; height:32px; background:transparent url(../images/phone-icon.png) no-repeat; z-index:80; }
-#with-us .email:hover .hidevioc, #with-us .email.hovering .hidevioc, #with-us .phone:hover .hidevioc {display:block; }
-#with-us .heading { color:#1B1B1B; font-size:12px; font-weight:bold; margin:0 0 5px; }
-#with-us p { color:#FFF; font-size:11px; margin: 2px 0px; }
-#with-us .email-box { float:left; height:27px; background:transparent url(../images/search-field.png) no-repeat; margin:5px 0 0; }
-#with-us input[type="text"], #enter-mobile input[type="text"] { float:left; width:126px; height:23px; margin:0 5px 0 0; background:none; border:none; padding:4px 5px 0px 5px; color:#999; }
-#with-us input[type="submit"], #enter-mobile input[type="submit"] { float:left; width:27px; height:27px; background:transparent url(../images/go.png) no-repeat 0 0; border:none; cursor:pointer; margin:3px 0 0; }
-#with-us input[type="submit"]:hover, #enter-mobile input[type="submit"]:hover { background-position:0 -27px; }
-#with-us .phone #phone-form { background:transparent url(../images/hover-phone-bg.png) no-repeat; position:absolute; width:174px; height:159px; top:-142px; padding:15px 10px 0 20px; }
-#with-us .phone #phone-form p { line-height:13px; }
-#with-us .phone .three, #enter-mobile .three { width:36px; height:27px; background:transparent url(../images/digit-3-bg.png) no-repeat; float:left; margin:5px 6px 0 0; }
-#with-us .phone .three input, #enter-mobile .three input { width:31px; height:23px; color:#CCC; padding:4px 0 0 5px; }
-#with-us .phone .four, #enter-mobile .four { width:46px; height:27px; background:transparent url(../images/digit-4-bg.png) no-repeat; float:left; margin:5px 6px 0 0; }
-#with-us .phone .four input, #enter-mobile .four input { width:41px; height:23px; color:#CCC; padding:4px 0 0 5px; }
-#with-us .phone  .tag { float:left; clear: left; padding:5px 0 0; }
-#networks { float:right; padding-top: 7px; list-style-type:none; display:block; }
-#networks li{ float:right; }
+.hidevioc {
+  display: none;
+}
+#with-us {
+  float: left;
+  list-style-type: none;
+}
+#with-us li {
+  float: left;
+  margin: 0 8px 0 0;
+  position: relative;
+}
+#with-us .connect {
+  padding: 7px 0 0;
+}
+#with-us .email {
+  width: 32px;
+  height: 32px;
+  background: transparent url(../images/email-icon.png) no-repeat;
+  z-index: 100;
+  position: relative;
+}
+#with-us .email #email-form {
+  background: transparent url(../images/hover-bg.png) no-repeat;
+  position: absolute;
+  width: 184px;
+  height: 119px;
+  top: -102px;
+  padding: 15px 0 0 20px;
+  z-index: 900;
+}
+#with-us .email .close {
+  display: block;
+  width: 32px;
+  height: 32px;
+  position: absolute;
+  left: 0px;
+  bottom: 0px;
+  z-index: 1000;
+}
+#with-us .email #email-form p {
+  line-height: 13px;
+}
+#with-us .phone {
+  width: 32px;
+  height: 32px;
+  background: transparent url(../images/phone-icon.png) no-repeat;
+  z-index: 80;
+}
+#with-us .email:hover .hidevioc, #with-us .email.hovering .hidevioc, #with-us .phone:hover .hidevioc {
+  display: block;
+}
+#with-us .heading {
+  color: #1B1B1B;
+  font-size: 12px;
+  font-weight: bold;
+  margin: 0 0 5px;
+}
+#with-us p {
+  color: #FFF;
+  font-size: 11px;
+  margin: 2px 0px;
+}
+#with-us .email-box {
+  float: left;
+  height: 27px;
+  background: transparent url(../images/search-field.png) no-repeat;
+  margin: 5px 0 0;
+}
+#with-us input[type="text"], #enter-mobile input[type="text"] {
+  float: left;
+  width: 126px;
+  height: 23px;
+  margin: 0 5px 0 0;
+  background: none;
+  border: none;
+  padding: 4px 5px 0px 5px;
+  color: #999;
+}
+#with-us input[type="submit"], #enter-mobile input[type="submit"] {
+  float: left;
+  width: 27px;
+  height: 27px;
+  background: transparent url(../images/go.png) no-repeat 0 0;
+  border: none;
+  cursor: pointer;
+  margin: 3px 0 0;
+}
+#with-us input[type="submit"]:hover, #enter-mobile input[type="submit"]:hover {
+  background-position: 0 -27px;
+}
+#with-us .phone #phone-form {
+  background: transparent url(../images/hover-phone-bg.png) no-repeat;
+  position: absolute;
+  width: 174px;
+  height: 159px;
+  top: -142px;
+  padding: 15px 10px 0 20px;
+}
+#with-us .phone #phone-form p {
+  line-height: 13px;
+}
+#with-us .phone .three, #enter-mobile .three {
+  width: 36px;
+  height: 27px;
+  background: transparent url(../images/digit-3-bg.png) no-repeat;
+  float: left;
+  margin: 5px 6px 0 0;
+}
+#with-us .phone .three input, #enter-mobile .three input {
+  width: 31px;
+  height: 23px;
+  color: #CCC;
+  padding: 4px 0 0 5px;
+}
+#with-us .phone .four, #enter-mobile .four {
+  width: 46px;
+  height: 27px;
+  background: transparent url(../images/digit-4-bg.png) no-repeat;
+  float: left;
+  margin: 5px 6px 0 0;
+}
+#with-us .phone .four input, #enter-mobile .four input {
+  width: 41px;
+  height: 23px;
+  color: #CCC;
+  padding: 4px 0 0 5px;
+}
+#with-us .phone .tag {
+  float: left;
+  clear: left;
+  padding: 5px 0 0;
+}
+#networks {
+  float: right;
+  padding-top: 7px;
+  list-style-type: none;
+  display: block;
+}
+#networks li {
+  float: right;
+  margin-left: 10px;
+}
 
 /* End: Connect Bar */
 
@@ -1556,7 +1674,7 @@ p.disclaimer {
 #footer a, #disclaimers a {
     color:#ffffff;
 }
-#store_phone 
+#store_phone
 {
     display:none;
 }
@@ -1647,7 +1765,7 @@ h4 {
 }
 
 .email h4{
-	color:#ffffff	
+	color:#ffffff
 }
 
 p {
@@ -1821,7 +1939,14 @@ input[type="button"].search_button#detect, #detect {
 	float: right;
 	cursor: pointer;
 }
-
+input[type="button"].search_button#find_store, #find_store {
+	width: 88%;
+    float: left;
+    text-align: center;
+    color: #fff;
+    background: #0b85ad;
+    cursor: pointer;
+}
 #search_prompt {
 	background: url("../images/bg_label.png") no-repeat;
 	background-size: 100% 100%;
@@ -2291,7 +2416,7 @@ text-align: left; }
 }
 .col-12 > *:first-child {
     margin-top: 0;
-} 
+}
 
 /* STORE LISTING */
 #search_results {
@@ -2428,12 +2553,12 @@ text-align: left; }
 	}
 	* { background:transparent none !important; }
     .page { max-width: auto; }
-    
+
     #header { display:none; }
-    
+
     .pylon { display: none; }
 
-    
+
     .coupon_pylon {display:block;}
     .ie7 .coupon_pylon {
         position:absolute;
@@ -2479,7 +2604,7 @@ text-align: left; }
     .coupon_content{
         border:dashed 5px;
     }
-    
+
     .coupon_formatedAmount{
     	text-align:left;padding-left:80px;
     	font-size: 2em;
@@ -2527,7 +2652,7 @@ text-align: left; }
     .coupon_couponDesc {
         display:none;
     }
-    
+
     #locations_area .page { background-image:none; width:30%; float:left; margin-top:20px; }
     #locations_area .pylon { display:none;}
     #location_select { display:none;}
@@ -2536,7 +2661,7 @@ text-align: left; }
     	right: 10px;
     	text-align: right;
     }
-    
+
     #searchBar { display:none; }
     #map_header { display:none;}
     #maps { width:100%;height:220px;float:left; position: relative; display: none !important; }
@@ -2544,7 +2669,7 @@ text-align: left; }
     #map_print {position: relative; top: 0; left: 0; }
     #locations_area {float: left; clear: none; }
     #valvLocations, #viocLocations, #results {display: none !important;}
-    
+
     #preload{ display:none;}
     #fourstar {
 		font-size: 17px;
@@ -2561,9 +2686,9 @@ text-align: left; }
 		width: 35%;
 		margin-top: -3px;
 	}
-	
+
 	#connect_bar{ display:none;}
-    
+
     #footer { background: #ffffff none; float:left; width:60%; padding:20px 0px 0px 20px; clear: none;}
     #footer .page { width:auto; margin:0px; padding:0px !important;}
     #footer .vioc { width:auto; margin:0px; padding:0px; color:#000000;}
@@ -2597,9 +2722,9 @@ text-align: left; }
         font-size: 1.5em;
         font-family: 'Arial Narrow', Arial, sans-serif;
         font-weight: bold;
-	    color: #0281AA;	
+	    color: #0281AA;
     }
-    
+
     #wrap_location {
     	display: none;
     }
@@ -2686,20 +2811,20 @@ text-align: left; }
 		border:solid 4px;
 	}
 	.coupon_originalAmount{
-		display:none;	
+		display:none;
 	}
 	ul{
-	
+
 		padidng-left:40px;
 		list-style-type:disc;
 	}
 	ul li{
-		
+
 		margin:10px 0;
 		margin-left:20px;
 	}
 	.coupon_details{
-		padding:4px 0 0;	
+		padding:4px 0 0;
 	}
 	#coupon_area {
 		background: #fff url("../images/mobile_coupon-bg.gif") repeat-x center top;
