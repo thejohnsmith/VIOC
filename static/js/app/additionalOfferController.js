@@ -150,6 +150,17 @@ var additionalOfferController = (function ($) {
 					$('[name=adtlText' + i + ']').append($("<option>").attr('value', item.name).html(item.longText));
 				}
 
+				/** Disable validation for Coupon Text field
+				 * Lifecycle Only
+				 * Remove red asterisk
+				 * Disable 'required' attr from .adtlText dropdown
+				 */
+				if (controller.program.isLifecycleCampaign) {
+					console.warn('setting adtlText...');
+					$('.coupon-form label:first i').hide();
+					$('.adtlText').prop('required', false);
+				}
+
 				// And now everything else...
 				$('[name=adtlCode' + i + ']').val(controller.config.content['adtlCode' + i]);
 				$('[name=adtlText' + i + '] option[value="' + controller.config.content['adtlText' + i] + '"]').attr('selected', 'selected');
@@ -194,15 +205,58 @@ var additionalOfferController = (function ($) {
 			// TODO
 			// Added alert prompt here for now. Can be moved to single function when validation rules are created.
 			// Alert should always fire on save.
+
+			console.warn('controller.saveData: ' + controller.saveDate);
+			var new_label = ($('.settings-name').val() !== controller.config.content.label) ? $('.settings-name').val() : ('Custom ' + controller.config.content.label);
+
+			/**
+			 * 1. Offer Name field required {content.label}
+			 * 	* If Admin can edit, allow Corp Default changes {content.corpDefault} && {content.editable}
+			 * 	* If not Admin, Add 'custom-' to Config Label
+			 * 2. Discount Ammount field required {adtlValue}
+			 * 3. Coupon Code field required {adtlCode}
+			 * 4. Confirm POS code established Alert.
+			 */
+
+			// Make sure at least the first offer has been select.
+			// if ($('.adtlText:visible').val() == 'Not Used' || $('.adtlText:visible').val() == '') {
+			// 	jAlert('At least one offer is required.');
+			// 	console.warn('found first dropdown = undefined');
+			// 	return false;
+			// }
+			if ($('.adtlValue:visible').val() == 'undefined' || $('.adtlValue:visible').val() == '') {
+				jAlert('Discount Amount is required.');
+				console.warn('adtlValue = undefined');
+				return false;
+			}
+			if ($('.adtlCode:visible').val() == 'undefined' || $('.adtlCode:visible').val() == '') {
+				jAlert('Additional code is required.');
+				console.warn('adtlCode1 = undefined');
+				return false;
+			}
+
+			// if ($('.adtlCode:visible').val() !== 'undefined' && $('.adtlCode:visible').val() !== '' || $('.adtlText:visible').val() == 'Not Used') {
 			jConfirm('Have you established this code in POS?', 'Please Confirm', function (r) {
 				if (r) {
-
+					console.warn('r is true');
+					if (controller.config.content.corpDefault == 1 && controller.config.content.editable == 'true') {
+						console.warn('Admin is editing corpDefault, editable = ' + controller.config.content.editable);
+						new_label = $('.settings-name').val();
+						console.warn('New Label = ' + new_label);
+						callback();
+					}
 					if (controller.config.content.corpDefault == 0) {
 						callback();
-					} else {
-						var new_label = ($('.settings-name').val() != controller.config.content.label) ? $('.settings-name').val() : ("Custom " + controller.config.content.label);
-
+					} else if ($('.settings-name').val() == controller.config.content.label) {
 						jConfirm("This is a factory-defined setting and may not be changed.  Instead, the system will create a new setting named \"" + new_label + "\" which will contain your custom settings.  Proceed?", 'Create New Settings?', function (r) {
+							if (r) {
+								callback();
+							}
+						});
+					} else {
+						console.warn('controller.config.content.label: ' + controller.config.content.label);
+						console.warn('new_label: ' + new_label);
+						jConfirm('You did not enter an Offer Name. The system will create a new setting named "Custom Settings". Proceed?', 'Create New Settings?', function (r) {
 							if (r) {
 								callback();
 							}
@@ -211,26 +265,10 @@ var additionalOfferController = (function ($) {
 
 				}
 			});
+			// }
 		},
 		OnPressSave: function () {
 			var controller = this;
-
-			// Make sure at least the first offer has been select.
-			if ($('[name=adtlText1]').val() == "none") {
-				jAlert('At least one offer is required.');
-				console.warn('found first dropdown = none');
-				return;
-			}
-			if ($('[name=adtlValue1]').val() == "none") {
-				jAlert('Discount Amount is required.');
-				console.warn('adtlValue = none');
-				return;
-			}
-			if ($('[name=adtlCode1]').val() == "none") {
-				jAlert('Additional code is required.');
-				console.warn('adtlCode1 = none');
-				return;
-			}
 
 			controller.ValidateForm(function () {
 					saveData = {
@@ -242,19 +280,11 @@ var additionalOfferController = (function ($) {
 					};
 
 					for (var i = 1; i <= 4; i++) {
-						// dropdown must has a selected offer
-						if ($('.adtl-offer-1 [name=adtlText' + i + ']').val() != "none") {
-							saveData["_adtlText" + i] = $('.adtl-offer-1 [name=adtlText' + i + ']').val();
-							console.warn('adtlText: ' + $('.adtl-offer-1 [name=adtlText' + i + ']').val());
-
-							saveData["_adtlApproach" + i] = $('.adtl-offer-1 .adtl-offer-1').val();
-							console.warn('adtlApproach: ' + $('.adtl-offer-1 [name=adtlApproach' + i + ']').val());
-
-							saveData["_adtlValue" + i] = $('.adtl-offer-1 .adtlValue').val();
-							console.warn('adtlValue: ' + $('.adtl-offer-1 .adtlValue').val());
-
-							saveData["_adtlCode" + i] = $('.adtl-offer-form-group-input:visible .adtlCode').val();
-							console.warn('adtlCode: ' + $('.adtl-offer-form-group-input:visible .adtlCode').val());
+						if ($('[name=adtlText' + i + ']').val() != "none") {
+							saveData["_adtlCode" + i] = $('[name=adtlCode' + i + ']').val();
+							saveData["_adtlText" + i] = $('[name=adtlText' + i + ']').val();
+							saveData["_adtlApproach" + i] = $('[name=adtlApproach' + i + ']').val();
+							saveData["_adtlValue" + i] = $('[name=adtlValue' + i + ']').val();
 						}
 					}
 

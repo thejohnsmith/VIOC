@@ -1,12 +1,8 @@
 /** Program Management
  * @file programManagement.js
  * @requires getStoreProgramData.jssp
- * @NOTE ** In order for this script to run it needs to have markup from program-settings.mustache.html
- * @todo Add overview in this documentation.
  * @example programManagementController.controller.init(user_id);
  * @return {object} controller
- dnbrumbaugh@ashland.com
- dbrumbaugh_47285
  */
 
 var programManagementController = (function ($) {
@@ -161,9 +157,15 @@ var programManagementController = (function ($) {
 				var $deleteLink = $(this).parent().next().find('.program-delete-link');
 				var $baseUrl = $editLink.attr('href');
 				var defaultMgmg = false;
+				var isEditable = false;
 				$.each(controller.user_configs, function (i, config) {
-					if (config.corpDefault == 1 && config.id == configId)
+					if (config.corpDefault == 1 && config.id == configId) {
 						defaultMgmg = true;
+						// This allows an Admin to edit default configs.
+						if (config.editable) {
+							isEditable = true;
+						}
+					}
 				});
 
 				// console.warn('controller.user_configs[0].corpDefault: ' + controller.user_configs[0].corpDefault);
@@ -192,18 +194,23 @@ var programManagementController = (function ($) {
 				});
 
 				/** Update the Edit/View links
-					* @ex: (prod)
-					* programManagementUrl: 'CustomPage.aspx?uigroup_id=478656&page_id=12300',
-					* additionalOfferPageUrl: 'CustomPage.aspx?uigroup_id=478656&page_id=12302',
-					*/
+				 * @ex: (prod)
+				 * programManagementUrl: 'CustomPage.aspx?uigroup_id=478656&page_id=12300',
+				 * additionalOfferPageUrl: 'CustomPage.aspx?uigroup_id=478656&page_id=12302',
+				 */
 				$editLink.attr('href', $baseUrl + '&configId=' + configId + '&programId=' + controller.program_id);
 
 				// Corporate Default configs are read-only - swap View and Edit links.
 				if (defaultMgmg) {
 					$editLink.text('View');
 					$deleteLink.hide();
+					// Show the Edit link to allow Admin users the ability to change default configs.
+					if (isEditable) {
+						$deleteLink.show();
+						$editLink.text('Edit');
+					}
 				} else {
-					// Show Delete link
+					// Show Delete link for everything else.
 					$deleteLink.show();
 					$editLink.text('Edit');
 				}
@@ -213,10 +220,13 @@ var programManagementController = (function ($) {
 			$.get(controller.apiPath + 'deleteConfig.jssp?userId=' + encodeURIComponent(controller.user_id) + '&configId=' + encodeURIComponent(selectedConfigId), function (results) {}).error(function (data) {
 				toastr.error('Failed to delete settings.');
 			}).done(function (data) {
+				console.warn('About to delete selectedConfig: ' + selectedConfigId);
 				toastr.success('Settings deleted!');
-				$('option[value="' + selectedConfigId + '"]').remove();
-				if (typeof callback == "function")
+				if (typeof callback == 'function') {
+					$('option[value="' + selectedConfigId + '"]').remove();
+					console.warn('removing selectedConfig: ' + selectedConfigId);
 					callback();
+				}
 			});
 		},
 		buildUI: function (result, callback) {
