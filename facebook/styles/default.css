@@ -25,6 +25,9 @@ sup {
 #with-us .email.hovering .hidevioc, #with-us .email:hover .hidevioc, #with-us .phone:hover .hidevioc, article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
   display: block
 }
+.email-box.hidevioc {
+  display: none!important;
+}
 body {
   line-height: normal;
   height: auto;
@@ -56,9 +59,22 @@ html {
 }
 @media all and (min-width:1024px) {
   html {
-  font-size: 1em;
-  font-size: 1vw
+    font-size: 1em;
+    font-size: 1vw
   }
+}
+::-webkit-scrollbar-track {
+  border-radius: 10px;
+  background-color: #f5f5f5;
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, .3);
+}
+::-webkit-scrollbar {
+  width: 8px;
+  background-color: #f5f5f5;
+}
+::-webkit-scrollbar-thumb {
+  border-radius: 4px;
+  background-image: -webkit-gradient(linear, left bottom, left top, color-stop(.04, rgba(224, 41, 38, 0.95)), color-stop(.62, rgb(0, 72, 144)), color-stop(.86, rgb(73, 125, 189)));
 }
 form#aspnetForm {
   position: relative;
@@ -735,6 +751,9 @@ input, select, textarea {
 .coupon-area .coupon.red {
   border: 2px solid #ff0d01
 }
+.input-error {
+  border: 1px solid #ff0d01
+}
 #location_states li.back, .coupon-area .coupon.red h2, a:active {
   color: #ff0d01
 }
@@ -1231,10 +1250,10 @@ input, select, textarea {
   background: url(../images/hover-bg.png) no-repeat;
   position: absolute;
   width: 184px;
-  height: 119px;
+  height: 130px;
   top: -102px;
-  padding: 15px 0 0 20px;
-  z-index: 900
+  padding: 7px 0 0 20px;
+  z-index: 9999
 }
 #with-us .email .close {
   display: block;
@@ -1269,11 +1288,13 @@ input, select, textarea {
   float: left;
   height: 27px;
   background: url(../images/search-field.png) no-repeat;
-  margin: 5px 0 0
+  margin: 5px 0 0;
+  width: 70%;
+  margin-right: 8px
 }
 #enter-mobile input[type=text], #with-us input[type=text] {
   float: left;
-  width: 126px;
+  width: 118px;
   height: 23px;
   margin: 0 5px 0 0;
   background: 0 0;
@@ -1281,7 +1302,7 @@ input, select, textarea {
   padding: 4px 5px 0;
   color: #999
 }
-#enter-mobile input[type=submit], #with-us input[type=submit] {
+#enter-mobile input[type=submit], #with-us input[type=button] {
   float: left;
   width: 27px;
   height: 27px;
@@ -1290,7 +1311,7 @@ input, select, textarea {
   cursor: pointer;
   margin: 3px 0 0
 }
-#enter-mobile input[type=submit]:hover, #with-us input[type=submit]:hover {
+#enter-mobile input[type=submit]:hover, #with-us input[type=button]:hover, #with-us input[type=button]:focus , #with-us input[type=button]:hover:focus {
   background-position: 0 -27px
 }
 #with-us .phone #phone-form {
@@ -1414,12 +1435,21 @@ input, select, textarea {
   text-indent: 5px;
   color: #777
 }
+#footer .connect input {
+  line-height: 1.5em;
+  display: inline-block;
+  padding: 6px 2px;
+  margin: 1px 0 6px;
+  min-height: 2em;
+  box-sizing: border-box;
+  overflow: visible;
+}
 #footer .connect span {
   border: 1px solid transparent;
   color: #fff
 }
 .ie7 #footer .connect input, .ie8 #footer .connect input, .ie9 #footer .connect input {
-  height: 1.9em
+  height: 2.2em
 }
 .ie7 #footer .connect .form {
   padding-bottom: 6px!important
