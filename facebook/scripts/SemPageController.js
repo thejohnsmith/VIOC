@@ -61,9 +61,10 @@ SemPageController = (function ($) {
          * @return {[type]} [description]
          */
         updateUI: function () {
-            console.warn('Adjusting UI...');
-            /**  IF MUSTACHE WILL BE USE -> LEVERAGE EXISTING WORK FROM COUPON LANDING PAGES.
+            var controller = this;
+            /**
              * 	@NOTE likely not going to use this approach
+             * 	@NOTE IF MUSTACHE WILL BE USE -> LEVERAGE EXISTING WORK FROM COUPON LANDING PAGES.
              * [getMustacheTemplate description]
              * @param  {[type]} controller.templatePath +             '/coupons.mustache.html' [description]
              * @param  {[type]} '.coupons-template'     [description]
@@ -90,70 +91,90 @@ SemPageController = (function ($) {
              * Email sign-up form
              */
             var controller = this;
-            var $connect_email_elm = $('#carecare-optin .email-box');
-            var $connect_email_input = $('#carecare-optin .email-box input');
-            var $connect_email_value = $connect_email_input.val();
-            var $connect_zipcode_value = '';
-            var $connect_validation_wrap = $('#optin-message');
-            var $connect_validation_message = $('#optin-message > p');
-            var $connect_submit = $('#carecare-optin .submit');
-
+            // @TODO Abstract the elements to make this work with both forms!
             $('#connect_bar_submit').on('click', function (callback) {
-                // Validate 'Email'
-                if(($('#email').val()).search('@') === -1 || ($('#email').val()).indexOf('.') === -1) {
-                    // Show error container and message
-                    $connect_validation_wrap.css('display', 'block');
-                    $connect_email_elm.addClass('input-error');
-                    $connect_validation_message.html('Please enter a valid email address.<br>');
-                    // Put focus on Input field
-                    $('#email').focus();
-                    // Show the rest
-                    $connect_submit.css('display', 'block');
-                    $connect_email_elm.css('display', 'block');
-                    return;
-                } else {
-                    // Add a loding indicator
-                    $connect_validation_message.html('Submitting...<br />');
-                    submitEmail($connect_email_value);
-
-                    function submitEmail($connect_email_value) {
-                        // @Example
-                        // https://adobe-prod-vioc.epsilon.com/jssp/vioc/facebookSignUp.jssp?email=foo&zip=01234
-                        // Get newest value of input
-                        $connect_email_value = $connect_email_input.val();
-                        var apiPath = controller.apiPath + 'facebookSignUp.jssp';
-                        $.ajax({
-                            url: apiPath,
-                            type: 'GET',
-                            contentType: 'application/json',
-                            processData: true,
-                            data: {
-                                email: $connect_email_value,
-                                zip: $connect_zipcode_value
-                            },
-                            headers: {
-                                'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
-                            },
-                            success: function (data) {
-                                $connect_email_elm.css('display', 'block').removeClass('input-error').addClass('hidevioc');
-                                $connect_submit.css('display', 'none');
-                                $connect_validation_wrap.css('display', 'block');
-                                $connect_validation_message.html('Thank You! Your address has been submitted.');
-                                return;
-                            },
-                            error: function (c, e, d) {
-                                console.error('Save failed.');
-                                return;
-                            }
-                        });
-                    }
-                }
-                //  TESTS
-                // console.warn('$connect_email_value: ' + $connect_email_value);
-                // console.warn('$connect_validation_wrap: ' + $connect_validation_wrap);
-                // console.warn('$connect_validation_message: ' + $connect_validation_message);
-                // console.warn('$connect_submit: ' + $connect_submit);
+                controller.validateForm();
             });
+        },
+        /**
+         * @description Tese are Fields pulled from default.js
+         * @NOTE Disable the handlers for 2nd email form!!
+         */
+        // var cwuEmailField = $('#ctl00_FooterContent2_connect1_txtEmail');
+        // var cwuZipField = $('#ctl00_FooterContent2_connect1_txtZip');
+        // var errorMessage = '';
+        // // Email Validator
+        // if((cwuEmailField.val()).search('@') == -1 || (cwuEmailField.val()).indexOf('.') == -1) {
+        //     errorMessage = alert('You must enter a valid email.\n');
+        // }
+        // // Zipcode Validator
+        // if(parseInt(cwuZipField.val()) < 10000 || parseInt(cwuZipField.val()) > 99999 || isNaN(parseInt(cwuZipField.val()))) {
+        //     errorMessage = errorMessage + 'You must enter a valid zip code.\n';
+        // }
+        validateForm: function () {
+            console.warn('123Adjusting UI...');
+            var controller = this;
+            var email_elm = $('#carecare-optin .email-box');
+            var email_input = $('#carecare-optin .email-box input');
+            var email_value = email_input.val();
+            var zipcode_value = '';
+            var validation_elm = $('#optin-message');
+            var validation_message = $('#optin-message > p');
+            var submit_elm = $('#carecare-optin .submit');
+            // Validate 'Email'
+            if(($('#email').val()).search('@') === -1 || ($('#email').val()).indexOf('.') === -1) {
+                // Show error container and message
+                validation_elm.css('display', 'block');
+                email_elm.addClass('input-error');
+                validation_message.html('<strong class="text-default">Please enter a valid email address.</strong><br>');
+                $('#email').focus(); // Put focus on Input field
+                // Show the rest
+                submit_elm.css('display', 'block');
+                email_elm.css('display', 'block');
+                return;
+            } else {
+                // Add a loding indicator
+                validation_message.html('Submitting...<br />');
+                submitEmail(email_value);
+
+                function submitEmail(email_value) {
+                    // @Example
+                    // https://adobe-prod-vioc.epsilon.com/jssp/vioc/facebookSignUp.jssp?email=foo&zip=01234
+                    // Get newest value of input
+                    email_value = email_input.val();
+                    var apiPath = controller.apiPath + 'facebookSignUp.jssp';
+                    $.ajax({
+                        url: apiPath,
+                        type: 'GET',
+                        contentType: 'application/json',
+                        processData: true,
+                        data: {
+                            email: email_value,
+                            zip: zipcode_value
+                        },
+                        headers: {
+                            'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
+                        },
+                        success: function (data) {
+                            // Remove error and bring the automatic toggling back
+                            email_elm.css('display', 'block').removeClass('input-error').addClass('hidevioc');
+                            submit_elm.css('display', 'none');
+                            validation_elm.css('display', 'block');
+                            validation_message.html('Thank You! Your address has been submitted.');
+                            return;
+                        },
+                        error: function () {
+                            console.error('Save failed.');
+                            return;
+                        }
+                    });
+                }
+            }
+            //  TESTS
+            // console.warn('email_value: ' + email_value);
+            // console.warn('validation_elm: ' + validation_elm);
+            // console.warn('validation_message: ' + validation_message);
+            // console.warn('submit_elm: ' + submit_elm);
         }
     };
     return {

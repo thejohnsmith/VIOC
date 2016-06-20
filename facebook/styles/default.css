@@ -754,6 +754,12 @@ input, select, textarea {
 .input-error {
   border: 1px solid #ff0d01
 }
+.text-warning {
+  color: #ff0d01
+}
+.text-default {
+  color: #000
+}
 #location_states li.back, .coupon-area .coupon.red h2, a:active {
   color: #ff0d01
 }
@@ -1311,7 +1317,7 @@ input, select, textarea {
   cursor: pointer;
   margin: 3px 0 0
 }
-#enter-mobile input[type=submit]:hover, #with-us input[type=button]:hover, #with-us input[type=button]:focus , #with-us input[type=button]:hover:focus {
+#enter-mobile input[type=submit]:hover, #with-us input[type=button]:hover, #with-us input[type=button]:focus, #with-us input[type=button]:hover:focus {
   background-position: 0 -27px
 }
 #with-us .phone #phone-form {
