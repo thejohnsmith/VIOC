@@ -1258,7 +1258,7 @@ input, select, textarea {
   width: 184px;
   height: 130px;
   top: -102px;
-  padding: 7px 0 0 20px;
+  padding: 10px;
   z-index: 9999
 }
 #with-us .email .close {
@@ -1271,7 +1271,7 @@ input, select, textarea {
   z-index: 1000
 }
 #with-us .email #email-form p, #with-us .phone #phone-form p {
-  line-height: 13px
+  line-height: 10px
 }
 #with-us .phone {
   width: 32px;
@@ -1292,21 +1292,19 @@ input, select, textarea {
 }
 #with-us .email-box {
   float: left;
-  height: 27px;
-  background: url(../images/search-field.png) no-repeat;
-  margin: 5px 0 0;
-  width: 70%;
-  margin-right: 8px
+  margin: 4px 8px 0 0;
+  border-radius: 4px
 }
 #enter-mobile input[type=text], #with-us input[type=text] {
-  float: left;
-  width: 118px;
-  height: 23px;
-  margin: 0 5px 0 0;
-  background: 0 0;
+  width: 136px;
+  height: 27px;
   border: none;
-  padding: 4px 5px 0;
-  color: #999
+  padding: 0 6px;
+  color: #666;
+  display: block;
+  box-sizing: border-box;
+  border-radius: 4px;
+  background: url(../images/search-field.png) no-repeat
 }
 #enter-mobile input[type=submit], #with-us input[type=button] {
   float: left;
