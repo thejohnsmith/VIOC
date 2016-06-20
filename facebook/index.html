@@ -24,7 +24,7 @@
 </head>
 
 <body>
-	<form name="aspnetForm" method="post" action="default.aspx?campaign=TruLaps" id="aspnetForm">
+	<form name="aspnetForm" method="post" action="#" id="aspnetForm">
 		<!-- <div>
 			<input type="hidden" name="__EVENTTARGET" id="__EVENTTARGET" value="" />
 			<input type="hidden" name="__EVENTARGUMENT" id="__EVENTARGUMENT" value="" />
@@ -1120,9 +1120,10 @@
 										<p></p>
 									</div>
 									<div class="email-box">
-										<input type="text" value="email@address.com" id="email" name="email" />
+										<input tabindex="1" type="text" value="" id="email" name="email">
 									</div>
-									<input type="submit" class="submit" value="" onclick="track('Conversion', 'Sign-Up', 'Email - Footer');" />
+									<input tabindex="2" id="connect_bar_submit" type="button" class="submit" value="">
+									<!--  onclick="track('Conversion', 'Sign-Up', 'Email - Footer');" -->
 								</div>
 							</div>
 							<div class="close"></div>
@@ -1312,7 +1313,19 @@
 			<div class="clear"></div>
 			<div id="disclaimers">
 				<div class="page">
-					<p><span class="nonMobile">Copyright © 2001-2016. Ashland. All rights reserved.</span> <span class="noPrint"><a href="http://www.vioc.com/privacy-policy" onClick="track('Click', 'Outbound', '/outbound/vioc.com/privacy/policy');">Privacy Policy</a><span class="nonMobile"> | <a href="javascript:window.print()" class="print">Print Oil Change Coupons</a></span>						| <a href="https://plus.google.com/114754118357066507205">Google+</a></span>
+					<p><span class="nonMobile">Copyright © 2001-2016. Ashland. All rights reserved.</span>
+						<span class="noPrint">
+							<a target="_blank" href="http://www.vioc.com/privacy-policy" onClick="track('Click', 'Outbound', '/outbound/vioc.com/privacy/policy');">
+								Privacy Policy
+							</a>
+							<span class="nonMobile">
+								|
+								<a target="_blank" href="javascript:window.print()" class="print">
+								Print Oil Change Coupons
+							</a>
+						</span>
+						|
+						<a target="_blank" href="https://plus.google.com/114754118357066507205">Google+</a></span>
 					</p>
 					<p class="nonMobile disclaimer">
 						Plus Tax. Not valid with any other same-service offers/discounts, including fleets. Good at participating locations
@@ -1585,6 +1598,8 @@
 	<script type="text/javascript" src="scripts/default.js"></script>
 	<script type="text/javascript" src="scripts/couponForms.js"></script>
 	<script type="text/javascript" src="scripts/mobile.js"></script>
+	<script type="text/javascript" src="scripts/SemPageController.js"></script>
+
 	<!--Buddy Media Scripting-->
 	<script id="spinback-spincycle" type="text/javascript" src="http://conversion.buddymedia.com/js/spincycleinit.js?cid=099DC6" async="true" defer="true">
 		pn: Oil Change Coupons | Find a Valvoline Location | Car Care Services
@@ -1651,18 +1666,18 @@
 
 	<script type="text/javascript">
 		//<![CDATA[
-		var theForm = document.forms['aspnetForm'];
-		if (!theForm) {
-			theForm = document.aspnetForm;
-		}
-
-		function __doPostBack(eventTarget, eventArgument) {
-			if (!theForm.onsubmit || (theForm.onsubmit() != false)) {
-				theForm.__EVENTTARGET.value = eventTarget;
-				theForm.__EVENTARGUMENT.value = eventArgument;
-				theForm.submit();
-			}
-		}
+		// var theForm = document.forms['aspnetForm'];
+		// if (!theForm) {
+		// 	theForm = document.aspnetForm;
+		// }
+		//
+		// function __doPostBack(eventTarget, eventArgument) {
+		// 	if (!theForm.onsubmit || (theForm.onsubmit() != false)) {
+		// 		theForm.__EVENTTARGET.value = eventTarget;
+		// 		theForm.__EVENTARGUMENT.value = eventArgument;
+		// 		theForm.submit();
+		// 	}
+		// }
 		//]]>
 	</script>
 	<!--
