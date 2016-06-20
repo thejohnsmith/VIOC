@@ -76,9 +76,9 @@ $(document).ready(function () {
             })
         }
     });
-    $('#ctl00_FooterContent2_connect1_btnSignUp').on('click', function (e) {
-        validateConnectForm(e);
-    });
+    // $('#ctl00_FooterContent2_connect1_btnSignUp').on('click', function (e) {
+    //     validateConnectForm(e);
+    // });
 });
 
 function couponTest(coupon) {
@@ -795,7 +795,7 @@ function success_callback(p) {
     if(typeof p.callback == 'function') {
         _callback = p.callback;
     }
-    addressSearch(new google.maps.LatLng(myLat, myLng), true, false, _callback);
+    // addressSearch(new google.maps.LatLng(myLat, myLng), true, false, _callback);
 }
 
 function error_callback(p) {}
@@ -896,6 +896,15 @@ function mapPan() {
 }
 
 function setMaps() {
+    /**
+     * THIS 'RETURN' WAS ADDED INTENTIONALLY TO DISABLE GOOGLE MAPS API's
+     * It should be removed along with this comment block after new API key is added.
+     * - J.SMITH, Epsilon 2016
+     */
+    return;
+    /**
+
+     */
     var myLatlng = new google.maps.LatLng(myLat, myLng);
     var myOptions = {
         zoom: myZoom,
