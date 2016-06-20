@@ -39,6 +39,7 @@ function is_touch_device() {
 };
 
 function track() {
+  return;
     trackGA = [];
     trackBing = {};
     trackGA.push('_trackEvent');
@@ -348,7 +349,7 @@ function loadDesktop() {
             // setTimeout(function () {
             //     if(myIn.attr('default') != myIn.val()) {
             //         track('aspnetform', 'change', 'ctl00$tbEmail');
-            //         _gaq.push(['b._trackEvent', 'aspnetform', 'change', 'ctl00$tbEmail']);
+                    // _gaq.push(['b._trackEvent', 'aspnetform', 'change', 'ctl00$tbEmail']);
             //     }
             // }, 10);
         })
@@ -360,7 +361,7 @@ function loadDesktop() {
             // setTimeout(function () {
             //     if(myIn.attr('default') != myIn.val()) {
             //         track('aspnetform', 'change', 'ctl00$tbZip');
-            //         _gaq.push(['b._trackEvent', 'aspnetform', 'change', 'ctl00$tbZip']);
+                    // _gaq.push(['b._trackEvent', 'aspnetform', 'change', 'ctl00$tbZip']);
             //     }
             // }, 10);
         })
@@ -371,7 +372,7 @@ function loadDesktop() {
             codes.push($(this).text());
         });
         track('Coupon', 'print', codes.join('/'));
-        _gaq.push(['b._trackEvent', 'Coupon', 'print', codes.join('/')]);
+// _gaq.push(['b._trackEvent', 'Coupon', 'print', codes.join('/')]);
     });
     $('#coupon_primary, #coupon_secondary').click(function () {
         var codes = [];
@@ -379,7 +380,7 @@ function loadDesktop() {
             codes.push($(this).text());
         });
         track('Coupon', 'print', codes.join('/'));
-        _gaq.push(['b._trackEvent', 'Coupon', 'print', codes.join('/')]);
+// _gaq.push(['b._trackEvent', 'Coupon', 'print', codes.join('/')]);
         print();
     });
     if(IEversion !== false && IEversion == '7.0') {
@@ -436,7 +437,7 @@ function loadDesktop() {
         var myAction = $(this).attr('href');
         myAction = myAction.replace("javascript:", '');
         track('Conversion', 'sign-up', 'email');
-        _gaq.push(['b._trackEvent', 'Conversion', 'sign-up', 'email']);
+// _gaq.push(['b._trackEvent', 'Conversion', 'sign-up', 'email']);
         setTimeout(function () {
             eval(myAction);
         }, 1000);
@@ -795,7 +796,7 @@ function success_callback(p) {
     if(typeof p.callback == 'function') {
         _callback = p.callback;
     }
-    // addressSearch(new google.maps.LatLng(myLat, myLng), true, false, _callback);
+    addressSearch(new google.maps.LatLng(myLat, myLng), true, false, _callback);
 }
 
 function error_callback(p) {}
@@ -896,15 +897,6 @@ function mapPan() {
 }
 
 function setMaps() {
-    /**
-     * THIS 'RETURN' WAS ADDED INTENTIONALLY TO DISABLE GOOGLE MAPS API's
-     * It should be removed along with this comment block after new API key is added.
-     * - J.SMITH, Epsilon 2016
-     */
-    return;
-    /**
-
-     */
     var myLatlng = new google.maps.LatLng(myLat, myLng);
     var myOptions = {
         zoom: myZoom,
