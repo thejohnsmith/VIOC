@@ -88,7 +88,7 @@ body {
   filter: progid: DXImageTransform.Microsoft.gradient(startColorstr='#5aadc8', endColorstr='#0281aa', GradientType=0)
 }
 #mobile-sem .defaultHeader {
-  padding: 9px 9px 0 76px;
+  padding: 10px 2% 15px 100px;
   position: relative;
   min-height: 115px
 }
@@ -96,6 +96,25 @@ body {
   position: absolute;
   bottom: 0;
   left: 10px
+}
+#mobile-sem .defaultHeader h4 {
+    margin: 0;
+    display: inline-block;
+    color: #fff;
+}
+#mobile-sem .defaultHeader h4 > a {
+    color: #fff;
+    text-decoration: none;
+    margin: 0;
+    padding: 4px 9px;
+    display: block;
+    text-align: center;
+    width: 100%;
+    border-radius: 4px;
+    background: #0154a3;
+    height: 100%;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, .25);
+    -webkit-font-smoothing: antialiased;
 }
 #mobile-sem header h1, #mobile-sem header h2 {
   color: #fff;
@@ -110,11 +129,10 @@ body {
   font-size: 14px
 }
 #mobile-sem .defaultHeader h1 {
-  float: left;
-  width: 75%;
-  margin-left: 10%;
-  text-shadow: 0 1px 1px rgba(0, 0, 0, .25);
-  text-align: left
+float: none;
+margin: 0 2% 1em 0;
+text-shadow: 0 1px 1px rgba(0, 0, 0, .25);
+text-align: left
 }
 #mobile-sem header .header-location {
   text-align: center;
@@ -191,6 +209,7 @@ body {
   font-weight: 400
 }
 #mobile_search {
+  display: none;
   background: #ddd;
   text-align: center;
   box-shadow: inset 0 0 5px rgba(0, 0, 0, .25)

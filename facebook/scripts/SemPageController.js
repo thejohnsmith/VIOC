@@ -8,7 +8,7 @@
  * @filename - SemPageController.js
  * @authors - Anthony Gill, John Smith : Epsilon 2016
  */
-SemPageController = (function ($) {
+var SemPageController = (function ($) {
     'use strict';
     /**
      * [controller description]
@@ -87,32 +87,63 @@ SemPageController = (function ($) {
             });
         },
         attachEventListeners: function () {
-            /** CONNECT WITH US
-             * Email sign-up form
-             */
             var controller = this;
-            // @TODO Abstract the elements to make this work with both forms!
-            $('#connect_bar_submit').on('click', function (callback) {
-                controller.validateForm();
+            $('#connect_bar_submit').on('click', function (e) {
+                controller.validateConnectForm(e);
             });
+            $('#ctl00_FooterContent2_connect1_btnSignUp').on('click', function (e) {
+                controller.validateOffersForm(e);
+            });
+        },
+        validateOffersForm: function (e) {
+            e.preventDefault();
+            var controller = this;
+            var $cwuEmailField = $('#ctl00_FooterContent2_connect1_txtEmail');
+            var $cwuZipField = $('#ctl00_FooterContent2_connect1_txtZip');
+            var badCWUForm = false;
+            var errorMessage = '';
+            if(($cwuEmailField.val()).search('@') == -1 || ($cwuEmailField.val()).indexOf('.') == -1) {
+                badCWUForm = true;
+                errorMessage = errorMessage + 'You must enter a valid email.\n';
+            }
+            if(parseInt($cwuZipField.val()) < 10000 || parseInt($cwuZipField.val()) > 99999 || isNaN(parseInt($cwuZipField.val()))) {
+                badCWUForm = true;
+                errorMessage = errorMessage + 'You must enter a valid zip code.\n';
+            }
+            if(!badCWUForm) {
+                var email_value = encodeURIComponent($cwuEmailField.val());
+                var zipcode_value = encodeURIComponent($cwuZipField.val());
+                var apiPath = controller.apiPath + 'facebookSignUp.jssp';
+                $.ajax({
+                    url: apiPath,
+                    type: 'GET',
+                    contentType: 'application/json',
+                    processData: true,
+                    data: {
+                        email: email_value,
+                        zip: zipcode_value
+                    },
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
+                    },
+                    success: function (data) {
+                        alert('Thank You! Your address has been submitted.');
+                        return;
+                    },
+                    error: function () {
+                        alert('Save failed. Please try again at a later time.');
+                        return;
+                    }
+                });
+            } else {
+                alert(errorMessage);
+            }
         },
         /**
          * @description Tese are Fields pulled from default.js
-         * @NOTE Disable the handlers for 2nd email form!!
          */
-        // var cwuEmailField = $('#ctl00_FooterContent2_connect1_txtEmail');
-        // var cwuZipField = $('#ctl00_FooterContent2_connect1_txtZip');
-        // var errorMessage = '';
-        // // Email Validator
-        // if((cwuEmailField.val()).search('@') == -1 || (cwuEmailField.val()).indexOf('.') == -1) {
-        //     errorMessage = alert('You must enter a valid email.\n');
-        // }
-        // // Zipcode Validator
-        // if(parseInt(cwuZipField.val()) < 10000 || parseInt(cwuZipField.val()) > 99999 || isNaN(parseInt(cwuZipField.val()))) {
-        //     errorMessage = errorMessage + 'You must enter a valid zip code.\n';
-        // }
-        validateForm: function () {
-            // console.warn('123Adjusting UI...');
+        validateConnectForm: function (e) {
+            e.preventDefault();
             var controller = this;
             var email_elm = $('#carecare-optin .email-box');
             var email_input = $('#carecare-optin .email-box input');
@@ -160,7 +191,7 @@ SemPageController = (function ($) {
                             email_elm.css('display', 'block').removeClass('input-error').addClass('hidevioc');
                             submit_elm.css('display', 'none');
                             validation_elm.css('display', 'block');
-                            validation_message.html('Thank You! Your address has been submitted.');
+                            validation_message.html('<strong>Thank You! Your address has been submitted.</strong>');
                             return;
                         },
                         error: function () {
@@ -170,11 +201,6 @@ SemPageController = (function ($) {
                     });
                 }
             }
-            //  TESTS
-            // console.warn('email_value: ' + email_value);
-            // console.warn('validation_elm: ' + validation_elm);
-            // console.warn('validation_message: ' + validation_message);
-            // console.warn('submit_elm: ' + submit_elm);
         }
     };
     return {
