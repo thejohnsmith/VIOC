@@ -180,6 +180,7 @@ function validateConnectForm(e) {
     var errorMessage = "";
     if(($cwuEmailField.val()).search('@') == -1 || ($cwuEmailField.val()).indexOf('.') == -1) {
         badCWUForm = true;
+        // errorMessage = alert("You must enter a valid email.\n");
         errorMessage = errorMessage + "You must enter a valid email.\n";
     }
     if(parseInt($cwuZipField.val()) < 10000 || parseInt($cwuZipField.val()) > 99999 || isNaN(parseInt($cwuZipField.val()))) {
@@ -187,7 +188,7 @@ function validateConnectForm(e) {
         errorMessage = errorMessage + "You must enter a valid zip code.\n";
     }
     if(!badCWUForm) {
-        __doPostBack('ctl00$FooterContent2$connect1$btnSignUp', '');
+        // __doPostBack('ctl00$FooterContent2$connect1$btnSignUp', '');
     } else {
         alert(errorMessage);
     }
@@ -280,7 +281,10 @@ function loadDesktop() {
         */
     }
     if(isTest) {}
-    setMaps();
+    /**
+     * @NOTE Uncomment setMaps function to turn the mapping features.
+     * setMaps();
+     */
     $('#cities li a').each(function () {
         var temp = $(this).text().split(',');
         var city = $.trim(temp[0]);
@@ -341,24 +345,24 @@ function loadDesktop() {
         $(this).attr('default', $(this).val());
         $(this).blur(function () {
             myIn = $(this);
-            setTimeout(function () {
-                if(myIn.attr('default') != myIn.val()) {
-                    track('aspnetform', 'change', 'ctl00$tbEmail');
-                    _gaq.push(['b._trackEvent', 'aspnetform', 'change', 'ctl00$tbEmail']);
-                }
-            }, 10);
+            // setTimeout(function () {
+            //     if(myIn.attr('default') != myIn.val()) {
+            //         track('aspnetform', 'change', 'ctl00$tbEmail');
+            //         _gaq.push(['b._trackEvent', 'aspnetform', 'change', 'ctl00$tbEmail']);
+            //     }
+            // }, 10);
         })
     });
     $('.zip-input').each(function () {
         $(this).attr('default', $(this).val());
         $(this).blur(function () {
             myIn = $(this);
-            setTimeout(function () {
-                if(myIn.attr('default') != myIn.val()) {
-                    track('aspnetform', 'change', 'ctl00$tbZip');
-                    _gaq.push(['b._trackEvent', 'aspnetform', 'change', 'ctl00$tbZip']);
-                }
-            }, 10);
+            // setTimeout(function () {
+            //     if(myIn.attr('default') != myIn.val()) {
+            //         track('aspnetform', 'change', 'ctl00$tbZip');
+            //         _gaq.push(['b._trackEvent', 'aspnetform', 'change', 'ctl00$tbZip']);
+            //     }
+            // }, 10);
         })
     });
     $('.print').click(function () {
