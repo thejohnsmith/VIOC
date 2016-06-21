@@ -61,50 +61,15 @@
 						</div>
 						<!-- Referer: <span id="ctl00_TopContent_coupons1_lblReferer">No Refer</span>-->
 
-						<div id="coupon_primary">
-							<div class="coupon_content">
-								<div class="coupon_pylon"><img src="./images/pylonSmall.jpg" /></div>
-								<div class="coupon_formatedAmount">$<span>10</span>off</div>
-								<div class="coupon_originalAmount"></div>
 
-								<div class="coupon_offerText">Valvoline&trade; Full-Service Full Synthetic or Synthetic Blend Oil Change*</div>
-								<div class="coupon_details">
-									<div class="coupon_couponDesc"><span id="ctl00_TopContent_coupons1_lblShortlDisclaimer1">Valid at participating locations only - See store for details</span></div>
-									<div class="coupon_couponCode"><span id="ctl00_TopContent_coupons1_lblCouponCode1">NA830-LIS</span></div>
-									<div class="coupon_expiration">EXP: <span id="ctl00_TopContent_coupons1_lblCouponExpiration1">07/09/2016</span></div>
-									<div class="clear"></div>
-									<div class="print">
-										<span id="ctl00_TopContent_coupons1_lblCoupon1DefaultDisclaimer">Plus Tax. Not valid with any other same-service offers/discounts, including fleets. Good at participating locations</span>
-										<br/>
-										<span id="ctl00_TopContent_coupons1_lblCouponDisclaimer1">Includes up to 5 quarts of Synthetic Blend, Full Synthetic or Diesel oil (diesel quarts may vary; see store for details), filter (prem. extra), lube and maintenance check.</span>
-									</div>
-								</div>
-							</div>
-						</div>
+						<section class="coupons-section">
+								<div role="presentation" class="spinner js-loading"></div>
+						</section>
 
-						<div id="coupon_secondary">
-							<div class="coupon_content">
 
-								<div id="ctl00_TopContent_coupons1_pnlPrimaryCoupon">
-									<div class="coupon_pylon"><img src="./images/pylonSmall.jpg" /></div>
-									<div class="coupon_formatedAmount">$<span>5</span>off</div>
-									<div class="coupon_originalAmount"></div>
-									<div class="coupon_offerText">Valvoline&trade; Full-Service Conventional Oil Change**</div>
-									<div class="coupon_details">
-										<div class="coupon_couponDesc"><span id="ctl00_TopContent_coupons1_lblShortlDisclaimer2">Valid at participating locations only - See store for details</span></div>
-										<div class="coupon_couponCode"><span id="ctl00_TopContent_coupons1_lblCouponCode2">NA829-LIS</span></div>
-										<div class="coupon_expiration">EXP: <span id="ctl00_TopContent_coupons1_lblCouponExpiration2">07/09/2016</span></div>
-										<div class="clear"></div>
-										<div class="print">
-											<span id="ctl00_TopContent_coupons1_lblCoupon2DefaultDisclaimer">Plus Tax. Not valid with any other same-service offers/discounts, including fleets. Good at participating locations</span>
-											<br/>
-											<span id="ctl00_TopContent_coupons1_lblCouponDisclaimer2">Includes up to 5 quarts of Conventional oil, filter (prem. extra), lube and maintenance check.</span>
-										</div>
-									</div>
 
-								</div>
-							</div>
-						</div>
+
+
 						<div class="clear"></div>
 						<div id="fourstar">
 							<img src="./images/four_stars-big.png" /><span class="rating">4.6/5 Star Average Rating by Customers Nationally</span><span class="survey">Based on a survey of over 250,000 Valvoline Instant Oil Change<sup>SM</sup> customers annually.</span>
@@ -1360,6 +1325,9 @@
 					</form>
 					<a href="#location" class="button red target to-screen" id="button_current-location" onclick="track('Conversion', 'Location Query', 'Mobile', 'Detect')">Use my current location</a>
 				</section>
+
+
+
 				<section class="mobile_coupons">
 					<a href="#coupon1" class="mobile-coupon to-screen">
 						<div class="coupon-amount">$<span>10</span>off</div>
@@ -1382,6 +1350,9 @@
 						</a>
 					</div>
 				</section>
+
+
+
 				<footer>
 					<p>Plus Tax. Not valid with any other same-service offers/discounts, including fleets. Good at participating locations</p>
 					<p>*Includes up to 5 quarts of Synthetic Blend, Full Synthetic or Diesel oil (diesel quarts may vary; see store for details), filter (prem. extra), lube and maintenance check.</p>
@@ -1597,6 +1568,7 @@
 			</div>
 		</div>
 	</div>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/2.2.1/mustache.min.js"></script>
 	<script type="text/javascript" src="scripts/shared.js"></script>
 	<script type="text/javascript" src="scripts/default.js"></script>
 	<script type="text/javascript" src="scripts/couponForms.js"></script>
@@ -1771,13 +1743,13 @@ Creation Date: 05/23/2013
 	</script>
 
 	<!-- Web Tracking script -->
-	<script type="text/javascript" src="http://utilities.vioc.com/personalize/scripts.js"></script>
-	<script type="text/javascript">
+	<!-- <script type="text/javascript" src="http://utilities.vioc.com/personalize/scripts.js"></script> -->
+	<!-- <script type="text/javascript">
 		var referringUrl = document.referrer;
 		var campaign = "trulaps";
 		var channel = "Desktop";
 		LogEvent('SEM_Coupon', campaign, channel, referringUrl, null, null);
-	</script>
+	</script> -->
 
 
 	<!-- Google Code for Remarketing Tag -->
