@@ -15,45 +15,45 @@ var SemPageController = (function ($) {
      * @type {Object}
      */
     var controller = {
-        templatePath: 'https://files.marcomcentral.app.pti.com/epsilon/coupons/templates',
+        templatePath: 'https://files.marcomcentral.app.pti.com/epsilon/facebook/templates',
         apiPath: 'https://adobe-prod-vioc.epsilon.com/jssp/vioc/',
-        userData: {},
+        couponData: {},
         /**
          * [init description]
          * @return {[type]} [description]
          */
         init: function () {
             var controller = this;
-            // var pfid = '20160128HTG';
-            // var rid = 'MXqC_GLSj';
-            // controller.getCouponPageData(pfid, rid, function () {
-            //     controller.updateUI();
-            // });
+            // Ex. ?p=StdRem1
+            var pfid = controller.getParameterByName('p', window.location.href) || null;
+            controller.getCouponPageData(pfid, function () {
+                controller.updateUI();
+            });
             controller.attachEventListeners();
         },
         /**
-         * [getCouponPageData description]
+         * [getCouponPageData Calls facebookSignupCoupons API, stores results in couponData.]
          * @param  {[type]}   pfid     [description]
          * @param  {[type]}   rid      [description]
          * @param  {Function} callback [description]
-         * @return {[type]}            [description]
+         * @return {[object]}           [couponData]
          */
-        getCouponPageData: function (pfid, rid, callback) {
+        getCouponPageData: function (pfid, callback) {
             var controller = this;
-            $.get(controller.apiPath + 'getCouponPageData.jssp?pfid=' + encodeURIComponent(pfid) + '&rid=' + encodeURIComponent(rid), function (results) {
+            $.get(controller.apiPath + 'facebookSignupCoupons.jssp?p=' + encodeURIComponent(pfid), function (results) {
                 var json_results = JSON.parse(results);
-                $.each(json_results, function (i, result) {
-                    // Store the page content data in controller.stores
-                    if(i === 'features') {
-                        controller.features = result;
-                    } else {
-                        controller.stores = result;
-                    }
-                });
-                // fire the callback (DONE)
+                controller.couponData = json_results;
                 if(typeof callback === 'function') {
-                    callback(controller.program);
+                    callback(json_results);
                 }
+                /*  try {
+                    json_results = JSON.parse(results);
+                  }
+                  catch (e)
+                  {
+                    alert("Failed to parse JSON data");
+                  }
+                  */
             });
         },
         /**
@@ -62,6 +62,11 @@ var SemPageController = (function ($) {
          */
         updateUI: function () {
             var controller = this;
+
+            controller.getMustacheTemplate(controller.templatePath + '/coupons.mustache.html', '.coupons-template', function (template) {
+                $('.coupons-section').html(Mustache.render(template, controller.couponData));
+            });
+
             /**
              * 	@NOTE likely not going to use this approach
              * 	@NOTE IF MUSTACHE WILL BE USE -> LEVERAGE EXISTING WORK FROM COUPON LANDING PAGES.
@@ -71,7 +76,12 @@ var SemPageController = (function ($) {
              * @param  {[type]} function                (template     [description]
              * @return {[type]}                         [description]
              */
-            /** Coupons */
+            //  $.get(controller.templatePath + 'coupons.mustache.html', function (templates) {
+            //    var template = $(templates).filter('.coupons-template').html();
+             //
+            //    $('.coupons-tpl').html(Mustache.render(template, result));
+            //  });
+            /** Coupons
             controller.getMustacheTemplate(controller.templatePath + '/coupons.mustache.html', '.coupons-template', function (template) {
                 $('.coupons-section').html(Mustache.render(template, controller.stores));
                 console.log("Set barcode");
@@ -85,6 +95,7 @@ var SemPageController = (function ($) {
                     $(e).html(content);
                 }); // Remove "*"  from mobile version
             });
+            */
         },
         attachEventListeners: function () {
             var controller = this;
@@ -201,6 +212,34 @@ var SemPageController = (function ($) {
                     });
                 }
             }
+        },
+        getMustacheTemplate: function (filename, css_selector, callback) {
+            var controller = this;
+            var template_key = filename.replace('.', '');
+            if(typeof controller[template_key] != 'undefined' && controller[template_key] != '') {
+                console.log('Loading cached version of ' + template_key);
+                callback(controller[template_key])
+            } else {
+                $.get(filename, function (templates) {
+                    controller[template_key] = $(templates).filter(css_selector).html();
+                    callback(controller[template_key]);
+                });
+            }
+        },
+        getParameterByName: function (name, url) {
+            var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)');
+            var results = regex.exec(url);
+            if(!url) {
+                url = window.location.href;
+            }
+            name = name.replace(/[\[\]]/g, '\\$&');
+            if(!results) {
+                return undefined;
+            }
+            if(!results[2]) {
+                return '';
+            }
+            return decodeURIComponent(results[2].replace(/\+/g, ' '));
         }
     };
     return {
