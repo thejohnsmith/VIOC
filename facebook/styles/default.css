@@ -140,14 +140,12 @@ form#aspnetForm {
   }
 }
 .js-loading {
-  font-size: 20px;
   position: absolute;
-  right: 0;
-  left: 0;
-  display: block;
+  z-index: 999;
   margin: 0 auto;
-  padding: 22px;
-  text-align: center
+  left: 0;
+  right: 0;
+  padding: 32%
 }
 .js-content {
   display: none;
@@ -160,11 +158,13 @@ form#aspnetForm {
 }
 .container {
   position: relative;
-  display: inline-block;
   width: 100%;
   height: auto;
   padding: 0 1%;
-  margin-bottom: 1em
+  margin: 0 auto
+}
+.container.center{
+  margin: 3em auto;
 }
 #locations_area, #mobile-sem, .mobile {
   display: none
@@ -383,7 +383,7 @@ input, select, textarea {
 }
 #headline {
   width: 81%;
-  float: left
+  float: right
 }
 #headline h1 {
   font-size: 2.2em;
@@ -421,7 +421,7 @@ input, select, textarea {
 #coupons {
   position: relative;
   width: 81%;
-  float: left;
+  float: right;
   text-align: left;
   font-family: 'Oswald', sans-serif;
   -webkit-transition: all .5s cubic-bezier(.68, -.55, .27, 1.55) 0s;
@@ -1758,7 +1758,6 @@ a, a:visited, h1, h2, h3 {
 .search_button, input[type=button].search_button {
   font: 700 1.2em/2em 'Oswald', Impact, Arial, sans-serif;
   color: #fff;
-  display: inline-block;
   border: 0;
   border-radius: 10px;
   padding: 0 6%;

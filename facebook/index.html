@@ -9,7 +9,7 @@
 			Oil Change Coupons | Find a Valvoline Location | Car Care Services
 		</title>
 		<link rel="canonical" href="http://coupons.vioc.com"/>
-		<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Arimo:400,700|Oswald:400,300,700" media="screen,print"/>
+		<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Arimo:400,700|Oswald:400,300,700" media="screen,print"/>
 		<link rel="stylesheet" type="text/css" href="styles/default.css" media="only screen and (min-width: 640px),print"/>
 		<link rel="stylesheet" type="text/css" href="styles/mobile.css" media="only screen and (max-width: 640px)" id="ctl00_head_mobileStyle"/>
 		<!--Open Graph Protocol definitions-->
@@ -44,112 +44,13 @@
 							<p id="ctl00_TopContent_coupons1_headlineText"></p>
 						</div>
 						<div id="coupons">
-							<div id="coupon_print" class="hidden">
-								<a href="javascript:window.print()" class="print"><img src="./images/printCircle.png" alt="Print" class="flat"/><img src="./images/printCircle_hover.png" alt="Print" class="hover"/></a>
-							</div>
-							<script type="text/javascript" src="scripts/jquery-3.0.0.min.js"></script>
-							<script type="text/javascript" src="scripts/mustache-2.2.1.min.js"></script>
-							<!-- Mustache template -->
-							<script id="coupons-template-desktop" class="coupons-template" type="x-tmpl-mustache">
-								{{#primary}}
-									<div id="coupon_primary">
-										<div class="coupon_content">
-											<div class="coupon_pylon"><img src="./images/pylonSmall.jpg"/></div>
-											<div class="coupon_formatedAmount">{{amount-prefix}}
-												<span>{{amount}}</span>{{amount-suffix}}</div>
-											<div class="coupon_originalAmount"></div>
-											<div class="coupon_offerText">{{text}}</div>
-											<div class="coupon_details">
-												<div class="coupon_couponDesc">
-													<span id="ctl00_TopContent_coupons1_lblShortlDisclaimer1">Valid at participating locations only - See store for details</span>
-												</div>
-												<div class="coupon_couponCode">
-													<span id="ctl00_TopContent_coupons1_lblCouponCode1">{{code}}</span>
-												</div>
-												<div class="coupon_expiration">EXP:
-													<span id="ctl00_TopContent_coupons1_lblCouponExpiration1">{{exp}}</span>
-												</div>
-												<div class="clear"></div>
-												<div class="print">
-													<span id="ctl00_TopContent_coupons1_lblCoupon1DefaultDisclaimer">Plus Tax. Not valid with any other same-service offers/discounts, including fleets. Good at participating locations</span>
-													<br/>
-													<span id="ctl00_TopContent_coupons1_lblCouponDisclaimer1">{{disclaimer}}</span>
-												</div>
-											</div>
-										</div>
-									</div>
-								{{/primary}}
-								{{#secondary}}
-									<div id="coupon_secondary">
-										<div class="coupon_content">
-											<div id="ctl00_TopContent_coupons1_pnlPrimaryCoupon">
-												<div class="coupon_pylon"><img src="./images/pylonSmall.jpg"/></div>
-												<div class="coupon_formatedAmount">{{amount-prefix}}
-													<span>{{amount}}</span>{{amount-suffix}}</div>
-												<div class="coupon_originalAmount"></div>
-												<div class="coupon_offerText">{{text}}</div>
-												<div class="coupon_details">
-													<div class="coupon_couponDesc">
-														<span id="ctl00_TopContent_coupons1_lblShortlDisclaimer2">Valid at participating locations only - See store for details</span>
-													</div>
-													<div class="coupon_couponCode">
-														<span id="ctl00_TopContent_coupons1_lblCouponCode2">{{code}}</span>
-													</div>
-													<div class="coupon_expiration">EXP:
-														<span id="ctl00_TopContent_coupons1_lblCouponExpiration2">{{exp}}</span>
-													</div>
-													<div class="clear"></div>
-													<div class="print">
-														<span id="ctl00_TopContent_coupons1_lblCoupon2DefaultDisclaimer">Plus Tax. Not valid with any other same-service offers/discounts, including fleets. Good at participating locations</span>
-														<br/>
-														<span id="ctl00_TopContent_coupons1_lblCouponDisclaimer2">{{disclaimer}}</span>
-													</div>
-												</div>
-											</div>
-										</div>
-									</div>
-								{{/secondary}}
-								<script>
-									$(document).ready(function () {
-										$('#coupon_print').removeClass('hidden');
-									});
-								</script>
-							</script>
-							<!-- Mustache template -->
-							<script id="coupons-template-mobile" class="coupons-template coupons-template-mobile" type="x-tmpl-mustache">
-								{{#primary}}
-									<a href="#coupon1" class="mobile-coupon to-screen">
-										<div class="coupon-amount">{{amount-prefix}}
-											<span>{{amount}}</span>{{amount-suffix}}</div>
-										<div class="coupon-desc">
-											<p>{{text}}</p>
-											<span class="click_coupon1">Code:
-												<b class="coupon1">{{code}}</b>
-											</span>
-										</div>
-										<span></span>
-										<div class="clear"></div>
-									</a>
-								{{/primary}}
-								{{#secondary}}
-									<div id="ctl00_mobileContent_coupons2_divCoupon2_home">
-										<a href="#coupon2" class="mobile-coupon to-screen">
-											<div class="coupon-amount">{{amount-prefix}}
-												<span>{{amount}}</span>{{amount-suffix}}</div>
-											<div class="coupon-desc">
-												<p>{{text}}</p>
-												<span class="click_coupon2">Code:
-													<b class="coupon2">{{code}}</b>
-												</span>
-											</div>
-											<span></span>
-											<div class="clear"></div>
-										</a>
-									</div>
-								{{/secondary}}
-							</script>
-							<section class="coupons-section" id="coupons-section-desktop">
+							<div id="coupon_print">
 								<div role="presentation" class="spinner js-loading"></div>
+								<span class="js-content">
+									<a href="javascript:window.print()" class="print"><img src="./images/printCircle.png" alt="Print" class="flat"/><img src="./images/printCircle_hover.png" alt="Print" class="hover"/></a>
+								</span>
+							</div>
+							<section class="coupons-section js-content" id="coupons-section-desktop">
 								<div class="hidden" id="coupon_primary">
 									<div class="coupon_content">
 										<div class="coupon_pylon"><img src="./images/pylonSmall.jpg"/></div>
@@ -171,31 +72,21 @@
 											<div class="print">
 												<span id="ctl00_TopContent_coupons1_lblCoupon1DefaultDisclaimer">Plus Tax. Not valid with any other same-service offers/discounts, including fleets. Good at participating locations</span>
 												<br/>
-												<span id="ctl00_TopContent_coupons1_lblCouponDisclaimer1">Includes up to 5 quarts of Synthetic Blend, Full Synthetic or Diesel oil (diesel quarts may vary; see store for details), filter (prem. extra), lube and maintenance check.</span>
+												<span id="ctl00_TopContent_coupons1_lblCouponDisclaimer1">{{disclaimer}}</span>
 											</div>
 										</div>
 									</div>
 								</div>
 							</section>
-							<!-- Mustache template -->
-							<script id="disclaimer-template-mobile" class="disclaimer-template-mobile" type="x-tmpl-mustache">
-								{{#primary}}
-									<p>{{disclaimer}}</p>
-								{{/primary}}
-								{{#secondary}}
-									<p>{{disclaimer}}
-									</p>
-								{{/secondary}}
-							</script>
 							<div class="clear"></div>
-							<div id="fourstar">
+							<div id="fourstar" class="js-content">
 								<img src="./images/four_stars-big.png"/>
 								<span class="rating">4.6/5 Star Average Rating by Customers Nationally</span>
 								<span class="survey">Based on a survey of over 250,000 Valvoline Instant Oil Change<sup>SM</sup>
 									customers annually.</span>
 							</div>
 							<div class="container center">
-								<a href="http://store.vioc.com/" target="_blank" class="search_button" id="find_store">FIND A STORE NEAR YOU<a></div>
+								<a href="http://store.vioc.com/" target="_blank" class="search_button js-content" id="find_store">FIND A STORE NEAR YOU<a></div>
 								</div>
 								<!-- /#coupons -->
 							</div>
@@ -268,10 +159,10 @@
 							<div class="vioc">
 								<div class="padded">
 									<h3>Valvoline Instant Oil Change</h3>
-									The Valvoline Instant Oil Change company has been providing quick and convenient maintenance services for over 25 years.
+									The Valvoline Instant Oil Change company has been providing quick and convenient maintenance services for over 30 years.
 									<br/>
 									<br/>
-									<img src="./images/years_under_the_hood.png"/>
+									<img src="./images/150years_Feature.png" width="179" height="91" alt="Valvoline - 150 Years. 1866 to 2016">
 								</div>
 							</div>
 							<div class="connect">
@@ -288,21 +179,8 @@
 											</div>
 										</div>
 									</div>
-									<!-- <div class="mobile"><div class="padded">
-  <h4>Mobile</h4>
-    <div id="ctl00_FooterContent2_connect1_pnlMobile">
-
-        <div class="form">
-            <input name="ctl00$FooterContent2$connect1$txtMobileNumber" type="text" value="Mobile Number" id="ctl00_FooterContent2_connect1_txtMobileNumber" class="mobile-input" />
-        <span>Ex: 555-555-5555</span>
-      </div>
-
-</div>
-
-</div></div> -->
 									<div class="clear"></div>
 									<div class="center">
-										<!--<a id="ctl00_FooterContent2_connect1_btnSignUp" class="button" href="javascript:__doPostBack('ctl00$FooterContent2$connect1$btnSignUp','')">Sign Up for Offers</a>-->
 										<a id="ctl00_FooterContent2_connect1_btnSignUp" class="button" href="">Sign Up for Offers</a>
 									</div>
 								</div>
@@ -390,7 +268,7 @@
 								<p>
 									<span class="nonMobile">Copyright © 2001-2016. Ashland. All rights reserved.</span>
 									<span class="noPrint">
-										<a target="_blank" href="http://www.vioc.com/privacy-policy" onClick="track('Click', 'Outbound', '/outbound/vioc.com/privacy/policy');">
+										<a target="_blank" href="http://www.vioc.com/privacy-policy">
 											Privacy Policy
 										</a>
 										<span class="nonMobile">
@@ -403,13 +281,6 @@
 										<a target="_blank" href="https://plus.google.com/114754118357066507205">Google+</a>
 									</span>
 								</p>
-								<!-- Mustache template -->
-								<script id="disclaimer-template-desktop" class="disclaimer-template" type="x-tmpl-mustache">
-									{{#primary}}{{disclaimer}}{{/primary}}
-									<br>
-									{{#secondary}}{{disclaimer}}{{/secondary}}
-									<br>
-								</script>
 								<p class="nonMobile disclaimer">
 									Plus Tax. Not valid with any other same-service offers/discounts, including fleets. Good at participating locations
 									<br>
@@ -439,7 +310,6 @@
 								</form>
 								<a href="#location" class="button red target to-screen" id="button_current-location" onclick="track('Conversion', 'Location Query', 'Mobile', 'Detect')">Use my current location</a>
 							</section>
-							<!-- Mustache template: mobile-coupons.mustache.html -->
 							<section class="mobile_coupons mobile-coupons-section coupons-section-mobile" id="coupons-section-mobile">
 								<div role="presentation" class="spinner js-loading"></div>
 								<div style="visibility: hidden;">
@@ -476,74 +346,122 @@
 								<span class="disclaimer-section-mobile"></span>
 							</footer>
 						</div>
-						<div class="mobile-screen" id="screen_coupon1">
-							<header>
-								<div class="defaultHeader">
-									<img src="images/vioc_logo.png" width="76" height="117"/>
-									<h1>Get a quality Valvoline&trade; oil change in about 15 minutes</h1>
-									<h4>
-										<a class="search_button" href="http://store.vioc.com/" target="_blank">Find a store near you.</a>
-									</h4>
-									<div class="clear"></div>
-								</div>
-							</header>
-							<section class="mobile_coupon" id="coupons-section-mobile">
-								<a href="#landing" class="mobile-coupon to-screen backwards">
-									<div class="coupon-amount">$<span>10</span>off</div>
-									<div class="coupon-desc">
-										<p>Valvoline&trade; Full-Service Full Synthetic or Synthetic Blend Oil Change*</p>
-									</div>
-									<span></span>
-									<div class="clear"></div>
-								</a>
-							</section>
-							<section class="mobile_coupon-details">
-								<span>Code:
-									<b class="coupon1">NA830-LIS</b>
-								</span>
-								<br/>
-								<small>Expires on 07/09/2016</small>
-							</section>
-							<footer>
-								<p>Plus Tax. Not valid with any other same-service offers/discounts, including fleets. Good at participating locations</p>
-								<p>*Includes up to 5 quarts of Synthetic Blend, Full Synthetic or Diesel oil (diesel quarts may vary; see store for details), filter (prem. extra), lube and maintenance check.</p>
-								<span class="disclaimer-section-mobile"></span>
-							</footer>
-						</div>
-						<div class="mobile-screen" id="screen_coupon2">
-							<header>
-								<div class="defaultHeader">
-									<img src="images/vioc_logo.png" width="76" height="117"/>
-									<h1>Get a quality Valvoline&trade; oil change in about 15 minutes</h1>
-									<h4>
-										<a class="search_button" href="http://store.vioc.com/" target="_blank">Find a store near you.</a>
-									</h4>
-								</div>
-							</header>
-							<section class="mobile_coupon">
-								<a href="#landing" class="mobile-coupon to-screen backwards">
-									<div class="coupon-amount">$<span>5</span>off</div>
-									<div class="coupon-desc">
-										<p>Valvoline&trade; Full-Service Conventional Oil Change**</p>
-									</div>
-									<span></span>
-									<div class="clear"></div>
-								</a>
-							</section>
-							<section class="mobile_coupon-details">
-								<span>Code:
-									<b class="coupon2">NA829-LIS</b>
-								</span>
-								<br/>
-								<small>Expires on 07/09/2016</small>
-							</section>
-							<footer>
-								<p>Plus Tax. Not valid with any other same-service offers/discounts, including fleets. Good at participating locations</p>
-								<p>**Includes up to 5 quarts of Conventional oil, filter (prem. extra), lube and maintenance check.</p>
-							</footer>
-						</div>
 					</div>
 				</div>
+				<script type="text/javascript" src="scripts/jquery-3.0.0.min.js"></script>
+				<script type="text/javascript" src="scripts/mustache-2.2.1.min.js"></script>
+				<!-- Mustache template -->
+				<script id="coupons-template-desktop" class="coupons-template" type="x-tmpl-mustache">
+					{{#primary}}
+						<div id="coupon_primary">
+							<div class="coupon_content">
+								<div class="coupon_pylon"><img src="./images/pylonSmall.jpg"/></div>
+								<div class="coupon_formatedAmount">{{amount-prefix}}
+									<span>{{amount}}</span>{{amount-suffix}}</div>
+								<div class="coupon_originalAmount"></div>
+								<div class="coupon_offerText">{{text}}</div>
+								<div class="coupon_details">
+									<div class="coupon_couponDesc">
+										<span id="ctl00_TopContent_coupons1_lblShortlDisclaimer1">Valid at participating locations only - See store for details</span>
+									</div>
+									<div class="coupon_couponCode">
+										<span id="ctl00_TopContent_coupons1_lblCouponCode1">{{code}}</span>
+									</div>
+									<div class="coupon_expiration">EXP:
+										<span id="ctl00_TopContent_coupons1_lblCouponExpiration1">{{exp}}</span>
+									</div>
+									<div class="clear"></div>
+									<div class="print">
+										<span id="ctl00_TopContent_coupons1_lblCoupon1DefaultDisclaimer">Plus Tax. Not valid with any other same-service offers/discounts, including fleets. Good at participating locations</span>
+										<br/>
+										<span id="ctl00_TopContent_coupons1_lblCouponDisclaimer1">{{disclaimer}}</span>
+									</div>
+								</div>
+							</div>
+						</div>
+					{{/primary}}
+					{{#secondary}}
+						<div id="coupon_secondary">
+							<div class="coupon_content">
+								<div id="ctl00_TopContent_coupons1_pnlPrimaryCoupon">
+									<div class="coupon_pylon"><img src="./images/pylonSmall.jpg"/></div>
+									<div class="coupon_formatedAmount">{{amount-prefix}}
+										<span>{{amount}}</span>{{amount-suffix}}</div>
+									<div class="coupon_originalAmount"></div>
+									<div class="coupon_offerText">{{text}}</div>
+									<div class="coupon_details">
+										<div class="coupon_couponDesc">
+											<span id="ctl00_TopContent_coupons1_lblShortlDisclaimer2">Valid at participating locations only - See store for details</span>
+										</div>
+										<div class="coupon_couponCode">
+											<span id="ctl00_TopContent_coupons1_lblCouponCode2">{{code}}</span>
+										</div>
+										<div class="coupon_expiration">EXP:
+											<span id="ctl00_TopContent_coupons1_lblCouponExpiration2">{{exp}}</span>
+										</div>
+										<div class="clear"></div>
+										<div class="print">
+											<span id="ctl00_TopContent_coupons1_lblCoupon2DefaultDisclaimer">Plus Tax. Not valid with any other same-service offers/discounts, including fleets. Good at participating locations</span>
+											<br/>
+											<span id="ctl00_TopContent_coupons1_lblCouponDisclaimer2">{{disclaimer}}</span>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					{{/secondary}}
+
+				</script>
+				<!-- Mustache template -->
+				<script id="coupons-template-mobile" class="coupons-template coupons-template-mobile" type="x-tmpl-mustache">
+					{{#primary}}
+						<a href="#coupon1" class="mobile-coupon to-screen">
+							<div class="coupon-amount">{{amount-prefix}}
+								<span>{{amount}}</span>{{amount-suffix}}</div>
+							<div class="coupon-desc">
+								<p>{{text}}</p>
+								<span class="click_coupon1">Code:
+									<b class="coupon1">{{code}}</b>
+								</span>
+							</div>
+							<span></span>
+							<div class="clear"></div>
+						</a>
+					{{/primary}}
+					{{#secondary}}
+						<div id="ctl00_mobileContent_coupons2_divCoupon2_home">
+							<a href="#coupon2" class="mobile-coupon to-screen">
+								<div class="coupon-amount">{{amount-prefix}}
+									<span>{{amount}}</span>{{amount-suffix}}</div>
+								<div class="coupon-desc">
+									<p>{{text}}</p>
+									<span class="click_coupon2">Code:
+										<b class="coupon2">{{code}}</b>
+									</span>
+								</div>
+								<span></span>
+								<div class="clear"></div>
+							</a>
+						</div>
+					{{/secondary}}
+				</script>
+				<!-- Mustache template -->
+				<script id="disclaimer-template-mobile" class="disclaimer-template-mobile" type="x-tmpl-mustache">
+					{{#primary}}
+						<p>{{disclaimer}}</p>
+					{{/primary}}
+					{{#secondary}}
+						<p>{{disclaimer}}
+						</p>
+					{{/secondary}}
+				</script>
+				<!-- Mustache template -->
+				<script id="disclaimer-template-desktop" class="disclaimer-template" type="x-tmpl-mustache">
+					{{#primary}}{{disclaimer}}{{/primary}}
+					<br>
+					{{#secondary}}{{disclaimer}}{{/secondary}}
+					<br>
+				</script>
 				<script type="text/javascript" src="scripts/SemPageController.js"></script>
 			</body>
 		</html>

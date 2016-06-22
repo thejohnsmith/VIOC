@@ -18,7 +18,9 @@ var SemPageController = (function ($) {
 			// Ex. ?p=StdRem1
 			var pfid = controller.getParameterByName('p', window.location.href) || null;
 			controller.getCouponPageData(pfid, function () {
-				controller.updateUI();
+				controller.updateUI(function () {
+					controller.showUI();
+				});
 			});
 			controller.attachEventListeners();
 		},
@@ -39,7 +41,7 @@ var SemPageController = (function ($) {
 				}
 			});
 		},
-		updateUI: function () {
+		updateUI: function (callback) {
 			var controller = this;
 			var template1 = $('#coupons-template-desktop').html();
 			var html1 = Mustache.to_html(template1, controller.couponData);
@@ -53,6 +55,13 @@ var SemPageController = (function ($) {
 			var template4 = $('.disclaimer-template-mobile').html();
 			var html4 = Mustache.to_html(template4, controller.couponData);
 			$('.disclaimer-section-mobile').html(html4);
+			if (typeof callback === 'function') {
+				callback();
+			}
+		},
+		showUI: function () {
+			$('.js-loading').fadeOut();
+			$('.js-content').fadeIn();
 		},
 		attachEventListeners: function () {
 			var controller = this;
@@ -170,19 +179,6 @@ var SemPageController = (function ($) {
 						}
 					});
 				}
-			}
-		},
-		getMustacheTemplate: function (filename, css_selector, callback) {
-			var controller = this;
-			var template_key = filename.replace('.', '');
-			if (typeof controller[template_key] != 'undefined' && controller[template_key] != '') {
-				console.log('Loading cached version of ' + template_key);
-				callback(controller[template_key]);
-			} else {
-				$.get(filename, function (templates) {
-					controller[template_key] = $(templates).filter(css_selector).html();
-					callback(controller[template_key]);
-				});
 			}
 		},
 		getParameterByName: function (name, url) {
