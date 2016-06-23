@@ -25,6 +25,9 @@ sup {
 #with-us .email.hovering .hidevioc, #with-us .email:hover .hidevioc, #with-us .phone:hover .hidevioc, article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
   display: block
 }
+.email-box.hidevioc {
+  display: none!important
+}
 body {
   line-height: normal;
   height: auto;
@@ -52,13 +55,26 @@ body, html {
   overflow-x: hidden
 }
 html {
-  font-size: 14px;
+  font-size: 14px
 }
-@media all and (min-width:1024px) {
+@media all and (min-width:2000px) {
   html {
-  font-size: 1em;
-  font-size: 1vw
+    font-size: 1em;
+    font-size: 1vw
   }
+}
+::-webkit-scrollbar-track {
+  border-radius: 10px;
+  background-color: #f5f5f5;
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, .3)
+}
+::-webkit-scrollbar {
+  width: 8px;
+  background-color: #f5f5f5
+}
+::-webkit-scrollbar-thumb {
+  border-radius: 4px;
+  background-image: -webkit-gradient(linear, left bottom, left top, color-stop(.04, rgba(224, 41, 38, .95)), color-stop(.62, #004890), color-stop(.86, #497dbd))
 }
 form#aspnetForm {
   position: relative;
@@ -67,17 +83,88 @@ form#aspnetForm {
   height: auto;
   min-height: 100%
 }
+.hidden {
+  visibility: hidden
+}
+.spinner {
+  font-size: 18px;
+  position: relative;
+  width: 3em;
+  height: 3em;
+  margin: 0 auto;
+  -webkit-animation: load 1s infinite linear;
+  animation: load 1s infinite linear;
+  border-radius: 50%;
+  background: -webkit-linear-gradient(top, #00adee 10%, rgba(255, 255, 255, 0) 100%);
+  background: linear-gradient(to bottom, #00adee 10%, rgba(255, 255, 255, 0) 100%);
+  background-color: #ed3023
+}
+.spinner:after, .spinner:before {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  content: ''
+}
+.spinner:before {
+  background: -webkit-linear-gradient(left, rgba(255, 255, 255, 0) 50%, #55a6bc 50%);
+  background: linear-gradient(to right, rgba(255, 255, 255, 0) 50%, #55a6bc 50%);
+  width: 100%;
+  height: 100%;
+  border-radius: 100%
+}
+.spinner:after {
+  width: 90%;
+  height: 90%;
+  margin: auto;
+  border-radius: 50%;
+  background: #fff
+}
+@-webkit-keyframes load {
+  0% {
+    -webkit-transform: rotate(0deg)
+  }
+  to {
+    -webkit-transform: rotate(360deg)
+  }
+}
+@keyframes load {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg)
+  }
+  to {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg)
+  }
+}
+.js-loading {
+  position: absolute;
+  z-index: 999;
+  margin: 0 auto;
+  left: 0;
+  right: 0;
+  padding: 32%
+}
+.js-content {
+  display: none;
+  -webkit-transition: all .5s cubic-bezier(.68, -.55, .27, 1.55) 0s;
+  transition: all .5s cubic-bezier(.68, -.55, .27, 1.55) 0s
+}
 .noscroll {
   height: 100%;
   overflow: hidden
 }
 .container {
   position: relative;
-  display: inline-block;
   width: 100%;
   height: auto;
   padding: 0 1%;
-  margin-bottom: 1em
+  margin: 0 auto
+}
+.container.center{
+  margin: 3em auto;
 }
 #locations_area, #mobile-sem, .mobile {
   display: none
@@ -93,7 +180,7 @@ form#aspnetForm {
   }
 }
 .page {
-  max-width: 1200px;
+  max-width: 1120px;
   position: relative;
   padding: 0 10px;
   margin: 0 auto
@@ -127,7 +214,7 @@ input, select, textarea {
   background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #fff), color-stop(100%, #e1e1e1));
   background: -webkit-linear-gradient(top, #fff 0%, #e1e1e1 100%);
   background: linear-gradient(to bottom, #fff 0%, #e1e1e1 100%);
-  filter: progid: DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#e1e1e1', GradientType=0);
+  /*filter: progid: DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#e1e1e1', GradientType=0);*/
   text-align: right;
   font-size: .9em
 }
@@ -138,7 +225,7 @@ input, select, textarea {
   display: -moz-inline-stack;
   display: inline-block;
   zoom: 1;
-  *display: inline
+  /**display: inline*/
 }
 #header ul {
   height: 30px;
@@ -161,6 +248,11 @@ input, select, textarea {
 }
 #header a:hover {
   background-color: #fff
+}
+.coupons-section {
+  display: table;
+  border-spacing: 12px 0;
+  margin: 0 -12px
 }
 #header a.coupons {
   background-image: url(../images/coupon-icon.png)
@@ -196,18 +288,21 @@ input, select, textarea {
   background-repeat: no-repeat;
   background-position: 0 center
 }
-#header a.services, #header a.services.current {
+#header a.services {
   background-image: url(../images/services-icon.png);
   padding-left: 35px
 }
 #header a.services.current {
+  padding-left: 35px;
   background-image: url(../images/services-icon-over.png)
 }
 #header a.hours {
-  background-image: url(../images/hour-icon.png);
+  background-image: url(../images/hour-icon.png)
+}
+#header .email, #header a.hours {
   padding-left: 40px
 }
-#header .email, #header a.hours.current {
+#header a.hours.current {
   padding-left: 40px;
   background-image: url(../images/hour-icon-over.png)
 }
@@ -288,7 +383,7 @@ input, select, textarea {
 }
 #headline {
   width: 81%;
-  float: left
+  float: right
 }
 #headline h1 {
   font-size: 2.2em;
@@ -326,9 +421,11 @@ input, select, textarea {
 #coupons {
   position: relative;
   width: 81%;
-  float: left;
+  float: right;
   text-align: left;
-  font-family: 'Oswald', sans-serif
+  font-family: 'Oswald', sans-serif;
+  -webkit-transition: all .5s cubic-bezier(.68, -.55, .27, 1.55) 0s;
+  transition: all .5s cubic-bezier(.68, -.55, .27, 1.55) 0s
 }
 #coupon_area .coupon_snugDesc {
   width: 160px;
@@ -371,10 +468,13 @@ input, select, textarea {
   width: 49%;
   text-align: center;
   position: relative;
-  cursor: pointer
+  cursor: pointer;
+  float: none!important;
+  vertical-align: text-top;
+  display: table-cell;
+  border-spacing: 1px 10px
 }
 #coupon_primary {
-  float: left;
   color: #0c2577;
   border-color: #0c2577
 }
@@ -382,7 +482,6 @@ input, select, textarea {
   background-color: #0c2577
 }
 #coupon_secondary {
-  float: right;
   border-color: #ff0d01;
   color: #ff0d01
 }
@@ -457,7 +556,7 @@ input, select, textarea {
   font-weight: 400;
   z-index: 2;
   position: relative;
-  margin: 0 20%;
+  margin: 0 16%;
   min-height: 110px
 }
 .coupon_couponDesc {
@@ -735,8 +834,14 @@ input, select, textarea {
 .coupon-area .coupon.red {
   border: 2px solid #ff0d01
 }
-#location_states li.back, .coupon-area .coupon.red h2, a:active {
+.input-error {
+  border: 1px solid #ff0d01
+}
+#location_states li.back, .coupon-area .coupon.red h2, .text-warning, a:active {
   color: #ff0d01
+}
+#defaultView .inside h3, #results .inside h3, #valvLocations .inside h3, .text-default {
+  color: #000
 }
 .coupon-area .coupon.red .details {
   background: #ff0d01
@@ -808,7 +913,7 @@ input, select, textarea {
   background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #fff), color-stop(100%, #ddd));
   background: -webkit-linear-gradient(top, #fff 0%, #ddd 100%);
   background: linear-gradient(to bottom, #fff 0%, #ddd 100%);
-  filter: progid: DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#dddddd', GradientType=0);
+  /*filter: progid: DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#dddddd', GradientType=0);*/
   text-align: left
 }
 #recommend_area .page {
@@ -899,7 +1004,7 @@ input, select, textarea {
   background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #004790), color-stop(100%, #00346f));
   background: -webkit-linear-gradient(top, #004790 0%, #00346f 100%);
   background: linear-gradient(to bottom, #004790 0%, #00346f 100%);
-  filter: progid: DXImageTransform.Microsoft.gradient( startColorstr='#004790', endColorstr='#00346f', GradientType=0);
+  /*filter: progid: DXImageTransform.Microsoft.gradient( startColorstr='#004790', endColorstr='#00346f', GradientType=0);*/
   text-align: left
 }
 #searchBar {
@@ -936,8 +1041,8 @@ input, select, textarea {
   position: absolute;
   right: 12px;
   top: 12px;
-  *margin-right: 15px;
-  *top: 13px;
+  /**margin-right: 15px;*/
+  /**top: 13px;*/
   color: #fff;
   border-radius: 10px
 }
@@ -955,7 +1060,7 @@ input, select, textarea {
   right: 0;
   z-index: 40;
   padding: 0;
-  *overflow-y: scroll;
+  /**overflow-y: scroll;*/
   text-align: left
 }
 #defaultView, #results, #valvLocations {
@@ -990,9 +1095,6 @@ input, select, textarea {
   padding: 5px;
   font-size: .9em;
   color: #333
-}
-#defaultView .inside h3, #results .inside h3, #valvLocations .inside h3 {
-  color: #000
 }
 #results .bottom, #valvLocations .bottom {
   padding: 4px 10px;
@@ -1231,10 +1333,10 @@ input, select, textarea {
   background: url(../images/hover-bg.png) no-repeat;
   position: absolute;
   width: 184px;
-  height: 119px;
+  height: 130px;
   top: -102px;
-  padding: 15px 0 0 20px;
-  z-index: 900
+  padding: 10px;
+  z-index: 9999
 }
 #with-us .email .close {
   display: block;
@@ -1246,7 +1348,7 @@ input, select, textarea {
   z-index: 1000
 }
 #with-us .email #email-form p, #with-us .phone #phone-form p {
-  line-height: 13px
+  line-height: 10px
 }
 #with-us .phone {
   width: 32px;
@@ -1267,21 +1369,21 @@ input, select, textarea {
 }
 #with-us .email-box {
   float: left;
-  height: 27px;
-  background: url(../images/search-field.png) no-repeat;
-  margin: 5px 0 0
+  margin: 4px 8px 0 0;
+  border-radius: 4px
 }
 #enter-mobile input[type=text], #with-us input[type=text] {
-  float: left;
-  width: 126px;
-  height: 23px;
-  margin: 0 5px 0 0;
-  background: 0 0;
+  width: 136px;
+  height: 27px;
   border: none;
-  padding: 4px 5px 0;
-  color: #999
+  padding: 0 6px;
+  color: #666;
+  display: block;
+  box-sizing: border-box;
+  border-radius: 4px;
+  background: url(../images/search-field.png) no-repeat
 }
-#enter-mobile input[type=submit], #with-us input[type=submit] {
+#enter-mobile input[type=submit], #with-us input[type=button] {
   float: left;
   width: 27px;
   height: 27px;
@@ -1290,7 +1392,7 @@ input, select, textarea {
   cursor: pointer;
   margin: 3px 0 0
 }
-#enter-mobile input[type=submit]:hover, #with-us input[type=submit]:hover {
+#enter-mobile input[type=submit]:hover, #with-us input[type=button]:focus, #with-us input[type=button]:hover, #with-us input[type=button]:hover:focus {
   background-position: 0 -27px
 }
 #with-us .phone #phone-form {
@@ -1333,10 +1435,10 @@ input, select, textarea {
   padding: 5px 0 0
 }
 #networks {
+  display: none;
   float: right;
   padding-top: 7px;
-  list-style-type: none;
-  display: block
+  list-style-type: none
 }
 #networks li {
   float: right;
@@ -1402,24 +1504,33 @@ input, select, textarea {
 #footer .connect .form {
   background-color: #464646;
   padding: 6px 9px 1px 7px;
-  font-size: .85em
+  font-size: 1.1em
 }
-#footer .connect input, #footer .connect span {
-  line-height: 1.9em;
+#footer .connect input {
   border: 1px solid #e1e1e1;
+  width: 100%;
+  text-indent: 5px;
+  color: #777;
+  line-height: 1.5em;
+  display: inline-block;
+  padding: 6px 2px;
+  margin: 1px 0 6px;
+  min-height: 2em;
+  box-sizing: border-box;
+  overflow: visible
+}
+#footer .connect span {
+  line-height: 1.9em;
   display: block;
   width: 100%;
   padding: 0;
   margin: 1px 0 6px;
   text-indent: 5px;
-  color: #777
-}
-#footer .connect span {
   border: 1px solid transparent;
   color: #fff
 }
 .ie7 #footer .connect input, .ie8 #footer .connect input, .ie9 #footer .connect input {
-  height: 1.9em
+  height: 2.2em
 }
 .ie7 #footer .connect .form {
   padding-bottom: 6px!important
@@ -1436,13 +1547,13 @@ input, select, textarea {
   display: -moz-inline-stack;
   display: inline-block;
   zoom: 1;
-  *display: inline;
+  /**display: inline;*/
   background: #89bcd4;
   background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzg5YmNkNCIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiM0ZTgxOTkiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
   background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #89bcd4), color-stop(100%, #4e8199));
   background: -webkit-linear-gradient(top, #89bcd4 0%, #4e8199 100%);
   background: linear-gradient(to bottom, #89bcd4 0%, #4e8199 100%);
-  filter: progid: DXImageTransform.Microsoft.gradient( startColorstr='#89bcd4', endColorstr='#4e8199', GradientType=0);
+  /*filter: progid: DXImageTransform.Microsoft.gradient( startColorstr='#89bcd4', endColorstr='#4e8199', GradientType=0);*/
   padding: 8px 15px;
   color: #fff;
   font-size: 1.2em;
@@ -1529,15 +1640,15 @@ h4 {
   font-size: 1.125em;
   margin: 6px 0
 }
+p {
+  font: 14px/18px Helvetica, Arial, sans-serif;
+  margin: 12px 0
+}
 h2 {
   font-size: 1.75em
 }
 h3 {
   font-size: 1.5em
-}
-p {
-  font: 14px/18px Helvetica, Arial, sans-serif;
-  margin: 12px 0
 }
 a, a:visited, h1, h2, h3 {
   color: #0b85ad
@@ -1647,7 +1758,6 @@ a, a:visited, h1, h2, h3 {
 .search_button, input[type=button].search_button {
   font: 700 1.2em/2em 'Oswald', Impact, Arial, sans-serif;
   color: #fff;
-  display: inline-block;
   border: 0;
   border-radius: 10px;
   padding: 0 6%;
@@ -1666,30 +1776,36 @@ a, a:visited, h1, h2, h3 {
   cursor: pointer
 }
 #find_store, input[type=button].search_button#find_store {
-  width: 88%;
-  float: left;
   text-align: center;
   color: #fff;
   background: #0b85ad;
   cursor: pointer
 }
 #find_store {
-  width: auto;
-  color: #fff;
-  background: #0b85ad;
-  float: none;
   padding: 1% 6%;
   font-size: 1.4em;
-  box-shadow: 0 0 6px 2px rgba(0, 0, 0, 0.27), inset 0 0 3px 3px #097295;
-  border: 0.4em solid #fff;
+  box-shadow: 0 0 6px 2px rgba(0, 0, 0, .27), inset 0 0 3px 3px #097295;
+  border: .4em solid #fff;
   border-radius: 50px;
-  word-spacing: 0.2em;
-  letter-spacing: 0.1em;
+  word-spacing: .2em;
+  letter-spacing: .1em;
   -webkit-font-smoothing: antialiased;
   text-shadow: 1px 1px 4px #0b4e65;
+  -webkit-transition: all .025s cubic-bezier(.68, -.55, .27, 1.55) 0s;
+  transition: all .025s cubic-bezier(.68, -.55, .27, 1.55) 0s;
+  width: auto;
+  float: none
+}
+input[type=button].search_button#find_store {
+  width: 88%;
+  float: left
 }
 #find_store:hover {
-  cursor: pointer!important;
+  cursor: pointer;
+  background: #abd5ea;
+  color: #666;
+  text-shadow: none;
+  box-shadow: 0 0 6px 2px rgba(0, 0, 0, .27), inset 0 0 3px 3px rgba(0, 0, 0, .27)
 }
 #search_prompt {
   background: url(../images/bg_label.png) no-repeat;
@@ -2318,7 +2434,7 @@ a, a:visited, h1, h2, h3 {
     text-align: left;
     min-height: 70px
   }
-  #coupon_area .pylon, #coupon_print {
+  #coupon_area .pylon, #coupon_print, .search_button {
     display: none
   }
   #coupons {
