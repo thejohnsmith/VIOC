@@ -180,15 +180,14 @@ function validateConnectForm(e) {
     var errorMessage = "";
     if(($cwuEmailField.val()).search('@') == -1 || ($cwuEmailField.val()).indexOf('.') == -1) {
         badCWUForm = true;
-        errorMessage = alert("You must enter a valid email.\n");
+        errorMessage = errorMessage + "You must enter a valid email.\n";
     }
     if(parseInt($cwuZipField.val()) < 10000 || parseInt($cwuZipField.val()) > 99999 || isNaN(parseInt($cwuZipField.val()))) {
         badCWUForm = true;
         errorMessage = errorMessage + "You must enter a valid zip code.\n";
     }
     if(!badCWUForm) {
-        // __doPostBack('ctl00$FooterContent2$connect1$btnSignUp', '');
-        console.warn('valad');
+        __doPostBack('ctl00$FooterContent2$connect1$btnSignUp', '');
     } else {
         alert(errorMessage);
     }
@@ -281,10 +280,7 @@ function loadDesktop() {
         */
     }
     if(isTest) {}
-    /**
-     * @NOTE Uncomment setMaps function to turn the mapping features.
-     * setMaps();
-     */
+    setMaps();
     $('#cities li a').each(function () {
         var temp = $(this).text().split(',');
         var city = $.trim(temp[0]);
