@@ -345,24 +345,24 @@ function loadDesktop() {
         $(this).attr('default', $(this).val());
         $(this).blur(function () {
             myIn = $(this);
-            // setTimeout(function () {
-            //     if(myIn.attr('default') != myIn.val()) {
-            //         track('aspnetform', 'change', 'ctl00$tbEmail');
-            //         _gaq.push(['b._trackEvent', 'aspnetform', 'change', 'ctl00$tbEmail']);
-            //     }
-            // }, 10);
+            setTimeout(function () {
+                if(myIn.attr('default') != myIn.val()) {
+                    track('aspnetform', 'change', 'ctl00$tbEmail');
+                    _gaq.push(['b._trackEvent', 'aspnetform', 'change', 'ctl00$tbEmail']);
+                }
+            }, 10);
         })
     });
     $('.zip-input').each(function () {
         $(this).attr('default', $(this).val());
         $(this).blur(function () {
             myIn = $(this);
-            // setTimeout(function () {
-            //     if(myIn.attr('default') != myIn.val()) {
-            //         track('aspnetform', 'change', 'ctl00$tbZip');
-            //         _gaq.push(['b._trackEvent', 'aspnetform', 'change', 'ctl00$tbZip']);
-            //     }
-            // }, 10);
+            setTimeout(function () {
+                if(myIn.attr('default') != myIn.val()) {
+                    track('aspnetform', 'change', 'ctl00$tbZip');
+                    _gaq.push(['b._trackEvent', 'aspnetform', 'change', 'ctl00$tbZip']);
+                }
+            }, 10);
         })
     });
     $('.print').click(function () {
