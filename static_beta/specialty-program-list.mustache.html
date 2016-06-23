@@ -1,0 +1,97 @@
+<script class="specialty-program-list-template" type="x-tmpl-mustache">
+  {{#.}} {{#isSpecialtyProgram}}
+
+  <ul class="program-list">
+    <li id="program-{{id}}" class="status-green">
+
+      <div class="checkbox-area">
+        <div class="customCheckbox {{^allowEditing}}disabled{{/allowEditing}} {{#allowEditing}}allowEditing{{/allowEditing}}">
+          <input type="checkbox" value="{{id}}">
+          <label>{{programName}}</label>
+        </div>
+      </div>
+
+      <div class="program-info">
+        <a href="#" title="This indicates how many of your stores are participating in this program.">
+          <div class="program-status">
+            <span class="storesParticipating">{{storesParticipating}}</span> /
+            <span class="storesEligible">{{storesEligible}}</span>
+          </div>
+        </a>
+        <div class="program-edit">
+          {{#allowEditing}}
+          <a href="" data-programId="{{id}}" title="Edit Program">
+            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACwAAAAsCAYAAAAehFoBAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNi1jMDY3IDc5LjE1Nzc0NywgMjAxNS8wMy8zMC0yMzo0MDo0MiAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIDIwMTUgKFdpbmRvd3MpIiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOjI5NTg3MUVBQTdDNzExRTU5M0M0OUM2RTcxNzhFRTcxIiB4bXBNTTpEb2N1bWVudElEPSJ4bXAuZGlkOjI5NTg3MUVCQTdDNzExRTU5M0M0OUM2RTcxNzhFRTcxIj4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6Mjk1ODcxRThBN0M3MTFFNTkzQzQ5QzZFNzE3OEVFNzEiIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6Mjk1ODcxRTlBN0M3MTFFNTkzQzQ5QzZFNzE3OEVFNzEiLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz7riH0nAAAENElEQVR42uxZe2iNYRj/9jnDNHNrrlMjZ3KJQmJz+UPYTPyBYUaiLGtMbgllLuUSizETWUSNaRNl5tLciT+I8sdsbuWyzaXOIrkMv4ffqad14ts55/t2lLd+Pe/3PN97nl/v+3zP83zfCTMwnrlj2kJkAzOBjkbTjK/A/tjKF5l/uskFslGQ14D+RtOOcGDo325ycWeF7HdgF3DVIYKtgD1AO16/BWZYIey9KQfHscIJpjjVZhDFiuwnYDL8P/nbWhPowvlFB48/VwhyLic7G2RvWlloqvlnh3Z3FUSGUi0G2WKr600nnyqQTYPYrFQbQDavMb/hcpDsGIgCpZIUts7i2hiIg8Aml0NkB0CUMHUZnGdYXBsNUQ64gVjTAbLdIUqBKKquAKnY3XoLayO51k1VnGkz2TYQZ4FuVN1n+vpsYW1znsQQR2KYDk8B/aiSHJsIsh7aJTySgTvQvfLxE/nAWEeyBMiEQRwGRlNVC4wHsWpVOAqBk8BpH+vXQMxTqn12p7VtqoLWAeNAtkrZc4ApqiRrsqmSDZRqOXDcNsJwuIhOvCU3GWTvK/syKRYqTGYr20iIQ7oiYu0O20ICDmXXdqp2cRocXlf2FIjtamclpt/Q1psx7019Uv2W2hbDcJgAcUT95jyQOaPsoyCOqp2fBHulyrWlqhm6wf6i3hbCanciqMqCs6PK3pcPVzibnZmw36Itgmt78vYKpr5PtvQScNgJogzooPqDXGXvSnsbqjJhP6WyicTscNpqGCbvbGl+VCWKpSpP9wcsHGLvTtUW2PN18wOkcP4BmAD7M1u6NZCRonMCGESV5NVFDQqH2AdSJSGyWtlnQazl5Tc+oHftbC+lLUzkXMrvXDj8oY76gKpU8nIwX9kTGnRu6bCV2dYPw6G8WS/gpZBYA4df1C2S+Odw/gCY6rVjbQ9WuOa0Z8NWYHcD31vNZTcvcteEULo6+heMS4+KaUl10bQXwLa+MY79JdyrwXV7kt4KuZc6D5/4l6p/KAL60F6mTskxwpIrU1nVWgIr+ZtfmUsfqjW7pafg/C7DpN4pwnGUj+G0kETqlP2c/r7B/mIhL58yTD764zjQHf7VgcH5ZYh4xqyMiZLmJLUBSaq/kIKQhPtr/E1NQSFM0nL8w5gVZEwHLrM1NFX/UBFIsTL9SGmdISJ5+Ujb+IDJB5KXVEnJbc3+Ic3qx5Jgv+a71byKrzrDWSTGA4N9bMQSkC0JRqPlCjClbWTpjfRxn4ev58dAtihYbWyghBPUXFLULZbhC8Btf9KWHYTfq3klyZ0HLoFgnd3fOfwhLCnqHnPwc8Ph0WjCPOZyo4mGafxj4z9hJwm3CGGeLTThas7HhDBh76vWa8kSx6R0Asv4Ynk1xMjKB5gszo+H8Y9FaUr6hXj4SjcYb7I6jTB+/xVVG4JEa8lthHD9KcAAHTJ2UZnOlZIAAAAASUVORK5CYII=" alt="Edit Program" title="Edit Program" width="22">
+          </a>
+          {{/allowEditing}}
+        </div>
+      </div>
+    </li>
+
+    <!-- First Tab content: Program Overview -->
+    <div class="program-overview-tab-content none" aria-hidden="true">
+      <div class="program-overview-img">
+        <img src="{{#programImg}}{{programImg}}{{/programImg}} {{^programImg}}http://placehold.it/700x315{{/programImg}}" alt="Program Overview" title="Program Overview">
+      </div>
+      <div class="programDesc">
+        <p>{{{programDesc}}}</p>
+      </div>
+    </div>
+    <!-- Second Tab content: Program Overview -->
+    <div class="display-table program-touchpoints-tab-content none">
+      {{#programTouchpointAlt}}
+      <style>
+        #programDetails .participation-table thead {
+          display: none;
+        }
+
+        .participation-table table {
+          background-color: #fff;
+        }
+      </style>
+      <p>{{programTouchpointAlt}}</p>
+
+      {{/programTouchpointAlt}} {{^programTouchpointAlt}}
+      <style>
+        #programDetails .participation-table thead {
+          display: table-header-group;
+        }
+
+        .participation-table table {
+          background-color: #F6F6F6;
+        }
+      </style>
+
+      {{/programTouchpointAlt}} {{#programMeta}} {{#touchpoints}}
+      <tbody class="touchpoint-data">
+        {{#programTouchpointAlt}}
+        <p>Test programTouchpointAlt: {{programTouchpointAlt}}</p>{{/programTouchpointAlt}}
+        <div class="tr display-table-row">
+          <div class="td display-table-cell touch-info" data-title="Touch">
+            <span>
+              {{#previewThumbnail}}
+              <img class="previewThumbnail" src="{{.}}" alt="Preview" title="Preview"> {{/previewThumbnail}}
+            </span>
+            <a target="_blank" href="{{previewUrl}}" title="Preview">Choices</a>
+          </div>
+          <div class="td display-table-cell" data-title="Channel">{{channel}}</div>
+          <div class="td display-table-cell" data-title="Name">{{name}}</div>
+          <div class="td display-table-cell" data-title="Timing">{{timing}}</div>
+        </div>
+      </tbody>
+      </table>
+      {{/touchpoints}} {{/programMeta}}
+    </div>
+  </ul>
+  {{/isSpecialtyProgram}}{{/.}}
+  <div class="program-button">
+    <input type="button" class="blue-btn js-trigger-enroll input-disabled" value="Auto-Enroll Your Stores In Selected Program(s)" title="Clicking the Auto-Enroll button will result in all offers being set at the default settings">
+    <small>Unenrolled stores will be enrolled with default offers. Stores currently enrolled will retain current offers.</small>
+  </div>
+  <style>
+    .specialty-select-loading {
+      display: none;
+      animation: none;
+    }
+  </style>
+</script>

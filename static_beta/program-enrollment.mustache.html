@@ -1,0 +1,154 @@
+<script class="program-enrollment-template" type="x-tmpl-mustache">
+  <table>
+    <thead>
+      <tr>
+        <td>
+          <table>
+            <tr>
+              <th class="store-enroll">
+                <div class="">
+                  <p>Store Enrollment</p>
+                  <button class="activate enroll-all-stores btn btn-primary btn-sm">Enroll All</button>
+                </div>
+              </th>
+              <th class="store">Store</th>
+              <th class="table-header store-counts">
+                <p>Counts Per Channel</p>
+                <table class="inner-table">
+                  <tr>
+                    <td class="hasEmail">Email</td>
+                    <td class="hasDM">DM</td>
+                    <td class="hasSMS">SMS</td>
+                  </tr>
+                </table>
+              </th>
+              <th class="hasDM store-cost">Estimated
+                <br>Monthly Cost</th>
+            </tr>
+          </table>
+        </td>
+      </tr>
+    </thead>
+    <tbody>
+      {{#.}}
+      <style>
+        {{#hasEmail}}
+          .hasEmail{display:table-cell;}
+        {{/hasEmail}}
+        {{^hasEmail}}
+          .hasEmail{display:none;}
+        {{/hasEmail}}
+
+        {{#hasDM}}
+          .hasDM{display:table-cell;}
+        {{/hasDM}}
+        {{^hasDM}}
+          .hasDM{display:none;}
+        {{/hasDM}}
+
+        {{#hasSMS}}
+          .hasSMS{display:table-cell;}
+        {{/hasSMS}}
+        {{^hasSMS}}
+          .hasSMS{display:none;}
+        {{/hasSMS}}
+      </style>
+      <tr class="filterable store-item" data-filter-storeId="{{storeId}}" data-storeId="{{storeId}}" data-enrolled="{{#enrolled}}true{{/enrolled}}{{^enrolled}}false{{/enrolled}}">
+        <td>
+          <table>
+            <tr>
+              <td>
+                <table>
+                  <tr>
+                    <td class="store-enroll">
+                      <div class="toggle-btn" data-storeId="{{storeId}}" data-enrolled="{{#enrolled}}true{{/enrolled}}{{^enrolled}}false{{/enrolled}}">
+                        <span class="round-btn"></span>
+                      </div>
+                    </td>
+                    <td class="store store-item-dimable {{^enrolled}}dim-mid{{/enrolled}}">{{storeName}}
+                      <br>
+                      <div class="store-number">Store #{{storeNumber}}</div>
+                    </td>
+                    <td class="store-counts store-item-dimable {{^enrolled}}dim-mid{{/enrolled}}" data-enrolled="{{#enrolled}}true{{/enrolled}}{{^enrolled}}false{{/enrolled}}">
+                      <table class="inner-table">
+                        <tr>
+                          {{#hasEmail}}
+                          <td class="channelEmailTotal">{{channelEmail}}</td>{{/hasEmail}} {{#hasDM}}
+                          <td class="channelDMTotal">{{channelDM}}</td>{{/hasDM}} {{#hasSMS}}
+                          <td class="channelSMSTotal">{{channelSMS}}</td>{{/hasSMS}}
+                        </tr>
+                      </table>
+                    </td>
+                    {{#hasDM}}
+                    <td class="store-cost store-item-dimable {{^enrolled}}dim-mid{{/enrolled}}">
+                      <span>$</span>
+                      <span class="costEstimateTotal js-format-currency">{{costEstimate}}</span>
+                      <br><a href="javascript:void(0);" title="Details" class="mobie-details-{{storeId}}">Details</a></td>{{/hasDM}}
+                  </tr>
+                </table>
+              </td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr class="mobile-info-{{storeId}}">
+        <td>
+          <table class="mobile-table">
+            <tr>
+              <td class="store-label">Store #</td>
+              <td class="store-info">{{storeNumber}}</td>
+            </tr>
+            {{#hasEmail}}
+            <tr>
+              <td class="store-label">Recipients in Email Channel:</td>
+              <td class="store-info">{{channelEmail}}</td>
+            </tr>
+            {{/hasEmail}} {{#hasDM}}
+            <tr>
+              <td class="store-label">Recipients in DM Channel:</td>
+              <td class="store-info">{{channelDM}}</td>
+            </tr>{{/hasDM}} {{#hasSMS}}
+            <tr>
+              <td class="store-label">Recipients in SMS Channel:</td>
+              <td class="store-info">{{channelSMS}}</td>
+            </tr>
+            {{/hasSMS}}
+            <tr>
+              <td class="store-label">Estimated Monthly Cost:</td>
+              <td class="store-info">{{costEstimate}}</td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      {{/.}}
+      <tr>
+        <tr class="grand-total">
+          <td>
+            <table>
+              <tr>
+                <tr>
+                  <td class="total-label">Total Participants in this campaign:</td>
+                  <td class="store-counts">
+                    <table class="inner-table">
+                      <tbody>
+                        <tr>
+                          <td class="hasEmail channelEmailTotal"></td>
+                          <td class="hasDM channelDMTotal"></td>
+                          <td class="hasSMS channelSMSTotal"></td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </td>
+                  <td class="hasDM store-cost">
+                    <span>$</span>
+                    <span class="costEstimateTotal"></span>
+                  </td>
+                </tr>
+              </tr>
+            </table>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+
+</script>

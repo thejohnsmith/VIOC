@@ -1,0 +1,195 @@
+<!-- Proof Settings Tab
+    @file proof-settings-tab.mustache.html
+    @type template/mustache
+    @import portalCustomProgramManager.html
+    @link Beta URL - https://marcomcentral.app.pti.com/Epsilon_Data_Management/Beta_Epsilon/CustomPage.aspx?uigroup_id=479602&page_id=11173&programId=5#parentHorizontalTab3
+-->
+<script class="proof-settings-tab-template" type="x-tmpl-mustache">
+  <div class="participation-table">
+    <table>
+      <thead>
+        <tr>
+          <td>
+            <table>
+              <tr>
+              <th class="store-enroll">
+                <button data-checkboxtype="proof-settings" class="activate not-active proof-settings select-all btn btn-primary btn-sm">Select All</button>
+              </th>
+                <th class="store">Store</th>
+                <th class="store-materials table-header">
+                  <table class="inner-table">
+                    <tr class="header-row">
+                    <p>PREFERENCES BY CHANNEL</p>
+                      <td class="hasEmail">Email</td>
+                      <td class="hasDM">DM</td>
+                      <td class="hasSMS">SMS</td>
+                    </tr>
+                  </table>
+                </th>
+                <th class="store store-proof">Proof Recipient</tr>
+            </table>
+          </td>
+        </tr>
+      </thead>
+      <tbody>
+        {{#.}}
+        <style>
+          {{#hasEmail}}
+            .proof-settings-tab-section .hasEmail{display:table-cell;}
+          {{/hasEmail}}
+          {{^hasEmail}}
+            .proof-settings-tab-section .hasEmail{display:none;}
+          {{/hasEmail}}
+
+          {{#hasDM}}
+            .proof-settings-tab-section .hasDM{display:table-cell;}
+          {{/hasDM}}
+          {{^hasDM}}
+            .proof-settings-tab-section .hasDM{display:none;}
+          {{/hasDM}}
+
+          {{#hasSMS}}
+            .proof-settings-tab-section .hasSMS{display:table-cell;}
+          {{/hasSMS}}
+          {{^hasSMS}}
+            .proof-settings-tab-section .hasSMS{display:none;}
+          {{/hasSMS}}
+        </style>
+        <tr class="filterable store-item" data-filter-storeId="{{storeId}}" data-storeId="{{storeId}}" data-enrolled="{{#enrolled}}true{{/enrolled}}{{^enrolled}}false{{/enrolled}}">
+          <td>
+            <table>
+              <tr>
+                <td>
+                  <table>
+                    <tr>
+                      <td class="checkbox-td store-item-dimable">
+                        <div class="checkbox-area">
+                          <div data-storeId="{{storeId}}" class="proof-settings vioc-checkbox {{^enrolled}}disabled{{/enrolled}}">
+                            <input {{^enrolled}}readonly{{/enrolled}} type="checkbox">
+                          </div>
+                        </div>
+                      </td>
+                      <td class="store store-item-dimable {{^enrolled}}dim-mid{{/enrolled}}">{{storeName}}
+                        <br>
+                        <div class="store-number">Store #{{storeNumber}}</div>
+                      </td>
+                      <td class="store-materials store-item-dimable {{^enrolled}}dim-mid{{/enrolled}}">
+                        <table class="inner-table">
+                          <tr>
+                            {{#hasEmail}}
+                            <td class="store-item-dimable channelEmailTotal">
+                              <select data-prooftype="em" data-proofSelected="{{emProofSettings}}" data-storeId="{{storeId}}" class="link-proof link-proof-single form-control" title="Choose Monthly Proof Settings">
+                                <option value="0">None</option>
+                                <option value="1">Monthly</option>
+                                <option value="2">Tomorrow, then Monthly</option>
+                                <option value="3">Tomorrow, then None</option>
+                              </select>
+                            </td>
+                            {{/hasEmail}}
+
+                            {{#hasDM}}
+                            <td class="store-item-dimable channelDMTotal">
+                              <select data-prooftype="dm" data-proofSelected="{{dmProofSettings}}" data-storeId="{{storeId}}" class="link-proof link-proof-single form-control" title="Choose Monthly Proof Settings">
+                                <option value="0">None</option>
+                                <option value="1">Monthly</option>
+                                <option value="2">Tomorrow, then Monthly</option>
+                                <option value="3">Tomorrow, then None</option>
+                              </select>
+                            </td>{{/hasDM}}
+
+                            {{#hasSMS}}
+                            <td class="store-item-dimable channelSMSTotal">
+                              <select data-prooftype="sms" data-proofSelected="{{smsProofSettings}}" data-storeId="{{storeId}}" class="link-proof link-proof-single form-control" title="Choose Monthly Proof Settings">
+                                <option value="0">None</option>
+                                <option value="1">Monthly</option>
+                                <option value="2">Tomorrow, then Monthly</option>
+                                <option value="3">Tomorrow, then None</option>
+                              </select>
+                            </td>{{/hasSMS}}
+                          </tr>
+                        </table>
+                      </td>
+                      <td class="store-proof-address store-item-dimable {{^enrolled}}dim-mid{{/enrolled}}">
+                        <div itemscope itemtype="http://schema.org/Person">
+                          {{#proofName}}<div itemprop="name">{{proofName}}</div>{{/proofName}}
+                          {{#proofEmail}}<a href="{{proofEmail}}" itemprop="email">{{proofEmail}}</a>{{/proofEmail}}
+                          {{#proofPhone}}<div class="prettyPhone" itemprop="telephone">{{proofPhone}}</div>{{/proofPhone}}
+                          <div itemprop="address" itemscope itemtype="http://schema.org/PostalAddress">
+                            {{#proofAddress}}<span itemprop="streetAddress">{{proofAddress}}</span>,{{/proofAddress}}
+                            {{#proofCity}}<span itemprop="addressLocality">{{proofCity}}</span>,{{/proofCity}}
+                            {{#proofState}}<span itemprop="addressRegion">{{proofState}}</span>{{/proofState}}
+                            {{#proofZip}}<span itemprop="postalCode">{{proofZip}}</span>{{/proofZip}}
+                          </div>
+                        </div>
+                      </td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+        {{/.}}
+        <tr>
+          <td>
+            <table>
+              <tbody class="proof-settings-footer">
+                <tr>
+                  <th class="store-enroll" style="padding:0">
+                    <button class="activate hidden not-active btn btn-primary btn-sm">Select All</button>
+                  </th>
+                  <th class="store" style="padding: 0;width: 26%;">Request a proof for the <x> selected stores:</th>
+                  <th class="store-materials table-header" style="padding:11px 0">
+                  <p class="none">PREFERENCES BY CHANNEL</p>
+                  <table class="inner-table">
+                    <tbody class="bulk-apply-proofSettings">
+                    <tr class="header-row">
+                    <td class="hasEmail">
+                      <select data-prooftype="em" class="link-proof link-proof-bulk form-control" title="Choose Monthly Proof Settings">
+                        <option value="0">None</option>
+                        <option value="1">Monthly</option>
+                        <option value="2">Tomorrow, then Monthly</option>
+                        <option value="3">Tomorrow, then None</option>
+                      </select>
+                    </td>
+                    <td class="hasDM">
+                      <select data-prooftype="dm" class="link-proof link-proof-bulk form-control" title="Choose Monthly Proof Settings">
+                        <option value="0">None</option>
+                        <option value="1">Monthly</option>
+                        <option value="2">Tomorrow, then Monthly</option>
+                        <option value="3">Tomorrow, then None</option>
+                      </select>
+                    </td>
+                    <td class="hasSMS">
+                      <select data-prooftype="sms" class="link-proof link-proof-bulk form-control" title="Choose Monthly Proof Settings">
+                        <option value="0">None</option>
+                        <option value="1">Monthly</option>
+                        <option value="2">Tomorrow, then Monthly</option>
+                        <option value="3">Tomorrow, then None</option>
+                      </select>
+                    </td>
+                    </tr>
+                  </tbody>
+                  </table>
+                </th>
+                <th class="store store-proof" style="padding:0;"><span class="hidden">Proof Recipient</span></th></tr>
+            </tbody>
+            </table>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <script>
+    var $j = jQuery;
+      var proofSettingsController = jQuery.extend({}, checkboxController.controller);
+      proofSettingsController.init('proof-settings', function(storeIds) {
+        var plural = (storeIds.length === 1) ? '' : 's';
+        $j('.proof-settings-footer')
+          .toggleClass('none', (storeIds.length < 2));
+
+        // Apply formatting to phone numbers.
+        appUtilities.setPrettyPhone();
+      });
+  </script>
+</script>

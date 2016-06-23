@@ -1,0 +1,20 @@
+<!-- MyProfile Page
+    @file portalCustomMyProfilePage.html
+    Prod URL:
+    https://marcomcentral.app.pti.com/Epsilon_Data_Management/Epsilon/profile.aspx
+-->
+<link href="https://files.marcomcentral.app.pti.com/epsilon/marcom/css/myProfile.css" rel="stylesheet" type="text/css" />
+<!--
+  CURRENT CUSTOM CONTENT: My Profile
+-->
+
+<script>
+  var $j = jQuery;
+  $j(function() {
+    $j('.logo a').attr('href', '#');
+    $j('td').filter(function() {
+      $j.trim($j(this).html()) == '&nbsp;';
+      $j.trim($j(this).html()) == '';
+    }).remove();
+  });
+</script>

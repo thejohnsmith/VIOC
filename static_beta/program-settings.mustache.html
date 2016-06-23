@@ -1,0 +1,147 @@
+<!-- Program Settings Tab
+    @file program-settings.mustache.html
+    @type template/mustache
+    @import portalCustomProgramManager.html
+    @link Beta URL - https://marcomcentral.app.pti.com/Epsilon_Data_Management/Beta_Epsilon/CustomPage.aspx?uigroup_id=479602&page_id=11173&programId=5#parentHorizontalTab2
+-->
+<script class="program-settings-template" type="x-tmpl-mustache">
+  <div class="participation-table">
+    <table>
+      <thead>
+        <tr>
+          <th class="store-enroll">
+            <p>Program Select</p>
+            <button data-checkboxtype="program-settings" class="activate not-active program-settings select-all btn btn-primary btn-sm">Select All</button>
+          </th>
+          <th class="store">Store</th>
+          <th class="store-configuration standard-offer">Oil Change Offers / Service Offers</th>
+          <th class="store-configuration additional-offer">Additional Offers</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#.}}
+        <tr class="filterable store-item" data-filter-storeId="{{storeId}}" data-storeId="{{storeId}}" data-enrolled="{{#enrolled}}true{{/enrolled}}{{^enrolled}}false{{/enrolled}}">
+        <td class="checkbox-td store-item-dimable">
+          <div class="checkbox-area">
+            <div data-storeId="{{storeId}}" class="program-settings vioc-checkbox {{^enrolled}}disabled{{/enrolled}}">
+              <input {{^enrolled}}readonly{{/enrolled}} type="checkbox">
+            </div>
+          </div>
+        </td>
+
+          <td data-storeId="{{storeId}}" class="store-item-dimable {{^enrolled}}dim-mid{{/enrolled}} store program-settings-store" style="padding: 21px 8px">
+            <div class="store-name">{{storeName}}</div>
+            <div class="store-number">Store #{{storeNumber}}</div>
+          </td>
+          <td class="store-item-dimable store-configuration standard-offer" style="padding: 21px 8px">
+            <select data-storeId="{{storeId}}" class="{{^enrolled}}none{{/enrolled}} form-control program-dropdown store-level-dropdown dropdown-{{storeId}}-program">
+            </select>
+            <small class="{{#enrolled}}none{{/enrolled}} not-enrolled store-item-dimable dim-mid">Store Not Enrolled</small>
+          </td>
+          <td class="store-item-dimable store-configuration additional-offer" style="padding: 21px 8px">
+            <select data-storeId="{{storeId}}" class="{{^enrolled}}none{{/enrolled}} form-control adtl-dropdown store-level-dropdown dropdown-{{storeId}}-adtl">
+            </select>
+            <small class="not-enrolled store-item-dimable dim-mid {{#enrolled}}none{{/enrolled}}">Store Not Enrolled</small>
+          </td>
+        </tr>
+        {{/.}}
+        <tr class="program-settings footer-row">
+          <td class="program-settings-footer" colspan="2" style="text-align: right;">
+            Adjust
+            <span class="program-settings-footer-selected-count"> 0 </span> selected store(s) to use:
+          </td>
+          <td class="program-settings-footer store-configuration standard-offer" style="padding: 21px 8px">
+            <div class="container-fluid">
+              <div class="row">
+                <div class="col-sm-8">
+                  <select class="form-control program-dropdown bulk-level-dropdown">
+                  </select>
+                </div>
+                <div class="col-sm-2 pull-right">
+                  <button href="#" class="btn btn-small btn-primary bulk-apply-program">Apply</button>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="program-settings-footer store-configuration additional-offer" style="padding: 21px 8px">
+            <div class="container-fluid additional-offer">
+              <div class="row additional-offer">
+                <div class="col-sm-8">
+                  <select class="form-control program-config-options-section adtl-dropdown bulk-level-dropdown">
+                  </select>
+                </div>
+                <div class="col-sm-2 pull-right">
+                  <button href="#" class="btn btn-small btn-primary bulk-apply-adtl">Apply</button>
+                </div>
+              </div>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <br style="clear:both">
+  <br>
+  <div class="container well">
+    <div class="row">
+      <div class="col-sm-6 standard-offer">
+        <h1 style="font-size: 20px">Oil Change Offers / Service Offers
+          <a class="btn btn-sm btn-link js-create-program-hash configPageUrl" data-baseUrl="" href="">
+          Create New
+        </a>
+        </h1>
+        <table width="100%" padding="4" border="0">
+          <tr class="config-select config-select-program">
+            <td>
+              <select class="form-control program-dropdown management-dropdown">
+              </select>
+            </td>
+            <td>
+              <a class="btn btn-sm btn-link js-create-program-hash program-edit-link configPageUrl" data-baseUrl="" href="">
+                Edit
+              </a>
+              <a class="btn btn-sm btn-link js-create-program-hash program-delete-link configPageUrl" data-baseUrl="" href="">
+                Delete
+              </a>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="col-sm-6 additional-offer">
+        <h1 style="font-size: 20px">Additional Offers
+          <a class="btn btn-sm btn-link js-create-program-hash additionalOfferPageUrl" data-baseurl="" href="">
+          Create New
+        </a>
+        </h1>
+        <table width="100%" padding="4" border="0">
+          <tr class="config-select config-select-additional">
+            <td>
+              <select class="form-control adtl-dropdown management-dropdown">
+              </select>
+            </td>
+            <td>
+              <a class="btn btn-sm btn-link program-edit-link additionalOfferPageUrl" data-baseurl="" href="">
+              Edit
+            </a>
+            <a class="btn btn-sm btn-link js-create-program-hash program-delete-link configPageUrl" data-baseUrl="" href="">
+              Delete
+            </a>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </div>
+  <script>
+    var $j = jQuery;
+    var programSettingsController = jQuery.extend({}, checkboxController.controller);
+    programSettingsController.init("program-settings", function(storeIds) {
+      // console.log("Stores changed: %O", storeIds);
+      var plural = (storeIds.length === 1) ? '' : 's';
+      $j('.program-settings.footer-row')
+        .toggleClass('none', (storeIds.length < 2));
+      $j('.program-settings.footer-row td.program-settings-footer:first-child')
+        .html('Adjust ' + storeIds.length + ' selected store' + plural + ' to use:');
+    });
+  </script>
+</script>

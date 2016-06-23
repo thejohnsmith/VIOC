@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<title>Configuration Management | Valvoline</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0" />
+	<meta name="format-detection" content="telephone=no">
+	<meta name="keywords" content="">
+	<meta name="description" content="">
+	<link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
+	<link rel="icon" href="images/favicon.ico" type="image/x-icon">
+
+	<!--css styles starts-->
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+	<link rel="stylesheet" type="text/css" href="css/reset.css">
+	<link rel="stylesheet" type="text/css" href="css/easy-responsive-tabs.css" />
+	<link rel="stylesheet" type="text/css" href="css/jquery.mCustomScrollbar.css">
+	<style>
+	.red{color:#e02926;}
+	.resp-tab-content{margin:0 0 15px 0;}
+	#programManagementTabs{width:100%;margin:0 0 20px 0;padding:0;}
+	#programManagementTabs h4{font-size:24px;font-weight:bold;margin:10px 0;padding:10px 0 0 0;color:#e02926;}
+	#programManagementTabs p{margin:0;padding:0 0 10px 0;}
+	#programManagementTabs input{max-width:140px;margin:5px 0 15px 0;}
+	#programManagementTabs .btn{max-width:140px;margin:5px 0 15px 0;padding:6px 12px;color:#fff;border:1px solid #337ab7;border-radius:4px;background-color:#0ea3dd;}
+	#programManagementTabs input.settings-name{margin:0;}
+	#programManagementTabs select{width:auto;min-width:140px;margin:5px 0 15px 0;}
+	.program-button{margin:0;padding:0;}
+	.discountCodeLink{font-weight:bold;margin:0;padding:0;text-decoration:underline;}
+	.discountCode{width:100%;padding:20px;background:#eee;}
+	.discountCode table,#parentHorizontalTab table{width:100%;}
+	.discountCode table tr td:first-child,
+	#parentHorizontalTab table tr td:first-child{padding:0 15px 10px 0;text-align:right;vertical-align:middle;}
+	.discountCode table tr td:nth-child(odd),
+	#parentHorizontalTab table tr td:nth-child(odd){width:40%;}
+	#parentHorizontalTab table tr .adtl-offer-form-group-label{width:25% !important;text-align:left !important;}
+	#parentHorizontalTab table tr .adtl-offer-form-group-input{width:75% !important;text-align:left !important;}
+	.adtlConfigForm{overflow:hidden;}
+	.adtlConfigForm .settings-section{width:100%;margin-bottom:1.5em;}
+	.adtlConfigForm .results-section{width:100%;}
+	.adtlConfigForm .label-cell{min-width:120px;padding:0;}
+	.adtlConfigForm .value-cell{padding:4px 8px;}
+	#programManagementTabs .adtlConfigForm .value-cell input,
+	#programManagementTabs .adtlConfigForm .value-cell select{min-width:300px;margin:4px 0;}
+	.adtlConfigForm .resp-tab-content{margin-bottom:.6em;}
+	#parentHorizontalTab{margin:0;padding:0;}
+	.module table tr td:first-child{padding:0 15px 10px 0;vertical-align:middle;}
+	.module table tr td:nth-child(odd){width:30%;}
+	.module table{width:100%;}
+	.sidebar p{padding:20px 0 10px 0;}
+	.sidebar textarea{font-size:14px;line-height:20px;padding:10px;text-align:left;}
+	.resp-tab-content{width:80%;margin:0 0 20px 0;}
+	.coupon-form{float:left;width:auto;}
+	.coupon-form td{vertical-align:sub;}
+	.coupon-form td label{margin-right:1em;}
+	.coupon-image{float:left;width:40%;padding:0 0 3px 0;text-align:center;}
+	.coupon-form i{color:red;}
+	</style>
+	<!--css styles ends-->
+
+<script src="js/jquery_min.js"></script>
+<script>
+function getParameterByName(name) {
+    var match = RegExp("[?&]" + name + "=([^&]*)").exec(window.location.search);
+    return match && decodeURIComponent(match[1].replace(/\+/g, " "));
+}
+</script>
+</head>
+
+<body>
+	<span class="user-related none"
+		data-user-external-id="Zz0fUjXHHr66NXRFDs"
+		data-user-login-id="BetaUser"
+		data-user-first-name="John"
+		data-user-last-name="Smith"
+		data-user-email="john.smith@marcom.com"
+		aria-hidden="true">
+	</span>
+	<div class="dummy"></div>
+	<div class="wrapper">
+		<!--header starts here-->
+		<header id="nav">
+			<div class="header-top">
+				<div class="main">
+					<div class="header-left">
+						<div class="logo">
+							<a href="index.html" title="Valvoline | Instant Oil Change">
+								<img src="images/logo.png" alt="Valvoline | Instant Oil Change" title="Valvoline | Instant Oil Change" width="77">
+							</a>
+						</div>
+						<div class="header-info">
+							<h2>Warp Drive</h2>
+							<h3><b>W</b>inning <b>A</b>CQUISITION &amp; <b>R</b>ETENTION <b>P</b>ROGRAMS</h3>
+						</div>
+					</div>
+					<div class="header-right">
+						<a href="#" title="Contact Us">Contact Us</a>
+					</div>
+				</div>
+			</div>
+			<div class="header-nav">
+				<div class="main">
+					<ul class="enumenu_ul menu">
+						<li class="active"><a href="program-overview.html" title="LIFECYCLE PROGRAMS">LIFECYCLE PROGRAMS</a>
+							<ul>
+								<li><a href="#" title="">Sub Menu 1</a></li>
+								<li><a href="#" title="">Sub Menu 2</a></li>
+								<li><a href="#" title="">Sub Menu 3</a></li>
+								<li><a href="#" title="">Sub Menu 4</a></li>
+								<li><a href="#" title="">Sub Menu 5</a></li>
+							</ul>
+						</li>
+						<li><a href="#" title="SPECIALTY PROGRAMS">SPECIALTY PROGRAMS</a>
+							<ul>
+								<li><a href="#" title="">Sub Menu 1</a></li>
+								<li><a href="#" title="">Sub Menu 2</a></li>
+								<li><a href="#" title="">Sub Menu 3</a></li>
+								<li><a href="#" title="">Sub Menu 4</a></li>
+								<li><a href="#" title="">Sub Menu 5</a></li>
+							</ul>
+						</li>
+						<li><a href="#" title="ON DEMAND MARKETING">ON DEMAND MARKETING</a>
+							<ul>
+								<li><a href="#" title="">Sub Menu 1</a></li>
+								<li><a href="#" title="">Sub Menu 2</a></li>
+								<li><a href="#" title="">Sub Menu 3</a></li>
+								<li><a href="#" title="">Sub Menu 4</a></li>
+								<li><a href="#" title="">Sub Menu 5</a></li>
+							</ul>
+						</li>
+						<li><a href="#" title="MANAGE WEBPAGES">MANAGE WEBPAGES</a>
+							<ul>
+								<li><a href="#" title="">Sub Menu 1</a></li>
+								<li><a href="#" title="">Sub Menu 2</a></li>
+								<li><a href="#" title="">Sub Menu 3</a></li>
+								<li><a href="#" title="">Sub Menu 4</a></li>
+								<li><a href="#" title="">Sub Menu 5</a></li>
+							</ul>
+						</li>
+						<li><a href="#" title="REPORTS">REPORTS</a>
+							<ul>
+								<li><a href="#" title="">Sub Menu 1</a></li>
+								<li><a href="#" title="">Sub Menu 2</a></li>
+								<li><a href="#" title="">Sub Menu 3</a></li>
+								<li><a href="#" title="">Sub Menu 4</a></li>
+								<li><a href="#" title="">Sub Menu 5</a></li>
+							</ul>
+						</li>
+						<li><a href="help.html" title="HELP">HELP</a>
+							<ul>
+								<li><a href="#" title="">Sub Menu 1</a></li>
+								<li><a href="#" title="">Sub Menu 2</a></li>
+								<li><a href="#" title="">Sub Menu 3</a></li>
+								<li><a href="#" title="">Sub Menu 4</a></li>
+								<li><a href="#" title="">Sub Menu 5</a></li>
+							</ul>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</header>
+
+		<div class="mid-container">
+			<div class="main">
+				<section id="breadcrumbs">
+					<ul>
+						<li><a href="index.html" title="Home">Home</a></li>
+						<li>
+							<a href="program-overview.html" title="Lifecycle Programs">Lifecycle Programs</a>
+						</li>
+						 <li>
+							<a href="program-reminder.html" title="Reminder Program">Reminder Program</a>
+						</li>
+						<li>
+							Edit Post Visit Program Layout
+						</li>
+					</ul>
+				</section>
+			</div>
+			<div class="main">
+				<section id="programManagementTabs">
+				<h1 class="h1 page-title"><span>Edit Post Visit Program Layout</span></h1>
+				<p>This layout defines the look-and-feel of the program-specific coupons. See the preview below to see which coupons are included.</p>
+				<form>
+					<input type="text" placeholder="Enter Name for Layout" />
+					<p><a class="discountCodeLink" href="javascript:void(0)">Do you have a discount code?</a></p>
+					<div class="discountCode closed">
+						<div class="left">
+							<p>Please provide the discount code:</p>
+						</div>
+						<div class="right">
+								<table>
+									<tr>
+										<td><label for="email">Email:</label></td>
+										<td><input type="text" placeholder="ex: RM101" /></td>
+									</tr>
+									<tr>
+										<td></td>
+										<td><div class="program-button"><input class="blue-btn" type="submit" id="applyCode" name="apply" value="Apply"></div></td>
+									</tr>
+								</table>
+						</div>
+					</div>
+
+					<h4>Coupons</h4>
+					<div id="parentHorizontalTab" class="lifescycle-tab">
+						<ul class="resp-tabs-list hor_1">
+							<li>Offer 1 - Standard*</li>
+							<li>Offer 1 - High Risk</li>
+						</ul>
+						<div class="resp-tabs-container hor_1">
+							<div>
+								<div class="coupon-form">
+									<table>
+										<tr>
+											<td><label>Coupon Text:</label> </td>
+											<td>
+												<select class="selectbox">
+													<option value="AnyOilChange5qts" selected>Any Oil Change, 5 qts</option>
+													<option value="ConventionalOilChange5qts">Conventional Oil Change, 5 qts.</option>
+													<option value="DieselOilChange">Diesel Oil Change</option>
+													<option value="FullSynthetic5qts">Full Synthetic. 5 qts.</option>
+													<option value="FullSynthetic6qts">Full Synthetic. 6 qts.</option>
+													<option value="Premium5qtsORDiesel">Premium 5qts. OR Diesel</option>
+													<option value="Premium6qtsORDiesel">Premium 6qts. OR Diesel</option>
+													<option value="PremiumOilChange5qts">Premium Oil Change, 5qts.</option>
+													<option value="SyntheticBlend5qts">Synthetic Blend. 5 qts.</option>
+													<option value="SyntheticBlend6qts">Synthetic Blend. 6 qts.</option>
+												</select>
+											</td>
+										</tr>
+										<tr>
+											<td><label>Discount Type:</label></td>
+											<td>
+												<select class="selectbox">
+													<option value="DollarOff" selected>$ Off</option>
+													<option value="PercOff">% Off</option>
+												</select>
+											</td>
+										</tr>
+										<tr>
+											<td>
+												<label>Discount Amount:</label>
+											</td>
+											<td>
+												<input name="discount-amount" type="text" />
+											</td>
+										</tr>
+										<tr>
+											<td>
+												<label>Email Coupon Code:</label>
+											</td>
+											<td>
+												<input name="email-coupon-code" type="text" />
+											</td>
+										</tr>
+									</table>
+								</div>
+								<div class="coupon-image">
+									<img src="images/program-coupon.png" width="286" height="259" alt="Coupon" />
+								</div>
+							</div>
+							<div>
+								<div class="coupon-form">
+									<table>
+										<tr>
+											<td><label>Coupon Text:</label> </td>
+											<td>
+												<select class="selectbox">
+													<option value="AnyOilChange5qts" selected>Any Oil Change, 5 qts</option>
+													<option value="ConventionalOilChange5qts">Conventional Oil Change, 5 qts.</option>
+													<option value="DieselOilChange">Diesel Oil Change</option>
+													<option value="FullSynthetic5qts">Full Synthetic. 5 qts.</option>
+													<option value="FullSynthetic6qts">Full Synthetic. 6 qts.</option>
+													<option value="Premium5qtsORDiesel">Premium 5qts. OR Diesel</option>
+													<option value="Premium6qtsORDiesel">Premium 6qts. OR Diesel</option>
+													<option value="PremiumOilChange5qts">Premium Oil Change, 5qts.</option>
+													<option value="SyntheticBlend5qts">Synthetic Blend. 5 qts.</option>
+													<option value="SyntheticBlend6qts">Synthetic Blend. 6 qts.</option>
+												</select>
+											</td>
+										</tr>
+										<tr>
+											<td><label>Discount Type:</label></td>
+											<td>
+												<select class="selectbox">
+													<option value="DollarOff" selected>$ Off</option>
+													<option value="PercOff">% Off</option>
+												</select>
+											</td>
+										</tr>
+										<tr>
+											<td>
+												<label>Discount Amount:</label>
+											</td>
+											<td>
+												<input name="discount-amount" type="text" />
+											</td>
+										</tr>
+										<tr>
+											<td>
+												<label>Email Coupon Code:</label>
+											</td>
+											<td>
+												<input name="email-coupon-code" type="text" />
+											</td>
+										</tr>
+									</table>
+								</div>
+								<div class="coupon-image">
+									<img src="images/program-coupon.png" width="286" height="259" alt="Coupon" />
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="module">
+						<h4>Settings</h4>
+						<table>
+							<tr>
+								<td><label>Email Creative:</label> </td>
+								<td>
+									<select value="BasicBlue" class="selectbox">
+										<option value="BasicBlue" selected>Basic Blue</option>
+									</select>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<label>When should these coupons expire?</label>
+								</td>
+								<td>
+									<select class="selectbox">
+										<option value="Plus30" selected>Plus 30</option>
+										<option value="Plus45">Plus 45</option>
+										<option value="Plus60">Plus 60</option>
+									</select>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<label>Deliver a copy to your seed address?</label>
+								</td>
+								<td>
+									<select class="selectbox">
+										<option value="Yes" selected>Yes</option>
+										<option value="No">No</option>
+									</select>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<div class="program-button"><input class="blue-btn" type="submit" id="save" name="save" value="Save Layout"></div>
+								</td>
+								<td>
+
+								</td>
+							</tr>
+						</table>
+					</div>
+				</form>
+			</section>
+			<div class="sidebar hidden">
+          		<div class="sidebar-module sidebar-module-inset">
+          			<img src="images/coupon-program-layout.png" width="298" height="856" />
+          			<p>This layout is used by the following stores:</p>
+	          		<textarea rows="10" cols="37">El Derado and Lake Forest (Store #000151)</textarea>
+          		</div>
+			</div>
+		</div>
+		<!--footer starts here-->
+		<footer>
+			<div class="main">
+			</div>
+		</footer>
+	</div><!-- End wrapper -->
+	<div class="prelaod">
+		<img src="images/check-on.png" alt="" title="">
+		<img src="images/edit-bg.png" alt="" title="">
+		<img src="images/check-on-2.png" alt="" title="">
+	</div>
+	<!-- Dependencies -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/2.2.1/mustache.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.11.1/moment.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.2/toastr.min.js"></script>
+	<script src="js/lib/toastrOpts.js"></script>
+	<script src="js/lib/checkAndRadioBoxes.js"></script>
+	<script src="js/lib/easyResponsiveTabs.js"></script>
+
+	<!-- Async,API and Marcom hookups -->
+	<script src="js/app/getHashParams.js"></script>
+	<script src="js/app/marcomUserData.js"></script>
+	<script src="js/app/recordLogin.js"></script>
+	<script src="js/app/getProgramParticipationStats.js"></script>
+	<script src="js/app/getStoreProgramData.js"></script>
+	<script src="js/app/setStoreSubscription.js"></script>
+
+	<!-- ** Scripts not needed for Marcom templates ** -->
+	<script type="text/javascript" src="js/css_browser_selector.js"></script>
+	<script type="text/javascript" src="js/menu.js"></script>
+	<script type="text/javascript" src="js/selectbox-0.2.js"></script>
+	<script type="text/javascript" src="js/jquery.mCustomScrollbar.concat.min.js"></script>
+	<script type="text/javascript" src="js/jquery.mousewheel.min.js"></script>
+	<script type="text/javascript" src="js/jquery.validate.js"></script>
+	<script type="text/javascript" src="js/placeholder.js"></script>
+	<script type="text/javascript" src="js/general.js"></script>
+	<script type="text/javascript" src="js/discountCode.js"></script>
+</body>
+
+</html>
