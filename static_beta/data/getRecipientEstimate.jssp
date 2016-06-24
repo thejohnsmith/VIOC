@@ -1,0 +1,38 @@
+[{
+    "userId": 29849,
+    "userExternalId": 878985,
+    "storeId": [{"Store": 101}, {"Store": 102}, {"Store": 103}],
+    "lastServiceStartDate": "2015-10-18",
+    "lastServiceEndDate": "2015-10-19",
+    "oilType": "Synthetic",
+    "customerActive": 0,
+    "customerInactive": 1,
+    "customerNew": 1,
+    "includeFleet": 1,
+    "save": 0
+  }, {
+    "userId": 34567,
+    "userExternalId": 123456,
+    "storeId": [{"Store": 101}, {"Store": 102}, {"Store": 103}],
+    "lastServiceStartDate": "2015-02-30",
+    "lastServiceEndDate": "2015-02-30",
+    "oilType": "Blend",
+    "customerActive": 1,
+    "customerInactive": 0,
+    "customerNew": 0,
+    "includeFleet": 1,
+    "save": 1
+  }, {
+    "userId": 28373,
+    "userExternalId": 878985,
+    "storeId": [{"Store": 101}, {"Store": 102}, {"Store": 103}],
+    "lastServiceStartDate": "2015-06-12",
+    "lastServiceEndDate": "2015-06-13",
+    "oilType": "Conventional",
+    "customerActive": 1,
+    "customerInactive": 0,
+    "customerNew": 1,
+    "includeFleet": 0,
+    "save": 0
+  }
+]
