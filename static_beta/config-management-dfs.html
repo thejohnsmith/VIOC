@@ -58,14 +58,6 @@
 	.coupon-form i{color:red;}
 	</style>
 	<!--css styles ends-->
-
-<script src="js/jquery_min.js"></script>
-<script>
-function getParameterByName(name) {
-    var match = RegExp("[?&]" + name + "=([^&]*)").exec(window.location.search);
-    return match && decodeURIComponent(match[1].replace(/\+/g, " "));
-}
-</script>
 </head>
 
 <body>
@@ -344,31 +336,40 @@ function getParameterByName(name) {
 		<img src="images/check-on-2.png" alt="" title="">
 	</div>
 	<!-- Dependencies -->
+	<script src="https://code.jquery.com/jquery-1.9.0.min.js" integrity="sha256-f6DVw/U4x2+HjgEqw5BZf67Kq/5vudRZuRkljnbF344=" crossorigin="anonymous"></script>
+	<script src="https://code.jquery.com/ui/1.11.3/jquery-ui.min.js" integrity="sha256-xI/qyl9vpwWFOXz7+x/9WkG5j/SVnSw21viy8fWwbeE=" crossorigin="anonymous"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/2.2.1/mustache.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.11.1/moment.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.2/toastr.min.js"></script>
 	<script src="js/lib/toastrOpts.js"></script>
+	<script src="js/lib/jquery.alerts.js"></script>
 	<script src="js/lib/checkAndRadioBoxes.js"></script>
 	<script src="js/lib/easyResponsiveTabs.js"></script>
+	<script src="js/lib/navTabs.js"></script>
+	<script src="js/lib/appUtilities.js"></script>
+	<script src="js/lib/dynamicCalendar.js"></script>
 
 	<!-- Async,API and Marcom hookups -->
 	<script src="js/app/getHashParams.js"></script>
 	<script src="js/app/marcomUserData.js"></script>
-	<script src="js/app/recordLogin.js"></script>
-	<script src="js/app/getProgramParticipationStats.js"></script>
 	<script src="js/app/getStoreProgramData.js"></script>
+	<script src="js/app/getProgramParticipationStats.js"></script>
+	<script src="js/app/getUserConfigurations.js"></script>
+	<script src="js/app/setProgramDefaults.js"></script>
 	<script src="js/app/setStoreSubscription.js"></script>
+	<script src="js/app/programManagement.js"></script>
+	<script src="js/app/overrideCatalogStyles.js"></script>
 
 	<!-- ** Scripts not needed for Marcom templates ** -->
-	<script type="text/javascript" src="js/css_browser_selector.js"></script>
-	<script type="text/javascript" src="js/menu.js"></script>
-	<script type="text/javascript" src="js/selectbox-0.2.js"></script>
-	<script type="text/javascript" src="js/jquery.mCustomScrollbar.concat.min.js"></script>
-	<script type="text/javascript" src="js/jquery.mousewheel.min.js"></script>
-	<script type="text/javascript" src="js/jquery.validate.js"></script>
-	<script type="text/javascript" src="js/placeholder.js"></script>
-	<script type="text/javascript" src="js/general.js"></script>
-	<script type="text/javascript" src="js/discountCode.js"></script>
+	<script src="js/local/css_browser_selector.js"></script>
+	<script src="js/local/menu.js"></script>
+	<script src="js/local/selectbox-0.2.js"></script>
+	<script src="js/local/jquery.mCustomScrollbar.concat.min.js"></script>
+	<script src="js/local/jquery.mousewheel.min.js"></script>
+	<script src="js/local/jquery.validate.js"></script>
+	<script src="js/local/placeholder.js"></script>
+	<script src="js/local/general.js"></script>
+	<script src="js/local/discountCode.js"></script>
 </body>
 
 </html>

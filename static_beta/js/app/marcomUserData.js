@@ -27,10 +27,16 @@ var marcomUserData = (function ($) {
 		(environment == 20917) ? 'PROD' :
 		(environment == 479602) ? 'UAT' :
 		(environment == 20951) ? 'UAT' :
+		(location.href.match(/Beta_Epsilon/)) ? 'UAT' :
 		'PROD';
 
-	// console.warn('Environment: ' + environment);
-	// console.warn('URL: ' + window.location.href);
+	/**
+	 * TESTING
+	 */
+	console.groupCollapsed('Epsilon Debugging')
+		console.info('Path: ', window.location.pathname);
+		console.info('App Environment:', environment);
+	console.groupEnd();
 
 	/** PRODUCTION URLs
 	 * @kind {string} Production or User Acceptance Testing (Beta_Epsilon)
@@ -82,9 +88,9 @@ var marcomUserData = (function ($) {
 			forgotPassPageUrl: 'forgotpassword.aspx?uigroup_id=479602',
 			accountPageUrl: 'profile.aspx?uigroup_id=479602&mode=1',
 			onDemandUrl: 'catalog.aspx?uigroup_id=479602&folder_id=1633307',
-			apiPath: 'https://adobe-uat-vioc.epsilon.com/jssp/vioc/',
+			apiPath: 'https://adobe-prod-vioc.epsilon.com/jssp/vioc/',
 			apiPathLocal: 'data/',
-			marcomFilePath: 'https://files.marcomcentral.app.pti.com/epsilon/static/'
+			marcomFilePath: 'https://files.marcomcentral.app.pti.com/epsilon/static_beta/'
 		} : constants;
 	return {
 		$user: user,

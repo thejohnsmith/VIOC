@@ -1,8 +1,7 @@
 <!-- epsilon -->
-<link href="https://files.marcomcentral.app.pti.com/epsilon/marcom/css/main.css" rel="stylesheet" type="text/css" />
-<link href="https://files.marcomcentral.app.pti.com/epsilon/marcom/css/errorPage.css" rel="stylesheet" type="text/css" />
-<span class="user-related none" data-user-external-id="%%User.ExternalId%%" data-user-login-id="%%User.LoginId%%" data-user-first-name="%%User.FirstName%%" data-user-last-name="%%User.LastName%%" data-user-email="%%User.Email%%" aria-hidden="true">
-</span>
+<link href="https://files.marcomcentral.app.pti.com/epsilon/marcom/css/main.css" rel="stylesheet" type="text/css"/>
+<link href="https://files.marcomcentral.app.pti.com/epsilon/marcom/css/errorPage.css" rel="stylesheet" type="text/css"/>
+<span class="user-related none" data-user-external-id="%%User.ExternalId%%" data-user-login-id="%%User.LoginId%%" data-user-first-name="%%User.FirstName%%" data-user-last-name="%%User.LastName%%" data-user-email="%%User.Email%%" aria-hidden="true"></span>
 
 <div class="wrapper">
   <header id="nav">
@@ -16,7 +15,11 @@
           </div>
           <div class="header-info">
             <h2>Warp Drive</h2>
-            <h3><b>W</b>inning <b>A</b>CQUISITION & <b>R</b>ETENTION <b>P</b>ROGRAMS</h3>
+            <h3>
+              <b>W</b>inning
+              <b>A</b>CQUISITION &
+              <b>R</b>ETENTION
+              <b>P</b>ROGRAMS</h3>
           </div>
         </div>
         <div class="header-right">
@@ -40,41 +43,39 @@
 </div>
 <!-- /wrapper -->
 
-
-
 <div class="push"></div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+
 <!-- Dependencies -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/2.2.1/mustache.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.11.1/moment.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.2/toastr.min.js"></script>
-<script src="https://files.marcomcentral.app.pti.com/epsilon/static/js/lib/toastrOpts.js"></script>
-<script src="https://files.marcomcentral.app.pti.com/epsilon/static/js/lib/jquery.alerts.js"></script>
-<script src="https://files.marcomcentral.app.pti.com/epsilon/static/js/lib/checkAndRadioBoxes.js"></script>
-<script src="https://files.marcomcentral.app.pti.com/epsilon/static/js/lib/easyResponsiveTabs.js"></script>
-<script src="https://files.marcomcentral.app.pti.com/epsilon/static/js/lib/navTabs.js"></script>
-<script src="https://files.marcomcentral.app.pti.com/epsilon/static/js/lib/appUtilities.js"></script>
-<script src="https://files.marcomcentral.app.pti.com/epsilon/static/js/lib/dynamicCalendar.js"></script>
+<script src="https://files.marcomcentral.app.pti.com/epsilon/static_beta/js/lib/toastrOpts.js"></script>
+<script src="https://files.marcomcentral.app.pti.com/epsilon/static_beta/js/lib/jquery.alerts.js"></script>
+<script src="https://files.marcomcentral.app.pti.com/epsilon/static_beta/js/lib/checkAndRadioBoxes.js"></script>
+<script src="https://files.marcomcentral.app.pti.com/epsilon/static_beta/js/lib/easyResponsiveTabs.js"></script>
+<script src="https://files.marcomcentral.app.pti.com/epsilon/static_beta/js/lib/navTabs.js"></script>
+<script src="https://files.marcomcentral.app.pti.com/epsilon/static_beta/js/lib/appUtilities.js"></script>
+<script src="https://files.marcomcentral.app.pti.com/epsilon/static_beta/js/lib/dynamicCalendar.js"></script>
 
 <!-- Async,API and Marcom hookups -->
-<script src="https://files.marcomcentral.app.pti.com/epsilon/static/js/app/getHashParams.js"></script>
-<script src="https://files.marcomcentral.app.pti.com/epsilon/static/js/app/marcomUserData.js"></script>
-<script src="https://files.marcomcentral.app.pti.com/epsilon/static/js/app/recordLogin.js"></script>
-<script src="https://files.marcomcentral.app.pti.com/epsilon/static/js/app/getStoreProgramData.js"></script>
-<script src="https://files.marcomcentral.app.pti.com/epsilon/static/js/app/getProgramParticipationStats.js"></script>
-<script src="https://files.marcomcentral.app.pti.com/epsilon/static/js/app/getUserConfigurations.js"></script>
-<script src="https://files.marcomcentral.app.pti.com/epsilon/static/js/app/setProgramDefaults.js"></script>
-<script src="https://files.marcomcentral.app.pti.com/epsilon/static/js/app/setStoreSubscription.js"></script>
-<script src="https://files.marcomcentral.app.pti.com/epsilon/static/js/app/programManagement.js"></script>
-<script src="https://files.marcomcentral.app.pti.com/epsilon/static/js/app/overrideCatalogStyles.js"></script>
-<script src="https://files.marcomcentral.app.pti.com/epsilon/static/js/app/programManagementFilters.js"></script>
-<script src="https://files.marcomcentral.app.pti.com/epsilon/static/js/app/programConfigController.js"></script>
-<script src="https://files.marcomcentral.app.pti.com/epsilon/static/js/app/additionalOfferController.js"></script>
-<script src="https://files.marcomcentral.app.pti.com/epsilon/static/js/app/checkboxController.js"></script>
-<script src="https://files.marcomcentral.app.pti.com/epsilon/static/js/app/contactUsController.js"></script>
-<script src="https://files.marcomcentral.app.pti.com/epsilon/static/js/app/app.js"></script>
+<script src="https://files.marcomcentral.app.pti.com/epsilon/static_beta/js/app/getHashParams.js"></script>
+<script src="https://files.marcomcentral.app.pti.com/epsilon/static_beta/js/app/marcomUserData.js"></script>
+<script src="https://files.marcomcentral.app.pti.com/epsilon/static_beta/js/app/getStoreProgramData.js"></script>
+<script src="https://files.marcomcentral.app.pti.com/epsilon/static_beta/js/app/getProgramParticipationStats.js"></script>
+<script src="https://files.marcomcentral.app.pti.com/epsilon/static_beta/js/app/getUserConfigurations.js"></script>
+<script src="https://files.marcomcentral.app.pti.com/epsilon/static_beta/js/app/setProgramDefaults.js"></script>
+<script src="https://files.marcomcentral.app.pti.com/epsilon/static_beta/js/app/setStoreSubscription.js"></script>
+<script src="https://files.marcomcentral.app.pti.com/epsilon/static_beta/js/app/programManagement.js"></script>
+<script src="https://files.marcomcentral.app.pti.com/epsilon/static_beta/js/app/overrideCatalogStyles.js"></script>
 
 <script>
-  if (window.location.href.indexOf('errorPageBasic.aspx') > -1) window.location.href = 'https://marcomcentral.app.pti.com/Epsilon_Data_Management/Beta_Epsilon/'
+  if (window.location.href.indexOf('errorPageBasic.aspx') > -1) {
+    if (typeof marcomUserData === 'object') {
+      setTimeout(function () {
+        window.location.href = marcomUserData.$constants.homePageUrl;
+      }, 600);
+    }
+  }
 </script>

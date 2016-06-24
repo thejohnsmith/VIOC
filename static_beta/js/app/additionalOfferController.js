@@ -1,7 +1,5 @@
 var additionalOfferController = (function ($) {
-
 	var controller = {
-
 		program: {},
 		adtl_offers: [],
 		config: {
@@ -156,7 +154,6 @@ var additionalOfferController = (function ($) {
 				 * Disable 'required' attr from .adtlText dropdown
 				 */
 				if (controller.program.isLifecycleCampaign) {
-					console.warn('setting adtlText...');
 					$('.coupon-form label:first i').hide();
 					$('.adtlText').prop('required', false);
 				}
@@ -190,7 +187,6 @@ var additionalOfferController = (function ($) {
 					$('[name=adtlText' + i + ']').closest("table").find("tr").show(); // Show me and all of my sibling rows
 				}
 			}
-
 		},
 		UpdateSaveButton: function () {
 			var controller = this;
@@ -202,11 +198,6 @@ var additionalOfferController = (function ($) {
 			// Returns all form data in an easy to POST format.
 		},
 		ValidateForm: function (callback) {
-			// TODO
-			// Added alert prompt here for now. Can be moved to single function when validation rules are created.
-			// Alert should always fire on save.
-
-			console.warn('controller.saveData: ' + controller.saveDate);
 			var new_label = ($('.settings-name').val() !== controller.config.content.label) ? $('.settings-name').val() : ('Custom ' + controller.config.content.label);
 
 			/**
@@ -226,23 +217,18 @@ var additionalOfferController = (function ($) {
 			// }
 			if ($('.adtlValue:visible').val() == 'undefined' || $('.adtlValue:visible').val() == '') {
 				jAlert('Discount Amount is required.');
-				console.warn('adtlValue = undefined');
 				return false;
 			}
 			if ($('.adtlCode:visible').val() == 'undefined' || $('.adtlCode:visible').val() == '') {
 				jAlert('Additional code is required.');
-				console.warn('adtlCode1 = undefined');
 				return false;
 			}
 
 			// if ($('.adtlCode:visible').val() !== 'undefined' && $('.adtlCode:visible').val() !== '' || $('.adtlText:visible').val() == 'Not Used') {
 			jConfirm('Have you established this code in POS?', 'Please Confirm', function (r) {
 				if (r) {
-					console.warn('r is true');
 					if (controller.config.content.corpDefault == 1 && controller.config.content.editable == 'true') {
-						console.warn('Admin is editing corpDefault, editable = ' + controller.config.content.editable);
 						new_label = $('.settings-name').val();
-						console.warn('New Label = ' + new_label);
 						callback();
 					}
 					if (controller.config.content.corpDefault == 0) {
@@ -254,8 +240,6 @@ var additionalOfferController = (function ($) {
 							}
 						});
 					} else {
-						console.warn('controller.config.content.label: ' + controller.config.content.label);
-						console.warn('new_label: ' + new_label);
 						jConfirm('You did not enter an Offer Name. The system will create a new setting named "Custom Settings". Proceed?', 'Create New Settings?', function (r) {
 							if (r) {
 								callback();
@@ -296,7 +280,6 @@ var additionalOfferController = (function ($) {
 						method: "GET",
 						data: saveData,
 						success: function (results) {
-							console.log("Save was successful!");
 							window.location.href = marcomUserData.$constants.programManagementUrl + "&programId=" + controller.programId + "&flashSuccessMsg=Additional%20Offer%20Saved!#parentHorizontalTab2";
 						},
 						dataType: "json"
