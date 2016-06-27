@@ -1,0 +1,123 @@
+#CtlHead {
+  width: 100%
+}
+.NavTop:before, .searchHolder {
+  display: none!important
+}
+br {
+  display: none;
+  height: 0;
+}
+#CtlLogIn>p>a, #ctl00_content_ForgotPassword_ForgotPWSecurityQuestionInstruction br, #ctl00_content_ForgotPassword_divSecurityQuestion br, .CtlLogIn br, .header-right, a#ctl00_content_Login_btnRecoverPassword, td:empty {
+  display: none
+}
+.logo a:hover {
+  cursor: default
+}
+#CtlLogIn {
+  width: auto;
+  clear: both;
+  margin: 6% auto;
+  font-family: 'HelveticaNeueLT-Thin', sans-serif;
+  box-shadow: 0 0 37px 10px rgba(0, 0, 0, .18);
+  min-width: 300px;
+  max-width: 450px;
+  padding: 6px 12px 20px
+}
+#CtlLogIn h4 {
+  font-size: 26px
+}
+#CtlLogIn h4 strong span {
+  padding: 0 0 .4em;
+  font-size: 20px;
+  display: block
+}
+.CartAlert {
+  color: #e74c3c;
+  background: 0 0;
+  margin-bottom: 1em;
+  display: inline-block;
+  width: 100%
+}
+#CtlLogIn .CtlSearchGroup, .CtlSearchGroup td.header {
+  border: none
+}
+.CtlSearchGroup td.header {
+  padding-bottom: 1em;
+  font-size: 20px
+}
+#ctl00_content_ForgotPassword_divSecurityQuestion td {
+  padding: 0 0 4px
+}
+span#ctl00_content_ForgotPassword_ForgotPWSecurityQuestionInstruction {
+  padding: 1em 0 1.4em;
+  display: block
+}
+#CtlLogIn .CtlSearchGroup {
+  background: 0 0;
+  margin: 0!important;
+  padding: 0 4px 0 0;
+  width: 100%
+}
+.CtlSearchGroup td {
+  padding: 0 6px
+}
+.header-right .btnLogOut:before {
+  content: none
+}
+.CtlSearchGroup td input, .CtlSearchGroup td select {
+  border-color: #66afe9;
+  width: 100%;
+  color: #555;
+  font-size: 13px;
+  padding: 7px 10px;
+  font-weight: 400;
+  margin-bottom: 18px
+}
+#ctl00_content_ForgotPassword_StringControl1 {
+  font-size: 16px
+}
+.ButtonRowClearR {
+  padding: 0
+}
+.btn-s:hover, .pbtn {
+  background: 0 0
+}
+.pbtn {
+  font-family: 'HelveticaNeueLT-Condensed';
+  height: auto!important;
+  padding: 0
+}
+a.pbtn span, a.pbtn.primary span {
+  font-size: 15px!important;
+  max-width: 140px;
+  margin: 0 0 15px;
+  padding: 6px 12px;
+  color: #fff;
+  border: 1px solid #337ab7;
+  border-radius: 4px;
+  background: #0ea3dd;
+  box-sizing: content-box;
+  -webkit-transition: .5s;
+  transition: .5s
+}
+.CtlSearchGroup td input:focus, .CtlSearchGroup td select:focus, a.pbtn span:hover {
+  border-color: #00bcd4;
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px rgba(102, 175, 233, .8)
+}
+a.pbtn span:hover {
+  color: #fff
+}
+a.pbtn span:hover:focus {
+  border-color: rgba(0, 72, 144, .72);
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px rgba(0, 0, 0, .64);
+  color: #004890;
+  background: #ececec
+}
+#ctl00_content_Login_txtMessage {
+  background: #fff;
+  color: red;
+  padding: 0 15px;
+  display: inline-block;
+  text-align: right
+}

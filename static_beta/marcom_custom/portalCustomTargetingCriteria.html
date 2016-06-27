@@ -1,0 +1,81 @@
+<!-- Targeting Criteria
+    @file portalTargetingCriteria.html
+    Beta URL:
+    https://marcomcentral.app.pti.com/Epsilon_Data_Management/Beta_Epsilon/CustomPage.aspx?uigroup_id=479602&page_id=11497
+-->
+<div class="wrapper">
+  <div class="mid-container">
+    <div class="main">
+      <section id="breadcrumbs">
+        <ul>
+          <li><a href="home.aspx" title="Home">Home</a></li>
+          <li>
+            <span>Choose Target Recipients</span>
+          </li>
+        </ul>
+      </section>
+
+      <section id="targetingCriteria">
+        <div class="target-reciptients">
+          <h1 id="counter">...</h1>
+          <p>Target Recipients</p>
+        </div>
+        <h1>Choose Target Recipients</h1>
+        <p>Refine your search criteria to adjust the number of recipients targeted.</p>
+        <div class="left-container">
+          <section id="customerGeography">
+            <h1>Customer Georgraphy</h1>
+            <p>Target customers based on their home store location.</p>
+            <div id="jstree" class="jstree-default jstree-checkbox-selection"></div>
+          </section>
+        </div>
+        <div class="right-container">
+          <div class="last-service-date">
+            <h1>Customer Last Service Date</h1>
+            <p>Target customers based on when they last brought a vehicle in for service.</p>
+            <label for="from">From</label>
+            <input type="text" id="from" name="from">
+            <label for="to"> &nbsp;&nbsp;to </label>
+            <input type="text" id="to" name="to">
+          </div>
+          <div class="last-service-oil-type">
+            <h1>Last Service Oil Type</h1>
+            <p>Target customers based on what type of oil they used during their last service.</p>
+            <select class="selectbox" id="oilType" id="oilType">
+              <option value="Conventional" selected>Conventional</option>
+              <option value="Blend">Blend</option>
+              <option value="Synthetic">Synthetic</option>
+              <option value="Diesel">Diesel</option>
+            </select>
+          </div>
+          <div class="customer-type">
+            <h1>Customer Type</h1>
+            <p>Target customers based on whether they are new, active or inactive.</p>
+            <input type="checkbox" value="active" id="chkActive"></input>
+            <label>Active</label>
+            <input id="chkInactive" type="checkbox" value="inactive"></input>
+            <label>Inactive</label>
+            <input type="checkbox" value="new" id="chkNew"></input>
+            <label>New</label>
+          </div>
+          <div class="include-fleet">
+            <h1>Include Fleet?</h1>
+            <p>Determines whether fleet customers should be included in the results.</p>
+            <select class="selectbox" id="fleet">
+              <option value="No" selected>No</option>
+              <option value="Yes">Yes</option>
+            </select>
+          </div>
+          <p class="note">
+            Note: Once you proceed beyond this step, you will not be able to adjust your selection.
+          </p>
+          <span class="call-to-action">
+            <a href="#" class="submit" id="btnSubmit">Select up to ... Target Recipients</a>
+            <a href="#" id="btnCancel">Cancel and return to WARP drive</a>
+          </span>
+        </div>
+
+      </section>
+    </div>
+  </div>
+</div>
