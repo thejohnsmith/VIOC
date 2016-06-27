@@ -43,11 +43,33 @@ var programManagementController = (function ($) {
 			controller.refreshStoreRowEnrollment();
 			controller.hideStandardOffersIfNeeded();
 			controller.hideAdditionalOffersIfNeeded();
+			controller.showDisclaimers();
 			controller.ShowUI();
+		},
+		showDisclaimers: function () {
+			var controller = this;
+			var currentProgramName = controller.program.programName;
+			if (currentProgramName === 'Reactivation') {
+				/**
+				 * Hard-code in the disclaimer container with text for now.
+				 * @TODO this needs to be revisited, reworked to use dynamic content.
+				 */
+				$('.programSummary-disclaimer')
+					.text('* Estimated cost is for your total population of Reactivation customers.' +
+						' Your actual cost will likely be lower based on the maximum mail quantity you set for this touchpoint.');
+				/** Reveal:
+				 * 1. disclaimer container w/ injected text
+				 * 2. asterisk(s) associated with this disclaimer
+				 * 3. disclaimer to screen-readers
+				 */
+				$('.store-cost .disclaimer-asterisk, .programSummary-disclaimer')
+					.attr('aria-hidden', 'false')
+					.removeClass('none');
+			}
 		},
 		highlightNavSection: function () {
 			var controller = this;
-			var target = (controller.program.isLifecycleCampaign) ? "LIFECYCLE PROGRAMS" : "SPECIALTY PROGRAMS";
+			var target = (controller.program.isLifecycleCampaign) ? 'LIFECYCLE PROGRAMS' : 'SPECIALTY PROGRAMS';
 			$("li.navBarItem a:contains('" + target + "')").addClass('navBarSelectedLinkColor').addClass('customColorOverridable').removeClass('navBarEnhancedLinkColor');
 		},
 		/** Gets a user config
