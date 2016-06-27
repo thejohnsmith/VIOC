@@ -33,10 +33,10 @@ var marcomUserData = (function ($) {
 	/**
 	 * TESTING
 	 */
-	console.groupCollapsed('Epsilon Debugging')
-		console.info('Path: ', window.location.pathname);
-		console.info('App Environment:', environment);
-	console.groupEnd();
+	// console.groupCollapsed('Epsilon Debugging')
+	// 	console.info('Path: ', window.location.pathname);
+	// 	console.info('App Environment:', environment);
+	// console.groupEnd();
 
 	/** PRODUCTION URLs
 	 * @kind {string} Production or User Acceptance Testing (Beta_Epsilon)

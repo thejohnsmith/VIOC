@@ -1,0 +1,324 @@
+@charset "UTF-8";
+body, p, h1, h2, h3, h4, h5, h6, div, span, td, li, ol, bl, input, select, textarea, div, a {
+	font-family: 'Trebuchet MS', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif!important;
+}
+/* jquery */
+#navBarEnhanced, .navBarEnhanced, .spSearch, .userName, .btnLogOut, .userName>img:first-of-type, .pnlInline {
+	visibility: hidden
+}
+/* remove spacing main table  */
+body, .bodyContent, #PageType01 #ENUSmain {
+	border-width: 0px!important;
+	border-style: solid!important;
+	border-collapse: collapse!important;
+}
+body {
+	background: #fff
+}
+/* stretches width  */
+#ENUSmain {
+	background-color: transparent!important;
+	border: 0px!important;
+	border-top: 0;
+	border-left: 0;
+	border-right: 0;
+	border-bottom: 0;
+	width: 100%!important;
+}
+#CtlBody, #CtlCart.ContentBoxLarge.NoBorder {
+	border: 0px!important;
+	margin: 0px auto auto auto!important;
+	max-width: 960px;
+}
+.MastHead {
+	display: none;
+}
+
+a, .userName, .pbtn, .pnlLocale {
+	-webkit-transition: opacity 0.3s ease;
+	-moz-transition: opacity 0.3s ease;
+	-o-transition: opacity 0.3s ease;
+	transition: opacity 0.3s ease;  
+}
+a:hover, .userName:hover, .pbtn:hover, .pnlLocale:hover {
+	opacity: 0.6;
+	text-decoration: none!important
+}
+a.opac:hover {opacity: 1 !important}
+
+.clearfix {
+ *zoom: 1;
+}
+.clearfix:before, .clearfix:after {
+	display: table;
+	line-height: 0;
+	content: "";
+}
+.clearfix:after {
+	clear: both;
+}
+/* top nav */
+#ENUSmain td.NavTop {
+	width: 960px;
+	height: 38px;
+ 	text-transform: uppercase;
+	line-height: 35px;
+	font-size: 14px;
+	letter-spacing: .02em;
+	background-color: transparent!important;
+	background: none!important;
+	border: none!important;
+	border: 0!important;
+	margin: 4px auto 0px auto!important;
+	padding: 0px!important;
+	text-align: left;
+	display: block!important;
+	z-index: 9999!important;
+}
+.NavTop:before {
+	content: "";
+	height: 162px;
+	width: 100%;
+	display: block!important;
+	z-index: -999;
+	position: absolute;
+	top: 0;
+	left: 0;
+	background: #e1261c url('https://files.marcomcentral.app.pti.com/epsilon/marcom/images/bannerGeneric.png') center bottom no-repeat !important;
+}
+.NavTopDivider {
+	display: none
+}
+/* zeroes out top divs, except for search drop down*/
+.NavTop div:not(.suggestionImageContainer ) {
+	margin: 0px!important;
+	text-align: left!important;
+}
+.NavTop > div:first-of-type {
+	margin: 0px auto auto 0px!important;
+	text-align: left!important;
+}
+.userName, .pnlLocale {
+	cursor: pointer;
+	cursor: hand;
+	font-weight: normal!important;
+	margin: 0 10px 0 0;
+}
+
+
+/*fixes margin problem in firefox*/
+ @-moz-document url-prefix() {
+#ctl00_ctl08_lblUserName {
+ margin-left: 0px!important;
+}
+}
+/* search  */
+.searchHolder {
+	visibility: hidden;
+	height: 70px;
+	background: #54565b;
+	text-align: center;
+}
+.spSearch {
+	visibility: hidden;
+	padding: 0;
+	z-index: 99;
+	float: none!important;
+	margin: 13px auto 0 auto!important;
+	display: inline-block!important;
+	height: 44px;
+	width: 930px;
+	background: #ffffff;
+}
+.TDSearchBox {
+	float: left;
+	width: 860px !important;
+	height: 44px;
+	z-index: 100 !important;
+	padding: 0 0 0 10px;
+	background-color: transparent!important;
+	font-size: 16px;
+	color: #a7a9ac!important;
+	border: 0px solid transparent;
+}
+.TDSearchBoxButton {
+	display: inline!important;
+	left: 0px;
+	top: 0px;
+	float: right!important;
+	width: 57px;
+	height: 44px;
+	margin: 0;
+	padding: 0!important;
+	background: #54565b url('https://files.marcomcentral.app.pti.com/epsilon/marcom/images/searchGeneric.png') right center no-repeat !important;
+}
+a.TDSearchBoxButton:hover {
+	opacity: 1!important;
+}
+.TDSearchBoxButton span {
+	display: none!important;
+}
+/* search drop down overwrite */
+.tt-dropdown-menu {
+	width: 321px!important;
+	margin-top: 36px!important;
+	border: 1px solid #ffffff!important;
+	border-radius: 0px!important;
+}
+#navBarEnhanced {
+	height: 38px;
+	margin: 120px 0 0 0;
+	background-color: #54565b;
+}
+ul.navBarEnhanced {
+	padding: 0px;
+	margin: 0px auto;
+	width: 960px;
+	height: 38px;
+	background: #54565b!important;
+}
+.navBarEnhanced li {
+	margin: 0!important;
+	padding: 0!important;
+	border: 0px;
+	height: 38px;
+	background: none;
+	float: left
+}
+.navBarEnhanced li a {
+ 	height: 38px;
+	line-height : 38px;
+	font-size: 16px;
+	font-family: 'Trebuchet MS', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif!important;
+text-transform: uppercase;
+	font-weight: normal;
+	text-align: center;
+	cursor: pointer;
+	padding: 0 40px 0 0;
+	margin: 0;
+}
+.navBarEnhanced li a:hover {
+	text-decoration: none;
+	color: #fff;
+ }
+.navBarEnhanced li.bannerNcarb {
+	margin: 0;
+	padding: 0
+}
+.navBarEnhanced .bannerNcarb a {
+	padding: 20px 0 0 0!important;
+	margin-right: 160px
+}
+/* dropdowns */
+
+.menu {
+	background-color: #ffffff;
+	border: none!important;
+	padding: 10px 0px 10px 0px;
+	position: absolute;
+	text-align: left;
+}
+div.menuItem:hover {
+	background-color: #fff;
+}
+div.menu.menuContainer.profile_menu {
+	margin-top: 13px!important;
+}
+.menuItemText a.itemTitle {
+	font-size: 14px;
+	height: 22px;
+	line-height: 22px;
+	margin: 0 10px 0 10px;
+	padding: 3px 3px 3px 3px;
+	color: #717275!important;
+}
+.menuItemText a.itemTitle:hover {
+	color: #717275!important;
+	text-decoration: none;
+}
+.parentNode {
+	background-image: url('https://files.marcomcentral.app.pti.com/epsilon/marcom/images/submenu-pointer-out.png');
+	background-position: 95% 9px !important;
+}
+.parentNode:hover {
+	background-image: url('https://files.marcomcentral.app.pti.com/epsilon/marcom/images/submenu-pointer-out.png');
+	opacity: 0.6
+}
+/* Footer - this is global */
+
+#CtlFooter, #CtlFooter~div {
+	display: none!important;
+}
+html {
+	position: relative;
+	min-height: 100%
+}
+body {
+	margin-bottom: 177px /*height + margin of footer*/
+}
+.footer {
+	position: absolute;
+	margin-top: 30px;
+	left: 0;
+	bottom: 0;
+	height: 147px;
+	width: 100%;
+	z-index: 900;
+	background-color: #54565b;
+	color: #fff;
+}
+.footer>div {
+	width: 960px;
+	margin: 0 auto;
+}
+.footer>div>div {
+	width: 450px;
+	margin-top: 27px;
+	float: left;  
+}
+.footer>div>div p {
+ 	font-size: 16px;
+}
+.footer>div>div+div {
+  	float: right;
+	text-align: right
+}
+.footer a {
+	color: #fff;
+ 	font-size: 16px
+}
+
+/*catalog crumbs */
+
+#CtlBrdCrm {
+	padding: 0px;
+	width: 960px;
+	margin: 9px 50% auto 50%;
+	position: relative;
+	left: -480px; 	color: #54565b
+
+}
+#CtlBrdCrm td {
+	padding: 0px 12px 8px 0px;
+	font-size: 16px;
+	color: #54565b
+}
+
+/* checkout crumbs */
+.CheckoutBreadCrumbs {
+	display: none;
+}
+.CheckoutBreadCrumbsNext {
+	display: none !important;
+}
+.CheckoutBreadCrumbs :nth-child(2) {
+	display: none;
+}
+.CheckoutBreadCrumbs :nth-child(3) {
+	display: none;
+}
+
+
+/* typeahead */
+.tt-dropdown-menu {top: 3px!important; left: -2px!important; z-index: 9999!important;}
+ 
