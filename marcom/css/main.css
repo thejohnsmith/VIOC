@@ -2061,7 +2061,7 @@ p.errormsg {
   display: inline-block;
   float: left;
   margin: 0 4px 0 0;
-  padding: 13px 15px;
+  padding: 13px 9px;
   list-style: none;
   cursor: pointer;
   -webkit-transition: .5s;
@@ -2172,7 +2172,9 @@ h2.resp-tab-title:last-child {
 }
 h2.resp-tab-active span.resp-arrow {
   border: none;
-  border-bottom: 12px solid #fff
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+  border-bottom: 12px solid #fff;
 }
 .resp-easy-accordion h2.resp-accordion {
   display: block
