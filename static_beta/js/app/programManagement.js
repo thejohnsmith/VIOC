@@ -69,7 +69,7 @@ var programManagementController = (function ($) {
 		},
 		highlightNavSection: function () {
 			var controller = this;
-			var target = (controller.program.isLifecycleCampaign) ? 'LIFECYCLE PROGRAMS' : 'SPECIALTY PROGRAMS';
+			var target = (controller.program.isLifecycleCampaign) ? "LIFECYCLE PROGRAMS" : "SPECIALTY PROGRAMS";
 			$("li.navBarItem a:contains('" + target + "')").addClass('navBarSelectedLinkColor').addClass('customColorOverridable').removeClass('navBarEnhancedLinkColor');
 		},
 		/** Gets a user config
@@ -136,9 +136,9 @@ var programManagementController = (function ($) {
 		},
 		hideAdditionalOffersIfNeeded: function () {
 			var controller = this;
-			for (var i = 0; i < controller.program.length; i++) {
-				if (controller.program[i].id == controller.program_id) {
-					if (controller.program[i].programUsesAdtl == 0) {
+			for (var i = 0; i < $programParticipationStats.length; i++) {
+				if ($programParticipationStats[i].id == controller.program_id) {
+					if ($programParticipationStats[i].programUsesAdtl == 0) {
 						$('.additional-offer').hide();
 					}
 				}
@@ -155,9 +155,9 @@ var programManagementController = (function ($) {
 		},
 		hideStandardOffersIfNeeded: function () {
 			var controller = this;
-			for (var i = 0; i < controller.program.length; i++) {
-				if (controller.program[i].id == controller.program_id) {
-					if (controller.program[i].programUsesOffers == 0) {
+			for (var i = 0; i < $programParticipationStats.length; i++) {
+				if ($programParticipationStats[i].id == controller.program_id) {
+					if ($programParticipationStats[i].programUsesOffers == 0) {
 						$('.standard-offer').hide();
 					}
 				}
@@ -679,9 +679,9 @@ var programManagementController = (function ($) {
 		},
 		showQuantityLimitTabIfNeeded: function () {
 			var controller = this;
-			for (var i = 0; i < controller.program.length; i++) {
-				if (controller.program[i].id == controller.program_id) {
-					if (controller.program[i].showQuantityLimitTab == 1) {
+			for (var i = 0; i < $programParticipationStats.length; i++) {
+				if ($programParticipationStats[i].id == controller.program_id) {
+					if ($programParticipationStats[i].showQuantityLimitTab == 1) {
 						$('#programManagementTabs .optional-tab').css('visibility', 'visible');
 					}
 				}
@@ -689,9 +689,9 @@ var programManagementController = (function ($) {
 		},
 		hideProgramSettingsIfNeeded: function () {
 			var controller = this;
-			for (var i = 0; i < controller.program.length; i++) {
-				if (controller.program[i].id == controller.program_id) {
-					if (controller.program[i].programUsesOffers == 0 && controller.program[i].programUsesAdtl == 0) {
+			for (var i = 0; i < $programParticipationStats.length; i++) {
+				if ($programParticipationStats[i].id == controller.program_id) {
+					if ($programParticipationStats[i].programUsesOffers == 0 && $programParticipationStats[i].programUsesAdtl == 0) {
 						$('[aria-controls="hor_1_tab_item-1"], [aria-labelledby="hor_1_tab_item-1"]').hide();
 						window.location.hash = '#parentHorizontalTab1';
 					}
