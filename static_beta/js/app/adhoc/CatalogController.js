@@ -19,12 +19,12 @@ CatalogController = (function ($) {
 				controller.AdjustUI();
 			});
 		},
-		isPageReady: function () {
+		isPageReady: function () { 
 			return $(pageAnchor).length > 0;
 		},
 		WatchForPageReady: function (callback) {
 			var controller = this;
-			console.warn('Watching for: Page ready...');
+			// console.warn('Watching for: Page ready...');
 			controller.intervalHandle = setInterval(function () {
 				if (controller.isPageReady()) {
 					clearInterval(controller.intervalHandle);
@@ -33,7 +33,7 @@ CatalogController = (function ($) {
 			}, 500);
 		},
 		AdjustUI: function () {
-			console.warn('Adjusting UI...');
+			// console.warn('Adjusting UI...');
 		}
 	};
 	return {

@@ -26,6 +26,7 @@ var programManagementController = (function ($) {
 				controller.getStoreProgramData(function (store_data) {
 					// Trigger a filter change, which will triger a UI refresh
 					programManagementFilters.controller.onFilterChange(programManagementFilters.controller.store_ids);
+					ContentPreviewController.controller.init(programManagementFilters.controller.store_ids, store_data);
 					controller.timeDebug("PMC Init Complete.");
 				});
 			});
@@ -302,6 +303,19 @@ var programManagementController = (function ($) {
 						// console.log("Loaded " + controller.templatesLoaded + " /4 templates");
 					};
 				});
+
+				controller.getMustacheTemplate(
+					'content-preview.mustache.html',
+					'.content-preview-template',
+					'.content-preview-section',
+					result,
+					function (template) {
+						if (++controller.templatesLoaded == 4) {
+							allTemplateLoaded()
+						} else {
+							// console.log("Loaded " + controller.templatesLoaded + " /4 templates");
+						};
+					});
 
 			if ($('.quantity-limit-tab-section').length) {
 				controller.getMustacheTemplate(
@@ -802,6 +816,7 @@ var programManagementController = (function ($) {
 						}
 					});
 					controller.buildUI(targetStores);
+					console.info('controller.storeIds', store_ids);
 				});
 			});
 		},
