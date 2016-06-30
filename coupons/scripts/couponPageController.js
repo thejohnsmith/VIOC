@@ -1,7 +1,8 @@
 /* Coupon Page Controller
  * @filename couponPageController.js
  * @description Loads templates with data from custom Adobe API.
- * @author Anthony Gill, John Smith, Epsilon
+ * @author John Smith, Epsilon
+ * @TODO Add if (typeof(value) !== "undefined" && value)
  */
 couponPageController = (function ($) {
     'use strict';
@@ -15,14 +16,15 @@ couponPageController = (function ($) {
             var controller = this;
             var pfid = controller.getParameterByName('pfid', window.location.href);
             var rid = controller.getParameterByName('rid', window.location.href);
-            controller.GetPageData(pfid, rid, function () {
+            var h  = controller.getParameterByName('h', window.location.href);
+            controller.GetPageData(pfid, rid, h, function () {
 				controller.getCodes();
                 controller.buildUI();
             });
         },
-        GetPageData: function (pfid, rid, callback) {
+        GetPageData: function (pfid, rid, h, callback) {
             var controller = this;
-            $.get(controller.apiPath + 'getCouponPageData.jssp?pfid=' + encodeURIComponent(pfid) + '&rid=' + encodeURIComponent(rid), function (results) {
+            $.get(controller.apiPath + 'getCouponPageData.jssp?pfid=' + encodeURIComponent(pfid) + '&rid=' + encodeURIComponent(rid) + '&h=' + encodeURIComponent(h), function (results) {
                 var json_results = JSON.parse(results);
                 $.each(json_results, function (i, result) {
                     // Store the page content data in controller.stores
