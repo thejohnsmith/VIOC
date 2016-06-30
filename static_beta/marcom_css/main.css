@@ -1409,7 +1409,10 @@ header#nav {
   padding-left: 0!important
 }
 .lifescycle-tab .optional-tab {
-  visibility: hidden
+  visibility: hidden;
+  width: 0;
+  padding: 0;
+  margin: 0
 }
 .programsummary-table.quantity-limit-tab-section .store-enroll {
   width: 15%
@@ -3534,4 +3537,18 @@ button.enroll-all-stores.btn.btn-primary.btn-sm {
     -webkit-transform: rotate(360deg);
     transform: rotate(360deg)
   }
+}
+
+.content-preview-section.programsummary-table th {
+  background: #fff
+}
+
+.content-preview-section .feature {
+    width: 24%;
+    display: inline-block
+}
+
+.content-preview-section .feature-caption {
+  font-size: 11px;
+  text-align: center
 }

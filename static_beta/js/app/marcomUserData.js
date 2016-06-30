@@ -30,14 +30,6 @@ var marcomUserData = (function ($) {
 		(location.href.match(/Beta_Epsilon/)) ? 'UAT' :
 		'PROD';
 
-	/**
-	 * TESTING
-	 */
-	// console.groupCollapsed('Epsilon Debugging')
-	// 	console.info('Path: ', window.location.pathname);
-	// 	console.info('App Environment:', environment);
-	// console.groupEnd();
-
 	/** PRODUCTION URLs
 	 * @kind {string} Production or User Acceptance Testing (Beta_Epsilon)
 	 * @example marcomUserData.$constants.apiPath
@@ -112,4 +104,16 @@ if (typeof appUtilities === 'object') {
 /* Run the login controller */
 if (jQuery('#homePageLanding').length >= 1) {
 	recordLogin.makeRequest();
+}
+
+/**
+ * TESTING
+ */
+if (marcomUserData.environmentKind === 'UAT') {
+	console.groupCollapsed('Epsilon Debugging');
+		console.info('App Environment:', marcomUserData.environmentKind);
+		console.info('Host: ', window.location.host);
+		console.info('Path: ', window.location.pathname);
+		console.info('URL: ', window.location.href);
+	console.groupEnd();
 }
