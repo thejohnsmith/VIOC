@@ -1,66 +1,170 @@
 var ContentPreviewController = (function ($) {
 	var controller = {
-		storeIds: [],
-		storeData: [],
+		apiPath: marcomUserData.$constants.apiPath,
+		userId: marcomUserData.$user.externalId,
+		programId: getParameterByName('programId', window.location.href),
+		programData: null,
+		storeIds: null,
+		storeData: null,
+		activeStoreData: null,
+		activeStoreDataConfig: null,
+		activeConfigId: 0,
+		store: {},
 		storeDropdown: $('.content-preview-store-dropdown'),
-		init: function (storeIds, store_data) {
-			var controller = this;
-			controller.storeIds = storeIds;
-			controller.storeData = store_data;
-      console.warn('storeIds:', typeof storeIds);
+		initComplete: false,
 
-			controller.attachEventHandlers();
-			controller.updateStoreDropdown(storeIds);
-		},
-		attachEventHandlers: function (callback) {
+		init: function (storeIds, storeData, program) {
 			var controller = this;
+
+			// Store the storeIds and storeData in controller variables
+			controller.storeIds = storeIds;
+			controller.storeData = storeData;
+			controller.program = program;
+
+			// Note: The Content Preview mustache template will fire .refresh() when it loads, kicking off the rendering.
+		},
+		start: function() {
+			var controller = this;
+			controller.initComplete = true;
+			controller.updateStoreDropdown(controller.storeIds);
+			controller.attachEventHandlers();
+		},
+		attachEventHandlers: function () {
+			var controller = this;
+
 			// Whenever the store dropdown changes, call refresh();
 			$('.content-preview-store-dropdown').on('change', function () {
 				controller.refresh();
 			});
-			if (typeof callback === 'function') {
-				callback();
-			}
 		},
 		/**
 		 * [updateStoreDropdown When provided a list of store IDs, this will update the store dropdown and then call refresh()]
 		 * @param  {[type]} storeIds [description]
 		 * 1)  Empty the dropdown via $(dropdown).html();
 		 * 2)  Loop through controller.store_ids
-		 * 3)  While looping through store ids, loop through controller.store_data
+		 * 3)  While looping through store ids, loop through controller.storeData
 		 * 4)  If a store data entry matches a store ID, pull out the name, build an <option> and inject it into $(dropdown)
 		 */
 		updateStoreDropdown: function (storeIds) {
 			var controller = this;
+			var storeName;
 
-			// Empty the dropdown
-			console.warn('storeIds: ', storeIds);
-			$('.content-preview-store-dropdown').html();
-			// Testing only.
-			for (var i = 0; i < storeIds.length; i++) {
-				// console.warn('storeIds: ', storeIds);
-				// console.warn('store_data: ', controller.store_data);
+			if (!controller.initComplete)
+			{
+				return 0;
 			}
 
+			// Empty the Store dropdown
+			$('.content-preview-store-dropdown').html('');
+
 			// Loop through controller.store_ids
-			// for (var i = 0; i < storeIds.length; i++) {
-			// 	var storeId = store_ids[i];
-			// 	for (var j = 0; j < controller.store_data.length; j++) {
-			// 		var storeData = controller.store_data[idx];
-			//     if (storeId == storeData){
-			//       // If a store data entry matches a store ID, pull out the name, build an <option> and inject it into $(dropdown)
-			//     }
-			// 	}
-			// }
+			// If a store data entry matches a store ID, pull out the name, build an <option> and inject it into $(dropdown)
+			var dropdownOptions = {};
+
+			// Build a list of stores to display
+			for (var i = 0; i < controller.storeIds.length; i++) {
+				var storeId = controller.storeIds[i];
+				for (var j = 0; j < controller.storeData.length; j++) {
+					var storeData = controller.storeData[j];
+					if (storeId == storeData.storeId) {
+						// Get Store Name
+						storeName = storeData.storeName;
+						dropdownOptions[storeName] = storeData.storeId;
+					}
+				}
+			}
+
+			// Order the list
+			var orderedDropdownOptions = {};
+
+			Object.keys(dropdownOptions).sort().forEach(function(key) {
+			  orderedDropdownOptions[key] = dropdownOptions[key];
+			});
+
+			// Fill the dropdown with items
+			for (var name in orderedDropdownOptions)
+			{
+				var option = $("<option>").attr("value", orderedDropdownOptions[name]).html(name);
+				$('.content-preview-store-dropdown').append(option);
+			}
+
+			// Testing
+			/* for (var i = 0; i < storeIds.length; i++) {
+			  console.warn('storeIds: ', storeIds);
+			  console.warn('storeData: ', controller.storeData);
+			} */
 		},
-		refresh: function () {
+		refresh: function (configId, callback) {
+
 			var controller = this;
-			console.warn('refresh');
+
+			if (!controller.initComplete)
+			{
+				return 0;
+			}
+
+			// Get the selected store
+			var activeStoreDataId = $('.content-preview-store-dropdown').find('option:selected').val();
+
+			// Look through the store data and retrieve the store's config ID
+			var configId = 0;
+
+			for (var index in controller.storeData)
+			{
+				var store = controller.storeData[index];
+
+				if (store.storeId == activeStoreDataId)
+				{
+					configId = store.programConfigId;
+					controller.activeStoreData = store;
+					controller.activeConfigId = configId;
+				}
+			}
+
+			if (configId == 0) return false;
+
+			// Load the config ID;
+			$.get(controller.apiPath + 'loadConfig.jssp?userId=' + encodeURIComponent(controller.userId) + '&configId=' + configId, function (results) {
+
+				var json_results = JSON.parse(results);
+				controller.activeStoreDataConfig = json_results;
+
+				controller.updateUI();
+			});
 		},
+		/**
+		 * [updateUI Responsible for updating the UI using data available within the controller.]
+		 */
 		updateUI: function () {
 			var controller = this;
-			console.warn('updateUI');
+			console.warn('Running update UI using data:', controller.activeStoreDataConfig);
+			/*
+				updateUI should call helper functions designed to update the screen.
+				They should only have to use data found in controller.activeStoreData or controller.activeStoreDataConfig;
+			*/
+			controller.updateStoreDetails();
+			controller.updateGrid();
+			programConfigController.controller.UpdateDiscountCodes();
+			programConfigController.controller.ShowUI();
 		},
+		updateGrid: function()
+		{
+			var controller = this;
+
+			// Reuse the existing programConfigController class to fill the grid.
+
+			programConfigController.controller.program = controller.program;
+			programConfigController.controller.config = controller.activeStoreDataConfig;
+			programConfigController.controller.configLoaded = true;
+			programConfigController.controller.programId = controller.programId;
+			programConfigController.controller.configId = controller.activeConfigId;
+			programConfigController.controller.UpdateDiscountCodes();
+			programConfigController.controller.ShowUI();
+		},
+		/**
+		 * [updateStoreDetails Updates the store location, phone, hours, features, and disclaimers using controller.store]
+		 * @return {[type]} [store]
+		 */
 		updateStoreDetails: function () {
 			var controller = this;
 			console.warn('updateStoreDetails');
