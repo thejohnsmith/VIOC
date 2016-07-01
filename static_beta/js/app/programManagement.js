@@ -5,7 +5,7 @@
  * @return {object} controller
  */
 
-var programManagementController = (function ($) {
+ var programManagementController = (function ($) {
 	var controller = {
 		apiPath: marcomUserData.$constants.apiPath,
 		filePath: marcomUserData.$constants.marcomFilePath,
@@ -25,8 +25,8 @@ var programManagementController = (function ($) {
 				controller.timeDebug("Getting store program data...");
 				controller.getStoreProgramData(function (store_data) {
 					// Trigger a filter change, which will triger a UI refresh
+					ContentPreviewController.controller.init(programManagementFilters.controller.store_ids, store_data, controller.program);
 					programManagementFilters.controller.onFilterChange(programManagementFilters.controller.store_ids);
-					ContentPreviewController.controller.init(programManagementFilters.controller.store_ids, store_data);
 					controller.timeDebug("PMC Init Complete.");
 				});
 			});

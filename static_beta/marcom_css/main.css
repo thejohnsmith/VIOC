@@ -311,6 +311,7 @@ a:focus {
   margin-top: 12px
 }
 ul.navBarEnhanced a {
+  color: #555655;
   font-family: 'HelveticaNeueLT-LightCond', sans-serif;
   font-size: 16px;
   -webkit-transition: color .5s cubic-bezier(0, -2.01, .63, 3.11) 0s;
@@ -333,7 +334,10 @@ ul.navBarEnhanced a:hover {
   border: none
 }
 li.navBarItem {
-  border-right: 1px solid #666
+  border-right: 1px solid #fff
+}
+.TDTabLeft a:visited, .TDTab a:visited, a.navBarEnhancedLinkColor.customColorOverridable:visited {
+  color: #555655;
 }
 #catalogContent {
   width: 100%;
@@ -3538,16 +3542,13 @@ button.enroll-all-stores.btn.btn-primary.btn-sm {
     transform: rotate(360deg)
   }
 }
-
 .content-preview-section.programsummary-table th {
   background: #fff
 }
-
 .content-preview-section .feature {
-    width: 24%;
-    display: inline-block
+  width: 24%;
+  display: inline-block
 }
-
 .content-preview-section .feature-caption {
   font-size: 11px;
   text-align: center
