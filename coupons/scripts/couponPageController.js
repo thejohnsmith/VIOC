@@ -17,6 +17,8 @@ couponPageController = (function ($) {
             var pfid = controller.getParameterByName('pfid', window.location.href);
             var rid = controller.getParameterByName('rid', window.location.href);
             var h  = controller.getParameterByName('h', window.location.href);
+			if (h == "" || typeof h == "undefined" || h == undefined) h = "";
+
             controller.GetPageData(pfid, rid, h, function () {
 				controller.getCodes();
                 controller.buildUI();

@@ -3,63 +3,114 @@
     @type template/mustache
     @import portalCustomProgramManager.html
 -->
+
 <script class="content-preview-template" type="x-tmpl-mustache">
   <div class="participation-table">
     <section class="settings-section">
-    <div class="select-option">
-      <select class="selectbox content-preview-store-dropdown">
-        <option class="selectboxOption" selected>Select Store</option>
-        <option data-storeid="1" class="selectboxOption">Store 1</option>
-        <option data-storeid="2" class="selectboxOption">Store 2</option>
-        <option data-storeid="3" class="selectboxOption">Store 3</option>
-      </select>
-    </div>
-    <div class="company-information">
-    <div class="company-contact">
-      <div class="company-address"></div>
-      <div class="company-phone"></div>
-    </div>
-    <div class="company-hours">
-      <p class="text-center">hours of operation</p>
-      <br/>
-      hours...
-    </div>
-    <div class="features">
-      <span class="feature">
-        <img class="feature-image" src="https://placehold.it/114x61" alt="Feature Image"/>
-        <span class="feature-caption">
-          <small>
-          Lorem ipsum dolor sit amet, consectetur.
-          </small>
-        </span>
-      </span>
-      <span class="feature">
-        <img class="feature-image" src="https://placehold.it/114x61" alt="Feature Image"/>
-        <span class="feature-caption">
-          <small>
-          Lorem ipsum dolor sit amet, consectetur.
-          </small>
-        </span>
-      </span>
-      <span class="feature">
-        <img class="feature-image" src="https://placehold.it/114x61" alt="Feature Image"/>
-        <span class="feature-caption">
-          <small>
-          Lorem ipsum dolor sit amet, consectetur.
-          </small>
-        </span>
-      </span>
-      <span class="feature">
-        <img class="feature-image" src="https://placehold.it/114x61" alt="Feature Image"/>
-        <span class="feature-caption">
-          <small>
-          Lorem ipsum dolor sit amet, consectetur.
-          </small>
-        </span>
-      </span>
-    </div>
+      <div class="select-option">
+        <select class="selectbox content-preview-store-dropdown">
+          <option class="selectboxOption" selected>Select Store</option>
+          <option data-storeid="1" class="selectboxOption">Store 1</option>
+          <option data-storeid="2" class="selectboxOption">Store 2</option>
+          <option data-storeid="3" class="selectboxOption">Store 3</option>
+        </select>
+      </div>
+      <div class="company-information">
+        <div class="company-contact">
+          <div class="company-address"></div>
+          <div class="company-phone"></div>
+        </div>
+        <div class="store-hours">
+          <table class="a-center" cellpadding="0" cellspacing="0" border="0" width="100%">
+            <tr class="store-hours-heading">
+              <th colspan="7">Hours of Operation</th>
+              <th class="none">phone</th>
+            </tr>
+            <tr>
+              <td class="monday" width="48">
+                <b class="store-day">Mon</b>
+                <span class="open-hours">
+                  <span class="store-open"></span>
+                  <br>
+                  <span class="store-close"></span>
+                </span>
+                <span class="store-closed none">
+                  <strong>Closed</strong><br>
+                </span>
+              </td>
+              <td class="tuesday" width="48">
+                <b class="store-day">Tues</b>
+                <span class="open-hours">
+                  <span class="store-open"></span>
+                  <br>
+                  <span class="store-close"></span>
+                </span>
+                <span class="store-closed none">
+                  <strong>Closed</strong><br>
+                </span>
+              </td>
+              <td class="wednesday" width="48">
+                <b class="store-day">Wed</b>
+                <span class="open-hours">
+                  <span class="store-open"></span>
+                  <br>
+                  <span class="store-close"></span>
+                </span>
+                <span class="store-closed none">
+                  <strong>Closed</strong><br>
+                </span>
+              </td>
+              <td class="thursday" width="48">
 
-    </div>
+                <b class="store-day">Thurs</b>
+                <span class="open-hours">
+                  <span class="store-open"></span>
+                  <br>
+                  <span class="store-close"></span>
+                </span>
+                <span class="store-closed none">
+                  <strong>Closed</strong><br>
+                </span>
+              </td>
+              <td class="friday" width="48">
+                <b class="store-day">Fri</b>
+                <span class="open-hours">
+                  <span class="store-open"></span>
+                  <br>
+                  <span class="store-close"></span>
+                </span>
+                <span class="store-closed none">
+                  <strong>Closed</strong><br>
+                </span>
+              </td>
+              <td class="saturday" width="48">
+                <b class="store-day">Sat</b>
+                <span class="open-hours">
+                  <span class="store-open"></span>
+                  <br>
+                  <span class="store-close"></span>
+                </span>
+                <span class="store-closed none">
+                  <strong>Closed</strong><br>
+                </span>
+              </td>
+              <td class="sunday" width="48">
+                <b class="store-day">Sun</b>
+                <span class="open-hours">
+                  <span class="store-open"></span>
+                  <br>
+                  <span class="store-close"></span>
+                </span>
+                <span class="store-closed none">
+                  <strong>Closed</strong><br>
+                </span>
+              </td>
+            </tr>
+          </table>
+        </div>
+        <div class="features text-center"></div>
+        <div class="store-disclaimer"></div>
+      </div>
     </section>
     <section class="results-section post-submit">
       <div id="parentHorizontalTab1" class="lifescycle-tab">
@@ -78,583 +129,486 @@
                   <div>Email</div>
                   <img class="touchpoint-1 email preview-img" src="https://files.marcomcentral.app.pti.com/epsilon/thumbnails/VIOC_PostVisit_EM_161x95.jpg" alt="Preview">
                   <div class="touchpoint-1 email timing touchpoint-head-container">
-                    <strong>Timing: </strong>
+                    <strong>Timing:
+                    </strong>
                     <span class="touchpoint-1 email timing"></span>
                   </div>
                   <div class="touchpoint-1 email preview touchpoint-head-container">
-                    <strong>Choices: </strong><a class="touchpoint-1 email preview" href="https://files.marcomcentral.app.pti.com/epsilon/pdfs/VIOC_PostVisit_EM.pdf" target="_blank">Click here</a></div>
+                    <strong>Choices:
+                    </strong>
+                    <a class="touchpoint-1 email preview" href="https://files.marcomcentral.app.pti.com/epsilon/pdfs/VIOC_PostVisit_EM.pdf" target="_blank">Click here</a>
+                  </div>
                 </th>
                 <th class="dm">
                   <div>Direct Mail</div>
                   <img class="touchpoint-1 dm preview-img" src="https://files.marcomcentral.app.pti.com/epsilon/thumbnails/VIOC_PostVisit_EM_161x95.jpg" alt="Preview">
                   <div class="touchpoint-1 dm timing touchpoint-head-container">
-                    <strong>Timing: </strong>
+                    <strong>Timing:
+                    </strong>
                     <span class="touchpoint-1 dm timing"></span>
                   </div>
                   <div class="touchpoint-1 dm preview touchpoint-head-container">
-                    <strong>Choices: </strong><a class="touchpoint-1 dm preview" href="https://files.marcomcentral.app.pti.com/epsilon/pdfs/VIOC_PostVisit_EM.pdf" target="_blank">Click here</a></div>
+                    <strong>Choices:
+                    </strong>
+                    <a class="touchpoint-1 dm preview" href="https://files.marcomcentral.app.pti.com/epsilon/pdfs/VIOC_PostVisit_EM.pdf" target="_blank">Click here</a>
+                  </div>
                 </th>
                 <th class="sms">
                   <div>SMS</div>
                   <img class="touchpoint-1 sms preview-img" src="https://files.marcomcentral.app.pti.com/epsilon/thumbnails/VIOC_PostVisit_EM_161x95.jpg" alt="Preview">
                   <div class="touchpoint-1 sms timing touchpoint-head-container">
-                    <strong>Timing: </strong>
+                    <strong>Timing:
+                    </strong>
                     <span class="touchpoint-1 sms timing"></span>
                   </div>
                   <div class="touchpoint-1 sms preview touchpoint-head-container">
-                    <strong>Choices: </strong><a class="touchpoint-1 sms preview" href="https://files.marcomcentral.app.pti.com/epsilon/pdfs/VIOC_PostVisit_EM.pdf" target="_blank">Click here</a></div>
+                    <strong>Choices:
+                    </strong>
+                    <a class="touchpoint-1 sms preview" href="https://files.marcomcentral.app.pti.com/epsilon/pdfs/VIOC_PostVisit_EM.pdf" target="_blank">Click here</a>
+                  </div>
                 </th>
               </tr>
               <tr class="standard-risk offer-1">
                 <td class="result-label">Offer 1 - Standard</td>
                 <td class="email result-value">
-                  <div>
-
-                  </div>
+                  <div></div>
                 </td>
                 <td class="dm result-value">
-                  <div>
-
-                  </div>
+                  <div></div>
                 </td>
                 <td class="sms result-value">
-                  <div>
-
-                  </div>
+                  <div></div>
                 </td>
               </tr>
               <tr class="high-risk offer-1">
                 <td class="result-label">Offer 1 - High Risk</td>
                 <td class="email result-value">
-                  <div>
-
-                  </div>
+                  <div></div>
                 </td>
                 <td class="dm result-value">
-                  <div>
-
-                  </div>
+                  <div></div>
                 </td>
                 <td class="sms result-value">
-                  <div>
-
-                  </div>
+                  <div></div>
                 </td>
               </tr>
               <tr class="standard-risk offer-2">
                 <td class="result-label">Offer 2 - Standard</td>
                 <td class="email result-value">
-                  <div>
-
-                  </div>
+                  <div></div>
                 </td>
                 <td class="dm result-value">
-                  <div>
-
-                  </div>
+                  <div></div>
                 </td>
                 <td class="sms result-value">
-                  <div>
-
-                  </div>
+                  <div></div>
                 </td>
               </tr>
               <tr class="high-risk offer-2">
                 <td class="result-label">Offer 2 - High Risk</td>
                 <td class="email result-value">
-                  <div>
-
-                  </div>
+                  <div></div>
                 </td>
                 <td class="dm result-value">
-                  <div>
-
-                  </div>
+                  <div></div>
                 </td>
                 <td class="sms result-value">
-                  <div>
-
-                  </div>
+                  <div></div>
                 </td>
               </tr>
               <tr class="additional-offer standard-risk transmission">
                 <td class="result-label">Transmission</td>
                 <td class="email result-value">
-                  <div>
-
-                  </div>
+                  <div></div>
                 </td>
                 <td class="dm result-value">
-                  <div>
-
-                  </div>
+                  <div></div>
                 </td>
                 <td class="sms result-value">
-                  <div>
-
-                  </div>
+                  <div></div>
                 </td>
               </tr>
 
               <tr class="additional-offer standard-risk gearbox">
                 <td class="result-label">Gearbox</td>
                 <td class="email result-value">
-                  <div>
-
-                  </div>
+                  <div></div>
                 </td>
                 <td class="dm result-value">
-                  <div>
-
-                  </div>
+                  <div></div>
                 </td>
                 <td class="sms result-value">
-                  <div>
-
-                  </div>
+                  <div></div>
                 </td>
               </tr>
 
               <tr class="additional-offer standard-risk fuelsystem">
                 <td class="result-label">Fuel System</td>
                 <td class="email result-value">
-                  <div>
-
-                  </div>
+                  <div></div>
                 </td>
                 <td class="dm result-value">
-                  <div>
-
-                  </div>
+                  <div></div>
                 </td>
                 <td class="sms result-value">
-                  <div>
-
-                  </div>
+                  <div></div>
                 </td>
               </tr>
 
               <tr class="additional-offer standard-risk radiator">
                 <td class="result-label">Radiator</td>
                 <td class="email result-value">
-                  <div>
-
-                  </div>
+                  <div></div>
                 </td>
                 <td class="dm result-value">
-                  <div>
-
-                  </div>
+                  <div></div>
                 </td>
                 <td class="sms result-value">
-                  <div>
-
-                  </div>
+                  <div></div>
                 </td>
               </tr>
 
-              </tr>
-            </table>
+            </tr>
+          </table>
 
-          </div>
-          <div class="touchpoint-2 result-preview">
+        </div>
+        <div class="touchpoint-2 result-preview">
 
-            <table class="touchpoint-2 results-table" width="100%" border="0">
-              <tr>
-                <th class="text-hidden results-table-hidden-cell" aria-hidden="true"></th>
-                <th class="email">
-                  <div>Email</div>
-                  <img class="touchpoint-2 email preview-img" src="https://files.marcomcentral.app.pti.com/epsilon/thumbnails/VIOC_PostVisit_EM_161x95.jpg" alt="Preview">
-                  <div class="touchpoint-2 email timing touchpoint-head-container">
-                    <strong>Timing: </strong>
-                    <span class="touchpoint-2 email timing"></span>
-                  </div>
-                  <div class="touchpoint-2 email preview touchpoint-head-container">
-                    <strong>Choices: </strong><a class="touchpoint-2 email preview" href="https://files.marcomcentral.app.pti.com/epsilon/pdfs/VIOC_PostVisit_EM.pdf" target="_blank">Click here</a></div>
-                </th>
-                <th class="dm">
-                  <div>Direct Mail</div>
-                  <img class="touchpoint-2 dm preview-img" src="https://files.marcomcentral.app.pti.com/epsilon/thumbnails/VIOC_PostVisit_EM_161x95.jpg" alt="Preview">
-                  <div class="touchpoint-2 dm timing touchpoint-head-container">
-                    <strong>Timing: </strong>
-                    <span class="touchpoint-2 dm timing"></span>
-                  </div>
-                  <div class="touchpoint-2 dm preview touchpoint-head-container">
-                    <strong>Choices: </strong><a class="touchpoint-2 dm preview" href="https://files.marcomcentral.app.pti.com/epsilon/pdfs/VIOC_PostVisit_EM.pdf" target="_blank">Click here</a></div>
-                </th>
-                <th class="sms">
-                  <div>SMS</div>
-                  <img class="touchpoint-2 sms preview-img" src="https://files.marcomcentral.app.pti.com/epsilon/thumbnails/VIOC_PostVisit_EM_161x95.jpg" alt="Preview">
-                  <div class="touchpoint-2 sms timing touchpoint-head-container">
-                    <strong>Timing: </strong>
-                    <span class="touchpoint-2 sms timing"></span>
-                  </div>
-                  <div class="touchpoint-2 sms preview touchpoint-head-container">
-                    <strong>Choices: </strong><a class="touchpoint-2 sms preview" href="https://files.marcomcentral.app.pti.com/epsilon/pdfs/VIOC_PostVisit_EM.pdf" target="_blank">Click here</a></div>
-                </th>
-              </tr>
-              <tr class="standard-risk offer-1">
-                <td class="result-label">Offer 1 - Standard</td>
-                <td class="email result-value">
-                  <div>
+          <table class="touchpoint-2 results-table" width="100%" border="0">
+            <tr>
+              <th class="text-hidden results-table-hidden-cell" aria-hidden="true"></th>
+              <th class="email">
+                <div>Email</div>
+                <img class="touchpoint-2 email preview-img" src="https://files.marcomcentral.app.pti.com/epsilon/thumbnails/VIOC_PostVisit_EM_161x95.jpg" alt="Preview">
+                <div class="touchpoint-2 email timing touchpoint-head-container">
+                  <strong>Timing:
+                  </strong>
+                  <span class="touchpoint-2 email timing"></span>
+                </div>
+                <div class="touchpoint-2 email preview touchpoint-head-container">
+                  <strong>Choices:
+                  </strong>
+                  <a class="touchpoint-2 email preview" href="https://files.marcomcentral.app.pti.com/epsilon/pdfs/VIOC_PostVisit_EM.pdf" target="_blank">Click here</a>
+                </div>
+              </th>
+              <th class="dm">
+                <div>Direct Mail</div>
+                <img class="touchpoint-2 dm preview-img" src="https://files.marcomcentral.app.pti.com/epsilon/thumbnails/VIOC_PostVisit_EM_161x95.jpg" alt="Preview">
+                <div class="touchpoint-2 dm timing touchpoint-head-container">
+                  <strong>Timing:
+                  </strong>
+                  <span class="touchpoint-2 dm timing"></span>
+                </div>
+                <div class="touchpoint-2 dm preview touchpoint-head-container">
+                  <strong>Choices:
+                  </strong>
+                  <a class="touchpoint-2 dm preview" href="https://files.marcomcentral.app.pti.com/epsilon/pdfs/VIOC_PostVisit_EM.pdf" target="_blank">Click here</a>
+                </div>
+              </th>
+              <th class="sms">
+                <div>SMS</div>
+                <img class="touchpoint-2 sms preview-img" src="https://files.marcomcentral.app.pti.com/epsilon/thumbnails/VIOC_PostVisit_EM_161x95.jpg" alt="Preview">
+                <div class="touchpoint-2 sms timing touchpoint-head-container">
+                  <strong>Timing:
+                  </strong>
+                  <span class="touchpoint-2 sms timing"></span>
+                </div>
+                <div class="touchpoint-2 sms preview touchpoint-head-container">
+                  <strong>Choices:
+                  </strong>
+                  <a class="touchpoint-2 sms preview" href="https://files.marcomcentral.app.pti.com/epsilon/pdfs/VIOC_PostVisit_EM.pdf" target="_blank">Click here</a>
+                </div>
+              </th>
+            </tr>
+            <tr class="standard-risk offer-1">
+              <td class="result-label">Offer 1 - Standard</td>
+              <td class="email result-value">
+                <div></div>
+              </td>
+              <td class="dm result-value">
+                <div></div>
+              </td>
+              <td class="sms result-value">
+                <div></div>
+              </td>
+            </tr>
+            <tr class="high-risk offer-1">
+              <td class="result-label">Offer 1 - High Risk</td>
+              <td class="email result-value">
+                <div></div>
+              </td>
+              <td class="dm result-value">
+                <div></div>
+              </td>
+              <td class="sms result-value">
+                <div></div>
+              </td>
+            </tr>
+            <tr class="standard-risk offer-2">
+              <td class="result-label">Offer 2 - Standard</td>
+              <td class="email result-value">
+                <div></div>
+              </td>
+              <td class="dm result-value">
+                <div></div>
+              </td>
+              <td class="sms result-value">
+                <div></div>
+              </td>
+            </tr>
+            <tr class="high-risk offer-2">
+              <td class="result-label">Offer 2 - High Risk</td>
+              <td class="email result-value">
+                <div></div>
+              </td>
+              <td class="dm result-value">
+                <div></div>
+              </td>
+              <td class="sms result-value">
+                <div></div>
+              </td>
+            </tr>
+            <tr class="additional-offer standard-risk transmission">
+              <td class="result-label">Transmission</td>
+              <td class="email result-value">
+                <div></div>
+              </td>
+              <td class="dm result-value">
+                <div></div>
+              </td>
+              <td class="sms result-value">
+                <div></div>
+              </td>
+            </tr>
 
-                  </div>
-                </td>
-                <td class="dm result-value">
-                  <div>
+            <tr class="additional-offer standard-risk gearbox">
+              <td class="result-label">Gearbox</td>
+              <td class="email result-value">
+                <div></div>
+              </td>
+              <td class="dm result-value">
+                <div></div>
+              </td>
+              <td class="sms result-value">
+                <div></div>
+              </td>
+            </tr>
 
-                  </div>
-                </td>
-                <td class="sms result-value">
-                  <div>
+            <tr class="additional-offer standard-risk fuelsystem">
+              <td class="result-label">Fuel System</td>
+              <td class="email result-value">
+                <div></div>
+              </td>
+              <td class="dm result-value">
+                <div></div>
+              </td>
+              <td class="sms result-value">
+                <div></div>
+              </td>
+            </tr>
 
-                  </div>
-                </td>
-              </tr>
-              <tr class="high-risk offer-1">
-                <td class="result-label">Offer 1 - High Risk</td>
-                <td class="email result-value">
-                  <div>
+            <tr class="additional-offer standard-risk radiator">
+              <td class="result-label">Radiator</td>
+              <td class="email result-value">
+                <div></div>
+              </td>
+              <td class="dm result-value">
+                <div></div>
+              </td>
+              <td class="sms result-value">
+                <div></div>
+              </td>
+            </tr>
 
-                  </div>
-                </td>
-                <td class="dm result-value">
-                  <div>
+          </table>
 
-                  </div>
-                </td>
-                <td class="sms result-value">
-                  <div>
+        </div>
+        <div class="touchpoint-3 result-preview">
 
-                  </div>
-                </td>
-              </tr>
-              <tr class="standard-risk offer-2">
-                <td class="result-label">Offer 2 - Standard</td>
-                <td class="email result-value">
-                  <div>
+          <table class="touchpoint-3 results-table" width="100%" border="0">
+            <tr>
+              <th class="text-hidden results-table-hidden-cell" aria-hidden="true"></th>
+              <th class="email">
+                <div>Email</div>
+                <img class="touchpoint-3 email preview-img" src="https://files.marcomcentral.app.pti.com/epsilon/thumbnails/VIOC_PostVisit_EM_161x95.jpg" alt="Preview">
+                <div class="touchpoint-3 email timing touchpoint-head-container">
+                  <strong>Timing:
+                  </strong>
+                  <span class="touchpoint-3 email timing"></span>
+                </div>
+                <div class="touchpoint-3 email preview touchpoint-head-container">
+                  <strong>Choices:
+                  </strong>
+                  <a class="touchpoint-3 email preview" href="https://files.marcomcentral.app.pti.com/epsilon/pdfs/VIOC_PostVisit_EM.pdf" target="_blank">Click here</a>
+                </div>
+              </th>
+              <th class="dm">
+                <div>Direct Mail</div>
+                <img class="touchpoint-3 dm preview-img" src="https://files.marcomcentral.app.pti.com/epsilon/thumbnails/VIOC_PostVisit_EM_161x95.jpg" alt="Preview">
+                <div class="touchpoint-3 dm timing touchpoint-head-container">
+                  <strong>Timing:
+                  </strong>
+                  <span class="touchpoint-3 dm timing"></span>
+                </div>
+                <div class="touchpoint-3 dm preview touchpoint-head-container">
+                  <strong>Choices:
+                  </strong>
+                  <a class="touchpoint-3 dm preview" href="https://files.marcomcentral.app.pti.com/epsilon/pdfs/VIOC_PostVisit_EM.pdf" target="_blank">Click here</a>
+                </div>
+              </th>
+              <th class="sms">
+                <div>SMS</div>
+                <img class="touchpoint-3 sms preview-img" src="https://files.marcomcentral.app.pti.com/epsilon/thumbnails/VIOC_PostVisit_EM_161x95.jpg" alt="Preview">
+                <div class="touchpoint-3 sms timing touchpoint-head-container">
+                  <strong>Timing:
+                  </strong>
+                  <span class="touchpoint-3 sms timing"></span>
+                </div>
+                <div class="touchpoint-3 sms preview touchpoint-head-container">
+                  <strong>Choices:
+                  </strong>
+                  <a class="touchpoint-3 sms preview" href="https://files.marcomcentral.app.pti.com/epsilon/pdfs/VIOC_PostVisit_EM.pdf" target="_blank">Click here</a>
+                </div>
+              </th>
+            </tr>
+            <tr class="standard-risk offer-1">
+              <td class="result-label">Offer 1 - Standard</td>
+              <td class="email result-value">
+                <div></div>
+              </td>
+              <td class="dm result-value">
+                <div></div>
+              </td>
+              <td class="sms result-value">
+                <div></div>
+              </td>
+            </tr>
+            <tr class="high-risk offer-1">
+              <td class="result-label">Offer 1 - High Risk</td>
+              <td class="email result-value">
+                <div></div>
+              </td>
+              <td class="dm result-value">
+                <div></div>
+              </td>
+              <td class="sms result-value">
+                <div></div>
+              </td>
+            </tr>
+            <tr class="standard-risk offer-2">
+              <td class="result-label">Offer 2 - Standard</td>
+              <td class="email result-value">
+                <div></div>
+              </td>
+              <td class="dm result-value">
+                <div></div>
+              </td>
+              <td class="sms result-value">
+                <div></div>
+              </td>
+            </tr>
+            <tr class="high-risk offer-2">
+              <td class="result-label">Offer 2 - High Risk</td>
+              <td class="email result-value">
+                <div></div>
+              </td>
+              <td class="dm result-value">
+                <div></div>
+              </td>
+              <td class="sms result-value">
+                <div></div>
+              </td>
+            </tr>
+            <tr class="additional-offer standard-risk transmission">
+              <td class="result-label">Transmission</td>
+              <td class="email result-value">
+                <div></div>
+              </td>
+              <td class="dm result-value">
+                <div></div>
+              </td>
+              <td class="sms result-value">
+                <div></div>
+              </td>
+            </tr>
 
-                  </div>
-                </td>
-                <td class="dm result-value">
-                  <div>
+            <tr class="additional-offer standard-risk gearbox">
+              <td class="result-label">Gearbox</td>
+              <td class="email result-value">
+                <div></div>
+              </td>
+              <td class="dm result-value">
+                <div></div>
+              </td>
+              <td class="sms result-value">
+                <div></div>
+              </td>
+            </tr>
 
-                  </div>
-                </td>
-                <td class="sms result-value">
-                  <div>
+            <tr class="additional-offer standard-risk fuelsystem">
+              <td class="result-label">Fuel System</td>
+              <td class="email result-value">
+                <div></div>
+              </td>
+              <td class="dm result-value">
+                <div></div>
+              </td>
+              <td class="sms result-value">
+                <div></div>
+              </td>
+            </tr>
 
-                  </div>
-                </td>
-              </tr>
-              <tr class="high-risk offer-2">
-                <td class="result-label">Offer 2 - High Risk</td>
-                <td class="email result-value">
-                  <div>
+            <tr class="additional-offer standard-risk radiator">
+              <td class="result-label">Radiator</td>
+              <td class="email result-value">
+                <div></div>
+              </td>
+              <td class="dm result-value">
+                <div></div>
+              </td>
+              <td class="sms result-value">
+                <div></div>
+              </td>
+            </tr>
 
-                  </div>
-                </td>
-                <td class="dm result-value">
-                  <div>
+          </table>
 
-                  </div>
-                </td>
-                <td class="sms result-value">
-                  <div>
-
-                  </div>
-                </td>
-              </tr>
-              <tr class="additional-offer standard-risk transmission">
-                <td class="result-label">Transmission</td>
-                <td class="email result-value">
-                  <div>
-
-                  </div>
-                </td>
-                <td class="dm result-value">
-                  <div>
-
-                  </div>
-                </td>
-                <td class="sms result-value">
-                  <div>
-
-                  </div>
-                </td>
-              </tr>
-
-              <tr class="additional-offer standard-risk gearbox">
-                <td class="result-label">Gearbox</td>
-                <td class="email result-value">
-                  <div>
-
-                  </div>
-                </td>
-                <td class="dm result-value">
-                  <div>
-
-                  </div>
-                </td>
-                <td class="sms result-value">
-                  <div>
-
-                  </div>
-                </td>
-              </tr>
-
-              <tr class="additional-offer standard-risk fuelsystem">
-                <td class="result-label">Fuel System</td>
-                <td class="email result-value">
-                  <div>
-
-                  </div>
-                </td>
-                <td class="dm result-value">
-                  <div>
-
-                  </div>
-                </td>
-                <td class="sms result-value">
-                  <div>
-
-                  </div>
-                </td>
-              </tr>
-
-              <tr class="additional-offer standard-risk radiator">
-                <td class="result-label">Radiator</td>
-                <td class="email result-value">
-                  <div>
-
-                  </div>
-                </td>
-                <td class="dm result-value">
-                  <div>
-
-                  </div>
-                </td>
-                <td class="sms result-value">
-                  <div>
-
-                  </div>
-                </td>
-              </tr>
-
-            </table>
-
-          </div>
-          <div class="touchpoint-3 result-preview">
-
-            <table class="touchpoint-3 results-table" width="100%" border="0">
-              <tr>
-                <th class="text-hidden results-table-hidden-cell" aria-hidden="true"></th>
-                <th class="email">
-                  <div>Email</div>
-                  <img class="touchpoint-3 email preview-img" src="https://files.marcomcentral.app.pti.com/epsilon/thumbnails/VIOC_PostVisit_EM_161x95.jpg" alt="Preview">
-                  <div class="touchpoint-3 email timing touchpoint-head-container">
-                    <strong>Timing: </strong>
-                    <span class="touchpoint-3 email timing"></span>
-                  </div>
-                  <div class="touchpoint-3 email preview touchpoint-head-container">
-                    <strong>Choices: </strong><a class="touchpoint-3 email preview" href="https://files.marcomcentral.app.pti.com/epsilon/pdfs/VIOC_PostVisit_EM.pdf" target="_blank">Click here</a></div>
-                </th>
-                <th class="dm">
-                  <div>Direct Mail</div>
-                  <img class="touchpoint-3 dm preview-img" src="https://files.marcomcentral.app.pti.com/epsilon/thumbnails/VIOC_PostVisit_EM_161x95.jpg" alt="Preview">
-                  <div class="touchpoint-3 dm timing touchpoint-head-container">
-                    <strong>Timing: </strong>
-                    <span class="touchpoint-3 dm timing"></span>
-                  </div>
-                  <div class="touchpoint-3 dm preview touchpoint-head-container">
-                    <strong>Choices: </strong><a class="touchpoint-3 dm preview" href="https://files.marcomcentral.app.pti.com/epsilon/pdfs/VIOC_PostVisit_EM.pdf" target="_blank">Click here</a></div>
-                </th>
-                <th class="sms">
-                  <div>SMS</div>
-                  <img class="touchpoint-3 sms preview-img" src="https://files.marcomcentral.app.pti.com/epsilon/thumbnails/VIOC_PostVisit_EM_161x95.jpg" alt="Preview">
-                  <div class="touchpoint-3 sms timing touchpoint-head-container">
-                    <strong>Timing: </strong>
-                    <span class="touchpoint-3 sms timing"></span>
-                  </div>
-                  <div class="touchpoint-3 sms preview touchpoint-head-container">
-                    <strong>Choices: </strong><a class="touchpoint-3 sms preview" href="https://files.marcomcentral.app.pti.com/epsilon/pdfs/VIOC_PostVisit_EM.pdf" target="_blank">Click here</a></div>
-                </th>
-              </tr>
-              <tr class="standard-risk offer-1">
-                <td class="result-label">Offer 1 - Standard</td>
-                <td class="email result-value">
-                  <div>
-
-                  </div>
-                </td>
-                <td class="dm result-value">
-                  <div>
-
-                  </div>
-                </td>
-                <td class="sms result-value">
-                  <div>
-
-                  </div>
-                </td>
-              </tr>
-              <tr class="high-risk offer-1">
-                <td class="result-label">Offer 1 - High Risk</td>
-                <td class="email result-value">
-                  <div>
-
-                  </div>
-                </td>
-                <td class="dm result-value">
-                  <div>
-
-                  </div>
-                </td>
-                <td class="sms result-value">
-                  <div>
-
-                  </div>
-                </td>
-              </tr>
-              <tr class="standard-risk offer-2">
-                <td class="result-label">Offer 2 - Standard</td>
-                <td class="email result-value">
-                  <div>
-
-                  </div>
-                </td>
-                <td class="dm result-value">
-                  <div>
-
-                  </div>
-                </td>
-                <td class="sms result-value">
-                  <div>
-
-                  </div>
-                </td>
-              </tr>
-              <tr class="high-risk offer-2">
-                <td class="result-label">Offer 2 - High Risk</td>
-                <td class="email result-value">
-                  <div>
-
-                  </div>
-                </td>
-                <td class="dm result-value">
-                  <div>
-
-                  </div>
-                </td>
-                <td class="sms result-value">
-                  <div>
-
-                  </div>
-                </td>
-              </tr>
-              <tr class="additional-offer standard-risk transmission">
-                <td class="result-label">Transmission</td>
-                <td class="email result-value">
-                  <div>
-                  </div>
-                </td>
-                <td class="dm result-value">
-                  <div>
-                  </div>
-                </td>
-                <td class="sms result-value">
-                  <div>
-                  </div>
-                </td>
-              </tr>
-
-              <tr class="additional-offer standard-risk gearbox">
-                <td class="result-label">Gearbox</td>
-                <td class="email result-value">
-                  <div>
-                  </div>
-                </td>
-                <td class="dm result-value">
-                  <div>
-                  </div>
-                </td>
-                <td class="sms result-value">
-                  <div>
-                  </div>
-                </td>
-              </tr>
-
-              <tr class="additional-offer standard-risk fuelsystem">
-                <td class="result-label">Fuel System</td>
-                <td class="email result-value">
-                  <div>
-                  </div>
-                </td>
-                <td class="dm result-value">
-                  <div>
-                  </div>
-                </td>
-                <td class="sms result-value">
-                  <div>
-                  </div>
-                </td>
-              </tr>
-
-              <tr class="additional-offer standard-risk radiator">
-                <td class="result-label">Radiator</td>
-                <td class="email result-value">
-                  <div>
-                  </div>
-                </td>
-                <td class="dm result-value">
-                  <div>
-                  </div>
-                </td>
-                <td class="sms result-value">
-                  <div>
-                  </div>
-                </td>
-              </tr>
-
-            </table>
-
-          </div>
         </div>
       </div>
+    </div>
 
-    </section>
+  </section>
 
-  </div>
-  <script>
+</div>
+<script>
   (function (setEasyResponsiveTabs) {
 
-  	// The global jQuery object is passed as a parameter
-  	setEasyResponsiveTabs(window.jQuery, window, document);
+    // The global jQuery object is passed as a parameter
+    setEasyResponsiveTabs(window.jQuery, window, document);
   }(function ($, window, document) {
-  	// The $ is now locally scoped
+    // The $ is now locally scoped
 
-  	$(function () {
-  		// Horizontal Tab
-  		if (!$('#parentHorizontalTab1').length) {
-  			return;
-  		}
-  		$('#parentHorizontalTab1').easyResponsiveTabs({
-  			type: 'default', // Types: default, vertical, accordion
-  			width: 'auto', // auto or any width like 600px
-  			fit: true, // 100% fit in a container
-  			tabidentify: 'hor_2', // The tab groups identifier
-  			activate: function (event) { // Callback function if tab is switched
-  				var $tab = $(this);
-  				var $info = $('#nested-tabInfo');
-  				var $name = $('span', $info);
-  				$name.text($tab.text());
-  				$info.show();
-  			}
-  		});
-  	});
+    $(function () {
+      // Horizontal Tab
+      if (!$('#parentHorizontalTab1').length) {
+        return;
+      }
+      $('#parentHorizontalTab1').easyResponsiveTabs({
+        type: 'default', // Types: default, vertical, accordion
+        width: 'auto', // auto or any width like 600px
+        fit: true, // 100% fit in a container
+        tabidentify: 'hor_2', // The tab groups identifier
+        activate: function (event) { // Callback function if tab is switched
+          var $tab = $(this);
+          var $info = $('#nested-tabInfo');
+          var $name = $('span', $info);
+          $name.text($tab.text());
+          $info.show();
+        }
+      });
+    });
   }));
 
   ContentPreviewController.controller.start();
-
-  </script>
+</script>
 </script>
