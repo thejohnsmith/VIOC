@@ -3,6 +3,7 @@ var ContentPreviewController = (function ($) {
 		apiPath: marcomUserData.$constants.apiPath,
 		userId: marcomUserData.$user.externalId,
 		programId: getParameterByName('programId', window.location.href),
+		marcomFilePath: marcomUserData.$constants.marcomFilePath,
 		programData: null,
 		storeIds: null,
 		storeData: null,
@@ -23,11 +24,12 @@ var ContentPreviewController = (function ($) {
 
 			// Note: The Content Preview mustache template will fire .refresh() when it loads, kicking off the rendering.
 		},
-		start: function() {
+		start: function () {
 			var controller = this;
 			controller.initComplete = true;
-			controller.updateStoreDropdown(controller.storeIds);
+			controller.updateStoreDropdown();
 			controller.attachEventHandlers();
+			controller.refresh();
 		},
 		attachEventHandlers: function () {
 			var controller = this;
@@ -45,12 +47,11 @@ var ContentPreviewController = (function ($) {
 		 * 3)  While looping through store ids, loop through controller.storeData
 		 * 4)  If a store data entry matches a store ID, pull out the name, build an <option> and inject it into $(dropdown)
 		 */
-		updateStoreDropdown: function (storeIds) {
+		updateStoreDropdown: function () {
 			var controller = this;
 			var storeName;
 
-			if (!controller.initComplete)
-			{
+			if (!controller.initComplete) {
 				return 0;
 			}
 
@@ -77,13 +78,12 @@ var ContentPreviewController = (function ($) {
 			// Order the list
 			var orderedDropdownOptions = {};
 
-			Object.keys(dropdownOptions).sort().forEach(function(key) {
-			  orderedDropdownOptions[key] = dropdownOptions[key];
+			Object.keys(dropdownOptions).sort().forEach(function (key) {
+				orderedDropdownOptions[key] = dropdownOptions[key];
 			});
 
 			// Fill the dropdown with items
-			for (var name in orderedDropdownOptions)
-			{
+			for (var name in orderedDropdownOptions) {
 				var option = $("<option>").attr("value", orderedDropdownOptions[name]).html(name);
 				$('.content-preview-store-dropdown').append(option);
 			}
@@ -98,8 +98,7 @@ var ContentPreviewController = (function ($) {
 
 			var controller = this;
 
-			if (!controller.initComplete)
-			{
+			if (!controller.initComplete) {
 				return 0;
 			}
 
@@ -109,12 +108,10 @@ var ContentPreviewController = (function ($) {
 			// Look through the store data and retrieve the store's config ID
 			var configId = 0;
 
-			for (var index in controller.storeData)
-			{
+			for (var index in controller.storeData) {
 				var store = controller.storeData[index];
 
-				if (store.storeId == activeStoreDataId)
-				{
+				if (store.storeId == activeStoreDataId) {
 					configId = store.programConfigId;
 					controller.activeStoreData = store;
 					controller.activeConfigId = configId;
@@ -147,8 +144,7 @@ var ContentPreviewController = (function ($) {
 			programConfigController.controller.UpdateDiscountCodes();
 			programConfigController.controller.ShowUI();
 		},
-		updateGrid: function()
-		{
+		updateGrid: function () {
 			var controller = this;
 
 			// Reuse the existing programConfigController class to fill the grid.
@@ -167,7 +163,47 @@ var ContentPreviewController = (function ($) {
 		 */
 		updateStoreDetails: function () {
 			var controller = this;
-			console.warn('updateStoreDetails');
+			var store = controller.activeStoreData;
+			console.info('updateStoreDetails was called.');
+
+			// Update address and phone data
+
+			$(".company-address").html(store.storeAddressFull);
+			$(".company-phone").html(store.storePhone);
+
+			// Update hour data
+			$.each(store.storeHours, function(i,e) {
+				var day = i.toLowerCase();
+				$("." + day + " .store-open").html(e.open);
+				$("." + day + " .store-close").html(e.close);
+
+				if (!e.closed)
+				{
+					$("."+day+" .open-hours").addClass("none");
+					$("."+day+" .store-closed").removeClass("none");
+				}
+			});
+
+
+			// Update store features
+			$(".features").html('');
+
+			$.each(store.storeFeatures, function(i,e) {
+
+				var sample_feature = '<span class="feature">' +
+					'<img class="feature-image" src="' + e.image + '" alt="Feature Image">' +
+					'<span class="feature-caption">' +
+					  '<small>' +  e.text + '</small>' +
+					'</span>' +
+				  '</span>';
+
+				$(".features").append(sample_feature);
+			});
+
+			// Update store disclaimer
+
+			$(".store-disclaimer").html(store.storeDisclaimer);
+
 		}
 	};
 	return {
