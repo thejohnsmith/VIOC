@@ -25,6 +25,7 @@ var programManagementController = (function ($) {
 				controller.timeDebug("Getting store program data...");
 				controller.getStoreProgramData(function (store_data) {
 					// Trigger a filter change, which will triger a UI refresh
+					// ContentPreviewController.controller.init(programManagementFilters.controller.store_ids, store_data, controller.program);
 					programManagementFilters.controller.onFilterChange(programManagementFilters.controller.store_ids);
 					controller.timeDebug("PMC Init Complete.");
 				});
@@ -69,7 +70,7 @@ var programManagementController = (function ($) {
 		},
 		highlightNavSection: function () {
 			var controller = this;
-			var target = (controller.program.isLifecycleCampaign) ? 'LIFECYCLE PROGRAMS' : 'SPECIALTY PROGRAMS';
+			var target = (controller.program.isLifecycleCampaign) ? "LIFECYCLE PROGRAMS" : "SPECIALTY PROGRAMS";
 			$("li.navBarItem a:contains('" + target + "')").addClass('navBarSelectedLinkColor').addClass('customColorOverridable').removeClass('navBarEnhancedLinkColor');
 		},
 		/** Gets a user config
@@ -136,12 +137,8 @@ var programManagementController = (function ($) {
 		},
 		hideAdditionalOffersIfNeeded: function () {
 			var controller = this;
-			for (var i = 0; i < controller.program.length; i++) {
-				if (controller.program[i].id == controller.program_id) {
-					if (controller.program[i].programUsesAdtl == 0) {
-						$('.additional-offer').hide();
-					}
-				}
+			if (controller.program.programUsesAdtl == 0) {
+				$('.additional-offer').hide();
 			}
 		},
 		highlightSelectedStoreConfiguration: function () {
@@ -155,12 +152,8 @@ var programManagementController = (function ($) {
 		},
 		hideStandardOffersIfNeeded: function () {
 			var controller = this;
-			for (var i = 0; i < controller.program.length; i++) {
-				if (controller.program[i].id == controller.program_id) {
-					if (controller.program[i].programUsesOffers == 0) {
-						$('.standard-offer').hide();
-					}
-				}
+			if (controller.program.programUsesOffers == 0) {
+				$('.standard-offer').hide();
 			}
 		},
 
@@ -679,23 +672,15 @@ var programManagementController = (function ($) {
 		},
 		showQuantityLimitTabIfNeeded: function () {
 			var controller = this;
-			for (var i = 0; i < controller.program.length; i++) {
-				if (controller.program[i].id == controller.program_id) {
-					if (controller.program[i].showQuantityLimitTab == 1) {
-						$('#programManagementTabs .optional-tab').css('visibility', 'visible');
-					}
-				}
+			if (controller.program.showQuantityLimitTab == 1) {
+				$('#programManagementTabs .optional-tab').css('visibility', 'visible');
 			}
 		},
 		hideProgramSettingsIfNeeded: function () {
 			var controller = this;
-			for (var i = 0; i < controller.program.length; i++) {
-				if (controller.program[i].id == controller.program_id) {
-					if (controller.program[i].programUsesOffers == 0 && controller.program[i].programUsesAdtl == 0) {
-						$('[aria-controls="hor_1_tab_item-1"], [aria-labelledby="hor_1_tab_item-1"]').hide();
-						window.location.hash = '#parentHorizontalTab1';
-					}
-				}
+			if (controller.program.programUsesOffers == 0 && controller.program.programUsesAdtl == 0) {
+				$('[aria-controls="hor_1_tab_item-1"], [aria-labelledby="hor_1_tab_item-1"]').hide();
+				window.location.hash = '#parentHorizontalTab1';
 			}
 		},
 		saveQuantityMeta: function (selectedStores, quantityLimit, callback) {
@@ -802,6 +787,7 @@ var programManagementController = (function ($) {
 						}
 					});
 					controller.buildUI(targetStores);
+					// console.info('controller.storeIds', store_ids);
 				});
 			});
 		},

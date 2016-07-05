@@ -1,7 +1,5 @@
 var additionalOfferController = (function ($) {
-
 	var controller = {
-
 		program: {},
 		adtl_offers: [],
 		config: {
@@ -23,9 +21,11 @@ var additionalOfferController = (function ($) {
 					if (typeof controller.configId != "undefined") {
 						controller.GetConfigData(controller.configId, function () {
 							controller.UpdateUI()
+							controller.AttachEventListeners();
 						});
 					} else {
 						controller.UpdateUI();
+						controller.AttachEventListeners();
 					}
 
 				});
@@ -97,7 +97,6 @@ var additionalOfferController = (function ($) {
 			controller.UpdateSettingName();
 			controller.UpdateDiscountInfo();
 			controller.UpdateOfferExpiration();
-			controller.AttachEventListeners();
 			controller.MinimizeUnusedCoupons();
 			controller.UpdateSaveButton();
 			controller.ShowUI();
@@ -156,7 +155,6 @@ var additionalOfferController = (function ($) {
 				 * Disable 'required' attr from .adtlText dropdown
 				 */
 				if (controller.program.isLifecycleCampaign) {
-					console.warn('setting adtlText...');
 					$('.coupon-form label:first i').hide();
 					$('.adtlText').prop('required', false);
 				}
@@ -190,7 +188,6 @@ var additionalOfferController = (function ($) {
 					$('[name=adtlText' + i + ']').closest("table").find("tr").show(); // Show me and all of my sibling rows
 				}
 			}
-
 		},
 		UpdateSaveButton: function () {
 			var controller = this;
@@ -202,11 +199,6 @@ var additionalOfferController = (function ($) {
 			// Returns all form data in an easy to POST format.
 		},
 		ValidateForm: function (callback) {
-			// TODO
-			// Added alert prompt here for now. Can be moved to single function when validation rules are created.
-			// Alert should always fire on save.
-
-			console.warn('controller.saveData: ' + controller.saveDate);
 			var new_label = ($('.settings-name').val() !== controller.config.content.label) ? $('.settings-name').val() : ('Custom ' + controller.config.content.label);
 
 			/**
@@ -224,43 +216,79 @@ var additionalOfferController = (function ($) {
 			// 	console.warn('found first dropdown = undefined');
 			// 	return false;
 			// }
-			if ($('.adtlValue:visible').val() == 'undefined' || $('.adtlValue:visible').val() == '') {
-				jAlert('Discount Amount is required.');
-				console.warn('adtlValue = undefined');
-				return false;
-			}
-			if ($('.adtlCode:visible').val() == 'undefined' || $('.adtlCode:visible').val() == '') {
-				jAlert('Additional code is required.');
-				console.warn('adtlCode1 = undefined');
-				return false;
+
+			// If the program is a lifecycle program, no text is required on coupon #1.  (Hide the red asterisk)
+			// If the program is not lifecycle program, text is required on coupon #1.
+			// If a coupon text has been set on any offer, then the child fields must be set as well.
+
+			function throwError(message)
+			{
+				jAlert(message);
+				return null;
 			}
 
-			// if ($('.adtlCode:visible').val() !== 'undefined' && $('.adtlCode:visible').val() !== '' || $('.adtlText:visible').val() == 'Not Used') {
+			var hasSpecifiedAnOffer = false;
+
+			for (var i = 1; i <= 4; i++) {
+				var txt = $('[name=adtlText' + i + ']').val();
+				var code = $('[name=adtlCode' + i + ']').val();
+				var val = $('[name=adtlValue' + i + ']').val();
+
+				if (controller.program.isLifecycleCampaign)
+				{
+					if (txt != "none")
+					{
+						if (code == "") return throwError("Please provide a valid discount code.");
+						if (val == "") return throwError("Please provide a valid discount amount.");
+
+						hasSpecifiedAnOffer = true;
+					}
+				}
+				else
+				{
+					if (txt == "none" && i == 1)
+					{
+						return throwError("Please configure Additional Offer #1");
+					}
+
+					if (txt != "none")
+					{
+						if (code == "") return throwError("Please provide a valid discount code.");
+						if (val == "") return throwError("Please provide a valid discount amount.");
+
+						hasSpecifiedAnOffer = true;
+					}
+				}
+			}
+
+			if ($('.settings-name').val() == "")
+			{
+				return throwError("Please provide a name for this setting.");
+			}
+
+			if (!hasSpecifiedAnOffer)
+			{
+				return callback();
+			}
+
 			jConfirm('Have you established this code in POS?', 'Please Confirm', function (r) {
 				if (r) {
-					console.warn('r is true');
+
 					if (controller.config.content.corpDefault == 1 && controller.config.content.editable == 'true') {
-						console.warn('Admin is editing corpDefault, editable = ' + controller.config.content.editable);
-						new_label = $('.settings-name').val();
-						console.warn('New Label = ' + new_label);
-						callback();
+						return callback();
 					}
+
 					if (controller.config.content.corpDefault == 0) {
-						callback();
-					} else if ($('.settings-name').val() == controller.config.content.label) {
+						return callback();
+					}
+					else if ($('.settings-name').val() == controller.config.content.label) {
 						jConfirm("This is a factory-defined setting and may not be changed.  Instead, the system will create a new setting named \"" + new_label + "\" which will contain your custom settings.  Proceed?", 'Create New Settings?', function (r) {
 							if (r) {
-								callback();
+								return callback();
 							}
 						});
 					} else {
-						console.warn('controller.config.content.label: ' + controller.config.content.label);
-						console.warn('new_label: ' + new_label);
-						jConfirm('You did not enter an Offer Name. The system will create a new setting named "Custom Settings". Proceed?', 'Create New Settings?', function (r) {
-							if (r) {
-								callback();
-							}
-						});
+						return callback();
 					}
 
 				}
@@ -274,10 +302,11 @@ var additionalOfferController = (function ($) {
 					saveData = {
 						userId: controller.userId,
 						configType: "adtl",
-						programId: 0,
+						programId: controller.programId,
 						label: $(".settings-name").val(),
 						_expiration: $('.expiration').val()
 					};
+
 
 					for (var i = 1; i <= 4; i++) {
 						if ($('[name=adtlText' + i + ']').val() != "none") {
@@ -296,7 +325,6 @@ var additionalOfferController = (function ($) {
 						method: "GET",
 						data: saveData,
 						success: function (results) {
-							console.log("Save was successful!");
 							window.location.href = marcomUserData.$constants.programManagementUrl + "&programId=" + controller.programId + "&flashSuccessMsg=Additional%20Offer%20Saved!#parentHorizontalTab2";
 						},
 						dataType: "json"
