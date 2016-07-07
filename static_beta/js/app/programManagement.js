@@ -451,6 +451,7 @@ var programManagementController = (function ($) {
 					toastr.success('Setting changes saved!');
 					controller.getStoreProgramData(function (store_data) {
 						controller.highlightSelectedStoreConfiguration();
+						ContentPreviewController.controller.storeData = controller.store_data;
 					});
 				});
 			});
@@ -471,6 +472,7 @@ var programManagementController = (function ($) {
 					toastr.success('Setting changes saved!');
 					controller.getStoreProgramData(function (store_data) {
 						controller.highlightSelectedStoreConfiguration();
+						ContentPreviewController.controller.storeData = controller.store_data;
 					});
 				});
 			});

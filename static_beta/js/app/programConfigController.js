@@ -177,6 +177,10 @@ var programConfigController = (function ($) {
 				$('.offer-2').hide();
 			}
 
+			if (controller.config.content.emStd1Code == "") {
+				$('.standard-risk.offer-1').hide(); // A special edge-case for using this grid on the Content Preview tab.
+			}
+
 			var firstActiveTab = null;
 
 			for (var i = 1; i <= 3; i++) {
