@@ -10,6 +10,7 @@ var ContentPreviewController = (function ($) {
 		activeStoreData: null,
 		activeStoreDataConfig: null,
 		activeStoreDataAdtlConfig: null,
+		activeStoreMeta: null,
 		activeConfigId: 0,
 		store: {},
 		storeDropdown: $('.content-preview-store-dropdown'),
@@ -137,8 +138,18 @@ var ContentPreviewController = (function ($) {
 				var json_results = JSON.parse(results);
 				controller.activeStoreDataConfig = json_results;
 
-				controller.updateUI();
-				controller.showUI();
+				var storeNumber = controller.activeStoreData.storeNumber;
+				var programId = controller.programId;
+
+				$.get(controller.apiPath + 'getContentPreviewMeta.jssp?storeNumber=' + encodeURIComponent(storeNumber) + '&programId=' + programId, function (results) {
+
+					var json_results = JSON.parse(results);
+					controller.activeStoreMeta = json_results;
+
+					controller.updateUI();
+					controller.showUI();
+				});
+
 			});
 		},
 		/**
@@ -335,7 +346,7 @@ var ContentPreviewController = (function ($) {
 			// Update store features
 			$(".features").html('');
 
-			$.each(store.storeFeatures, function(i,e) {
+			$.each(controller.activeStoreMeta.features, function(i,e) {
 
 				var sample_feature = '<span class="feature">' +
 					'<img class="feature-image" src="' + e.image + '" alt="Feature Image">' +
@@ -349,7 +360,15 @@ var ContentPreviewController = (function ($) {
 
 			// Update store disclaimer
 
-			$(".store-disclaimer").html(store.storeDisclaimer);
+			var disclaimer = [];
+
+			if (controller.activeStoreMeta.disclaimer.couponDisclaimer != "")
+				disclaimer.push(controller.activeStoreMeta.disclaimer.couponDisclaimer);
+
+			if (controller.activeStoreMeta.disclaimer.adtlDisclaimer != "")
+				disclaimer.push(controller.activeStoreMeta.disclaimer.adtlDisclaimer);
+
+			$(".store-disclaimer").html(disclaimer.join("<br><br>"));
 
 		},
 		showUI: function () {
