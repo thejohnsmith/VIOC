@@ -15,7 +15,7 @@
           <option data-storeid="3" class="selectboxOption">Store 3</option>
         </select>
       </div>
-      <div class="company-information">
+      <div class="company-information none js-loading-is-done">
         <div class="company-contact">
           <div class="company-address"></div>
           <div class="company-phone"></div>
@@ -113,7 +113,11 @@
       </div>
     </section>
     <section class="results-section post-submit">
-      <div id="parentHorizontalTab1" class="lifescycle-tab">
+    <div role="presentation" class="spinner js-loading"></div>
+    <div class="none results-message text-center">
+      <h3>This store is not enrolled.</h3>
+    </div>
+      <div id="parentHorizontalTab1" class="lifescycle-tab none js-loading-is-done">
         <ul class="resp-tabs-list hor_2">
           <li class="touchpoint-1">Touch Point #1</li>
           <li class="touchpoint-2">Touch Point #2</li>
@@ -168,6 +172,12 @@
                   </div>
                 </th>
               </tr>
+              <tr class="creativeName">
+                <td class="result-label">Creative Name</td>
+                <td class="email result-value"></td>
+                <td class="dm result-value"></td>
+                <td class="sms result-value"></td>
+              </tr>
               <tr class="standard-risk offer-1">
                 <td class="result-label">Offer 1 - Standard</td>
                 <td class="email result-value">
@@ -216,7 +226,7 @@
                   <div></div>
                 </td>
               </tr>
-              <tr class="additional-offer standard-risk transmission">
+              <tr class="service-offer standard-risk transmission">
                 <td class="result-label">Transmission</td>
                 <td class="email result-value">
                   <div></div>
@@ -229,7 +239,7 @@
                 </td>
               </tr>
 
-              <tr class="additional-offer standard-risk gearbox">
+              <tr class="service-offer standard-risk gearbox">
                 <td class="result-label">Gearbox</td>
                 <td class="email result-value">
                   <div></div>
@@ -242,7 +252,7 @@
                 </td>
               </tr>
 
-              <tr class="additional-offer standard-risk fuelsystem">
+              <tr class="service-offer standard-risk fuelsystem">
                 <td class="result-label">Fuel System</td>
                 <td class="email result-value">
                   <div></div>
@@ -255,7 +265,7 @@
                 </td>
               </tr>
 
-              <tr class="additional-offer standard-risk radiator">
+              <tr class="service-offer standard-risk radiator">
                 <td class="result-label">Radiator</td>
                 <td class="email result-value">
                   <div></div>
@@ -267,7 +277,33 @@
                   <div></div>
                 </td>
               </tr>
+              <tr class="additional-offer offer-1 none">
+                <td class="result-label">Additional Offer 1</td>
+                <td class="email result-value"></td>
+                <td class="dm result-value"></td>
+                <td class="sms result-value"></td>
+              </tr>
 
+              <tr class="additional-offer offer-2 none">
+                <td class="result-label">Additional Offer 2</td>
+                <td class="email result-value"></td>
+                <td class="dm result-value"></td>
+                <td class="sms result-value"></td>
+              </tr>
+
+              <tr class="additional-offer offer-3 none">
+                <td class="result-label">Additional Offer 3</td>
+                <td class="email result-value"></td>
+                <td class="dm result-value"></td>
+                <td class="sms result-value"></td>
+              </tr>
+
+              <tr class="additional-offer offer-4 none">
+                <td class="result-label">Additional Offer 4</td>
+                <td class="email result-value"></td>
+                <td class="dm result-value"></td>
+                <td class="sms result-value"></td>
+              </tr>
             </tr>
           </table>
 
@@ -368,7 +404,7 @@
                 <div></div>
               </td>
             </tr>
-            <tr class="additional-offer standard-risk transmission">
+            <tr class="service-offer standard-risk transmission">
               <td class="result-label">Transmission</td>
               <td class="email result-value">
                 <div></div>
@@ -381,7 +417,7 @@
               </td>
             </tr>
 
-            <tr class="additional-offer standard-risk gearbox">
+            <tr class="service-offer standard-risk gearbox">
               <td class="result-label">Gearbox</td>
               <td class="email result-value">
                 <div></div>
@@ -394,7 +430,7 @@
               </td>
             </tr>
 
-            <tr class="additional-offer standard-risk fuelsystem">
+            <tr class="service-offer standard-risk fuelsystem">
               <td class="result-label">Fuel System</td>
               <td class="email result-value">
                 <div></div>
@@ -407,7 +443,7 @@
               </td>
             </tr>
 
-            <tr class="additional-offer standard-risk radiator">
+            <tr class="service-offer standard-risk radiator">
               <td class="result-label">Radiator</td>
               <td class="email result-value">
                 <div></div>
@@ -419,7 +455,33 @@
                 <div></div>
               </td>
             </tr>
+            <tr class="additional-offer offer-1 none">
+              <td class="result-label">Additional Offer 1</td>
+              <td class="email result-value"></td>
+              <td class="dm result-value"></td>
+              <td class="sms result-value"></td>
+            </tr>
 
+            <tr class="additional-offer offer-2 none">
+              <td class="result-label">Additional Offer 2</td>
+              <td class="email result-value"></td>
+              <td class="dm result-value"></td>
+              <td class="sms result-value"></td>
+            </tr>
+
+            <tr class="additional-offer offer-3 none">
+              <td class="result-label">Additional Offer 3</td>
+              <td class="email result-value"></td>
+              <td class="dm result-value"></td>
+              <td class="sms result-value"></td>
+            </tr>
+
+            <tr class="additional-offer offer-4 none">
+              <td class="result-label">Additional Offer 4</td>
+              <td class="email result-value"></td>
+              <td class="dm result-value"></td>
+              <td class="sms result-value"></td>
+            </tr>
           </table>
 
         </div>
@@ -519,7 +581,7 @@
                 <div></div>
               </td>
             </tr>
-            <tr class="additional-offer standard-risk transmission">
+            <tr class="service-offer standard-risk transmission">
               <td class="result-label">Transmission</td>
               <td class="email result-value">
                 <div></div>
@@ -532,7 +594,7 @@
               </td>
             </tr>
 
-            <tr class="additional-offer standard-risk gearbox">
+            <tr class="service-offer standard-risk gearbox">
               <td class="result-label">Gearbox</td>
               <td class="email result-value">
                 <div></div>
@@ -545,20 +607,19 @@
               </td>
             </tr>
 
-            <tr class="additional-offer standard-risk fuelsystem">
+            <tr class="service-offer standard-risk fuelsystem">
               <td class="result-label">Fuel System</td>
               <td class="email result-value">
                 <div></div>
               </td>
-              <td class="dm result-value">
-                <div></div>
-              </td>
+              <td class="dm result-value"></td>
               <td class="sms result-value">
                 <div></div>
               </td>
+              <div></div>
             </tr>
 
-            <tr class="additional-offer standard-risk radiator">
+            <tr class="service-offer standard-risk radiator">
               <td class="result-label">Radiator</td>
               <td class="email result-value">
                 <div></div>
@@ -570,7 +631,33 @@
                 <div></div>
               </td>
             </tr>
+            <tr class="additional-offer offer-1 none">
+              <td class="result-label">Additional Offer 1</td>
+              <td class="email result-value"></td>
+              <td class="dm result-value"></td>
+              <td class="sms result-value"></td>
+            </tr>
 
+            <tr class="additional-offer offer-2 none">
+              <td class="result-label">Additional Offer 2</td>
+              <td class="email result-value"></td>
+              <td class="dm result-value"></td>
+              <td class="sms result-value"></td>
+            </tr>
+
+            <tr class="additional-offer offer-3 none">
+              <td class="result-label">Additional Offer 3</td>
+              <td class="email result-value"></td>
+              <td class="dm result-value"></td>
+              <td class="sms result-value"></td>
+            </tr>
+
+            <tr class="additional-offer offer-4 none">
+              <td class="result-label">Additional Offer 4</td>
+              <td class="email result-value"></td>
+              <td class="dm result-value"></td>
+              <td class="sms result-value"></td>
+            </tr>
           </table>
 
         </div>

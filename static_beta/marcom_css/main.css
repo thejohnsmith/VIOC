@@ -3570,10 +3570,16 @@ button.enroll-all-stores.btn.btn-primary.btn-sm {
   width: 24%;
   display: inline-block
 }
+.content-preview-section .features {
+  color: #000;
+  margin-bottom: 1em
+}
 .content-preview-section .feature-caption {
   font-size: 14px;
   color: #555655;
-  text-align: center
+  display: block;
+  text-align: center;
+  line-height: 1.6
 }
 .content-preview-section .feature-caption small {
   text-align: center
@@ -3598,7 +3604,8 @@ button.enroll-all-stores.btn.btn-primary.btn-sm {
   padding: 0;
   vertical-align: top;
   border: 1px solid #df2129;
-  border-left: 0
+  border-left: 0;
+  font-size: 12px
 }
 .content-preview-section .store-hours table tr td:first-child {
   border-left: 1px solid #df2129
@@ -3620,12 +3627,45 @@ button.enroll-all-stores.btn.btn-primary.btn-sm {
   margin-top: 17px;
   padding: 0 11px
 }
-.features {
-  color: #000;
-  margin-bottom: 1em
-}
+
 .store-disclaimer {
   font-size: 14px;
   color: #000;
   line-height: 1.3
+}
+.content-preview-section .settings-section {
+  margin-bottom: 0
+}
+.content-preview-section .company-information {
+  margin-bottom: 2em
+}
+.content-preview-section .results-table td {
+  text-align: left;
+}
+.content-preview-section .results-section {
+  width: 100%
+}
+.content-preview-section .results-section .results-message {
+  line-height: 2
+}
+@media all and (min-width:960px) {
+  .content-preview-section .settings-section {
+    width: 32%;
+    margin-right: 0;
+    margin-bottom: 0;
+    float: left;
+    min-width: 0
+  }
+  .content-preview-section .results-section {
+    width: 66%;
+    float: right
+  }
+  .content-preview-section .store-hours .open-hours {
+    font-size: 11px;
+  }
+}
+@media all and (min-width:1111px) {
+  .content-preview-section .store-hours .open-hours {
+    font-size: 12px;
+  }
 }
