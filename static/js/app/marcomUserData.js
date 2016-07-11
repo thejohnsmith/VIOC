@@ -27,10 +27,8 @@ var marcomUserData = (function ($) {
 		(environment == 20917) ? 'PROD' :
 		(environment == 479602) ? 'UAT' :
 		(environment == 20951) ? 'UAT' :
+		(location.href.match(/Beta_Epsilon/)) ? 'UAT' :
 		'PROD';
-
-	// console.warn('Environment: ' + environment);
-	// console.warn('URL: ' + window.location.href);
 
 	/** PRODUCTION URLs
 	 * @kind {string} Production or User Acceptance Testing (Beta_Epsilon)
@@ -54,7 +52,7 @@ var marcomUserData = (function ($) {
 			loginPage2Url: 'login.aspx?uigroup_id=478656',
 			forgotPassPageUrl: 'forgotpassword.aspx?uigroup_id=478656',
 			accountPageUrl: 'profile.aspx?uigroup_id=478656&mode=1',
-			onDemandUrl: 'catalog.aspx?uigroup_id=478656&folder_id=1633307',
+			onDemandUrl: 'catalog.aspx?folder_id=1724903',
 			apiPath: 'https://adobe-prod-vioc.epsilon.com/jssp/vioc/',
 			apiPathLocal: 'data/',
 			marcomFilePath: 'https://files.marcomcentral.app.pti.com/epsilon/static/'
@@ -82,9 +80,9 @@ var marcomUserData = (function ($) {
 			forgotPassPageUrl: 'forgotpassword.aspx?uigroup_id=479602',
 			accountPageUrl: 'profile.aspx?uigroup_id=479602&mode=1',
 			onDemandUrl: 'catalog.aspx?uigroup_id=479602&folder_id=1633307',
-			apiPath: 'https://adobe-uat-vioc.epsilon.com/jssp/vioc/',
+			apiPath: 'https://adobe-prod-vioc.epsilon.com/jssp/vioc/',
 			apiPathLocal: 'data/',
-			marcomFilePath: 'https://files.marcomcentral.app.pti.com/epsilon/static/'
+			marcomFilePath: 'https://files.marcomcentral.app.pti.com/epsilon/static_beta/'
 		} : constants;
 	return {
 		$user: user,
@@ -106,4 +104,16 @@ if (typeof appUtilities === 'object') {
 /* Run the login controller */
 if (jQuery('#homePageLanding').length >= 1) {
 	recordLogin.makeRequest();
+}
+
+/**
+ * TESTING
+ */
+if (marcomUserData.environmentKind === 'UAT') {
+	console.groupCollapsed('Epsilon Debugging');
+	console.info('App Environment:', marcomUserData.environmentKind);
+	console.info('Host: ', window.location.host);
+	console.info('Path: ', window.location.pathname);
+	console.info('URL: ', window.location.href);
+	console.groupEnd();
 }
