@@ -52,7 +52,7 @@ var marcomUserData = (function ($) {
 			loginPage2Url: 'login.aspx?uigroup_id=478656',
 			forgotPassPageUrl: 'forgotpassword.aspx?uigroup_id=478656',
 			accountPageUrl: 'profile.aspx?uigroup_id=478656&mode=1',
-			onDemandUrl: 'catalog.aspx?uigroup_id=478656&folder_id=1633307',
+			onDemandUrl: 'catalog.aspx?folder_id=1724903',
 			apiPath: 'https://adobe-prod-vioc.epsilon.com/jssp/vioc/',
 			apiPathLocal: 'data/',
 			marcomFilePath: 'https://files.marcomcentral.app.pti.com/epsilon/static/'
@@ -99,21 +99,12 @@ if (getParameterByName('flashSuccessMsg', window.location.href) != '') {
 /* Update the hard-coded URL's in the utility navigation. */
 if (typeof appUtilities === 'object') {
 	appUtilities.changeNavBarLink();
+	if (marcomUserData.environmentKind === 'UAT') {
+		appUtilities.runtimeDebugging();
+	}
 }
 
 /* Run the login controller */
 if (jQuery('#homePageLanding').length >= 1) {
 	recordLogin.makeRequest();
-}
-
-/**
- * TESTING
- */
-if (marcomUserData.environmentKind === 'UAT') {
-	console.groupCollapsed('Epsilon Debugging');
-		console.info('App Environment:', marcomUserData.environmentKind);
-		console.info('Host: ', window.location.host);
-		console.info('Path: ', window.location.pathname);
-		console.info('URL: ', window.location.href);
-	console.groupEnd();
 }
