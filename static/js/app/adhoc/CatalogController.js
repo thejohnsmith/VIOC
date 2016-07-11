@@ -6,8 +6,8 @@
  * @filename - CatalogController.js
  * @author - Anthony Gill, John Smith : Epsilon 2016
  */
- var pageAnchor = '#ctl00_content_CtlPager_lblItemsPerPage';
- var pageKey = 'catalog.aspx';
+var pageAnchor = '#ctl00_content_CtlPager_lblItemsPerPage';
+var pageKey = 'catalog.aspx';
 
 CatalogController = (function ($) {
 	'use strict';
@@ -24,7 +24,7 @@ CatalogController = (function ($) {
 		},
 		WatchForPageReady: function (callback) {
 			var controller = this;
-			console.warn('Watching for: Page ready...');
+			// console.warn('Watching for: Page ready...');
 			controller.intervalHandle = setInterval(function () {
 				if (controller.isPageReady()) {
 					clearInterval(controller.intervalHandle);
@@ -33,7 +33,7 @@ CatalogController = (function ($) {
 			}, 500);
 		},
 		AdjustUI: function () {
-			console.warn('Adjusting UI...');
+			// console.warn('Adjusting UI...');
 		}
 	};
 	return {

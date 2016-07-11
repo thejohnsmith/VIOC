@@ -32,9 +32,9 @@ var appUtilities = (function ($) {
 				return $(this).text() === 'REPORTS';
 			}).attr('href', 'https://bo-vioc.epsilon.com').attr('target', '_blank');
 
-			// $('.navBarItem > a').filter(function () {
-			// 	return $(this).text() === 'ON DEMAND MARKETING';
-			// }).attr('href', marcomUserData.$constants.onDemandUrl);
+			$('.navBarItem > a').filter(function () {
+				return $(this).text() === 'ON DEMAND MARKETING';
+			}).attr('href', marcomUserData.$constants.onDemandUrl);
 
 			$('.header-right .btnHelp, .header-right .btnContactUs').attr('href', marcomUserData.$constants.helpPageUrl);
 		},
@@ -63,11 +63,23 @@ var appUtilities = (function ($) {
 					}
 				}
 			});
+		},
+		/**
+		 * [runtimeDebugging Debugging for Beta]
+		 */
+		runtimeDebugging: function (fnRunning) {
+			console.group('Beta_Epsilon Debugging - ');
+			console.info('Env: ', marcomUserData.environmentKind);
+			console.info('Host: ', window.location.host);
+			console.info('Path: ', window.location.pathname);
+			console.debug('URL: ', window.location.href);
+			console.groupEnd();
 		}
 	};
 	return {
 		controller: controller,
 		changeNavBarLink: controller.changeNavBarLink,
+		runtimeDebugging: controller.runtimeDebugging,
 		setPrettyPhone: controller.setPrettyPhone,
 		routeEnterKeyToNext: controller.routeEnterKeyToNext
 	};
