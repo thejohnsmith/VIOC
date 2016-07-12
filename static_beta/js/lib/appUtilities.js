@@ -41,17 +41,17 @@ var appUtilities = (function ($) {
 		setFavicon: function () {
 			return $j('head').append('<link rel="icon" href="https://files.marcomcentral.app.pti.com/epsilon/static/images/favicon.ico" type="image/x-icon">');
 		},
-		/** Phone Number Formatting
-		 *  Used by calling appUtilities.setPrettyPhone();
-		 *  @param {class} .prettyPhone class needed for phone formatting.
-		 *  @returns {string} Formats phone to xxx-xxx-xxxx
-		 */
-		setPrettyPhone: function () {
-			$('.prettyPhone').text(function (i, text) {
-				text = text.replace(/(\d{3})(\d{3})(\d{4})/, '$1-$2-$3');
-				return text;
-			});
-		},
+/** Phone Number Formatting
+ *  Used by calling appUtilities.setPrettyPhone();
+ *  @param {class} .prettyPhone class needed for phone formatting.
+ *  @returns {string} Formats phone to xxx-xxx-xxxx
+ */
+setPrettyPhone: function () {
+	$('.prettyPhone').text(function (i, text) {
+		text = text.replace(/(\d{3})(\d{3})(\d{4})/, '$1-$2-$3');
+		return text;
+	});
+},
 		routeEnterKeyToNext: function (inputItem) {
 			inputItem.keypress(function (event) {
 				if (event.keyCode === 13) {

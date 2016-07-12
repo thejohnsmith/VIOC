@@ -1,0 +1,26 @@
+<!-- <link href="https://files.marcomcentral.app.pti.com/epsilon/static_beta/marcom_css/orderSummary.css" rel="stylesheet" type="text/css" /> -->
+<!--
+  CURRENT CUSTOM CONTENT: Order Summary/Detail
+-->
+<style>
+  /* Hide the rest of the page and inject our custom Thank You page. */
+  #CtlCart,
+  .ButtonRowFloatR {
+    display: none;
+  }
+</style>
+<div class="wrapper">
+  <div class="mid-container">
+    <div class="main">
+      <a id="pageAnchorFormCopy" href="#" class="hidden">pageAnchorFormCopy</a>
+      <h1>Email Added To Queue For Delivery</h1>
+      <h2>Thank you. Your email has been added to the queue for immediate delivery. Your email confirmation number is
+        <span id="orderConfirmationNumber"></span>. Your email is scheduled to deliver to
+        <span id="orderConfirmationQuantity"></span>
+        recipients.</h2>
+      <a id="homePageUrl" href="#">[Return to Home Page]</a>
+    </div>
+  </div>
+</div>
+<script src="https://files.marcomcentral.app.pti.com/epsilon/static_beta/js/app/adhoc/CatalogController.js"></script>
+<script src="https://files.marcomcentral.app.pti.com/epsilon/static_beta/js/app/adhoc/OrderSummaryController.js"></script>

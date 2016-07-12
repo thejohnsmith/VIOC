@@ -24,7 +24,6 @@ CatalogController = (function ($) {
 		},
 		WatchForPageReady: function (callback) {
 			var controller = this;
-			// console.warn('Watching for: Page ready...');
 			controller.intervalHandle = setInterval(function () {
 				if (controller.isPageReady()) {
 					clearInterval(controller.intervalHandle);
@@ -33,18 +32,51 @@ CatalogController = (function ($) {
 			}, 500);
 		},
 		AdjustUI: function () {
-			// console.warn('Adjusting UI...');
-			var htmlComments = $('*').contents().filter(function () {
-				return this.nodeType === 8;
-			});
+			var controller = this;
+			controller.RemoveEmptyCells();
+			controller.SetNavigation();
+			controller.UpdateBreadCrumbs();
+		},
+		/**
+		 * [SetNavigation Set navigation state]
+		 */
+		SetNavigation: function () {
+			$('.navBarItem > a').filter(function () {
+				return $(this).text() === 'ON DEMAND MARKETING';
+			}).addClass('navBarSelectedLinkColor').addClass('customColorOverridable').removeClass('navBarEnhancedLinkColor');
+		},
+		/**
+		 * [UpdateBreadCrumbs Custom breadcumb handler]
+		 */
+		UpdateBreadCrumbs: function () {
+			var controller = this;
+
+			// Set 1st Level Breadcrumb
+
+			// Set 2nd Level Breadcrumb
+			$('.breadcrumbs_previous:first a').html();
+			$('.breadcrumbs_previous:first a').attr('href', '');
+
+			// Set 3rd Level Breadcrumb
+			$('.breadcrumbs_previous:last a').html();
+			$('.breadcrumbs_previous:last a').attr('href', '');
+		},
+		RemoveEmptyCells: function () {
+			console.info('RemoveEmptyCells');
 			$('td, tr').filter(function () {
 				$.trim($(this).html()) === '&nbsp;';
 				$.trim($(this).html()) === '';
 			}).remove();
+		},
+		RemoveHtmlComments: function () {
+			var htmlComments = $('*').contents().filter(function () {
+				return this.nodeType === 8;
+			});
 		}
 	};
 	return {
-		controller: controller
+		controller: controller,
+		setNavigation: controller.SetNavigation()
 	};
 })(jQuery);
 

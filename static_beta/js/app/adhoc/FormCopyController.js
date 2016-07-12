@@ -43,6 +43,9 @@ ChooseTemplateController = (function ($) {
 				$.trim($(this).html()) === '&nbsp;';
 				$.trim($(this).html()) === '';
 			}).remove();
+
+			$('#ctl00_content_CatalogBreadCrumbsLayout_CatalogBreadCrumbs_btnItem2').hide();
+			$('#ctl00_content_CatalogBreadCrumbsLayout_CatalogBreadCrumbs_btnItem1').prev().remove();
 		}
 	};
 	return {

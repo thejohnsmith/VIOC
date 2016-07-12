@@ -6,8 +6,8 @@
  * @filename - OrderSummaryController.js
  * @author - Anthony Gill, John Smith : Epsilon 2016
  */
- var pageAnchor = '#pageAnchorFormCopy';
- var pageKey = 'orderSummary.aspx';
+var pageAnchor = '#pageAnchorFormCopy';
+var pageKey = 'orderSummary.aspx';
 
 OrderSummaryController = (function ($) {
 	'use strict';
@@ -24,7 +24,6 @@ OrderSummaryController = (function ($) {
 		},
 		WatchForPageReady: function (callback) {
 			var controller = this;
-			console.warn('Watching for: Page ready...');
 			controller.intervalHandle = setInterval(function () {
 				if (controller.isPageReady()) {
 					clearInterval(controller.intervalHandle);
@@ -34,6 +33,22 @@ OrderSummaryController = (function ($) {
 		},
 		AdjustUI: function () {
 			console.warn('Adjusting UI...');
+			if ($('#ctl00_content_OrderSummary_lblCustRefText') && $('#ctl00_content_OrderSummary_CtlOrderItemList_CtlOrderItems_ctl02_tdIOQuantity')) {
+				var orderQuantity = $('#ctl00_content_OrderSummary_CtlOrderItemList_CtlOrderItems_ctl02_tdIOQuantity').text();
+				var orderNumber = $('#ctl00_content_OrderSummary_lblCustRefText').text();
+
+				console.info('orderQuantity: ', $.trim(orderQuantity));
+				console.info('orderNumber: ', $.trim(orderNumber));
+
+				$('#orderConfirmationQuantity').text(orderQuantity);
+				$('#orderConfirmationNumber').text(orderNumber);
+
+				// $('#homePageUrl').href(marcomUserData.$constants.homePageGroupUrl);
+
+			} else {
+				console.error('There was a problem obtaining the Order Number and Order Quantity.');
+			}
+
 		}
 	};
 	return {
@@ -43,5 +58,7 @@ OrderSummaryController = (function ($) {
 
 // Only execute this controller on a certain page
 if (window.location.href.indexOf(pageKey) > -1) {
+  var $j = jQuery;
+  $j('#CtlBrdCrm, #CtlCart, .ButtonRowFloatR').hide();
 	OrderSummaryController.controller.init();
 }
