@@ -67,7 +67,7 @@ var marcomUserData = (function ($) {
 		(environment == 'UAT') ?
 		constants = {
 			kind: 'UAT',
-			homePageUrl: 'home.aspx',
+			homePageUrl: 'home.aspx?uigroup_id=479602',
 			homePageGroupUrl: 'home.aspx?uigroup_id=479602',
 			lifecyclePageUrl: 'CustomPage.aspx?uigroup_id=479602&page_id=10792',
 			specialtyPageUrl: 'CustomPage.aspx?uigroup_id=479602&page_id=10793',
@@ -85,26 +85,30 @@ var marcomUserData = (function ($) {
 			marcomFilePath: 'https://files.marcomcentral.app.pti.com/epsilon/static_beta/'
 		} : constants;
 	return {
+		marcomUserData: this,
 		$user: user,
 		$constants: constants,
 		environmentKind: environment.kind
 	};
 })(jQuery);
 
-/* Monitor for flash messages */
-if (getParameterByName('flashSuccessMsg', window.location.href) != '') {
-	toastr.success(getParameterByName('flashSuccessMsg', window.location.href));
-}
-
-/* Update the hard-coded URL's in the utility navigation. */
-if (typeof appUtilities === 'object') {
-	appUtilities.changeNavBarLink();
-	if (marcomUserData.environmentKind === 'UAT') {
-		appUtilities.runtimeDebugging();
+(function ($) {
+	/* Monitor for flash messages */
+	if (typeof getParameterByName === 'function') {
+		if (getParameterByName('flashSuccessMsg', window.location.href) != '') {
+			toastr.success(getParameterByName('flashSuccessMsg', window.location.href));
+		}
 	}
-}
 
-/* Run the login controller */
-if (jQuery('#homePageLanding').length >= 1) {
-	recordLogin.makeRequest();
-}
+	if (typeof appUtilities === 'object') {
+		/* Update the hard-coded URL's in the utility navigation. */
+		appUtilities.changeNavBarLink();
+		appUtilities.runtimeDebugging(marcomUserData);	
+	}
+
+	/* Run the login controller */
+	if ($('#homePageLanding').length >= 1) {
+		recordLogin.makeRequest();
+	}
+
+})(jQuery);

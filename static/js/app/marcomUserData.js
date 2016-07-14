@@ -67,7 +67,7 @@ var marcomUserData = (function ($) {
 		(environment == 'UAT') ?
 		constants = {
 			kind: 'UAT',
-			homePageUrl: 'home.aspx',
+			homePageUrl: 'home.aspx?uigroup_id=479602',
 			homePageGroupUrl: 'home.aspx?uigroup_id=479602',
 			lifecyclePageUrl: 'CustomPage.aspx?uigroup_id=479602&page_id=10792',
 			specialtyPageUrl: 'CustomPage.aspx?uigroup_id=479602&page_id=10793',

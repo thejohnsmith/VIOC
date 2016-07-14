@@ -62,7 +62,7 @@ CatalogController = (function ($) {
 			$('.breadcrumbs_previous:last a').attr('href', '');
 		},
 		RemoveEmptyCells: function () {
-			console.info('RemoveEmptyCells');
+			// console.info('RemoveEmptyCells');
 			$('td, tr').filter(function () {
 				$.trim($(this).html()) === '&nbsp;';
 				$.trim($(this).html()) === '';

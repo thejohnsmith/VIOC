@@ -276,19 +276,36 @@ var ContentPreviewController = (function ($) {
 			$(".creativeName .dm.result-value").html( config.content.dmCreativeName );
 
 			// Update preview links
-			$.each(['email','dm','sms'], function(i,channel) {
-				for (var touchpoint = 1; touchpoint <= 3; touchpoint++)
-				{
+			$.each(['email', 'dm', 'sms'], function (i, channel) {
+				for (var touchpoint = 1; touchpoint <= 3; touchpoint++) {
 					var programId = ContentPreviewController.controller.program.id;
 					var creativeTemplate = "";
 					if (channel == "email") creativeTemplate = config.content.emailCreativeName;
 					if (channel == "sms") creativeTemplate = "Standard";
 					if (channel == "dm") creativeTemplate = config.content.dmCreativeName;
 					var url = controller.getPreviewPDFUrl(programId, channel, creativeTemplate, touchpoint);
-					console.log("URL set using: ", url, programId, channel, creativeTemplate, touchpoint );
-					$("a.touchpoint-"+touchpoint+"."+channel+".preview").attr('href', url);
+
+					$("a.touchpoint-" + touchpoint + "." + channel + ".preview").attr('href', url);
+
+					// Reset the active state to prevent multiple highlighted tabs.
+					$('.content-preview-section .resp-tab-item.hor_2:not(.touchpoint-1)')
+						.removeClass('resp-tab-active');
+
+					// Debugging
+					if (marcomUserData.environmentKind === 'UAT') {
+						var debugGroup = 'color:purple;font-weight:bold;font-size:1em',
+							debugItem = 'color:#f06;font-weight:bold;font-size:0.95em';
+						console.groupCollapsed('%c **Preview Updated**', debugGroup);
+							console.debug('URL set using: %c %s', debugItem, url);
+							console.debug('programId: %c %i', debugItem, programId);
+							console.debug('channel: %c %s', debugItem, channel);
+							console.debug('creativeTemplate: %c %s', debugItem, creativeTemplate);
+							console.debug('touchpoint: %c %i', debugItem, touchpoint);
+						console.groupEnd();
+					}
 				}
 			});
+
 
 			// Load config for additional offer
 			$.get(controller.apiPath + 'loadConfig.jssp?userId=' + encodeURIComponent(controller.userId) + '&configId=' + program.adtlConfigId, function (results) {
@@ -335,7 +352,7 @@ var ContentPreviewController = (function ($) {
 				$("." + day + " .store-open").html(e.open);
 				$("." + day + " .store-close").html(e.close);
 
-				if (!e.closed)
+				if (e.closed)
 				{
 					$("."+day+" .open-hours").addClass("none");
 					$("."+day+" .store-closed").removeClass("none");
@@ -349,7 +366,7 @@ var ContentPreviewController = (function ($) {
 			$.each(controller.activeStoreMeta.features, function(i,e) {
 
 				var sample_feature = '<span class="feature">' +
-					'<img class="feature-image" src="' + e.image + '" alt="Feature Image">' +
+					'<img class="feature-image" src="http://t.email.vioc.com/res/valvoline_t/' + e.image + '" alt="Feature Image">' +
 					'<span class="feature-caption">' +
 					  '<small>' +  e.text + '</small>' +
 					'</span>' +
