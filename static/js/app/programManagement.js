@@ -25,6 +25,7 @@ var programManagementController = (function ($) {
 				controller.timeDebug("Getting store program data...");
 				controller.getStoreProgramData(function (store_data) {
 					// Trigger a filter change, which will triger a UI refresh
+					ContentPreviewController.controller.init(programManagementFilters.controller.store_ids, store_data, controller.program);
 					programManagementFilters.controller.onFilterChange(programManagementFilters.controller.store_ids);
 					controller.timeDebug("PMC Init Complete.");
 				});
@@ -136,12 +137,8 @@ var programManagementController = (function ($) {
 		},
 		hideAdditionalOffersIfNeeded: function () {
 			var controller = this;
-			for (var i = 0; i < $programParticipationStats.length; i++) {
-				if ($programParticipationStats[i].id == controller.program_id) {
-					if ($programParticipationStats[i].programUsesAdtl == 0) {
-						$('.additional-offer').hide();
-					}
-				}
+			if (controller.program.programUsesAdtl == 0) {
+				$('.additional-offer').hide();
 			}
 		},
 		highlightSelectedStoreConfiguration: function () {
@@ -155,12 +152,8 @@ var programManagementController = (function ($) {
 		},
 		hideStandardOffersIfNeeded: function () {
 			var controller = this;
-			for (var i = 0; i < $programParticipationStats.length; i++) {
-				if ($programParticipationStats[i].id == controller.program_id) {
-					if ($programParticipationStats[i].programUsesOffers == 0) {
-						$('.standard-offer').hide();
-					}
-				}
+			if (controller.program.programUsesOffers == 0) {
+				$('.standard-offer').hide();
 			}
 		},
 
@@ -294,6 +287,19 @@ var programManagementController = (function ($) {
 				'proof-settings-tab.mustache.html',
 				'.proof-settings-tab-template',
 				'.proof-settings-tab-section',
+				result,
+				function (template) {
+					if (++controller.templatesLoaded == 4) {
+						allTemplateLoaded()
+					} else {
+						// console.log("Loaded " + controller.templatesLoaded + " /4 templates");
+					};
+				});
+
+			controller.getMustacheTemplate(
+				'content-preview.mustache.html',
+				'.content-preview-template',
+				'.content-preview-section',
 				result,
 				function (template) {
 					if (++controller.templatesLoaded == 4) {
@@ -445,6 +451,7 @@ var programManagementController = (function ($) {
 					toastr.success('Setting changes saved!');
 					controller.getStoreProgramData(function (store_data) {
 						controller.highlightSelectedStoreConfiguration();
+						ContentPreviewController.controller.storeData = controller.store_data;
 					});
 				});
 			});
@@ -465,6 +472,7 @@ var programManagementController = (function ($) {
 					toastr.success('Setting changes saved!');
 					controller.getStoreProgramData(function (store_data) {
 						controller.highlightSelectedStoreConfiguration();
+						ContentPreviewController.controller.storeData = controller.store_data;
 					});
 				});
 			});
@@ -679,23 +687,15 @@ var programManagementController = (function ($) {
 		},
 		showQuantityLimitTabIfNeeded: function () {
 			var controller = this;
-			for (var i = 0; i < $programParticipationStats.length; i++) {
-				if ($programParticipationStats[i].id == controller.program_id) {
-					if ($programParticipationStats[i].showQuantityLimitTab == 1) {
-						$('#programManagementTabs .optional-tab').css('visibility', 'visible');
-					}
-				}
+			if (controller.program.showQuantityLimitTab == 1) {
+				$('#programManagementTabs .optional-tab').css('visibility', 'visible');
 			}
 		},
 		hideProgramSettingsIfNeeded: function () {
 			var controller = this;
-			for (var i = 0; i < $programParticipationStats.length; i++) {
-				if ($programParticipationStats[i].id == controller.program_id) {
-					if ($programParticipationStats[i].programUsesOffers == 0 && $programParticipationStats[i].programUsesAdtl == 0) {
-						$('[aria-controls="hor_1_tab_item-1"], [aria-labelledby="hor_1_tab_item-1"]').hide();
-						window.location.hash = '#parentHorizontalTab1';
-					}
-				}
+			if (controller.program.programUsesOffers == 0 && controller.program.programUsesAdtl == 0) {
+				$('[aria-controls="hor_1_tab_item-1"], [aria-labelledby="hor_1_tab_item-1"]').hide();
+				window.location.hash = '#parentHorizontalTab1';
 			}
 		},
 		saveQuantityMeta: function (selectedStores, quantityLimit, callback) {
@@ -802,6 +802,7 @@ var programManagementController = (function ($) {
 						}
 					});
 					controller.buildUI(targetStores);
+					console.info('controller.storeIds', store_ids);
 				});
 			});
 		},

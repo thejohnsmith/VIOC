@@ -32,9 +32,9 @@ var appUtilities = (function ($) {
 				return $(this).text() === 'REPORTS';
 			}).attr('href', 'https://bo-vioc.epsilon.com').attr('target', '_blank');
 
-			// $('.navBarItem > a').filter(function () {
-			// 	return $(this).text() === 'ON DEMAND MARKETING';
-			// }).attr('href', marcomUserData.$constants.onDemandUrl);
+			$('.navBarItem > a').filter(function () {
+				return $(this).text() === 'ON DEMAND MARKETING';
+			}).attr('href', marcomUserData.$constants.onDemandUrl);
 
 			$('.header-right .btnHelp, .header-right .btnContactUs').attr('href', marcomUserData.$constants.helpPageUrl);
 		},
@@ -63,11 +63,44 @@ var appUtilities = (function ($) {
 					}
 				}
 			});
+		},
+		/**
+		 * [runtimeDebugging Debugging for Beta]
+		 */
+		runtimeDebugging: function (fnRunning) {
+			/* Only run console Debugging in UAT(Beta_Epsilon) Environment. */
+			if (!fnRunning.environmentKind === 'UAT') {
+				$('html').hasClass('Beta_Epsilon') ? $('html').removeClass('Beta_Epsilon') : $('html').addClass('Epsilon');
+			}
+
+			// Give the source a namespace
+			$('html').hasClass('Beta_Epsilon') ? $('html').removeClass('Beta_Epsilon') : $('html').addClass('Epsilon');
+
+			var domainLocation = window.location.href,
+				debugHeader = 'color:#00bbfd;font-family:"HelveticaNeueLT-Condensed";font-weight:light;background:#000;' + 'font-size:1.6em;line-height:1;padding:0.08em 0.25em;margin:0',
+				debugTitle = 'color:green;font-weight:bold;font-size:1em',
+				debugGroup = 'color:purple;font-weight:bold;font-size:1em',
+				debugItem = 'color:#f06;font-weight:bold;font-size:0.95em';
+
+			console.group('%cWelcome to Beta_Epsilon', debugHeader);
+				console.groupCollapsed('%c **CONSTANTS**', debugGroup);
+					console.debug('ENV: %c %s', debugGroup, marcomUserData.environmentKind);
+					console.debug('URL: %c %s', debugTitle, domainLocation);
+				console.groupEnd();
+				console.groupCollapsed('User %c%s', debugGroup, marcomUserData.$user);
+					console.debug('Name: %c %s', debugItem, marcomUserData.$user.firstName + ' ' + marcomUserData.$user.lastName);
+					console.debug('Email: %c %s', debugItem, marcomUserData.$user.email);
+					console.debug('ID: %c %s', debugItem, marcomUserData.$user.externalId);
+					console.debug('Agent: %c %s', debugItem, navigator.userAgent.toLowerCase());
+					console.debug('Platform: %c %s', debugItem, navigator.platform.toLowerCase());
+				console.groupEnd();
+			console.groupEnd();
 		}
 	};
 	return {
 		controller: controller,
 		changeNavBarLink: controller.changeNavBarLink,
+		runtimeDebugging: controller.runtimeDebugging,
 		setPrettyPhone: controller.setPrettyPhone,
 		routeEnterKeyToNext: controller.routeEnterKeyToNext
 	};

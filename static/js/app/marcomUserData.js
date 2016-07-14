@@ -85,35 +85,30 @@ var marcomUserData = (function ($) {
 			marcomFilePath: 'https://files.marcomcentral.app.pti.com/epsilon/static_beta/'
 		} : constants;
 	return {
+		marcomUserData: this,
 		$user: user,
 		$constants: constants,
 		environmentKind: environment.kind
 	};
 })(jQuery);
 
-/* Monitor for flash messages */
-if (getParameterByName('flashSuccessMsg', window.location.href) != '') {
-	toastr.success(getParameterByName('flashSuccessMsg', window.location.href));
-}
+(function ($) {
+	/* Monitor for flash messages */
+	if (typeof getParameterByName === 'function') {
+		if (getParameterByName('flashSuccessMsg', window.location.href) != '') {
+			toastr.success(getParameterByName('flashSuccessMsg', window.location.href));
+		}
+	}
 
-/* Update the hard-coded URL's in the utility navigation. */
-if (typeof appUtilities === 'object') {
-	appUtilities.changeNavBarLink();
-}
+	if (typeof appUtilities === 'object') {
+		/* Update the hard-coded URL's in the utility navigation. */
+		appUtilities.changeNavBarLink();
+		//appUtilities.runtimeDebugging(marcomUserData);	
+	}
 
-/* Run the login controller */
-if (jQuery('#homePageLanding').length >= 1) {
-	recordLogin.makeRequest();
-}
+	/* Run the login controller */
+	if ($('#homePageLanding').length >= 1) {
+		recordLogin.makeRequest();
+	}
 
-/**
- * TESTING
- */
-if (marcomUserData.environmentKind === 'UAT') {
-	console.groupCollapsed('Epsilon Debugging');
-	console.info('App Environment:', marcomUserData.environmentKind);
-	console.info('Host: ', window.location.host);
-	console.info('Path: ', window.location.pathname);
-	console.info('URL: ', window.location.href);
-	console.groupEnd();
-}
+})(jQuery);

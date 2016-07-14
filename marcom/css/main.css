@@ -243,6 +243,9 @@ a:focus {
   direction: ltr;
   text-indent: -999em
 }
+.text-center, .text-centered {
+  text-align: center
+}
 .visible {
   visibility: visible
 }
@@ -311,6 +314,7 @@ a:focus {
   margin-top: 12px
 }
 ul.navBarEnhanced a {
+  color: #555655;
   font-family: 'HelveticaNeueLT-LightCond', sans-serif;
   font-size: 16px;
   -webkit-transition: color .5s cubic-bezier(0, -2.01, .63, 3.11) 0s;
@@ -333,7 +337,10 @@ ul.navBarEnhanced a:hover {
   border: none
 }
 li.navBarItem {
-  border-right: 1px solid #666
+  border-right: 1px solid #fff
+}
+.TDTabLeft a:visited, .TDTab a:visited, a.navBarEnhancedLinkColor.customColorOverridable:visited {
+  color: #555655;
 }
 #catalogContent {
   width: 100%;
@@ -1409,7 +1416,10 @@ header#nav {
   padding-left: 0!important
 }
 .lifescycle-tab .optional-tab {
-  visibility: hidden
+  visibility: hidden;
+  width: 0;
+  padding: 0;
+  margin: 0
 }
 .programsummary-table.quantity-limit-tab-section .store-enroll {
   width: 15%
@@ -3534,4 +3544,139 @@ button.enroll-all-stores.btn.btn-primary.btn-sm {
     -webkit-transform: rotate(360deg);
     transform: rotate(360deg)
   }
+}
+.content-preview-section.programsummary-table .participation-table {
+  background: #fff
+}
+.content-preview-section.programsummary-table .select-option {
+  margin-bottom: 1em
+}
+.content-preview-section.programsummary-table .company-contact {
+  color: #000;
+  margin-bottom: 1.2em;
+  padding-bottom: 0;
+  font-size: 15px
+}
+.content-preview-section .company-phone {
+  color: #065e8f
+}
+.content-preview-section .company-address+ .company-phone {
+  margin-top: 0.4em
+}
+.content-preview-section.programsummary-table th {
+  background: #fff
+}
+.content-preview-section .feature {
+  width: 25%;
+  display: table-cell
+}
+.content-preview-section .features {
+  color: #000;
+  position: relative;
+  border-spacing: 0.4em 1em;
+}
+.content-preview-section .feature-caption {
+  font-size: 15px;
+  color: #555655;
+  display: block;
+  text-align: center;
+  line-height: 1.6
+}
+.content-preview-section .feature-caption small {
+  text-align: center
+}
+.content-preview-section .store-hours, table tr.store-hours-heading th {
+  margin-bottom: 1em
+}
+.content-preview-section .store-hours table tr.store-hours-heading th {
+  background: #2e2e2e;
+  text-align: center;
+  border: 1px solid #2e2e2e
+}
+.content-preview-section .store-hours {
+  overflow: auto
+}
+.content-preview-section .store-hours table {
+  font-size: 12px;
+  line-height: 14px;
+  padding: 0;
+  border-spacing: 0;
+  border: 0
+}
+.content-preview-section .store-hours table tr td {
+  height: 59px;
+  padding: 0;
+  vertical-align: top;
+  border: 1px solid #df2129;
+  border-left: 0;
+  font-size: 12px;
+  min-width: 50px;
+}
+.content-preview-section .store-hours table tr td:first-child {
+  border-left: 1px solid #df2129
+}
+.content-preview-section .store-hours table th {
+  padding: 3px 0;
+  color: #fff;
+  background: #333
+}
+.content-preview-section .store-hours table b {
+  display: block;
+  margin-bottom: 10px;
+  padding: 5px 0 2px;
+  color: #fff;
+  background: #df2129
+}
+.content-preview-section .store-hours table strong {
+  display: block;
+  margin-top: 17px;
+  padding: 0 11px
+}
+.store-disclaimer {
+  font-size: 14px;
+  color: #000;
+  line-height: 1.3
+}
+.content-preview-section .settings-section {
+  margin-bottom: 0
+}
+.content-preview-section .company-information {
+  margin-bottom: 2em
+}
+.content-preview-section .results-table td {
+  text-align: left;
+}
+.content-preview-section .results-section {
+  width: 100%
+}
+.content-preview-section .results-section .results-message {
+  line-height: 2
+}
+@media all and (min-width:960px) {
+  .content-preview-section .settings-section {
+    width: 42%;
+    margin-right: 0;
+    margin-bottom: 0;
+    float: left;
+    min-width: 0
+  }
+  .content-preview-section .results-section {
+    width: 55%;
+    float: right
+  }
+  .content-preview-section .store-hours .open-hours {
+    font-size: 11px
+  }
+}
+@media all and (min-width:1111px) {
+  .content-preview-section .store-hours .open-hours {
+    font-size: 12px
+  }
+}
+.Beta_Epsilon .header-info h2:after{
+  content: '_Beta';
+  font-size: 10px;
+  color: #ed3023;
+  text-transform: lowercase;
+  -webkit-font-smoothing: antialiased
 }

@@ -259,5 +259,8 @@ programManagementFilters.controller.onFilterChange = function (store_ids) {
 			programManagementController.controller.buildUI(targetStores);
 		}
 	}
-
+	// Call ContentPreviewController to update store dropdown.
+	ContentPreviewController.controller.storeIds = store_ids;
+	ContentPreviewController.controller.updateStoreDropdown(store_ids);
+	ContentPreviewController.controller.refresh();
 };
