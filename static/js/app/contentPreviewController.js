@@ -34,11 +34,6 @@ var ContentPreviewController = (function ($) {
 		},
 		attachEventHandlers: function () {
 			var controller = this;
-
-			$('.content-preview-tab-btn').click(function () {
-				controller.refresh();
-			});
-
 			// Whenever the store dropdown changes, call refresh();
 			$('.content-preview-store-dropdown').on('change', function () {
 				controller.refresh();
@@ -133,10 +128,9 @@ var ContentPreviewController = (function ($) {
 					var json_results = JSON.parse(results);
 					controller.activeStoreMeta = json_results;
 					controller.updateUI();
-					controller.showUI();
 				});
-			});
 
+			});
 		},
 		/**
 		 * [updateUI Responsible for updating the UI using data available within the controller.]
@@ -365,27 +359,22 @@ var ContentPreviewController = (function ($) {
 
 			$(".store-disclaimer").html(disclaimer.join("<br><br>"));
 
+			controller.showUI();
 		},
 		showUI: function () {
-
-			if (controller.activeStoreData.enrolled)
-			{
-				$('.content-preview-section .js-loading').fadeOut();
-				$('.content-preview-section .js-loading-is-done').fadeIn();
+				if (controller.activeStoreData.enrolled) {
+					$('.content-preview-section .js-loading').hide();
+					$('.content-preview-section .js-loading-is-done').show();
+				} else {
+					$('.content-preview-section .js-loading-is-done,.content-preview-section .js-loading').hide();
+					$('.results-section .results-message').show();
+				}
+			},
+			hideUI: function () {
+				$('.results-section .results-message').hide();
+				$('.content-preview-section .js-loading-is-done').hide();
+				$('.content-preview-section .js-loading').fadeIn();
 			}
-			else
-			{
-				$('.content-preview-section .js-loading-is-done,.content-preview-section .js-loading').hide();
-				$('.results-section .results-message').show();
-			}
-		},
-		hideUI: function () {
-
-			$('.results-section .results-message').hide();
-
-			 $('.content-preview-section .js-loading-is-done').fadeOut();
-			 $('.content-preview-section .js-loading').fadeIn();
-		}
   };
 	return {
 		controller: controller
