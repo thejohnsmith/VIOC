@@ -1421,6 +1421,19 @@ header#nav {
   padding: 0;
   margin: 0
 }
+.lifescycle-tab .optional-tab.optional-tab-is-visible {
+  visibility: visible;
+  font-size: 17px;
+  display: inline-block;
+  float: left;
+  width: auto;
+  margin: 0 4px 0 0;
+  padding: 13px 9px;
+  list-style: none;
+  cursor: pointer;
+  -webkit-transition: .5s;
+  transition: .5s
+}
 .programsummary-table.quantity-limit-tab-section .store-enroll {
   width: 15%
 }
@@ -3673,7 +3686,7 @@ button.enroll-all-stores.btn.btn-primary.btn-sm {
     font-size: 12px
   }
 }
-.Beta_Epsilon .header-info h2:after{
+.Beta_Epsilon .header-info h2:after {
   content: '_Beta';
   font-size: 10px;
   color: #ed3023;

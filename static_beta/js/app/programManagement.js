@@ -688,7 +688,7 @@ var programManagementController = (function ($) {
 		showQuantityLimitTabIfNeeded: function () {
 			var controller = this;
 			if (controller.program.showQuantityLimitTab == 1) {
-				$('#programManagementTabs .optional-tab').css('visibility', 'visible');
+				$('#programManagementTabs .optional-tab').addClass('optional-tab-is-visible');
 			}
 		},
 		hideProgramSettingsIfNeeded: function () {

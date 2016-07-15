@@ -15,7 +15,6 @@ var ContentPreviewController = (function ($) {
 		store: {},
 		storeDropdown: $('.content-preview-store-dropdown'),
 		initComplete: false,
-
 		init: function (storeIds, storeData, program) {
 			var controller = this;
 
@@ -35,11 +34,6 @@ var ContentPreviewController = (function ($) {
 		},
 		attachEventHandlers: function () {
 			var controller = this;
-
-			$('.content-preview-tab-btn').click(function() {
-				controller.refresh();
-			});
-
 			// Whenever the store dropdown changes, call refresh();
 			$('.content-preview-store-dropdown').on('change', function () {
 				controller.refresh();
@@ -48,10 +42,6 @@ var ContentPreviewController = (function ($) {
 		/**
 		 * [updateStoreDropdown When provided a list of store IDs, this will update the store dropdown and then call refresh()]
 		 * @param  {[type]} storeIds [description]
-		 * 1)  Empty the dropdown via $(dropdown).html();
-		 * 2)  Loop through controller.store_ids
-		 * 3)  While looping through store ids, loop through controller.storeData
-		 * 4)  If a store data entry matches a store ID, pull out the name, build an <option> and inject it into $(dropdown)
 		 */
 		updateStoreDropdown: function () {
 			var controller = this;
@@ -94,11 +84,6 @@ var ContentPreviewController = (function ($) {
 				$('.content-preview-store-dropdown').append(option);
 			}
 
-			// Testing
-			/* for (var i = 0; i < storeIds.length; i++) {
-			  console.warn('storeIds: ', storeIds);
-			  console.warn('storeData: ', controller.storeData);
-			} */
 		},
 		refresh: function (configId, callback) {
 
@@ -125,7 +110,6 @@ var ContentPreviewController = (function ($) {
 					controller.activeConfigId = configId;
 				}
 			}
-
 			if (configId == 0)
 			{
 				controller.showUI();
@@ -134,7 +118,6 @@ var ContentPreviewController = (function ($) {
 
 			// Load the config ID;
 			$.get(controller.apiPath + 'loadConfig.jssp?userId=' + encodeURIComponent(controller.userId) + '&configId=' + configId, function (results) {
-
 				var json_results = JSON.parse(results);
 				controller.activeStoreDataConfig = json_results;
 
@@ -142,12 +125,9 @@ var ContentPreviewController = (function ($) {
 				var programId = controller.programId;
 
 				$.get(controller.apiPath + 'getContentPreviewMeta.jssp?storeNumber=' + encodeURIComponent(storeNumber) + '&programId=' + programId, function (results) {
-
 					var json_results = JSON.parse(results);
 					controller.activeStoreMeta = json_results;
-
 					controller.updateUI();
-					controller.showUI();
 				});
 
 			});
@@ -157,11 +137,6 @@ var ContentPreviewController = (function ($) {
 		 */
 		updateUI: function () {
 			var controller = this;
-			console.warn('Running update UI using data:', controller.activeStoreDataConfig);
-			/*
-				updateUI should call helper functions designed to update the screen.
-				They should only have to use data found in controller.activeStoreData or controller.activeStoreDataConfig;
-			*/
 			controller.updateStoreDetails();
 			controller.updateGrid();
 			controller.showAdditionalGridData();
@@ -170,7 +145,6 @@ var ContentPreviewController = (function ($) {
 			var controller = this;
 
 			// Reuse the existing programConfigController class to fill the grid.
-
 			programConfigController.controller.program = controller.program;
 			programConfigController.controller.config = controller.activeStoreDataConfig;
 			programConfigController.controller.configLoaded = true;
@@ -306,7 +280,6 @@ var ContentPreviewController = (function ($) {
 				}
 			});
 
-
 			// Load config for additional offer
 			$.get(controller.apiPath + 'loadConfig.jssp?userId=' + encodeURIComponent(controller.userId) + '&configId=' + program.adtlConfigId, function (results) {
 
@@ -339,7 +312,7 @@ var ContentPreviewController = (function ($) {
 		updateStoreDetails: function () {
 			var controller = this;
 			var store = controller.activeStoreData;
-			console.info('updateStoreDetails was called.');
+			// console.info('updateStoreDetails was called.');
 
 			// Update address and phone data
 
@@ -358,7 +331,6 @@ var ContentPreviewController = (function ($) {
 					$("."+day+" .store-closed").removeClass("none");
 				}
 			});
-
 
 			// Update store features
 			$(".features").html('');
@@ -387,27 +359,22 @@ var ContentPreviewController = (function ($) {
 
 			$(".store-disclaimer").html(disclaimer.join("<br><br>"));
 
+			controller.showUI();
 		},
 		showUI: function () {
-
-			if (controller.activeStoreData.enrolled)
-			{
-				$('.content-preview-section .js-loading').fadeOut();
-				$('.content-preview-section .js-loading-is-done').fadeIn();
+				if (controller.activeStoreData.enrolled) {
+					$('.content-preview-section .js-loading').hide();
+					$('.content-preview-section .js-loading-is-done').show();
+				} else {
+					$('.content-preview-section .js-loading-is-done,.content-preview-section .js-loading').hide();
+					$('.results-section .results-message').show();
+				}
+			},
+			hideUI: function () {
+				$('.results-section .results-message').hide();
+				$('.content-preview-section .js-loading-is-done').hide();
+				$('.content-preview-section .js-loading').fadeIn();
 			}
-			else
-			{
-				$('.content-preview-section .js-loading-is-done,.content-preview-section .js-loading').hide();
-				$('.results-section .results-message').show();
-			}
-		},
-		hideUI: function () {
-
-			$('.results-section .results-message').hide();
-
-			 $('.content-preview-section .js-loading-is-done').fadeOut();
-			 $('.content-preview-section .js-loading').fadeIn();
-		}
   };
 	return {
 		controller: controller

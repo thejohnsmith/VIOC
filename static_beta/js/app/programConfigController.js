@@ -178,7 +178,11 @@ var programConfigController = (function ($) {
 			}
 
 			if (controller.config.content.emStd1Code == "") {
-				$('.standard-risk.offer-1').hide(); // A special edge-case for using this grid on the Content Preview tab.
+				$('.content-preview-section .touchpoint-1 .standard-risk.offer-1').hide(); // A special edge-case for using this grid on the Content Preview tab.
+			}
+
+			if (controller.config.content.emStd2Code == "") {
+				$('.content-preview-section .touchpoint-2 .standard-risk.offer-2').hide(); // A special edge-case for using this grid on the Content Preview tab.
 			}
 
 			var firstActiveTab = null;
@@ -213,7 +217,7 @@ var programConfigController = (function ($) {
 			$('.touchpoint-' + firstActiveTab + '.resp-tab-content').addClass('resp-tab-content-active');
 
 			if (!controller.program.programUsesService) {
-				$('.results-section .service-offer').hide();
+				$('.results-section .service-offer, .results-section .additional-offer').hide();
 			}
 
 			$.each($('.touchpoint-value'), function (i, e) {
