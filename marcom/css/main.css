@@ -931,18 +931,23 @@ header#nav {
   width: 29%
 }
 .program-select .program-info .program-status {
-  font-size: 18px;
-  float: left;
-  width: 67.5%;
-  padding: 3px 4px;
-  text-align: center;
-  color: #fff;
-  border: 1px solid #555
+  font-size: 14px;
+	float: left;
+	width: 76%;
+	min-width: 80px;
+	padding: 1px;
+	margin-top: 5px;
+	text-align: center;
+	color: #fff;
+	border: 1px solid #555
 }
 .program-select .program-info .program-edit {
   position: absolute;
-  top: 3px;
-  right: -10px
+  top: 5px;
+  right: -15px
+}
+.program-select .program-info .program-edit img {
+  max-width: 90%
 }
 .program-select .program-info .program-edit a {
   -webkit-transition: all .5s cubic-bezier(.68, -.55, .27, 1.55) 0s;
@@ -996,7 +1001,7 @@ header#nav {
   background: #1bb24b
 }
 #programSummary .program-select li.status-yellow .program-status {
-  color: #6d6d6d;
+  color: #555;
   background: #ffe600
 }
 #programSummary .program-select li.status-red .program-status {

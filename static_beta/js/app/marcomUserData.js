@@ -103,11 +103,11 @@ var marcomUserData = (function ($) {
 	if (typeof appUtilities === 'object') {
 		/* Update the hard-coded URL's in the utility navigation. */
 		appUtilities.changeNavBarLink();
-		appUtilities.runtimeDebugging(marcomUserData);	
+		appUtilities.runtimeDebugging(marcomUserData);
 	}
 
 	/* Run the login controller */
-	if ($('#homePageLanding').length >= 1) {
+	if (window.location.href.indexOf(marcomUserData.$constants.homePageUrl) > -1) {
 		recordLogin.makeRequest();
 	}
 

@@ -330,6 +330,12 @@ var ContentPreviewController = (function ($) {
 					$("."+day+" .open-hours").addClass("none");
 					$("."+day+" .store-closed").removeClass("none");
 				}
+				else
+				{
+					$("."+day+" .open-hours").removeClass("none");
+					$("."+day+" .store-closed").addClass("none");
+				}
+
 			});
 
 			// Update store features

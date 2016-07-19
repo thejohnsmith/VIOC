@@ -103,7 +103,7 @@ var marcomUserData = (function ($) {
 	if (typeof appUtilities === 'object') {
 		/* Update the hard-coded URL's in the utility navigation. */
 		appUtilities.changeNavBarLink();
-		//appUtilities.runtimeDebugging(marcomUserData);	
+		//appUtilities.runtimeDebugging(marcomUserData);
 	}
 
 	/* Run the login controller */
