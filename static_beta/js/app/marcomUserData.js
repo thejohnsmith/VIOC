@@ -107,7 +107,7 @@ var marcomUserData = (function ($) {
 	}
 
 	/* Run the login controller */
-	if (window.location.href.indexOf(marcomUserData.$constants.homePageUrl) > -1) {
+	if ($('#homePageLanding').length >= 1 || window.location.href.indexOf(marcomUserData.$constants.homePageUrl) > -1) {
 		recordLogin.makeRequest();
 	}
 

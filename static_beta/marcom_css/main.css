@@ -931,10 +931,10 @@ header#nav {
   width: 29%
 }
 .program-select .program-info .program-status {
-  font-size: 14px;
+  font-size: 15px;
 	float: left;
 	width: 76%;
-	min-width: 80px;
+	min-width: 60px;
 	padding: 1px;
 	margin-top: 5px;
 	text-align: center;
