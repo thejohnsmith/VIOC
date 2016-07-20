@@ -94,7 +94,7 @@ var marcomUserData = (function ($) {
 
 (function ($) {
 	/* Monitor for flash messages */
-	if (typeof getParameterByName === 'function') {
+	if (typeof getParameterByName === 'function' && typeof toastr === 'object') {
 		if (getParameterByName('flashSuccessMsg', window.location.href) != '') {
 			toastr.success(getParameterByName('flashSuccessMsg', window.location.href));
 		}
@@ -103,7 +103,9 @@ var marcomUserData = (function ($) {
 	if (typeof appUtilities === 'object') {
 		/* Update the hard-coded URL's in the utility navigation. */
 		appUtilities.changeNavBarLink();
-		appUtilities.runtimeDebugging(marcomUserData);
+		if (marcomUserData.environmentKind === 'UAT') {
+			appUtilities.runtimeDebugging(marcomUserData);
+		}
 	}
 
 	/* Run the login controller */

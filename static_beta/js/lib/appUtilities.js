@@ -24,7 +24,7 @@ var appUtilities = (function ($) {
 			controller.setPrettyPhone();
 		},
 		setBrowserTitle: function () {
-			var $pageTitle = '' || $j('.wrapper h1').first().text();
+			var $pageTitle = '' || $('.wrapper h1').first().text();
 			return $('title').html('VIOC Warp Drive' + ' - ' + $pageTitle);
 		},
 		changeNavBarLink: function () {
@@ -39,7 +39,7 @@ var appUtilities = (function ($) {
 			$('.header-right .btnHelp, .header-right .btnContactUs').attr('href', marcomUserData.$constants.helpPageUrl);
 		},
 		setFavicon: function () {
-			return $j('head').append('<link rel="icon" href="https://files.marcomcentral.app.pti.com/epsilon/static/images/favicon.ico" type="image/x-icon">');
+			return $('head').append('<link rel="icon" href="https://files.marcomcentral.app.pti.com/epsilon/static/images/favicon.ico" type="image/x-icon">');
 		},
 		/** Phone Number Formatting
 		 *  Used by calling appUtilities.setPrettyPhone();
@@ -64,6 +64,16 @@ var appUtilities = (function ($) {
 				}
 			});
 		},
+		goBack: function () {
+			$(function () {
+				$('.back').click(function () {
+					if (history.length > 1) {
+						parent.history.back();
+					} else {}
+					return false;
+				});
+			});
+		},
 		/**
 		 * [runtimeDebugging Debugging for Beta]
 		 */
@@ -73,7 +83,7 @@ var appUtilities = (function ($) {
 			marcomUserData.environmentKind === 'UAT' ? $('html').addClass('Beta_Epsilon') : $('html').removeClass('Epsilon');
 
 			var domainLocation = window.location.href,
-				debugHeader = 'color:#00bbfd;font-family:"HelveticaNeueLT-Condensed";font-weight:light;background:#000;' + 'font-size:1.6em;line-height:1;padding:0.08em 0.25em;margin:0',
+				debugHeader = 'color:#00bbfd;font-family:HelveticaNeueLT-Condensed,sans-serif;font-weight:100;background:#000;' + 'font-size:1.3em;line-height:1;padding:0.08em 0.25em;margin:0',
 				debugTitle = 'color:green;font-weight:bold;font-size:1em',
 				debugGroup = 'color:purple;font-weight:bold;font-size:1em',
 				debugItem = 'color:#f06;font-weight:bold;font-size:0.95em';
@@ -91,14 +101,15 @@ var appUtilities = (function ($) {
 			console.debug('Platform: %c %s', debugItem, navigator.platform.toLowerCase());
 			console.groupEnd();
 			console.groupEnd();
-			}
+		}
 	};
 	return {
 		controller: controller,
 		changeNavBarLink: controller.changeNavBarLink,
 		runtimeDebugging: controller.runtimeDebugging,
 		setPrettyPhone: controller.setPrettyPhone,
-		routeEnterKeyToNext: controller.routeEnterKeyToNext
+		routeEnterKeyToNext: controller.routeEnterKeyToNext,
+		goBack: controller.goBack
 	};
 })(jQuery);
 
