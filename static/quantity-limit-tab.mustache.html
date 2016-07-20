@@ -18,39 +18,42 @@
       </thead>
       <tbody>
         {{#.}}
-        <tr class="filterable store-item" data-filter-storeId="{{storeId}}" data-storeId="{{storeId}}" data-enrolled="{{#enrolled}}true{{/enrolled}}{{^enrolled}}false{{/enrolled}}">
-          <td class="store-item-dimable" style="padding: 21px 8px">
-            <div class="checkbox-area">
-              <div data-storeId="{{storeId}}" class="quantity-limit vioc-checkbox {{^enrolled}}disabled{{/enrolled}}">
-                <input {{^enrolled}}readonly{{/enrolled}} type="checkbox">
-              </div>
-            </div>
-          </td>
-
-          <td data-storeId="{{storeId}}" class="store-item-dimable {{^enrolled}}dim-mid{{/enrolled}} store quantity-limit-store" style="padding: 21px 8px">
-            <div class="store-name">{{storeName}}</div>
-            <div class="store-number">Store #{{storeNumber}}</div>
-          </td>
-
-          <td class="store-configuration" style="padding: 21px 8px">
-            <div class="container-fluid">
-              <div class="row">
-                <div class="col-sm-8 store-item-dimable">
-                  <input value="{{quantityLimit}}" tabindex="1" data-storeId="{{storeId}}" type="number" {{^enrolled}}disabled{{/enrolled}} class="quantity-limit-input form-control {{^enrolled}}input-disabled{{/enrolled}}">
-                </div>
-                <div class="col-sm-2 store-item-dimable">
-                  <button tabindex="1" data-storeId="{{storeId}}" {{^enrolled}}disabled{{/enrolled}} class="apply-quantity-limit btn btn-small btn-primary {{^enrolled}}dim-mid disabled{{/enrolled}}">Apply</button>
+          <tr class="filterable store-item" data-filter-storeId="{{storeId}}" data-storeId="{{storeId}}" data-enrolled="{{#enrolled}}true{{/enrolled}}{{^enrolled}}false{{/enrolled}}">
+            <td class="store-item-dimable" style="padding: 21px 8px">
+              <div class="checkbox-area">
+                <div data-storeId="{{storeId}}" class="quantity-limit vioc-checkbox {{^enrolled}}disabled{{/enrolled}}">
+                  <input {{^enrolled}} readonly{{/enrolled}} type="checkbox">
                 </div>
               </div>
-            </div>
-          </td>
-        </tr>
+            </td>
+
+            <td data-storeId="{{storeId}}" class="store-item-dimable {{^enrolled}}dim-mid{{/enrolled}} store quantity-limit-store" style="padding: 21px 8px">
+              <div class="store-name">{{storeName}}</div>
+              <div class="store-number">Store #{{storeNumber}}</div>
+            </td>
+
+            <td class="store-configuration" style="padding: 21px 8px">
+              <div class="container-fluid">
+                <div class="row">
+                  <div class="col-sm-8 store-item-dimable">
+                    <input value="{{quantityLimit}}" tabindex="1" data-storeId="{{storeId}}" type="number" {{^enrolled}} disabled{{/enrolled}} class="quantity-limit-input form-control {{^enrolled}}input-disabled{{/enrolled}}">
+                  </div>
+                  <div class="col-sm-2 store-item-dimable">
+                    <button tabindex="1" data-storeId="{{storeId}}" {{^enrolled}} disabled{{/enrolled}} class="apply-quantity-limit btn btn-small btn-primary {{^enrolled}}dim-mid disabled{{/enrolled}}">Apply</button>
+                  </div>
+                </div>
+              </div>
+            </td>
+          </tr>
         {{/.}}
         <tr class="quantity-limit footer-row">
 
           <td class="quantity-limit-footer" colspan="2" style="padding: 0 14px 0;text-align: right;">
             Set quantity limit on
-            <span class="quantity-limit-footer-selected-count"> 0 </span> selected store(s):
+            <span class="quantity-limit-footer-selected-count">
+              0
+            </span>
+            selected store(s):
           </td>
           <td class="quantity-limit-footer store-configuration" style="padding: 21px 8px">
             <div class="container-fluid">
@@ -71,15 +74,17 @@
   <script>
     var $j = jQuery;
     var quantityLimitController = jQuery.extend({}, checkboxController.controller);
-    quantityLimitController.init('quantity-limit', function(storeIds) {
+    quantityLimitController.init('quantity-limit', function (storeIds) {
       // console.log("Stores changed: %O", storeIds);
-      var plural = (storeIds.length === 1) ? '' : 's';
-      $j('.quantity-limit.footer-row')
-        .toggleClass('none', (storeIds.length < 2));
-      $j('.quantity-limit.footer-row td.quantity-limit-footer:first-child')
-        .html('Set quantity limit on ' + storeIds.length + ' selected store' + plural + ':');
-      });
-      // Prevent the Enter key from throwing errors.
-      appUtilities.routeEnterKeyToNext($j('.quantity-limit-input'));
+      var plural = (storeIds.length === 1)
+        ? ''
+        : 's';
+      $j('.quantity-limit.footer-row').toggleClass('none', (storeIds.length < 2));
+      $j('.quantity-limit.footer-row td.quantity-limit-footer:first-child').html('Set quantity limit on ' + storeIds.length + ' selected store' + plural + ':');
+    });
+    // Prevent the Enter key from throwing errors.
+    appUtilities.routeEnterKeyToNext($j('.quantity-limit-input'));
+
+    programManagementController.controller.attachEventListeners();
   </script>
 </script>

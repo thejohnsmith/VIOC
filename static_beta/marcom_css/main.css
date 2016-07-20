@@ -1225,7 +1225,7 @@ header#nav {
 }
 .view-program-summary {
   float: right;
-  width: 30%;
+  width: auto;
   padding-top: 4px
 }
 .view-program-summary a {

@@ -53,6 +53,7 @@ var marcomUserData = (function ($) {
 			forgotPassPageUrl: 'forgotpassword.aspx?uigroup_id=478656',
 			accountPageUrl: 'profile.aspx?uigroup_id=478656&mode=1',
 			onDemandUrl: 'catalog.aspx?folder_id=1724903',
+			storeWebsiteUrl: '',
 			apiPath: 'https://adobe-prod-vioc.epsilon.com/jssp/vioc/',
 			apiPathLocal: 'data/',
 			marcomFilePath: 'https://files.marcomcentral.app.pti.com/epsilon/static/'
@@ -80,6 +81,7 @@ var marcomUserData = (function ($) {
 			forgotPassPageUrl: 'forgotpassword.aspx?uigroup_id=479602',
 			accountPageUrl: 'profile.aspx?uigroup_id=479602&mode=1',
 			onDemandUrl: 'catalog.aspx?uigroup_id=479602&folder_id=1633307',
+			storeWebsiteUrl: 'CustomPage.aspx?uigroup_id=479602&page_id=12939',
 			apiPath: 'https://adobe-prod-vioc.epsilon.com/jssp/vioc/',
 			apiPathLocal: 'data/',
 			marcomFilePath: 'https://files.marcomcentral.app.pti.com/epsilon/static_beta/'
@@ -111,6 +113,14 @@ var marcomUserData = (function ($) {
 	/* Run the login controller */
 	if ($('#homePageLanding').length >= 1 || window.location.href.indexOf(marcomUserData.$constants.homePageUrl) > -1) {
 		recordLogin.makeRequest();
+	}
+
+	// Only execute this controller on a certain page
+	if (window.location.href.indexOf(marcomUserData.$constants.storeWebsiteUrl) > -1) {
+		$('.asyncMarkup').load("https://files.marcomcentral.app.pti.com/epsilon/static_beta/marcom_custom/storeWebsites.html", function () {
+			console.debug('Calling Async load of storeWebsites.html');
+			StoreWebsitesController.controller.init();
+		});
 	}
 
 })(jQuery);
