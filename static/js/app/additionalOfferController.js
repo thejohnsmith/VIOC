@@ -315,6 +315,13 @@ var additionalOfferController = (function ($) {
 							saveData["_adtlApproach" + i] = $('[name=adtlApproach' + i + ']').val();
 							saveData["_adtlValue" + i] = $('[name=adtlValue' + i + ']').val();
 						}
+						else
+						{
+							saveData["_adtlCode" + i] = '';
+							saveData["_adtlText" + i] = '';
+							saveData["_adtlApproach" + i] = '';
+							saveData["_adtlValue" + i] = '';
+						}
 					}
 
 					if (controller.configId > 0)
