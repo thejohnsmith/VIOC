@@ -115,12 +115,5 @@ var marcomUserData = (function ($) {
 		recordLogin.makeRequest();
 	}
 
-	// Only execute this controller on a certain page
-	if (window.location.href.indexOf(marcomUserData.$constants.storeWebsiteUrl) > -1) {
-		$('.asyncMarkup').load("https://files.marcomcentral.app.pti.com/epsilon/static_beta/marcom_custom/storeWebsites.html", function () {
-			console.debug('Calling Async load of storeWebsites.html');
-			StoreWebsitesController.controller.init();
-		});
-	}
 
 })(jQuery);

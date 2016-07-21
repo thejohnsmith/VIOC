@@ -243,7 +243,7 @@ a:focus {
   direction: ltr;
   text-indent: -999em
 }
-.text-center, .text-centered {
+.text-center, .text-centered, .center-text, .centered-text {
   text-align: center
 }
 .visible {
@@ -742,6 +742,12 @@ header#nav {
 }
 .icon-area span {
   display: block
+}
+.display-block {
+  display: block;
+}
+.display-inline-block, .display-inlineblock {
+  display: block;
 }
 .display-table {
   display: table
@@ -3716,4 +3722,36 @@ button.enroll-all-stores.btn.btn-primary.btn-sm {
   color: #ed3023;
   text-transform: lowercase;
   -webkit-font-smoothing: antialiased
+}
+.storeWebsite .filters-area {
+  opacity: 1;
+  width: 100%;
+  float: none
+}
+.banner, .banner-default {
+  font-family: 'HelveticaNeueLT-Condensed';
+  font-size: 17px;
+  padding: 11px;
+  color: #555;
+  background: #F6F6F5;
+  display: block
+}
+.banner-primary {
+  color: #fff;
+  background: #1cb7f1
+}
+.banner-control {
+  cursor: pointer;
+  position: absolute;
+  padding: 11px;
+  right: 0;
+  top: 0
+}
+.list-primary, .list-item {
+  position: relative
+}
+.list-item {
+  color: #555;
+  background: #f6f6f6;
+  padding: 11px;
 }
