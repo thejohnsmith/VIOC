@@ -106,7 +106,7 @@ var marcomUserData = (function ($) {
 		/* Update the hard-coded URL's in the utility navigation. */
 		appUtilities.changeNavBarLink();
 		if (marcomUserData.environmentKind === 'UAT') {
-			appUtilities.runtimeDebugging(marcomUserData);
+			var $debug = appUtilities.runtimeDebugging();
 		}
 	}
 
@@ -115,5 +115,5 @@ var marcomUserData = (function ($) {
 		recordLogin.makeRequest();
 	}
 
-
+return $debug;
 })(jQuery);

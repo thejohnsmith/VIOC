@@ -235,12 +235,11 @@ var programManagementController = (function ($) {
 			$.get(controller.apiPath + 'deleteConfig.jssp?userId=' + encodeURIComponent(controller.user_id) + '&configId=' + encodeURIComponent(selectedConfigId), function (results) {}).error(function (data) {
 				toastr.error('Failed to delete settings.');
 			}).done(function (data) {
-				console.warn('About to delete selectedConfig: ' + selectedConfigId);
+				// console.debug('About to delete selectedConfig: ' + selectedConfigId);
 				toastr.success('Settings deleted!');
 				if (typeof callback == 'function') {
 					$('option[value="' + selectedConfigId + '"]').remove();
-					console.warn('removing selectedConfig: ' + selectedConfigId);
-					callback();
+					console.debug('removing selectedConfig: ' + selectedConfigId);
 				}
 			});
 		},
@@ -796,8 +795,8 @@ var programManagementController = (function ($) {
 					var targetStores = [];
 					var store_ids = programManagementFilters.controller.store_ids;
 
-					$j.each(controller.store_data, function (idx, store) {
-						if ($j.inArray(store.storeId.toString(), store_ids) > -1) {
+					$.each(controller.store_data, function (idx, store) {
+						if ($.inArray(store.storeId.toString(), store_ids) > -1) {
 							targetStores.push(store);
 						}
 					});

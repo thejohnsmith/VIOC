@@ -16,6 +16,10 @@ var setStoreSubscription = (function ($) {
 		// var localDevUrl = 'data/setStoreSubscription.jssp';
 		// var marcomDevUrl = 'https://files.marcomcentral.app.pti.com/epsilon/static/data/setStoreSubscription.jssp';
 		var apiPath = marcomUserData.$constants.apiPath + 'setStoreSubscription.jssp';
+		console.info('$subscribe: ', $subscribe);
+		if ($subscribe == "0") {
+			return false;
+		}
 		$.ajax({
 			url: apiPath,
 			type: 'GET',

@@ -282,7 +282,9 @@ var ContentPreviewController = (function ($) {
 
 			// Load config for additional offer
 			$.get(controller.apiPath + 'loadConfig.jssp?userId=' + encodeURIComponent(controller.userId) + '&configId=' + program.adtlConfigId, function (results) {
-
+				if (program.adtlConfigId == "0") {
+					return false;
+				}
 				var json_results = JSON.parse(results);
 				controller.activeStoreDataAdtlConfig = json_results;
 

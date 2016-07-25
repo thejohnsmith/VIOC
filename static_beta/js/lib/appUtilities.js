@@ -77,7 +77,7 @@ var appUtilities = (function ($) {
 		/**
 		 * [runtimeDebugging Debugging for Beta]
 		 */
-		runtimeDebugging: function (fnRunning) {
+		runtimeDebugging: function () {
 			/* Only run console Debugging in UAT(Beta_Epsilon) Environment. */
 			// Give the source a namespace
 			marcomUserData.environmentKind === 'UAT' ? $('html').addClass('Beta_Epsilon') : $('html').removeClass('Epsilon');

@@ -6,10 +6,10 @@
  * @filename - FormCopyController.js
  * @author - Anthony Gill, John Smith : Epsilon 2016
  */
-var pageAnchor = '#ctl00_content_CtlAddToCart_InteractivityContainer_panelInteractivity';
+var pageAnchor = '#ctl00_content_CtlAddToCart_ProductFootnote_divFootNote';
 var pageKey = 'addToCart.aspx';
 
-ChooseTemplateController = (function ($) {
+FormCopyController = (function ($) {
 	'use strict';
 	var controller = {
 		intervalHandle: null,
@@ -33,9 +33,14 @@ ChooseTemplateController = (function ($) {
 			}, 500);
 		},
 		AdjustUI: function () {
-			console.warn('Adjusting UI...');
-			$('.ButtonAddToCart.addToCartBtn > *').html('Send Immediately');
-			// Change Add To Cart text on submit button to, 'Send Immediately'/
+			console.debug('123 Adjusting UI...');
+
+			// Change Add To Cart text on submit button to, 'Send Immediately'
+			$('.ButtonAddToCart.addToCartBtn span:contains("Add to Cart")').html('Send Immediately');
+
+			// Change Qty text to, 'Recipients'
+			$('.qtyInputContainer span:contains("Qty:")').html('Recipients');
+
 			var htmlComments = $('*').contents().filter(function () {
 				return this.nodeType === 8;
 			});
@@ -53,7 +58,7 @@ ChooseTemplateController = (function ($) {
 	};
 })(jQuery);
 
-// Only execute this controller on a certain page
+// Only execute this controller on the addToCart page.
 if (window.location.href.indexOf(pageKey) > -1) {
-	ChooseTemplateController.controller.init();
+	FormCopyController.controller.init();
 }

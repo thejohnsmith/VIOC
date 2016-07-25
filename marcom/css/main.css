@@ -243,7 +243,7 @@ a:focus {
   direction: ltr;
   text-indent: -999em
 }
-.text-center, .text-centered {
+.text-center, .text-centered, .center-text, .centered-text {
   text-align: center
 }
 .visible {
@@ -743,6 +743,12 @@ header#nav {
 .icon-area span {
   display: block
 }
+.display-block {
+  display: block;
+}
+.display-inline-block, .display-inlineblock {
+  display: block;
+}
 .display-table {
   display: table
 }
@@ -828,6 +834,7 @@ header#nav {
   text-align: right;
   width: 40%;
   float: right;
+  padding: 0 2% 1% 0
 }
 #calendar, #programSummary .program-select, .calendar-details {
   float: left;
@@ -3641,7 +3648,7 @@ button.enroll-all-stores.btn.btn-primary.btn-sm {
   border: 0
 }
 .content-preview-section .store-hours table tr td {
-  height: 59px;
+  height: 70px;
   padding: 0;
   vertical-align: top;
   border: 1px solid #df2129;
@@ -3689,6 +3696,12 @@ button.enroll-all-stores.btn.btn-primary.btn-sm {
 .content-preview-section .results-section .results-message {
   line-height: 2
 }
+.content-preview-section .store-hours .open-hours {
+  font-size: 11px
+  margin-top: 5%;
+  display: inline-block;
+  height: auto
+}
 @media all and (min-width:960px) {
   .content-preview-section .settings-section {
     width: 42%;
@@ -3702,7 +3715,7 @@ button.enroll-all-stores.btn.btn-primary.btn-sm {
     float: right
   }
   .content-preview-section .store-hours .open-hours {
-    font-size: 11px
+    margin-top: 15%;
   }
 }
 @media all and (min-width:1111px) {
@@ -3716,4 +3729,36 @@ button.enroll-all-stores.btn.btn-primary.btn-sm {
   color: #ed3023;
   text-transform: lowercase;
   -webkit-font-smoothing: antialiased
+}
+.storeWebsite .filters-area {
+  opacity: 1;
+  width: 100%;
+  float: none
+}
+.banner, .banner-default {
+  font-family: 'HelveticaNeueLT-Condensed';
+  font-size: 17px;
+  padding: 11px;
+  color: #555;
+  background: #F6F6F5;
+  display: block
+}
+.banner-primary {
+  color: #fff;
+  background: #1cb7f1
+}
+.banner-control {
+  cursor: pointer;
+  position: absolute;
+  padding: 11px;
+  right: 0;
+  top: 0
+}
+.list-primary, .list-item {
+  position: relative
+}
+.list-item {
+  color: #555;
+  background: #f6f6f6;
+  padding: 11px;
 }

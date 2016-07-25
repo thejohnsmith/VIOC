@@ -7,6 +7,9 @@
 .btn-s-green, .btn-s-green:hover {
   background-position: right -769px
 }
+.Minimum {
+  visibility: hidden;
+}
 #qtip-blanket, .qtip, .qtip> * {
   display: none !important;
 }

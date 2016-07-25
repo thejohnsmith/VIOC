@@ -744,10 +744,10 @@ header#nav {
   display: block
 }
 .display-block {
-  display: block;
+  display: block
 }
 .display-inline-block, .display-inlineblock {
-  display: block;
+  display: inline-block
 }
 .display-table {
   display: table
@@ -834,6 +834,7 @@ header#nav {
   text-align: right;
   width: 40%;
   float: right;
+  padding: 0 2% 1% 0
 }
 #calendar, #programSummary .program-select, .calendar-details {
   float: left;
@@ -3647,7 +3648,7 @@ button.enroll-all-stores.btn.btn-primary.btn-sm {
   border: 0
 }
 .content-preview-section .store-hours table tr td {
-  height: 59px;
+  height: 70px;
   padding: 0;
   vertical-align: top;
   border: 1px solid #df2129;
