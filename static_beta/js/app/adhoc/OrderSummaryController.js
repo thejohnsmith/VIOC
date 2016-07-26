@@ -58,7 +58,19 @@ OrderSummaryController = (function ($) {
 
 // Only execute this controller on a certain page
 if (window.location.href.indexOf(pageKey) > -1) {
-  var $j = jQuery;
-  $j('#CtlBrdCrm, #CtlCart, .ButtonRowFloatR').hide();
+	var $j = jQuery;
+
+	if (typeof getParameterByName === 'function') {
+		var reqId = getParameterByName('reqId', window.location.href);
+		console.log('reqId, %O', reqId);
+		if (reqId !== 'undefined') {
+			$j('#CtlBrdCrm, #CtlCart, .ButtonRowFloatR').show();
+			$j('.CustomCopy').hide();
+		}
+		else {
+			$j('.CustomCopy').show();
+			$j('#CtlBrdCrm, #CtlCart, .ButtonRowFloatR').hide();
+		}
+	}
 	OrderSummaryController.controller.init();
 }

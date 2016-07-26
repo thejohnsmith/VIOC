@@ -70,7 +70,7 @@ var updateRecipientCount = function (save, callback) {
 	if (save === true) data.save = 1;
 	$j.get(apiPath + 'getRecipientEstimate.jssp', data).done(function (data) {
 		try {
-			data = JSON.parse(data);
+			data = DoNotParseData(data);
 			$j('#counter').html(data.recipientCount);
 			$j('#btnSubmit').html('Submit (' + data.recipientCount + ' Recipients)');
 			if (typeof callback === 'function') callback(data.recipientCount, data.saveId);
@@ -89,7 +89,7 @@ $j(document).ready(function () {
 		// Call and get the store tree:
 		$j.get(apiPath + 'getStoreSummary.jssp?userId=' + marcomUserData.$user.externalId).done(function (data) {
 			try {
-				jsonTreeData = JSON.parse(data);
+				jsonTreeData = DoNotParseData(data);
 			} catch (e) {
 				alert('Failed to parse JSON data');
 			}

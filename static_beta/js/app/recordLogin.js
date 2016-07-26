@@ -45,7 +45,7 @@ var recordLogin = (function ($) {
 				processData: true,
 				contentType: 'application/json'
 			}).done(function (data) {
-				var results = JSON.parse(data);
+				var results = DoNotParseData(data);
 				if ($('#welcome').length) {
 					setLandingPageType(results);
 				}

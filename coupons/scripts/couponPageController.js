@@ -27,8 +27,7 @@ couponPageController = (function ($) {
         GetPageData: function (pfid, rid, h, callback) {
             var controller = this;
             $.get(controller.apiPath + 'getCouponPageData.jssp?pfid=' + encodeURIComponent(pfid) + '&rid=' + encodeURIComponent(rid) + '&h=' + encodeURIComponent(h), function (results) {
-                var json_results = JSON.parse(results);
-                $.each(json_results, function (i, result) {
+                $.each(results, function (i, result) {
                     // Store the page content data in controller.stores
                     if(i === 'features') {
                         controller.features = result;

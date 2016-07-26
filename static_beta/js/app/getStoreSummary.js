@@ -21,7 +21,7 @@ $(document).ready(function() {
 	  .done(function( data ) {
 
 		try {
-			jsonTreeData = JSON.parse(data);
+			jsonTreeData = DoNotParseData(data);
 		}
 		catch (e)
 		{

@@ -175,7 +175,7 @@ var programManagementFilters = (function ($) {
 					// console.log("Tree data set length : " + results.length);
 					if (results.length > 50000)
 						controller.largeDataSet = true;
-					var json_results = JSON.parse(results);
+					var json_results = DoNotParseData(results);
 					controller.store_tree = json_results;
 					if (typeof callback === 'function') {
 						callback(json_results);

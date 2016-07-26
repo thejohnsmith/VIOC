@@ -84,7 +84,7 @@ var programManagementController = (function ($) {
 				return;
 			}
 			$.get(controller.apiPath + 'getUserConfigurations.jssp?userId=' + encodeURIComponent(controller.user_id) + '&programId=' + encodeURIComponent(controller.program_id), function (results) {
-				var json_results = JSON.parse(results);
+				var json_results = DoNotParseData(results);
 				controller.user_configs = json_results;
 				if (typeof callback == 'function') {
 					callback(json_results);
@@ -100,7 +100,7 @@ var programManagementController = (function ($) {
 			controller.timeDebug("Triggering getStoreProgramData API call..");
 			$.get(controller.apiPath + 'getStoreProgramData.jssp?userId=' + encodeURIComponent(controller.user_id) + '&programId=' + controller.program_id, function (results) {
 				controller.timeDebug("API call complete.");
-				var json_results = JSON.parse(results);
+				var json_results = DoNotParseData(results);
 				controller.store_data = json_results;
 				controller.getProgramData(controller.program_id, function () {
 					if (typeof callback == 'function') callback(json_results);
@@ -116,7 +116,7 @@ var programManagementController = (function ($) {
 			controller.timeDebug("Triggering getProgramData API call..");
 			$.get(controller.apiPath + 'getProgramParticipationStats.jssp?userId=' + encodeURIComponent(controller.user_id), function (results) {
 				controller.timeDebug("getProgramData API call complete!");
-				var json_results = JSON.parse(results);
+				var json_results = DoNotParseData(results);
 				//controller.refreshSelectAllButton();
 				//controller.refreshStoreRowEnrollment();
 
@@ -663,7 +663,7 @@ var programManagementController = (function ($) {
 			var controller = this;
 			var stringStoreIds = selectedStores.join(',');
 			$.get(controller.apiPath + 'setStoreConfig.jssp?userId=' + encodeURIComponent(controller.user_id) + '&configId=' + configId + '&programId=' + controller.program_id + '&storeIds=' + stringStoreIds, function (results) {
-				var json_results = JSON.parse(results);
+				var json_results = DoNotParseData(results);
 				controller.store_data = json_results;
 				if (typeof callback == 'function') callback(json_results);
 			});
@@ -706,7 +706,7 @@ var programManagementController = (function ($) {
 			var quantityLimit;
 			$.get(controller.apiPath + 'setStoreMeta.jssp?userId=' + encodeURIComponent(controller.user_id) + '&storeIds=' + stringStoreIds + '&quantity_limit=' + quantityLimit, function (results) {
 				try {
-					var json_results = JSON.parse(results);
+					var json_results = DoNotParseData(results);
 					controller.store_data = json_results;
 					if (typeof callback == 'function') callback(json_results);
 				} catch (e) {
@@ -730,7 +730,7 @@ var programManagementController = (function ($) {
 			var stringStoreIds = selectedStores.join(',');
 			$.get(controller.apiPath + 'setProofPreferences.jssp?userId=' + encodeURIComponent(controller.user_id) + '&storeIds=' + stringStoreIds + '&programId=' + controller.program_id + '&' + proofType + '=' + proofVal, function (results) {
 				try {
-					var json_results = JSON.parse(results);
+					var json_results = DoNotParseData(results);
 					controller.store_data = json_results;
 					if (typeof callback == 'function') callback(json_results);
 				} catch (e) {

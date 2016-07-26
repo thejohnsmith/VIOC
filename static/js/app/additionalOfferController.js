@@ -39,7 +39,7 @@ var additionalOfferController = (function ($) {
 			var controller = this;
 			$.get(controller.apiPath + 'getProgramParticipationStats.jssp?userId=' + encodeURIComponent(controller.userId), function (results) {
 
-				var json_results = JSON.parse(results);
+				var json_results = DoNotParseData(results);
 
 				// Loop through the API result and find the program that matches program ID (DONE)
 				$.each(json_results, function (i, result) {
@@ -59,7 +59,7 @@ var additionalOfferController = (function ($) {
 			var controller = this;
 			$.get(controller.apiPath + 'getAdtlProgramOptions.jssp', function (results) {
 
-				var json_results = JSON.parse(results);
+				var json_results = DoNotParseData(results);
 				controller.adtl_offers = json_results;
 
 				if (typeof callback === 'function') {
@@ -80,7 +80,7 @@ var additionalOfferController = (function ($) {
 
 			$.get(controller.apiPath + 'loadConfig.jssp?userId=' + encodeURIComponent(controller.userId) + '&configId=' + controller.configId, function (results) {
 
-				var json_results = JSON.parse(results);
+				var json_results = DoNotParseData(results);
 				controller.config = json_results;
 				controller.configLoaded = true;
 

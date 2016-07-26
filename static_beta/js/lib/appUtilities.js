@@ -1,6 +1,24 @@
 /* This is meant to run in Marcom only, hence the renaming of jQuery */
 var $j = jQuery;
 
+/**
+ * DoNotParseData - Used to disable JSON parsing if serer is returning JSON.
+ * @param  {data} data recieved from ajax calls is manually parsed and returned.
+ * @return {return}	data, parsed data.
+ */
+var ParseData = function(data) {
+	data = JSON.parse(data)
+	return data;
+};
+/**
+ * DoNotParseData - Used to disable JSON parsing if serer is returning JSON.
+ * @param  {data} data recieved from ajax calls and just returns it back.
+ * @return {return}	data, that data.
+ */
+var DoNotParseData = function(data) {
+	return data;
+};
+
 function getParameterByName(name, url) {
 	if (!url) url = window.location.href;
 	name = name.replace(/[\[\]]/g, '\\$&');

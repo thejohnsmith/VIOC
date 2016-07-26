@@ -1348,6 +1348,7 @@ header#nav {
 #programManagement .filter-select:nth-child(2) .sbHolder {
   min-width: 156px
 }
+
 .programsummary-table {
   float: left;
   width: 100%;
@@ -1368,6 +1369,10 @@ header#nav {
 }
 .programsummary-table .store {
   text-align: center
+}
+.programsummary-table .grand-total {
+	padding: 0 0 1em;
+	display: inline-block;
 }
 .participation-table .header-row, .programsummary-table th.store-counts td {
   border: 0;
@@ -1748,9 +1753,15 @@ input.bulk-apply-quantity-limit-input.form-control:focus:active {
 }
 @media (min-width:960px) {
   .settings-section {
-    width: 36%;
-    margin-right: 3%;
+    width: 35%;
+    margin-right: 2%;
     margin-bottom: 0
+  }
+}
+@media (min-width:1080px) {
+  .settings-section {
+    width: 38%;
+    margin-right: 1%;
   }
 }
 .results-section {
@@ -1820,6 +1831,9 @@ input.bulk-apply-quantity-limit-input.form-control:focus:active {
 }
 .touchpoint-col.high-risk {
   padding-left: 6px
+}
+.touchpoint-col.standard-risk.high-risk {
+	padding-left: 0
 }
 .touchpoint-col.high-risk, .touchpoint-col.standard-risk {
   font-size: 16px;

@@ -118,15 +118,15 @@
 
 				// Load the config ID;
 				$.get(controller.apiPath + 'loadConfig.jssp?userId=' + encodeURIComponent(controller.userId) + '&configId=' + configId, function (results) {
-					var json_results = JSON.parse(results);
-					controller.activeStoreDataConfig = json_results;
+					var cachedResults = DoNotParseData(results);
+					controller.activeStoreDataConfig = results;
 
 					var storeNumber = controller.activeStoreData.storeNumber;
 					var programId = controller.programId;
 
 					$.get(controller.apiPath + 'getContentPreviewMeta.jssp?storeNumber=' + encodeURIComponent(storeNumber) + '&programId=' + programId, function (results) {
-						var json_results = JSON.parse(results);
-						controller.activeStoreMeta = json_results;
+						var cachedResults = DoNotParseData(results);
+						controller.activeStoreMeta = cachedResults;
 						controller.updateUI();
 					});
 
@@ -283,29 +283,26 @@
 				});
 
 				// Load config for additional offer
-				$.get(controller.apiPath + 'loadConfig.jssp?userId=' + encodeURIComponent(controller.userId) + '&configId=' + program.adtlConfigId, function (results) {
+				if (program.adtlConfigId >= 1) {
+					$.get(controller.apiPath + 'loadConfig.jssp?userId=' + encodeURIComponent(controller.userId) + '&configId=' + program.adtlConfigId, function (results) {
+						var cachedResults = DoNotParseData(results);
+						controller.activeStoreDataAdtlConfig = cachedResults;
 
-					var json_results = JSON.parse(results);
-					controller.activeStoreDataAdtlConfig = json_results;
+						// Add in additional offer data
+						for (var i = 1; i <= 4; i++) {
+							var cfg = controller.activeStoreDataAdtlConfig.content;
+							var html = cfg['adtlSummary' + i] + "<hr>" + cfg['adtlCode' + i] + " (Exp " + cfg.expiration + "d)";
 
-					// Add in additional offer data
-					for (var i = 1; i <= 4; i++)
-					{
-						var cfg = controller.activeStoreDataAdtlConfig.content;
-						var html = cfg['adtlSummary' + i] + "<hr>" + cfg['adtlCode' + i] + " (Exp " + cfg.expiration + "d)";
-
-						if (cfg['adtlCode' + i].toString() == "")
-						{
-							$(".additional-offer.offer-" + i).addClass("none");
+							if (cfg['adtlCode' + i].toString() == "") {
+								$(".additional-offer.offer-" + i).addClass("none");
+							} else {
+								$(".additional-offer.offer-" + i).removeClass("none");
+								$(".additional-offer.offer-" + i).show();
+								$(".additional-offer.offer-" + i + " .result-value").html(html);
+							}
 						}
-						else
-						{
-							$(".additional-offer.offer-" + i).removeClass("none");
-							$(".additional-offer.offer-" + i).show();
-							$(".additional-offer.offer-" + i + " .result-value").html(html);
-						}
-					}
-				});
+					});
+				}
 			},
 			/**
 			 * [updateStoreDetails Updates the store location, phone, hours, features, and disclaimers using controller.store]
