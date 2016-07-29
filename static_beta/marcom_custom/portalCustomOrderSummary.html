@@ -22,37 +22,55 @@ Macrom/Custom Content/Order Summary/Detail
 -->
 <style>
   /* Hide the rest of the page and inject our custom Thank You page. */
+  #CtlBrdCrm,
   #CtlCart,
   .ButtonRowFloatR {
     display: none;
   }
+  .mid-container {
+    padding-bottom: 0;
+  }
 
 </style>
-<div class="wrapper">
-  <div class="mid-container">
-    <div class="main text-center">
-      <a id="pageAnchorFormCopy" href="#" class="hidden">pageAnchorFormCopy</a>
-      <h1>Email Added To Queue For Delivery</h1>
-      <h3>
-        <p>Thank you. Your email has been added to the queue for immediate review.</p>
-      </h3>
-      <h4>
-        <p>Upon approval your email will be delivered.</p>
-        <br>
-      </h4>
-      <h5>
-        <div>
-          Your email confirmation number is
-          <strong><span id="orderConfirmationNumber"></span></strong>.
+<div class="mid-container">
+  <section id="breadcrumbs">
+    <ul>
+      <li class="breadcrumbs_root">
+        <a href="#" title="Home">Home</a>
+      </li>
+      <li class="breadcrumbs_current">On Demand Marketing</li>
+
+    </ul>
+  </section>
+  <h1 class="h1 page-title"></h1>
+  <div class="thanky-msg none wrapper">
+    <div class="mid-container">
+      <div class="main text-center">
+        <a id="pageAnchorFormCopy" href="#" class="hidden">pageAnchorFormCopy</a>
+        <h1>Email Added To Queue For Delivery</h1>
+        <h3>
+          <p>Thank you. Your email has been added to the queue for immediate review.</p>
+        </h3>
+        <h4>
+          <p>Upon approval your email will be delivered.</p>
           <br>
-          Your email is scheduled to deliver to
-          <span id="orderConfirmationQuantity"></span>
-          recipient(s).
-        </div>
-      </h5>
-      <br>
-      <a id="homePageUrl" href="home.aspx?uigroup_id=479602">Return to Home Page</a>
-    </h4>
+        </h4>
+        <h5>
+          <div>
+            Your email confirmation number is
+            <strong>
+              <span id="orderConfirmationNumber"></span>
+            </strong>.
+            <br>
+            Your email is scheduled to deliver to
+            <span id="orderConfirmationQuantity"></span>
+            recipient(s).
+          </div>
+        </h5>
+        <br>
+        <a id="homePageUrl" href="home.aspx?uigroup_id=479602">Return to Home Page</a>
+      </h4>
+    </div>
   </div>
 </div>
 </div>

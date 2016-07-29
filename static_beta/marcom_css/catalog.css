@@ -8,10 +8,10 @@
   background-position: right -769px
 }
 .Minimum {
-  visibility: hidden;
+  visibility: hidden
 }
-#qtip-blanket, .qtip, .qtip> * {
-  display: none !important;
+#qtip-blanket, .qtip, .qtip>* {
+  display: none!important
 }
 #CtlBrdCrm {
   float: none;
@@ -37,16 +37,13 @@
   -webkit-transition: 0;
   transition: 0
 }
-#ctl00_content_CatalogBreadCrumbsLayout_CatalogBreadCrumbs_btnItem2 {
-  display: none
-}
 #ctl00_content_CtlPager_txtPageNumber {
   padding: 0;
   text-align: center;
   width: 1.4em!important;
   border-radius: 0
 }
-#ctl00_content_CtlPager_btnGrid, #ctl00_content_CtlPager_lblView, #divSearchCart {
+#ctl00_content_CatalogBreadCrumbsLayout_CatalogBreadCrumbs_btnItem2, #ctl00_content_CtlAddToCart_InteractivityContainer_divVersionProduct, #ctl00_content_CtlPager_btnGrid, #ctl00_content_CtlPager_lblView, #ctl00_content_CtlPager_tblPager, #divSearchCart, .SelectSavedContentPrompt {
   display: none
 }
 .CheckoutBreadCrumbs {
@@ -67,7 +64,7 @@
 .CheckoutBreadCrumbsNext {
   color: #555655
 }
-.gridRow4Cols {
+.gridItem_title>table, .gridItem_title>table td, .gridRow4Cols {
   width: 100%!important
 }
 .gridItem, .gridItem_last {
@@ -79,12 +76,8 @@
 .gridItem {
   background-color: #fff;
   min-width: 200px;
-  width: 24%;
-  margin: 0 1% 0 0
-}
-.gridItem_last {
-  width: 25%;
-  margin: 0
+  width: 15%;
+  margin: 0 3% 1em 0
 }
 #ctl00_content_CtlPager_tblPager {
   border: 1px solid #e3e3e2;
@@ -99,9 +92,6 @@
 .gridItem_title {
   margin: .6em 0
 }
-.gridItem_title> table, .gridItem_title> table td {
-  width: 100% !important
-}
 td, tr {
   empty-cells: hide
 }
@@ -114,7 +104,7 @@ td, tr {
 }
 .gridRow3Cols {
   float: none;
-  width: 133.2% !important
+  width: 133.2%!important
 }
 .ButtonRowFloatR {
   float: none;
@@ -153,7 +143,7 @@ input[type=button] {
 .pbtn {
   font-family: 'HelveticaNeueLT-Condensed';
   height: auto!important;
-  padding: 0
+  padding: 0;
 }
 a.pbtn span, a.pbtn.primary span {
   font-size: 15px!important;
@@ -161,35 +151,33 @@ a.pbtn span, a.pbtn.primary span {
   margin: 0 0 15px;
   padding: 6px 12px!important;
   color: #fff;
+  cursor: pointer;
   border: 1px solid #337ab7;
   border-radius: 4px;
   background: #0ea3dd;
   box-sizing: content-box;
-  -webkit-transition: .5s;
-  transition: .5s
-}
-.CtlSearchGroup td input:focus, .CtlSearchGroup td select:focus, a.pbtn span:hover {
-  border-color: #00bcd4;
-  box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px rgba(102, 175, 233, .8)
+  transition: all 1.4s cubic-bezier(0.25, 0.46, 0, 1.39);
+  transform: scale(1)
 }
 a.pbtn span:hover, a.pbtn:hover span {
   color: #fff;
-  border: 1px solid #3f51b5
 }
-.pbtn:active span, a.pbtn span:hover:focus, a.pbtn:focus span {
-  outline: 0;
-  border: 1px solid #666;
-  box-shadow: inset 0 1px 3px rgba(255, 255, 255, .75), 0 0 4px rgba(102, 175, 233, .9)
+a.pbtn span:hover {
+  transform: scale(1.015);
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.2), 6px 10px 15px rgba(53, 82, 97, 0.05)
 }
-a.pbtn:focus:active span {
-  border: 1px solid #000;
-  box-shadow: inset 0 1px 3px rgba(255, 255, 255, .75), 0 0 30px rgba(102, 175, 233, .8)
+a.pbtn span:hover:focus, a.pbtn span:hover:active {
+  transform: scale(1.055);
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.2), 12px 20px 15px rgba(53, 82, 97, 0.4)
 }
-#ctl00_content_CtlAddToCart_ProductOrderInfoController_divProductOrderInfo table.MarginTop12, #ctl00_content_CtlAddToCart_ProductOrderInfoController_divProductOrderInfo>.BluePromptText.FontBold, #divPricingGridContainer, #prefillSaveContainer, .btn-l span.img-savefloppy, .btn-s span.img-cancel, .btn-s span.img-next, .btn-s span.img-refresh, .btn-s span.img-upload, .btn-s-green span.img-refresh, .btn-s-green:hover span.img-refresh, .cbx-choice>small, .pbtn span.pbtn-icon-after, .pbtn-icon-before.img-upload, span.pbtn-icon-before.img-gallery, span.pbtn-icon.img-plus {
+.CtlSearchGroup td input:focus, .CtlSearchGroup td select:focus {
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px rgba(102, 175, 233, .8)
+}
+#ctl00_content_CtlAddToCart_ProductOrderInfoController_divProductOrderInfo table.MarginTop12, #ctl00_content_CtlAddToCart_ProductOrderInfoController_divProductOrderInfo>.BluePromptText.FontBold, #divPricingGridContainer, #prefillSaveContainer, .NavTop, .btn-l span.img-savefloppy, .btn-s span.img-cancel, .btn-s span.img-next, .btn-s span.img-refresh, .btn-s span.img-upload, .btn-s-green span.img-refresh, .btn-s-green:hover span.img-refresh, .cbx-choice>small, .pbtn span.pbtn-icon-after, .pbtn-icon-before.img-upload, span.pbtn-icon-before.img-gallery, span.pbtn-icon.img-plus {
   display: none
 }
 .gridItem_title .description {
-  display: none !important;
+  display: none!important
 }
 .prefill-container+select {
   margin-bottom: 1em
@@ -199,6 +187,16 @@ a.pbtn:focus:active span {
 }
 a.pbtn.btn-l-green span {
   margin-bottom: .4em
+}
+#CtlCart {
+  max-width: 1024px;
+  margin: 0 auto;
+  display: inline-block
+}
+@media (min-width:1240px) {
+  #CtlCart {
+    display: table
+  }
 }
 #CtlCartTotal tr td.totalLabels, #CtlCartTotal tr td.totals, .BluePromptText, .ColorPromptText, .QuickFillPrompt {
   border: none
@@ -228,17 +226,20 @@ a.pbtn.btn-l-green span {
   background: 0 0
 }
 .FullPageWidth, .Width100Pct {
-  width: 100%;
   max-width: 1200px
+}
+.Width100Pct {
+  width: 100%
 }
 .FullPageWidth {
   width: auto
 }
 #tdForm {
   display: table-cell;
-  margin: 0 2em 0 0;
+  margin: 0;
   overflow: hidden;
-  white-space: nowrap
+  white-space: nowrap;
+  padding: 15px
 }
 #tdProof {
   background: 0 0;
@@ -276,15 +277,26 @@ a.pbtn.btn-l-green span {
   margin-bottom: 1em
 }
 #screenshot {
-  background: none;
+  background: 0 0;
   border: none;
-  top: 10% !important;
+  top: 10%!important;
   padding-left: 5%
 }
 #img_screenshot {
-  width: 100% !important;
+  width: 100%!important;
   height: 100%
 }
 input#ctl00_content_OrderSearchAdvanced_ddlSearchTypes_0 {
   margin-right: 1em
+}
+.gridItem_action, .gridItem_title {
+  margin-left: auto;
+  margin-right: auto
+}
+.gridItem_title table, .gridItem_title table tr td {
+  width: 100%!important;
+  text-align: center
+}
+.gridItem_action {
+  width: 50%
 }

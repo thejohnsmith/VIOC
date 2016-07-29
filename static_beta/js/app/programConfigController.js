@@ -306,8 +306,8 @@ var programConfigController = (function ($) {
 					$(input).addClass('input-error');
 
 					var msg = (json_results.valid)
-						? 'The discount code "' + discountCode + '" is valid in POS, however, it is not a valid discount code for Lifecycle Programs. Please contact Derick Brumbaugh (dnbrumbaugh@ashland.com / 859-357-7268) for assistance.'
-						: 'The discount code "' + discountCode + '" does not exist.  Please contact Derick Brumbaugh (dnbrumbaugh@ashland.com / 859-357-7268) for assistance.';
+						? 'The discount code "' + discountCode + '" is valid in POS, however, it is not a valid discount code for Lifecycle Programs. Please contact Derick Brumbaugh (dnbrumbaugh@valvoline.com / 859-357-7268) for assistance.'
+						: 'The discount code "' + discountCode + '" does not exist.  Please contact Derick Brumbaugh (dnbrumbaugh@valvoline.com / 859-357-7268) for assistance.';
 					toastr.error(msg);
 				}
 				for (var cssSelector in json_results.preview)

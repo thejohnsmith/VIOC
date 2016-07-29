@@ -6,7 +6,7 @@ var $j = jQuery;
  * @param  {data} data recieved from ajax calls is manually parsed and returned.
  * @return {return}	data, parsed data.
  */
-var ParseData = function(data) {
+var ParseData = function (data) {
 	data = JSON.parse(data)
 	return data;
 };
@@ -15,7 +15,7 @@ var ParseData = function(data) {
  * @param  {data} data recieved from ajax calls and just returns it back.
  * @return {return}	data, that data.
  */
-var DoNotParseData = function(data) {
+var DoNotParseData = function (data) {
 	return data;
 };
 
@@ -92,33 +92,40 @@ var appUtilities = (function ($) {
 				});
 			});
 		},
+		MarcomUtilNav: function () {
+			$('.NavTop, .profile_menu').show();
+			$('.NavTop').css({
+				'position': 'relative'
+			});
+			$('.header-right').hide();
+			return this;
+		},
 		/**
 		 * [runtimeDebugging Debugging for Beta]
 		 */
 		runtimeDebugging: function () {
-			/* Only run console Debugging in UAT(Beta_Epsilon) Environment. */
 			// Give the source a namespace
 			marcomUserData.environmentKind === 'UAT' ? $('html').addClass('Beta_Epsilon') : $('html').removeClass('Epsilon');
 
-			var domainLocation = window.location.href,
-				debugHeader = 'color:#00bbfd;font-family:HelveticaNeueLT-Condensed,sans-serif;font-weight:100;background:#000;' + 'font-size:1.3em;line-height:1;padding:0.08em 0.25em;margin:0',
-				debugTitle = 'color:green;font-weight:bold;font-size:1em',
-				debugGroup = 'color:purple;font-weight:bold;font-size:1em',
-				debugItem = 'color:#f06;font-weight:bold;font-size:0.95em';
-
-			console.group('%cWelcome to Beta_Epsilon', debugHeader);
-			console.groupCollapsed('%c **CONSTANTS**', debugGroup);
-			console.debug('ENV: %c %s', debugGroup, marcomUserData.environmentKind);
-			console.debug('URL: %c %s', debugTitle, domainLocation);
-			console.groupEnd();
-			console.groupCollapsed('%c **User Info**', debugGroup);
-			console.debug('Name: %c %s', debugItem, marcomUserData.$user.firstName + ' ' + marcomUserData.$user.lastName);
-			console.debug('Email: %c %s', debugItem, marcomUserData.$user.email);
-			console.debug('ID: %c %s', debugItem, marcomUserData.$user.externalId);
-			console.debug('Agent: %c %s', debugItem, navigator.userAgent.toLowerCase());
-			console.debug('Platform: %c %s', debugItem, navigator.platform.toLowerCase());
-			console.groupEnd();
-			console.groupEnd();
+			// var domainLocation = window.location.href,
+			// 	debugHeader = 'color:#00bbfd;font-family:HelveticaNeueLT-Condensed,sans-serif;font-weight:100;background:#000;' + 'font-size:1.3em;line-height:1;padding:0.08em 0.25em;margin:0',
+			// 	debugTitle = 'color:green;font-weight:bold;font-size:1em',
+			// 	debugGroup = 'color:purple;font-weight:bold;font-size:1em',
+			// 	debugItem = 'color:#f06;font-weight:bold;font-size:0.95em';
+			//
+			// console.group('%cWelcome to Beta_Epsilon', debugHeader);
+			// console.groupCollapsed('%c **CONSTANTS**', debugGroup);
+			// console.debug('ENV: %c %s', debugGroup, marcomUserData.environmentKind);
+			// console.debug('URL: %c %s', debugTitle, domainLocation);
+			// console.groupEnd();
+			// console.groupCollapsed('%c **User Info**', debugGroup);
+			// console.debug('Name: %c %s', debugItem, marcomUserData.$user.firstName + ' ' + marcomUserData.$user.lastName);
+			// console.debug('Email: %c %s', debugItem, marcomUserData.$user.email);
+			// console.debug('ID: %c %s', debugItem, marcomUserData.$user.externalId);
+			// console.debug('Agent: %c %s', debugItem, navigator.userAgent.toLowerCase());
+			// console.debug('Platform: %c %s', debugItem, navigator.platform.toLowerCase());
+			// console.groupEnd();
+			// console.groupEnd();
 		}
 	};
 	return {
@@ -127,7 +134,8 @@ var appUtilities = (function ($) {
 		runtimeDebugging: controller.runtimeDebugging,
 		setPrettyPhone: controller.setPrettyPhone,
 		routeEnterKeyToNext: controller.routeEnterKeyToNext,
-		goBack: controller.goBack
+		goBack: controller.goBack,
+		MarcomUtilNav: controller.MarcomUtilNav
 	};
 })(jQuery);
 

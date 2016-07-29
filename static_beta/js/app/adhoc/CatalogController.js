@@ -13,6 +13,7 @@ CatalogController = (function ($) {
 	'use strict';
 	var controller = {
 		intervalHandle: null,
+		title: $('#catalogContent') ? 'ON DEMAND MARKETING' : '',
 		init: function () {
 			var controller = this;
 			controller.WatchForPageReady(function () {
@@ -35,6 +36,7 @@ CatalogController = (function ($) {
 			var controller = this;
 			controller.RemoveEmptyCells();
 			controller.SetNavigation();
+			controller.UpdateTitle();
 			controller.UpdateBreadCrumbs();
 		},
 		/**
@@ -46,13 +48,22 @@ CatalogController = (function ($) {
 			}).addClass('navBarSelectedLinkColor').addClass('customColorOverridable').removeClass('navBarEnhancedLinkColor');
 		},
 		/**
+		 * UpdateTitle
+		 */
+		UpdateTitle: function () {
+			var controller = this;
+
+			// Set title
+			$('h1.page-title').html(controller.title);
+		},
+		/**
 		 * [UpdateBreadCrumbs Custom breadcumb handler]
 		 */
 		UpdateBreadCrumbs: function () {
 			var controller = this;
 
 			// Set 1st Level Breadcrumb
-
+			$('#ctl00_content_CatalogBreadCrumbsLayout_CatalogBreadCrumbs_btnItem1').hide();
 			// Set 2nd Level Breadcrumb
 			$('.breadcrumbs_previous:first a').html();
 			$('.breadcrumbs_previous:first a').attr('href', '');
@@ -60,6 +71,9 @@ CatalogController = (function ($) {
 			// Set 3rd Level Breadcrumb
 			$('.breadcrumbs_previous:last a').html();
 			$('.breadcrumbs_previous:last a').attr('href', '');
+
+			// Set 4th Level Breadcrumb
+			$('.breadcrumbs_current').html(controller.title);
 		},
 		RemoveEmptyCells: function () {
 			// console.info('RemoveEmptyCells');

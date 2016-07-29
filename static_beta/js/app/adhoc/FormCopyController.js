@@ -35,11 +35,14 @@ FormCopyController = (function ($) {
 		AdjustUI: function () {
 			console.debug('123 Adjusting UI...');
 
-			// Change Add To Cart text on submit button to, 'Send Immediately'
-			$('.ButtonAddToCart.addToCartBtn span:contains("Add to Cart")').html('Send Immediately');
+			// Change Add To Cart text on submit button to, 'Send for Approval'
+			$('.ButtonAddToCart.addToCartBtn span:contains("Add to Cart")').html('Send for Approval');
 
 			// Change Qty text to, 'Recipients'
 			$('.qtyInputContainer span:contains("Qty:")').html('Recipients');
+
+			// Change required helper text by removing the Senior Purchaser bit.
+			$('#ctl00_content_CtlAddToCart_InteractivityContainer_ProductFootnote_Stringcontrol3:contains("Item requires approval by Senior Purchaser")').html('Item requires approval');
 
 			var htmlComments = $('*').contents().filter(function () {
 				return this.nodeType === 8;
@@ -51,6 +54,37 @@ FormCopyController = (function ($) {
 
 			$('#ctl00_content_CatalogBreadCrumbsLayout_CatalogBreadCrumbs_btnItem2').hide();
 			$('#ctl00_content_CatalogBreadCrumbsLayout_CatalogBreadCrumbs_btnItem1').prev().remove();
+
+			if ($('#C1ExpirationDate').length) {
+				console.info('C1ExpirationDate exists.');
+				var C1ExpirationDate = $('#C1ExpirationDate');
+				var updateProofBtn = $('#mButtonPreviewTop');
+				var quote = 'Expires: ';
+
+				$.datepicker.setDefaults({
+					showOn: "both",
+					buttonImageOnly: true,
+					currentText: "Expires",
+					numberOfMonths: 2,
+					onClose: function () {
+						console.info('datepicker closed.');
+						// $(".to_date").datepicker("option", "minDate", selectedDate);
+						C1ExpirationDate.val(function (index, selectedDate) {
+							return 'Expires: ' + selectedDate;
+						});
+					}
+				});
+
+				// updateProofBtn.hover(function () {
+				// 	C1ExpirationDate.val(function (index, old) {
+				//
+				// 		// return 'Expires: ' + old;
+				// 	});
+				// });
+			}
+			// updateProofBtn.on('change click', function () {
+			// C1ExpirationDate.val('Expires: ' + C1ExpirationDate.val());
+
 		}
 	};
 	return {
