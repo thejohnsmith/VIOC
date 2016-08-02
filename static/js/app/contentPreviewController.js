@@ -118,15 +118,15 @@ var ContentPreviewController = (function ($) {
 
 			// Load the config ID;
 			$.get(controller.apiPath + 'loadConfig.jssp?userId=' + encodeURIComponent(controller.userId) + '&configId=' + configId, function (results) {
-				var json_results = DoNotParseData(results);
-				controller.activeStoreDataConfig = json_results;
+				var cachedResults = DoNotParseData(results);
+				controller.activeStoreDataConfig = results;
 
 				var storeNumber = controller.activeStoreData.storeNumber;
 				var programId = controller.programId;
 
 				$.get(controller.apiPath + 'getContentPreviewMeta.jssp?storeNumber=' + encodeURIComponent(storeNumber) + '&programId=' + programId, function (results) {
-					var json_results = DoNotParseData(results);
-					controller.activeStoreMeta = json_results;
+					var cachedResults = DoNotParseData(results);
+					controller.activeStoreMeta = cachedResults;
 					controller.updateUI();
 				});
 
@@ -254,6 +254,8 @@ var ContentPreviewController = (function ($) {
 				for (var touchpoint = 1; touchpoint <= 3; touchpoint++) {
 					var programId = ContentPreviewController.controller.program.id;
 					var creativeTemplate = "";
+					var couponDisclaimer = controller.activeStoreMeta.disclaimer.couponDisclaimer;
+					var adtlDisclaimer = controller.activeStoreMeta.disclaimer.adtlDisclaimer;
 					if (channel == "email") creativeTemplate = config.content.emailCreativeName;
 					if (channel == "sms") creativeTemplate = "Standard";
 					if (channel == "dm") creativeTemplate = config.content.dmCreativeName;
@@ -266,17 +268,17 @@ var ContentPreviewController = (function ($) {
 						.removeClass('resp-tab-active');
 
 					// Debugging
-					if (marcomUserData.environmentKind === 'UAT') {
-						var debugGroup = 'color:purple;font-weight:bold;font-size:1em',
-							debugItem = 'color:#f06;font-weight:bold;font-size:0.95em';
-						console.groupCollapsed('%c **Preview Updated**', debugGroup);
-							console.debug('URL set using: %c %s', debugItem, url);
-							console.debug('programId: %c %i', debugItem, programId);
-							console.debug('channel: %c %s', debugItem, channel);
-							console.debug('creativeTemplate: %c %s', debugItem, creativeTemplate);
-							console.debug('touchpoint: %c %i', debugItem, touchpoint);
-						console.groupEnd();
-					}
+					// if (marcomUserData.environmentKind === 'UAT') {
+					// 	var debugGroup = 'color:purple;font-weight:bold;font-size:1em',
+					// 		debugItem = 'color:#f06;font-weight:bold;font-size:0.95em';
+					// 	console.groupCollapsed('%c **Preview Updated**', debugGroup);
+					// 		console.debug('URL set using: %c %s', debugItem, url);
+					// 		console.debug('programId: %c %i', debugItem, programId);
+					// 		console.debug('channel: %c %s', debugItem, channel);
+					// 		console.debug('creativeTemplate: %c %s', debugItem, creativeTemplate);
+					// 		console.debug('touchpoint: %c %i', debugItem, touchpoint);
+					// 	console.groupEnd();
+					// }
 				}
 			});
 
@@ -309,58 +311,57 @@ var ContentPreviewController = (function ($) {
 		updateStoreDetails: function () {
 			var controller = this;
 			var store = controller.activeStoreData;
-			// console.info('updateStoreDetails was called.');
+			var disclaimer = [];
 
 			// Update address and phone data
-
-			$(".company-address").html(store.storeAddressFull);
-			$(".company-phone").html(store.storePhone);
+			$('.company-address').html(store.storeAddressFull);
+			$('.company-phone').html(store.storePhone);
 
 			// Update hour data
-			$.each(store.storeHours, function(i,e) {
+			$.each(store.storeHours, function (i, e) {
 				var day = i.toLowerCase();
-				$("." + day + " .store-open").html(e.open);
-				$("." + day + " .store-close").html(e.close);
+				$('.' + day + ' .store-open').html(e.open);
+				$('.' + day + ' .store-close').html(e.close);
 
-				if (e.closed)
-				{
-					$("."+day+" .open-hours").addClass("none");
-					$("."+day+" .store-closed").removeClass("none");
+				if (e.closed) {
+					$('.' + day + ' .open-hours').addClass('none');
+					$('.' + day + ' .store-closed').removeClass('none');
+				} else {
+					$('.' + day + ' .open-hours').removeClass('none');
+					$('.' + day + ' .store-closed').addClass('none');
 				}
-				else
-				{
-					$("."+day+" .open-hours").removeClass("none");
-					$("."+day+" .store-closed").addClass("none");
-				}
-
 			});
 
 			// Update store features
-			$(".features").html('');
+			$('.features').html('');
 
-			$.each(controller.activeStoreMeta.features, function(i,e) {
-
+			$.each(controller.activeStoreMeta.features, function (i, e) {
 				var sample_feature = '<span class="feature">' +
 					'<img class="feature-image" src="http://t.email.vioc.com/res/valvoline_t/' + e.image + '" alt="Feature Image">' +
 					'<span class="feature-caption">' +
-					  '<small>' +  e.text + '</small>' +
+					'<small>' + e.text + '</small>' +
 					'</span>' +
-				  '</span>';
-
-				$(".features").append(sample_feature);
+					'</span>';
+				$('.features').append(sample_feature);
 			});
 
-			// Update store disclaimer
-
-			var disclaimer = [];
-
-			if (controller.activeStoreMeta.disclaimer.couponDisclaimer != "")
+			if (controller.activeStoreMeta.disclaimer.couponDisclaimer != '') {
 				disclaimer.push(controller.activeStoreMeta.disclaimer.couponDisclaimer);
+			}
 
-			if (controller.activeStoreMeta.disclaimer.adtlDisclaimer != "")
+			if (controller.activeStoreMeta.disclaimer.adtlDisclaimer != '') {
 				disclaimer.push(controller.activeStoreMeta.disclaimer.adtlDisclaimer);
+			}
 
-			$(".store-disclaimer").html(disclaimer.join("<br><br>"));
+			$('.store-disclaimer').html(disclaimer.join('<br><br>'));
+
+			// var debugGroup = 'color:#ff5722;font-weight:bold;font-size:1em',
+			// 	debugItem = 'color:#03A9F4;font-weight:normal;font-size:0.95em';
+			// console.group('%c ** Store Disclaimers **', debugGroup);
+			// 	console.debug('Disclaimer: %c %s', debugItem, controller.activeStoreMeta.disclaimer.couponDisclaimer);
+			// 	console.debug('Adtl Disclaimer: %c %s', debugItem, controller.activeStoreMeta.disclaimer.adtlDisclaimer);
+			// 	console.debug('Final Disclaimer: %c %s', debugItem, disclaimer.join('<br><br>'));
+			// console.groupEnd();
 
 			controller.showUI();
 		},
@@ -378,7 +379,7 @@ var ContentPreviewController = (function ($) {
 				$('.content-preview-section .js-loading-is-done').hide();
 				$('.content-preview-section .js-loading').fadeIn();
 			}
-  };
+	};
 	return {
 		controller: controller
 	};

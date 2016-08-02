@@ -43,7 +43,7 @@
   width: 1.4em!important;
   border-radius: 0
 }
-#ctl00_content_CatalogBreadCrumbsLayout_CatalogBreadCrumbs_btnItem2, #ctl00_content_CtlAddToCart_InteractivityContainer_divVersionProduct, #ctl00_content_CtlPager_btnGrid, #ctl00_content_CtlPager_lblView, #ctl00_content_CtlPager_tblPager, #divSearchCart, .SelectSavedContentPrompt {
+#ctl00_content_CatalogBreadCrumbsLayout_CatalogBreadCrumbs_btnItem2, #ctl00_content_CtlAddToCart_InteractivityContainer_divVersionProduct, #ctl00_content_CtlPager_btnGrid, #ctl00_content_CtlPager_lblView, #ctl00_content_CtlPager_tblPager, #divSearchCart {
   display: none
 }
 .CheckoutBreadCrumbs {
@@ -143,9 +143,9 @@ input[type=button] {
 .pbtn {
   font-family: 'HelveticaNeueLT-Condensed';
   height: auto!important;
-  padding: 0;
+  padding: 0
 }
-a.pbtn span, a.pbtn.primary span {
+a.pbtn span, a.pbtn.btn-s-disabled span, a.pbtn.btn-s-disabled:hover span, a.pbtn.primary span {
   font-size: 15px!important;
   max-width: 140px;
   margin: 0 0 15px;
@@ -156,24 +156,24 @@ a.pbtn span, a.pbtn.primary span {
   border-radius: 4px;
   background: #0ea3dd;
   box-sizing: content-box;
-  transition: all 1.4s cubic-bezier(0.25, 0.46, 0, 1.39);
+  transition: all 1.4s cubic-bezier(.25, .46, 0, 1.39);
   transform: scale(1)
 }
 a.pbtn span:hover, a.pbtn:hover span {
-  color: #fff;
+  color: #fff
 }
 a.pbtn span:hover {
   transform: scale(1.015);
-  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.2), 6px 10px 15px rgba(53, 82, 97, 0.05)
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, .2), 6px 10px 15px rgba(53, 82, 97, .05)
 }
-a.pbtn span:hover:focus, a.pbtn span:hover:active {
+a.pbtn span:hover:active, a.pbtn span:hover:focus {
   transform: scale(1.055);
-  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.2), 12px 20px 15px rgba(53, 82, 97, 0.4)
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, .2), 12px 20px 15px rgba(53, 82, 97, .4)
 }
 .CtlSearchGroup td input:focus, .CtlSearchGroup td select:focus {
   box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px rgba(102, 175, 233, .8)
 }
-#ctl00_content_CtlAddToCart_ProductOrderInfoController_divProductOrderInfo table.MarginTop12, #ctl00_content_CtlAddToCart_ProductOrderInfoController_divProductOrderInfo>.BluePromptText.FontBold, #divPricingGridContainer, #prefillSaveContainer, .NavTop, .btn-l span.img-savefloppy, .btn-s span.img-cancel, .btn-s span.img-next, .btn-s span.img-refresh, .btn-s span.img-upload, .btn-s-green span.img-refresh, .btn-s-green:hover span.img-refresh, .cbx-choice>small, .pbtn span.pbtn-icon-after, .pbtn-icon-before.img-upload, span.pbtn-icon-before.img-gallery, span.pbtn-icon.img-plus {
+#ctl00_content_CtlAddToCart_ProductOrderInfoController_divProductOrderInfo table.MarginTop12, #ctl00_content_CtlAddToCart_ProductOrderInfoController_divProductOrderInfo>.BluePromptText.FontBold, #divPricingGridContainer, .NavTop, .btn-l span.img-savefloppy, .btn-s span.img-cancel, .btn-s span.img-next, .btn-s span.img-refresh, .btn-s span.img-upload, .btn-s-green span.img-refresh, .btn-s-green:hover span.img-refresh, .cbx-choice>small, .pbtn span.pbtn-icon-after, .pbtn-icon-before.img-upload, span.pbtn-icon-before.img-gallery, span.pbtn-icon.img-plus, span.pbtn-icon.img-save {
   display: none
 }
 .gridItem_title .description {
@@ -183,7 +183,10 @@ a.pbtn span:hover:focus, a.pbtn span:hover:active {
   margin-bottom: 1em
 }
 .ui-accordion .ui-accordion-header a {
-  text-decoration: none
+  text-decoration: none;
+  display: inline-block;
+  font-size: .9em;
+  padding: .5em .5em .5em 2.2em
 }
 a.pbtn.btn-l-green span {
   margin-bottom: .4em
@@ -239,7 +242,9 @@ a.pbtn.btn-l-green span {
   margin: 0;
   overflow: hidden;
   white-space: nowrap;
-  padding: 15px
+  padding: 15px;
+  border-radius: 3px;
+  background: #fbfbfb
 }
 #tdProof {
   background: 0 0;
@@ -299,4 +304,37 @@ input#ctl00_content_OrderSearchAdvanced_ddlSearchTypes_0 {
 }
 .gridItem_action {
   width: 50%
+}
+#cboxContent>* {
+  font-family: 'HelveticaNeueLT-Condensed', sans-serif
+}
+#costContainer {
+  margin: 1em 0
+}
+.hasDatepicker {
+  width: 90%!important;
+  margin-right: 15px
+}
+#Headline_row {
+  height: 60px
+}
+.pf3FormInstructionsCopy {
+  font-style: normal
+}
+input[type=number], input[type=password], input[type=search], input[type=text], textarea {
+  font-size: 13px;
+  color: #616161;
+  border: 1px solid #e0e0e0;
+  border-radius: 4px
+}
+.ui-state-active a, .ui-state-active a:link, .ui-state-active a:visited {
+  color: #045e90
+}
+.ui-state-active, .ui-state-default, .ui-state-hover, .ui-widget-content .ui-state-active, .ui-widget-content .ui-state-default {
+  border: none!important;
+  background: 0 0!important;
+  box-shadow: inset 0 0 0 1px #e0e0e0
+}
+.pfFormNote {
+  color: #045e90
 }
