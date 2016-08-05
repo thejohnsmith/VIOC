@@ -10,7 +10,7 @@
 .Minimum {
   visibility: hidden
 }
-#qtip-blanket, .qtip, .qtip>* {
+#qtip-blanket, .qtip, .qtip>*, #ErrorDetails {
   display: none!important
 }
 #CtlBrdCrm {
