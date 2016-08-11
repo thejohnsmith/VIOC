@@ -1,3 +1,7 @@
+body * {
+  color: #555655;
+  font-family: 'HelveticaNeueLT-Condensed', sans-serif
+}
 .header-top .header-left {
   width: 100%!important
 }
@@ -5,13 +9,13 @@
   background: #fff
 }
 #PageType01 #ENUSmain {
-  border: none;
   width: 100%;
   max-width: 1200px;
-  margin: 0 auto
+  margin: 0 auto;
+  border: none
 }
-#CtlFooter, .MastHead, .btnContactUs, .btnLogOut, td>#Warning {
-  display: none
+#CtlFooter, #ErrorDetails, #toast-container, .MastHead, .btnContactUs, .btnLogOut, td>#Warning {
+  display: none!important
 }
 #CtlBody {
   width: 100%
@@ -21,73 +25,84 @@
   text-align: center
 }
 .mid-container {
-  float: left;
-  width: 100%;
-  padding-top: 16px;
-  padding-bottom: 50px;
-  letter-spacing: 0;
-  float: none;
   display: inline-block;
-  margin: 0 auto;
-  text-align: center;
-  position: relative;
   box-sizing: border-box;
   position: absolute;
-  background: none;
-  overflow: visible;
-  left: 0;
   top: 10%;
+  left: 0;
+  width: 100%;
+  float: none;
+  padding-top: 16px;
+  padding-bottom: 50px;
+  overflow: visible;
+  background: 0 0;
+  letter-spacing: 0
 }
 .mid-container>.main {
-  height: 100%;
-  left: 0;
-  right: 0;
   top: 0;
-  text-align: center;
-  margin: 6% auto;
-  font-family: 'HelveticaNeueLT-Thin', sans-serif;
-  box-shadow: 0 0 37px 10px rgba(0, 0, 0, .18);
+  right: 0;
+  left: 0;
   min-width: 300px;
   max-width: 450px;
+  height: 100%;
   min-height: 120px;
-  padding: 26px 12px 20px
+  margin: 6% auto;
+  padding: 26px 12px 20px;
+  box-shadow: 0 0 37px 10px rgba(0, 0, 0, .18);
+  text-align: center;
+  font-family: 'HelveticaNeueLT-Thin', sans-serif
 }
 .js-loading {
-  font-size: 1.4em;
-  position: absolute;
-  right: -20px;
-  top: 8px;
-  left: 0;
-  display: block;
-  padding: 0
+  padding: 0 15px;
+  opacity: 0;
+  font-size: .4em;
+  letter-spacing: 3em;
+  word-spacing: 2.8em;
+  -webkit-transition: all cubic-bezier(.65, .05, .36, 1) 2.6s;
+  transition: all cubic-bezier(.65, .05, .36, 1) 2.6s
+}
+.js-loading.js-ready {
+  opacity: 1;
+  font-size: 1.2em;
+  letter-spacing: 0;
+  white-space: normal;
+  word-spacing: 0
+}
+.js-loading h2 {
+  margin: 0 0 .4em;
+  color: #d34949;
+  font-size: 1.4em
+}
+.js-loading small {
+  color: #2196f3;
+  font-size: 75%
 }
 .CtlSearchGroup {
-  border: none;
-  font-size: 18px;
-  background: 0 0;
   width: 100%;
-  overflow: hidden;
+  max-width: 1200px;
   margin: 0 auto;
-  max-width: 1200px
+  overflow: hidden;
+  border: none;
+  background: 0 0;
+  font-size: 18px
 }
 .left-container {
   position: relative;
-  text-align: center;
-  left: 0;
   right: 0;
-  width: 100%
+  left: 0;
+  width: 100%;
+  text-align: center
 }
 .warningIcon {
-  display: inline-block;
+  position: absolute;
   top: -7px;
-  left: -70px;
-  position: relative;
+  left: 25%;
   max-width: 50px
 }
 div#ErrorDetails {
   position: relative;
-  left: 20px;
   top: -50px;
+  left: 20px;
   padding: 0!important
 }
 span#LblErrorID {
@@ -99,8 +114,16 @@ div#ErrorDetails, div#ErrorDetails>span, span#LblErrorID {
   display: inline-block;
   width: 100%
 }
+#ErrorDetailsContainer, #errorId {
+  font-family: 'HelveticaNeueLT-LightCond', sans-serif
+}
 #ErrorDetailsContainer {
   margin: 0!important;
-  font-size: 15px;
-  font-family: 'HelveticaNeueLT-LightCond', sans-serif
+  font-size: 15px
+}
+#errorId {
+  margin-bottom: 1em;
+  color: #757575;
+  text-transform: uppercase;
+  font-size: .6em
 }

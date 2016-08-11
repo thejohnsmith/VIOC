@@ -1,0 +1,293 @@
+<!-- ****************** PORTAL CUSTOM COPY ******************
+<div class="asyncMarkup"></div>
+<script>
+  var $j = jQuery;
+  $j('.asyncMarkup').load("https://files.marcomcentral.app.pti.com/epsilon/static_beta/marcom_custom/storePages.html", function () {
+    console.debug('Done loading storePages.html, Calling StorePagesController');
+    /*try {
+      StorePagesController.controller.init();
+    } catch (e) {
+      console.error("error=" + e);
+      if (typeof (console) != "undefined") {
+        console.log(e);
+      }
+      return false;
+    }*/
+  });
+</script>
+********************** /PORTAL CUSTOM COPY ****************** -->
+
+<!-- Store Pages:
+    @file storePages.html
+    Beta URL:
+    https://marcomcentral.app.pti.com/Epsilon_Data_Management/Beta_Epsilon/CustomPage.aspx?uigroup_id=479602&page_id=10792https://marcomcentral.app.pti.com/Epsilon_Data_Management/Beta_Epsilon/CustomPage.aspx?uigroup_id=479602&page_id=12939
+-->
+<div class="wrapper storePages">
+  <div class="mid-container">
+    <div class="main">
+      <section id="breadcrumbs">
+        <ul>
+          <li>
+            <a href="home.aspx" title="Home">Home</a>
+          </li>
+          <li>Store Pages</li>
+        </ul>
+      </section>
+    </div>
+    <div class="main">
+      <h1 class="h1 page-title">
+        <span>Store Pages</span>
+      </h1>
+
+      <div id="parentHorizontalTab" class="store-pages-tab">
+
+        <div class="js-loading">
+          <div role="presentation" class="spinner"></div>
+        </div>
+        <div class="js-content">
+          <ul class="resp-tabs-list hor_1">
+            <li>Store Details</li>
+            <li>Offers</li>
+          </ul>
+          <div class="resp-tabs-container hor_1">
+            <div class="resp-tab-content storeDetailsTab">
+              <section class="resp-tab-content-section">
+                <div class="filters-area">
+                  <div class="filter-title">
+                    Store Filters:
+                  </div>
+                  <div class="company filter-select select-option">
+                    <select class="selectbox">
+                      <option class="selectboxOption" selected>
+                        Select Company
+                      </option>
+                      <option class="selectboxOption">
+                        Company 1
+                      </option>
+                      <option class="selectboxOption">
+                        Company 2
+                      </option>
+                      <option class="selectboxOption">
+                        Company 3
+                      </option>
+                    </select>
+                  </div>
+
+                  <div class="market filter-select select-option">
+                    <select class="selectbox">
+                      <option class="selectboxOption" selected>Select Market</option>
+                      <option class="selectboxOption">Market 1</option>
+                      <option class="selectboxOption">Market 2</option>
+                      <option class="selectboxOption">Market 3</option>
+                    </select>
+                  </div>
+
+                  <div class="filter-results">
+                    <a href="#" title="filter-edit" class="filter-reset">
+                      <img src="https://files.marcomcentral.app.pti.com/epsilon/static/marcom_custom/images/edit-filter.png" alt="Edit" title="Edit" width="16">
+                    </a>
+                    <span class="filter-results-value">3</span>
+                  </div>
+                </div>
+
+                <table class="full-width">
+                  <tbody id="storeDetail" class="not-sortable full-width text-center">
+
+                    <tr draggable="false" class="table-banner text-center">
+                      <!-- <th class="table-banner-item">
+                        Sort
+                      </th> -->
+                      <th class="table-banner-item">
+                        Store
+                      </th>
+                      <th class="table-banner-item">
+                        Edit
+                      </th>
+                    </tr>
+
+                    <tr draggable="false" class="not-sortable-item filterable store-item text-center" data-filter-storeid="1" data-storeid="1" data-enrolled="true">
+                      <!-- <td class="list-item handle text-center">::</td> -->
+                      <td class="list-item text-center store-name">Tom T's New Store 1
+                        <div class="text-center store-number">Store #1</div>
+                      </td>
+                      <td class="list-item text-center">
+                        <a href="CustomPage.aspx?uigroup_id=479602&page_id=13090" title="Edit Store">
+                          <span alt="Edit" class="icon icon-edit-bg"></span>
+                        </a>
+                      </td>
+                    </tr>
+
+                    <tr draggable="false" class="not-sortable-item filterable store-item text-center" data-filter-storeid="2" data-storeid="2" data-enrolled="true">
+                      <!-- <td class="list-item handle text-center">::</td> -->
+                      <td class="list-item text-center store-name">Tom T's New Store 2
+                        <div class="text-center store-number">Store #2</div>
+                      </td>
+                      <td class="list-item text-center">
+                        <a href="CustomPage.aspx?uigroup_id=479602&page_id=13090" title="Edit Store">
+                          <span alt="Edit" class="icon icon-edit-bg"></span>
+                        </a>
+                      </td>
+                    </tr>
+
+                    <tr draggable="false" class="not-sortable-item filterable store-item text-center" data-filter-storeid="3" data-storeid="3" data-enrolled="true">
+                      <!-- <td class="list-item handle text-center">::</td> -->
+                      <td class="list-item text-center store-name">Tom T's New Store 3
+                        <div class="text-center store-number">Store #3</div>
+                      </td>
+                      <td class="list-item text-center">
+                        <a href="CustomPage.aspx?uigroup_id=479602&page_id=13090" title="Edit Store">
+                          <span alt="Edit" class="icon icon-edit-bg"></span>
+                        </a>
+                      </td>
+                    </tr>
+
+                  </tbody>
+                </table>
+              </section>
+            </div>
+            <div class="resp-tab-content storeOffers">
+              <section class="resp-tab-content-section">
+                <div class="add-offer-btn-parent">
+                  <a class="btn btn-primary" href="https://marcomcentral.app.pti.com/Epsilon_Data_Management/Beta_Epsilon/CustomPage.aspx?uigroup_id=479602&page_id=13091">Add Offer</a>
+                  <br>
+                </div>
+
+                <table class="full-width">
+                  <tbody id="sortOffer" class="sortable full-width">
+                    <tr class="table-banner">
+                      <th class="table-banner-item">
+                        Sort
+                      </th>
+                      <th class="table-banner-item">
+                        Discount Code
+                        <th class="table-banner-item">
+                          Offer Type
+                        </th>
+                        <th class="table-banner-item">
+                          Expiration
+                        </th>
+                        <th class="table-banner-item">
+                          Participating Stores
+                        </th>
+                        <th class="table-banner-item">
+                          Edit
+                        </th>
+                        <th class="table-banner-item">
+                          Delete
+                        </th>
+                      </tr>
+                      <tr class="error none"><td colspan="7" class="Error list-item">Please add more offers.</td></tr>
+                      <tr draggable="true" class="sortable-item filterable store-item text-center" data-filter-storeid="1" data-storeid="1" data-enrolled="true">
+                        <td class="list-item handle text-center">::</td>
+                        <td class="list-item">
+                          INSP
+                        </td>
+                        <td class="list-item">
+                          Emissions Test
+                        </td>
+                        <td class="list-item">
+                          Plus 30
+                        </td>
+                        <td class="list-item text-center">
+                          <small>
+                            Tom T's 1st Store (Store #501)
+                          </small>
+                        </td>
+                        <td class="list-item">
+                          <a class="editOfferDetails" href="https://marcomcentral.app.pti.com/Epsilon_Data_Management/Beta_Epsilon/CustomPage.aspx?uigroup_id=479602&page_id=13090" title="Edit Offer Details">
+                            <span alt="Edit Offer Details" class="icon icon-edit-bg"></span>
+                          </a>
+                        </td>
+                        <td class="deleteOffer list-item">
+                          <button data-storeid="1938" data-offerid="1" alt="Delete Offer" class="icon icon-delete-bg"></button>
+                        </td>
+                      </tr>
+
+                      <tr draggable="true" class="sortable-item filterable store-item text-center" data-filter-storeid="2" data-storeid="2" data-enrolled="true">
+                        <td class="list-item handle text-center">::</td>
+                        <td class="list-item">
+                          10AF
+                        </td>
+                        <td class="list-item">
+                          Air Filter &amp; Cabin Filter
+                        </td>
+                        <td class="list-item">
+                          2016-12-31
+                        </td>
+                        <td class="list-item text-center">
+                          <small>
+                            Tom T's 2nd Store (Store #701)
+                          </small>
+                        </td>
+                        <td class="list-item">
+                          <a class="editOfferDetails" href="https://marcomcentral.app.pti.com/Epsilon_Data_Management/Beta_Epsilon/CustomPage.aspx?uigroup_id=479602&page_id=13090" title="Edit Offer Details">
+                            <span alt="Edit Offer Details" class="icon icon-edit-bg"></span>
+                          </a>
+                        </td>
+                        <td class="deleteOffer list-item">
+                          <button data-offerid="2" alt="Delete Offer" class="icon icon-delete-bg"></button>
+                        </td>
+                      </tr>
+
+                      <tr draggable="true" class="sortable-item filterable store-item text-center" data-filter-storeid="3" data-storeid="3" data-enrolled="true">
+                        <td class="list-item handle text-center">::</td>
+                        <td class="list-item">
+                          ws10
+                        </td>
+                        <td class="list-item">
+                          Any Oli Change, 5qts.
+                        </td>
+                        <td class="list-item">
+                          Plus 60
+                        </td>
+                        <td class="list-item text-center">
+                          <small>
+                            Tom T's 1st Store (Store #501)
+                            <br>
+                            Tom T's 2nd Store (Store #701)
+                            <br>
+                            Tom T's 3rd Store (Store #941)
+                          </small>
+                        </td>
+                        <td class="list-item">
+                          <a class="editOfferDetails" href="https://marcomcentral.app.pti.com/Epsilon_Data_Management/Beta_Epsilon/CustomPage.aspx?uigroup_id=479602&page_id=13090" title="Edit Offer Details">
+                            <span alt="Edit Offer Details" class="icon icon-edit-bg"></span>
+                          </a>
+                        </td>
+                        <td class="deleteOffer list-item">
+                          <button data-offerid="3" alt="Delete Offer" class="icon icon-delete-bg"></button>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </section>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script>
+
+    window.onload = function () {
+      try {
+        StorePagesController.controller.init();
+      } catch (e) {
+        console.error("error=" + e);
+        StorePagesController.controller.init();
+        if (typeof(console) != "undefined") {
+          console.log(e);
+        }
+        return false;
+      }
+
+      Sortable.create(sortOffer, {
+        handle: '.handle',
+        ghostClass: 'ghost',
+        draggable: '.store-item',
+        sort: true
+      });
+
+    };
+  </script>

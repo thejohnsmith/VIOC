@@ -1,15 +1,15 @@
-/* StoreWebsites Controller
- * @NOTE - The Store Websites URL for Beta is:
+/* StorePages Controller
+ * @NOTE - The Store Pages URL for Beta is:
  * @URL - https://marcomcentral.app.pti.com/Epsilon_Data_Management/Beta_Epsilon/CustomPage.aspx?uigroup_id=479602&page_id=10792
  *
- * @description - Loads Store Websites template markup
- * @filename - StoreWebsitesController.js
+ * @description - Loads Store Pages template markup
+ * @filename - StorePagesController.js
  * @author - John Smith : Epsilon 2016
  */
 var pageAnchor = '.asyncMarkup';
-var pageKey = marcomUserData.$constants.storeWebsiteUrl;
+var pageKey = marcomUserData.$constants.storePagesUrl;
 
-StoreWebsitesController = (function ($) {
+StorePagesController = (function ($) {
 	'use strict';
 	var controller = {
 		intervalHandle: null,
@@ -61,7 +61,7 @@ StoreWebsitesController = (function ($) {
 		 */
 		SetNavigation: function () {
 			$('.navBarItem > a').filter(function () {
-				return $(this).text() === 'STORE WEBSITES';
+				return $(this).text() === 'STORE PAGES';
 			}).addClass('navBarSelectedLinkColor, customColorOverridable').removeClass('navBarEnhancedLinkColor');
 			return this;
 		},
@@ -94,5 +94,5 @@ StoreWebsitesController = (function ($) {
 
 // // Only execute this controller on a certain page
 // if (window.location.href.indexOf(pageKey) > -1) {
-// 	StoreWebsitesController.controller.init();
+// 	StorePagesController.controller.init();
 // }

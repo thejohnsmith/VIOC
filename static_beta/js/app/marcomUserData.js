@@ -53,7 +53,7 @@ var marcomUserData = (function ($) {
 			forgotPassPageUrl: 'forgotpassword.aspx?uigroup_id=478656',
 			accountPageUrl: 'profile.aspx?uigroup_id=478656&mode=1',
 			onDemandUrl: 'catalog.aspx?folder_id=1724903',
-			storeWebsiteUrl: '',
+			storePagesUrl: '',
 			apiPath: 'https://adobe-prod-vioc.epsilon.com/jssp/vioc/',
 			apiPathLocal: 'data/',
 			marcomFilePath: 'https://files.marcomcentral.app.pti.com/epsilon/static/'
@@ -81,7 +81,9 @@ var marcomUserData = (function ($) {
 			forgotPassPageUrl: 'forgotpassword.aspx?uigroup_id=479602',
 			accountPageUrl: 'profile.aspx?uigroup_id=479602&mode=1',
 			onDemandUrl: 'catalog.aspx?uigroup_id=479602&folder_id=1633307',
-			storeWebsiteUrl: 'CustomPage.aspx?uigroup_id=479602&page_id=12939',
+			storePagesUrl: 'CustomPage.aspx?uigroup_id=479602&page_id=12939',
+			storeDetailsUrl: 'CustomPage.aspx?uigroup_id=479602&page_id=13090',
+			storePagesNewOfferUrl: 'CustomPage.aspx?uigroup_id=479602&page_id=13091',
 			apiPath: 'https://adobe-prod-vioc.epsilon.com/jssp/vioc/',
 			apiPathLocal: 'data/',
 			marcomFilePath: 'https://files.marcomcentral.app.pti.com/epsilon/static_beta/'

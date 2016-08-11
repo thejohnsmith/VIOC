@@ -1,0 +1,77 @@
+<!-- ****************** PORTAL CUSTOM COPY ******************
+<div class="asyncMarkup"></div>
+<script>
+  var $j = jQuery;
+  $j('.asyncMarkup').load("https://files.marcomcentral.app.pti.com/epsilon/static_beta/marcom_custom/storeDetails.html", function () {
+  	console.debug('Done loading storeDetails.html, Calling StorePagesController');
+    if (typeof StorePagesController === 'object') {
+
+    }
+  	try {
+  		StorePagesController.controller.init();
+  	} catch (e) {
+  		console.debug('Error: %O', e);
+  		if (typeof (console) != 'undefined') {
+  			console.log(e);
+  		}
+  		return false;
+  	}
+  });
+</script>
+********************** /PORTAL CUSTOM COPY ****************** -->
+
+<!-- Store Pages:
+    @file storeDetails.html
+    Beta URL:
+    https://marcomcentral.app.pti.com/Epsilon_Data_Management/Beta_Epsilon/CustomPage.aspx?uigroup_id=479602&page_id=13090
+-->
+<div class="wrapper storePages">
+  <div class="mid-container">
+    <div class="main">
+      <section id="breadcrumbs">
+        <ul>
+          <li>
+            <a href="https://marcomcentral.app.pti.com/Epsilon_Data_Management/Beta_Epsilon/home.aspx?uigroup_id=479602" title="Home">Home</a>
+          </li>
+          <li>
+            <a href="https://marcomcentral.app.pti.com/Epsilon_Data_Management/Beta_Epsilon/CustomPage.aspx?uigroup_id=479602&page_id=12939" title="Store Pages">Store Pages</a>
+          </li>
+          <li>Store Details</li>
+        </ul>
+      </section>
+    </div>
+    <div class="main">
+      <h1 class="h1 page-title">
+        <span>Store Details</span>
+      </h1>
+      <div class="js-loading">
+        <div role="presentation" class="spinner"></div>
+      </div>
+      <div class="js-content">
+        <h4>Coming soon...</h4>
+        <div class="JobExpressPreview"><P>Wireframe Notes</P>
+        <ol class="list list-numbered">
+          <li class="list-item">￼￼All details that pertain to an individual store will be editable from one long scroll page.</li>
+          <li class="list-item">Basic store details are pulled from the Data Mart and displayed to the user for reference. Helper text lets the user know where they need to go in order to edit it.</li>
+          <li class="list-item">Photo field, minimum resolution 350px x 120px. Store photo uses a default image when not set. When a new image is uploaded the user can zoom and adjust image to make sure it fits the frame well. (Recommend using a web based image editor like the Minimal Controls example on http://www.croppic.net)</li>
+          <li class="list-item">Text field, limit 200 characters.</li>
+          <li class="list-item">Open: To be replaced with templated fields upon recieving current landmark samples.</li>
+        </ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+  window.onload = function () {
+    try {
+      StorePagesController.controller.init();
+    } catch (e) {
+      console.error("error=" + e);
+      if (typeof(console) != "undefined") {
+        console.log(e);
+      }
+      return false;
+    }
+  };
+</script>

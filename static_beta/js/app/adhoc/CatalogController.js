@@ -13,6 +13,7 @@ CatalogController = (function ($) {
 	'use strict';
 	var controller = {
 		intervalHandle: null,
+    homePageUrl: marcomUserData.$constants.homePageGroupUrl,
 		title: $('#catalogContent') ? 'ON DEMAND MARKETING' : '',
 		init: function () {
 			var controller = this;
@@ -64,6 +65,9 @@ CatalogController = (function ($) {
 
 			// Set 1st Level Breadcrumb
 			$('#ctl00_content_CatalogBreadCrumbsLayout_CatalogBreadCrumbs_btnItem1').hide();
+      $('.breadcrumbs_root a').html(controller.title);
+      $('.breadcrumbs_root a').attr('href', controller.homePageUrl)
+
 			// Set 2nd Level Breadcrumb
 			$('.breadcrumbs_previous:first a').html();
 			$('.breadcrumbs_previous:first a').attr('href', '');

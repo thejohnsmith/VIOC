@@ -350,7 +350,7 @@ var additionalOfferController = (function ($) {
 	};
 })(jQuery);
 
-if (window.location.href.indexOf(marcomUserData.$constants.additionalOfferPageUrl) > -1) {
+if (window.location.href.indexOf(marcomUserData.$constants.additionalOfferPageUrl) > -1 || window.location.href.indexOf(marcomUserData.$constants.storePagesNewOfferUrl) > -1) {
 	jQuery(".js-content").hide();
 	jQuery(".js-loading").show();
 	additionalOfferController.controller.init();
