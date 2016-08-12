@@ -6,8 +6,6 @@
  * @filename - StorePagesController.js
  * @author - John Smith : Epsilon 2016
  */
-var pageAnchor = '.asyncMarkup';
-var pageKey = marcomUserData.$constants.storePagesUrl;
 
 var StorePagesController = StorePagesController || (function ($) {
 	'use strict';
@@ -16,32 +14,25 @@ var StorePagesController = StorePagesController || (function ($) {
 		init: function () {
 			var controller = this;
 			programManagementFilters.controller.init();
-			controller.AdjustUI();
-			// controller.WatchForPageReady(function () {
-			// 	controller.AdjustUI();
-			// });
+			controller.AdjustUI(function () {
+				controller.ShowUI();
+			});
 		},
-		isPageReady: function () {
-			return $(pageAnchor).length > 0;
-		},
-		WatchForPageReady: function (callback) {
-			var controller = this;
-			// controller.intervalHandle = setInterval(function () {
-			// 	if (controller.isPageReady()) {
-			// 		clearInterval(controller.intervalHandle);
-			// 		callback();
-			// 	}
-			// }, 500);
-		},
-		AdjustUI: function () {
+		AdjustUI: function (callback) {
 			var controller = this;
 			controller.SetNavigation();
 			controller.UpdateBreadCrumbs();
 			controller.InitializeTabs();
+			controller.SetupSortable();
+
 			controller.EventHandlers();
+			if (typeof callback == 'function') {
+				callback();
+			}
 		},
 		EventHandlers: function () {
 			var controller = this;
+
 			$('.deleteOffer > button').on('click', function (e) {
 				e.preventDefault();
 				var data = $(this).data();
@@ -60,11 +51,12 @@ var StorePagesController = StorePagesController || (function ($) {
 
 			jConfirm('Are you sure you want to delete these settings?', 'Please Confirm', function (r) {
 				if (r) {
-					$('#sortOffer .store-item[data-storeid="' + offerId + '"]').hide();
+					$('#sortable .store-item[data-storeid="' + offerId + '"]').hide();
 
 					// TODO this is temp and only for UI checking.
 					// We will incorporate actual deletion in the next sprint.
 					controller.HandleEmptyTable();
+					toastr.success('Store no longer enrolled.');
 
 					// STUB
 					//  controller.deleteSettings(selectedConfigId, function () {
@@ -74,14 +66,13 @@ var StorePagesController = StorePagesController || (function ($) {
 
 			});
 		},
-		HandleEmptyTable: function() {
-			var sortOffer = $('#sortOffer');
-			var visibleOffers = sortOffer.find('.store-item:visible');
+		HandleEmptyTable: function () {
+			var sortable = $('#sortable');
+			var visibleOffers = sortable.find('.store-item:visible');
 
-			// Account for the last removal, -1
 			visibleOffers = visibleOffers.length;
-			if (typeof visibleOffers === 'number' && visibleOffers === 0){
-				sortOffer.find('.error').fadeIn('slow');
+			if (typeof visibleOffers === 'number' && visibleOffers === 0) {
+				sortable.find('.error').fadeIn('slow');
 			}
 		},
 		InitializeTabs: function () {
@@ -102,17 +93,34 @@ var StorePagesController = StorePagesController || (function ($) {
 				}
 			});
 		},
+		SetupSortable: function () {
+			if ($('#sortable').length < 1) {
+				return false;
+			}
+			try {
+				Sortable.create(sortable, {
+					handle: '.handle',
+					ghostClass: 'ghost',
+					draggable: '.store-item',
+					sort: true
+				});
+			} catch (e) {
+				console.error('error=' + e);
+				if (typeof (console) != 'undefined') {
+					console.log(e);
+				}
+				return false;
+			}
+		},
 		/**
 		 * [SetNavigation Set navigation state]
 		 */
 		SetNavigation: function () {
 			var controller = this;
-			console.info('hi');
-			// $('.navBarItem > a').filter(function () {
-			// 	return $(this).text() === 'STORE PAGES';
-			// }).addClass('navBarSelectedLinkColor, customColorOverridable').removeClass('navBarEnhancedLinkColor');
-			// return this;
-			controller.ShowUI();
+			$('.navBarItem > a').filter(function () {
+				return $(this).text() === 'STORE PAGES';
+			}).addClass('navBarSelectedLinkColor, customColorOverridable').removeClass('navBarEnhancedLinkColor');
+			return this;
 		},
 		/**
 		 * [UpdateBreadCrumbs Custom breadcumb handler]
@@ -136,66 +144,7 @@ var StorePagesController = StorePagesController || (function ($) {
 		}
 	};
 	return {
-		controller: controller
+		controller: controller,
+		showUI: controller.ShowUI
 	};
 })(jQuery);
-
-// Only execute this controller on a certain page
-if (window.location.href.indexOf(pageKey) > -1) {
-	StorePagesController.controller.ShowUI();
-}
-
-// var $j = jQuery;
-// $j('.asyncMarkup').load("https://files.marcomcentral.app.pti.com/epsilon/static_beta/marcom_custom/storePages.html", function () {
-// 	console.debug('Done loading storePages.html, Calling StorePagesController');
-// 	if (typeof StorePagesController === 'object') {
-//
-// 	}
-// 	try {
-// 		StorePagesController.controller.init();
-// 	} catch (e) {
-// 		console.debug('Error: %O', e);
-// 		if (typeof (console) != 'undefined') {
-// 			console.log(e);
-// 		}
-// 		return false;
-// 	}
-// });
-
-var $j = jQuery;
-
-function getData() {
-	return jQuery.get('https://files.marcomcentral.app.pti.com/epsilon/static_beta/marcom_custom/storePages.html').success(function () {
-		console.log('Fires after the AJAX request succeeds');
-	});
-	var $j = jQuery;
-  $j('.asyncMarkup').load("https://files.marcomcentral.app.pti.com/epsilon/static_beta/marcom_custom/storePages.html", function () {
-    console.debug('Done loading storePages.html, Calling StorePagesController');
-    /*try {
-      StorePagesController.controller.init();
-    } catch (e) {
-      console.error("error=" + e);
-      if (typeof (console) != "undefined") {
-        console.log(e);
-      }
-      return false;
-    }*/
-  });
-}
-
-function showDiv() {
-	var dfd = jQuery.Deferred();
-
-	dfd.done(function () {
-		console.log('Fires after the animation succeeds');
-	});
-
-	jQuery('.asyncMarkup').fadeIn(1000, dfd.resolve);
-
-	return dfd.promise();
-}
-jQuery.when(getData(), showDiv()).then(function (ajaxResult) {
-	StorePagesController.controller.init();
-	console.log('Fires after BOTH showDiv() AND the AJAX request succeed!');
-	// 'ajaxResult' is the server’s response
-});

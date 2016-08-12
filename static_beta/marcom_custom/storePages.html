@@ -1,27 +1,42 @@
-<!-- ****************** PORTAL CUSTOM COPY ******************
-<div class="asyncMarkup"></div>
-<script>
-  var $j = jQuery;
-  $j('.asyncMarkup').load("https://files.marcomcentral.app.pti.com/epsilon/static_beta/marcom_custom/storePages.html", function () {
-    console.debug('Done loading storePages.html, Calling StorePagesController');
-    /*try {
-      StorePagesController.controller.init();
-    } catch (e) {
-      console.error("error=" + e);
-      if (typeof (console) != "undefined") {
-        console.log(e);
-      }
-      return false;
-    }*/
-  });
-</script>
-********************** /PORTAL CUSTOM COPY ****************** -->
-
 <!-- Store Pages:
     @file storePages.html
     Beta URL:
     https://marcomcentral.app.pti.com/Epsilon_Data_Management/Beta_Epsilon/CustomPage.aspx?uigroup_id=479602&page_id=10792https://marcomcentral.app.pti.com/Epsilon_Data_Management/Beta_Epsilon/CustomPage.aspx?uigroup_id=479602&page_id=12939
 -->
+
+
+<!-- ****************** PORTAL CUSTOM COPY ******************
+
+!!   The following markup is to be copied into the Marcom Custom Copy textarea for this page   !!
+
+<div id="storePages" class="asyncMarkup"></div>
+
+<script>
+window.onload = function () {
+  function getData() {
+  	return jQuery.get('https://files.marcomcentral.app.pti.com/epsilon/static_beta/marcom_custom/storePages.html').success(function (resp) {
+  		// console.log('Fires after the AJAX request succeeds');
+  		jQuery('.asyncMarkup').html(resp);
+  		StorePagesController.controller.init();
+  	});
+  }
+  function showDiv() {
+  	var dfd = jQuery.Deferred();
+  	dfd.done(function () {
+  		// console.log('Fires after the animation succeeds');
+  	});
+  	jQuery('.asyncMarkup').fadeIn(1000, dfd.resolve);
+  	return dfd.promise();
+  }
+  jQuery.when(getData(), showDiv())
+  	.then(function (ajaxResult) {
+  		// console.log('Fires after BOTH showDiv() AND the AJAX request succeed!');
+  	});
+}
+</script>
+********************** /PORTAL CUSTOM COPY ****************** -->
+
+
 <div class="wrapper storePages">
   <div class="mid-container">
     <div class="main">
@@ -58,27 +73,11 @@
                   </div>
                   <div class="company filter-select select-option">
                     <select class="selectbox">
-                      <option class="selectboxOption" selected>
-                        Select Company
-                      </option>
-                      <option class="selectboxOption">
-                        Company 1
-                      </option>
-                      <option class="selectboxOption">
-                        Company 2
-                      </option>
-                      <option class="selectboxOption">
-                        Company 3
-                      </option>
                     </select>
                   </div>
 
                   <div class="market filter-select select-option">
                     <select class="selectbox">
-                      <option class="selectboxOption" selected>Select Market</option>
-                      <option class="selectboxOption">Market 1</option>
-                      <option class="selectboxOption">Market 2</option>
-                      <option class="selectboxOption">Market 3</option>
                     </select>
                   </div>
 
@@ -153,7 +152,7 @@
                 </div>
 
                 <table class="full-width">
-                  <tbody id="sortOffer" class="sortable full-width">
+                  <tbody id="sortable" class="sortable full-width">
                     <tr class="table-banner">
                       <th class="table-banner-item">
                         Sort
@@ -268,26 +267,3 @@
       </div>
     </div>
   </div>
-  <script>
-
-    window.onload = function () {
-      try {
-        StorePagesController.controller.init();
-      } catch (e) {
-        console.error("error=" + e);
-        StorePagesController.controller.init();
-        if (typeof(console) != "undefined") {
-          console.log(e);
-        }
-        return false;
-      }
-
-      Sortable.create(sortOffer, {
-        handle: '.handle',
-        ghostClass: 'ghost',
-        draggable: '.store-item',
-        sort: true
-      });
-
-    };
-  </script>
