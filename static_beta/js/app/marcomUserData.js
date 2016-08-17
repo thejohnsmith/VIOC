@@ -84,6 +84,7 @@ var marcomUserData = (function ($) {
 			storePagesUrl: 'CustomPage.aspx?uigroup_id=479602&page_id=12939',
 			storeDetailsUrl: 'CustomPage.aspx?uigroup_id=479602&page_id=13090',
 			storePagesNewOfferUrl: 'CustomPage.aspx?uigroup_id=479602&page_id=13091',
+      storePagesEditOfferUrl: 'CustomPage.aspx?uigroup_id=479602&page_id=13095',
 			apiPath: 'https://adobe-prod-vioc.epsilon.com/jssp/vioc/',
 			apiPathLocal: 'data/',
 			marcomFilePath: 'https://files.marcomcentral.app.pti.com/epsilon/static_beta/'

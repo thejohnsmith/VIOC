@@ -14,8 +14,11 @@ var additionalOfferController = (function ($) {
 		programId: getParameterByName('programId', window.location.href),
 		configId: getParameterByName('configId', window.location.href),
 		storePagesNewOfferUrl: marcomUserData.$constants.storePagesNewOfferUrl,
+		storePagesEditOfferUrl: marcomUserData.$constants.storePagesEditOfferUrl,
+		storePagesTrue: window.location.href.indexOf(marcomUserData.$constants.storePagesNewOfferUrl) > -1 ? true : window.location.href.indexOf(marcomUserData.$constants.storePagesEditOfferUrl) > -1 ? true : false,
 		init: function (config) {
 			var controller = this;
+			console.info('storePagesTrue: %o', controller.storePagesTrue);
 			controller.GetAdditionalOfferText(function (programId) {
 				controller.GetProgramData(controller.programId, function (programId) {
 					if (typeof controller.configId != "undefined") {
@@ -105,8 +108,12 @@ var additionalOfferController = (function ($) {
 			var controller = this;
 
 			var title = (controller.configLoaded) ? "Edit " + controller.config.content.label : "Create Additional Offer";
-			if (window.location.href.indexOf(marcomUserData.$constants.storePagesNewOfferUrl) > -1) {
+			if (window.location.href.indexOf(controller.storePagesNewOfferUrl) > -1) {
 				title = 'New Offer';
+			}
+			if (window.location.href.indexOf(controller.storePagesEditOfferUrl) > -1) {
+				title = 'Edit Offer';
+				$('.delete-offer').show();
 			}
 			// Set title
 			$("h1.page-title").html(title);
@@ -116,6 +123,17 @@ var additionalOfferController = (function ($) {
 		},
 		UpdateBreadCrumbs: function () {
 			var controller = this;
+
+			if (controller.storePagesTrue) {
+				console.info('breadcrumbs_previous updated.');
+				$('.breadcrumbs_root a')
+					.html('Home')
+					.attr('href', marcomUserData.$constants.homePageGroupUrl);
+				$('.breadcrumbs_previous:first a')
+					.html('Store Pages')
+					.attr('href', marcomUserData.$constants.storePagesUrl);
+				return false;
+			}
 
 			// Set 2nd Level Breadcrumb
 			$(".breadcrumbs_previous:first a").html((controller.program.isSpecialtyProgram) ? "Specialty Programs" : "Lifecycle Programs");
@@ -158,7 +176,7 @@ var additionalOfferController = (function ($) {
 				 * Disable 'required' attr from .adtlText dropdown
 				 */
 				if (controller.program.isLifecycleCampaign) {
-					if (window.location.href.indexOf(marcomUserData.$constants.storePagesNewOfferUrl) > -1) {
+					if (controller.storePagesTrue) {
 						return false
 					}
 					$('.coupon-form label:first i').hide();
@@ -186,7 +204,7 @@ var additionalOfferController = (function ($) {
 			});
 		},
 		MinimizeUnusedCoupons: function () {
-			if (window.location.href.indexOf(marcomUserData.$constants.storePagesNewOfferUrl) > -1) {
+			if (controller.storePagesTrue) {
 				return false
 			}
 			for (var i = 1; i <= 4; i++) {
@@ -250,7 +268,7 @@ var additionalOfferController = (function ($) {
 						hasSpecifiedAnOffer = true;
 					}
 				} else {
-					if (txt == "none" && i == 1) {
+					if (txt == "none" && i == 1 && !controller.storePagesTrue) {
 						return throwError("Please configure Additional Offer #1");
 					}
 
@@ -263,7 +281,7 @@ var additionalOfferController = (function ($) {
 				}
 			}
 
-			if ($('.settings-name').val() == "") {
+			if ($('.settings-name').val() == "" && !controller.storePagesTrue) {
 				return throwError("Please provide a name for this setting.");
 			}
 

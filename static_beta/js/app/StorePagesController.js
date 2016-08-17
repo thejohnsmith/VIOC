@@ -33,10 +33,38 @@ var StorePagesController = StorePagesController || (function ($) {
 		EventHandlers: function () {
 			var controller = this;
 
-			$('.deleteOffer > button').on('click', function (e) {
+			// Delete Offer
+			$('.deleteOffer > button, .delete-offer-btn').on('click', function (e) {
 				e.preventDefault();
 				var data = $(this).data();
 				return controller.DeleteOffer(data);
+			});
+
+			// Select Date Radio
+			$('.offer-form input[type=date]').on('click', function () {
+				return $('#specificDate').attr('checked', true);
+			});
+
+			// Select All - Checkboxes
+			$('.offer-form .select-all').on('click', function (e) {
+				e.preventDefault();
+				return $('.checkbox-default-input').attr('checked', true);
+			});
+
+			// Redirect Cancel Button
+			$('.offer-form .cancel-btn').on('click', function (e) {
+				e.preventDefault();
+				var data = $(this).data();
+				var pageurl = {};
+				pageurl = data.pageurl;
+				console.info('pageurl type %o, ', typeof pageurl); // string
+				return window.location = marcomUserData.$constants.storePagesUrl;
+			});
+
+			// Save Button Handler
+			$('.save-btn').on('click', function (e) {
+				e.preventDefault();
+				return;
 			});
 		},
 		EditOffer: function () {
@@ -57,6 +85,7 @@ var StorePagesController = StorePagesController || (function ($) {
 					// We will incorporate actual deletion in the next sprint.
 					controller.HandleEmptyTable();
 					toastr.success('Store no longer enrolled.');
+					return window.location = marcomUserData.$constants.storePagesUrl;
 
 					// STUB
 					//  controller.deleteSettings(selectedConfigId, function () {

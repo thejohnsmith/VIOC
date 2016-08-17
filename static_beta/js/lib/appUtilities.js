@@ -106,6 +106,12 @@ var appUtilities = (function ($) {
 		runtimeDebugging: function () {
 			// Give the source a namespace
 			marcomUserData.environmentKind === 'UAT' ? $('html').addClass('Beta_Epsilon') : $('html').removeClass('Epsilon');
+			var betaLink = $('.Beta_Epsilon .header-info h2');
+			betaLink.on('click', function (e) {
+				if (e.clientX > $(this).offset().left + 100) {
+					window.location = marcomUserData.$constants.storePagesUrl;
+				}
+			});
 
 			// var domainLocation = window.location.href,
 			// 	debugHeader = 'color:#00bbfd;font-family:HelveticaNeueLT-Condensed,sans-serif;font-weight:100;background:#000;' + 'font-size:1.3em;line-height:1;padding:0.08em 0.25em;margin:0',

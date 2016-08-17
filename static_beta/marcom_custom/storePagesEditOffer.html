@@ -1,7 +1,7 @@
 <!-- Store Pages New Offer:
 		@file storePagesNewOffer.html
 		Beta URL:
-		https://marcomcentral.app.pti.com/Epsilon_Data_Management/Beta_Epsilon/CustomPage.aspx?uigroup_id=479602&page_id=13091
+		https://marcomcentral.app.pti.com/Epsilon_Data_Management/Beta_Epsilon/CustomPage.aspx?uigroup_id=479602&page_id=13095
 -->
 
 <!-- ****************** PORTAL CUSTOM COPY ******************
@@ -193,6 +193,7 @@ window.onload = function () {
 <div class="wrapper storePages">
   <div class="mid-container">
     <div class="main">
+
       <section id="breadcrumbs">
         <ul>
           <li class="breadcrumbs_root">
@@ -204,6 +205,7 @@ window.onload = function () {
           <li class="breadcrumbs_current"></li>
         </ul>
       </section>
+
     </div>
     <div class="main">
       <h1 class="h1 page-title"></h1>
@@ -302,33 +304,12 @@ window.onload = function () {
                     <small class="display-block">Set expiration either from load or a specific date.</small>
                   </td>
                   <td class="adtl-offer-form-group-input">
-                    <!-- <select class="expiration selectbox">
+                    <select class="expiration selectbox">
                       <option value="15">Send Date Plus 15</option>
                       <option value="30">Send Date Plus 30</option>
                       <option value="45">Send Date Plus 45</option>
                       <option value="60">Send Date Plus 60</option>
-                    </select> -->
-                    <label class="radio-default" for="plus15">
-                      <input type="radio" id="plus15" name="expiration-choice" value="Plus 15">
-                      Send Date Plus 15
-                    </label>
-                    <label class="radio-default" for="plus30">
-                      <input type="radio" id="plus30" name="expiration-choice" value="Plus 30">
-                      Send Date Plus 30
-                    </label>
-                    <label class="radio-default" for="plus45">
-                      <input type="radio" id="plus45" name="expiration-choice" value="Plus 45">
-                      Send Date Plus 45
-                    </label>
-                    <label class="radio-default" for="plus60">
-                      <input type="radio" id="plus60" name="expiration-choice" value="Plus 60">
-                      Send Date Plus 60
-                    </label>
-                    <label class="radio-default" for="specificDate">
-                      <input type="radio" id="specificDate" name="expiration-choice" value="Specific Date">
-                      Specific Date
-                      <input type="date" name="name" value="2016-08-16">
-                    </label>
+                    </select>
                   </td>
                 </tr>
                 <tr class="offer-form-tr display-inline-block">
@@ -353,65 +334,57 @@ window.onload = function () {
                       </div>
                       <div>
                         <small>
-                          <a class="select-all" href="#">(Select All)</a>
+                          <a href="#">(Select All)</a>
                           <small></div>
-                          <tr draggable="false" class="not-sortable-item filterable store-item" data-filter-storeid="1" data-storeid="1" data-enrolled="true">
-                            <td class="store-name">
-                              <label class="checkbox-default">
-                                <input class="checkbox-default-input" type="checkbox" name="storeid-1" value="1">
-                                Tom T's New Store 1
-                                <span class="store-number">(Store #1)</span>
-                              </label>
-                            </td>
-                          </tr>
-                          <tr draggable="false" class="not-sortable-item filterable store-item" data-filter-storeid="2" data-storeid="2" data-enrolled="true">
-                            <td class="store-name">
-                              <label class="checkbox-default">
-                                <input class="checkbox-default-input" type="checkbox" name="storeid-2" value="2">
-                                Tom T's New Store 2
-                                <span class="store-number">(Store #2)</span>
-                              </label>
-                            </td>
-                          </tr>
-                          <tr draggable="false" class="not-sortable-item filterable store-item" data-filter-storeid="3" data-storeid="3" data-enrolled="true">
-                            <td class="store-name">
-                              <label class="checkbox-default">
-                                <input class="checkbox-default-input" type="checkbox" name="storeid-3" value="3">
-                                Tom T's New Store 3
-                                <span class="store-number">(Store #3)</span>
-                              </label>
-                            </td>
-                          </tr>
-                          <tr draggable="false" class="not-sortable-item filterable store-item" data-filter-storeid="4" data-storeid="4" data-enrolled="true">
-                            <td class="store-name">
-                              <label class="checkbox-default">
-                                <input class="checkbox-default-input" type="checkbox" name="storeid-4" value="4">
-                                Tom T's New Store 4
-                                <span class="store-number">(Store #4)</span>
-                              </label>
-                            </td>
-                          </tr>
-                        </td>
-                      </tr>
+                        </div>
+                        <tr draggable="false" class="not-sortable-item filterable store-item" data-filter-storeid="1" data-storeid="1" data-enrolled="true">
+                          <td class="store-name">
+                            <input type="checkbox" name="storeid-1" value="1">Tom T's New Store 1
+                            <span class="store-number">(Store #1)</span>
+                          </td>
+                        </tr>
+                        <tr draggable="false" class="not-sortable-item filterable store-item" data-filter-storeid="2" data-storeid="2" data-enrolled="true">
+                          <td class="store-name">
+                            <input type="checkbox" name="storeid-2" value="2">Tom T's New Store 2
+                            <span class="store-number">(Store #2)</span>
+                          </td>
+                        </tr>
+                        <tr draggable="false" class="not-sortable-item filterable store-item" data-filter-storeid="3" data-storeid="3" data-enrolled="true">
+                          <td class="store-name">
+                            <input type="checkbox" name="storeid-3" value="3">Tom T's New Store 3
+                            <span class="store-number">(Store #3)</span>
+                          </td>
+                        </tr>
+                        <tr draggable="false" class="not-sortable-item filterable store-item" data-filter-storeid="4" data-storeid="4" data-enrolled="true">
+                          <td class="store-name">
+                            <input type="checkbox" name="storeid-4" value="4">Tom T's New Store 4
+                            <span class="store-number">(Store #4)</span>
+                          </td>
+                        </tr>
+                      </td>
+                    </tr>
 
-                      <tr class="offer-form-tr display-inline-block">
-                        <td>
-                          <div class="program-button">
-                            <button data-pageurl="storePagesUrl" data-storeid="1938" data-offerid="1" class="delete-offer-btn btn btn-default">Delete</button>
-                            <button data-pageurl="storePagesUrl" class="cancel-btn btn btn-default">Cancel</button>
-                            <button class="save-btn btn btn-primary">Save</button>
-                          </div>
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
+                    <tr class="offer-form-tr display-inline-block">
+                      <td>
+                        <div class="program-button">
+                          <input class="cancel-btn btn btn-primary pull-left" type="button" id="cancel" name="cancel" value="Cancel">
+                        </div>
+                      </td>
+                      <td>
+                        <div class="program-button">
+                          <input class="save-btn btn btn-primary pull-left" type="button" id="save" name="save" value="Save">
+                        </div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
 
-                </section>
+              </section>
 
-              </form>
-
-            </div>
+            </form>
 
           </div>
+
         </div>
       </div>
+    </div>
