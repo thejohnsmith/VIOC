@@ -24,6 +24,7 @@ var StorePagesController = StorePagesController || (function ($) {
 			controller.UpdateBreadCrumbs();
 			controller.InitializeTabs();
 			controller.SetupSortable();
+			// controller.CountChar();
 
 			controller.EventHandlers();
 			if (typeof callback == 'function') {
@@ -32,7 +33,7 @@ var StorePagesController = StorePagesController || (function ($) {
 		},
 		EventHandlers: function () {
 			var controller = this;
-
+			$('.storePages.navBarSelectedLinkColor').show();
 			// Delete Offer
 			$('.deleteOffer > button, .delete-offer-btn').on('click', function (e) {
 				e.preventDefault();
@@ -66,6 +67,40 @@ var StorePagesController = StorePagesController || (function ($) {
 				e.preventDefault();
 				return;
 			});
+
+			// Character Limits
+			// $('.characterLimitInput').keyup(function (e) {
+			// 	e = $(this);
+			// 	var maxLength = e.attr('maxlength');
+			// 	return controller.CountChar(e, maxLength)
+			// });
+
+			$('.characterLimitInput').characterCounter({
+				maxChars: $(this).attr('maxlength'),
+				maxCharStatic: true,
+				counterNeeded: true,
+				remainingNeeded: true,
+				chopText: true,
+				shortFormat: true,
+				shortFormatSeparator: ' ',
+				positionBefore: false,
+			});
+
+		},
+		CountChar: function (e, maxLength) {
+			var controller = this;
+			try {
+				e.val().length
+			} catch (e) {
+				console.info('An error in CountChar occured.');
+			} finally {
+				if (e.val().length >= maxLength) {
+					e.val(e.val().substr(0, maxLength));
+					console.info('...e.val - %O', e.val);
+				} else {
+					$('.characterLimitText').text(maxLength - e.val().length);
+				}
+			}
 		},
 		EditOffer: function () {
 			var controller = this;
@@ -168,8 +203,19 @@ var StorePagesController = StorePagesController || (function ($) {
 			// $('.breadcrumbs_previous:last a').attr('href', '');
 		},
 		ShowUI: function () {
+			var controller = this;
 			$('.js-content').fadeIn();
 			$('.js-loading').hide();
+			controller.CallNg();
+		},
+		CallNg: function () {
+			console.info('CallNg %o ', this);
+			var app = angular.module('masterApp', []);
+			app.controller('myCtrl', function($scope) {
+				$scope.firstName= "John";
+				$scope.lastName= "Doe";
+			});
+
 		}
 	};
 	return {

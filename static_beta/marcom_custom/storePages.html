@@ -24,12 +24,23 @@ window.onload = function () {
   	dfd.done(function () {
   		// console.log('Fires after the animation succeeds');
   	});
-  	jQuery('.asyncMarkup').fadeIn(1000, dfd.resolve);
+  	jQuery('.asyncMarkup').fadeIn(100, dfd.resolve);
   	return dfd.promise();
   }
   jQuery.when(getData(), showDiv())
   	.then(function (ajaxResult) {
-  		// console.log('Fires after BOTH showDiv() AND the AJAX request succeed!');
+    try {
+      typeof StorePagesController === 'object';
+    } catch (e) {
+      console.error("error=" + e);
+      setTimeout(function () {
+        console.info('retry StorePagesController')
+        StorePagesController.controller.init();
+      }, 100);
+      if (typeof(console) != "undefined") {
+        console.log(e);
+      }
+    }
   	});
 }
 </script>

@@ -47,6 +47,9 @@ var appUtilities = (function ($) {
 		},
 		changeNavBarLink: function () {
 			$('.navBarItem > a').filter(function () {
+				return $(this).text() === 'STORE PAGES';
+			}).addClass('storePages').hide();
+			$('.navBarItem > a').filter(function () {
 				return $(this).text() === 'REPORTS';
 			}).attr('href', 'https://bo-vioc.epsilon.com').attr('target', '_blank');
 

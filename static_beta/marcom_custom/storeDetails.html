@@ -1,23 +1,128 @@
 <!-- ****************** PORTAL CUSTOM COPY ******************
-<div class="asyncMarkup"></div>
-<script>
-  var $j = jQuery;
-  $j('.asyncMarkup').load("https://files.marcomcentral.app.pti.com/epsilon/static_beta/marcom_custom/storeDetails.html", function () {
-  	console.debug('Done loading storeDetails.html, Calling StorePagesController');
-    if (typeof StorePagesController === 'object') {
+<div id="storeDetails" class="asyncMarkup"></div>
 
-    }
-  	try {
+<script>
+window.onload = function () {
+  function getData() {
+  	return jQuery.get('https://files.marcomcentral.app.pti.com/epsilon/static_beta/marcom_custom/storeDetails.html').success(function (resp) {
+  		// console.log('Fires after the AJAX request succeeds');
+  		jQuery('.asyncMarkup').html(resp);
   		StorePagesController.controller.init();
-  	} catch (e) {
-  		console.debug('Error: %O', e);
-  		if (typeof (console) != 'undefined') {
-  			console.log(e);
-  		}
-  		return false;
-  	}
-  });
+
+  	});
+  }
+  function showDiv() {
+  	var dfd = jQuery.Deferred();
+  	dfd.done(function () {
+  		// console.log('Fires after the animation succeeds');
+  	});
+  	jQuery('.asyncMarkup').fadeIn(1000, dfd.resolve);
+  	return dfd.promise();
+  }
+  jQuery.when(getData(), showDiv())
+  	.then(function (ajaxResult) {
+  		// console.log('Fires after BOTH showDiv() AND the AJAX request succeed!');
+      StorePagesController.controller.ShowUI();
+  	});
+}
 </script>
+
+
+
+            <div class="js-content" ng-app="masterApp" ng-controller="myCtrl">
+
+              <h2>Landmark Info</h2>
+              <small>Where is your store?</small>
+              <br>
+              <br>
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-item">
+                    <label class="label-text" for="storeName">
+                      Store Name
+                    </label>
+
+
+                    <input ng-model="storeName" placeholder="Tom T's 1st Store" type="text" name="storeName" id="storeName" maxlength="80">
+                  </div>
+                  <div class="form-item">
+                    <label class="label-text" for="storeDist">
+                      Distance/Direction from Major Landmark
+                    </label>
+                    <input ng-model="storeDistMiles" type="number" name="storeDist" id="storeDistMiles" maxlength="10">
+                    <small>Miles</small>
+                    <select ng-model="storeDistDirection" name="display-inline" id="storeDistDirection">
+                      <option value="North">North</option>
+                      <option value="NorthEast">North-East</option>
+                      <option value="East">East</option>
+                      <option value="SouthEast">South-East</option>
+                      <option value="South">South</option>
+                      <option value="SouthWest">South-West</option>
+                      <option value="West">West</option>
+                      <option value="NorthWest">North-West</option>
+                    </select>
+                  </div>
+                  <div class="form-item">
+                    <label class="label-text" for="storeLandmark">
+                      Major Landmark
+                    </label>
+                    <input ng-model="storeLandmark" type="text" name="storeLandmark" id="storeLandmark" maxlength="200">
+                  </div>
+                  <div class="form-item">
+                    <label class="label-text" for="storeStreet">
+                      Street
+                    </label>
+                    <input ng-model="storeStreet" type="text" name="storeStreet" id="storeStreet" maxlength="200">
+                  </div>
+                  <div class="form-item">
+                    <label class="label-text" for="storeCrossStreet">
+                      Cross Street
+                    </label>
+                    <input ng-model="storeCrossStreet" type="text" name="storeCrossStreet" id="storeCrossStreet" maxlength="200">
+                  </div>
+                  <div class="form-item">
+                    <label class="label-text" for="storeNeighboring">
+                      Neighboring Business
+                    </label>
+                    <input ng-model="storeNeighboring" value="Across from" type="radio" name="storeNeighboring" id="storeNeighboringAcrossFrom">
+
+                    <label for="storeNeighboringAcrossFrom">
+                      <small>Accross From</small>
+                    </label>
+                    <br>
+                    <input selected value="Next to" type="radio" name="storeNeighboring" id="storeNeighboringNextTo">
+                    <label for="storeNeighboringNextTo">
+                      <small>Next To</small>
+                    </label>
+                    <input type="text" name="storeNeighboring" id="storeNeighboringBusiness" maxlength="200">
+                  </div>
+                </div>
+                <br>
+                <div class="col-md-6">
+                  <div class="box box-grey">
+                    <h2>Preview</h2>
+      <br><br>
+                    Welcome. The
+                    {{storeName}}
+                    Valvoline Instant Oil Change is located approximately
+                    {{storeDistMiles}} miles
+                      {{storeDistDirection}} of
+                      {{storeLandmark}} near the intersection of
+                      {{storeStreet}} and
+                      {{storeCrossStreet}} across from
+                      {{storeNeighboring}}.
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+
+              <script>
+                        var app = angular.module('masterApp', []);
+                  app.controller('myCtrl', function($scope) {
+                    $scope.storeName= "John";
+                  });
+              </script>
 ********************** /PORTAL CUSTOM COPY ****************** -->
 
 <!-- Store Pages:
@@ -48,87 +153,260 @@
         <div role="presentation" class="spinner"></div>
       </div>
       <div class="js-content">
-        <h2>Basic Details</h2>
-        <small>Read-Only - Edit in Data Mart</small>
-        <br>
-        <br>
+        <div class="box box-grey">
+          <h2>Basic Details</h2>
+          <small>Read-Only - Edit in POS</small>
+          <br>
+          <br>
+          <br>
 
-        <h4>Address</h4>
-        <small>5266 E Highway 280</small>
-        <br>
-        <small>Princeton, TX, 75407</small>
-        <br>
-        <br>
+          <div class="company-contact container row display-inline-block">
+            <div class="row">
+              <div class="col-xs-3">
+                <h4>Address</h4>
+                <small class="company-address">4020 Ricola Way Houston TX 77001</small>
+              </div>
+              <div class="col-xs-3 col-centered">
+                <h4>Phone</h4>
+                <small class="company-phone">972-984-1500</small>
+              </div>
+              <div class="col-xs-3 col-centered">
+                <h4>Manager Name</h4>
+                <small class="company-manager">Cody Smith</small>
+              </div>
+            </div>
+          </div>
 
-        <h4>Phone</h4>
-        <small>972-984-1500</small>
-        <br>
-        <br>
+          <div class="content-preview-section container row display-inline-block">
+            <div class="row">
+              <div class="col-sm-10 col-md-8 col-lg-6">
+                <div class="store-hours">
+                  <table class="text-center" cellpadding="0" cellspacing="0" border="0" width="100%">
+                    <tbody>
+                      <tr class="store-hours-heading">
+                        <th colspan="7">Hours of Operation</th>
+                      </tr>
+                      <tr>
+                        <td class="monday" width="48">
+                          <b class="store-day">Mon</b>
+                          <span class="open-hours none">
+                            <span class="store-open">9:00 am</span>
+                            <br>
+                            <span class="store-close">9:00 pm</span>
+                          </span>
+                          <span class="store-closed">
+                            <strong>Closed</strong><br>
+                          </span>
+                        </td>
+                        <td class="tuesday" width="48">
+                          <b class="store-day">Tues</b>
+                          <span class="open-hours none">
+                            <span class="store-open">9:00 am</span>
+                            <br>
+                            <span class="store-close">9:00 pm</span>
+                          </span>
+                          <span class="store-closed">
+                            <strong>Closed</strong><br>
+                          </span>
+                        </td>
+                        <td class="wednesday" width="48">
+                          <b class="store-day">Wed</b>
+                          <span class="open-hours none">
+                            <span class="store-open">9:00 am</span>
+                            <br>
+                            <span class="store-close">9:00 pm</span>
+                          </span>
+                          <span class="store-closed">
+                            <strong>Closed</strong><br>
+                          </span>
+                        </td>
+                        <td class="thursday" width="48">
 
-        <h4>Manager Name</h4>
-        <small>Cody Smith</small>
-        <br>
-        <br>
+                          <b class="store-day">Thurs</b>
+                          <span class="open-hours none">
+                            <span class="store-open">9:00 am</span>
+                            <br>
+                            <span class="store-close">9:00 pm</span>
+                          </span>
+                          <span class="store-closed">
+                            <strong>Closed</strong><br>
+                          </span>
+                        </td>
+                        <td class="friday" width="48">
+                          <b class="store-day">Fri</b>
+                          <span class="open-hours none">
+                            <span class="store-open">9:00 am</span>
+                            <br>
+                            <span class="store-close">9:00 pm</span>
+                          </span>
+                          <span class="store-closed">
+                            <strong>Closed</strong><br>
+                          </span>
+                        </td>
+                        <td class="saturday" width="48">
+                          <b class="store-day">Sat</b>
+                          <span class="open-hours none">
+                            <span class="store-open">9:00 am</span>
+                            <br>
+                            <span class="store-close">9:00 pm</span>
+                          </span>
+                          <span class="store-closed">
+                            <strong>Closed</strong><br>
+                          </span>
+                        </td>
+                        <td class="sunday" width="48">
+                          <b class="store-day">Sun</b>
+                          <span class="open-hours none">
+                            <span class="store-open">9:00 am</span>
+                            <br>
+                            <span class="store-close">9:00 pm</span>
+                          </span>
+                          <span class="store-closed">
+                            <strong>Closed</strong><br>
+                          </span>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
 
-        <div id="store_hours">
-          <table>
-            <tr>
-              <td colspan="2">
-                <h3>Hours</h3>
-              </td>
-            </tr>
-            <tr>
-              <th><small>Sunday</small></th>
-              <td><small>8:00am - 5:00pm</small></td>
-            </tr>
-            <tr>
-              <th><small>Monday</small></th>
-              <td><small>8:00am - 7:00pm</small></td>
-            </tr>
-            <tr>
-              <th><small>Tuesday</small></th>
-              <td><small>8:00am - 7:00pm</small></td>
-            </tr>
-            <tr>
-              <th><small>Wednesday</small></th>
-              <td><small>8:00am - 7:00pm</small></td>
-            </tr>
-            <tr>
-              <th><small>Thursday</small></th>
-              <td><small>8:00am - 7:00pm</small></td>
-            </tr>
-            <tr>
-              <th><small>Friday</small></th>
-              <td><small>8:00am - 7:00pm</small></td>
-            </tr>
-            <tr>
-              <th><small>Saturday</small></th>
-              <td><small>8:00am - 5:00pm</small></td>
-            </tr>
+              </div>
+            </div>
+          </div>
 
-          </table>
+          <div class="none content-preview-section">
+            <div class="store-hours">
+              <table class="text-center" cellpadding="0" cellspacing="0" border="0" width="100%">
+                <tbody>
+                  <tr class="store-hours-heading">
+                    <th colspan="7">Hours of Operation</th>
+                    <th class="none">phone</th>
+                  </tr>
+                  <tr>
+                    <td class="monday" width="48">
+                      <b class="store-day">Mon</b>
+                      <span class="open-hours none">
+                        <span class="store-open">9:00 am</span>
+                        <br>
+                        <span class="store-close">9:00 pm</span>
+                      </span>
+                      <span class="store-closed">
+                        <strong>Closed</strong><br>
+                      </span>
+                    </td>
+                    <td class="tuesday" width="48">
+                      <b class="store-day">Tues</b>
+                      <span class="open-hours none">
+                        <span class="store-open">9:00 am</span>
+                        <br>
+                        <span class="store-close">9:00 pm</span>
+                      </span>
+                      <span class="store-closed">
+                        <strong>Closed</strong><br>
+                      </span>
+                    </td>
+                    <td class="wednesday" width="48">
+                      <b class="store-day">Wed</b>
+                      <span class="open-hours none">
+                        <span class="store-open">9:00 am</span>
+                        <br>
+                        <span class="store-close">9:00 pm</span>
+                      </span>
+                      <span class="store-closed">
+                        <strong>Closed</strong><br>
+                      </span>
+                    </td>
+                    <td class="thursday" width="48">
+
+                      <b class="store-day">Thurs</b>
+                      <span class="open-hours none">
+                        <span class="store-open">9:00 am</span>
+                        <br>
+                        <span class="store-close">9:00 pm</span>
+                      </span>
+                      <span class="store-closed">
+                        <strong>Closed</strong><br>
+                      </span>
+                    </td>
+                    <td class="friday" width="48">
+                      <b class="store-day">Fri</b>
+                      <span class="open-hours none">
+                        <span class="store-open">9:00 am</span>
+                        <br>
+                        <span class="store-close">9:00 pm</span>
+                      </span>
+                      <span class="store-closed">
+                        <strong>Closed</strong><br>
+                      </span>
+                    </td>
+                    <td class="saturday" width="48">
+                      <b class="store-day">Sat</b>
+                      <span class="open-hours none">
+                        <span class="store-open">9:00 am</span>
+                        <br>
+                        <span class="store-close">9:00 pm</span>
+                      </span>
+                      <span class="store-closed">
+                        <strong>Closed</strong><br>
+                      </span>
+                    </td>
+                    <td class="sunday" width="48">
+                      <b class="store-day">Sun</b>
+                      <span class="open-hours none">
+                        <span class="store-open">9:00 am</span>
+                        <br>
+                        <span class="store-close">9:00 pm</span>
+                      </span>
+                      <span class="store-closed">
+                        <strong>Closed</strong><br>
+                      </span>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
         </div>
-
+        <!-- /.grey-box -->
         <br>
 
         <h2>Store Photo</h2>
         <small>PNG, JPG or GIF. Minimum size: 350px x 120px</small>
         <br>
-          <img width="350px" height="120px" src="http://placehold.it/350x120/e02926/ffffff" alt="Default picture - 350x120">
         <br>
-        <button data-pageurl="storePagesUrl" class="btn btn-default">Upload New Photo</button>
+        <div class="store-photo">
+          <img id="store-photo-item" width="350px" height="auto" src="https://files.marcomcentral.app.pti.com/epsilon/previews/FPO_1.png" alt="Default picture">
+        </div>
+        <br>
+        <label class="btn btn-default btn-file">
+          <span class="btn-file-text">Upload New Photo</span>
+          <input type="file" class="none btn-file-input">
+        </label>
+        <br>
         <br>
         <br>
 
-        <div class="none JobExpressPreview"><P>Wireframe Notes</P>
-        <ol class="list list-numbered">
-          <li class="list-item">￼￼All details that pertain to an individual store will be editable from one long scroll page.</li>
-          <li class="list-item">Basic store details are pulled from the Data Mart and displayed to the user for reference. Helper text lets the user know where they need to go in order to edit it.</li>
-          <li class="list-item">Photo field, minimum resolution 350px x 120px. Store photo uses a default image when not set. When a new image is uploaded the user can zoom and adjust image to make sure it fits the frame well. (Recommend using a web based image editor like the Minimal Controls example on http://www.croppic.net)</li>
-          <li class="list-item">Text field, limit 200 characters.</li>
-          <li class="list-item">Open: To be replaced with templated fields upon recieving current landmark samples.</li>
-        </ol>
+        <h2>Communities Served</h2>
+        <small>List of communities served, comma seperated. 200 characters max.</small>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="characterLimit">
+              <!-- Use the Character Limit plugin -->
+              <textarea maxlength="200" class="characterLimitInput" placeholder="" rows="2" cols="80" id="communitiesServed" name="communitiesServed"></textarea>
+            </div>
+          </div>
+          <div class="col-md-6"></div>
         </div>
+        <br>
+        <br>
+
+
+
+          <h2>Manager Photo</h2>
+          <small>PNG, JPG or GIF. Minimum size: 350px x 240px</small>
+          <br>
+          <br>
+
       </div>
       <!-- /.js-content -->
     </div>
@@ -136,14 +414,22 @@
 </div>
 <script>
   window.onload = function () {
-    try {
-      StorePagesController.controller.init();
-    } catch (e) {
-      console.error("error=" + e);
-      if (typeof(console) != "undefined") {
-        console.log(e);
-      }
-      return false;
-    }
+    // var app = angular.module('masterApp', []);
+    // app.controller('myCtrl', function($scope) {
+    //   $scope.firstName= "John";
+    //   $scope.lastName= "Doe";
+    // });
+    // try {
+    //   typeof StorePagesController === 'object';
+    // } catch (e) {
+    //   console.error("error=" + e);
+    //   setTimeout(function () {
+    //     console.info('retry StorePagesController')
+    //     StorePagesController.controller.init();
+    //   }, 100);
+    //   if (typeof(console) != "undefined") {
+    //     console.log(e);
+    //   }
+    // }
   };
 </script>
