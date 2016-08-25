@@ -75,17 +75,18 @@ var StorePagesController = StorePagesController || (function ($) {
 			// 	return controller.CountChar(e, maxLength)
 			// });
 
-			$('.characterLimitInput').characterCounter({
-				maxChars: $(this).attr('maxlength'),
-				maxCharStatic: true,
-				counterNeeded: true,
-				remainingNeeded: true,
-				chopText: true,
-				shortFormat: true,
-				shortFormatSeparator: ' ',
-				positionBefore: false,
+			$('.characterLimitInput').each(function characterLimit() {
+				$(this).characterCounter({
+					maxChars: $(this).attr('maxlength'),
+					maxCharStatic: true,
+					counterNeeded: true,
+					remainingNeeded: true,
+					chopText: true,
+					shortFormat: true,
+					shortFormatSeparator: ' ',
+					positionBefore: false,
+				});
 			});
-
 		},
 		CountChar: function (e, maxLength) {
 			var controller = this;
@@ -201,20 +202,22 @@ var StorePagesController = StorePagesController || (function ($) {
 			// Set 3rd Level Breadcrumb
 			// $('.breadcrumbs_previous:last a').html();
 			// $('.breadcrumbs_previous:last a').attr('href', '');
+
 		},
 		ShowUI: function () {
 			var controller = this;
+
 			$('.js-content').fadeIn();
 			$('.js-loading').hide();
 			controller.CallNg();
 		},
 		CallNg: function () {
-			console.info('CallNg %o ', this);
-			var app = angular.module('masterApp', []);
-			app.controller('myCtrl', function($scope) {
-				$scope.firstName= "John";
-				$scope.lastName= "Doe";
-			});
+			// console.info('CallNg %o ', this);
+			// var app = angular.module('masterApp', []);
+			// app.controller('myCtrl', function($scope) {
+			// 	$scope.firstName= "John";
+			// 	$scope.lastName= "Doe";
+			// });
 
 		}
 	};

@@ -32,7 +32,7 @@ window.onload = function () {
             <div class="js-content" ng-app="masterApp" ng-controller="myCtrl">
 
               <h2>Landmark Info</h2>
-              <small>Where is your store?</small>
+              <small class="small">Where is your store?</small>
               <br>
               <br>
               <div class="row">
@@ -50,7 +50,7 @@ window.onload = function () {
                       Distance/Direction from Major Landmark
                     </label>
                     <input ng-model="storeDistMiles" type="number" name="storeDist" id="storeDistMiles" maxlength="10">
-                    <small>Miles</small>
+                    <small class="small">Miles</small>
                     <select ng-model="storeDistDirection" name="display-inline" id="storeDistDirection">
                       <option value="North">North</option>
                       <option value="NorthEast">North-East</option>
@@ -87,12 +87,12 @@ window.onload = function () {
                     <input ng-model="storeNeighboring" value="Across from" type="radio" name="storeNeighboring" id="storeNeighboringAcrossFrom">
 
                     <label for="storeNeighboringAcrossFrom">
-                      <small>Accross From</small>
+                      <small class="small">Accross From</small>
                     </label>
                     <br>
                     <input selected value="Next to" type="radio" name="storeNeighboring" id="storeNeighboringNextTo">
                     <label for="storeNeighboringNextTo">
-                      <small>Next To</small>
+                      <small class="small">Next To</small>
                     </label>
                     <input type="text" name="storeNeighboring" id="storeNeighboringBusiness" maxlength="200">
                   </div>
@@ -130,7 +130,7 @@ window.onload = function () {
     Beta URL:
     https://marcomcentral.app.pti.com/Epsilon_Data_Management/Beta_Epsilon/CustomPage.aspx?uigroup_id=479602&page_id=13090
 -->
-<div class="wrapper storePages">
+<div class="wrapper storePages storeDetails">
   <div class="mid-container">
     <div class="main">
       <section id="breadcrumbs">
@@ -152,268 +152,198 @@ window.onload = function () {
       <div class="js-loading">
         <div role="presentation" class="spinner"></div>
       </div>
-      <div class="js-content">
-        <div class="box box-grey">
-          <h2>Basic Details</h2>
-          <small>Read-Only - Edit in POS</small>
-          <br>
-          <br>
-          <br>
+      <div class="clearfix js-content storePages storeDetails">
+        <div class="container">
 
-          <div class="company-contact container row display-inline-block">
+          <div class="">
             <div class="row">
-              <div class="col-xs-3">
-                <h4>Address</h4>
-                <small class="company-address">4020 Ricola Way Houston TX 77001</small>
-              </div>
-              <div class="col-xs-3 col-centered">
-                <h4>Phone</h4>
-                <small class="company-phone">972-984-1500</small>
-              </div>
-              <div class="col-xs-3 col-centered">
-                <h4>Manager Name</h4>
-                <small class="company-manager">Cody Smith</small>
-              </div>
-            </div>
-          </div>
-
-          <div class="content-preview-section container row display-inline-block">
-            <div class="row">
-              <div class="col-sm-10 col-md-8 col-lg-6">
-                <div class="store-hours">
-                  <table class="text-center" cellpadding="0" cellspacing="0" border="0" width="100%">
-                    <tbody>
-                      <tr class="store-hours-heading">
-                        <th colspan="7">Hours of Operation</th>
-                      </tr>
-                      <tr>
-                        <td class="monday" width="48">
-                          <b class="store-day">Mon</b>
-                          <span class="open-hours none">
-                            <span class="store-open">9:00 am</span>
-                            <br>
-                            <span class="store-close">9:00 pm</span>
-                          </span>
-                          <span class="store-closed">
-                            <strong>Closed</strong><br>
-                          </span>
-                        </td>
-                        <td class="tuesday" width="48">
-                          <b class="store-day">Tues</b>
-                          <span class="open-hours none">
-                            <span class="store-open">9:00 am</span>
-                            <br>
-                            <span class="store-close">9:00 pm</span>
-                          </span>
-                          <span class="store-closed">
-                            <strong>Closed</strong><br>
-                          </span>
-                        </td>
-                        <td class="wednesday" width="48">
-                          <b class="store-day">Wed</b>
-                          <span class="open-hours none">
-                            <span class="store-open">9:00 am</span>
-                            <br>
-                            <span class="store-close">9:00 pm</span>
-                          </span>
-                          <span class="store-closed">
-                            <strong>Closed</strong><br>
-                          </span>
-                        </td>
-                        <td class="thursday" width="48">
-
-                          <b class="store-day">Thurs</b>
-                          <span class="open-hours none">
-                            <span class="store-open">9:00 am</span>
-                            <br>
-                            <span class="store-close">9:00 pm</span>
-                          </span>
-                          <span class="store-closed">
-                            <strong>Closed</strong><br>
-                          </span>
-                        </td>
-                        <td class="friday" width="48">
-                          <b class="store-day">Fri</b>
-                          <span class="open-hours none">
-                            <span class="store-open">9:00 am</span>
-                            <br>
-                            <span class="store-close">9:00 pm</span>
-                          </span>
-                          <span class="store-closed">
-                            <strong>Closed</strong><br>
-                          </span>
-                        </td>
-                        <td class="saturday" width="48">
-                          <b class="store-day">Sat</b>
-                          <span class="open-hours none">
-                            <span class="store-open">9:00 am</span>
-                            <br>
-                            <span class="store-close">9:00 pm</span>
-                          </span>
-                          <span class="store-closed">
-                            <strong>Closed</strong><br>
-                          </span>
-                        </td>
-                        <td class="sunday" width="48">
-                          <b class="store-day">Sun</b>
-                          <span class="open-hours none">
-                            <span class="store-open">9:00 am</span>
-                            <br>
-                            <span class="store-close">9:00 pm</span>
-                          </span>
-                          <span class="store-closed">
-                            <strong>Closed</strong><br>
-                          </span>
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
+              <section class="box box-grey container">
+                <div class="col-sm-8 clearfix form-item">
+                  <label class="label-text" for="basicDetails">
+                    <h2>Basic Details</h2>
+                    <small class="small">Read-Only - Edit in POS</small>
+                  </label>
                 </div>
+                <div class="clearfix">
+                  <div class="company-contact col-sm-8 display-inline-block">
+                    <div class="row">
+                      <div class="col-xs-3 col-sm-4">
+                        <div class="label-text">
+                          Address
+                          <small class="small display-block company-address">4020 Ricola Way Houston TX 77001</small>
+                        </div>
+                      </div>
+                      <div class="col-xs-3 col-sm-4 col-centered">
+                        <div class="label-text">Phone
+                          <small class="small display-block company-phone">972-984-1500</small>
+                        </div>
+                      </div>
+                      <div class="col-xs-3 col-sm-4 col-centered">
+                        <div class="label-text">Manager Name
+                          <small class="small display-block company-manager">Cody Smith</small>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="clearfix">
+                  <div class="content-preview-section container row display-inline-block">
+                    <div class="row">
+                      <div class="col-sm-9 col-md-8">
+                        <div class="store-hours">
+                          <table class="text-center" cellpadding="0" cellspacing="0" border="0" width="100%">
+                            <tbody>
+                              <tr class="store-hours-heading">
+                                <th colspan="7">
+                                  <div class="label-text">Hours of Operation</div>
+                                </th>
+                              </tr>
+                              <tr>
+                                <td class="monday" width="48">
+                                  <b class="store-day">Mon</b>
+                                  <span class="open-hours">
+                                    <span class="store-open">9:00 am</span>
+                                    <br>
+                                    <span class="store-close">9:00 pm</span>
+                                  </span>
+                                  <span class="store-closed none">
+                                    <strong>Closed</strong><br>
+                                  </span>
+                                </td>
+                                <td class="tuesday" width="48">
+                                  <b class="store-day">Tues</b>
+                                  <span class="open-hours">
+                                    <span class="store-open">9:00 am</span>
+                                    <br>
+                                    <span class="store-close">9:00 pm</span>
+                                  </span>
+                                  <span class="store-closed none">
+                                    <strong>Closed</strong><br>
+                                  </span>
+                                </td>
+                                <td class="wednesday" width="48">
+                                  <b class="store-day">Wed</b>
+                                  <span class="open-hours">
+                                    <span class="store-open">9:00 am</span>
+                                    <br>
+                                    <span class="store-close">9:00 pm</span>
+                                  </span>
+                                  <span class="store-closed none">
+                                    <strong>Closed</strong><br>
+                                  </span>
+                                </td>
+                                <td class="thursday" width="48">
 
+                                  <b class="store-day">Thurs</b>
+                                  <span class="open-hours">
+                                    <span class="store-open">9:00 am</span>
+                                    <br>
+                                    <span class="store-close">9:00 pm</span>
+                                  </span>
+                                  <span class="store-closed none">
+                                    <strong>Closed</strong><br>
+                                  </span>
+                                </td>
+                                <td class="friday" width="48">
+                                  <b class="store-day">Fri</b>
+                                  <span class="open-hours">
+                                    <span class="store-open">9:00 am</span>
+                                    <br>
+                                    <span class="store-close">9:00 pm</span>
+                                  </span>
+                                  <span class="store-closed none">
+                                    <strong>Closed</strong><br>
+                                  </span>
+                                </td>
+                                <td class="saturday" width="48">
+                                  <b class="store-day">Sat</b>
+                                  <span class="open-hours">
+                                    <span class="store-open">9:00 am</span>
+                                    <br>
+                                    <span class="store-close">9:00 pm</span>
+                                  </span>
+                                  <span class="store-closed none">
+                                    <strong>Closed</strong><br>
+                                  </span>
+                                </td>
+                                <td class="sunday" width="48">
+                                  <b class="store-day">Sun</b>
+                                  <span class="open-hours none">
+                                    <span class="store-open">9:00 am</span>
+                                    <br>
+                                    <span class="store-close">9:00 pm</span>
+                                  </span>
+                                  <span class="store-closed">
+                                    <strong>Closed</strong><br>
+                                  </span>
+                                </td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </div>
+
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
-            </div>
-          </div>
 
-          <div class="none content-preview-section">
-            <div class="store-hours">
-              <table class="text-center" cellpadding="0" cellspacing="0" border="0" width="100%">
-                <tbody>
-                  <tr class="store-hours-heading">
-                    <th colspan="7">Hours of Operation</th>
-                    <th class="none">phone</th>
-                  </tr>
-                  <tr>
-                    <td class="monday" width="48">
-                      <b class="store-day">Mon</b>
-                      <span class="open-hours none">
-                        <span class="store-open">9:00 am</span>
-                        <br>
-                        <span class="store-close">9:00 pm</span>
-                      </span>
-                      <span class="store-closed">
-                        <strong>Closed</strong><br>
-                      </span>
-                    </td>
-                    <td class="tuesday" width="48">
-                      <b class="store-day">Tues</b>
-                      <span class="open-hours none">
-                        <span class="store-open">9:00 am</span>
-                        <br>
-                        <span class="store-close">9:00 pm</span>
-                      </span>
-                      <span class="store-closed">
-                        <strong>Closed</strong><br>
-                      </span>
-                    </td>
-                    <td class="wednesday" width="48">
-                      <b class="store-day">Wed</b>
-                      <span class="open-hours none">
-                        <span class="store-open">9:00 am</span>
-                        <br>
-                        <span class="store-close">9:00 pm</span>
-                      </span>
-                      <span class="store-closed">
-                        <strong>Closed</strong><br>
-                      </span>
-                    </td>
-                    <td class="thursday" width="48">
-
-                      <b class="store-day">Thurs</b>
-                      <span class="open-hours none">
-                        <span class="store-open">9:00 am</span>
-                        <br>
-                        <span class="store-close">9:00 pm</span>
-                      </span>
-                      <span class="store-closed">
-                        <strong>Closed</strong><br>
-                      </span>
-                    </td>
-                    <td class="friday" width="48">
-                      <b class="store-day">Fri</b>
-                      <span class="open-hours none">
-                        <span class="store-open">9:00 am</span>
-                        <br>
-                        <span class="store-close">9:00 pm</span>
-                      </span>
-                      <span class="store-closed">
-                        <strong>Closed</strong><br>
-                      </span>
-                    </td>
-                    <td class="saturday" width="48">
-                      <b class="store-day">Sat</b>
-                      <span class="open-hours none">
-                        <span class="store-open">9:00 am</span>
-                        <br>
-                        <span class="store-close">9:00 pm</span>
-                      </span>
-                      <span class="store-closed">
-                        <strong>Closed</strong><br>
-                      </span>
-                    </td>
-                    <td class="sunday" width="48">
-                      <b class="store-day">Sun</b>
-                      <span class="open-hours none">
-                        <span class="store-open">9:00 am</span>
-                        <br>
-                        <span class="store-close">9:00 pm</span>
-                      </span>
-                      <span class="store-closed">
-                        <strong>Closed</strong><br>
-                      </span>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
             </div>
           </div>
         </div>
         <!-- /.grey-box -->
         <br>
-
-        <h2>Store Photo</h2>
-        <small>PNG, JPG or GIF. Minimum size: 350px x 120px</small>
-        <br>
-        <br>
-        <div class="store-photo">
-          <img id="store-photo-item" width="350px" height="auto" src="https://files.marcomcentral.app.pti.com/epsilon/previews/FPO_1.png" alt="Default picture">
-        </div>
-        <br>
-        <label class="btn btn-default btn-file">
-          <span class="btn-file-text">Upload New Photo</span>
-          <input type="file" class="none btn-file-input">
-        </label>
-        <br>
-        <br>
-        <br>
-
-        <h2>Communities Served</h2>
-        <small>List of communities served, comma seperated. 200 characters max.</small>
-        <div class="row">
-          <div class="col-md-6">
-            <div class="characterLimit">
-              <!-- Use the Character Limit plugin -->
-              <textarea maxlength="200" class="characterLimitInput" placeholder="" rows="2" cols="80" id="communitiesServed" name="communitiesServed"></textarea>
+        <section class="form-section">
+          <div class="clearfix form-item">
+            <label class="label-text" for="storeName">
+              <h2>Store Photo</h2>
+              <small class="small">PNG, JPG or GIF. Minimum size: 350px x 120px</small>
+            </label>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="store-photo">
+                  <img id="store-photo-item" width="350px" height="auto" src="https://files.marcomcentral.app.pti.com/epsilon/previews/FPO_1.png" alt="Default picture">
+                </div>
+                <br>
+                <label class="btn btn-default btn-file">
+                  <span class="btn-file-text">Upload New Photo</span>
+                  <input type="file" class="none btn-file-input">
+                </label>
+              </div>
             </div>
           </div>
-          <div class="col-md-6"></div>
+        </section>
+
+        <section class="form-section">
+          <div class="clearfix form-item">
+            <label class="label-text" for="storeName">
+              <h2>Communities Served</h2>
+              <small class="small">List of communities served, comma seperated. 200 characters max.</small>
+            </label>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="characterLimit">
+                  <!-- Use the Character Limit plugin -->
+                  <textarea maxlength="200" class="characterLimitInput" placeholder="" rows="2" cols="80" id="communitiesServed" name="communitiesServed"></textarea>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <div class="js-content container" ng-app="masterApp" ng-controller="myCtrl">
+          <div ng-include="'https://files.marcomcentral.app.pti.com/epsilon/static_beta/marcom_custom/portalCustomStoreDetailsLandmarkInfo.html'"></div>
         </div>
-        <br>
-        <br>
-
-
-
-          <h2>Manager Photo</h2>
-          <small>PNG, JPG or GIF. Minimum size: 350px x 240px</small>
-          <br>
-          <br>
 
       </div>
+
       <!-- /.js-content -->
     </div>
   </div>
 </div>
 <script>
   window.onload = function () {
+
     // var app = angular.module('masterApp', []);
     // app.controller('myCtrl', function($scope) {
     //   $scope.firstName= "John";
