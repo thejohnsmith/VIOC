@@ -38,6 +38,7 @@ FormCopyController = (function ($) {
 			controller.CalculatePrice();
 			controller.ChangeText();
 			controller.SetRequiredInput();
+			controller.AddDisclaimers();
 
 			// Change Add To Cart text on submit button to, 'Send for Approval'
 			$('.ButtonAddToCart.addToCartBtn span:contains("Add to Cart")').html('Send for Approval');
@@ -54,12 +55,63 @@ FormCopyController = (function ($) {
 			var htmlComments = $('*').contents().filter(function () {
 				return this.nodeType === 8;
 			});
+
 			$('td, tr').filter(function () {
 				$.trim($(this).html()) === '&nbsp;';
 				$.trim($(this).html()) === '';
 			}).remove();
-		},
 
+			/**
+			 * Proof Auto-updating
+			 * @TODO decide to use this or not, it would be best to include a toggle-btn for the user to decide. - JS
+			 */
+			$('input, input[type=number], input[type=password], input[type=search], input[type=text]').keydown(function (e) {
+				if (e.keyCode === 13) {
+					// do whatever you want with the value
+					console.log($(this).val());
+					e.stopPropagation();
+					setTimeout(function (e) {
+						$('#mButtonPreviewTop').click();
+						return
+					}, 800);
+				}
+			});
+			// $('input[type=number], input[type=password], input[type=search], input[type=text], textarea, select').blur(function (e) {
+			// 	e.stopPropagation();
+			// 	setTimeout(function (e) {
+			// 		$('#mButtonPreviewTop').click();
+			// 		return
+			// 	}, 800);
+			// });
+		},
+		AddDisclaimers: function () {
+			var controller = this;
+			var disclaimers = ["None", "Includes up to 5 quarts of the oil type and grade advertised in the coupon (diesel quarts may vary; see store for details), filter (prem. extra), lube & maintenance check; plus tax, if applicable; not valid with same service offers / discounts (including fleet); see store for additional details or restrictions; good only at participating locations. No cash or credit back; cash value $0.001.",
+				"Includes up to 6 quarts of the oil type and grade advertised in the coupon (diesel quarts may vary; see store for details), filter (prem. extra), lube & maintenance check; plus tax, if applicable; not valid with same service offers / discounts (including fleet); see store for additional details or restrictions; good only at participating locations. No cash or credit back; cash value $0.001.",
+				"Includes up to 5 quarts of the oil type and grade advertised in the coupon (diesel quarts may vary; see store for details), filter (prem. extra), lube & maintenance check; plus tax, if applicable; not valid with same service offers / discounts (including fleet); see store for additional details or restrictions; good only at participating locations. Haz. Waste fee extra. No cash or credit back; cash value $0.001.",
+				"Includes up to 6 quarts of the oil type and grade advertised in the coupon (diesel quarts may vary; see store for details), filter (prem. extra), lube & maintenance check; plus tax, if applicable; not valid with same service offers / discounts (including fleet); see store for additional details or restrictions; good only at participating locations. Haz. Waste fee extra. No cash or credit back; cash value $0.001.",
+				"Includes up to 5 quarts of conventional, synthetic blend, full synthetic, or diesel oil (diesel quarts may vary; see store for details), filter (prem. extra), lube & maintenance check; plus tax, if applicable; not valid with same service offers / discounts (including fleet); see store for additional details or restrictions; good only at participating locations. No cash or credit back; cash value $0.001.",
+				"Includes up to 6 quarts of conventional, synthetic blend, full synthetic, or diesel oil (diesel quarts may vary; see store for details), filter (prem. extra), lube & maintenance check; plus tax, if applicable; not valid with same service offers / discounts (including fleet); see store for additional details or restrictions; good only at participating locations. No cash or credit back; cash value $0.001.",
+				"Includes up to 5 quarts of conventional, synthetic blend, full synthetic, or diesel oil (diesel quarts may vary; see store for details), filter (prem. extra), lube & maintenance check; plus tax, if applicable; not valid with same service offers / discounts (including fleet); see store for additional details or restrictions; good only at participating locations. Haz waste fee extra. No cash or credit back; cash value $0.001.",
+				"Includes up to 6 quarts of conventional, synthetic blend, full synthetic, or diesel oil (diesel quarts may vary; see store for details), filter (prem. extra), lube & maintenance check; plus tax, if applicable; not valid with same service offers / discounts (including fleet); see store for additional details or restrictions; good only at participating locations. Haz waste fee extra. No cash or credit back; cash value $0.001"
+			];
+
+			$("select[name*='Disclaimer']").html('').after('<div class="disclaimerCopy"/>').change(function (e) {
+				$('.disclaimerCopy').html('');
+				var longDisclaimerString = $(this).next('.disclaimerCopy');
+				longDisclaimerString.html($(e.target).val());
+			});
+
+			// Trigger a change on the first one.
+			$('select[name=C1Disclaimer]').trigger('change');
+
+			for (var i = 0; i < disclaimers.length; i++) {
+				$('<option/>', {
+					value: disclaimers[i],
+					html: disclaimers[i]
+				}).appendTo("select[name*='Disclaimer']");
+			}
+		},
 		/**
 		 * [CalculatePrice Set navigation state]
 		 */
@@ -92,6 +144,9 @@ FormCopyController = (function ($) {
 		SetRequiredInput: function () {
 			$('#Text_SubjectLine, #Text_Sendfromemailaddress, #SenderAddress').attr('required', true);
 			$('#Text_SubjectLine_LabelCell, #Text_Sendfromemailaddress_LabelCell, #SenderAddress_LabelCell').append('<span class="pfRequiredAsterik pfRequired Font11"><span id="">*</span></span>');
+			// Hack to display address as placeholder
+			// @TODO This is pure shame, needs to be coded proper.
+			$('#SenderAddress').val('3499 Blazer Parkway, Lexington. KY 40509').blur();
 		},
 		/**
 		 * [ChangeText Set navigation state]
@@ -104,11 +159,21 @@ FormCopyController = (function ($) {
 				return $(this).text() === 'Delivery Preferences';
 			}).text('Must allow two days for approval');
 
-      $('#PreHeaderText_LabelCell').filter(function () {
+			$('#PreHeaderText_LabelCell').filter(function () {
 				return $(this).text() === 'PreHeader Text';
 			}).text('Preheader Text');
 
-      $('#PreHeaderText_InputCell .pfFormNote.pfrequirednote.pfRequired').filter(function () {
+			$('.SelectSavedContentPrompt > a').filter(function () {
+				return $(this).text() === 'Autofill Options';
+			}).text('Select previously saved email');
+
+			$('.SaveContentPrompt > a').filter(function () {
+				return $(this).text() === 'Save Autofill Content';
+			}).text('Save current customizations');
+
+			$('.SelectSavedContentPrompt > a, .SaveContentPrompt > a').addClass('btn');
+
+			$('#PreHeaderText_InputCell .pfFormNote.pfrequirednote.pfRequired').filter(function () {
 				return $(this).text() === 'This text appears above the header of the email';
 			}).text('This text appears above the header of the email');
 		},
