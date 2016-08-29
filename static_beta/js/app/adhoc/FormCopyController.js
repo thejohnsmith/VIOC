@@ -34,12 +34,10 @@ FormCopyController = (function ($) {
 		},
 		AdjustUI: function () {
 			var controller = this;
-			console.debug('123 Adjusting UI...');
 			controller.SetNavigation();
-			// var pricePerEmail = 0.0015;
-			// var number = value of input field
-			// var cost = ((number * pricePerEmail).toFixed(2));  
-			// $('#cost').html('Cost: $' + cost);
+			controller.CalculatePrice();
+			controller.ChangeText();
+			controller.SetRequiredInput();
 
 			// Change Add To Cart text on submit button to, 'Send for Approval'
 			$('.ButtonAddToCart.addToCartBtn span:contains("Add to Cart")').html('Send for Approval');
@@ -49,20 +47,6 @@ FormCopyController = (function ($) {
 
 			// Add Pricing
 			$('.qtyInputContainer').append('<div id="costContainer"><span id="cost" class="FontBold">Cost: $0.00</span></div>');
-
-			/**
-			 * pricePerEmail
-			 * @NOTE !! Cost will be static for the power-users demonstration !!
-			 * @TODO:
-			 * 		Enable cost updating
-			 *   	Use onChange for Qty field
-			 *    Make sure the cost does not get duplicated
-			 * @type {Number}
-			 */
-			// var pricePerEmail = 0.0015;
-			// var number = $('.qtyInputContainer input').val();
-			// var cost = ((number * pricePerEmail).toFixed(2));  
-			// $('#cost').html('Cost: $' + cost);
 
 			// Change required helper text by removing the Senior Purchaser bit.
 			$('#ctl00_content_CtlAddToCart_InteractivityContainer_ProductFootnote_Stringcontrol3:contains("Item requires approval by Senior Purchaser")').html('Item requires approval');
@@ -74,40 +58,59 @@ FormCopyController = (function ($) {
 				$.trim($(this).html()) === '&nbsp;';
 				$.trim($(this).html()) === '';
 			}).remove();
+		},
 
-			// $('#ctl00_content_CatalogBreadCrumbsLayout_CatalogBreadCrumbs_btnItem2').hide();
-			// $('#ctl00_content_CatalogBreadCrumbsLayout_CatalogBreadCrumbs_btnItem1').prev().remove();
+		/**
+		 * [CalculatePrice Set navigation state]
+		 */
+		CalculatePrice: function () {
+			var controller = this;
+			/**
+			 * pricePerEmail
+			 * @NOTE !! Cost will be static for the power-users demonstration !!
+			       // var pricePerEmail = 0.002;
+			      // var cost = ((number * pricePerEmail).toFixed(2));  
+			      // $('#cost').html('Cost: $' + cost);
+			      // var number = $('.qtyInputContainer input').val();
+			 * @TODO:
+			 * 		Enable cost updating
+			 *   	Use onChange for Qty field
+			 *    Make sure the cost does not get duplicated
+			 * @type {Number}
+			 */
 
-			// if ($('#C1ExpirationDate').length) {
-			// 	console.info('C1ExpirationDate exists.');
-			// 	var C1ExpirationDate = $('#C1ExpirationDate');
-			// 	var updateProofBtn = $('#mButtonPreviewTop');
-			// 	var quote = 'Expires: ';
-			//
-			// 	$.datepicker.setDefaults({
-			// 		showOn: "both",
-			// 		buttonImageOnly: true,
-			// 		currentText: "Expires",
-			// 		numberOfMonths: 2,
-			// 		onClose: function () {
-			// 			console.info('datepicker closed.');
-			// 			// $(".to_date").datepicker("option", "minDate", selectedDate);
-			// 			C1ExpirationDate.val(function (index, selectedDate) {
-			// 				return 'Expires: ' + selectedDate;
-			// 			});
-			// 		}
-			// 	});
+			$('body').on('keyup', $('#ctl00_content_CtlAddToCart_ProductOrderInfoController_AddToCartActionBox_mItemQuantity_txtQty'), function () {
+				var pricePerEmail = 0.002;
+				var number = $('#ctl00_content_CtlAddToCart_ProductOrderInfoController_AddToCartActionBox_mItemQuantity_txtQty').val();
+				var cost = ((number * pricePerEmail).toFixed(2));
+				$('#cost').html('Cost: $' + cost);
+			}).trigger('keyup');
+		},
+		/**
+		 * [SetRequiredInput Set navigation state]
+		 */
+		SetRequiredInput: function () {
+			$('#Text_SubjectLine, #Text_Sendfromemailaddress, #SenderAddress').attr('required', true);
+			$('#Text_SubjectLine_LabelCell, #Text_Sendfromemailaddress_LabelCell, #SenderAddress_LabelCell').append('<span class="pfRequiredAsterik pfRequired Font11"><span id="">*</span></span>');
+		},
+		/**
+		 * [ChangeText Set navigation state]
+		 */
+		ChangeText: function () {
+			$('#Text_SubjectLine').attr('required', 'required');
+			$('#ctl00_content_CtlAddToCart_InteractivityContainer_ProductFootnote_footnote, ctl00_content_CtlAddToCart_ProductFootnote_footnote').text('Required fields');
 
-			// updateProofBtn.hover(function () {
-			// 	C1ExpirationDate.val(function (index, old) {
-			//
-			// 		// return 'Expires: ' + old;
-			// 	});
-			// });
-			// }
-			// updateProofBtn.on('change click', function () {
-			// C1ExpirationDate.val('Expires: ' + C1ExpirationDate.val());
+			$('.pfFormNote.pfrequirednote.pfRequired').filter(function () {
+				return $(this).text() === 'Delivery Preferences';
+			}).text('Must allow two days for approval');
 
+      $('#PreHeaderText_LabelCell').filter(function () {
+				return $(this).text() === 'PreHeader Text';
+			}).text('Preheader Text');
+
+      $('#PreHeaderText_InputCell .pfFormNote.pfrequirednote.pfRequired').filter(function () {
+				return $(this).text() === 'This text appears above the header of the email';
+			}).text('This text appears above the header of the email');
 		},
 		/**
 		 * [SetNavigation Set navigation state]
@@ -116,7 +119,7 @@ FormCopyController = (function ($) {
 			$('.navBarItem > a').filter(function () {
 				return $(this).text() === 'ON DEMAND MARKETING';
 			}).addClass('navBarSelectedLinkColor').addClass('customColorOverridable').removeClass('navBarEnhancedLinkColor');
-		},
+		}
 	};
 	return {
 		controller: controller

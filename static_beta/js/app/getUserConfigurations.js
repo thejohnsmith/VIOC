@@ -36,7 +36,6 @@ var getUserConfigurations = (function ($) {
 				updateUI(result);
 
 			}).fail(function () {
-				toastr.error('An internal error has occurred.');
 				console.log(
 					'%c ** Request failed ** ',
 					'color: #f10; font-weight: bold;',

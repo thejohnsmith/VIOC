@@ -217,8 +217,7 @@ var getProgramParticipationStats = (function ($) {
 			$('#programSummary').fadeIn();
 			$('.program-select').html('<p class="errormsg">** There was a problem fetching your programs!' + 'Please check back again later. **</p>');
 			$('.spinner').hide();
-			toastr.error('An internal error has occurred.');
-			return console.warn('An internal error has occurred.');
+			console.warn('An internal error has occurred.');
 		};
 	return {
 		makeRequest: makeRequest,

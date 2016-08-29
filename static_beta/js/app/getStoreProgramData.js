@@ -118,7 +118,6 @@ var getStoreProgramData = (function ($) {
 		requestFailed = function () {
 			$('.program-select').html('There was a problem fetching your programs.' + 'Please check back again later.');
 			$('.alert-container').html('<div class="alert-main alert-danger">Error: There was a problem loading the store data.</div>').fadeIn();
-			return toastr.warning('An internal error has occurred.');
 		};
 	return {
 		makeRequest: makeRequest,
