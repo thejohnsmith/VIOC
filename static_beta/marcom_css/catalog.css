@@ -443,3 +443,6 @@ a#ctl00_content_gridSavedContent_btnImport, #cboxLoadedContent #ctl00_content_gr
 	margin-bottom: 0!important;
 	padding: 3px 12px 0!important
 }
+input#ctl00_content_CtlAddToCart_ProductOrderInfoController_AddToCartActionBox_mItemQuantity_txtQty {
+	border: none
+}
