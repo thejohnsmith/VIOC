@@ -7,10 +7,7 @@
 .btn-s-green, .btn-s-green:hover {
   background-position: right -769px
 }
-.Minimum {
-  visibility: hidden
-}
-#ErrorDetails, #qtip-blanket, .qtip, .qtip>* {
+.Minimum, #ErrorDetails, #qtip-blanket, .qtip, .qtip>* {
   display: none!important
 }
 #CtlBrdCrm {
@@ -149,7 +146,7 @@ a.pbtn span, a.pbtn.btn-s-disabled span, a.pbtn.btn-s-disabled:hover span, a.pbt
   font-size: 12px!important;
   max-width: 140px;
   margin: 0 0 15px;
-  padding: 6px 12px!important;
+  padding: 4px 12px!important;
   color: #fff;
   cursor: pointer;
   border: 1px solid #337ab7;
@@ -160,6 +157,10 @@ a.pbtn span, a.pbtn.btn-s-disabled span, a.pbtn.btn-s-disabled:hover span, a.pbt
   transition: all 1.4s cubic-bezier(.25, .46, 0, 1.39);
   -webkit-transform: scale(1);
   transform: scale(1)
+}
+.SelectSavedContentPrompt> a, #SelectSavedContentPrompt a {
+  -webkit-transition: none;
+  transition: none
 }
 a.pbtn span:hover, a.pbtn:hover span {
   color: #fff
@@ -184,7 +185,7 @@ a.pbtn span:hover:active, a.pbtn span:hover:focus {
   display: none!important
 }
 .prefill-container+select {
-  margin-bottom: 1em
+  margin-bottom: 0.6em
 }
 .ui-accordion .ui-accordion-header a {
   text-decoration: none;
@@ -439,10 +440,21 @@ a#openPDF> span {
 a#ctl00_content_gridSavedContent_btnImport, #cboxLoadedContent #ctl00_content_gridSavedContent_btnImport {
   display: none!important
 }
-.ButtonAddToCart.addToCartBtn span{
-	margin-bottom: 0!important;
-	padding: 3px 12px 0!important
+.ButtonAddToCart.addToCartBtn span {
+  margin-bottom: 0!important;
+  padding: 3px 12px 0!important
 }
 input#ctl00_content_CtlAddToCart_ProductOrderInfoController_AddToCartActionBox_mItemQuantity_txtQty {
-	border: none
+  border: none
+}
+div#ctl00_content_CtlAddToCart_ProductOrderInfoController_AddToCartActionBox_mItemQuantity_panelQty> span.FontBold {
+  position: relative;
+  display: inline-table
+}
+div#ctl00_content_CtlAddToCart_ProductOrderInfoController_AddToCartActionBox_mItemQuantity_panelQty> span.FontBold::after {
+  content: ': ';
+  display: inline-block;
+  position: absolute;
+  right: -4px;
+  top: 0
 }
