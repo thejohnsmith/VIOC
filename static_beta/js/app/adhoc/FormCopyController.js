@@ -76,6 +76,12 @@ FormCopyController = (function ($) {
 					}, 800);
 				}
 			});
+			/**
+			 * 	This is for constant Auto-updating
+			 *
+			 * @TODO Optional toggle-btn
+			 * Timers to prevent multiple input attempts.
+			 */
 			// $('input[type=number], input[type=password], input[type=search], input[type=text], textarea, select').blur(function (e) {
 			// 	e.stopPropagation();
 			// 	setTimeout(function (e) {
