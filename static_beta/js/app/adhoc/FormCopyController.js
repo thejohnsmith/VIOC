@@ -40,6 +40,10 @@ FormCopyController = (function ($) {
 			controller.SetRequiredInput();
 			controller.AddDisclaimers();
 
+			var deliveryDropdown = $('#Text_Delivery_Time');
+			console.info('toBeselected, deliveryDropdown: ', deliveryDropdown);
+			controller.SetOptionToSelected(deliveryDropdown);
+
 			// Change Add To Cart text on submit button to, 'Send for Approval'
 			$('.ButtonAddToCart.addToCartBtn span:contains("Add to Cart")').html('Send for Approval');
 
@@ -52,10 +56,18 @@ FormCopyController = (function ($) {
 			// Change required helper text by removing the Senior Purchaser bit.
 			$('#ctl00_content_CtlAddToCart_InteractivityContainer_ProductFootnote_Stringcontrol3:contains("Item requires approval by Senior Purchaser")').html('Item requires approval');
 
+			/**
+			 * htmlComments Removes html comments so the cells can be easily removed
+			 * @type {[var]} htmlComments
+			 * @returns {function} htmlComments
+			 */
 			var htmlComments = $('*').contents().filter(function () {
 				return this.nodeType === 8;
 			});
 
+			/**
+			 * Remove empty-cells
+			 */
 			$('td, tr').filter(function () {
 				$.trim($(this).html()) === '&nbsp;';
 				$.trim($(this).html()) === '';
@@ -77,7 +89,7 @@ FormCopyController = (function ($) {
 				}
 			});
 			/**
-			 * 	This is for constant Auto-updating
+			 * 	Constant Proof Auto-updating
 			 *
 			 * @TODO Optional toggle-btn
 			 * Timers to prevent multiple input attempts.
@@ -89,6 +101,12 @@ FormCopyController = (function ($) {
 			// 		return
 			// 	}, 800);
 			// });
+		},
+		SetOptionToSelected: function (element) {
+			var controller = this;
+			var element = controller.element;
+			$('#Text_Delivery_Time').val('VALID_f95ba619-1069-4575-88b5-430255c470cc_9am Central').change();
+			console.info('changed');
 		},
 		AddDisclaimers: function () {
 			var controller = this;

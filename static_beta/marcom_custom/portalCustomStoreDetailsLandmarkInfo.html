@@ -1,5 +1,4 @@
 <div class="clearfix js-content storePages storeDetails">
-
   <div class="container">
     <div class="row">
       <section class="box box-grey container">
@@ -19,12 +18,14 @@
                 </div>
               </div>
               <div class="col-xs-3 col-sm-4 col-centered">
-                <div class="label-text">Phone
+                <div class="label-text">
+                  Phone
                   <small class="small display-block company-phone">972-984-1500</small>
                 </div>
               </div>
               <div class="col-xs-3 col-sm-4 col-centered">
-                <div class="label-text">Manager Name
+                <div class="label-text">
+                  Manager Name
                   <small class="small display-block company-manager">Cody Smith</small>
                 </div>
               </div>
@@ -126,16 +127,14 @@
                     </tbody>
                   </table>
                 </div>
-
               </div>
             </div>
           </div>
         </div>
       </div>
-
       <br>
       <br>
-      <section class="form-section">
+      <section id="store_photo" class="form-section">
         <div class="clearfix form-item">
           <label class="label-text" for="storeName">
             <h2>Store Photo</h2>
@@ -159,7 +158,7 @@
           </div>
         </div>
       </section>
-      <section class="form-section">
+      <section id="communities_served" class="form-section">
         <div class="clearfix form-item">
           <label class="label-text" for="storeName">
             <h2>Communities Served</h2>
@@ -180,14 +179,10 @@
         </div>
       </section>
       <br>
-
       <br>
-
-      <section class="form-section">
+      <section id="landmark_info" class="form-section">
         <div class="row">
-
           <div class="col-xs-12 col-sm-7 col-md-6">
-
             <div class="clearfix form-item">
               <label class="label-text" for="storeName">
                 <h2>Landmark Info</h2>
@@ -196,7 +191,6 @@
                 </small>
               </label>
             </div>
-
             <div class="clearfix form-item">
               <label class="label-text" for="storeName">
                 Store Name
@@ -226,7 +220,6 @@
                 <option value="North-West">North-West</option>
               </select>
             </div>
-
             <div class="clearfix form-item">
               <label class="label-text" for="storeLandmark">
                 Major Landmark
@@ -267,7 +260,6 @@
               <label class="label-text" for="storeNeighboring">
                 Neighboring Business
               </label>
-
               <label class="radio-default" for="storeNeighboringAcrossFrom">
                 <input selected="selected" ng-model="storeNeighboringAccrossFrom" value="Across from" type="radio" name="storeNeighboring" id="storeNeighboringAcrossFrom">
                 Across From
@@ -288,6 +280,8 @@
           <div class="col-xs-12 col-sm-5 col-md-6">
             <div class="box box-grey">
               <h2 class="section-header">Preview</h2>
+
+              <!-- Angular 1 template - Sync's the form fields with this preview pane. -->
               <small class="small">
                 Welcome. The
                 {{storeName}}
@@ -304,14 +298,12 @@
                 across from
                 {{storeNeighboring}}.
               </small>
+
             </div>
           </div>
         </div>
-
       </section>
-
-      <section class="form-section clearfix ">
-
+      <section id="manager_photo" class="form-section clearfix ">
         <label class="label-text" for="storeName">
           <h2>Manager Photo</h2>
           <small class="small">
@@ -332,7 +324,7 @@
           </label>
         </div>
       </section>
-      <section class="form-section clearfix">
+      <section id="closed_on" class="form-section clearfix">
         <h2 class="section-header">Closed On</h2>
         <ul class="col-3 storePages list list-inline">
           <li class="list-item-default store-name">
@@ -405,10 +397,9 @@
               <input class="checkbox-default-input" type="checkbox" name="storeClosure">Christmas
             </label>
           </li>
-
         </ul>
       </section>
-      <section class="form-section clearfix">
+      <section id="services" class="form-section clearfix">
         <h2 class="section-header">Services</h2>
         <ul class="col-3 storePages list list-inline">
           <li class="list-item-default store-name">
@@ -473,13 +464,12 @@
           </li>
         </ul>
       </section>
-      <section class="form-section clearfix ">
+      <section id="features" class="form-section clearfix ">
         <div class="clearfix form-item">
           <label class="label-text" for="storeName">
             <h2>Features</h2>
             <small class="small">
-              Maximum 6. First 2 will apprear on Direct Mail. First 4 show up on Email. All 6 will appear on Website. Drag selected to re-order.
-              Franchisee responsible for ensuring compliance with state &amp; municipality regulations.
+              Maximum 6. First 2 will apprear on Direct Mail. First 4 show up on Email. All 6 will appear on Website. Drag selected to re-order. Franchisee responsible for ensuring compliance with state &amp; municipality regulations.
             </small>
           </label>
           <div class="row">
@@ -487,8 +477,7 @@
           </div>
         </div>
       </section>
-
-      <section class="form-section clearfix">
+      <section id="social" class="form-section clearfix">
         <h2 class="section-header">Social</h2>
         <div class="row">
           <div class="col-xs-12 col-lg-8">
@@ -503,7 +492,6 @@
               </label>
               <input class="" value="" placeholder="" type="text" name="socialFacebook" id="socialFacebook">
             </div>
-
             <div class="clearfix form-item">
               <label class="label-text" for="socialTwitter">
                 Twitter
@@ -515,7 +503,6 @@
               </label>
               <input class="" value="" placeholder="" type="text" name="socialTwitter" id="socialTwitter">
             </div>
-
             <div class="clearfix form-item">
               <label class="label-text" for="socialGoogle+">
                 Google+
@@ -527,7 +514,6 @@
               </label>
               <input class="" value="" placeholder="" type="text" name="socialGoogle+" id="socialGoogle+">
             </div>
-
             <div class="clearfix form-item">
               <label class="label-text" for="socialGoogle+myBusiness">
                 Google+ My Business
@@ -542,19 +528,12 @@
           </div>
         </div>
       </section>
-
-      <!-- Templates
-Select a job preset to prefill title and description or enter details below
-
-Job Title
-500 character max w/spaces -->
-      <section class="form-section">
+      <section id="careers" class="form-section">
         <div class="row">
           <div class="col-xs-12 col-md-8">
             <h2 class="section-header">Careers</h2>
             <div class="box box-grey container">
               <div class="clearfix form-item">
-
                 <label class="label-text" for="Templates">
                   Templates
                   <small class="small display-block">
@@ -564,7 +543,6 @@ Job Title
                 <input class="" value="" placeholder="Create New Job" type="text" name="Templates" id="Templates">
               </div>
               <div class="clearfix form-item">
-
                 <label class="label-text" for="JobTitle">
                   Job Title
                   <small class="small display-block">
@@ -575,10 +553,8 @@ Job Title
                   <!-- Use the Character Limit plugin -->
                   <textarea maxlength="500" class="characterLimitInput" placeholder="" rows="1" cols="80" id="JobTitle" name="JobTitle"></textarea>
                 </div>
-
               </div>
               <div class="clearfix form-item">
-
                 <label class="label-text" for="JobDescription">
                   Job Description
                 </label>
@@ -586,16 +562,9 @@ Job Title
                   <!-- Use the Character Limit plugin -->
                   <textarea maxlength="1000" class="characterLimitInput" placeholder="" rows="6" cols="80" id="JobDescription" name="JobDescription"></textarea>
                 </div>
-
               </div>
               <div class="clearfix form-item">
-
                 <div class="btn-group btn-group-justified">
-                  <div class="btn-group">
-                    <button type="button" class="btn btn-primary">
-                      Submission Instructions
-                    </button>
-                  </div>
                   <div class="btn-group">
                     <button type="button" class="btn btn-primary">
                       URL
@@ -606,10 +575,14 @@ Job Title
                       Email
                     </button>
                   </div>
+                  <div class="btn-group">
+                    <button type="button" class="btn btn-primary">
+                      Store
+                    </button>
+                  </div>
                 </div>
                 <br>
                 <input readonly class="input-disabled" value="" placeholder="Please stop by the store and pick up an application." type="text" name="Templates" id="Templates">
-
               </div>
               <div class="clearfix form-item">
                 <div class="row">
@@ -634,8 +607,7 @@ Job Title
         </div>
       </section>
 
-      <section class="form-section">
-
+      <section id="news_events_promotions" class="form-section">
         <div class="clearfix form-item">
           <label class="label-text" for="newsEventsPromotions">
             <h2>News/Events/Promotions</h2>
@@ -649,6 +621,6 @@ Job Title
           </div>
         </div>
       </section>
-
     </div>
-    <!-- /.mid-container -->
+  </div>
+</div>
