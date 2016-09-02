@@ -146,14 +146,18 @@
                 <img id="store-photo-item" width="350px" height="auto" src="https://files.marcomcentral.app.pti.com/epsilon/previews/FPO_1.png" alt="Default picture">
               </div>
               <br>
-              <label class="btn btn-default btn-file">
-                <span class="btn-file-text">Upload New Photo</span>
-                <input type="file" class="none btn-file-input">
-              </label>
-              <label class="btn btn-default btn-file">
-                <span class="btn-file-text">Restore Default</span>
-                <input type="file" class="none btn-file-input">
-              </label>
+
+              <!--  MUST BE WRAPED IN UNIQUE FORM -->
+              <form id="storePhotoUploadForm" action="">
+                <label class="btn btn-default btn-file">
+                  <span class="btn-file-text">Upload New Photo</span>
+                  <input type="file" class="none btn-file-input">
+                </label>
+                <label class="btn btn-default btn-file">
+                  <span class="btn-file-text">Restore Default</span>
+                  <input type="file" class="none btn-file-input">
+                </label>
+              </form>
             </div>
           </div>
         </div>
@@ -314,14 +318,17 @@
           <!-- To crop the image with a circle, make sure to update the width and height in the inline styles. -->
           <img class="img-circle" id="store-photo-item" style="width: 160px; height: 160px;" src="https://files.marcomcentral.app.pti.com/epsilon/static_beta/images/ico-profile-default.png" alt="Default picture">
           <br><br>
-          <label class="btn btn-default btn-file">
-            <span class="btn-file-text">Upload New Photo</span>
-            <input type="file" class="none btn-file-input">
-          </label>
-          <label class="btn btn-default btn-file">
-            <span class="btn-file-text">Restore Default</span>
-            <input type="file" class="none btn-file-input">
-          </label>
+          <!--  MUST BE WRAPED IN UNIQUE FORM -->
+          <form id="uploadNewPhoto" action="">
+            <label class="btn btn-default btn-file">
+              <span class="btn-file-text">Upload New Photo</span>
+              <input type="file" class="none btn-file-input">
+            </label>
+            <label class="btn btn-default btn-file">
+              <span class="btn-file-text">Restore Default</span>
+              <input type="file" class="none btn-file-input">
+            </label>
+          </form>
         </div>
       </section>
       <section id="closed_on" class="form-section clearfix">
@@ -469,7 +476,7 @@
           <label class="label-text" for="storeName">
             <h2>Features</h2>
             <small class="small">
-              Maximum 6. First 2 will apprear on Direct Mail. First 4 show up on Email. All 6 will appear on Website. Drag selected to re-order. Franchisee responsible for ensuring compliance with state &amp; municipality regulations.
+              Maximum 6. First 2 will apprear on Direct Mail. First 4 show up on Email. All 6 will appear on Website. Drag selected to re-order. Franchisee is responsible to ensure compliance with state and municipality regulations for inspection advertising. Franchisee is responsible for securing permission to use third party logos.
             </small>
           </label>
           <div class="row">
