@@ -148,7 +148,7 @@
               <br>
 
               <!--  MUST BE WRAPED IN UNIQUE FORM -->
-              <form id="uploader_form_1" action="">
+              <form class="form-controls" id="uploader_form_1" action="">
                 <label class="btn btn-default btn-file">
                   <span class="btn-file-text">Upload New Photo</span>
                   <input type="file" class="none btn-file-input">
@@ -319,7 +319,7 @@
           <img class="img-circle" id="store-photo-item" style="width: 160px; height: 160px;" src="https://files.marcomcentral.app.pti.com/epsilon/static_beta/images/ico-profile-default.png" alt="Default picture">
           <br><br>
           <!--  MUST BE WRAPED IN UNIQUE FORM -->
-          <form id="uploader_form_2" action="">
+          <form class="form-controls" id="uploader_form_2" action="">
             <label class="btn btn-default btn-file">
               <span class="btn-file-text">Upload New Photo</span>
               <input type="file" class="none btn-file-input">
@@ -537,7 +537,7 @@
       </section>
       <section id="careers" class="clearfix form-section">
         <div class="row">
-          <div class="col-xs-12 col-md-8">
+          <div class="col-xs-12">
             <h2 class="section-header">Careers</h2>
             <div class="box box-grey container">
               <div class="clearfix form-item">
@@ -558,7 +558,7 @@
                 </label>
                 <div class="characterLimit">
                   <!-- Use the Character Limit plugin -->
-                  <textarea maxlength="500" class="characterLimitInput" placeholder="" rows="1" cols="80" id="JobTitle" name="JobTitle"></textarea>
+                  <textarea maxlength="500" class="characterLimitInput resize-false" placeholder="" rows="1" cols="80" id="JobTitle" name="JobTitle"></textarea>
                 </div>
               </div>
               <div class="clearfix form-item">
@@ -601,16 +601,14 @@
                   </div>
                 </div>
               </div>
-              <div class="clearfix form-item">
-                <div class="row">
-                  <div class="col-md-6">
-                    <button class="btn btn-default" name="removeCareer">
-                      Remove Career
-                    </button>
-                    <button class="btn btn-default" name="addCareer">
-                      Add Career
-                    </button>
-                  </div>
+              <div class="form-controls">
+                <div class="clearfix form-item">
+                  <button class="btn btn-default display-block" name="removeCareer">
+                    Remove Career
+                  </button>
+                  <button class="btn btn-default display-block" name="addCareer">
+                    Add Career
+                  </button>
                 </div>
               </div>
             </div>
@@ -618,77 +616,198 @@
         </div>
       </section>
 
-      <section id="careers" class="clearfix form-section">
+      <section id="newsEventPromotionSection" class="clearfix form-section">
         <div class="row">
-          <div class="col-xs-12 col-md-8">
+          <div class="col-xs-12">
             <h2 class="section-header">News/Events/Promotions</h2>
-            <div class="box box-grey container">
-
+            <div class="form-controls">
               <div class="clearfix form-item">
-                <div class="row">
-                  <div class="col-sm-6">
-                    <div class="btn-group btn-group-justified">
-                      <div class="btn-group">
-                        <button type="button" class="btn btn-sm btn-primary">
-                          News
-                        </button>
-                      </div>
-                      <div class="btn-group">
-                        <button type="button" class="btn btn-sm btn-default">
-                          Events
-                        </button>
-                      </div>
-                      <div class="btn-group">
-                        <button type="button" class="btn btn-sm btn-primary">
-                          Promotions
-                        </button>
+                <button class="btn btn-default display-block" name="addNewsEventPromotion" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                  Add News/Event/Promotion
+                </button>
+              </div>
+            </div>
+            <div class="display-inline-block storeNewsEventsPromotionsList">
+              <section class="resp-tab-content-section">
+                <table class="full-width">
+                  <tbody id="sortable" class="sortable full-width">
+                    <tr class="table-banner">
+                      <th class="table-banner-item">
+                        Type<!-- News/Event/Promotion --></th>
+                      <th class="table-banner-item">
+                        Title
+                        <th class="table-banner-item">
+                          Post On
+                        </th>
+                        <th class="table-banner-item">
+                          Remove On
+                        </th>
+                        <th class="table-banner-item">
+                          Edit
+                        </th>
+                        <th class="table-banner-item">
+                          Delete
+                        </th>
+                      </tr>
+                      <tr class="error none">
+                        <td colspan="7" class="Error list-item">Please add more offers.</td>
+                      </tr>
+                      <tr draggable="true" class="sortable-item filterable store-item text-center" data-filter-storeid="1" data-storeid="1" data-enrolled="true">
+                        <td class="list-item handle text-center">
+                          <small>News</small>
+                        </td>
+                        <td class="list-item text-center">
+                          <small>
+                            #1 Title - Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facere tempore ab quasi.
+                          </small>
+                        </td>
+                        <td class="list-item">
+                          <small>2016-08-29</small>
+                        </td>
+                        <td class="list-item">
+                          <small>2018-12-29</small>
+                        </td>
+                        <td class="list-item">
+                          <a class="editNewsEventPromotion" title="Edit Offer Details" role="button" data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                            <span alt="Edit Offer Details" class="icon icon-edit-bg"></span>
+                          </a>
+                        </td>
+                        <td class="deleteNewsEventPromotion list-item">
+                          <button data-storeid="1938" data-offerid="1" alt="Delete Offer" class="icon icon-delete-bg"></button>
+                        </td>
+                      </tr>
+                      <tr draggable="true" class="sortable-item filterable store-item text-center" data-filter-storeid="2" data-storeid="2" data-enrolled="true">
+                        <td class="list-item handle text-center">
+                          <small>Event</small>
+                        </td>
+                        <td class="list-item text-center">
+                          <small>
+                            #2 Title - Lorem ipsum dolor sit amet, consectetur.
+                          </small>
+                        </td>
+                        <td class="list-item">
+                          <small>2000-01-09</small>
+                        </td>
+                        <td class="list-item">
+                          <small>3030-01-01</small>
+                        </td>
+                        <td class="list-item">
+                          <a class="editNewsEventPromotion" title="Edit Offer Details" role="button" data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                            <span alt="Edit Offer Details" class="icon icon-edit-bg"></span>
+                          </a>
+                        </td>
+                        <td class="deleteNewsEventPromotion list-item">
+                          <button data-offerid="2" alt="Delete Offer" class="icon icon-delete-bg"></button>
+                        </td>
+                      </tr>
+                      <tr draggable="true" class="sortable-item filterable store-item text-center" data-filter-storeid="3" data-storeid="3" data-enrolled="true">
+                        <td class="list-item handle text-center">
+                          <small>Promotion</small>
+                        </td>
+                        <td class="list-item text-center">
+                          <small>
+                            #3 Title - Consectetur adipisicing elit. Facere tempore ab quasi, Lorem ipsum. Lorem ipsum dolor sit.
+                          </small>
+                        </td>
+                        <td class="list-item">
+                          <small>2016-08-29</small>
+                        </td>
+                        <td class="list-item">
+                          <small>2018-12-29</small>
+                        </td>
+                        <td class="list-item">
+                          <a class="editNewsEventPromotion" title="Edit Offer Details" role="button" data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                            <span alt="Edit Offer Details" class="icon icon-edit-bg"></span>
+                          </a>
+                        </td>
+                        <td class="deleteOffer list-item">
+                          <button data-offerid="3" alt="Delete Offer" class="icon icon-delete-bg"></button>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </section>
+              </div>
+
+              <div class="newsEventsPromotionsForm" class="collapseExample collapse" id="collapseExample" style="height: 0px; display: none;">
+                <div class="box box-grey">
+
+                  <div class="clearfix form-item">
+                    <div class="row">
+                      <div class="col-sm-6">
+                        <div class="btn-group btn-group-justified">
+                          <div class="btn-group">
+                            <button type="button" class="btn btn-sm btn-primary">
+                              News
+                            </button>
+                          </div>
+                          <div class="btn-group">
+                            <button type="button" class="btn btn-sm btn-default">
+                              Events
+                            </button>
+                          </div>
+                          <div class="btn-group">
+                            <button type="button" class="btn btn-sm btn-primary">
+                              Promotions
+                            </button>
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </div>
-                </div>
-              </div>
 
-              <div class="clearfix form-item">
-                <label class="label-text" for="newsEventTitle">
-                  Title
-                </label>
-                <input class="" value="" placeholder="" type="text" name="newsEventTitle" id="newsEventTitle">
-              </div>
+                  <div class="clearfix form-item">
+                    <label class="label-text" for="newsEventTitle">
+                      Title
+                    </label>
 
-              <div class="clearfix form-item">
-                <label class="label-text" for="newsEventText">
-                  Text
-                </label>
-                <div class="characterLimit">
-                  <!-- Use the Character Limit plugin -->
-                  <textarea maxlength="1000" class="characterLimitInput" placeholder="" rows="6" cols="80" id="newsEventText" name="newsEventText"></textarea>
-                </div>
-              </div>
+                    <div class="characterLimit">
+                      <div class="row">
+                        <div class="col-xs-12 col-md-6">
+                          <!-- Use the Character Limit plugin -->
+                          <textarea maxlength="240" class="characterLimitInput resize-false" placeholder="" rows="1" cols="50" id="newsEventTitle" name="newsEventTitle"></textarea>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
 
-              <div class="clearfix form-item">
-                <div class="row">
-                  <div class="col-md-4">
+                  <div class="clearfix form-item">
+                    <label class="label-text" for="newsEventText">
+                      Text
+                    </label>
+                    <div class="row">
+                      <div class="col-xs-12 col-md-6">
+                        <div class="characterLimit">
+                          <!-- Use the Character Limit plugin -->
+                          <textarea maxlength="1000" class="characterLimitInput" placeholder="" rows="6" cols="40" id="newsEventText" name="newsEventText"></textarea>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="clearfix form-item">
                     <label class="label-text" for="newsEventPostDate">
                       Post On
                     </label>
-                    <input class="" value="" placeholder="" type="date" name="newsEventPostDate" id="newsEventPostDate">
+                    <div class="row">
+                      <div class="col-xs-12 col-md-4 col-lg-2">
+                        <input class="resize-false" value="" placeholder="" type="date" name="newsEventPostDate" id="newsEventPostDate">
+                      </div>
+                    </div>
                   </div>
-                </div>
-              </div>
-              <div class="clearfix form-item">
-                <div class="row">
-                  <div class="col-md-4">
+                  <div class="clearfix form-item">
                     <label class="label-text" for="newsEventRemoveDate">
                       Remove On
                     </label>
-                    <input class="" value="" placeholder="" type="date" name="newsEventRemoveDate" id="newsEventRemoveDate">
+                    <div class="row">
+                      <div class="col-xs-12 col-md-4 col-lg-2">
+                        <input class="resize-false" value="" placeholder="" type="date" name="newsEventRemoveDate" id="newsEventRemoveDate">
+                      </div>
+                    </div>
                   </div>
-                </div>
-              </div>
 
-              <div class="clearfix form-item">
-                <div class="row">
-                  <div class="col-md-6">
+                  <div class="clearfix form-item">
+
                     <label class="label-text" for="newsEventRemoveDate">
                       Image -
                       <em>Optional</em>
@@ -698,47 +817,45 @@
                     <br><br>
 
                     <!--  MUST BE WRAPED IN UNIQUE FORM -->
-                    <form id="uploader_form_4" action="">
+                    <form class="form-controls" id="uploader_form_4" action="">
                       <label class="btn btn-sm btn-default btn-file display-inline-block">
                         <span class="btn-file-text">Upload New Photo</span>
                         <input type="file" class="none btn-file-input">
                       </label>
-                      <label class="btn btn-sm btn-default btn-file display-inline-block">
+                      <label class="none btn btn-sm btn-default btn-file display-inline-block">
                         <span class="btn-file-text">Restore Default</span>
                         <input type="file" class="none btn-file-input">
                       </label>
                     </form>
                   </div>
-                </div>
-              </div>
-              <div class="clearfix form-item">
-                <div class="row">
-                  <div class="col-md-8">
-                    <label class="label-text" for="Templates">
-                      More Information Link -
-                      <em>Optional</em>
-                    </label>
-                    <input class="" value="" placeholder="http://" type="text" name="moreInfoLink" id="moreInfoLink">
+                  <div class="clearfix form-item">
+                    <div class="row">
+                      <div class="col-md-8">
+                        <label class="label-text" for="Templates">
+                          More Information Link -
+                          <em>Optional</em>
+                        </label>
+                        <input class="" value="" placeholder="http://" type="text" name="moreInfoLink" id="moreInfoLink">
+                        <br>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-controls">
+                    <div class="clearfix form-item">
+                      <button class="btn btn-default display-block" name="removeNewsEvent" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                        Remove News/Event/Promotion
+                      </button>
+                    </div>
                   </div>
                 </div>
+                <!--  /#newsEventsPromotionsForm -->
               </div>
-              <br>
-              <div class="clearfix form-item">
-                <div class="row">
-                  <div class="col-md-12">
-                    <button class="btn btn-default" name="removeNewsEvent">
-                      Remove News/Event
-                    </button>
-                    <button class="btn btn-default" name="addNewsEventPromotion">
-                      Add News/Event/Promotion
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+              <!-- /box-grey -->
 
+            </div>
+
+          </div>
+        </section>
+
+      </div>
     </div>
-  </div>
