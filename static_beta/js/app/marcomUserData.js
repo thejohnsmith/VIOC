@@ -61,10 +61,15 @@ var marcomUserData = (function ($) {
 
 		/** UAT URLs
 		 * @kind {string} Production or User Acceptance Testing (Beta_Epsilon)
-		 * @example marcomUserData.$constants.apiPath
+		 * @example marcomUserData.$constants.storeDetailsUrl
 		 * @example marcomUserData.$constants.kind = 'UAT'
 		 * @return {object} environment
 		 */
+
+		 /**
+			* @TODO: Find a place for this odd-duckling (defaults to Prod, but shows _beta tag),
+			* 				loginPage3Url: 'login.aspx?uigroup_id=479602&company_id=20951',
+			*/
 		(environment == 'UAT') ?
 		constants = {
 			kind: 'UAT',
@@ -84,7 +89,7 @@ var marcomUserData = (function ($) {
 			storePagesUrl: 'CustomPage.aspx?uigroup_id=479602&page_id=12939',
 			storeDetailsUrl: 'CustomPage.aspx?uigroup_id=479602&page_id=13090',
 			storePagesNewOfferUrl: 'CustomPage.aspx?uigroup_id=479602&page_id=13091',
-      storePagesEditOfferUrl: 'CustomPage.aspx?uigroup_id=479602&page_id=13095',
+			storePagesEditOfferUrl: 'CustomPage.aspx?uigroup_id=479602&page_id=13095',
 			apiPath: 'https://adobe-prod-vioc.epsilon.com/jssp/vioc/',
 			apiPathLocal: 'data/',
 			marcomFilePath: 'https://files.marcomcentral.app.pti.com/epsilon/static_beta/',
@@ -119,5 +124,5 @@ var marcomUserData = (function ($) {
 		recordLogin.makeRequest();
 	}
 
-return $debug;
+	return $debug;
 })(jQuery);

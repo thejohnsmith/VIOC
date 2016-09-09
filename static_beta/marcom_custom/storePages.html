@@ -74,7 +74,8 @@ window.onload = function () {
             <li>Offers</li>
           </ul>
           <div class="resp-tabs-container hor_1">
-            <div class="resp-tab-content storeDetailsTab">
+            <div class="resp-tab-content
+            ">
               <section class="resp-tab-content-section">
                 <div class="filters-area">
                   <div class="filter-title">
@@ -92,63 +93,54 @@ window.onload = function () {
                     <a href="#" title="filter-edit" class="filter-reset">
                       <img src="https://files.marcomcentral.app.pti.com/epsilon/static/marcom_custom/images/edit-filter.png" alt="Edit" title="Edit" width="16">
                     </a>
-                    <span class="filter-results-value">3</span>
+                    <span class="filter-results-value"></span>
                   </div>
                 </div>
 
-                <table class="full-width">
-                  <tbody id="storeDetail" class="not-sortable full-width text-center">
+                <!-- Store Pages: Store Table Template
+                    @template storePage-storeTable-template
+                    @type template/mustache
+                    @import storePages.html
+                -->
+                <script class="storePage-storeTable-template" type="x-tmpl-mustache">
 
-                    <tr draggable="false" class="table-banner text-center">
-                      <!-- <th class="table-banner-item">
-                        Sort
-                      </th> -->
-                      <th class="table-banner-item">
-                        Store
-                      </th>
-                      <th class="table-banner-item">
-                        Edit
-                      </th>
-                    </tr>
+                  <table id="storeDetail" class="full-width">
+                    <tbody class="{{#sortable}}not-sortable{{/sortable}} full-width text-center">
+                      <tr draggable="false" class="table-banner text-center">
+                        {{#sortable}}
+                          <th class="table-banner-item">
+                            Sort
+                          </th>
+                        {{/sortable}}
+                        <th class="table-banner-item">
+                          Store
+                        </th>
+                        <th class="table-banner-item">
+                          Edit
+                        </th>
+                      </tr>
+                      {{#.}}
+                        <tr draggable="false" class="{{^sortable}}not-sortable-item{{/sortable}} filterable store-item text-center" data-filter-storeId="{{storeId}}" data-storeId="{{storeId}}">
+                          {{#sortable}}
+                            <td class="list-item handle text-center">::</td>
+                          {{/sortable}}
+                          <td class="list-item text-center store-name">
+                            {{storeName}}
+                            <div class="text-center store-number">Store #{{storeNumber}}</div>
+                          </td>
+                          <td class="list-item text-center">
+                            <a href="{{href}}" title="Edit Store">
+                              <span alt="Edit" class="icon icon-edit-bg"></span>
+                            </a>
+                          </td>
+                        </tr>
+                      {{/.}}
+                    </tbody>
+                  </table>
 
-                    <tr draggable="false" class="not-sortable-item filterable store-item text-center" data-filter-storeid="1" data-storeid="1" data-enrolled="true">
-                      <!-- <td class="list-item handle text-center">::</td> -->
-                      <td class="list-item text-center store-name">Tom T's New Store 1
-                        <div class="text-center store-number">Store #1</div>
-                      </td>
-                      <td class="list-item text-center">
-                        <a href="CustomPage.aspx?uigroup_id=479602&page_id=13090" title="Edit Store">
-                          <span alt="Edit" class="icon icon-edit-bg"></span>
-                        </a>
-                      </td>
-                    </tr>
+                </script>
 
-                    <tr draggable="false" class="not-sortable-item filterable store-item text-center" data-filter-storeid="2" data-storeid="2" data-enrolled="true">
-                      <!-- <td class="list-item handle text-center">::</td> -->
-                      <td class="list-item text-center store-name">Tom T's New Store 2
-                        <div class="text-center store-number">Store #2</div>
-                      </td>
-                      <td class="list-item text-center">
-                        <a href="CustomPage.aspx?uigroup_id=479602&page_id=13090" title="Edit Store">
-                          <span alt="Edit" class="icon icon-edit-bg"></span>
-                        </a>
-                      </td>
-                    </tr>
-
-                    <tr draggable="false" class="not-sortable-item filterable store-item text-center" data-filter-storeid="3" data-storeid="3" data-enrolled="true">
-                      <!-- <td class="list-item handle text-center">::</td> -->
-                      <td class="list-item text-center store-name">Tom T's New Store 3
-                        <div class="text-center store-number">Store #3</div>
-                      </td>
-                      <td class="list-item text-center">
-                        <a href="CustomPage.aspx?uigroup_id=479602&page_id=13090" title="Edit Store">
-                          <span alt="Edit" class="icon icon-edit-bg"></span>
-                        </a>
-                      </td>
-                    </tr>
-
-                  </tbody>
-                </table>
+                <section id="storePage-storeTable-Section"></section>
               </section>
             </div>
             <div class="resp-tab-content storeOffers">

@@ -41,7 +41,7 @@ FormCopyController = (function ($) {
 			controller.AddDisclaimers();
 
 			var deliveryDropdown = $('#Text_Delivery_Time');
-			console.info('toBeselected, deliveryDropdown: ', deliveryDropdown);
+			// console.info('toBeselected, deliveryDropdown: ', deliveryDropdown);
 			controller.SetOptionToSelected(deliveryDropdown);
 
 			// Change Add To Cart text on submit button to, 'Send for Approval'
@@ -80,7 +80,7 @@ FormCopyController = (function ($) {
 			$('input, input[type=number], input[type=password], input[type=search], input[type=text]').keydown(function (e) {
 				if (e.keyCode === 13) {
 					// do whatever you want with the value
-					console.log($(this).val());
+					// console.log($(this).val());
 					e.stopPropagation();
 					setTimeout(function (e) {
 						$('#mButtonPreviewTop').click();
@@ -94,23 +94,29 @@ FormCopyController = (function ($) {
 			 * @TODO Optional toggle-btn
 			 * Timers to prevent multiple input attempts.
 			 */
-			// $('input[type=number], input[type=password], input[type=search], input[type=text], textarea, select').blur(function (e) {
-			// 	e.stopPropagation();
-			// 	setTimeout(function (e) {
-			// 		$('#mButtonPreviewTop').click();
-			// 		return
-			// 	}, 800);
-			// });
+			// $('input[type=number], input[type=password], input[type=search], input[type=text], textarea, select, option').blur(function (e) {
+
+			$('.poVariItemForm').on('blur change keyup', 'input,select,textarea', function (e) {
+				// e.stopPropagation();
+				setTimeout(function (e) {
+					if ($('#mButtonPreviewTop').is(':visible') === true) {
+						console.info('mButtonPreviewTop is visible');
+						console.count("Refresh Count", e);
+						$('#mButtonPreviewTop').click();
+					} else {
+						return
+					}
+				}, 500);
+			});
 		},
 		SetOptionToSelected: function (element) {
 			var controller = this;
 			var element = controller.element;
 			$('#Text_Delivery_Time').val('VALID_f95ba619-1069-4575-88b5-430255c470cc_9am Central').change();
-			console.info('changed');
 		},
 		AddDisclaimers: function () {
 			var controller = this;
-			var disclaimers = ["None", "Includes up to 5 quarts of the oil type and grade advertised in the coupon (diesel quarts may vary; see store for details), filter (prem. extra), lube & maintenance check; plus tax, if applicable; not valid with same service offers / discounts (including fleet); see store for additional details or restrictions; good only at participating locations. No cash or credit back; cash value $0.001.",
+			var disclaimers = ["", "Includes up to 5 quarts of the oil type and grade advertised in the coupon (diesel quarts may vary; see store for details), filter (prem. extra), lube & maintenance check; plus tax, if applicable; not valid with same service offers / discounts (including fleet); see store for additional details or restrictions; good only at participating locations. No cash or credit back; cash value $0.001.",
 				"Includes up to 6 quarts of the oil type and grade advertised in the coupon (diesel quarts may vary; see store for details), filter (prem. extra), lube & maintenance check; plus tax, if applicable; not valid with same service offers / discounts (including fleet); see store for additional details or restrictions; good only at participating locations. No cash or credit back; cash value $0.001.",
 				"Includes up to 5 quarts of the oil type and grade advertised in the coupon (diesel quarts may vary; see store for details), filter (prem. extra), lube & maintenance check; plus tax, if applicable; not valid with same service offers / discounts (including fleet); see store for additional details or restrictions; good only at participating locations. Haz. Waste fee extra. No cash or credit back; cash value $0.001.",
 				"Includes up to 6 quarts of the oil type and grade advertised in the coupon (diesel quarts may vary; see store for details), filter (prem. extra), lube & maintenance check; plus tax, if applicable; not valid with same service offers / discounts (including fleet); see store for additional details or restrictions; good only at participating locations. Haz. Waste fee extra. No cash or credit back; cash value $0.001.",

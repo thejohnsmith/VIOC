@@ -6035,7 +6035,8 @@ textarea.input-group-sm>.form-control, textarea.input-group-sm>.input-group-addo
   white-space: normal;
   -webkit-font-smoothing: antialiased;
   line-height: 1.4;
-  letter-spacing: normal
+  letter-spacing: normal;
+  float: left
 }
 
 .storeNewsEventsPromotionsList, .storePages .btn-file.display-inline-block, .storePages .btn.display-block {
