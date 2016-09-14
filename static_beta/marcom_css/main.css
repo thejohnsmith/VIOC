@@ -42,6 +42,7 @@
 }
 
 * {
+  font-family: 'HelveticaNeueLT-Condensed', sans-serif;
   box-sizing: border-box
 }
 
@@ -64,10 +65,6 @@ body, input {
   padding: 0;
   border: 0;
   outline: 0
-}
-
-body * {
-  font-family: 'HelveticaNeueLT-Condensed', sans-serif
 }
 
 #PageType01, #PageType01-Elastic, #PageType02, #PageType02-Elasti, body, body a {
@@ -128,7 +125,7 @@ select {
   box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075)
 }
 
-input[type=number]:focus, input[type=password]:focus, input[type=search]:focus, input[type=text]:focus, input[type="date"]:focus, select:focus {
+input[type=number]:focus, input[type=password]:focus, input[type=search]:focus, input[type=text]:focus, input[type="date"]:focus, select:focus, .radio-default:focus input, .checkbox-default:focus input, .radio-default input:focus, .checkbox-default input:focus {
   border-color: #66afe9;
   outline: 0;
   box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px rgba(102, 175, 233, .6)
@@ -241,12 +238,11 @@ input.input-error:focus, textarea.input-error:focus {
   margin: 0 0 1em
 }
 
-.btn-file {
+.btn.btn-file {
+  margin: 0 .4em .6em 0;
   position: relative;
   overflow: hidden
 }
-
-.btn-file-text {}
 
 .btn-file input[type=file], .btn-file-input {
   position: absolute;
@@ -296,6 +292,10 @@ a, a:hover {
 a:focus {
   text-decoration: none!important;
   outline: none!important
+}
+
+.nowrap, .no-wrap, .whitespace-nowarap {
+  white-space: nowrap!important
 }
 
 .center-block {
@@ -3725,9 +3725,9 @@ button.toast-close-button {
 
 .btn:hover:focus, .btn:hover:focus:active, .btn:hover:active, .btn:focus:active, .btn:hover:active:focus .btn.active.focus, .btn.active:focus, .btn.focus, .btn:active.focus, .btn:hover:active:focus {
   outline: none;
-  -webkit-transform: scale(1.025);
+  /*-webkit-transform: scale(1.025);
   transform: scale(1.025);
-  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.2), 12px 20px 15px rgba(53, 82, 97, 0.2)
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.2), 12px 20px 15px rgba(53, 82, 97, 0.2)*/
 }
 
 a.btn.btn-primary {
@@ -3758,7 +3758,7 @@ a.btn.disabled, fieldset[disabled] a.btn {
 .btn-default {
   color: #333;
   border-color: #ccc;
-  background-color: #fff
+  background-color: #ebebeb
 }
 
 .btn-default.focus, .btn-default:focus {
@@ -5384,6 +5384,7 @@ button.enroll-all-stores.btn.btn-primary.btn-sm {
 
 .storePages .table-banner-item {
   text-align: center;
+  font-size: 14px;
   padding: 11px
 }
 
@@ -5554,6 +5555,7 @@ button.enroll-all-stores.btn.btn-primary.btn-sm {
   font-weight: bold;
   font-size: 1.5em;
   text-align: left;
+  overflow: visible;
   padding: 0 0 0.6em
 }
 
@@ -6044,7 +6046,8 @@ textarea.input-group-sm>.form-control, textarea.input-group-sm>.input-group-addo
 }
 
 .storePages .btn.display-block {
-  display: block
+  display: block;
+  margin-bottom: 1em
 }
 
 .resize-false, input.resize-false, textarea.resize-false {
@@ -6053,9 +6056,7 @@ textarea.input-group-sm>.form-control, textarea.input-group-sm>.input-group-addo
 }
 
 .storePages .form-item+.form-controls {
-  margin-top: 1.4em;
-  /*border-top: 1px dotted #E0E0E0;*/
-  padding-top: 1.4em
+  margin-top: 1.4em
 }
 
 .box-grey .resp-tab-content {
@@ -6067,4 +6068,19 @@ textarea.input-group-sm>.form-control, textarea.input-group-sm>.input-group-addo
 .storePages .box-grey .table-banner-item {
   font-size: 12px;
   padding: 6px 2px
+}
+
+.collapse {
+  display: none
+}
+
+#newsEventPromotionImage, #storeCareerTable, .storePages .store-photo {
+  margin-bottom: 0.6em
+}
+
+#storeCareerTable .customCheckbox {
+  min-height: 25px;
+  min-width: 22px;
+  padding: 0;
+  float: none
 }

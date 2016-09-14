@@ -1,128 +1,42 @@
 <!-- ****************** PORTAL CUSTOM COPY ******************
 <div id="storeDetails" class="asyncMarkup"></div>
-
 <script>
-window.onload = function () {
-  function getData() {
-  	return jQuery.get('https://files.marcomcentral.app.pti.com/epsilon/static_beta/marcom_custom/storeDetails.html').success(function (resp) {
-  		// console.log('Fires after the AJAX request succeeds');
-  		jQuery('.asyncMarkup').html(resp);
-  		StorePagesController.controller.init();
-
-  	});
-  }
-  function showDiv() {
-  	var dfd = jQuery.Deferred();
-  	dfd.done(function () {
-  		// console.log('Fires after the animation succeeds');
-  	});
-  	jQuery('.asyncMarkup').fadeIn(1000, dfd.resolve);
-  	return dfd.promise();
-  }
-  jQuery.when(getData(), showDiv())
-  	.then(function (ajaxResult) {
-  		// console.log('Fires after BOTH showDiv() AND the AJAX request succeed!');
-      StorePagesController.controller.ShowUI();
-  	});
-}
+    window.onload = function () {
+      var marcomCustomFilePath = marcomUserData.$constants.marcomCustomFilePath || 'https://files.marcomcentral.app.pti.com/epsilon/static_beta/marcom_custom/';
+        function getData() {
+            return jQuery.get(marcomCustomFilePath + 'storeDetails.html').success(function (resp) {
+                jQuery('.asyncMarkup').html(resp);
+                StorePagesController.controller.init();
+            });
+        }
+        function showDiv() {
+            var dfd = jQuery.Deferred();
+            dfd.done(function () {
+            });
+            jQuery('.asyncMarkup').fadeIn(1000, dfd.resolve);
+            return dfd.promise();
+        }
+        jQuery.when(getData(), showDiv()).then(function (ajaxResult) {
+            StorePagesController.controller.ShowUI();
+            StorePagesController.controller.CountChar();
+        });
+    }
 </script>
-
-
-
-            <div class="js-content" ng-app="masterApp" ng-controller="myCtrl">
-
-              <h2>Landmark Info</h2>
-              <small class="small">Where is your store?</small>
-              <br>
-              <br>
-              <div class="row">
-                <div class="col-md-6">
-                  <div class="form-item">
-                    <label class="label-text" for="storeName">
-                      Store Name
-                    </label>
-
-
-                    <input ng-model="storeName" placeholder="Tom T's 1st Store" type="text" name="storeName" id="storeName" maxlength="80">
-                  </div>
-                  <div class="form-item">
-                    <label class="label-text" for="storeDist">
-                      Distance/Direction from Major Landmark
-                    </label>
-                    <input ng-model="storeDistMiles" type="number" name="storeDist" id="storeDistMiles" maxlength="10">
-                    <small class="small">Miles</small>
-                    <select ng-model="storeDistDirection" name="display-inline" id="storeDistDirection">
-                      <option value="North">North</option>
-                      <option value="NorthEast">North-East</option>
-                      <option value="East">East</option>
-                      <option value="SouthEast">South-East</option>
-                      <option value="South">South</option>
-                      <option value="SouthWest">South-West</option>
-                      <option value="West">West</option>
-                      <option value="NorthWest">North-West</option>
-                    </select>
-                  </div>
-                  <div class="form-item">
-                    <label class="label-text" for="storeLandmark">
-                      Major Landmark
-                    </label>
-                    <input ng-model="storeLandmark" type="text" name="storeLandmark" id="storeLandmark" maxlength="200">
-                  </div>
-                  <div class="form-item">
-                    <label class="label-text" for="storeStreet">
-                      Street
-                    </label>
-                    <input ng-model="storeStreet" type="text" name="storeStreet" id="storeStreet" maxlength="200">
-                  </div>
-                  <div class="form-item">
-                    <label class="label-text" for="storeCrossStreet">
-                      Cross Street
-                    </label>
-                    <input ng-model="storeCrossStreet" type="text" name="storeCrossStreet" id="storeCrossStreet" maxlength="200">
-                  </div>
-                  <div class="form-item">
-                    <label class="label-text" for="storeNeighboring">
-                      Neighboring Business
-                    </label>
-                    <input ng-model="storeNeighboring" value="Across from" type="radio" name="storeNeighboring" id="storeNeighboringAcrossFrom">
-
-                    <label for="storeNeighboringAcrossFrom">
-                      <small class="small">Accross From</small>
-                    </label>
-                    <br>
-                    <input selected value="Next to" type="radio" name="storeNeighboring" id="storeNeighboringNextTo">
-                    <label for="storeNeighboringNextTo">
-                      <small class="small">Next To</small>
-                    </label>
-                    <input type="text" name="storeNeighboring" id="storeNeighboringBusiness" maxlength="200">
-                  </div>
-                </div>
-                <br>
-                <div class="col-md-6">
-                  <div class="box box-grey">
-                    <h2>Preview</h2>
-      <br><br>
-                    Welcome. The
-                    {{storeName}}
-                    Valvoline Instant Oil Change is located approximately
-                    {{storeDistMiles}} miles
-                      {{storeDistDirection}} of
-                      {{storeLandmark}} near the intersection of
-                      {{storeStreet}} and
-                      {{storeCrossStreet}} across from
-                      {{storeNeighboring}}.
-                    </div>
-                  </div>
-                </div>
-
-              </div>
-
-              <script>
-                        var app = angular.module('masterApp', []);
-                  app.controller('myCtrl', function($scope) {
-                    $scope.storeName= "John";
-                  });
-              </script>
+<div class="js-content container" ng-app="masterApp" ng-controller="Controller_Landmark_Info">
+    <div ng-include="'https://files.marcomcentral.app.pti.com/epsilon/static_beta/marcom_custom/portalCustomStoreDetailsLandmarkInfo.html'"></div>
+</div>
+<script>
+    var app = angular.module('masterApp', []);
+    app.controller('Controller_Landmark_Info', function ($scope) {
+      $scope.storeName = "Tom T's 1st Store",
+      $scope.storeDistMiles = 15,
+      $scope.storeDistDirection = "East",
+      $scope.storeLandmark = "Institute of Arts",
+      $scope.storeStreet = "Country Road 1",
+      $scope.storeCrossStreet = "1st Avenue NW",
+      $scope.storeNeighboring = "Chipotle"
+    });
+</script>
 ********************** /PORTAL CUSTOM COPY ****************** -->
 
 <!-- Store Pages:
@@ -153,14 +67,1144 @@ window.onload = function () {
         <div role="presentation" class="spinner"></div>
       </div>
 
+      <div class="js-content container" ng-app="masterApp" ng-controller="myCtrl">
+        <!-- <div ng-include="'https://files.marcomcentral.app.pti.com/epsilon/static_beta/marcom_custom/portalCustomStoreDetailsLandmarkInfo.html'"></div> -->
+        <!-- Store Details partial
+              @file portalCustomStoreDetailsLandmarkInfo.html
+              Beta URL: CustomPage.aspx?uigroup_id=479602&page_id=13090&storeId=2#/sortable
 
-        <div class="js-content container" ng-app="masterApp" ng-controller="myCtrl">
-          <div ng-include="'https://files.marcomcentral.app.pti.com/epsilon/static_beta/marcom_custom/portalCustomStoreDetailsLandmarkInfo.html'"></div>
+              @description The Landmark Info section uses Angular v1.x.x to sync the inputs with a preview section.
+              @NOTE runs inside of Marcom's CatalogEditor as PORTAL CUSTOM COPY. Copy markup from storeDetails.html and paste into Store Detail's custom copy textarea.
+              @param {app} app
+              @param {angular.module} masterApp
+              @param {app.controller} Controller_Landmark_Info
+              @param {string} storeName            // example: "Tom T's 1st Store",
+              @param {string} storeDistMiles       // example: 15,
+              @param {string} storeDistDirection   // example: "East",
+              @param {string} storeLandmark        // example: "Institute of Arts",
+              @param {string} storeStreet          // example: "Country Road 1",
+              @param {string} storeCrossStreet     // example: "1st Avenue NW",
+              @param {string} storeNeighboring     // example: "Chipotle"
+          -->
+        <div class="clearfix js-content storePages storeDetails">
+          <div class="">
+            <!-- removed .container @TODO sort this out after  @author JS, demo 9_13_16 -->
+            <div class="clearfix">
+              <section class="box box-grey col-xs-12 col-md-10 col-lg-6">
+                <div class="clearfix form-item">
+                  <label class="label-text" for="basicDetails">
+                    <h2>Basic Details</h2>
+                    <small class="small">Read-Only - Edit in POS</small>
+                  </label>
+                </div>
+                <div class="clearfix form-item">
+                  <div class="company-contact">
+                    <div class="row">
+                      <div class="col-xs-3 col-sm-4">
+                        <div class="label-text">
+                          Address
+                          <small class="small display-block company-address">4020 Ricola Way Houston TX 77001</small>
+                        </div>
+                      </div>
+                      <div class="col-xs-3 col-sm-4 col-centered">
+                        <div class="label-text">
+                          Phone
+                          <small class="small display-block company-phone">972-984-1500</small>
+                        </div>
+                      </div>
+                      <div class="col-xs-3 col-sm-4 col-centered">
+                        <div class="label-text">
+                          Manager Name
+                          <small class="small display-block company-manager">Cody Smith</small>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="clearfix">
+                  <div class="content-preview-section display-inline-block col-xs-12">
+                    <div class="row">
+                      <div class="">
+                        <div class="store-hours">
+                          <table class="text-center" cellpadding="0" cellspacing="0" border="0" width="100%">
+                            <tbody>
+                              <tr class="store-hours-heading">
+                                <th colspan="7">
+                                  <div class="label-text">Hours of Operation</div>
+                                </th>
+                              </tr>
+                              <tr>
+                                <td class="monday" width="48">
+                                  <b class="store-day">Mon</b>
+                                  <span class="open-hours">
+                                    <span class="store-open">9:00 am</span>
+                                    <br>
+                                    <span class="store-close">9:00 pm</span>
+                                  </span>
+                                  <span class="store-closed none">
+                                    <strong>Closed</strong><br>
+                                  </span>
+                                </td>
+                                <td class="tuesday" width="48">
+                                  <b class="store-day">Tues</b>
+                                  <span class="open-hours">
+                                    <span class="store-open">9:00 am</span>
+                                    <br>
+                                    <span class="store-close">9:00 pm</span>
+                                  </span>
+                                  <span class="store-closed none">
+                                    <strong>Closed</strong><br>
+                                  </span>
+                                </td>
+                                <td class="wednesday" width="48">
+                                  <b class="store-day">Wed</b>
+                                  <span class="open-hours">
+                                    <span class="store-open">9:00 am</span>
+                                    <br>
+                                    <span class="store-close">9:00 pm</span>
+                                  </span>
+                                  <span class="store-closed none">
+                                    <strong>Closed</strong><br>
+                                  </span>
+                                </td>
+                                <td class="thursday" width="48">
+
+                                  <b class="store-day">Thurs</b>
+                                  <span class="open-hours">
+                                    <span class="store-open">9:00 am</span>
+                                    <br>
+                                    <span class="store-close">9:00 pm</span>
+                                  </span>
+                                  <span class="store-closed none">
+                                    <strong>Closed</strong><br>
+                                  </span>
+                                </td>
+                                <td class="friday" width="48">
+                                  <b class="store-day">Fri</b>
+                                  <span class="open-hours">
+                                    <span class="store-open">9:00 am</span>
+                                    <br>
+                                    <span class="store-close">9:00 pm</span>
+                                  </span>
+                                  <span class="store-closed none">
+                                    <strong>Closed</strong><br>
+                                  </span>
+                                </td>
+                                <td class="saturday" width="48">
+                                  <b class="store-day">Sat</b>
+                                  <span class="open-hours">
+                                    <span class="store-open">9:00 am</span>
+                                    <br>
+                                    <span class="store-close">9:00 pm</span>
+                                  </span>
+                                  <span class="store-closed none">
+                                    <strong>Closed</strong><br>
+                                  </span>
+                                </td>
+                                <td class="sunday" width="48">
+                                  <b class="store-day">Sun</b>
+                                  <span class="open-hours none">
+                                    <span class="store-open">9:00 am</span>
+                                    <br>
+                                    <span class="store-close">9:00 pm</span>
+                                  </span>
+                                  <span class="store-closed">
+                                    <strong>Closed</strong><br>
+                                  </span>
+                                </td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <br>
+              <br>
+              <section id="store_photo" class="form-section">
+                <div class="clearfix form-item">
+                  <label class="label-text" for="storeName">
+                    <h2>Store Photo</h2>
+                    <small class="small">PNG, JPG or GIF. Minimum size: 350px x 120px</small>
+                  </label>
+                  <div class="row">
+                    <div class="col-md-6">
+                      <div class="store-photo">
+                        <img id="store-photo-item" width="350px" height="auto" src="https://files.marcomcentral.app.pti.com/epsilon/previews/FPO_1.png" alt="Default picture">
+                      </div>
+
+                      <!--  MUST BE WRAPED IN UNIQUE FORM -->
+                      <form class="form-controls" id="uploader_form_1" action="">
+                        <label class="btn btn-default btn-file">
+                          <span class="btn-file-text">Upload New Photo</span>
+                          <input type="file" class="none btn-file-input">
+                        </label>
+                        <label class="btn btn-default btn-file">
+                          <span class="btn-file-text">Restore Default</span>
+                          <input type="file" class="none btn-file-input">
+                        </label>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </section>
+              <section id="communities_served" class="form-section">
+                <div class="clearfix form-item">
+                  <label class="label-text" for="storeName">
+                    <h2>Communities Served</h2>
+                    <small class="small">List of communities served, comma separated. 200 characters max.</small>
+                  </label>
+                  <div class="row">
+                    <div class="col-xs-12">
+                      <div class="row">
+                        <div class="col-md-6">
+                          <div class="characterLimit">
+                            <!-- Use the Character Limit plugin -->
+                            <textarea data-maxlength="200" class="characterLimitInput" placeholder="" rows="2" cols="80" id="communitiesServed" name="communitiesServed"></textarea>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </section>
+              <br>
+              <br>
+              <section id="landmark_info" class="form-section">
+                <div class="row">
+                  <div class="col-xs-12 col-md-6">
+                    <div class="clearfix form-item">
+                      <label class="label-text" for="storeName">
+                        <h2>Landmark Info</h2>
+                        <small class="small">
+                          Where is your store?
+                        </small>
+                      </label>
+                    </div>
+                    <div class="clearfix form-item">
+                      <label class="label-text" for="storeName">
+                        Store Name
+                      </label>
+                      <div class="row">
+                        <div class="col-xs-12">
+                          <textarea readonly data-maxlength="80" class="resize-false textDisguisedAsTextarea disabled-input width-full" placeholder="" rows="1" cols="80" name="storeName" id="storeName" name="storeName" wrap="soft"></textarea>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="clearfix form-item">
+                      <label class="label-text" for="storeDist">
+                        Distance/Direction from Major Landmark
+                      </label>
+                      <input class="col-sm-2 width-auto input-number input-number-5-digit" value="1337" type="number" name="storeDist" id="storeDistMiles" data-maxlength="10">
+                      <div class="col-sm-2" style="width: auto;padding: 8px 1em;text-align: center;display: inline-block;">
+                        <small class="small">Miles</small>
+                      </div>
+                      <select class="col-sm-4 width-auto display-inline-block" name="storeDist" id="storeDistDirection">
+                        <option value="North">North</option>
+                        <option value="North-East">North-East</option>
+                        <option value="East">East</option>
+                        <option value="South-East">South-East</option>
+                        <option value="South">South</option>
+                        <option value="South-West">South-West</option>
+                        <option value="West">West</option>
+                        <option value="North-West">North-West</option>
+                      </select>
+                    </div>
+                    <div class="clearfix form-item">
+                      <label class="label-text" for="storeLandmark">
+                        Major Landmark
+                      </label>
+                      <div class="row">
+                        <div class="col-xs-12 col-md-8">
+                          <div class="characterLimit">
+                            <input class="characterLimitInput" value="Popular Landmark" type="text" name="storeLandmark" id="storeLandmark" data-maxlength="50">
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="clearfix form-item">
+                      <label class="label-text" for="storeStreet">
+                        Street
+                      </label>
+                      <div class="row">
+                        <div class="col-sm-12">
+                          <div class="characterLimit">
+                            <input class="characterLimitInput" value="Store Street Name" type="text" name="storeStreet" id="storeStreet" data-maxlength="80">
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="clearfix form-item">
+                      <label class="label-text" for="storeCrossStreet">
+                        Cross Street
+                      </label>
+                      <div class="row">
+                        <div class="col-sm-12">
+                          <div class="characterLimit">
+                            <input class="characterLimitInput" type="text" name="storeCrossStreet" id="storeCrossStreet" data-maxlength="80">
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="clearfix form-item">
+                      <label class="label-text" for="storeNeighboring">
+                        Neighboring Business
+                      </label>
+                      <label class="radio-default" for="storeNeighboringAcrossFrom">
+                        <input selected="selected" value="across from" type="radio" name="storeNeighboring" id="storeNeighboringAcrossFrom" class="storeNeighboringType">
+                        Across From
+                      </label>
+                      <label class="radio-default" for="storeNeighboringNextTo">
+                        <input value="next to" type="radio" name="storeNeighboring" id="storeNeighboringNextTo" class="storeNeighboringType">
+                        Next To
+                      </label>
+                      <div class="row">
+                        <div class="col-xs-12 col-md-8">
+                          <div class="characterLimit">
+                            <input style="margin-top:0.4em;" class="storeNeighboring characterLimitInput" type="text" name="storeNeighboring" id="storeNeighboring" data-maxlength="50">
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-xs-12 col-sm-5 col-md-6">
+                    <div class="box box-grey">
+                      <h2 class="section-header">Preview</h2>
+
+                      <!-- Store Preview Template
+                            @type template/mustache
+                        -->
+                      <script class="none store-preview-template" type="x-tmpl-mustache">
+                        Welcome. The
+                        {{#.}}
+                          {{storeName}}
+                          Valvoline Instant Oil Change is located approximately
+                          {{storeDistMiles}}
+                          Miles
+                          {{storeDistDirection}}
+                          of
+                          {{storeLandmark}}
+                          near the intersection of
+                          {{storeStreet}}
+                          and
+                          {{storeCrossStreet}}
+                          across from
+                          {{storeNeighboringType}}.
+                        {{/.}}
+                      </script>
+                      <small class="preview-content small"></small>
+                    </div>
+                  </div>
+                </div>
+              </section>
+              <section id="manager_photo" class="form-section clearfix ">
+                <label class="label-text" for="storeName">
+                  <h2>Manager Photo</h2>
+                  <small class="small">
+                    PNG, JPG or GIF. Minimum size: 240px x 240px
+                  </small>
+                </label>
+                <div class="form-item profile-photo">
+                  <!-- To crop the image with a circle, make sure to update the width and height in the inline styles. -->
+                  <img class="img-circle" id="store-photo-item" style="width: 160px; height: 160px;" src="https://files.marcomcentral.app.pti.com/epsilon/static_beta/images/ico-profile-default.png" alt="Default picture">
+                  <br><br>
+                  <!--  MUST BE WRAPED IN UNIQUE FORM -->
+                  <form class="form-controls" id="uploader_form_2" action="">
+                    <label class="btn btn-default btn-file">
+                      <span class="btn-file-text">Upload New Photo</span>
+                      <input type="file" class="none btn-file-input">
+                    </label>
+                    <label class="btn btn-default btn-file">
+                      <span class="btn-file-text">Restore Default</span>
+                      <input type="file" class="none btn-file-input">
+                    </label>
+                  </form>
+                </div>
+              </section>
+              <section id="closed_on" class="form-section clearfix">
+                <h2 class="section-header">Closed On</h2>
+                <ul class="col-3 storePages list list-inline">
+                  <li class="list-item-default store-name">
+                    <label class="checkbox-default">
+                      <input class="checkbox-default-input" type="checkbox" name="storeClosure">New Year's Day
+                    </label>
+                  </li>
+                  <li class="list-item-default store-name">
+                    <label class="checkbox-default">
+                      <input class="checkbox-default-input" type="checkbox" name="storeClosure">Martin Luther King Day
+                    </label>
+                  </li>
+                  <li class="list-item-default store-name">
+                    <label class="checkbox-default">
+                      <input class="checkbox-default-input" type="checkbox" name="storeClosure">President's Day
+                    </label>
+                  </li>
+                  <li class="list-item-default store-name">
+                    <label class="checkbox-default">
+                      <input class="checkbox-default-input" type="checkbox" name="storeClosure">Good Friday
+                    </label>
+                  </li>
+                  <li class="list-item-default store-name">
+                    <label class="checkbox-default">
+                      <input class="checkbox-default-input" type="checkbox" name="storeClosure">Easter
+                    </label>
+                  </li>
+                  <li class="list-item-default store-name">
+                    <label class="checkbox-default">
+                      <input class="checkbox-default-input" type="checkbox" name="storeClosure">Mother's Day
+                    </label>
+                  </li>
+                  <li class="list-item-default store-name">
+                    <label class="checkbox-default">
+                      <input class="checkbox-default-input" type="checkbox" name="storeClosure">Memorial Day
+                    </label>
+                  </li>
+                  <li class="list-item-default store-name">
+                    <label class="checkbox-default">
+                      <input class="checkbox-default-input" type="checkbox" name="storeClosure">Father's Day
+                    </label>
+                  </li>
+                  <li class="list-item-default store-name">
+                    <label class="checkbox-default">
+                      <input class="checkbox-default-input" type="checkbox" name="storeClosure">Independence Day
+                    </label>
+                  </li>
+                  <li class="list-item-default store-name">
+                    <label class="checkbox-default">
+                      <input class="checkbox-default-input" type="checkbox" name="storeClosure">Labor Day
+                    </label>
+                  </li>
+                  <li class="list-item-default store-name">
+                    <label class="checkbox-default">
+                      <input class="checkbox-default-input" type="checkbox" name="storeClosure">Columbus Day
+                    </label>
+                  </li>
+                  <li class="list-item-default store-name">
+                    <label class="checkbox-default">
+                      <input class="checkbox-default-input" type="checkbox" name="storeClosure">Veterans Day
+                    </label>
+                  </li>
+                  <li class="list-item-default store-name">
+                    <label class="checkbox-default">
+                      <input class="checkbox-default-input" type="checkbox" name="storeClosure">Thanksgiving
+                    </label>
+                  </li>
+                  <li class="list-item-default store-name">
+                    <label class="checkbox-default">
+                      <input class="checkbox-default-input" type="checkbox" name="storeClosure">Christmas
+                    </label>
+                  </li>
+                </ul>
+              </section>
+              <section id="services" class="form-section clearfix">
+                <h2 class="section-header">Services</h2>
+                <ul class="col-3 storePages list list-inline">
+                  <li class="list-item-default store-name">
+                    <label class="checkbox-default">
+                      <input class="checkbox-default-input" type="checkbox" name="storeService">Full-Service Oil Change
+                    </label>
+                  </li>
+                  <li class="list-item-default store-name">
+                    <label class="checkbox-default">
+                      <input class="checkbox-default-input" type="checkbox" name="storeService">Transmission Service
+                    </label>
+                  </li>
+                  <li class="list-item-default store-name">
+                    <label class="checkbox-default">
+                      <input class="checkbox-default-input" type="checkbox" name="storeService">Radiator Service
+                    </label>
+                  </li>
+                  <li class="list-item-default store-name">
+                    <label class="checkbox-default">
+                      <input class="checkbox-default-input" type="checkbox" name="storeService">Air Filter Replacement
+                    </label>
+                  </li>
+                  <li class="list-item-default store-name">
+                    <label class="checkbox-default">
+                      <input class="checkbox-default-input" type="checkbox" name="storeService">Fuel System Cleaning Service
+                    </label>
+                  </li>
+                  <li class="list-item-default store-name">
+                    <label class="checkbox-default">
+                      <input class="checkbox-default-input" type="checkbox" name="storeService">Serpentine Belt Replacement
+                    </label>
+                  </li>
+                  <li class="list-item-default store-name">
+                    <label class="checkbox-default">
+                      <input class="checkbox-default-input" type="checkbox" name="storeService">Air Conditioning Service
+                    </label>
+                  </li>
+                  <li class="list-item-default store-name">
+                    <label class="checkbox-default">
+                      <input class="checkbox-default-input" type="checkbox" name="storeService">Tire Rotation
+                    </label>
+                  </li>
+                  <li class="list-item-default store-name">
+                    <label class="checkbox-default">
+                      <input class="checkbox-default-input" type="checkbox" name="storeService">Gearbox Fluid Replacement
+                    </label>
+                  </li>
+                  <li class="list-item-default store-name">
+                    <label class="checkbox-default">
+                      <input class="checkbox-default-input" type="checkbox" name="storeService">Headlight/Taillight Replacement
+                    </label>
+                  </li>
+                  <li class="list-item-default store-name">
+                    <label class="checkbox-default">
+                      <input class="checkbox-default-input" type="checkbox" name="storeService">Battery Replacement
+                    </label>
+                  </li>
+                  <li class="list-item-default store-name">
+                    <label class="checkbox-default">
+                      <input class="checkbox-default-input" type="checkbox" name="storeService">Windshield Wiper Replacement
+                    </label>
+                  </li>
+                </ul>
+              </section>
+              <section id="features" class="form-section clearfix ">
+                <div class="clearfix form-item">
+                  <label class="label-text" for="storeName">
+                    <h2>Features</h2>
+                    <small class="small">
+                      Maximum 6. First 2 will appear on Direct Mail. First 4 show up on Email. All 6 will appear on Website. Drag selected to re-order. Franchisee is responsible to ensure compliance with state and municipality regulations for inspection advertising. Franchisee is responsible for securing permission to use third party logos.
+                    </small>
+                  </label>
+                  <div class="row">
+                    <div class="col-md-6"></div>
+                  </div>
+                </div>
+              </section>
+              <section id="social" class="form-section clearfix">
+                <h2 class="section-header">Social</h2>
+                <div class="row">
+                  <div class="col-xs-12 col-md-6">
+                    <div class="clearfix form-item">
+                      <label class="label-text" for="socialFacebook">
+                        Facebook
+                        <small class="small display-block">
+                          <a href="https://facebook.com" target="_blank">
+                            (Facebook URL Instructions)
+                          </a>
+                        </small>
+                      </label>
+                      <input class="" value="" placeholder="" type="text" name="socialFacebook" id="socialFacebook">
+                    </div>
+                    <div class="clearfix form-item">
+                      <label class="label-text" for="socialTwitter">
+                        Twitter
+                        <small class="small display-block">
+                          <a href="https://twitter.com" target="_blank">
+                            (Twitter URL Instructions)
+                          </a>
+                        </small>
+                      </label>
+                      <input class="" value="" placeholder="" type="text" name="socialTwitter" id="socialTwitter">
+                    </div>
+                    <div class="clearfix form-item">
+                      <label class="label-text" for="socialGoogle+">
+                        Google+
+                        <small class="small display-block">
+                          <a href="https://google.com" target="_blank">
+                            (Google+ URL Instructions)
+                          </a>
+                        </small>
+                      </label>
+                      <input class="" value="" placeholder="" type="text" name="socialGoogle+" id="socialGoogle+">
+                    </div>
+                    <div class="clearfix form-item">
+                      <label class="label-text" for="socialGoogle+myBusiness">
+                        Google+ My Business
+                        <small class="small display-block">
+                          <a href="https://google.com" target="_blank">
+                            (Google+ My Business URL Instructions)
+                          </a>
+                        </small>
+                      </label>
+                      <input class="" value="" placeholder="" type="text" name="socialGoogle+myBusiness" id="socialGoogle+myBusiness">
+                    </div>
+                  </div>
+                </div>
+              </section>
+              <section id="careers" class="none clearfix form-section">
+                <div class="row">
+                  <div class="col-xs-12">
+                    <h2 class="section-header">Careers</h2>
+                    <div class="container">
+                      <div class="clearfix form-item">
+                        <label class="label-text" for="Templates">
+                          Templates
+                          <small class="small display-block"></small>
+                        </label>
+                        <input class="" value="" placeholder="Create New Job" type="text" name="Templates" id="Templates">
+                      </div>
+                      <div class="clearfix form-item">
+                        <label class="label-text" for="JobTitle">
+                          Job Title
+                          <small class="small display-block">
+                            140 character max.
+                          </small>
+                        </label>
+                        <div class="characterLimit">
+                          <!-- Use the Character Limit plugin -->
+                          <textarea data-maxlength="140" class="characterLimitInput resize-false" placeholder="" rows="1" cols="80" id="JobTitle" name="JobTitle"></textarea>
+                        </div>
+                      </div>
+                      <div class="clearfix form-item">
+                        <label class="label-text" for="JobDescription">
+                          Job Description
+                        </label>
+                        <div class="characterLimit">
+                          <!-- Use the Character Limit plugin -->
+                          <textarea data-maxlength="1000" class="characterLimitInput" placeholder="" rows="6" cols="80" id="JobDescription" name="JobDescription"></textarea>
+                        </div>
+                      </div>
+                      <div class="clearfix form-item">
+                        <div class="row">
+                          <div class="col-sm-6">
+                            <div class="btn-group btn-group-justified">
+                              <div class="btn-group">
+                                <button type="button" class="btn btn-sm btn-primary">
+                                  URL
+                                </button>
+                              </div>
+                              <div class="btn-group">
+                                <button type="button" class="btn btn-sm btn-primary">
+                                  Email
+                                </button>
+                              </div>
+                              <div class="btn-group">
+                                <button type="button" class="btn btn-sm btn-default">
+                                  Store
+                                </button>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <br>
+                        <div class="clearfix form-item">
+                          <div class="row">
+                            <div class="col-xs-12 col-md-8">
+                              <input readonly class="input-disabled" value="" placeholder="Please stop by the store and pick up an application." type="text" name="Templates" id="Templates">
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="form-controls">
+                        <div class="clearfix form-item">
+                          <button class="btn btn-default display-block" name="removeCareer">
+                            Remove Career
+                          </button>
+                          <button class="btn btn-default display-block" name="addCareer">
+                            Add Career
+                          </button>
+                          <br>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </section>
+
+              <section id="careers" class="clearfix form-section">
+                <div class="row">
+                  <div class="col-xs-12">
+                    <h2 class="section-header">Careers</h2>
+
+                    <div class="display-inline-block storeCareersList">
+                      <section class="resp-tab-content-section">
+                        <!--  This toggled the hidden items.
+                                Used 1st by StorePagesController.js
+                                - John Smith
+                              -->
+                        <small>
+                          <a href="#sortable" role="button" class="display-inline storeCareersShowAll" aria-hidden="false">
+                            Show All
+                          </small>
+                        </a>
+                        <table id="storeCareerTable" class="full-width">
+                          <tbody id="sortable-false" class="full-width">
+                            <tr class="table-banner">
+                              <th class="table-banner-item text-left">
+                                Title
+                              </th>
+                              <th class="table-banner-item text-left">
+                                URL/Email/Store
+                              </th>
+                              <th class="table-banner-item">
+                                Archive/Unarchive
+                              </th>
+                              <th class="table-banner-item">
+                                Edit
+                              </th>
+                              <th class="table-banner-item">
+                                Delete
+                              </th>
+                            </tr>
+                            <tr class="error none">
+                              <td colspan="7" class="Error list-item">Please add more career items.</td>
+                            </tr>
+                            <tr draggable="false" class="filterable careerItem text-center storeCareersShowAllItem" data-filter-storeid="1" data-storeid="1" data-enrolled="true">
+                              <td class="list-item text-left">
+                                <small>
+                                  Customer Service Advisor
+                                </small>
+                              </td>
+                              <td class="list-item text-left">
+                                <small>
+                                  <a href="http://www.careerbuilder.com/vioc" target="_blank">http://www.careerbuilder.com/vioc</a>
+                                </small>
+                              </td>
+                              <td class="list-item">
+                                <div class="checkbox-area">
+                                  <div class="customCheckbox">
+                                    <input type="checkbox" value="11">
+                                  </div>
+                                </div>
+                              </td>
+                              <td class="list-item">
+                                <small>
+                                  <span alt="Edit Offer Details" class="icon icon-edit-bg"></span>
+                                </small>
+                              </td>
+                              <td class="deleteNewsEventPromotion list-item">
+                                <button data-storeid="1938" data-offerid="1" alt="Delete Offer" class="icon icon-delete-bg"></button>
+                              </td>
+                            </tr>
+                            <tr draggable="false" class="filterable careerItem text-center careerItemActive" data-filter-storeid="2" data-storeid="2" data-enrolled="true">
+                              <td class="list-item text-left">
+                                <small>
+                                  Assistant Manager
+                                </small>
+                              </td>
+                              <td class="list-item text-left">
+                                <small>
+                                  <a href="https://jobs.vioc.com/job/brooklyn-park/assistant-manager/1664/88182" target="_blank">URL</a>
+                                </small>
+                              </td>
+                              <td class="list-item">
+                                <div class="checkbox-area">
+                                  <div class="customCheckbox">
+                                    <input type="checkbox" value="11">
+                                  </div>
+                                </div>
+                              </td>
+                              <td class="list-item">
+                                <small>
+                                  <span alt="Edit Offer Details" class="icon icon-edit-bg"></span>
+                                </small>
+                              </td>
+                              <td class="deleteNewsEventPromotion list-item">
+                                <button data-offerid="2" alt="Delete Offer" class="icon icon-delete-bg"></button>
+                              </td>
+                            </tr>
+                            <tr draggable="false" data-filter-storeid="3" data-storeid="3" data-enrolled="false" id="past-date-1" class="careerItemShowAllItem collapse filterable careerItem text-center">
+                              <span>
+                                <td class="list-item text-lft">
+                                  <small>
+                                    #3 Title - Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facere tempore ab quasi.
+                                  </small>
+                                </td>
+                                <td class="list-item text-left">
+                                  <small>
+                                    #3 Title - Consectetur adipisicing elit. Facere tempore ab quasi, Lorem ipsum. Lorem ipsum dolor sit.
+                                  </small>
+                                </td>
+                              </span>
+                              <td class="list-item">
+                                <small>2018-12-29</small>
+                              </td>
+                              <td class="list-item">
+                                <a class="editNewsEventPromotion" title="Edit Offer Details" role="button" data-toggle="collapse" href="#collapseNewsEventForms" aria-expanded="false" aria-controls="collapseNewsEventForms">
+                                  <span alt="Edit Offer Details" class="icon icon-edit-bg"></span>
+                                </a>
+                              </td>
+                              <td class="deleteOffer list-item">
+                                <button data-offerid="3" alt="Delete Offer" class="icon icon-delete-bg"></button>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </section>
+                    </div>
+                    <br>
+                    <div class="form-controls">
+                      <div class="clearfix form-item">
+                        <button class="btn btn-default display-block" name="addCareer" type="button" data-toggle="collapse" data-target="#collapseCareersForms" aria-expanded="false" aria-controls="collapseCareersForms">
+                          Add Career
+                        </button>
+                      </div>
+                    </div>
+
+                    <div class="storeCareersForm accordion-body collapseCareersForms collapse" id="collapseCareersForms" style="height: 0px; display: none;">
+                      <div class="row">
+                        <div class="col-xs-12 col-lg-6">
+                          <div class="clearfix form-item">
+                            <label class="label-text" for="Templates">
+                              Templates
+                              <small class="small display-block"></small>
+                            </label>
+                            <!-- <input class="" value="" placeholder="Create New Job" type="text" name="Templates" id="Templates"> -->
+                            <select name="Templates" id="Templates">
+                              <option selected="selected">
+                                Create New Job
+                              </option>
+                              <option>
+                                Template1
+                              </option>
+                              <option>
+                                Template2
+                              </option>
+                              <option>
+                                Template3
+                              </option>
+                              <option>
+                                Template4
+                              </option>
+                              <option>
+                                Template5
+                              </option>
+                            </select>
+                          </div>
+                          <div class="clearfix form-item">
+                            <label class="label-text" for="JobTitle">
+                              Job Title
+                              <small class="small display-block">
+                                140 character max.
+                              </small>
+                            </label>
+                            <div class="characterLimit">
+                              <!-- Use the Character Limit plugin -->
+                              <textarea data-maxlength="140" class="characterLimitInput resize-false" placeholder="" rows="1" cols="80" id="JobTitle" name="JobTitle"></textarea>
+                            </div>
+                          </div>
+                          <div class="clearfix form-item">
+                            <label class="label-text" for="JobDescription">
+                              Job Description
+                            </label>
+                            <div class="characterLimit">
+                              <!-- Use the Character Limit plugin -->
+                              <textarea data-maxlength="1000" class="characterLimitInput" placeholder="" rows="6" cols="80" id="JobDescription" name="JobDescription"></textarea>
+                            </div>
+                          </div>
+                          <div class="clearfix form-item">
+                            <div class="row">
+                              <div class="col-sm-6">
+                                <div class="btn-group btn-group-justified">
+                                  <div class="btn-group">
+                                    <button type="button" class="btn btn-sm btn-primary">
+                                      URL
+                                    </button>
+                                  </div>
+                                  <div class="btn-group">
+                                    <button type="button" class="btn btn-sm btn-primary">
+                                      Email
+                                    </button>
+                                  </div>
+                                  <div class="btn-group">
+                                    <button type="button" class="btn btn-sm btn-default">
+                                      Store
+                                    </button>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <br>
+                            <div class="clearfix form-item">
+                              <div class="row">
+                                <div class="col-xs-12 col-md-8">
+                                  <input class="" value="" placeholder="Please stop by the store and pick up an application." type="text" name="" id="">
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="form-controls">
+                            <div class="clearfix form-item">
+                              <button class="btn btn-default display-block" name="removeNewsEvent" type="button" data-toggle="collapse" data-target="#collapseNewsEventForms" aria-expanded="false" aria-controls="collapseNewsEventForms">
+                                Remove Career
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <!-- /box-grey -->
+
+                  </div>
+
+                </div>
+              </section>
+
+              <section id="newsEventPromotionSection" class="clearfix form-section">
+                <div class="row">
+                  <div class="col-xs-12">
+                    <h2 class="section-header">News/Events/Promotions</h2>
+
+                    <div class="display-inline-block storeNewsEventsPromotionsList">
+                      <section class="resp-tab-content-section">
+                        <!--  This toggled the hidden items.
+                                Used 1st by StorePagesController.js
+                                - John Smith
+                              -->
+                        <small>
+                          <a href="#sortable" role="button" class="display-inline storeNewsEventsPromotionsShowAll" aria-hidden="false">
+                            Show All
+                          </a>
+                        </small>
+                        <small>
+                          <a href="#sortable" role="button" class="display-inline storeNewsEventsPromotionsShowActive" aria-hidden="false">
+                            - Show scheduled/active only
+                          </a>
+                        </small>
+                        <table class="full-width">
+                          <tbody id="sortable-false" class="full-width">
+                            <tr class="table-banner">
+                              <th class="table-banner-item">
+                                Type<!-- News/Event/Promotion --></th>
+                              <th class="table-banner-item text-left">
+                                Title
+                                <th class="table-banner-item">
+                                  Post On
+                                </th>
+                                <th class="table-banner-item nowrap">
+                                  Remove On
+                                </th>
+                                <th class="table-banner-item">
+                                  Edit
+                                </th>
+                                <th class="table-banner-item">
+                                  Delete
+                                </th>
+                              </tr>
+                              <tr class="error none">
+                                <td colspan="7" class="Error list-item">Please add more offers.</td>
+                              </tr>
+                              <tr draggable="true" class="filterable newsEventPromotionItem text-center storeNewsEventsPromotionsShowAllItem storeNewsEventsPromotionsActive" data-filter-storeid="1" data-storeid="1" data-enrolled="true">
+                                <td class="list-item text-center">
+                                  <small>News</small>
+                                </td>
+                                <td class="list-item text-left">
+                                  <small>
+                                    adipisicing elit. Facere tempore ab quasi...
+                                  </small>
+                                </td>
+                                <td class="list-item">
+                                  <small>2016-08-29</small>
+                                </td>
+                                <td class="list-item">
+                                  <small>2018-12-29</small>
+                                </td>
+                                <td class="list-item">
+                                  <a class="editNewsEventPromotion" title="Edit Offer Details" role="button" data-toggle="collapse" href="#collapseNewsEventForms" aria-expanded="false" aria-controls="collapseNewsEventForms">
+                                    <span alt="Edit Offer Details" class="icon icon-edit-bg"></span>
+                                  </a>
+                                </td>
+                                <td class="deleteNewsEventPromotion list-item">
+                                  <button data-storeid="1938" data-offerid="1" alt="Delete Offer" class="icon icon-delete-bg"></button>
+                                </td>
+                              </tr>
+                              <tr draggable="true" class="filterable newsEventPromotionItem text-center storeNewsEventsPromotionsActive" data-filter-storeid="2" data-storeid="2" data-enrolled="true">
+                                <td class="list-item text-center">
+                                  <small>Event</small>
+                                </td>
+                                <td class="list-item text-left">
+                                  <small>
+                                    ipsum dosit amet, consecteturm ipsum....
+                                  </small>
+                                </td>
+                                <td class="list-item">
+                                  <small>2000-01-09</small>
+                                </td>
+                                <td class="list-item">
+                                  <small>3030-01-01</small>
+                                </td>
+                                <td class="list-item">
+                                  <a class="editNewsEventPromotion" title="Edit Offer Details" role="button" data-toggle="collapse" href="#collapseNewsEventForms" aria-expanded="false" aria-controls="collapseNewsEventForms">
+                                    <span alt="Edit Offer Details" class="icon icon-edit-bg"></span>
+                                  </a>
+                                </td>
+                                <td class="deleteNewsEventPromotion list-item">
+                                  <button data-offerid="2" alt="Delete Offer" class="icon icon-delete-bg"></button>
+                                </td>
+                              </tr>
+
+                              <tr draggable="true" data-filter-storeid="3" data-storeid="3" data-enrolled="false" id="past-date-1" class="storeNewsEventsPromotionsShowAllItem collapse filterable newsEventPromotionItem text-center">
+                                <span>
+                                  <td class="list-item text-center">
+                                    <small>Promotion</small>
+                                  </td>
+                                  <td class="list-item text-left">
+                                    <small>
+                                      Facere tempore ab quasi, Lorem ipsum. Lorem ipsum dolor sit...
+                                    </small>
+                                  </td>
+                                </span>
+
+                                <td class="list-item">
+                                  <small>2016-08-29</small>
+                                </td>
+                                <td class="list-item">
+                                  <small>2018-12-29</small>
+                                </td>
+                                <td class="list-item">
+                                  <a class="editNewsEventPromotion" title="Edit Offer Details" role="button" data-toggle="collapse" href="#collapseNewsEventForms" aria-expanded="false" aria-controls="collapseNewsEventForms">
+                                    <span alt="Edit Offer Details" class="icon icon-edit-bg"></span>
+                                  </a>
+                                </td>
+                                <td class="deleteOffer list-item">
+                                  <button data-offerid="3" alt="Delete Offer" class="icon icon-delete-bg"></button>
+                                </td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </section>
+                      </div>
+                      <br>
+
+                      <div class="form-controls">
+                        <div class="clearfix form-item">
+                          <button class="btn btn-default display-block" name="addNewsEventPromotion" type="button" data-toggle="collapse" data-target="#collapseNewsEventForms" aria-expanded="false" aria-controls="collapseNewsEventForms">
+                            Add News/Event/Promotion
+                          </button>
+                        </div>
+                      </div>
+
+                      <div class="newsEventsPromotionsForm accordion-body collapseNewsEventForms collapse row" id="collapseNewsEventForms" style="height: 0px; display: none;">
+                        <div class="col-xs-12 col-md-8 col-lg-6">
+                          <div class="clearfix form-item">
+                            <div class="row">
+                              <div class="col-sm-6">
+                                <div class="btn-group btn-group-justified">
+                                  <div class="btn-group">
+                                    <button type="button" class="btn btn-sm btn-primary">
+                                      News
+                                    </button>
+                                  </div>
+                                  <div class="btn-group">
+                                    <button type="button" class="btn btn-sm btn-default">
+                                      Events
+                                    </button>
+                                  </div>
+                                  <div class="btn-group">
+                                    <button type="button" class="btn btn-sm btn-primary">
+                                      Promotions
+                                    </button>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="clearfix form-item">
+                            <label class="label-text" for="newsEventTitle">
+                              Title
+                            </label>
+
+                            <div class="characterLimit">
+                              <div class="">
+                                <div class="">
+                                  <!-- Use the Character Limit plugin -->
+                                  <textarea data-maxlength="240" class="characterLimitInput resize-false" placeholder="" rows="1" cols="50" id="newsEventTitle" name="newsEventTitle"></textarea>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="clearfix form-item">
+                            <label class="label-text" for="newsEventText">
+                              Text
+                            </label>
+                            <div class="">
+                              <div class="">
+                                <div class="characterLimit">
+                                  <!-- Use the Character Limit plugin -->
+                                  <textarea data-maxlength="1000" class="characterLimitInput" placeholder="" rows="6" cols="40" id="newsEventText" name="newsEventText"></textarea>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="clearfix form-item">
+                            <label class="label-text" for="newsEventPostDate">
+                              Post On
+                            </label>
+                            <div class="row">
+                              <div class="col-xs-12 col-md-4">
+                                <input class="resize-false" value="" placeholder="" type="date" name="newsEventPostDate" id="newsEventPostDate">
+                              </div>
+                            </div>
+                          </div>
+                          <div class="clearfix form-item">
+                            <label class="label-text" for="newsEventRemoveDate">
+                              Remove On
+                            </label>
+                            <div class="row">
+                              <div class="col-xs-12 col-md-4">
+                                <input class="resize-false" value="" placeholder="" type="date" name="newsEventRemoveDate" id="newsEventRemoveDate">
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="clearfix form-item">
+
+                            <label class="label-text" for="newsEventPromotionImage">
+                              Image -
+                              <em>Optional</em>
+                            </label>
+                            <!-- To crop the image with a circle, make sure to update the width and height in the inline styles. -->
+                            <img class="" id="newsEventPromotionImage" src="https://placeholdit.imgix.net/~text?txtsize=33&txt=350%C3%97150&w=350&h=150" alt="Default picture">
+
+                            <!--  MUST BE WRAPED IN UNIQUE FORM -->
+                            <form class="form-controls" id="uploader_form_4" action="">
+                              <label class="btn btn-sm btn-default btn-file display-inline-block">
+                                <span class="btn-file-text">Upload New Photo</span>
+                                <input type="file" class="none btn-file-input">
+                              </label>
+                              <label class="none btn btn-sm btn-default btn-file display-inline-block">
+                                <span class="btn-file-text">Restore Default</span>
+                                <input type="file" class="none btn-file-input">
+                              </label>
+                            </form>
+                          </div>
+                          <div class="clearfix form-item">
+                            <div class="row">
+                              <div class="col-md-8">
+                                <label class="label-text" for="Templates">
+                                  More Information Link -
+                                  <em>Optional</em>
+                                </label>
+                                <input class="" value="" placeholder="http://" type="text" name="moreInfoLink" id="moreInfoLink">
+                                <br>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="form-controls">
+                            <div class="clearfix form-item">
+                              <button class="btn btn-default display-block" name="removeNewsEvent" type="button" data-toggle="collapse" data-target="#collapseNewsEventForms" aria-expanded="false" aria-controls="collapseNewsEventForms">
+                                Remove News/Event/Promotion
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+                        <!--  /#newsEventsPromotionsForm -->
+                      </div>
+                      <!-- /box-grey -->
+
+                    </div>
+
+                  </div>
+                </section>
+
+              </div>
+            </div>
+
+          </div>
+
         </div>
 
+        <!-- /.js-content -->
       </div>
-
-      <!-- /.js-content -->
     </div>
   </div>
-</div>

@@ -1,15 +1,33 @@
+<!-- Store Details partial
+    @file portalCustomStoreDetailsLandmarkInfo.html
+    Beta URL: CustomPage.aspx?uigroup_id=479602&page_id=13090&storeId=2#/sortable
+
+    @description The Landmark Info section uses Angular v1.x.x to sync the inputs with a preview section.
+    @NOTE runs inside of Marcom's CatalogEditor as PORTAL CUSTOM COPY. Copy markup from storeDetails.html and paste into Store Detail's custom copy textarea.
+    @param {app} app
+    @param {angular.module} masterApp
+    @param {app.controller} Controller_Landmark_Info
+    @param {string} storeName            // example: "Tom T's 1st Store",
+    @param {string} storeDistMiles       // example: 15,
+    @param {string} storeDistDirection   // example: "East",
+    @param {string} storeLandmark        // example: "Institute of Arts",
+    @param {string} storeStreet          // example: "Country Road 1",
+    @param {string} storeCrossStreet     // example: "1st Avenue NW",
+    @param {string} storeNeighboring     // example: "Chipotle"
+-->
 <div class="clearfix js-content storePages storeDetails">
-  <div class="container">
-    <div class="row">
-      <section class="box box-grey container">
-        <div class="col-sm-8 clearfix form-item">
+  <div class="">
+    <!-- removed .container @TODO sort this out after  @author JS, demo 9_13_16 -->
+    <div class="clearfix">
+      <section class="box box-grey col-xs-12 col-md-10 col-lg-6">
+        <div class="clearfix form-item">
           <label class="label-text" for="basicDetails">
             <h2>Basic Details</h2>
             <small class="small">Read-Only - Edit in POS</small>
           </label>
         </div>
         <div class="clearfix form-item">
-          <div class="company-contact col-sm-8 display-inline-block">
+          <div class="company-contact">
             <div class="row">
               <div class="col-xs-3 col-sm-4">
                 <div class="label-text">
@@ -33,9 +51,9 @@
           </div>
         </div>
         <div class="clearfix">
-          <div class="content-preview-section container row display-inline-block">
+          <div class="content-preview-section display-inline-block col-xs-12">
             <div class="row">
-              <div class="col-sm-9 col-md-8">
+              <div class="">
                 <div class="store-hours">
                   <table class="text-center" cellpadding="0" cellspacing="0" border="0" width="100%">
                     <tbody>
@@ -145,7 +163,6 @@
               <div class="store-photo">
                 <img id="store-photo-item" width="350px" height="auto" src="https://files.marcomcentral.app.pti.com/epsilon/previews/FPO_1.png" alt="Default picture">
               </div>
-              <br>
 
               <!--  MUST BE WRAPED IN UNIQUE FORM -->
               <form class="form-controls" id="uploader_form_1" action="">
@@ -166,15 +183,15 @@
         <div class="clearfix form-item">
           <label class="label-text" for="storeName">
             <h2>Communities Served</h2>
-            <small class="small">List of communities served, comma seperated. 200 characters max.</small>
+            <small class="small">List of communities served, comma separated. 200 characters max.</small>
           </label>
           <div class="row">
-            <div class="col-xs-12 col-md-11">
+            <div class="col-xs-12">
               <div class="row">
                 <div class="col-md-6">
                   <div class="characterLimit">
                     <!-- Use the Character Limit plugin -->
-                    <textarea maxlength="200" class="characterLimitInput" placeholder="" rows="2" cols="80" id="communitiesServed" name="communitiesServed"></textarea>
+                    <textarea data-maxlength="200" class="characterLimitInput" placeholder="" rows="2" cols="80" id="communitiesServed" name="communitiesServed"></textarea>
                   </div>
                 </div>
               </div>
@@ -186,7 +203,7 @@
       <br>
       <section id="landmark_info" class="form-section">
         <div class="row">
-          <div class="col-xs-12 col-sm-7 col-md-6">
+          <div class="col-xs-12 col-md-6">
             <div class="clearfix form-item">
               <label class="label-text" for="storeName">
                 <h2>Landmark Info</h2>
@@ -200,8 +217,8 @@
                 Store Name
               </label>
               <div class="row">
-                <div class="col-xs-12 col-sm-11">
-                  <textarea readonly ng-model="storeName" maxlength="80" class="textDisguisedAsTextarea disabled-input width-full" placeholder="" rows="1" cols="80" name="storeName" id="storeName" name="storeName" wrap="soft"></textarea>
+                <div class="col-xs-12">
+                  <textarea readonly ng-model="storeName" data-maxlength="80" class="resize-false textDisguisedAsTextarea disabled-input width-full" placeholder="" rows="1" cols="80" name="storeName" id="storeName" name="storeName" wrap="soft"></textarea>
                 </div>
               </div>
             </div>
@@ -209,7 +226,7 @@
               <label class="label-text" for="storeDist">
                 Distance/Direction from Major Landmark
               </label>
-              <input ng-model="storeDistMiles" class="col-sm-2 width-auto input-number input-number-5-digit" value="1337" type="number" name="storeDist" id="storeDistMiles" maxlength="10">
+              <input ng-model="storeDistMiles" class="col-sm-2 width-auto input-number input-number-5-digit" value="1337" type="number" name="storeDist" id="storeDistMiles" data-maxlength="10">
               <div class="col-sm-2" style="width: auto;padding: 8px 1em;text-align: center;display: inline-block;">
                 <small class="small">Miles</small>
               </div>
@@ -229,9 +246,9 @@
                 Major Landmark
               </label>
               <div class="row">
-                <div class="col-sm-6">
+                <div class="col-xs-12 col-md-8">
                   <div class="characterLimit">
-                    <input ng-model="storeLandmark" class="characterLimitInput" value="Popular Landmark" type="text" name="storeLandmark" id="storeLandmark" maxlength="50">
+                    <input ng-model="storeLandmark" class="characterLimitInput" value="Popular Landmark" type="text" name="storeLandmark" id="storeLandmark" data-maxlength="50">
                   </div>
                 </div>
               </div>
@@ -241,9 +258,9 @@
                 Street
               </label>
               <div class="row">
-                <div class="col-sm-11">
+                <div class="col-sm-12">
                   <div class="characterLimit">
-                    <input class="characterLimitInput" value="Store Street Name" ng-model="storeStreet" type="text" name="storeStreet" id="storeStreet" maxlength="80">
+                    <input class="characterLimitInput" value="Store Street Name" ng-model="storeStreet" type="text" name="storeStreet" id="storeStreet" data-maxlength="80">
                   </div>
                 </div>
               </div>
@@ -253,9 +270,9 @@
                 Cross Street
               </label>
               <div class="row">
-                <div class="col-sm-11">
+                <div class="col-sm-12">
                   <div class="characterLimit">
-                    <input class="characterLimitInput" ng-model="storeCrossStreet" type="text" name="storeCrossStreet" id="storeCrossStreet" maxlength="80">
+                    <input class="characterLimitInput" ng-model="storeCrossStreet" type="text" name="storeCrossStreet" id="storeCrossStreet" data-maxlength="80">
                   </div>
                 </div>
               </div>
@@ -273,9 +290,9 @@
                 Next To
               </label>
               <div class="row">
-                <div class="col-sm-6">
+                <div class="col-xs-12 col-md-8">
                   <div class="characterLimit">
-                    <input style="margin-top:0.4em;" class="characterLimitInput" ng-model="storeNeighboring" type="text" name="storeNeighboring" id="storeNeighboring" maxlength="50">
+                    <input style="margin-top:0.4em;" class="characterLimitInput" ng-model="storeNeighboring" type="text" name="storeNeighboring" id="storeNeighboring" data-maxlength="50">
                   </div>
                 </div>
               </div>
@@ -300,7 +317,7 @@
                 and
                 {{storeCrossStreet}}
                 across from
-                {{storeNeighboring}}.
+                {{storeNeighboringType}}.
               </small>
 
             </div>
@@ -476,7 +493,7 @@
           <label class="label-text" for="storeName">
             <h2>Features</h2>
             <small class="small">
-              Maximum 6. First 2 will apprear on Direct Mail. First 4 show up on Email. All 6 will appear on Website. Drag selected to re-order. Franchisee is responsible to ensure compliance with state and municipality regulations for inspection advertising. Franchisee is responsible for securing permission to use third party logos.
+              Maximum 6. First 2 will appear on Direct Mail. First 4 show up on Email. All 6 will appear on Website. Drag selected to re-order. Franchisee is responsible to ensure compliance with state and municipality regulations for inspection advertising. Franchisee is responsible for securing permission to use third party logos.
             </small>
           </label>
           <div class="row">
@@ -487,7 +504,7 @@
       <section id="social" class="form-section clearfix">
         <h2 class="section-header">Social</h2>
         <div class="row">
-          <div class="col-xs-12 col-lg-8">
+          <div class="col-xs-12 col-md-6">
             <div class="clearfix form-item">
               <label class="label-text" for="socialFacebook">
                 Facebook
@@ -535,17 +552,15 @@
           </div>
         </div>
       </section>
-      <section id="careers" class="clearfix form-section">
+      <section id="careers" class="none clearfix form-section">
         <div class="row">
           <div class="col-xs-12">
             <h2 class="section-header">Careers</h2>
-            <div class="box box-grey container">
+            <div class="container">
               <div class="clearfix form-item">
                 <label class="label-text" for="Templates">
                   Templates
-                  <small class="small display-block">
-                    List of communities served, comma seperated. 200 characters max.
-                  </small>
+                  <small class="small display-block"></small>
                 </label>
                 <input class="" value="" placeholder="Create New Job" type="text" name="Templates" id="Templates">
               </div>
@@ -553,12 +568,12 @@
                 <label class="label-text" for="JobTitle">
                   Job Title
                   <small class="small display-block">
-                    500 character max w/spaces
+                    140 character max.
                   </small>
                 </label>
                 <div class="characterLimit">
                   <!-- Use the Character Limit plugin -->
-                  <textarea maxlength="500" class="characterLimitInput resize-false" placeholder="" rows="1" cols="80" id="JobTitle" name="JobTitle"></textarea>
+                  <textarea data-maxlength="140" class="characterLimitInput resize-false" placeholder="" rows="1" cols="80" id="JobTitle" name="JobTitle"></textarea>
                 </div>
               </div>
               <div class="clearfix form-item">
@@ -567,7 +582,7 @@
                 </label>
                 <div class="characterLimit">
                   <!-- Use the Character Limit plugin -->
-                  <textarea maxlength="1000" class="characterLimitInput" placeholder="" rows="6" cols="80" id="JobDescription" name="JobDescription"></textarea>
+                  <textarea data-maxlength="1000" class="characterLimitInput" placeholder="" rows="6" cols="80" id="JobDescription" name="JobDescription"></textarea>
                 </div>
               </div>
               <div class="clearfix form-item">
@@ -595,7 +610,7 @@
                 <br>
                 <div class="clearfix form-item">
                   <div class="row">
-                    <div class="col-md-8">
+                    <div class="col-xs-12 col-md-8">
                       <input readonly class="input-disabled" value="" placeholder="Please stop by the store and pick up an application." type="text" name="Templates" id="Templates">
                     </div>
                   </div>
@@ -609,6 +624,7 @@
                   <button class="btn btn-default display-block" name="addCareer">
                     Add Career
                   </button>
+                  <br>
                 </div>
               </div>
             </div>
@@ -616,30 +632,265 @@
         </div>
       </section>
 
+      <section id="careers" class="clearfix form-section">
+        <div class="row">
+          <div class="col-xs-12">
+            <h2 class="section-header">Careers</h2>
+
+            <div class="display-inline-block storeCareersList">
+              <section class="resp-tab-content-section">
+                <!--  This toggled the hidden items.
+                      Used 1st by StorePagesController.js
+                      - John Smith
+                    -->
+                <small>
+                  <a href="#sortable" role="button" class="display-inline storeCareersShowAll" aria-hidden="false">
+                    Show All
+                  </small>
+                </a>
+                <table id="storeCareerTable" class="full-width">
+                  <tbody id="sortable-false" class="full-width">
+                    <tr class="table-banner">
+                      <th class="table-banner-item text-left">
+                        Title
+                      </th>
+                      <th class="table-banner-item text-left">
+                        URL/Email/Store
+                      </th>
+                      <th class="table-banner-item">
+                        Archive/Unarchive
+                      </th>
+                      <th class="table-banner-item">
+                        Edit
+                      </th>
+                      <th class="table-banner-item">
+                        Delete
+                      </th>
+                    </tr>
+                    <tr class="error none">
+                      <td colspan="7" class="Error list-item">Please add more career items.</td>
+                    </tr>
+                    <tr draggable="false" class="filterable careerItem text-center storeCareersShowAllItem" data-filter-storeid="1" data-storeid="1" data-enrolled="true">
+                      <td class="list-item text-left">
+                        <small>
+                          Customer Service Advisor
+                        </small>
+                      </td>
+                      <td class="list-item text-left">
+                        <small>
+                          <a href="http://www.careerbuilder.com/vioc" target="_blank">http://www.careerbuilder.com/vioc</a>
+                        </small>
+                      </td>
+                      <td class="list-item">
+                        <small>
+                          <span alt="Edit Offer Details" class="icon icon-edit-bg"></span>
+                        </small>
+                      </td>
+
+                      <td class="list-item">
+                        <a class="editNewsEventPromotion" title="Edit Offer Details" role="button" data-toggle="collapse" href="#collapseNewsEventForms" aria-expanded="false" aria-controls="collapseNewsEventForms">
+                          <span alt="Edit Offer Details" class="icon icon-edit-bg"></span>
+                        </a>
+                      </td>
+                      <td class="deleteNewsEventPromotion list-item">
+                        <button data-storeid="1938" data-offerid="1" alt="Delete Offer" class="icon icon-delete-bg"></button>
+                      </td>
+                    </tr>
+                    <tr draggable="false" class="filterable careerItem text-center careerItemActive" data-filter-storeid="2" data-storeid="2" data-enrolled="true">
+                      <td class="list-item text-left">
+                        <small>
+                          Assistant Manager
+                        </small>
+                      </td>
+                      <td class="list-item text-left">
+                        <small>
+                          <a href="https://jobs.vioc.com/job/brooklyn-park/assistant-manager/1664/88182" target="_blank">URL</a>
+                        </small>
+                      </td>
+                      <td class="list-item">
+                        <small>
+                          <span alt="Edit Offer Details" class="icon icon-edit-bg"></span>
+                        </small>
+                      </td>
+                      <td class="list-item">
+                        <a class="editNewsEventPromotion" title="Edit Offer Details" role="button" data-toggle="collapse" href="#collapseNewsEventForms" aria-expanded="false" aria-controls="collapseNewsEventForms">
+                          <span alt="Edit Offer Details" class="icon icon-edit-bg"></span>
+                        </a>
+                      </td>
+                      <td class="deleteNewsEventPromotion list-item">
+                        <button data-offerid="2" alt="Delete Offer" class="icon icon-delete-bg"></button>
+                      </td>
+                    </tr>
+                    <tr draggable="false" data-filter-storeid="3" data-storeid="3" data-enrolled="false" id="past-date-1" class="careerItemShowAllItem collapse filterable careerItem text-center">
+                      <span>
+                        <td class="list-item text-lft">
+                          <small>
+                            #3 Title - Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facere tempore ab quasi.
+                          </small>
+                        </td>
+                        <td class="list-item text-left">
+                          <small>
+                            #3 Title - Consectetur adipisicing elit. Facere tempore ab quasi, Lorem ipsum. Lorem ipsum dolor sit.
+                          </small>
+                        </td>
+                      </span>
+                      <td class="list-item">
+                        <small>2018-12-29</small>
+                      </td>
+                      <td class="list-item">
+                        <a class="editNewsEventPromotion" title="Edit Offer Details" role="button" data-toggle="collapse" href="#collapseNewsEventForms" aria-expanded="false" aria-controls="collapseNewsEventForms">
+                          <span alt="Edit Offer Details" class="icon icon-edit-bg"></span>
+                        </a>
+                      </td>
+                      <td class="deleteOffer list-item">
+                        <button data-offerid="3" alt="Delete Offer" class="icon icon-delete-bg"></button>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </section>
+            </div>
+            <br>
+            <div class="form-controls">
+              <div class="clearfix form-item">
+                <button class="btn btn-default display-block" name="addCareer" type="button" data-toggle="collapse" data-target="#collapseCareersForms" aria-expanded="false" aria-controls="collapseCareersForms">
+                  Add Career
+                </button>
+              </div>
+            </div>
+
+            <div class="storeCareersForm accordion-body collapseCareersForms collapse" id="collapseCareersForms" style="height: 0px; display: none;">
+              <div class="row">
+                <div class="col-xs-12 col-lg-6">
+                  <div class="clearfix form-item">
+                    <label class="label-text" for="Templates">
+                      Templates
+                      <small class="small display-block"></small>
+                    </label>
+                    <!-- <input class="" value="" placeholder="Create New Job" type="text" name="Templates" id="Templates"> -->
+                    <select name="Templates" id="Templates">
+                      <option selected="selected">
+                        Create New Job
+                      </option>
+                      <option>
+                        Template1
+                      </option>
+                      <option>
+                        Template2
+                      </option>
+                      <option>
+                        Template3
+                      </option>
+                      <option>
+                        Template4
+                      </option>
+                      <option>
+                        Template5
+                      </option>
+                    </select>
+                  </div>
+                  <div class="clearfix form-item">
+                    <label class="label-text" for="JobTitle">
+                      Job Title
+                      <small class="small display-block">
+                        140 character max.
+                      </small>
+                    </label>
+                    <div class="characterLimit">
+                      <!-- Use the Character Limit plugin -->
+                      <textarea data-maxlength="140" class="characterLimitInput resize-false" placeholder="" rows="1" cols="80" id="JobTitle" name="JobTitle"></textarea>
+                    </div>
+                  </div>
+                  <div class="clearfix form-item">
+                    <label class="label-text" for="JobDescription">
+                      Job Description
+                    </label>
+                    <div class="characterLimit">
+                      <!-- Use the Character Limit plugin -->
+                      <textarea data-maxlength="1000" class="characterLimitInput" placeholder="" rows="6" cols="80" id="JobDescription" name="JobDescription"></textarea>
+                    </div>
+                  </div>
+                  <div class="clearfix form-item">
+                    <div class="row">
+                      <div class="col-sm-6">
+                        <div class="btn-group btn-group-justified">
+                          <div class="btn-group">
+                            <button type="button" class="btn btn-sm btn-primary">
+                              URL
+                            </button>
+                          </div>
+                          <div class="btn-group">
+                            <button type="button" class="btn btn-sm btn-primary">
+                              Email
+                            </button>
+                          </div>
+                          <div class="btn-group">
+                            <button type="button" class="btn btn-sm btn-default">
+                              Store
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <br>
+                    <div class="clearfix form-item">
+                      <div class="row">
+                        <div class="col-xs-12 col-md-8">
+                          <input class="" value="" placeholder="Please stop by the store and pick up an application." type="text" name="" id="">
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="form-controls">
+                    <div class="clearfix form-item">
+                      <button class="btn btn-default display-block" name="removeNewsEvent" type="button" data-toggle="collapse" data-target="#collapseNewsEventForms" aria-expanded="false" aria-controls="collapseNewsEventForms">
+                        Remove Career
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- /box-grey -->
+
+          </div>
+
+        </div>
+      </section>
+
       <section id="newsEventPromotionSection" class="clearfix form-section">
         <div class="row">
           <div class="col-xs-12">
             <h2 class="section-header">News/Events/Promotions</h2>
-            <div class="form-controls">
-              <div class="clearfix form-item">
-                <button class="btn btn-default display-block" name="addNewsEventPromotion" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-                  Add News/Event/Promotion
-                </button>
-              </div>
-            </div>
+
             <div class="display-inline-block storeNewsEventsPromotionsList">
               <section class="resp-tab-content-section">
+                <!--  This toggled the hidden items.
+                      Used 1st by StorePagesController.js
+                      - John Smith
+                    -->
+                <small>
+                  <a href="#sortable" role="button" class="display-inline storeNewsEventsPromotionsShowAll" aria-hidden="false">
+                    Show All
+                  </a>
+                </small>
+                <small>
+                  <a href="#sortable" role="button" class="display-inline storeNewsEventsPromotionsShowActive" aria-hidden="false">
+                    - Show scheduled/active only
+                  </a>
+                </small>
                 <table class="full-width">
-                  <tbody id="sortable" class="sortable full-width">
+                  <tbody id="sortable-false" class="full-width">
                     <tr class="table-banner">
                       <th class="table-banner-item">
                         Type<!-- News/Event/Promotion --></th>
-                      <th class="table-banner-item">
+                      <th class="table-banner-item text-left">
                         Title
                         <th class="table-banner-item">
                           Post On
                         </th>
-                        <th class="table-banner-item">
+                        <th class="table-banner-item nowrap">
                           Remove On
                         </th>
                         <th class="table-banner-item">
@@ -652,13 +903,13 @@
                       <tr class="error none">
                         <td colspan="7" class="Error list-item">Please add more offers.</td>
                       </tr>
-                      <tr draggable="true" class="sortable-item filterable store-item text-center" data-filter-storeid="1" data-storeid="1" data-enrolled="true">
-                        <td class="list-item handle text-center">
+                      <tr draggable="true" class="filterable newsEventPromotionItem text-center storeNewsEventsPromotionsShowAllItem storeNewsEventsPromotionsActive" data-filter-storeid="1" data-storeid="1" data-enrolled="true">
+                        <td class="list-item text-center">
                           <small>News</small>
                         </td>
-                        <td class="list-item text-center">
+                        <td class="list-item text-left">
                           <small>
-                            #1 Title - Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facere tempore ab quasi.
+                            adipisicing elit. Facere tempore ab quasi...
                           </small>
                         </td>
                         <td class="list-item">
@@ -668,7 +919,7 @@
                           <small>2018-12-29</small>
                         </td>
                         <td class="list-item">
-                          <a class="editNewsEventPromotion" title="Edit Offer Details" role="button" data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                          <a class="editNewsEventPromotion" title="Edit Offer Details" role="button" data-toggle="collapse" href="#collapseNewsEventForms" aria-expanded="false" aria-controls="collapseNewsEventForms">
                             <span alt="Edit Offer Details" class="icon icon-edit-bg"></span>
                           </a>
                         </td>
@@ -676,13 +927,13 @@
                           <button data-storeid="1938" data-offerid="1" alt="Delete Offer" class="icon icon-delete-bg"></button>
                         </td>
                       </tr>
-                      <tr draggable="true" class="sortable-item filterable store-item text-center" data-filter-storeid="2" data-storeid="2" data-enrolled="true">
-                        <td class="list-item handle text-center">
+                      <tr draggable="true" class="filterable newsEventPromotionItem text-center storeNewsEventsPromotionsActive" data-filter-storeid="2" data-storeid="2" data-enrolled="true">
+                        <td class="list-item text-center">
                           <small>Event</small>
                         </td>
-                        <td class="list-item text-center">
+                        <td class="list-item text-left">
                           <small>
-                            #2 Title - Lorem ipsum dolor sit amet, consectetur.
+                             ipsum dosit amet, consecteturm ipsum....
                           </small>
                         </td>
                         <td class="list-item">
@@ -692,7 +943,7 @@
                           <small>3030-01-01</small>
                         </td>
                         <td class="list-item">
-                          <a class="editNewsEventPromotion" title="Edit Offer Details" role="button" data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                          <a class="editNewsEventPromotion" title="Edit Offer Details" role="button" data-toggle="collapse" href="#collapseNewsEventForms" aria-expanded="false" aria-controls="collapseNewsEventForms">
                             <span alt="Edit Offer Details" class="icon icon-edit-bg"></span>
                           </a>
                         </td>
@@ -700,15 +951,19 @@
                           <button data-offerid="2" alt="Delete Offer" class="icon icon-delete-bg"></button>
                         </td>
                       </tr>
-                      <tr draggable="true" class="sortable-item filterable store-item text-center" data-filter-storeid="3" data-storeid="3" data-enrolled="true">
-                        <td class="list-item handle text-center">
-                          <small>Promotion</small>
-                        </td>
-                        <td class="list-item text-center">
-                          <small>
-                            #3 Title - Consectetur adipisicing elit. Facere tempore ab quasi, Lorem ipsum. Lorem ipsum dolor sit.
-                          </small>
-                        </td>
+
+                      <tr draggable="true" data-filter-storeid="3" data-storeid="3" data-enrolled="false" id="past-date-1" class="storeNewsEventsPromotionsShowAllItem collapse filterable newsEventPromotionItem text-center">
+                        <span>
+                          <td class="list-item text-center">
+                            <small>Promotion</small>
+                          </td>
+                          <td class="list-item text-left">
+                            <small>
+                              Facere tempore ab quasi, Lorem ipsum. Lorem ipsum dolor sit...
+                            </small>
+                          </td>
+                        </span>
+
                         <td class="list-item">
                           <small>2016-08-29</small>
                         </td>
@@ -716,7 +971,7 @@
                           <small>2018-12-29</small>
                         </td>
                         <td class="list-item">
-                          <a class="editNewsEventPromotion" title="Edit Offer Details" role="button" data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                          <a class="editNewsEventPromotion" title="Edit Offer Details" role="button" data-toggle="collapse" href="#collapseNewsEventForms" aria-expanded="false" aria-controls="collapseNewsEventForms">
                             <span alt="Edit Offer Details" class="icon icon-edit-bg"></span>
                           </a>
                         </td>
@@ -728,10 +983,18 @@
                   </table>
                 </section>
               </div>
+              <br>
 
-              <div class="newsEventsPromotionsForm" class="collapseExample collapse" id="collapseExample" style="height: 0px; display: none;">
-                <div class="box box-grey">
+              <div class="form-controls">
+                <div class="clearfix form-item">
+                  <button class="btn btn-default display-block" name="addNewsEventPromotion" type="button" data-toggle="collapse" data-target="#collapseNewsEventForms" aria-expanded="false" aria-controls="collapseNewsEventForms">
+                    Add News/Event/Promotion
+                  </button>
+                </div>
+              </div>
 
+              <div class="newsEventsPromotionsForm accordion-body collapseNewsEventForms collapse row" id="collapseNewsEventForms" style="height: 0px; display: none;">
+                <div class="col-xs-12 col-md-8 col-lg-6">
                   <div class="clearfix form-item">
                     <div class="row">
                       <div class="col-sm-6">
@@ -762,10 +1025,10 @@
                     </label>
 
                     <div class="characterLimit">
-                      <div class="row">
-                        <div class="col-xs-12 col-md-6">
+                      <div class="">
+                        <div class="">
                           <!-- Use the Character Limit plugin -->
-                          <textarea maxlength="240" class="characterLimitInput resize-false" placeholder="" rows="1" cols="50" id="newsEventTitle" name="newsEventTitle"></textarea>
+                          <textarea data-maxlength="240" class="characterLimitInput resize-false" placeholder="" rows="1" cols="50" id="newsEventTitle" name="newsEventTitle"></textarea>
                         </div>
                       </div>
                     </div>
@@ -775,11 +1038,11 @@
                     <label class="label-text" for="newsEventText">
                       Text
                     </label>
-                    <div class="row">
-                      <div class="col-xs-12 col-md-6">
+                    <div class="">
+                      <div class="">
                         <div class="characterLimit">
                           <!-- Use the Character Limit plugin -->
-                          <textarea maxlength="1000" class="characterLimitInput" placeholder="" rows="6" cols="40" id="newsEventText" name="newsEventText"></textarea>
+                          <textarea data-maxlength="1000" class="characterLimitInput" placeholder="" rows="6" cols="40" id="newsEventText" name="newsEventText"></textarea>
                         </div>
                       </div>
                     </div>
@@ -790,7 +1053,7 @@
                       Post On
                     </label>
                     <div class="row">
-                      <div class="col-xs-12 col-md-4 col-lg-2">
+                      <div class="col-xs-12 col-md-4">
                         <input class="resize-false" value="" placeholder="" type="date" name="newsEventPostDate" id="newsEventPostDate">
                       </div>
                     </div>
@@ -800,7 +1063,7 @@
                       Remove On
                     </label>
                     <div class="row">
-                      <div class="col-xs-12 col-md-4 col-lg-2">
+                      <div class="col-xs-12 col-md-4">
                         <input class="resize-false" value="" placeholder="" type="date" name="newsEventRemoveDate" id="newsEventRemoveDate">
                       </div>
                     </div>
@@ -808,13 +1071,13 @@
 
                   <div class="clearfix form-item">
 
-                    <label class="label-text" for="newsEventRemoveDate">
+                    <label class="label-text" for="newsEventPromotionImage">
                       Image -
                       <em>Optional</em>
                     </label>
                     <!-- To crop the image with a circle, make sure to update the width and height in the inline styles. -->
-                    <img class="" id="news-event-item" src="https://placeholdit.imgix.net/~text?txtsize=33&txt=350%C3%97150&w=350&h=150" alt="Default picture">
-                    <br><br>
+                    <img class="" id="newsEventPromotionImage" src="https://placeholdit.imgix.net/~text?txtsize=33&txt=350%C3%97150&w=350&h=150" alt="Default picture">
+
 
                     <!--  MUST BE WRAPED IN UNIQUE FORM -->
                     <form class="form-controls" id="uploader_form_4" action="">
@@ -842,7 +1105,7 @@
                   </div>
                   <div class="form-controls">
                     <div class="clearfix form-item">
-                      <button class="btn btn-default display-block" name="removeNewsEvent" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                      <button class="btn btn-default display-block" name="removeNewsEvent" type="button" data-toggle="collapse" data-target="#collapseNewsEventForms" aria-expanded="false" aria-controls="collapseNewsEventForms">
                         Remove News/Event/Promotion
                       </button>
                     </div>

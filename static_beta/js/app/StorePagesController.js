@@ -10,13 +10,25 @@
 var StorePagesController = StorePagesController || (function ($) {
 	'use strict';
 	var controller = {
+		apiPath: marcomUserData.$constants.apiPath,
+		user_id: marcomUserData.$user.externalId,
+		store_data: [],
 		intervalHandle: null,
 		init: function () {
 			var controller = this;
 			programManagementFilters.controller.init();
+			controller.ConfigureFilters();
 			controller.AdjustUI(function () {
-				controller.ShowUI();
+				controller.getStoreProgramData(function () {
+					controller.ShowUI();
+				});
 			});
+		},
+		ConfigureFilters: function () {
+			if (!$('#sortable').length === 0) {
+				console.debug('sortable will not configure filters');
+				programManagementFilters.controller.init();
+			}
 		},
 		AdjustUI: function (callback) {
 			var controller = this;
@@ -33,6 +45,31 @@ var StorePagesController = StorePagesController || (function ($) {
 		},
 		EventHandlers: function () {
 			var controller = this;
+			// Show All News items
+			$('.storeNewsEventsPromotionsShowAll').on('click', function () {
+				$('.storeNewsEventsPromotionsShowAllItem').show();
+				$('.storeNewsEventsPromotionsShowActive').css({
+					'visibility': 'visible'
+				});
+			});
+			$('.storeNewsEventsPromotionsShowActive').on('click', function () {
+				$('.storeNewsEventsPromotionsShowAllItem').hide();
+				$('.newsEventPromotionItem.storeNewsEventsPromotionsShowActiveItem').show();
+				$(this).css({
+					'visibility': 'hidden'
+				});
+			});
+
+			$('.storeCareersShowAll').on('click', function () {
+				$('.storeCareersShowAllItem').show();
+			});
+
+			// Text toggle, usefull for reuse
+			// - John Smith
+			// $(this).text(function (i, text) {
+			// 	return text === "Show all" ? "Show scheduled/active only" : "Show all";
+			// })
+
 			$('.storePages.navBarSelectedLinkColor').show();
 			// Delete Offer
 			$('.deleteOffer > button, .delete-offer-btn').on('click', function (e) {
@@ -68,40 +105,43 @@ var StorePagesController = StorePagesController || (function ($) {
 				return;
 			});
 
-			// Character Limits
-			// $('.characterLimitInput').keyup(function (e) {
-			// 	e = $(this);
-			// 	var maxLength = e.attr('maxlength');
-			// 	return controller.CountChar(e, maxLength)
-			// });
 
-			$('.characterLimitInput').each(function characterLimit() {
+
+
+		},
+
+		CountChar: function (e, maxLength) {
+			var controller = this;
+			$('.characterLimitInput').each(function () {
 				$(this).characterCounter({
-					maxChars: $(this).attr('maxlength'),
 					maxCharStatic: true,
 					counterNeeded: true,
 					remainingNeeded: true,
 					chopText: true,
 					shortFormat: true,
 					shortFormatSeparator: ' ',
-					positionBefore: false,
+					positionBefore: false
 				});
 			});
-		},
-		CountChar: function (e, maxLength) {
-			var controller = this;
-			try {
-				e.val().length
-			} catch (e) {
-				console.info('An error in CountChar occured.');
-			} finally {
-				if (e.val().length >= maxLength) {
-					e.val(e.val().substr(0, maxLength));
-					console.info('...e.val - %O', e.val);
-				} else {
-					$('.characterLimitText').text(maxLength - e.val().length);
-				}
-			}
+
+			// try {
+			// 	e.val().length
+			// } catch (e) {
+			// 	console.info('An error in CountChar occured.');
+			// } finally {
+			// 	if (e.val().length >= maxLength) {
+			// 		e.val(e.val().substr(0, maxLength));
+			// 		console.info('...e.val - %O', e.val);
+			// 	} else {
+			// 		$('.characterLimitText').text(maxLength - e.val().length);
+			// 	}
+			// }
+			// @OLD CODE
+			// $('.characterLimitInput').keyup(function (e) {
+			// 	e = $(this);
+			// 	var maxLength = e.attr('maxlength');
+			// 	return controller.CountChar(e, maxLength)
+			// });
 		},
 		EditOffer: function () {
 			var controller = this;
@@ -209,16 +249,52 @@ var StorePagesController = StorePagesController || (function ($) {
 
 			$('.js-content').fadeIn();
 			$('.js-loading').hide();
-			controller.CallNg();
-		},
-		CallNg: function () {
-			// console.info('CallNg %o ', this);
-			// var app = angular.module('masterApp', []);
-			// app.controller('myCtrl', function($scope) {
-			// 	$scope.firstName= "John";
-			// 	$scope.lastName= "Doe";
-			// });
 
+			// Load a mustache template out of the DOM, fill it with data and put it back
+			var template = $('.storePage-storeTable-template').html();
+			console.log("Template is: %O", template);
+			if (template === null) {
+				return false
+			}
+			var data = controller.store_data;
+			$.each(data, function (i, e) {
+				data[i].href = marcomUserData.$constants.storeDetailsUrl + "&storeId=" + data[i].storeId;
+			});
+			var target_css_selector = "#storePage-storeTable-Section";
+
+			$(target_css_selector).html(Mustache.render(template, data));
+
+		},
+		getMustacheTemplate: function (filename, extraction_css_selector, target_css_selector, data, callback) {
+			var controller = this;
+			var template_key = filename.replace(".", "");
+
+			var fillContent = function (template, data) {
+				// controller.timeDebug("Filling " + target_css_selector + ' with ' + data.length + ' data elements.')
+				$(target_css_selector).html(Mustache.render(template, data));
+				// controller.timeDebug("Done filling " + target_css_selector + ' with ' + data.length + ' data elements.')
+			}
+
+			if (typeof controller[template_key] != 'undefined' && controller[template_key] != "") {
+				// console.log("Loading cached version of " + template_key);
+				fillContent(controller[template_key], data);
+				callback(controller[template_key]);
+			} else {
+
+				$.get(controller.filePath + filename, function (templates) {
+					controller[template_key] = $(templates).filter(extraction_css_selector).html();
+					fillContent(controller[template_key], data);
+					callback(controller[template_key]);
+				});
+			}
+		},
+		getStoreProgramData: function (callback) {
+			var controller = this;
+			$.get(controller.apiPath + 'getStoreProgramData.jssp?userId=' + encodeURIComponent(controller.user_id) + '&programId=1', function (results) {
+				var json_results = DoNotParseData(results);
+				controller.store_data = json_results;
+				if (typeof callback == 'function') callback(json_results);
+			});
 		}
 	};
 	return {

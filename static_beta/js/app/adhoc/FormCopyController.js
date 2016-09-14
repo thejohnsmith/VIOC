@@ -96,18 +96,18 @@ FormCopyController = (function ($) {
 			 */
 			// $('input[type=number], input[type=password], input[type=search], input[type=text], textarea, select, option').blur(function (e) {
 
-			$('.poVariItemForm').on('blur change keyup', 'input,select,textarea', function (e) {
-				// e.stopPropagation();
-				setTimeout(function (e) {
-					if ($('#mButtonPreviewTop').is(':visible') === true) {
-						console.info('mButtonPreviewTop is visible');
-						console.count("Refresh Count", e);
-						$('#mButtonPreviewTop').click();
-					} else {
-						return
-					}
-				}, 500);
-			});
+			// $('.poVariItemForm').on('blur change keyup', 'input,select,textarea', function (e) {
+			// 	// e.stopPropagation();
+			// 	setTimeout(function (e) {
+			// 		if ($('#mButtonPreviewTop').is(':visible') === true) {
+			// 			console.info('mButtonPreviewTop is visible');
+			// 			console.count("Refresh Count", e);
+			// 			$('#mButtonPreviewTop').click();
+			// 		} else {
+			// 			return
+			// 		}
+			// 	}, 500);
+			// });
 		},
 		SetOptionToSelected: function (element) {
 			var controller = this;
