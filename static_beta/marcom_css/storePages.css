@@ -1,0 +1,42 @@
+/* Store Pages */
+
+.sortable {
+  width: 33%;
+  max-width: 200px;
+  position: relative;
+  display: inline-block;
+  text-align: center
+}
+.feature-container{
+  display: inline-block;
+  width: 100%;
+  margin: 0 0 1em
+}
+.feature-media {
+  display: inline-block;
+  width: 100%;
+  text-align: center;
+}
+
+.feature {
+  padding: 1em;
+  display: inline-block;
+  -webkit-transition: ease-out .15s;
+  transition: ease-out .15s;
+  background: #fff
+}
+
+.feature:hover {
+  -webkit-transform: scale(1.009);
+  transform: scale(1.009); background: #f6f6f6
+}
+
+.feature-active {
+  background: #eee;
+}
+
+.feature-title {
+  margin: 0 0 .4em;
+  display: inline-block;
+  text-align: left;
+}

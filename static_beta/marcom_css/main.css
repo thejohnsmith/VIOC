@@ -5580,6 +5580,11 @@ button.enroll-all-stores.btn.btn-primary.btn-sm {
   display: block
 }
 
+.storeNameText{
+  display: inline-block;
+	padding: 0 15px
+
+}
 .input-counter, .charleft {
   font-size: .8em;
   margin-top: .25em;

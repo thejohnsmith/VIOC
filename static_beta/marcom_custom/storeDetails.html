@@ -1,49 +1,40 @@
-<!-- ****************** PORTAL CUSTOM COPY ******************
-<div id="storeDetails" class="asyncMarkup"></div>
-<script>
-    window.onload = function () {
-      var marcomCustomFilePath = marcomUserData.$constants.marcomCustomFilePath || 'https://files.marcomcentral.app.pti.com/epsilon/static_beta/marcom_custom/';
-        function getData() {
-            return jQuery.get(marcomCustomFilePath + 'storeDetails.html').success(function (resp) {
-                jQuery('.asyncMarkup').html(resp);
-                StorePagesController.controller.init();
-            });
-        }
-        function showDiv() {
-            var dfd = jQuery.Deferred();
-            dfd.done(function () {
-            });
-            jQuery('.asyncMarkup').fadeIn(1000, dfd.resolve);
-            return dfd.promise();
-        }
-        jQuery.when(getData(), showDiv()).then(function (ajaxResult) {
-            StorePagesController.controller.ShowUI();
-            StorePagesController.controller.CountChar();
-        });
-    }
-</script>
-<div class="js-content container" ng-app="masterApp" ng-controller="Controller_Landmark_Info">
-    <div ng-include="'https://files.marcomcentral.app.pti.com/epsilon/static_beta/marcom_custom/portalCustomStoreDetailsLandmarkInfo.html'"></div>
-</div>
-<script>
-    var app = angular.module('masterApp', []);
-    app.controller('Controller_Landmark_Info', function ($scope) {
-      $scope.storeName = "Tom T's 1st Store",
-      $scope.storeDistMiles = 15,
-      $scope.storeDistDirection = "East",
-      $scope.storeLandmark = "Institute of Arts",
-      $scope.storeStreet = "Country Road 1",
-      $scope.storeCrossStreet = "1st Avenue NW",
-      $scope.storeNeighboring = "Chipotle"
-    });
-</script>
-********************** /PORTAL CUSTOM COPY ****************** -->
-
-<!-- Store Pages:
+<!-- Store Details:
     @file storeDetails.html
     Beta URL:
     https://marcomcentral.app.pti.com/Epsilon_Data_Management/Beta_Epsilon/CustomPage.aspx?uigroup_id=479602&page_id=13090
 -->
+
+<!-- ****************** Attn. The following is Marcom PORTAL CUSTOM COPY ******************
+!!   The following markup is to be COPIED and kept in sync with the Marcom Custom Copy textarea for this page   !!
+
+<link href="https://files.marcomcentral.app.pti.com/epsilon/static_beta/marcom_css/storePages.css" rel="stylesheet" type="text/css">
+<div id="storeDetails" class="asyncMarkup"></div>
+<script>
+window.onload = function () {
+	var marcomCustomFilePath = marcomUserData.$constants.marcomCustomFilePath || 'https://files.marcomcentral.app.pti.com/epsilon/static_beta/marcom_custom/';
+
+	function getData() {
+		return jQuery.get(marcomCustomFilePath + 'storeDetails.html').success(function (resp) {
+			jQuery('.asyncMarkup').html(resp);
+			StorePageDetailController.controller.init();
+		});
+	}
+
+	function showDiv() {
+		var dfd = jQuery.Deferred();
+		dfd.done(function () {});
+		jQuery('.asyncMarkup').fadeIn(1000, dfd.resolve);
+		return dfd.promise();
+	}
+	jQuery.when(getData(), showDiv()).then(function (ajaxResult) {
+		console.info('loading storeDetails.');
+		//StorePageDetailController.controller.populateUI();
+		//StorePageDetailController.controller.showUI();
+	});
+}
+</script>
+********************** /PORTAL CUSTOM COPY ****************** -->
+
 <div class="wrapper storePages storeDetails">
   <div class="mid-container">
     <div class="main">
@@ -67,30 +58,12 @@
         <div role="presentation" class="spinner"></div>
       </div>
 
-      <div class="js-content container" ng-app="masterApp" ng-controller="myCtrl">
-        <!-- <div ng-include="'https://files.marcomcentral.app.pti.com/epsilon/static_beta/marcom_custom/portalCustomStoreDetailsLandmarkInfo.html'"></div> -->
-        <!-- Store Details partial
-              @file portalCustomStoreDetailsLandmarkInfo.html
-              Beta URL: CustomPage.aspx?uigroup_id=479602&page_id=13090&storeId=2#/sortable
-
-              @description The Landmark Info section uses Angular v1.x.x to sync the inputs with a preview section.
-              @NOTE runs inside of Marcom's CatalogEditor as PORTAL CUSTOM COPY. Copy markup from storeDetails.html and paste into Store Detail's custom copy textarea.
-              @param {app} app
-              @param {angular.module} masterApp
-              @param {app.controller} Controller_Landmark_Info
-              @param {string} storeName            // example: "Tom T's 1st Store",
-              @param {string} storeDistMiles       // example: 15,
-              @param {string} storeDistDirection   // example: "East",
-              @param {string} storeLandmark        // example: "Institute of Arts",
-              @param {string} storeStreet          // example: "Country Road 1",
-              @param {string} storeCrossStreet     // example: "1st Avenue NW",
-              @param {string} storeNeighboring     // example: "Chipotle"
-          -->
+      <div class="js-content">
         <div class="clearfix js-content storePages storeDetails">
           <div class="">
             <!-- removed .container @TODO sort this out after  @author JS, demo 9_13_16 -->
-            <div class="clearfix">
-              <section class="box box-grey col-xs-12 col-md-10 col-lg-6">
+            <div class="">
+              <section id="basic_details" class="box box-grey col-xs-12 col-md-10 col-lg-6">
                 <div class="clearfix form-item">
                   <label class="label-text" for="basicDetails">
                     <h2>Basic Details</h2>
@@ -221,57 +194,6 @@
                   </div>
                 </div>
               </div>
-              <br>
-              <br>
-              <section id="store_photo" class="form-section">
-                <div class="clearfix form-item">
-                  <label class="label-text" for="storeName">
-                    <h2>Store Photo</h2>
-                    <small class="small">PNG, JPG or GIF. Minimum size: 350px x 120px</small>
-                  </label>
-                  <div class="row">
-                    <div class="col-md-6">
-                      <div class="store-photo">
-                        <img id="store-photo-item" width="350px" height="auto" src="https://files.marcomcentral.app.pti.com/epsilon/previews/FPO_1.png" alt="Default picture">
-                      </div>
-
-                      <!--  MUST BE WRAPED IN UNIQUE FORM -->
-                      <form class="form-controls" id="uploader_form_1" action="">
-                        <label class="btn btn-default btn-file">
-                          <span class="btn-file-text">Upload New Photo</span>
-                          <input type="file" class="none btn-file-input">
-                        </label>
-                        <label class="btn btn-default btn-file">
-                          <span class="btn-file-text">Restore Default</span>
-                          <input type="file" class="none btn-file-input">
-                        </label>
-                      </form>
-                    </div>
-                  </div>
-                </div>
-              </section>
-              <section id="communities_served" class="form-section">
-                <div class="clearfix form-item">
-                  <label class="label-text" for="storeName">
-                    <h2>Communities Served</h2>
-                    <small class="small">List of communities served, comma separated. 200 characters max.</small>
-                  </label>
-                  <div class="row">
-                    <div class="col-xs-12">
-                      <div class="row">
-                        <div class="col-md-6">
-                          <div class="characterLimit">
-                            <!-- Use the Character Limit plugin -->
-                            <textarea data-maxlength="200" class="characterLimitInput" placeholder="" rows="2" cols="80" id="communitiesServed" name="communitiesServed"></textarea>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </section>
-              <br>
-              <br>
               <section id="landmark_info" class="form-section">
                 <div class="row">
                   <div class="col-xs-12 col-md-6">
@@ -395,6 +317,33 @@
                         {{/.}}
                       </script>
                       <small class="preview-content small"></small>
+                    </div>
+                  </div>
+                </div>
+              </section>
+              <section id="store_photo" class="form-section">
+                <div class="clearfix form-item">
+                  <label class="label-text" for="storeName">
+                    <h2 class="storeNameText">Store Photo</h2>
+                    <small class="small">PNG, JPG or GIF. Minimum size: 350px x 120px</small>
+                  </label>
+                  <div class="row">
+                    <div class="col-md-6">
+                      <div class="store-photo">
+                        <img id="store-photo-item" width="350px" height="auto" src="https://files.marcomcentral.app.pti.com/epsilon/previews/FPO_1.png" alt="Default picture">
+                      </div>
+
+                      <!--  MUST BE WRAPED IN UNIQUE FORM -->
+                      <form class="form-controls" id="uploader_form_1" action="">
+                        <label class="btn btn-default btn-file">
+                          <span class="btn-file-text">Upload New Photo</span>
+                          <input type="file" class="none btn-file-input">
+                        </label>
+                        <label class="btn btn-default btn-file">
+                          <span class="btn-file-text">Restore Default</span>
+                          <input type="file" class="none btn-file-input">
+                        </label>
+                      </form>
                     </div>
                   </div>
                 </div>
@@ -563,6 +512,26 @@
                   </li>
                 </ul>
               </section>
+              <section id="communities_served" class="form-section">
+                <div class="clearfix form-item">
+                  <label class="label-text" for="storeName">
+                    <h2>Communities Served</h2>
+                    <small class="small">List of communities served, comma separated. 200 characters max.</small>
+                  </label>
+                  <div class="row">
+                    <div class="col-xs-12">
+                      <div class="row">
+                        <div class="col-md-6">
+                          <div class="characterLimit">
+                            <!-- Use the Character Limit plugin -->
+                            <textarea data-maxlength="200" class="characterLimitInput" placeholder="" rows="2" cols="80" id="communitiesServed" name="communitiesServed"></textarea>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </section>
               <section id="features" class="form-section clearfix ">
                 <div class="clearfix form-item">
                   <label class="label-text" for="storeName">
@@ -570,10 +539,103 @@
                     <small class="small">
                       Maximum 6. First 2 will appear on Direct Mail. First 4 show up on Email. All 6 will appear on Website. Drag selected to re-order. Franchisee is responsible to ensure compliance with state and municipality regulations for inspection advertising. Franchisee is responsible for securing permission to use third party logos.
                     </small>
+                    <!-- V.2
+                      class="featureTitleHelperText">
+                      Maximum 6. First 2 will appear on Direct Mail. First 4 show up on Email. All 6 will appear on Websites. Drag selected to re-order. Franchisee responsible to ensure compliance with state &amp; municipality regulations.
+                    -->
                   </label>
+
                   <div class="row">
-                    <div class="col-md-6"></div>
+                    <div class="col-xs-12">
+
+                      <!-- Store Features Template
+                          @type template/mustache
+                          @param {class} .feature All items in features are featurese themselves
+                          @param {class} .feature-active Each feature have an active state
+                          @Note  The ID can't be a name with spaces
+                      -->
+                      <script class="store-feature-template" type="x-tmpl-mustache">
+                        {{#.}}
+                          <div id="{{featureId}}" class="feature sortable">
+                            <div class="sortable-item">
+                              <span class="handle">::</span>
+                              <label for="{{featureName}}">
+                                <input id="{{featureName}}" name="{{featureName}}" class="checkbox" type="checkbox" checked="{{#checkedState}}checked{{/checkedState}}{{^checkedState}}false{{/checkedState}}">
+                                <span class="feature-title">{{featureTitle}}</span>
+                                <span class="feature-media"><img src="{{#featureImgSource}}{{featureImgSource}}{{/featureImgSource}}{{^featureImgSource}}https://placehold.it/60x40{{/featureImgSource}}" alt="{{featureName}}'s company logo image." class="feature-image"></span>
+                              </label>
+                            </div>
+                          </div>
+                        {{/}}
+                      </script>
+
+                      <!-- We’ll programmatically fill a this div with feature objects. -->
+                      <div class="feature-container">
+
+                        <!-- Thes are FPO -->
+
+                        <!-- Delete these already! -->
+                        <div id="{{featureId}}" class="feature sortable">
+                          <div class="sortable-item">
+                            <span class="handle">::</span>
+                            <label for="{{featureName}}">
+                              <input id="{{featureName}}" name="{{featureName}}" class="checkbox" type="checkbox">
+                              <span class="feature-title">{{featureTitle}}</span>
+                              <span class="feature-media"><img src="https://placehold.it/60x40" alt="{{featureName}}'s company logo image." class="feature-image"></span>
+                            </label>
+                          </div>
+                        </div>
+
+                        <div id="{{featureId}}" class="feature feature-active sortable">
+                          <p class="Warning">Active version</p>
+                          <div class="sortable-item">
+                            <span class="handle">::</span>
+                            <label for="{{featureName1}}">
+                              <input id="{{featureName1}}" name="{{featureName1}}" class="checkbox" type="checkbox" checked="{{#checkedState}}checked">
+                              <span class="feature-title">{{featureTitle}}</span>
+                              <span class="feature-media"><img src="https://placehold.it/60x40" alt="{{featureName1}}'s company logo image." class="feature-image"></span>
+                            </label>
+                          </div>
+                        </div>
+
+                      </div>
+                      <!-- Thes are for reference only: Remove them by 9_20_16. -JS
+                            State Inspection State Emissions Road Work Ask Patty 4.6 out of 5 Stars Competitor A/C Recharge Service Bilingual Speedy Rewards Diesel Free WiFi Fleet Services Childrens Miracle Network ATMC -->
+                    </div>
                   </div>
+                  <section class="feature-create row">
+                    <div class="col-xs-12">
+
+                      <div class="row">
+                        <div class="col-xs-12 col-md-6">
+                          <div class="feature-create">
+                            <label class="feature-name" for="featureName">Feature</label>
+                            <input class="feature-name" value="" placeholder="Potted Plants" type="text" name="Feature Name">
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-xs-12 col-sm-3 create-feature-icon">
+                          <div class="display-inline-block">
+                            <label class="create-feature-icon">Icon</label>
+                            <span class="feature-media">
+                              <img src="https://placehold.it/60x40" alt="Feature icon image." class="feature-media-icon create-feature-icon">
+                            </span>
+                          </div>
+
+                          <form class="feature-icon-form display-table-cell form-controls" id="uploader_form_5" action="">
+                            <label class="create-feature-icon-upload" for="create-feature-icon-upload">
+                              PNG, JPG, or GIF. 114px x 61px minimum.
+                            </label>
+                            <label class="btn btn-sm btn-default btn-file display-inline-block">
+                              <span class="btn-file-text">Upload Icon</span>
+                              <input type="file" class="none btn-file-input feature-icon-upload-file-input">
+                            </label>
+                          </form>
+                        </div>
+                      </div>
+                    </div>
+                  </section>
                 </div>
               </section>
               <section id="social" class="form-section clearfix">
@@ -627,86 +689,6 @@
                   </div>
                 </div>
               </section>
-              <section id="careers" class="none clearfix form-section">
-                <div class="row">
-                  <div class="col-xs-12">
-                    <h2 class="section-header">Careers</h2>
-                    <div class="container">
-                      <div class="clearfix form-item">
-                        <label class="label-text" for="Templates">
-                          Templates
-                          <small class="small display-block"></small>
-                        </label>
-                        <input class="" value="" placeholder="Create New Job" type="text" name="Templates" id="Templates">
-                      </div>
-                      <div class="clearfix form-item">
-                        <label class="label-text" for="JobTitle">
-                          Job Title
-                          <small class="small display-block">
-                            140 character max.
-                          </small>
-                        </label>
-                        <div class="characterLimit">
-                          <!-- Use the Character Limit plugin -->
-                          <textarea data-maxlength="140" class="characterLimitInput resize-false" placeholder="" rows="1" cols="80" id="JobTitle" name="JobTitle"></textarea>
-                        </div>
-                      </div>
-                      <div class="clearfix form-item">
-                        <label class="label-text" for="JobDescription">
-                          Job Description
-                        </label>
-                        <div class="characterLimit">
-                          <!-- Use the Character Limit plugin -->
-                          <textarea data-maxlength="1000" class="characterLimitInput" placeholder="" rows="6" cols="80" id="JobDescription" name="JobDescription"></textarea>
-                        </div>
-                      </div>
-                      <div class="clearfix form-item">
-                        <div class="row">
-                          <div class="col-sm-6">
-                            <div class="btn-group btn-group-justified">
-                              <div class="btn-group">
-                                <button type="button" class="btn btn-sm btn-primary">
-                                  URL
-                                </button>
-                              </div>
-                              <div class="btn-group">
-                                <button type="button" class="btn btn-sm btn-primary">
-                                  Email
-                                </button>
-                              </div>
-                              <div class="btn-group">
-                                <button type="button" class="btn btn-sm btn-default">
-                                  Store
-                                </button>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                        <br>
-                        <div class="clearfix form-item">
-                          <div class="row">
-                            <div class="col-xs-12 col-md-8">
-                              <input readonly class="input-disabled" value="" placeholder="Please stop by the store and pick up an application." type="text" name="Templates" id="Templates">
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="form-controls">
-                        <div class="clearfix form-item">
-                          <button class="btn btn-default display-block" name="removeCareer">
-                            Remove Career
-                          </button>
-                          <button class="btn btn-default display-block" name="addCareer">
-                            Add Career
-                          </button>
-                          <br>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </section>
-
               <section id="careers" class="clearfix form-section">
                 <div class="row">
                   <div class="col-xs-12">
