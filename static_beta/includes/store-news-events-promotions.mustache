@@ -1,0 +1,261 @@
+<section id="newsEventPromotionSection" class="mustache-template col-sm-6 clearfix form-section">
+  <div class="row">
+    <div class="col-xs-12">
+      <h2 class="section-header">News/Events/Promotions</h2>
+
+      <div class="display-inline-block storeNewsEventsPromotionsList">
+        <section class="resp-tab-content-section">
+          <!--  This toggled the hidden items.
+              Used 1st by StorePagesController.js
+              - John Smith
+            -->
+          <small>
+            <a href="#sortable" role="button" class="display-inline storeNewsEventsPromotionsShowAll" aria-hidden="false">
+              Show All
+            </a>
+          </small>
+          <small>
+            <a href="#sortable" role="button" class="display-inline storeNewsEventsPromotionsShowActive" aria-hidden="false">
+              - Show scheduled/active only
+            </a>
+          </small>
+          <table class="full-width">
+            <tbody id="sortable-false" class="full-width">
+              <tr class="table-banner">
+                <th class="table-banner-item">
+                  Type<!-- News/Event/Promotion --></th>
+                <th class="table-banner-item text-left">
+                  Title
+                  <th class="table-banner-item">
+                    Post On
+                  </th>
+                  <th class="table-banner-item nowrap">
+                    Remove On
+                  </th>
+                  <th class="table-banner-item">
+                    Edit
+                  </th>
+                  <th class="table-banner-item">
+                    Delete
+                  </th>
+                </tr>
+                <tr class="error none">
+                  <td colspan="7" class="Error list-item">Please add more offers.</td>
+                </tr>
+                <tr draggable="true" class="filterable newsEventPromotionItem text-center storeNewsEventsPromotionsShowAllItem storeNewsEventsPromotionsActive" data-filter-storeid="1" data-storeid="1" data-enrolled="true">
+                  <td class="list-item text-center">
+                    <small>News</small>
+                  </td>
+                  <td class="list-item text-left">
+                    <small>
+                      adipisicing elit. Facere tempore ab quasi...
+                    </small>
+                  </td>
+                  <td class="list-item">
+                    <small>2016-08-29</small>
+                  </td>
+                  <td class="list-item">
+                    <small>2018-12-29</small>
+                  </td>
+                  <td class="list-item">
+                    <a class="editNewsEventPromotion" title="Edit Offer Details" role="button" data-toggle="collapse" href="#collapseNewsEventForms" aria-expanded="false" aria-controls="collapseNewsEventForms">
+                      <span alt="Edit Offer Details" class="icon icon-edit-bg"></span>
+                    </a>
+                  </td>
+                  <td class="deleteNewsEventPromotion list-item">
+                    <button data-storeid="1938" data-offerid="1" alt="Delete Offer" class="icon icon-delete-bg"></button>
+                  </td>
+                </tr>
+                <tr draggable="true" class="filterable newsEventPromotionItem text-center storeNewsEventsPromotionsActive" data-filter-storeid="2" data-storeid="2" data-enrolled="true">
+                  <td class="list-item text-center">
+                    <small>Event</small>
+                  </td>
+                  <td class="list-item text-left">
+                    <small>
+                      ipsum dosit amet, consecteturm ipsum....
+                    </small>
+                  </td>
+                  <td class="list-item">
+                    <small>2000-01-09</small>
+                  </td>
+                  <td class="list-item">
+                    <small>3030-01-01</small>
+                  </td>
+                  <td class="list-item">
+                    <a class="editNewsEventPromotion" title="Edit Offer Details" role="button" data-toggle="collapse" href="#collapseNewsEventForms" aria-expanded="false" aria-controls="collapseNewsEventForms">
+                      <span alt="Edit Offer Details" class="icon icon-edit-bg"></span>
+                    </a>
+                  </td>
+                  <td class="deleteNewsEventPromotion list-item">
+                    <button data-offerid="2" alt="Delete Offer" class="icon icon-delete-bg"></button>
+                  </td>
+                </tr>
+
+                <tr draggable="true" data-filter-storeid="3" data-storeid="3" data-enrolled="false" id="past-date-1" class="storeNewsEventsPromotionsShowAllItem collapse filterable newsEventPromotionItem text-center">
+                  <span>
+                    <td class="list-item text-center">
+                      <small>Promotion</small>
+                    </td>
+                    <td class="list-item text-left">
+                      <small>
+                        Facere tempore ab quasi, Lorem ipsum. Lorem ipsum dolor sit...
+                      </small>
+                    </td>
+                  </span>
+
+                  <td class="list-item">
+                    <small>2016-08-29</small>
+                  </td>
+                  <td class="list-item">
+                    <small>2018-12-29</small>
+                  </td>
+                  <td class="list-item">
+                    <a class="editNewsEventPromotion" title="Edit Offer Details" role="button" data-toggle="collapse" href="#collapseNewsEventForms" aria-expanded="false" aria-controls="collapseNewsEventForms">
+                      <span alt="Edit Offer Details" class="icon icon-edit-bg"></span>
+                    </a>
+                  </td>
+                  <td class="deleteOffer list-item">
+                    <button data-offerid="3" alt="Delete Offer" class="icon icon-delete-bg"></button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </section>
+        </div>
+        <br>
+
+        <div class="form-controls">
+          <div class="clearfix form-item">
+            <button class="btn btn-default display-block" name="addNewsEventPromotion" type="button" data-toggle="collapse" data-target="#collapseNewsEventForms" aria-expanded="false" aria-controls="collapseNewsEventForms">
+              Add News/Event/Promotion
+            </button>
+          </div>
+        </div>
+
+        <div class="newsEventsPromotionsForm accordion-body collapseNewsEventForms collapse row" id="collapseNewsEventForms" style="height: 0px; display: none;">
+          <div class="col-xs-12 col-md-8 col-lg-6">
+            <div class="clearfix form-item">
+              <div class="row">
+                <div class="col-sm-6">
+                  <div class="btn-group btn-group-justified">
+                    <div class="btn-group">
+                      <button type="button" class="btn btn-sm btn-primary">
+                        News
+                      </button>
+                    </div>
+                    <div class="btn-group">
+                      <button type="button" class="btn btn-sm btn-default">
+                        Events
+                      </button>
+                    </div>
+                    <div class="btn-group">
+                      <button type="button" class="btn btn-sm btn-primary">
+                        Promotions
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="clearfix form-item">
+              <label class="label-text" for="newsEventTitle">
+                Title
+              </label>
+
+              <div class="characterLimit">
+                <div class="">
+                  <div class="">
+                    <!-- Use the Character Limit plugin -->
+                    <textarea data-maxlength="240" class="characterLimitInput resize-false" placeholder="" rows="1" cols="50" id="newsEventTitle" name="newsEventTitle"></textarea>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="clearfix form-item">
+              <label class="label-text" for="newsEventText">
+                Text
+              </label>
+              <div class="">
+                <div class="">
+                  <div class="characterLimit">
+                    <!-- Use the Character Limit plugin -->
+                    <textarea data-maxlength="1000" class="characterLimitInput" placeholder="" rows="6" cols="40" id="newsEventText" name="newsEventText"></textarea>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="clearfix form-item">
+              <label class="label-text" for="newsEventPostDate">
+                Post On
+              </label>
+              <div class="row">
+                <div class="col-xs-12 col-md-4">
+                  <input class="resize-false" value="" placeholder="" type="date" name="newsEventPostDate" id="newsEventPostDate">
+                </div>
+              </div>
+            </div>
+            <div class="clearfix form-item">
+              <label class="label-text" for="newsEventRemoveDate">
+                Remove On
+              </label>
+              <div class="row">
+                <div class="col-xs-12 col-md-4">
+                  <input class="resize-false" value="" placeholder="" type="date" name="newsEventRemoveDate" id="newsEventRemoveDate">
+                </div>
+              </div>
+            </div>
+
+            <div class="clearfix form-item">
+
+              <label class="label-text" for="newsEventPromotionImage">
+                Image -
+                <em>Optional</em>
+              </label>
+              <!-- To crop the image with a circle, make sure to update the width and height in the inline styles. -->
+              <img class="" id="newsEventPromotionImage" src="https://placeholdit.imgix.net/~text?txtsize=33&txt=350%C3%97150&w=350&h=150" alt="Default picture">
+
+              <!--  MUST BE WRAPED IN UNIQUE FORM -->
+              <form class="form-controls" id="uploader_form_4" action="">
+                <label class="btn btn-sm btn-default btn-file display-inline-block">
+                  <span class="btn-file-text">Upload New Photo</span>
+                  <input type="file" class="none btn-file-input">
+                </label>
+                <label class="none btn btn-sm btn-default btn-file display-inline-block">
+                  <span class="btn-file-text">Restore Default</span>
+                  <input type="file" class="none btn-file-input">
+                </label>
+              </form>
+            </div>
+            <div class="clearfix form-item">
+              <div class="row">
+                <div class="col-md-8">
+                  <label class="label-text" for="Templates">
+                    More Information Link -
+                    <em>Optional</em>
+                  </label>
+                  <input class="" value="" placeholder="http://" type="text" name="moreInfoLink" id="moreInfoLink">
+                  <br>
+                </div>
+              </div>
+            </div>
+            <div class="form-controls">
+              <div class="clearfix form-item">
+                <button class="btn btn-default display-block" name="removeNewsEvent" type="button" data-toggle="collapse" data-target="#collapseNewsEventForms" aria-expanded="false" aria-controls="collapseNewsEventForms">
+                  Remove News/Event/Promotion
+                </button>
+              </div>
+            </div>
+          </div>
+          <!--  /#newsEventsPromotionsForm -->
+        </div>
+        <!-- /box-grey -->
+
+      </div>
+
+    </div>
+  </section>
+
+</div>

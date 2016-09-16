@@ -1,0 +1,229 @@
+<section id="careers" class="mustache-template col-sm-6 clearfix form-section">
+  <div class="row">
+    <div class="col-xs-12">
+      <h2 class="section-header">Careers</h2>
+
+      <div class="display-inline-block storeCareersList">
+        <section class="resp-tab-content-section">
+          <!--  This toggled the hidden items.
+              Used 1st by StorePagesController.js
+              - John Smith
+            -->
+          <small>
+            <a href="#sortable" role="button" class="display-inline storeCareersShowAll" aria-hidden="false">
+              Show All
+            </small>
+          </a>
+          <table id="storeCareerTable" class="full-width">
+            <tbody id="sortable-false" class="full-width">
+              <tr class="table-banner">
+                <th class="table-banner-item text-left">
+                  Title
+                </th>
+                <th class="table-banner-item text-left">
+                  URL/Email/Store
+                </th>
+                <th class="table-banner-item">
+                  Archive/Unarchive
+                </th>
+                <th class="table-banner-item">
+                  Edit
+                </th>
+                <th class="table-banner-item">
+                  Delete
+                </th>
+              </tr>
+              <tr class="error none">
+                <td colspan="7" class="Error list-item">Please add more career items.</td>
+              </tr>
+              <tr draggable="false" class="filterable careerItem text-center storeCareersShowAllItem" data-filter-storeid="1" data-storeid="1" data-enrolled="true">
+                <td class="list-item text-left">
+                  <small>
+                    Customer Service Advisor
+                  </small>
+                </td>
+                <td class="list-item text-left">
+                  <small>
+                    <a href="http://www.careerbuilder.com/vioc" target="_blank">http://www.careerbuilder.com/vioc</a>
+                  </small>
+                </td>
+                <td class="list-item">
+                  <div class="checkbox-area">
+                    <div class="customCheckbox">
+                      <input type="checkbox" value="11">
+                    </div>
+                  </div>
+                </td>
+                <td class="list-item">
+                  <small>
+                    <span alt="Edit Offer Details" class="icon icon-edit-bg"></span>
+                  </small>
+                </td>
+                <td class="deleteNewsEventPromotion list-item">
+                  <button data-storeid="1938" data-offerid="1" alt="Delete Offer" class="icon icon-delete-bg"></button>
+                </td>
+              </tr>
+              <tr draggable="false" class="filterable careerItem text-center careerItemActive" data-filter-storeid="2" data-storeid="2" data-enrolled="true">
+                <td class="list-item text-left">
+                  <small>
+                    Assistant Manager
+                  </small>
+                </td>
+                <td class="list-item text-left">
+                  <small>
+                    <a href="https://jobs.vioc.com/job/brooklyn-park/assistant-manager/1664/88182" target="_blank">URL</a>
+                  </small>
+                </td>
+                <td class="list-item">
+                  <div class="checkbox-area">
+                    <div class="customCheckbox">
+                      <input type="checkbox" value="11">
+                    </div>
+                  </div>
+                </td>
+                <td class="list-item">
+                  <small>
+                    <span alt="Edit Offer Details" class="icon icon-edit-bg"></span>
+                  </small>
+                </td>
+                <td class="deleteNewsEventPromotion list-item">
+                  <button data-offerid="2" alt="Delete Offer" class="icon icon-delete-bg"></button>
+                </td>
+              </tr>
+              <tr draggable="false" data-filter-storeid="3" data-storeid="3" data-enrolled="false" id="past-date-1" class="careerItemShowAllItem collapse filterable careerItem text-center">
+                <span>
+                  <td class="list-item text-lft">
+                    <small>
+                      #3 Title - Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facere tempore ab quasi.
+                    </small>
+                  </td>
+                  <td class="list-item text-left">
+                    <small>
+                      #3 Title - Consectetur adipisicing elit. Facere tempore ab quasi, Lorem ipsum. Lorem ipsum dolor sit.
+                    </small>
+                  </td>
+                </span>
+                <td class="list-item">
+                  <small>2018-12-29</small>
+                </td>
+                <td class="list-item">
+                  <a class="editNewsEventPromotion" title="Edit Offer Details" role="button" data-toggle="collapse" href="#collapseNewsEventForms" aria-expanded="false" aria-controls="collapseNewsEventForms">
+                    <span alt="Edit Offer Details" class="icon icon-edit-bg"></span>
+                  </a>
+                </td>
+                <td class="deleteOffer list-item">
+                  <button data-offerid="3" alt="Delete Offer" class="icon icon-delete-bg"></button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </section>
+      </div>
+      <br>
+      <div class="form-controls">
+        <div class="clearfix form-item">
+          <button class="btn btn-default display-block" name="addCareer" type="button" data-toggle="collapse" data-target="#collapseCareersForms" aria-expanded="false" aria-controls="collapseCareersForms">
+            Add Career
+          </button>
+        </div>
+      </div>
+
+      <div class="storeCareersForm accordion-body collapseCareersForms collapse" id="collapseCareersForms" style="height: 0px; display: none;">
+        <div class="row">
+          <div class="col-xs-12 col-lg-6">
+            <div class="clearfix form-item">
+              <label class="label-text" for="Templates">
+                Templates
+                <small class="small display-block"></small>
+              </label>
+              <!-- <input class="" value="" placeholder="Create New Job" type="text" name="Templates" id="Templates"> -->
+              <select name="Templates" id="Templates">
+                <option selected="selected">
+                  Create New Job
+                </option>
+                <option>
+                  Template1
+                </option>
+                <option>
+                  Template2
+                </option>
+                <option>
+                  Template3
+                </option>
+                <option>
+                  Template4
+                </option>
+                <option>
+                  Template5
+                </option>
+              </select>
+            </div>
+            <div class="clearfix form-item">
+              <label class="label-text" for="JobTitle">
+                Job Title
+                <small class="small display-block">
+                  140 character max.
+                </small>
+              </label>
+              <div class="characterLimit">
+                <!-- Use the Character Limit plugin -->
+                <textarea data-maxlength="140" class="characterLimitInput resize-false" placeholder="" rows="1" cols="80" id="JobTitle" name="JobTitle"></textarea>
+              </div>
+            </div>
+            <div class="clearfix form-item">
+              <label class="label-text" for="JobDescription">
+                Job Description
+              </label>
+              <div class="characterLimit">
+                <!-- Use the Character Limit plugin -->
+                <textarea data-maxlength="1000" class="characterLimitInput" placeholder="" rows="6" cols="80" id="JobDescription" name="JobDescription"></textarea>
+              </div>
+            </div>
+            <div class="clearfix form-item">
+              <div class="row">
+                <div class="col-sm-6">
+                  <div class="btn-group btn-group-justified">
+                    <div class="btn-group">
+                      <button type="button" class="btn btn-sm btn-primary">
+                        URL
+                      </button>
+                    </div>
+                    <div class="btn-group">
+                      <button type="button" class="btn btn-sm btn-primary">
+                        Email
+                      </button>
+                    </div>
+                    <div class="btn-group">
+                      <button type="button" class="btn btn-sm btn-default">
+                        Store
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <br>
+              <div class="clearfix form-item">
+                <div class="row">
+                  <div class="col-xs-12 col-md-8">
+                    <input class="" value="" placeholder="Please stop by the store and pick up an application." type="text" name="" id="">
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-controls">
+              <div class="clearfix form-item">
+                <button class="btn btn-default display-block" name="removeNewsEvent" type="button" data-toggle="collapse" data-target="#collapseNewsEventForms" aria-expanded="false" aria-controls="collapseNewsEventForms">
+                  Remove Career
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- /box-grey -->
+
+    </div>
+
+  </div>
+</section>
