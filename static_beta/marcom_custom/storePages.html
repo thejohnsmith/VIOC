@@ -71,7 +71,7 @@ window.onload = function () {
         <div class="js-content">
           <ul class="resp-tabs-list hor_1">
             <li>Store Details</li>
-            <li>Offers</li>
+            <!-- <li>Offers</li> -->
           </ul>
           <div class="resp-tabs-container hor_1">
             <div class="resp-tab-content
@@ -115,6 +115,7 @@ window.onload = function () {
                         <th class="table-banner-item">
                           Store
                         </th>
+                        <th class="table-banner-item">Offers</th>
                         <th class="table-banner-item">
                           Edit
                         </th>
@@ -127,6 +128,23 @@ window.onload = function () {
                           <td class="list-item text-center store-name">
                             {{storeName}}
                             <div class="text-center store-number">Store #{{storeNumber}}</div>
+                          </td>
+                          <td class="list-item text-center">
+                          <button type="button" class="btn btn-primary">
+                            INSP
+                            <span class="badge">x
+                            </span>
+                          </button>
+                            <button type="button" class="btn btn-success">
+                              ws10
+                            <span class="badge">x
+                            </span>
+                          </button>
+                          <button type="button" class="btn btn-danger">
+                            10AF
+                            <span class="badge">x
+                            </span>
+                          </button>
                           </td>
                           <td class="list-item text-center">
                             <a href="{{href}}" title="Edit Store">
@@ -143,7 +161,7 @@ window.onload = function () {
                 <section id="storePage-storeTable-Section"></section>
               </section>
             </div>
-            <div class="resp-tab-content storeOffers">
+            <div class="none resp-tab-content storeOffers">
               <section class="resp-tab-content-section">
                 <div class="add-offer-btn-parent">
                   <a class="btn btn-primary" href="CustomPage.aspx?uigroup_id=479602&page_id=13091">Add Offer</a>

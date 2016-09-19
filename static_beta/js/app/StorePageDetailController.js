@@ -298,68 +298,6 @@ var SiteCoreLibrary = (function () {
 
 siteCoreLibrary = new SiteCoreLibrary();
 
-/*
-siteCoreLibrary.loadStores(['080011'], function() {
-//	siteCoreLibrary.stores = siteCoreLibrary.stores[0]
-	console.log("Live data loaded: %O", siteCoreLibrary.stores);
-} );
-*/
-
-var mockSiteCoreLibrary = {
-
-	stores : [{
-			"id": "838d6492-4d71-4179-8051-61ffbacaa931",
-			"storeNumber": "080011",
-			"franchiseId": "VAL",
-			"franchiseName": "VALVOLINE",
-			"name": "OUTER LOOP",
-			"managerName": "JAMES FARRIS",
-			"managerImage": {},
-			"isActive": false,
-			"latitude": 38.1266,
-			"longitude": -85.77896,
-			"storeImage": {},
-			"communitiesServed": "",
-			"landmark": "",
-			"webURL": "",
-			"address": "175 OUTER LOOP",
-			"city": "LOUISVILLE",
-			"state": "KY",
-			"zip": "40214",
-			"phone": "502-361-3092",
-			"sundayHours": "9:00am - 5:00pm",
-			"mondayHours": "8:00am - 6:00pm",
-			"tuesdayHours": "8:00am - 6:00pm",
-			"wednesdayHours": "8:00am - 6:00pm",
-			"thursdayHours": "8:00am - 6:00pm",
-			"fridayHours": "8:00am - 6:00pm",
-			"saturdayHours": "8:00am - 6:00pm",
-			"facebookURL": "",
-			"twitterURL": "",
-			"googleURL": "",
-			"googleBusinessURL": "",
-			"services": [],
-			"features": [],
-			"careers": [],
-			"news": [{
-				"id": "37e37dd0-d84b-432e-9df4-efc530bdf629",
-				"type": "1911fd9d-64cb-4795-870d-3ccb912cd2fb",
-				"shortTitle": "Short Title",
-				"longTitle": "Long Title",
-				"description": "",
-				"image": {},
-				"externalURL": "",
-				"postOnDate": "0001-01-01T00:00:00",
-				"removeOnDate": "0001-01-01T00:00:00",
-				"eventStartDate": "2016-09-07T00:00:00",
-				"eventEndDate": "2016-09-08T00:00:00"
-			}],
-			"holidays": []
-		}],
-	loadStores : function(storeNumbers, cb) {
-		cb();
-	}
-}
 
 var StorePageDetailController = StorePageDetailController || (function ($) {
 	'use strict';
@@ -372,15 +310,14 @@ var StorePageDetailController = StorePageDetailController || (function ($) {
 		storeNumber: '',
 		apiPath: marcomUserData.$constants.apiPath,
 		userId: marcomUserData.$user.externalId,
-		preview_map: {
+		previewMap: {
 			// Source						// Variable
-			"#storeName"					: "storeName",
 			"#storeDistMiles"				: "storeDistMiles",
 			"#storeDistDirection"			: "storeDistDirection",
 			"#storeLandmark"				: "storeLandmark",
 			"#storeStreet"					: "storeStreet",
 			"#storeCrossStreet"				: "storeCrossStreet",
-			"[name=storeNeighboringType]"	: "storeNeighboringType",
+			"input[name='storeNeighboringType']:checked"			: "storeNeighboringType",
 			"#storeNeighboring"				: "storeNeighboring"
 		},
 
@@ -393,43 +330,28 @@ var StorePageDetailController = StorePageDetailController || (function ($) {
 			if (!controller.getStoreNumber()) return 0;
 			siteCoreLibrary.init(function (error) {
 				siteCoreLibrary.loadStores([controller.storeNumber], function (error) {
-					controller.hackLoadSettings(function() {
-						if (controller.validateStoreLoaded(controller.storeNumber)) {
+					if (controller.validateStoreLoaded(controller.storeNumber)) {
+						controller.loadSectionsFromMustache(function() {
 							controller.attachEventListeners();
 							controller.populateUI();
-							controller.refreshPreview();
+							controller.refreshLandmarkPreview();
 							controller.initCharacterLimits();
 							customCheckAndRadioBoxes.customCheckbox();
 							controller.showUI();
-						};
-					});
+						});
+					};
 				});
-			});
-		},
-		hackLoadSettings: function(cb) {
-			cb();
-			return true;
-		   $.ajax({
-				type:"GET",
-				beforeSend: function (request)
-				{
-					request.setRequestHeader("Authorization", "Token  BE8E5CD2-61C0-4041-96DB-7A36B41643A5");
-				},
-				url: "https://vioc.d.epsilon.com/storeapi/settings.ashx",
-				data: null,
-				success: function(data) {
-					siteCoreLibrary.settings = data.results;
-					cb();
-				},
-				error: function(msg) {
-				  console.log(msg);
-					$(".well").html("Error = " + msg.statusText);
-				}
 			});
 		},
 		getStoreNumber: function() {
 			var controller = this;
 			controller.storeNumber = getParameterByName('storeNumber', window.location.href);
+
+			if (controller.storeNumber == "501" || controller.storeNumber == "701" || controller.storeNumber == "941")
+			{
+				toastr.success('Store ' + controller.storeNumber + " is a test store.  Changing store number to 050002 for testing purposes.");
+				controller.storeNumber = "050002";
+			}
 			return true;
 		},
 		validateStoreLoaded: function(storeNumber)
@@ -446,6 +368,39 @@ var StorePageDetailController = StorePageDetailController || (function ($) {
 			}
 			return true;
 		},
+		loadSectionsFromMustache: function(cb) {
+
+			var prefix = "https://files.marcomcentral.app.pti.com/epsilon/static_beta/includes/"
+
+			var d1 = $.get(prefix + "store-landmark-info.mustache");
+			var d2 = $.get(prefix + "store-basic-details.mustache");
+			var d3 = $.get(prefix + "store-communities-served.mustache");
+			var d4 = $.get(prefix + "store-holidays.mustache");
+			var d5 = $.get(prefix + "store-manager-photo.mustache");
+			var d6 = $.get(prefix + "store-news-events-promotions.mustache");
+			var d7 = $.get(prefix + "store-photo.mustache");
+			var d8 = $.get(prefix + "store-services.mustache");
+			var d9 = $.get(prefix + "store-social.mustache");
+			var d10 = $.get(prefix + "store-careers.mustache");
+			var d11 = $.get(prefix + "store-features.mustache");
+
+			$.when(d1,d2,d3,d4,d5,d6,d7,d8,d9,d10,d11).done(function(
+				d1res,d2res,d3res,d4res,d5res,d6res,d7res,d8res,d9res,d10res,d11res) {
+
+				$(".dropzone.dropzone-landmark-info").html($(d1res[0]).filter(".mustache-template").html());
+				$(".dropzone.dropzone-basic-details").html($(d2res[0]).filter(".mustache-template").html());
+				$(".dropzone.dropzone-communities-served").html($(d3res[0]).filter(".mustache-template").html());
+				$(".dropzone.dropzone-holidays").html($(d4res[0]).filter(".mustache-template").html());
+				$(".dropzone.dropzone-manager-photo").html($(d5res[0]).filter(".mustache-template").html());
+				$(".dropzone.dropzone-news-events-promotions").html($(d6res[0]).filter(".mustache-template").html());
+				$(".dropzone.dropzone-photo").html($(d7res[0]).filter(".mustache-template").html());
+				$(".dropzone.dropzone-services").html($(d8res[0]).filter(".mustache-template").html());
+				$(".dropzone.dropzone-social").html($(d9res[0]).filter(".mustache-template").html());
+				$(".dropzone.dropzone-careers").html($(d10res[0]).filter(".mustache-template").html());
+				$(".dropzone.dropzone-features").html($(d11res[0]).filter(".mustache-template").html());
+				cb();
+			});
+		},
 		attachEventListeners: function() {
 			var controller = this;
 
@@ -453,9 +408,10 @@ var StorePageDetailController = StorePageDetailController || (function ($) {
 			// Listen to Preview-area Inputs
 			// -------------------------------------
 			var targets = [];
-			for (var key in controller.preview_map) {
+			for (var key in controller.previewMap) {
 				targets.push(key);
 			}
+			$("input[name='storeNeighboringType']").change(function() { controller.onChangePreviewInput() });
 			$(targets.join(",")).change(function() { controller.onChangePreviewInput() });
 			$(targets.join(",")).keyup(function() { controller.onChangePreviewInput() });
 
@@ -472,6 +428,8 @@ var StorePageDetailController = StorePageDetailController || (function ($) {
 			controller.populateManagerPhoto();
 			controller.populateServices();
 			controller.populateHolidays();
+			controller.populateFeatures();
+			controller.populateSocialAndCommunity();
 		},
 
 		populateBasicDetails: function() {
@@ -524,7 +482,7 @@ var StorePageDetailController = StorePageDetailController || (function ($) {
 			$(".store-services-list").html('');
 
 			$.each(siteCoreLibrary.settings.Services, function(i, service) {
-				var item = '<li class="list-item-default service-item">';
+				var item = '<li class="list-item-default service-item col-sm-6">';
 				item += '<label class="checkbox-default">';
 				item += '<input class="checkbox-default-input" type="checkbox" data-id="' + service.id + '" name="' + service.name + '"/>' + service.name;
 				console.log(service.webURL);
@@ -537,6 +495,7 @@ var StorePageDetailController = StorePageDetailController || (function ($) {
 		},
 		populateHolidays: function() {
 			$("ul.holidays").html('');
+			var items = {};
 
 			$.each(siteCoreLibrary.settings.Holidays, function(i, holiday) {
 				var item = '<li class="list-item-default holiday-item">';
@@ -545,27 +504,93 @@ var StorePageDetailController = StorePageDetailController || (function ($) {
 				item += '<a style="margin-left: 8px" target="_blank" href="https://www.google.com/search?q=when+is+' + encodeURIComponent(holiday.name) + '"><span class="glyphicon glyphicon-info-sign"></span></a>';
 				item += '</label></li>';
 
-				$("ul.holidays").append(item);
+				var leading_zero = (holiday.month < 10) ? "0" : "";
+				var leading_zero2 = (i < 10) ? "0" : "";
+				items["seq_" + leading_zero + holiday.month.toString() + holiday.day.toString() + leading_zero2 + i.toString()] = item;
+			});
+
+			const ordered = {};
+			Object.keys(items).sort().forEach(function(key) {
+			  ordered[key] = items[key];
+			});
+
+			for (var idx in items)
+			{
+				$("ul.holidays").append(items[idx]);
+			}
+		},
+		populateFeatures: function() {
+			var controller = this;
+			var template = $(".store-feature-template").html();
+			var $target = $(".feature-container");
+
+			$.each(siteCoreLibrary.settings.Features, function(i, feature) {
+				var data = {
+					"featureId" : feature.id,
+					"featureName" : feature.name,
+					"checkedState": false,
+					"featureTitle": feature.name,
+					"featureImgSource": ""
+				};
+				$target.append(Mustache.render(template, data));
 			});
 		},
-		refreshPreview: function() {
+		populateSocialAndCommunity : function() {
+			var controller = this;
+			var storeData = siteCoreLibrary.stores[0];
+			var map = {
+				"#socialFacebook" : "facebookURL",
+				"#communitiesServed" : "communitiesServed",
+			}
 
-			var preview_map = controller.preview_map;
+			$.each(map, function(k,v) {
+				$(k).val(siteCoreLibrary.stores[0][v]).change(function() {
+					console.log("Setting " + v + " to " + $(this).val())
+					siteCoreLibrary.stores[0][v] = $(this).val();
+				});
+			});
+		},
+		refreshLandmarkPreview: function() {
+
+			var previewMap = controller.previewMap;
 			var data = {};
 
-			for (var key in preview_map) {
+			for (var key in previewMap) {
 				var val = $(key).val();
-				console.log("Value for " + preview_map[key] + " is %s", val);
+				console.log("Retrieving value for " + key + " : " + val);
 				if (val == undefined || val.trim() == "")
-					val = "[EDIT]";
-				data[preview_map[key]] = "<mark class='edit-" + preview_map[key] + "'>" + $(key).val() + "</mark>";
+				{
+					var placeholder = "";
+					switch (key) {
+						case "#storeStreet": placeholder = "[STREET]"; break;
+						case "input[name='storeNeighboringType']:checked":
+							$("input[name='storeNeighboringType']:first").prop('checked', 'true');
+						break;
+						case "#storeNeighboring": placeholder = "[NEIGHBORING BUSINESS]"; break;
+						case "#storeCrossStreet": placeholder = "[CROSS STREET]"; break;
+						case "#storeLandmark": placeholder = "[POPULAR LANDMARK]"; break;
+						case "#storeDistDirection": placeholder = "[DIRECTION]"; break;
+						case "#storeDistMiles": placeholder = "[DISTANCE]"; break;
+						case "#storeDistMiles": placeholder = "[DISTANCE]"; break;
+						default: placeholder = "[EDIT]";
+					}
+
+					if (placeholder != "")
+					$(key).val(placeholder);
+				}
+
+				data[previewMap[key]] = "<mark class='edit-" + previewMap[key] + "'>" + $(key).val() + "</mark>";
 			}
+
+			data["storeName"] = siteCoreLibrary.stores[0].name;
+			$("#storeName").val(siteCoreLibrary.stores[0].name);
+
 
 			$(".preview-content").html(Mustache.render($(".store-preview-template").html(), data));
 			$(".preview-content").html($(".preview-content").html().replace(/&gt;/g,">").replace(/&lt;/g,"<"));
 
-			for (var key in preview_map) {
-				var name = preview_map[key];
+			for (var key in previewMap) {
+				var name = previewMap[key];
 				$(".edit-" + name).click(function() {
 					var name = $(this).attr('class').replace("edit-", "");
 					console.log("Clicked " + name);
@@ -605,7 +630,7 @@ var StorePageDetailController = StorePageDetailController || (function ($) {
 		},
 
 		onChangePreviewInput: function() {
-			this.refreshPreview();
+			this.refreshLandmarkPreview();
 		},
 
 		onUploadStorePhoto: function() {
