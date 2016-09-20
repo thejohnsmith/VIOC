@@ -1,6 +1,6 @@
 <section id="landmark_info" class="mustache-template landmark-info-section form-section">
   <div class="clearfix">
-    <div class="col-xs-12">
+    <div class="col-xs-12" style="padding-left: 0px;">
       <div class="clearfix form-item">
         <label class="label-text" for="storeName">
           <h2 class="landmark-info-label">Landmark Info</h2>
@@ -29,6 +29,7 @@
             {{storeStreet}}
             and
             {{storeCrossStreet}}
+			{{storeNeighboringType}}
             {{storeNeighboring}}.
           {{/.}}
         </script>
@@ -100,16 +101,16 @@
           </div>
         </div>
       </div>
-      <div class="storeNeighboring-container none clearfix form-item">
+      <div class="storeNeighboring-container storeNeighboringType-container none clearfix form-item">
         <label class="label-text" for="storeNeighboring">
           Neighboring Business
         </label>
         <label class="radio-default" for="storeNeighboringAcrossFrom">
-          <input selected="selected" value="across from" type="radio" name="storeNeighboring" id="storeNeighboringAcrossFrom" class="storeNeighboringType">
+          <input selected="selected" value="across from" type="radio" name="storeNeighboringType" id="storeNeighboringAcrossFrom" class="storeNeighboringType">
           Across From
         </label>
         <label class="radio-default" for="storeNeighboringNextTo">
-          <input value="next to" type="radio" name="storeNeighboring" id="storeNeighboringNextTo" class="storeNeighboringType">
+          <input value="next to" type="radio" name="storeNeighboringType" id="storeNeighboringNextTo" class="storeNeighboringType">
           Next To
         </label>
         <div class="storeNeighboring row">

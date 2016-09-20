@@ -158,7 +158,7 @@ a.pbtn span, a.pbtn.btn-s-disabled span, a.pbtn.btn-s-disabled:hover span, a.pbt
   -webkit-transform: scale(1);
   transform: scale(1)
 }
-.SelectSavedContentPrompt> a, #SelectSavedContentPrompt a {
+.SelectSavedContentPrompt>a, #SelectSavedContentPrompt a {
   -webkit-transition: none;
   transition: none
 }
@@ -405,7 +405,7 @@ input[type=number], input[type=password], input[type=search], input[type=text], 
 #CtlCart p, #CtlCart h1, #CtlCart h2, #CtlCart h3, #CtlCart h4, #CtlCart h5, #CtlCart h6, #CtlCart ol {
   border-radius: 3px
 }
-a#openPDF> span {
+a#openPDF>span {
   font-size: 14px!important;
   max-width: 140px;
   margin: 0 0 15px;
@@ -424,7 +424,7 @@ a#openPDF> span {
 .pf3FormTitleCopy {
   display: none
 }
-.SelectSavedContentPrompt> a, .SaveContentPrompt> a {
+.SelectSavedContentPrompt>a, .SaveContentPrompt>a {
   color: #333!important;
   background-color: #fff;
   margin-bottom: 1em!important;
@@ -447,14 +447,59 @@ a#ctl00_content_gridSavedContent_btnImport, #cboxLoadedContent #ctl00_content_gr
 input#ctl00_content_CtlAddToCart_ProductOrderInfoController_AddToCartActionBox_mItemQuantity_txtQty {
   border: none
 }
-div#ctl00_content_CtlAddToCart_ProductOrderInfoController_AddToCartActionBox_mItemQuantity_panelQty> span.FontBold {
+div#ctl00_content_CtlAddToCart_ProductOrderInfoController_AddToCartActionBox_mItemQuantity_panelQty>span.FontBold {
   position: relative;
   display: inline-table
 }
-div#ctl00_content_CtlAddToCart_ProductOrderInfoController_AddToCartActionBox_mItemQuantity_panelQty> span.FontBold::after {
+div#ctl00_content_CtlAddToCart_ProductOrderInfoController_AddToCartActionBox_mItemQuantity_panelQty>span.FontBold::after {
   content: ': ';
   display: inline-block;
   position: absolute;
   right: -4px;
   top: 0
+}
+.disclaimerSection {
+	position: relative;
+	display: inline-block;
+	border: 1px solid #dfdfdf;
+	box-shadow: inset 0 0 5px 2px rgba(189, 189, 189, 0.37);
+	height: 214px;
+	padding: 0.3em 1em 0;
+	overflow-y: scroll;
+	overflow-x: hidden;
+	white-space: normal;
+	font-size: 0.6em;
+	text-rendering: geometricPrecision;
+	-webkit-font-smoothing: antialiased;
+	empty-cells: hide;
+	text-rendering: optimizeLegibility;
+	width: 350px;
+}
+.disclaimerSection .disclaimerSectionRow {
+  width: 100%;
+  display: block;
+}
+.disclaimerSection .disclaimerSectionRow+.disclaimerSectionRow {
+  margin-top: 0.6em;
+}
+.disclaimerSection td {
+  width: 100%!important;
+  display: inline-block!important;
+  margin-top: 0.6em!important;
+}
+.disclaimerSection input[type='radio']{
+  margin: 4px;
+}
+.disclaimerSection::-webkit-scrollbar-.ack {
+  border-radius: 10px;
+  background-color: #f5f5f5;
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, .3)
+}
+.disclaimerSection::-webkit-scrollbar {
+  width: 8px;
+  background-color: #f5f5f5
+}
+.disclaimerSection::-webkit-scrollbar-thumb {
+  border-radius: 4px;
+  background-image: -webkit-gradient(linear, left bottom, left top, color-stop(.04, rgba(224, 41, 38, .95)), color-stop(.62, #004890), color-stop(.86, #497dbd))
 }

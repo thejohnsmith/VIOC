@@ -8,34 +8,31 @@
 .small, small {
   font-size: 90%;
 }
-
 .h1, .h2, .h3, h1, h2, h3 {
   font-weight: normal
 }
-
+h2 {
+  margin-top: 0px;
+  margin-bottom: 20px;
+}
 input[type='number'] {
   height: 32px;
 }
-
 .radio-default, .checkbox-default {
   font-weight: normal;
   font-size: 12px
 }
-
 .label-text {
   font-size: 1em;
   text-align: inherit
 }
-
 .header-info h2, .header-info h3 {
   margin: 0;
   padding: 0
 }
-
 .list-inline .list-item, .list-inline .list-item-default {
   display: block;
 }
-
 .sortable {
   width: 33%;
   max-width: 200px;
@@ -43,11 +40,9 @@ input[type='number'] {
   display: inline-block;
   text-align: center
 }
-
 .tabbable .nav-tabs.nav {
   margin: 0 0 1em
 }
-
 .feature-container {
   /*display: inline-block;
   width: 100%;
@@ -70,13 +65,11 @@ input[type='number'] {
   -ms-flex-align: stretch;
   align-items: stretch;
 }
-
 .feature-media {
   display: inline-block;
   width: 100%;
   text-align: center;
 }
-
 .feature {
   padding: 1em;
   -webkit-transition: ease-out .15s;
@@ -91,7 +84,6 @@ input[type='number'] {
   text-align: center;
   background: #E0E0E0;
 }
-
 .sortable.feature {
   -webkit-box-flex: 0;
   -ms-flex-positive: 0;
@@ -101,56 +93,79 @@ input[type='number'] {
   flex-basis: 16.3em;
   margin: 0.4em;
 }
-
 .feature:hover {
   -webkit-transform: scale(1.009);
   transform: scale(1.009);
   background: #f6f6f6
 }
-
 .feature-active {
   background: #eee;
 }
-
 .feature-title {
   margin: 0 0 .4em;
   display: inline-block;
   text-align: left;
 }
-
-.landmark-info-label, .basic-details-text {
-  margin-top: 0
-}
-
 .dropzone-pane {
   margin-bottom: 3em
 }
-
 .dropzone-row+.dropzone-row {
   margin-top: 3em
 }
-
 .store-photo, .store-manager-photo {
   height: 200px
 }
-
 .dropzone-landmark-info .label-text {
   font-size: 1.3em;
   margin: 0.3em 0 0.6em
 }
-
 .dropzone-social .characterLimit {
   margin: .4em 0 1em
 }
-
 .dropzone-photo .label-text, .dropzone-manager-photo .label-text, .holiday-item {
   white-space: nowrap
 }
-
 .dropzone-pane .btn-lg {
   min-width: 100px
 }
-
 .store-photo-item {
   border-radius: 3px
+}
+.badge {
+  color: #337ab7;
+  background-color: #fff;
+  display: inline-block;
+  box-sizing: border-box;
+  min-width: 20px;
+  border-radius: 60%;
+  text-align: -webkit-center;
+  -webkit-font-smoothing: antialiased;
+  text-align: center;
+  position: relative;
+  top: 0;
+  left: 4px;
+  right: auto;
+}
+.btn-circle {
+  width: 30px;
+  height: 30px;
+  text-align: center;
+  padding: 6px 0;
+  font-size: 12px;
+  line-height: 1.428571429;
+  border-radius: 15px;
+}
+.btn-circle.btn-lg {
+  width: 50px;
+  height: 50px;
+  padding: 13px 13px;
+  font-size: 18px;
+  line-height: 1.33;
+  border-radius: 25px;
+}
+.storePage-storeTable-Section .btn-sm {
+  font-size: 10px;
+  line-height: 1;
+  padding: 0.2em 0.4em;
+  border-radius: 4px
 }

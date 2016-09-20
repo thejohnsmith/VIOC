@@ -1041,7 +1041,7 @@ header#nav {
   display: inline-block
 }
 
-.display-inline;
+.display-inline
 {
   display: inline
 }
@@ -3922,7 +3922,14 @@ button.enroll-all-stores.btn.btn-primary.btn-sm {
   color: #5bc0de;
   background-color: #fff
 }
-
+span.badge {
+  border-radius: 6em;
+  min-width: 2em;
+  display: inline-block;
+  text-align: center;
+  padding: 2px 3px 2px;
+  font-size: 10px
+}
 .btn-warning {
   color: #fff;
   border-color: #eea236;

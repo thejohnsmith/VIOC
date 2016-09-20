@@ -130,21 +130,37 @@ window.onload = function () {
                             <div class="text-center store-number">Store #{{storeNumber}}</div>
                           </td>
                           <td class="list-item text-center">
-                          <button type="button" class="btn btn-primary">
-                            INSP
-                            <span class="badge">x
-                            </span>
-                          </button>
-                            <button type="button" class="btn btn-success">
-                              ws10
-                            <span class="badge">x
-                            </span>
-                          </button>
-                          <button type="button" class="btn btn-danger">
-                            10AF
-                            <span class="badge">x
-                            </span>
-                          </button>
+
+                            <div class="form-group">
+                              <div data-toggle="buttons">
+                                {{#storeOfferMini}}
+                                  {{#storeOfferItem}}
+                                    <button id="offe-id-{{offerId}}" type="button" class="btn btn-circle btn-sm {{#offerState}}btn-primary{{offerState}}{{/offerState}}{{^offerState}}btn-default{{offerState}}{{/offerState}}">
+                                      {{#offerType}}{{offerType}}{{/offerType}}
+                                      {{#offerBadge}}
+                                        {{^offerBadge}} Not found{{/offerBadge}}
+                                      <span class="badge">
+                                        {{^offerBadge}}NA{{/offerBadge}}
+                                        {{offerBadge}}
+                                      </span>
+                                      {{/offerBadge}}
+                                    </button>
+                                  {{/storeOfferItem}}
+                                {{/storeOfferMini}}
+
+                                <button type="button" class="btn btn-circle btn-sm btn-success">
+                                  10AF
+                                  <span class="badge">4
+                                  </span>
+                                </button>
+                                <button type="button" class="btn btn-circle btn-sm btn-danger">
+                                  10AF
+                                  <span class="badge">2
+                                  </span>
+                                </button>
+
+                              </div>
+                            </div>
                           </td>
                           <td class="list-item text-center">
                             <a href="{{href}}" title="Edit Store">
@@ -191,98 +207,96 @@ window.onload = function () {
                         <th class="table-banner-item">
                           Delete
                         </th>
-                      </tr>
-                      <tr class="error none">
-                        <td colspan="7" class="Error list-item">Please add more offers.</td>
-                      </tr>
-                      <tr draggable="true" class="sortable-item filterable store-item text-center" data-filter-storeid="1" data-storeid="1" data-enrolled="true">
-                        <td class="list-item handle text-center">::</td>
-                        <td class="list-item">
-                          INSP
-                        </td>
-                        <td class="list-item">
-                          Emissions Test
-                        </td>
-                        <td class="list-item">
-                          Plus 30
-                        </td>
-                        <td class="list-item text-center">
-                          <small>
-                            Tom T's 1st Store (Store #501)
-                          </small>
-                        </td>
-                        <td class="list-item">
-                          <a class="editOfferDetails" href="CustomPage.aspx?uigroup_id=479602&page_id=13095" title="Edit Offer Details">
-                            <span alt="Edit Offer Details" class="icon icon-edit-bg"></span>
-                          </a>
-                        </td>
-                        <td class="deleteOffer list-item">
-                          <button data-storeid="1938" data-offerid="1" alt="Delete Offer" class="icon icon-delete-bg"></button>
-                        </td>
-                      </tr>
+                    </tr>
+                    <tr class="error none">
+                      <td colspan="7" class="Error list-item">Please add more offers.</td>
+                    </tr>
+                    <tr draggable="true" class="sortable-item filterable store-item text-center" data-filter-storeid="1" data-storeid="1" data-enrolled="true">
+                      <td class="list-item handle text-center">::</td>
+                      <td class="list-item">
+                        INSP
+                      </td>
+                      <td class="list-item">
+                        Emissions Test
+                      </td>
+                      <td class="list-item">
+                        Plus 30
+                      </td>
+                      <td class="list-item text-center">
+                        <small>
+                          Tom T's 1st Store (Store #501)
+                        </small>
+                      </td>
+                      <td class="list-item">
+                        <a class="editOfferDetails" href="CustomPage.aspx?uigroup_id=479602&page_id=13095" title="Edit Offer Details">
+                          <span alt="Edit Offer Details" class="icon icon-edit-bg"></span>
+                        </a>
+                      </td>
+                      <td class="deleteOffer list-item">
+                        <button data-storeid="1938" data-offerid="1" alt="Delete Offer" class="icon icon-delete-bg"></button>
+                      </td>
+                    </tr>
 
-                      <tr draggable="true" class="sortable-item filterable store-item text-center" data-filter-storeid="2" data-storeid="2" data-enrolled="true">
-                        <td class="list-item handle text-center">::</td>
-                        <td class="list-item">
-                          10AF
-                        </td>
-                        <td class="list-item">
-                          Air Filter &amp; Cabin Filter
-                        </td>
-                        <td class="list-item">
-                          2016-12-31
-                        </td>
-                        <td class="list-item text-center">
-                          <small>
-                            Tom T's 2nd Store (Store #701)
-                          </small>
-                        </td>
-                        <td class="list-item">
-                          <a class="editOfferDetails" href="CustomPage.aspx?uigroup_id=479602&page_id=13095" title="Edit Offer Details">
-                            <span alt="Edit Offer Details" class="icon icon-edit-bg"></span>
-                          </a>
-                        </td>
-                        <td class="deleteOffer list-item">
-                          <button data-offerid="2" alt="Delete Offer" class="icon icon-delete-bg"></button>
-                        </td>
-                      </tr>
+                    <tr draggable="true" class="sortable-item filterable store-item text-center" data-filter-storeid="2" data-storeid="2" data-enrolled="true">
+                      <td class="list-item handle text-center">::</td>
+                      <td class="list-item">
+                        10AF
+                      </td>
+                      <td class="list-item">
+                        Air Filter &amp; Cabin Filter
+                      </td>
+                      <td class="list-item">
+                        2016-12-31
+                      </td>
+                      <td class="list-item text-center">
+                        <small>
+                          Tom T's 2nd Store (Store #701)
+                        </small>
+                      </td>
+                      <td class="list-item">
+                        <a class="editOfferDetails" href="CustomPage.aspx?uigroup_id=479602&page_id=13095" title="Edit Offer Details">
+                          <span alt="Edit Offer Details" class="icon icon-edit-bg"></span>
+                        </a>
+                      </td>
+                      <td class="deleteOffer list-item">
+                        <button data-offerid="2" alt="Delete Offer" class="icon icon-delete-bg"></button>
+                      </td>
+                    </tr>
 
-                      <tr draggable="true" class="sortable-item filterable store-item text-center" data-filter-storeid="3" data-storeid="3" data-enrolled="true">
-                        <td class="list-item handle text-center">::</td>
-                        <td class="list-item">
-                          ws10
-                        </td>
-                        <td class="list-item">
-                          Any Oli Change, 5qts.
-                        </td>
-                        <td class="list-item">
-                          Plus 60
-                        </td>
-                        <td class="list-item text-center">
-                          <small>
-                            Tom T's 1st Store (Store #501)
-                            <br>
-                            Tom T's 2nd Store (Store #701)
-                            <br>
-                            Tom T's 3rd Store (Store #941)
-                          </small>
-                        </td>
-                        <td class="list-item">
-                          <a class="editOfferDetails" href="CustomPage.aspx?uigroup_id=479602&page_id=13095" title="Edit Offer Details">
-                            <span alt="Edit Offer Details" class="icon icon-edit-bg"></span>
-                          </a>
-                        </td>
-                        <td class="deleteOffer list-item">
-                          <button data-offerid="3" alt="Delete Offer" class="icon icon-delete-bg"></button>
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </section>
-              </div>
+                    <tr draggable="true" class="sortable-item filterable store-item text-center" data-filter-storeid="3" data-storeid="3" data-enrolled="true">
+                      <td class="list-item handle text-center">::</td>
+                      <td class="list-item">
+                        ws10
+                      </td>
+                      <td class="list-item">
+                        Any Oli Change, 5qts.
+                      </td>
+                      <td class="list-item">
+                        Plus 60
+                      </td>
+                      <td class="list-item text-center">
+                        <small>
+                          Tom T's 1st Store (Store #501)
+                          <br> Tom T's 2nd Store (Store #701)
+                          <br> Tom T's 3rd Store (Store #941)
+                        </small>
+                      </td>
+                      <td class="list-item">
+                        <a class="editOfferDetails" href="CustomPage.aspx?uigroup_id=479602&page_id=13095" title="Edit Offer Details">
+                          <span alt="Edit Offer Details" class="icon icon-edit-bg"></span>
+                        </a>
+                      </td>
+                      <td class="deleteOffer list-item">
+                        <button data-offerid="3" alt="Delete Offer" class="icon icon-delete-bg"></button>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </section>
             </div>
           </div>
         </div>
       </div>
     </div>
   </div>
+</div>

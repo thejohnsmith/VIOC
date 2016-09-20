@@ -84,7 +84,7 @@ FormCopyController = (function ($) {
 					e.stopPropagation();
 					setTimeout(function (e) {
 						$('#mButtonPreviewTop').click();
-						return
+						return;
 					}, 800);
 				}
 			});
@@ -114,9 +114,21 @@ FormCopyController = (function ($) {
 			var element = controller.element;
 			$('#Text_Delivery_Time').val('VALID_f95ba619-1069-4575-88b5-430255c470cc_9am Central').change();
 		},
+		/**
+		 * Create disclaimer items - Radio input list
+		 *
+		 * type: radio
+		 * name: target+'Disclaimer_option'
+		 * value: disclaimers[idx]
+		 */
 		AddDisclaimers: function () {
 			var controller = this;
-			var disclaimers = ["", "Includes up to 5 quarts of the oil type and grade advertised in the coupon (diesel quarts may vary; see store for details), filter (prem. extra), lube & maintenance check; plus tax, if applicable; not valid with same service offers / discounts (including fleet); see store for additional details or restrictions; good only at participating locations. No cash or credit back; cash value $0.001.",
+			var ddTargets = ['C1Disclaimer', 'C2Disclaimer', 'C3Disclaimer'];
+			$('[name*="Disclaimer"]~table').addClass('disclaimerSection');
+			var result = $('.disclaimerSection');
+			result.html('<tbody><tr class="disclaimerSectionRow"></tr></tbody>');
+			var target = $('.disclaimerSectionRow');
+			var disclaimers = ["Includes up to 5 quarts of the oil type and grade advertised in the coupon (diesel quarts may vary; see store for details), filter (prem. extra), lube & maintenance check; plus tax, if applicable; not valid with same service offers / discounts (including fleet); see store for additional details or restrictions; good only at participating locations. No cash or credit back; cash value $0.001.",
 				"Includes up to 6 quarts of the oil type and grade advertised in the coupon (diesel quarts may vary; see store for details), filter (prem. extra), lube & maintenance check; plus tax, if applicable; not valid with same service offers / discounts (including fleet); see store for additional details or restrictions; good only at participating locations. No cash or credit back; cash value $0.001.",
 				"Includes up to 5 quarts of the oil type and grade advertised in the coupon (diesel quarts may vary; see store for details), filter (prem. extra), lube & maintenance check; plus tax, if applicable; not valid with same service offers / discounts (including fleet); see store for additional details or restrictions; good only at participating locations. Haz. Waste fee extra. No cash or credit back; cash value $0.001.",
 				"Includes up to 6 quarts of the oil type and grade advertised in the coupon (diesel quarts may vary; see store for details), filter (prem. extra), lube & maintenance check; plus tax, if applicable; not valid with same service offers / discounts (including fleet); see store for additional details or restrictions; good only at participating locations. Haz. Waste fee extra. No cash or credit back; cash value $0.001.",
@@ -125,21 +137,12 @@ FormCopyController = (function ($) {
 				"Includes up to 5 quarts of conventional, synthetic blend, full synthetic, or diesel oil (diesel quarts may vary; see store for details), filter (prem. extra), lube & maintenance check; plus tax, if applicable; not valid with same service offers / discounts (including fleet); see store for additional details or restrictions; good only at participating locations. Haz waste fee extra. No cash or credit back; cash value $0.001.",
 				"Includes up to 6 quarts of conventional, synthetic blend, full synthetic, or diesel oil (diesel quarts may vary; see store for details), filter (prem. extra), lube & maintenance check; plus tax, if applicable; not valid with same service offers / discounts (including fleet); see store for additional details or restrictions; good only at participating locations. Haz waste fee extra. No cash or credit back; cash value $0.001"
 			];
-
-			$("select[name*='Disclaimer']").html('').after('<div class="disclaimerCopy"/>').change(function (e) {
-				$('.disclaimerCopy').html('');
-				var longDisclaimerString = $(this).next('.disclaimerCopy');
-				longDisclaimerString.html($(e.target).val());
-			});
-
-			// Trigger a change on the first one.
-			$('select[name=C1Disclaimer]').trigger('change');
-
-			for (var i = 0; i < disclaimers.length; i++) {
-				$('<option/>', {
-					value: disclaimers[i],
-					html: disclaimers[i]
-				}).appendTo("select[name*='Disclaimer']");
+			// ==============================================================================
+			// Implement Disclaimer Dropdowns
+			// ==============================================================================
+			for (var idx = 0; idx < disclaimers.length; idx++) {
+				console.info('idx = ', idx);
+				target.append('<td><label><input type="radio" name="' + disclaimers[idx] + 'Disclaimer_option" value="' + disclaimers[idx] + '" /> ' + disclaimers[idx] + '</label></td>');
 			}
 		},
 		/**
@@ -225,3 +228,5 @@ FormCopyController = (function ($) {
 if (window.location.href.indexOf(pageKey) > -1) {
 	FormCopyController.controller.init();
 }
+
+jQuery(document).ready(FormCopyController.controller.AddDisclaimers())

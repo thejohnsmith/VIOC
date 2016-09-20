@@ -20,7 +20,9 @@ var StorePagesController = StorePagesController || (function ($) {
 			controller.ConfigureFilters();
 			controller.AdjustUI(function () {
 				controller.getStoreProgramData(function () {
-					controller.ShowUI();
+					controller.ShowUI(function() {
+						controller.EventHandlers();
+					});
 				});
 			});
 		},
@@ -38,76 +40,20 @@ var StorePagesController = StorePagesController || (function ($) {
 			controller.SetupSortable();
 			// controller.CountChar();
 
-			controller.EventHandlers();
 			if (typeof callback == 'function') {
 				callback();
 			}
 		},
 		EventHandlers: function () {
 			var controller = this;
-			// Show All News items
-			$('.storeNewsEventsPromotionsShowAll').on('click', function () {
-				$('.storeNewsEventsPromotionsShowAllItem').show();
-				$('.storeNewsEventsPromotionsShowActive').css({
-					'visibility': 'visible'
-				});
-			});
-			$('.storeNewsEventsPromotionsShowActive').on('click', function () {
-				$('.storeNewsEventsPromotionsShowAllItem').hide();
-				$('.newsEventPromotionItem.storeNewsEventsPromotionsShowActiveItem').show();
-				$(this).css({
-					'visibility': 'hidden'
-				});
-			});
 
-			$('.storeCareersShowAll').on('click', function () {
-				$('.storeCareersShowAllItem').show();
-			});
-
-			// Text toggle, usefull for reuse
-			// - John Smith
-			// $(this).text(function (i, text) {
-			// 	return text === "Show all" ? "Show scheduled/active only" : "Show all";
-			// })
-
-			$('.storePages.navBarSelectedLinkColor').show();
-			// Delete Offer
-			$('.deleteOffer > button, .delete-offer-btn').on('click', function (e) {
-				e.preventDefault();
-				var data = $(this).data();
-				return controller.DeleteOffer(data);
-			});
-
-			// Select Date Radio
-			$('.offer-form input[type=date]').on('click', function () {
-				return $('#specificDate').attr('checked', true);
-			});
-
-			// Select All - Checkboxes
-			$('.offer-form .select-all').on('click', function (e) {
-				e.preventDefault();
-				return $('.checkbox-default-input').attr('checked', true);
-			});
-
-			// Redirect Cancel Button
-			$('.offer-form .cancel-btn').on('click', function (e) {
-				e.preventDefault();
-				var data = $(this).data();
-				var pageurl = {};
-				pageurl = data.pageurl;
-				console.info('pageurl type %o, ', typeof pageurl); // string
-				return window.location = marcomUserData.$constants.storePagesUrl;
-			});
-
-			// Save Button Handler
-			$('.save-btn').on('click', function (e) {
+			// Offer Tag Handler
+			$('.offer-tag').on('click', function (e) {
+				var id = $(this).attr('data-id');
+				window.location.href = "CustomPage.aspx?uigroup_id=479602&page_id=13095&offerId=" + id;
 				e.preventDefault();
 				return;
 			});
-
-
-
-
 		},
 
 		CountChar: function (e, maxLength) {
@@ -244,7 +190,7 @@ var StorePagesController = StorePagesController || (function ($) {
 			// $('.breadcrumbs_previous:last a').attr('href', '');
 
 		},
-		ShowUI: function () {
+		ShowUI: function (cb) {
 			var controller = this;
 
 			$('.js-content').fadeIn();
@@ -258,11 +204,13 @@ var StorePagesController = StorePagesController || (function ($) {
 			}
 			var data = controller.store_data;
 			$.each(data, function (i, e) {
-				data[i].href = marcomUserData.$constants.storeDetailsUrl + "&storeId=" + data[i].storeId;
+				data[i].href = marcomUserData.$constants.storeDetailsUrl + "&storeId=" + data[i].storeId + "&storeNumber=" + data[i].storeNumber;
 			});
 			var target_css_selector = "#storePage-storeTable-Section";
 
 			$(target_css_selector).html(Mustache.render(template, data));
+
+			cb()
 
 		},
 		getMustacheTemplate: function (filename, extraction_css_selector, target_css_selector, data, callback) {
