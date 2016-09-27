@@ -47,6 +47,51 @@ window.onload = function () {
 ********************** /PORTAL CUSTOM COPY ****************** -->
 
 <div class="wrapper storePages">
+
+<!-- Include bootstrap -->
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+<!-- Declare styles for Offer tabs -->
+<style>
+.tag {
+	font-size: 14px;
+    padding: 5px;
+    margin: 0 .1em;
+    font-weight: normal;
+	cursor: pointer;
+}
+.tag span {
+	margin: 0px 4px;
+	text-decoration: underline;
+}
+.tag a {
+  display: none;  /* We'll hide this functionality for now. */
+  color: #bbb;
+  cursor: pointer;
+  opacity: 0.6;
+}
+.tag a:hover {
+  opacity: 1.0
+}
+.tag .remove {
+  vertical-align: bottom;
+  top: 0;
+}
+.tag a {
+    margin: 0px 0 0 .3em;
+    position: relative;
+    top: 2px;
+    left: 0px;
+}
+.tag a .glyphicon-white {
+  color: #fff;
+  margin-bottom: 2px;
+}
+.edit-col {
+	border-right: 1px solid white;
+}
+</style>
+
   <div class="mid-container">
     <div class="main">
       <section id="breadcrumbs">
@@ -69,234 +114,109 @@ window.onload = function () {
           <div role="presentation" class="spinner"></div>
         </div>
         <div class="js-content">
-          <ul class="resp-tabs-list hor_1">
-            <li>Store Details</li>
-            <!-- <li>Offers</li> -->
-          </ul>
-          <div class="resp-tabs-container hor_1">
-            <div class="resp-tab-content
-            ">
-              <section class="resp-tab-content-section">
-                <div class="filters-area">
-                  <div class="filter-title">
-                    Store Filters:
-                  </div>
-                  <div class="company filter-select select-option">
-                    <select class="selectbox"></select>
-                  </div>
+		  <section class="resp-tab-content-section">
+			<div class="filters-area">
+			  <div class="filter-title">
+				Store Filters:
+			  </div>
+			  <div class="company filter-select select-option">
+				<select class="selectbox"></select>
+			  </div>
 
-                  <div class="market filter-select select-option">
-                    <select class="selectbox"></select>
-                  </div>
+			  <div class="market filter-select select-option">
+				<select class="selectbox"></select>
+			  </div>
 
-                  <div class="filter-results">
-                    <a href="#" title="filter-edit" class="filter-reset">
-                      <img src="https://files.marcomcentral.app.pti.com/epsilon/static/marcom_custom/images/edit-filter.png" alt="Edit" title="Edit" width="16">
-                    </a>
-                    <span class="filter-results-value"></span>
-                  </div>
-                </div>
+			  <div class="filter-results">
+				<a href="#" title="filter-edit" class="filter-reset">
+				  <img src="https://files.marcomcentral.app.pti.com/epsilon/static/marcom_custom/images/edit-filter.png" alt="Edit" title="Edit" width="16">
+				</a>
+				<span class="filter-results-value"></span>
+			  </div>
+			</div>
 
-                <!-- Store Pages: Store Table Template
-                    @template storePage-storeTable-template
-                    @type template/mustache
-                    @import storePages.html
-                -->
-                <script class="storePage-storeTable-template" type="x-tmpl-mustache">
+			<!-- Store Pages: Store Table Template
+				@template storePage-storeTable-template
+				@type template/mustache
+				@import storePages.html
+			-->
+			<script class="storePage-storeTable-template" type="x-tmpl-mustache">
 
-                  <table id="storeDetail" class="full-width">
-                    <tbody class="{{#sortable}}not-sortable{{/sortable}} full-width text-center">
-                      <tr draggable="false" class="table-banner text-center">
-                        {{#sortable}}
-                          <th class="table-banner-item">
-                            Sort
-                          </th>
-                        {{/sortable}}
-                        <th class="table-banner-item">
-                          Store
-                        </th>
-                        <th class="table-banner-item">Offers</th>
-                        <th class="table-banner-item">
-                          Edit
-                        </th>
-                      </tr>
-                      {{#.}}
-                        <tr draggable="false" class="{{^sortable}}not-sortable-item{{/sortable}} filterable store-item text-center" data-filter-storeId="{{storeId}}" data-storeId="{{storeId}}">
-                          {{#sortable}}
-                            <td class="list-item handle text-center">::</td>
-                          {{/sortable}}
-                          <td class="list-item text-center store-name">
-                            {{storeName}}
-                            <div class="text-center store-number">Store #{{storeNumber}}</div>
-                          </td>
-                          <td class="list-item text-center">
+			  <table id="storeDetail" class="full-width">
+				<tbody class="{{#sortable}}not-sortable{{/sortable}} full-width text-center">
+				  <tr draggable="false" class="table-banner text-center">
+					{{#sortable}}
+					  <th class="table-banner-item">
+						Sort
+					  </th>
+					{{/sortable}}
+					<th class="table-banner-item">
+					  Store
+					</th>
+					<th class="table-banner-item edit-col">
+					  Edit Store
+					</th>
+					<th class="table-banner-item">Store Offers</th>
+				  </tr>
+				  {{#.}}
+					<tr draggable="false" class="{{^sortable}}not-sortable-item{{/sortable}} filterable store-item text-center" data-filter-storeId="{{storeId}}" data-storeId="{{storeId}}">
+					  {{#sortable}}
+						<td class="list-item handle text-center">::</td>
+					  {{/sortable}}
+					  <td class="list-item text-center store-name">
+						{{storeName}}
+						<div class="text-center store-number">Store #{{storeNumber}}</div>
+					  </td>
+					  <td class="list-item text-center edit-col">
+						<a href="{{href}}" title="Edit Store">
+						  <span alt="Edit" class="icon icon-edit-bg"></span>
+						</a>
+					  </td>
+					  <td class="list-item text-center">
 
-                            <div class="form-group">
-                              <div data-toggle="buttons">
-                                {{#storeOfferMini}}
-                                  {{#storeOfferItem}}
-                                    <button id="offe-id-{{offerId}}" type="button" class="btn btn-circle btn-sm {{#offerState}}btn-primary{{offerState}}{{/offerState}}{{^offerState}}btn-default{{offerState}}{{/offerState}}">
-                                      {{#offerType}}{{offerType}}{{/offerType}}
-                                      {{#offerBadge}}
-                                        {{^offerBadge}} Not found{{/offerBadge}}
-                                      <span class="badge">
-                                        {{^offerBadge}}NA{{/offerBadge}}
-                                        {{offerBadge}}
-                                      </span>
-                                      {{/offerBadge}}
-                                    </button>
-                                  {{/storeOfferItem}}
-                                {{/storeOfferMini}}
+						<div class="form-group">
+						  <div data-toggle="buttons">
+							{{#storeOfferMini}}
+							  {{#storeOfferItem}}
+								<button id="offe-id-{{offerId}}" type="button" class="btn btn-circle btn-sm {{#offerState}}btn-primary{{offerState}}{{/offerState}}{{^offerState}}btn-default{{offerState}}{{/offerState}}">
+								  {{#offerType}}{{offerType}}{{/offerType}}
+								  {{#offerBadge}}
+									{{^offerBadge}} Not found{{/offerBadge}}
+								  <span class="badge">
+									{{^offerBadge}}NA{{/offerBadge}}
+									{{offerBadge}}
+								  </span>
+								  {{/offerBadge}}
+								</button>
+							  {{/storeOfferItem}}
+							{{/storeOfferMini}}
 
-                                <button type="button" class="btn btn-circle btn-sm btn-success">
-                                  10AF
-                                  <span class="badge">4
-                                  </span>
-                                </button>
-                                <button type="button" class="btn btn-circle btn-sm btn-danger">
-                                  10AF
-                                  <span class="badge">2
-                                  </span>
-                                </button>
+							<span class="tag label label-info" data-toggle="tooltip" data-placement="top" title="10AF">
+							  <span class="offer-tag" data-id="1">10AF</span>
+							  <a><i class="remove glyphicon glyphicon-remove-sign glyphicon-white"></i></a> 
+							</span>
+							<span class="tag label label-info" data-toggle="tooltip" data-placement="top" title="WS20">
+							  <span class="offer-tag" data-id="2">WS20</span>
+							  <a><i class="remove glyphicon glyphicon-remove-sign glyphicon-white"></i></a> 
+							</span>
 
-                              </div>
-                            </div>
-                          </td>
-                          <td class="list-item text-center">
-                            <a href="{{href}}" title="Edit Store">
-                              <span alt="Edit" class="icon icon-edit-bg"></span>
-                            </a>
-                          </td>
-                        </tr>
-                      {{/.}}
-                    </tbody>
-                  </table>
-
-                </script>
-
-                <section id="storePage-storeTable-Section"></section>
-              </section>
-            </div>
-            <div class="none resp-tab-content storeOffers">
-              <section class="resp-tab-content-section">
-                <div class="add-offer-btn-parent">
-                  <a class="btn btn-primary" href="CustomPage.aspx?uigroup_id=479602&page_id=13091">Add Offer</a>
-                  <br>
-                </div>
-
-                <table class="full-width">
-                  <tbody id="sortable" class="sortable full-width">
-                    <tr class="table-banner">
-                      <th class="table-banner-item">
-                        Sort
-                      </th>
-                      <th class="table-banner-item">
-                        Discount Code
-                        <th class="table-banner-item">
-                          Offer Type
-                        </th>
-                        <th class="table-banner-item">
-                          Expiration
-                        </th>
-                        <th class="table-banner-item">
-                          Participating Stores
-                        </th>
-                        <th class="table-banner-item">
-                          Edit
-                        </th>
-                        <th class="table-banner-item">
-                          Delete
-                        </th>
-                    </tr>
-                    <tr class="error none">
-                      <td colspan="7" class="Error list-item">Please add more offers.</td>
-                    </tr>
-                    <tr draggable="true" class="sortable-item filterable store-item text-center" data-filter-storeid="1" data-storeid="1" data-enrolled="true">
-                      <td class="list-item handle text-center">::</td>
-                      <td class="list-item">
-                        INSP
-                      </td>
-                      <td class="list-item">
-                        Emissions Test
-                      </td>
-                      <td class="list-item">
-                        Plus 30
-                      </td>
-                      <td class="list-item text-center">
-                        <small>
-                          Tom T's 1st Store (Store #501)
-                        </small>
-                      </td>
-                      <td class="list-item">
-                        <a class="editOfferDetails" href="CustomPage.aspx?uigroup_id=479602&page_id=13095" title="Edit Offer Details">
-                          <span alt="Edit Offer Details" class="icon icon-edit-bg"></span>
-                        </a>
-                      </td>
-                      <td class="deleteOffer list-item">
-                        <button data-storeid="1938" data-offerid="1" alt="Delete Offer" class="icon icon-delete-bg"></button>
-                      </td>
-                    </tr>
-
-                    <tr draggable="true" class="sortable-item filterable store-item text-center" data-filter-storeid="2" data-storeid="2" data-enrolled="true">
-                      <td class="list-item handle text-center">::</td>
-                      <td class="list-item">
-                        10AF
-                      </td>
-                      <td class="list-item">
-                        Air Filter &amp; Cabin Filter
-                      </td>
-                      <td class="list-item">
-                        2016-12-31
-                      </td>
-                      <td class="list-item text-center">
-                        <small>
-                          Tom T's 2nd Store (Store #701)
-                        </small>
-                      </td>
-                      <td class="list-item">
-                        <a class="editOfferDetails" href="CustomPage.aspx?uigroup_id=479602&page_id=13095" title="Edit Offer Details">
-                          <span alt="Edit Offer Details" class="icon icon-edit-bg"></span>
-                        </a>
-                      </td>
-                      <td class="deleteOffer list-item">
-                        <button data-offerid="2" alt="Delete Offer" class="icon icon-delete-bg"></button>
-                      </td>
-                    </tr>
-
-                    <tr draggable="true" class="sortable-item filterable store-item text-center" data-filter-storeid="3" data-storeid="3" data-enrolled="true">
-                      <td class="list-item handle text-center">::</td>
-                      <td class="list-item">
-                        ws10
-                      </td>
-                      <td class="list-item">
-                        Any Oli Change, 5qts.
-                      </td>
-                      <td class="list-item">
-                        Plus 60
-                      </td>
-                      <td class="list-item text-center">
-                        <small>
-                          Tom T's 1st Store (Store #501)
-                          <br> Tom T's 2nd Store (Store #701)
-                          <br> Tom T's 3rd Store (Store #941)
-                        </small>
-                      </td>
-                      <td class="list-item">
-                        <a class="editOfferDetails" href="CustomPage.aspx?uigroup_id=479602&page_id=13095" title="Edit Offer Details">
-                          <span alt="Edit Offer Details" class="icon icon-edit-bg"></span>
-                        </a>
-                      </td>
-                      <td class="deleteOffer list-item">
-                        <button data-offerid="3" alt="Delete Offer" class="icon icon-delete-bg"></button>
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-              </section>
-            </div>
-          </div>
-        </div>
+						  </div>
+						</div>
+					  </td>
+					</tr>
+				  {{/.}}
+				</tbody>
+			  </table>
+			</script>
+			<section id="storePage-storeTable-Section"></section>
+		  </section>
       </div>
     </div>
   </div>
+  <br>
+  <a class="btn btn-primary" href="CustomPage.aspx?uigroup_id=479602&page_id=13091">Create New Offer</a>
 </div>
+<!-- Initialize tool tips -->
+<script>
+  $j('[data-toggle="tooltip"]').tooltip();
+</script>

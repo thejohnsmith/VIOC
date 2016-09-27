@@ -33,6 +33,43 @@ function getParameterByName(name, url) {
 	return decodeURIComponent(results[2].replace(/\+/g, ' '));
 }
 
+JSON.nativeStringify = JSON.stringify;
+
+JSON.stringify = function(obj) {
+	
+	var t = typeof (obj);
+
+	if (t != "object" || obj === null) {
+		// simple data type
+		if (t == "string") obj = '"' + obj.replace(/"/g,'\\\"').replace(/\n/g,'\\n') + '"';
+		return String(obj);
+	} else if (t == "undefined") {
+		return String("");
+	}
+	else {
+		// recurse array or object
+		var n, v, json = [], arr = (obj && obj.constructor == Array);
+
+		for (n in obj) {
+			v = obj[n];
+			t = typeof(v);
+			if (obj.hasOwnProperty(n)) {
+				if (t == "string") {
+					v = '"' + v.replace(/"/g,'\\\"').replace(/\n/g,'\\n') + '"';
+				} else if (t == "undefined") {
+					v = '""';
+				} else if (t == "object" && v !== null){
+					v = JSON.stringify(v);
+				}
+				json.push((arr ? "" : '"' + n + '":') + String(v));
+			}
+		}
+
+		return (arr ? "[" : "{") + String(json) + (arr ? "]" : "}");
+	}
+}
+
+
 var appUtilities = (function ($) {
 	var controller = {
 		init: function () {

@@ -1,4 +1,93 @@
 <section id="features" class="mustache-template col-sm-6 form-section clearfix ">
+  <style for="this-page-only">
+	#tab-features .section-header {
+		margin-top: 8px !important;
+		margin-bottom: 8px !important;
+	}
+	#tab-features .feature .handle {
+		margin-right: 12px;
+	}
+	#tab-features .feature-container {
+		margin-left: 8px
+		margin-top: 12px;
+	}
+	
+	#tab-features .feature {
+		border-radius: 4px;
+		-webkit-box-shadow: 0px 2px 2px rgba(0,0,0,.10);
+		border: 1px solid #CCC;
+	}
+	#tab-features .feature .feature-label {
+	  width: 140px;
+	  white-space: nowrap;
+	  overflow: hidden;
+	  text-overflow: ellipsis;
+	  text-align: left;
+	}
+	#tab-features .feature .checkbox {
+		margin-right: 0px;
+		margin-top: 3px;
+		border: 1px solid #CCC;
+	}
+	
+	#tab-features .feature .feature-title-bar {
+		background-color: #E7E7E7;
+		margin: -12px;
+		padding: 4px 8px;
+		border-radius: 4px 4px 0px 0px;
+	}
+	
+	#tab-features .feature .feature-media {
+		height: 70px;
+		position: relative;
+		margin-top: 0px;
+	}
+		
+	#tab-features .feature .feature-media img {
+		margin: 0;
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		max-height: 70px;
+		margin-right: -50%;
+		transform: translate(-50%, -50%) 
+	}
+
+	#tab-features .feature {
+	  padding: 1em;
+	  -webkit-transition: ease-out .15s;
+	  transition: ease-out .15s;
+	  width: 33%;
+	  width: 200px;
+	  margin: 1em 1%;
+	  height: 120px;
+	  vertical-align: bottom;
+	  position: relative;
+	  display: inline-block;
+	  text-align: center;
+	  background: #FFF;
+	}
+
+	#tab-features .sortable.feature {
+	  -webkit-box-flex: 0;
+	  -ms-flex-positive: 0;
+	  -ms-flex-negative: 0;
+	  flex-shrink: 1;
+	  -ms-flex-preferred-size: 0;
+	  flex-basis: 16.3em;
+	  margin: 0.4em;
+	}
+
+	#tab-features .feature:hover {
+	  background: #f9fdc3
+	}
+
+	#tab-features .feature-active {
+	  background: #f9fdc3;
+	}
+
+		
+  </style>
   <div class="clearfix">
     <h2 class="section-header">Features</h2>
     <small class="small">
@@ -15,12 +104,17 @@
           {{#.}}
             <div id="{{featureId}}" class="feature sortable">
               <div class="sortable-item">
-                <span class="handle">::</span>
-                <label for="{{featureName}}">
-                  <input id="{{featureName}}" name="{{featureName}}" class="checkbox" type="checkbox" checked="{{#checkedState}}checked{{/checkedState}}{{^checkedState}}false{{/checkedState}}">
-                  <span class="feature-title">{{featureTitle}}</span>
-                  <span class="feature-media"><img src="{{#featureImgSource}}{{featureImgSource}}{{/featureImgSource}}{{^featureImgSource}}https://placehold.it/60x40{{/featureImgSource}}" alt="{{featureName}}'s company logo image." class="feature-image"></span>
-                </label>
+				<div class="feature-title-bar">
+					<span class="handle pull-left">::</span>
+					<label class="feature-label pull-left" for="{{featureName}}">
+					  <span class="feature-title">{{featureTitle}}</span>
+					</label>
+					  <input id="{{featureName}}" name="{{featureName}}" class="checkbox pull-right" type="checkbox" checked="{{#checkedState}}checked{{/checkedState}}{{^checkedState}}false{{/checkedState}}">
+					  <br class="clearfix"/>
+				</div>
+				<span class="feature-media">
+					<img src="{{#featureImgSource}}{{featureImgSource}}{{/featureImgSource}}{{^featureImgSource}}https://placehold.it/60x40{{/featureImgSource}}" alt="{{featureName}}'s company logo image." class="feature-image">
+				</span>
               </div>
             </div>
           {{/.}}
