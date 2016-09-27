@@ -69,6 +69,14 @@ FormCopyController = (function ($) {
 			// ==============================================================================
 
 			var times = [
+				"1AM CST",
+				"2AM CST",
+				"3AM CST",
+				"4AM CST",
+				"5AM CST",
+				"6AM CST",
+				"7AM CST",
+				"8AM CST",
 				"9AM CST",
 				"10AM CST",
 				"11AM CST",
@@ -84,15 +92,7 @@ FormCopyController = (function ($) {
 				"9PM CST",
 				"10PM CST",
 				"11PM CST",
-				"12AM CST",
-				"1AM CST",
-				"2AM CST",
-				"3AM CST",
-				"4AM CST",
-				"5AM CST",
-				"6AM CST",
-				"7AM CST",
-				"8AM CST"
+				"12AM CST"
 			];
 
 			// ==============================================================================
@@ -110,6 +110,9 @@ FormCopyController = (function ($) {
 			for (var idx = 0; idx < times.length; idx++) {
 				// Build an option with the disclaimer
 				var option = $j("<option/>").html(times[idx]).val(times[idx]);
+
+				if (times[idx] == '9AM CST')
+					$(option).prop('selected', true)
 
 				// If the text in the input matches the current disclaimer, mark this option as checked
 				if ($j("#" + target).val() == times[idx])
