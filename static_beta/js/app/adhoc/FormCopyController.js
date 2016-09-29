@@ -39,14 +39,7 @@ FormCopyController = (function ($) {
 			controller.SetRequiredInput();
 			controller.AddDisclaimers();
 			controller.SetDeliveryTime();
-			// Change Add To Cart text on submit button to, 'Send for Approval'
-			$('.ButtonAddToCart.addToCartBtn span:contains("Add to Cart")').html('Send for Approval');
-			// Change Qty text to, 'Recipients'
-			$('.qtyInputContainer span:contains("Qty:")').html('Recipients');
-			// Add Pricing
-			$('.qtyInputContainer').append('<div id="costContainer"><span id="cost" class="FontBold">Cost: $0.00</span></div>');
-			// Change required helper text by removing the Senior Purchaser bit.
-			$('#ctl00_content_CtlAddToCart_InteractivityContainer_ProductFootnote_Stringcontrol3:contains("Item requires approval by Senior Purchaser")').html('Item requires approval');
+
 			/**
 			 * htmlComments Removes html comments so the cells can be easily removed
 			 * @type {[var]} htmlComments
@@ -114,7 +107,7 @@ FormCopyController = (function ($) {
 				if (times[idx] == '9AM CST')
 					$(option).prop('selected', true)
 
-				// If the text in the input matches the current disclaimer, mark this option as checked
+					// If the text in the input matches the current disclaimer, mark this option as checked
 				if ($j("#" + target).val() == times[idx])
 					$(option).prop("checked", true);
 
@@ -143,7 +136,9 @@ FormCopyController = (function ($) {
 			// Set up constants
 			// ==============================================================================
 			var ddTargets = ["C1Disclaimer", "C2Disclaimer", "C3Disclaimer"];
-			var disclaimers = ["", "Includes up to 5 quarts of the oil type and grade advertised in the coupon (diesel quarts may vary; see store for details), filter (prem. extra), lube & maintenance check; plus tax, if applicable; not valid with same service offers / discounts (including fleet); see store for additional details or restrictions; good only at participating locations. No cash or credit back; cash value $0.001.",
+			var disclaimers = [
+				"",
+				"Includes up to 5 quarts of the oil type and grade advertised in the coupon (diesel quarts may vary; see store for details), filter (prem. extra), lube & maintenance check; plus tax, if applicable; not valid with same service offers / discounts (including fleet); see store for additional details or restrictions; good only at participating locations. No cash or credit back; cash value $0.001.",
 				"Includes up to 6 quarts of the oil type and grade advertised in the coupon (diesel quarts may vary; see store for details), filter (prem. extra), lube & maintenance check; plus tax, if applicable; not valid with same service offers / discounts (including fleet); see store for additional details or restrictions; good only at participating locations. No cash or credit back; cash value $0.001.",
 				"Includes up to 5 quarts of the oil type and grade advertised in the coupon (diesel quarts may vary; see store for details), filter (prem. extra), lube & maintenance check; plus tax, if applicable; not valid with same service offers / discounts (including fleet); see store for additional details or restrictions; good only at participating locations. Haz. Waste fee extra. No cash or credit back; cash value $0.001.",
 				"Includes up to 6 quarts of the oil type and grade advertised in the coupon (diesel quarts may vary; see store for details), filter (prem. extra), lube & maintenance check; plus tax, if applicable; not valid with same service offers / discounts (including fleet); see store for additional details or restrictions; good only at participating locations. Haz. Waste fee extra. No cash or credit back; cash value $0.001.",
@@ -164,8 +159,12 @@ FormCopyController = (function ($) {
 				// Loop through the disclaimers
 				for (var idx = 0; idx < disclaimers.length; idx++) {
 					// Build an option with the disclaimer
-					var checked = ($j("#" + target).val() == disclaimers[idx]) ? "checked" : "";
-					var disclaimer_label = (disclaimers[idx] != "") ? disclaimers[idx] : "No Disclaimer";
+					var checked = ($j("#" + target).val() == disclaimers[idx])
+						? "checked"
+						: "";
+					var disclaimer_label = (disclaimers[idx] != "")
+						? disclaimers[idx]
+						: "No Disclaimer";
 					var option = $j("<div style='width: 340px; white-space: normal; padding:4px'>").html("<label><input type='radio' value='" + disclaimers[idx] + "' data-target='" + target + "' name='" + target + "DDChoice' " + checked + "/>&nbsp;&nbsp;" + disclaimer_label + "</label>").val(disclaimers[idx]);
 					// Add the option to the dropdown
 					$j("#" + target + "Choices").append(option);
@@ -177,6 +176,12 @@ FormCopyController = (function ($) {
 					$j("#" + parent).val($j(this).val());
 				});
 			}
+		},
+		AttachEventListeners: function () {
+			var controller = this;
+			$('#ctl00_content_CtlAddToCart_InteractivityContainer_ctl00_pf3PrefillSave_lnkSavePrefill').on('click', function () {
+				controller.OnPressSaveContent();
+			});
 		},
 		/** CalculatePrice
 		 * @function CalculatePrice
@@ -191,12 +196,24 @@ FormCopyController = (function ($) {
 		 */
 		CalculatePrice: function () {
 			var controller = this;
-			$('body').on('keyup', $('#ctl00_content_CtlAddToCart_ProductOrderInfoController_AddToCartActionBox_mItemQuantity_txtQty'), function () {
-				var pricePerEmail = 0.002;
-				var number = $('#ctl00_content_CtlAddToCart_ProductOrderInfoController_AddToCartActionBox_mItemQuantity_txtQty').val();
-				var cost = ((number * pricePerEmail).toFixed(2));
-				$('#cost').html('Cost: $' + cost);
-			}).trigger('keyup');
+			var pricePerEmail = 0.002;
+			var number = $('#ctl00_content_CtlAddToCart_ProductOrderInfoController_AddToCartActionBox_mItemQuantity_txtQty').val();
+			var cost = ((number * pricePerEmail).toFixed(2));
+			// Add Pricing
+			$('.qtyInputContainer').append('<div id="costContainer"><span id="cost" class="FontBold">Cost: $' + cost + '</span></div>');
+		},
+		OnPressSaveContent: function () {
+			var controller = this;
+			$("#ctl00_content_CtlAddToCart_InteractivityContainer_ctl00_pf3PrefillSave_lblQuickFillInstructions").html('Input a name for your saved customizations for future use.');
+			$("#cboxTitle").html("Save Customizations").attr('id', 'cboxTitleModified').css({
+				"position": "absolute",
+				"font-size": "16px",
+				"top": "-20px",
+				"left": "5px",
+				"text-align": "left",
+				"width": "100%",
+				"font-weight": "bold"
+			});
 		},
 		/**
 		 * [SetRequiredInput Set navigation state]
@@ -212,6 +229,13 @@ FormCopyController = (function ($) {
 		 * [ChangeText Set navigation state]
 		 */
 		ChangeText: function () {
+			// Change Add To Cart text on submit button to, 'Send for Approval'
+			$('.ButtonAddToCart.addToCartBtn span:contains("Add to Cart")').html('Send for Approval');
+			// Change Qty text to, 'Recipients'
+			$('.qtyInputContainer span:contains("Qty:")').html('Recipients');
+
+			// Change required helper text by removing the Senior Purchaser bit.
+			$('.FontItalic.Font11:contains("Item requires approval by Senior Purchaser")').html('Item requires approval by VIOC Franchise Marketing');
 			$('#Text_SubjectLine').attr('required', 'required');
 			$('#ctl00_content_CtlAddToCart_InteractivityContainer_ProductFootnote_footnote, ctl00_content_CtlAddToCart_ProductFootnote_footnote').text('Required fields');
 			$('.pfFormNote.pfrequirednote.pfRequired').filter(function () {
@@ -240,9 +264,7 @@ FormCopyController = (function ($) {
 			}).addClass('navBarSelectedLinkColor').addClass('customColorOverridable').removeClass('navBarEnhancedLinkColor');
 		}
 	};
-	return {
-		controller: controller
-	};
+	return {controller: controller};
 })(jQuery);
 // Only execute this controller on the addToCart page.
 if (window.location.href.indexOf(pageKey) > -1) {

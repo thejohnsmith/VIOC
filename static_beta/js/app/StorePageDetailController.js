@@ -29,6 +29,7 @@ var StorePageDetailController = StorePageDetailController || (function ($) {
 	    savenewManagerImageUrl: null,
 	    defaultManagerImageId: "put a string here for default",
 	    defaultManagerImageUrl: "put default url string here for default",
+		postInitCallbacks: [],
 	    previewMap: {
 	        // Source											// Variable
 	        "#storeDistMiles"									: "storeDistMiles",
@@ -70,6 +71,7 @@ var StorePageDetailController = StorePageDetailController || (function ($) {
 	                        controller.refreshLandmarkPreview();
 	                        controller.initCharacterLimits();
 	                        customCheckAndRadioBoxes.customCheckbox();
+							controller.performInitCallbacks();
 	                        controller.showUI();
 	                    });
 	                };
@@ -227,7 +229,22 @@ var StorePageDetailController = StorePageDetailController || (function ($) {
 				if ($.inArray(service.name, controller.serviceFilter) == -1) return;
 				var item = '<li class="list-item-default service-item col-sm-6">';
 				item += '<label class="checkbox-default">';
-				item += '<input class="checkbox-default-input" type="checkbox" data-id="' + service.id + '" name="storeervice"/>' + service.name;
+
+				var isChecked = false;
+
+				$.each(siteCoreLibrary.stores[0].services, function (i, servicelocal) {
+				    if (servicelocal.id === service.id) {
+				        isChecked = true;
+				    }
+				});
+
+				var checked = '';
+
+				if (isChecked === true) {
+				    checked = 'checked';
+				}
+
+				item += '<input class="checkbox-default-input" type="checkbox" data-id="' + service.id + '" name="storeService" ' + checked + '/>' + service.name;
 				if (service.webURL != undefined && service.webURL != "")
 					item += '<a style="margin-left: 8px" target="_blank" href="' + service.webURL + '"><span class="glyphicon glyphicon-info-sign"></span></a>';
 			    item += '</label></li>';
@@ -242,7 +259,22 @@ var StorePageDetailController = StorePageDetailController || (function ($) {
 			$.each(siteCoreLibrary.settings.Holidays, function(i, holiday) {
 				var item = '<li class="list-item-default holiday-item">';
 				item += '<label class="checkbox-default">';
-				item += '<input class="checkbox-default-input" type="checkbox" data-id="' + holiday.id + '" name="storeClosure"/>' + holiday.name;
+
+				var isChecked = false;
+
+				$.each(siteCoreLibrary.stores[0].holidays, function (i, holidaylocal) {
+				    if (holidaylocal.id === holiday.id) {
+				        isChecked = true;
+				    }
+				});
+
+				var checked = '';
+                 
+				if (isChecked === true) {
+				    checked = 'checked';
+				}
+
+				item += '<input class="checkbox-default-input" type="checkbox" data-id="' + holiday.id + '" name="storeClosure" ' + checked + '/>' + holiday.name;
 				item += '</label></li>';
 				
 				var leading_zero = (holiday.month < 10) ? "0" : "";
@@ -409,6 +441,15 @@ var StorePageDetailController = StorePageDetailController || (function ($) {
 				});
 			});
 		},
+		
+		performInitCallbacks: function() {
+			var controller = this;
+			$.each(controller.postInitCallbacks, function(i,callback) {
+				if (typeof callback == "function")
+					callback();
+			});
+		},
+		
 		showUI: function() {
 			var controller = this;
 

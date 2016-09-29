@@ -22,6 +22,7 @@ var StorePagesController = StorePagesController || (function ($) {
 				controller.getStoreProgramData(function () {
 					controller.ShowUI(function() {
 						controller.EventHandlers();
+						controller.TapIntoFilterChanges();
 					});
 				});
 			});
@@ -46,7 +47,7 @@ var StorePagesController = StorePagesController || (function ($) {
 		},
 		EventHandlers: function () {
 			var controller = this;
-
+	
 			// Offer Tag Handler
 			$('.offer-tag').on('click', function (e) {
 				var id = $(this).attr('data-id');
@@ -55,7 +56,59 @@ var StorePagesController = StorePagesController || (function ($) {
 				return;
 			});
 		},
+		
+		TapIntoFilterChanges: function() {
+			var controller = this;
+			// This area gets a little magical.  programManagementFilter.js wasn't built with proper encapulation,
+			// so I'm hacking it's onFilterChange function to notify us when things change.
+			programManagementFilters.controller.onFilterChangeOriginal = programManagementFilters.controller.onFilterChange;
+			programManagementFilters.controller.onFilterChange = controller.onFilterChange;
+			controller.onFilterChange(programManagementFilters.controller.store_ids);
+		},
+		
+		onFilterChange: function(storeIds) {
+			console.log("Filter changed")
+			// Call the original functionality of the store filter
+			programManagementFilters.controller.onFilterChangeOriginal(storeIds);
+			
+			// Do our custom add-on
+			controller.setOfferDetails();
+		},
+		
+		setOfferDetails: function() {
 
+			var tagTemplate = $('.offer-tag-template').html();
+			
+			$.each($j("tr.store-item"), function(i,tr) {
+				if ($(tr).hasClass('hide')) return;
+				
+				var storeNumber = $(tr).attr('data-store-number');
+				var storeIndex = null;
+				$.each(siteCoreLibrary.stores, function(i,store) {
+					if (store.storeNumber == storeNumber)
+					{
+						if (store.offers != undefined && store.offers.length > 0)
+						{
+							$(tr).find(".tag-container").html('');
+							$.each(store.offers, function(i2, offer) {
+								$(tr).find(".tag-container").append(Mustache.render(tagTemplate, offer));
+							})
+						}
+						else
+						{
+							$(tr).find(".tag-container").html('No Offers');
+						}
+					}
+				});
+			});
+			
+			$(".tag").click(function(e) {
+				var offerId = $(e.target).attr('data-id');
+				var storeNumber = $(e.target).closest("tr").attr('data-store-number');
+				window.location.href = marcomUserData.$constants.storePagesEditOfferUrl + "&storeNumber=" + storeNumber + "&offerId=" + offerId;
+			});
+		},
+		
 		CountChar: function (e, maxLength) {
 			var controller = this;
 			$('.characterLimitInput').each(function () {
@@ -192,6 +245,7 @@ var StorePagesController = StorePagesController || (function ($) {
 		},
 		ShowUI: function (cb) {
 			var controller = this;
+			var franchiseList = {};
 
 			$('.js-content').fadeIn();
 			$('.js-loading').hide();
@@ -204,12 +258,27 @@ var StorePagesController = StorePagesController || (function ($) {
 			}
 			var data = controller.store_data;
 			$.each(data, function (i, e) {
+				franchiseList[data[i].franchiseCode] = data[i].franchiseCode;
 				data[i].href = marcomUserData.$constants.storeDetailsUrl + "&storeId=" + data[i].storeId + "&storeNumber=" + data[i].storeNumber;
 			});
 			var target_css_selector = "#storePage-storeTable-Section";
 
 			$(target_css_selector).html(Mustache.render(template, data));
-
+			
+			// Now load in sitecore data
+			var requestQueue = 0;
+			for(var idx in franchiseList)
+			{
+				var code = franchiseList[idx];
+				requestQueue++;
+				console.log("Loading Franchise " + code);
+				siteCoreLibrary.loadStoresByFranchise(code, function() {
+					requestQueue--;
+					if (requestQueue == 0)
+						controller.setOfferDetails();
+				});
+			}
+			
 			cb()
 
 		},

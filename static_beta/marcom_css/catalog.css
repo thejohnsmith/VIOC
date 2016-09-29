@@ -459,21 +459,21 @@ div#ctl00_content_CtlAddToCart_ProductOrderInfoController_AddToCartActionBox_mIt
   top: 0
 }
 .disclaimerSection {
-	position: relative;
-	display: inline-block;
-	border: 1px solid #dfdfdf;
-	box-shadow: inset 0 0 5px 2px rgba(189, 189, 189, 0.37);
-	height: 214px;
-	padding: 0.3em 1em 0;
-	overflow-y: scroll;
-	overflow-x: hidden;
-	white-space: normal;
-	font-size: 0.6em;
-	text-rendering: geometricPrecision;
-	-webkit-font-smoothing: antialiased;
-	empty-cells: hide;
-	text-rendering: optimizeLegibility;
-	width: 350px;
+  position: relative;
+  display: inline-block;
+  border: 1px solid #dfdfdf;
+  box-shadow: inset 0 0 5px 2px rgba(189, 189, 189, 0.37);
+  height: 214px;
+  padding: 0.3em 1em 0;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  white-space: normal;
+  font-size: 0.6em;
+  text-rendering: geometricPrecision;
+  -webkit-font-smoothing: antialiased;
+  empty-cells: hide;
+  text-rendering: optimizeLegibility;
+  width: 350px;
 }
 .disclaimerSection .disclaimerSectionRow {
   width: 100%;
@@ -487,7 +487,7 @@ div#ctl00_content_CtlAddToCart_ProductOrderInfoController_AddToCartActionBox_mIt
   display: inline-block!important;
   margin-top: 0.6em!important;
 }
-.disclaimerSection input[type='radio']{
+.disclaimerSection input[type='radio'] {
   margin: 4px;
 }
 .disclaimerSection::-webkit-scrollbar-.ack {

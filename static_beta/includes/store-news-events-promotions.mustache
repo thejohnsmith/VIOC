@@ -1,4 +1,28 @@
 <section id="newsEventPromotionSection" class="mustache-template col-sm-6 clearfix form-section">
+	<style for="this-page-only">
+
+		#tab-news .section-header {
+			margin-top: 8px !important;
+			margin-bottom: 0px !important;
+		}
+		#tab-news .label-text {
+			font-weight: bold;
+		}
+		#tab-news .label-text small {
+			font-weight: normal;
+		}
+		#tab-news .radio {
+			margin-bottom: 12px;
+			margin-top: 4px;			
+		}
+		#tab-news .radio input[type=radio] {
+		    margin-top: 4px;
+		}
+		#tab-news .storeNewsEventsPromotionsList {
+			width: 75%
+		}
+		
+	</style>
   <div class="row">
     <div class="col-xs-12">
       <h2 class="section-header">News/Events/Promotions</h2>
@@ -10,13 +34,12 @@
               - John Smith
             -->
           <small>
-            <a href="#sortable" role="button" class="display-inline storeNewsEventsPromotionsShowAll" aria-hidden="false">
-              Show All
+            <a href="#sortable" role="button" class="pull-right display-inline storeNewsEventsPromotionsShowActive" aria-hidden="false">
+              | Show scheduled/active only
             </a>
-          </small>
-          <small>
-            <a href="#sortable" role="button" class="display-inline storeNewsEventsPromotionsShowActive" aria-hidden="false">
-              - Show scheduled/active only
+
+            <a href="#sortable" role="button" class="pull-right display-inline storeNewsEventsPromotionsShowAll" aria-hidden="false">
+              Show All | 
             </a>
           </small>
           <table class="full-width">
@@ -128,27 +151,28 @@
 
       <div class="form-controls">
         <div class="clearfix form-item">
-          <button class="btn btn-default display-block" name="addNewsEventPromotion" type="button" data-toggle="collapse" data-target="#collapseNewsEventForms" aria-expanded="false" aria-controls="collapseNewsEventForms">
+          <button class="btn btn-primary btn-sm display-block" name="addNewsEventPromotion" type="button" data-toggle="collapse" data-target="#collapseNewsEventForms" aria-expanded="false" aria-controls="collapseNewsEventForms">
             Add News/Event/Promotion
           </button>
         </div>
       </div>
 
-      <div class="newsEventsPromotionsForm accordion-body collapseNewsEventForms collapse row" id="collapseNewsEventForms" style="height: 0px; display: none;">
-        <div class="col-xs-12 col-md-8 col-lg-6">
-          <div class="clearfix form-item">
-            <div class="row">
-              <div class="col-sm-6">
-                <div class="btn-toolbar" role="toolbar">
-                  <div class="btn-group btn-group-justified">
-                    <button type="button" class="btn btn-sm btn-primary">News</button>
-                    <button type="button" class="btn btn-sm btn-primary">Events</button>
-                    <button type="button" class="btn btn-sm btn-primary">Promotions</button>
-                  </div>
-                </div>
-              </div>
-            </div>
+      <div class="edit-card newsEventsPromotionsForm accordion-body collapseNewsEventForms collapse row" id="collapseNewsEventForms" style="height: 0px; display: none;">
 
+		<h2 class="edit-card-header">Create News/Event/Promotion</h2>
+		
+		<div class="col-sm-6">
+
+					<div class="clearfix form-item">
+					  <label class="label-text" for="JobDescription">
+						Posting Type
+					  </label>
+					  <select id="type">
+						<option value="">News</option>
+						<option value="">Event</option>
+						<option value="">Promotion</option>
+					  </select>
+					</div>
             <div class="clearfix form-item">
               <label class="label-text" for="newsEventTitle">
                 Title
@@ -163,7 +187,6 @@
                 </div>
               </div>
             </div>
-
             <div class="clearfix form-item">
               <label class="label-text" for="newsEventText">
                 Text
@@ -178,27 +201,15 @@
               </div>
             </div>
 
-            <div class="clearfix form-item">
-              <label class="label-text" for="newsEventPostDate">
-                Post On
-              </label>
-              <div class="row">
-                <div class="col-xs-12 col-md-4">
-                  <input class="resize-false" value="" placeholder="" type="date" name="newsEventPostDate" id="newsEventPostDate">
-                </div>
+            <div class="form-controls">
+              <div class="clearfix form-item">
+                <button class="btn btn-primary display-block" name="removeNewsEvent" type="button" data-toggle="collapse" data-target="#collapseNewsEventForms" aria-expanded="false" aria-controls="collapseNewsEventForms">
+                  Remove News/Event/Promotion
+                </button>
               </div>
             </div>
-            <div class="clearfix form-item">
-              <label class="label-text" for="newsEventRemoveDate">
-                Remove On
-              </label>
-              <div class="row">
-                <div class="col-xs-12 col-md-4">
-                  <input class="resize-false" value="" placeholder="" type="date" name="newsEventRemoveDate" id="newsEventRemoveDate">
-                </div>
-              </div>
-            </div>
-
+		</div>
+		<div class="col-sm-6">
             <div class="clearfix form-item">
 
               <label class="label-text" for="newsEventPromotionImage">
@@ -210,11 +221,11 @@
 
               <!--  MUST BE WRAPED IN UNIQUE FORM -->
               <form class="form-controls" id="uploader_form_4" action="">
-                <label class="btn btn-sm btn-default btn-file display-inline-block">
+                <label class="btn btn-sm btn-primary btn-file display-inline-block">
                   <span class="btn-file-text">Upload New Photo</span>
                   <input type="file" class="none btn-file-input">
                 </label>
-                <label class="none btn btn-sm btn-default btn-file display-inline-block">
+                <label class="none btn btn-sm btn-primary btn-file display-inline-block">
                   <span class="btn-file-text">Restore Default</span>
                   <input type="file" class="none btn-file-input">
                 </label>
@@ -232,17 +243,27 @@
                 </div>
               </div>
             </div>
-            <div class="form-controls">
-              <div class="clearfix form-item">
-                <button class="btn btn-default display-block" name="removeNewsEvent" type="button" data-toggle="collapse" data-target="#collapseNewsEventForms" aria-expanded="false" aria-controls="collapseNewsEventForms">
-                  Remove News/Event/Promotion
-                </button>
-              </div>
-            </div>
-          </div>
+
+			<div class="clearfix form-item row">
+				<div class="col-sm-6" style="padding-left: 0px">
+				  <label class="label-text" for="newsEventPostDate">
+					Post On
+				  </label>
+				  <input class="resize-false" value="" placeholder="" type="date" name="newsEventPostDate" id="newsEventPostDate" style="width: 150px">
+				</div>
+				<div class="col-sm-6" style="padding-left: 0px">
+				  <label class="label-text" for="newsEventRemoveDate">
+					Remove On
+				  </label>
+				  <input class="resize-false" value="" placeholder="" type="date" name="newsEventRemoveDate" id="newsEventRemoveDate" style="width: 150px">
+				</div>
+			</div>
+			
+
+
+		</div>
+	  
           <!--  /#newsEventsPromotionsForm -->
-        </div>
-        <!-- /box-grey -->
 
       </div>
 

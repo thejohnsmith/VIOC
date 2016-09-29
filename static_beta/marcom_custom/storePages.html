@@ -159,7 +159,7 @@ window.onload = function () {
 					<th class="table-banner-item">Store Offers</th>
 				  </tr>
 				  {{#.}}
-					<tr draggable="false" class="{{^sortable}}not-sortable-item{{/sortable}} filterable store-item text-center" data-filter-storeId="{{storeId}}" data-storeId="{{storeId}}">
+					<tr draggable="false" class="{{^sortable}}not-sortable-item{{/sortable}} filterable store-item text-center" data-store-franchise-code="{{franchiseCode}}" data-filter-storeId="{{storeId}}" data-storeId="{{storeId}}" data-store-number="{{storeNumber}}">
 					  {{#sortable}}
 						<td class="list-item handle text-center">::</td>
 					  {{/sortable}}
@@ -173,41 +173,20 @@ window.onload = function () {
 						</a>
 					  </td>
 					  <td class="list-item text-center">
-
-						<div class="form-group">
-						  <div data-toggle="buttons">
-							{{#storeOfferMini}}
-							  {{#storeOfferItem}}
-								<button id="offe-id-{{offerId}}" type="button" class="btn btn-circle btn-sm {{#offerState}}btn-primary{{offerState}}{{/offerState}}{{^offerState}}btn-default{{offerState}}{{/offerState}}">
-								  {{#offerType}}{{offerType}}{{/offerType}}
-								  {{#offerBadge}}
-									{{^offerBadge}} Not found{{/offerBadge}}
-								  <span class="badge">
-									{{^offerBadge}}NA{{/offerBadge}}
-									{{offerBadge}}
-								  </span>
-								  {{/offerBadge}}
-								</button>
-							  {{/storeOfferItem}}
-							{{/storeOfferMini}}
-
-							<span class="tag label label-info" data-toggle="tooltip" data-placement="top" title="10AF">
-							  <span class="offer-tag" data-id="1">10AF</span>
-							  <a><i class="remove glyphicon glyphicon-remove-sign glyphicon-white"></i></a> 
-							</span>
-							<span class="tag label label-info" data-toggle="tooltip" data-placement="top" title="WS20">
-							  <span class="offer-tag" data-id="2">WS20</span>
-							  <a><i class="remove glyphicon glyphicon-remove-sign glyphicon-white"></i></a> 
-							</span>
-
-						  </div>
-						</div>
+						<span class="tag-container">Loading...</span>
 					  </td>
 					</tr>
 				  {{/.}}
 				</tbody>
 			  </table>
 			</script>
+
+			<script class="offer-tag-template" type="x-tmpl-mustache">
+				<span class="tag label label-info" data-toggle="tooltip" data-placement="top" title="{{code}}" data-id="{{id}}">
+				  <span class="offer-tag" data-id="{{id}}">{{code}}</span>
+				</span>
+			</script>
+			
 			<section id="storePage-storeTable-Section"></section>
 		  </section>
       </div>

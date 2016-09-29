@@ -189,7 +189,7 @@ var OfferPageController = OfferPageController || (function ($) {
 					$(cb).attr("disabled", true);
 				}
 			});
-			
+
 			siteCoreLibrary.loadStores(storeList, function(err) { 
 				$.each($("input:checkbox:visible"), function(i,cb) {
 					if ($(cb).attr('data-state-loaded') != '1') {
@@ -203,6 +203,7 @@ var OfferPageController = OfferPageController || (function ($) {
 									}
 								});
 							}
+							$(cb).attr('data-store-guid', s.id);
 						});
 						$(cb).attr('data-state-loaded', '1');
 					}
@@ -219,6 +220,9 @@ var OfferPageController = OfferPageController || (function ($) {
 			$("#expiration-container input:radio[name=expiration-choice]").change(controller.onExpirationChoiceChange);
 			$("#expiration-container input:radio[name=expiration-choice][checked]").trigger('change');
 			$(".select-all").click(controller.onSelectAll);
+			$(".offer-save-btn").click(controller.onSave);
+			$(".offer-delete-btn").click(controller.onDelete);
+			$(".offer-cancel-btn").click(controller.onCancel);
 
 	    },
 
@@ -244,6 +248,17 @@ var OfferPageController = OfferPageController || (function ($) {
 		  return hash;
 		},
 		
+		isNumeric: function(n) {
+			return !isNaN(parseFloat(n)) && isFinite(n);
+		},
+		
+		isString: function(s, min, max) {
+			if (s == undefined || s == null || typeof s != "string") return false;
+			if (min != undefined && s.length < min) return false;
+			if (max != undefined && s.length > max) return false;
+			return true;
+		},
+		
 		// ===========================================================================
 		// Event Handlers
 		// ===========================================================================
@@ -266,6 +281,96 @@ var OfferPageController = OfferPageController || (function ($) {
 			
 			// Do our custom add-on
 			controller.setOfferOwnership();
+		},
+		
+		onSave: function() 
+		{
+			var controller = OfferPageController.controller;
+			var error = null;
+
+			// ------------------------------------
+			// Fill offerData and validate
+			// ------------------------------------
+debugger;				
+			
+			var saveData = {};
+
+			// Set ID
+			if (controller.offerData != null)
+				saveData.Id = (controller.offerData.id);
+				
+			// Set/Validate Amount
+			if (!controller.isNumeric(saveData.Amount = $("input#offerAmount").val()))
+				error = "Please provide a valid amount.";
+				
+			// Set FranchiseId.  Setting all offers to be owned by VAL, since it sorta doesn't matter
+			saveData.FranchiseId = "VAL";
+			
+			// Set Code
+			if (!controller.isString(saveData.Code = $("input#discountCode").val(), 3, undefined))
+				error = "Please provide a valid discount code.";
+
+			// Set ExpirationDate
+			if ($("input[data-label='Specific Date']:checked").length > 0)
+			{
+				if (!controller.isString(saveData.ExpirationDate = $("input#specificExpirationDate").val(), 10, 10))
+					error = "Please provide a valid expiration date.";
+			}
+			
+			// Set OfferTypeId
+			saveData.OfferTypeId = $("#offerType").val();
+				
+			// Set ExpirationTypeId
+			if (!controller.isString(saveData.ExpirationTypeId = $("input[name='expiration-choice']:checked").attr('id'), 30, 40))
+				error = "Please select an expiration type.";
+				
+			// Set AmountTypeId
+			saveData.AmountTypeId = $("#offerAmountType").val();
+			
+			// Set Stores
+			saveData.Stores = [];
+			
+			$.each($(".store-item input:checked"), function(i,cb) { 
+				saveData.Stores.push({ "Id" : $(cb).attr('store-guid') });
+			});
+			
+			if (saveData.Stores.length == 0)	
+				error = "Please select one or more stores to apply this offer code to.";
+debugger;				
+			if (error != null)
+			{
+				toastr.error(error);
+				return 0;
+			}
+			
+			// ------------------------------------
+			// Perform Save
+			// ------------------------------------
+			
+			var method = (saveData.Id != undefined) ? "modifyOffer" : "createOffer";
+			
+			siteCoreLibrary[method](saveData, function(err) { 
+				toastr.success("Offer saved!");
+				setTimeout(function() { window.location.href = marcomUserData.$constants.storePagesUrl }, 2000);
+			});
+		},
+		
+		onDelete: function()
+		{
+			var controller = OfferPageController.controller;
+			
+			jConfirm("Are you sure you want to delete this offer?", function() {
+				$("button").prop('disabled',true);
+				siteCoreLibrary.deleteOffer(controller.offerData, function(err) { 
+					toastr.success("Offer deleted!");
+					setTimeout(function() { window.location.href = marcomUserData.$constants.storePagesUrl }, 2000);
+				});
+			});
+		},
+		
+		onCancel: function() 
+		{
+			window.location.href = marcomUserData.$constants.storePagesUrl;
 		}
 	};
 	return {
