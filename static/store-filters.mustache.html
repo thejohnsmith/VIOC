@@ -1,0 +1,26 @@
+<script class="store-filters-template" type="x-tmpl-mustache">
+  <div>
+    {{#.}}
+    <div class="{{#filter-type}}{{filter-type}}{{/filter-type}} filter-select select-option">
+      <select class="selectbox">
+        <option class="selectboxOption" selected>Select {{#filter-type}}{{filter-type}}{{/filter-type}}</option>
+        <option class="selectboxOption" value="{{text}}">{{text}}</option>
+      </select>
+    </div>
+    {{#children}}
+    <div class="{{#filter-type}}{{filter-type}}{{/filter-type}}  filter-select select-option hidden">
+      <select class="selectbox">
+        <option class="selectboxOption" selected>Select {{#filter-type}}{{filter-type}}{{/filter-type}} </option>
+        <option class="selectboxOption" value="{{text}}">{{text}}</option>
+      </select>
+    </div>
+    {{/children}} {{#children}} {{#children}}
+    <div class="{{#filter-type}}{{filter-type}}{{/filter-type}}  filter-select select-option hidden">
+      <select class="selectbox">
+        <option class="selectboxOption" selected>Select {{#filter-type}}{{filter-type}}{{/filter-type}} </option>
+        <option class="selectboxOption" value="{{text}}">{{text}}</option>
+      </select>
+    </div>
+    {{/children}} {{/children}} {{/.}}
+  </div>
+</script>

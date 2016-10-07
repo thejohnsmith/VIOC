@@ -15,7 +15,7 @@
           </th>
           <th class="store">Store</th>
           <th class="store-configuration standard-offer">Oil Change Offers / Service Offers</th>
-          <th class="store-configuration service-offer">Additional Offers</th>
+          <th class="store-configuration additional-offer">Additional Offers</th>
         </tr>
       </thead>
       <tbody>
@@ -38,7 +38,7 @@
             </select>
             <small class="{{#enrolled}}none{{/enrolled}} not-enrolled store-item-dimable dim-mid">Store Not Enrolled</small>
           </td>
-          <td class="store-item-dimable store-configuration service-offer" style="padding: 21px 8px">
+          <td class="store-item-dimable store-configuration additional-offer" style="padding: 21px 8px">
             <select data-storeId="{{storeId}}" class="{{^enrolled}}none{{/enrolled}} form-control adtl-dropdown store-level-dropdown dropdown-{{storeId}}-adtl">
             </select>
             <small class="not-enrolled store-item-dimable dim-mid {{#enrolled}}none{{/enrolled}}">Store Not Enrolled</small>
@@ -63,9 +63,9 @@
               </div>
             </div>
           </td>
-          <td class="program-settings-footer store-configuration service-offer" style="padding: 21px 8px">
-            <div class="container-fluid service-offer">
-              <div class="row service-offer">
+          <td class="program-settings-footer store-configuration additional-offer" style="padding: 21px 8px">
+            <div class="container-fluid additional-offer">
+              <div class="row additional-offer">
                 <div class="col-sm-8">
                   <select class="form-control program-config-options-section adtl-dropdown bulk-level-dropdown">
                   </select>
@@ -107,7 +107,7 @@
           </tr>
         </table>
       </div>
-      <div class="col-sm-6 service-offer">
+      <div class="col-sm-6 additional-offer">
         <h1 style="font-size: 20px">Additional Offers
           <a class="btn btn-sm btn-link js-create-program-hash additionalOfferPageUrl" data-baseurl="" href="">
           Create New
