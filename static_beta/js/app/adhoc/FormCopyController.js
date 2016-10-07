@@ -96,30 +96,30 @@ FormCopyController = (function ($) {
 
 			// Hide the text input and inject a dropdown
 			// Do debug the value, change "hide" to "show".
-			$j("#" + target + "DD").remove();
-			$j("input#" + target).hide().after("<select id='" + target + "DD'></select>");
+			$("#" + target + "DD").remove();
+			$("input#" + target).hide().after("<select id='" + target + "DD'></select>");
 
 			// Loop through the times
 			for (var idx = 0; idx < times.length; idx++) {
 				// Build an option with the disclaimer
-				var option = $j("<option/>").html(times[idx]).val(times[idx]);
+				var option = $("<option/>").html(times[idx]).val(times[idx]);
 
 				if (times[idx] == '9AM CST')
 					$(option).prop('selected', true)
 
 					// If the text in the input matches the current disclaimer, mark this option as checked
-				if ($j("#" + target).val() == times[idx])
+				if ($("#" + target).val() == times[idx])
 					$(option).prop("checked", true);
 
 				// Add the option to the dropdown
-				$j("#" + target + "DD").append(option);
+				$("#" + target + "DD").append(option);
 			}
 
 			// If the dropdown changes, update the hidden input
-			$j("#" + target + "DD").change(function () {
-				var parent = $j(this).attr('id').replace("DD", "");
-				console.log("input#" + parent + " changed to " + $j(this).val());
-				$j("input#" + parent).val($j(this).val());
+			$("#" + target + "DD").change(function () {
+				var parent = $(this).attr('id').replace("DD", "");
+				console.log("input#" + parent + " changed to " + $(this).val());
+				$("input#" + parent).val($(this).val());
 			});
 
 		},
@@ -145,7 +145,7 @@ FormCopyController = (function ($) {
 				"Includes up to 5 quarts of conventional, synthetic blend, full synthetic, or diesel oil (diesel quarts may vary; see store for details), filter (prem. extra), lube & maintenance check; plus tax, if applicable; not valid with same service offers / discounts (including fleet); see store for additional details or restrictions; good only at participating locations. No cash or credit back; cash value $0.001.",
 				"Includes up to 6 quarts of conventional, synthetic blend, full synthetic, or diesel oil (diesel quarts may vary; see store for details), filter (prem. extra), lube & maintenance check; plus tax, if applicable; not valid with same service offers / discounts (including fleet); see store for additional details or restrictions; good only at participating locations. No cash or credit back; cash value $0.001.",
 				"Includes up to 5 quarts of conventional, synthetic blend, full synthetic, or diesel oil (diesel quarts may vary; see store for details), filter (prem. extra), lube & maintenance check; plus tax, if applicable; not valid with same service offers / discounts (including fleet); see store for additional details or restrictions; good only at participating locations. Haz waste fee extra. No cash or credit back; cash value $0.001.",
-				"Includes up to 6 quarts of conventional, synthetic blend, full synthetic, or diesel oil (diesel quarts may vary; see store for details), filter (prem. extra), lube & maintenance check; plus tax, if applicable; not valid with same service offers / discounts (including fleet); see store for additional details or restrictions; good only at participating locations. Haz waste fee extra. No cash or credit back; cash value $0.001"
+				"Includes up to 6 quarts of conventional, synthetic blend, full synthetic, or diesel oil (diesel quarts may vary; see store for details), filter (prem. extra), lube & maintenance check; plus tax, if applicable; not valid with same service offers / discounts (including fleet); see store for additional details or restrictions; good only at participating locations. Haz waste fee extra. No cash or credit back; cash value $0.001", "Excluding batteries and state inspections."
 			];
 			// ==============================================================================
 			// Implement Disclaimer Dropdowns
@@ -154,27 +154,32 @@ FormCopyController = (function ($) {
 				var target = ddTargets[ddIdx];
 				// Hide the text input and inject a dropdown
 				// Do debug the value, change "hide" to "show".
-				$j("#" + target + "Choices").remove();
-				$j("#" + target).hide().after("<div id='" + target + "Choices' style='height: 300px; width: 368px; background-color: white; padding: 4px; font-size: 12px; border: 1px solid #CCC; border-radius: 3px; overflow-y: scroll;'></div>");
+				$("#" + target + "Choices").remove();
+				$("#" + target).hide().after("<div id='" + target + "Choices' style='height: 300px; width: 368px; background-color: white; padding: 4px; font-size: 12px; border: 1px solid #CCC; border-radius: 3px; overflow-y: scroll;'></div>");
 				// Loop through the disclaimers
 				for (var idx = 0; idx < disclaimers.length; idx++) {
 					// Build an option with the disclaimer
-					var checked = ($j("#" + target).val() == disclaimers[idx])
+					var checked = ($("#" + target).val() == disclaimers[idx])
 						? "checked"
 						: "";
 					var disclaimer_label = (disclaimers[idx] != "")
 						? disclaimers[idx]
 						: "No Disclaimer";
-					var option = $j("<div style='width: 340px; white-space: normal; padding:4px'>").html("<label><input type='radio' value='" + disclaimers[idx] + "' data-target='" + target + "' name='" + target + "DDChoice' " + checked + "/>&nbsp;&nbsp;" + disclaimer_label + "</label>").val(disclaimers[idx]);
+					var option = $("<div style='width: 340px; white-space: normal; padding:4px'>").html("<label><input type='radio' value='" + disclaimers[idx] + "' data-target='" + target + "' name='" + target + "DDChoice' " + checked + "/>&nbsp;&nbsp;" + disclaimer_label + "</label>").val(disclaimers[idx]);
 					// Add the option to the dropdown
-					$j("#" + target + "Choices").append(option);
+					$("#" + target + "Choices").append(option);
 				}
 				// If the dropdown changes, update the hidden input
-				$j("input[name=" + target + "DDChoice]").change(function () {
-					var parent = $j(this).attr('data-target');
-					console.log("#" + parent + " changed to " + $j(this).val());
-					$j("#" + parent).val($j(this).val());
+				$("input[name=" + target + "DDChoice]").change(function () {
+					var parent = $(this).attr('data-target');
+					console.log("#" + parent + " changed to " + $(this).val());
+					$("#" + parent).val($(this).val());
 				});
+
+				// Hack
+				controller.OnPressSaveContent();
+				controller.ChangeText();
+				controller.AttachEventListeners();
 			}
 		},
 		AttachEventListeners: function () {
@@ -204,15 +209,16 @@ FormCopyController = (function ($) {
 		},
 		OnPressSaveContent: function () {
 			var controller = this;
-			$("#ctl00_content_CtlAddToCart_InteractivityContainer_ctl00_pf3PrefillSave_lblQuickFillInstructions").html('Input a name for your saved customizations for future use.');
-			$("#cboxTitle").html("Save Customizations").attr('id', 'cboxTitleModified').css({
-				"position": "absolute",
-				"font-size": "16px",
-				"top": "-20px",
-				"left": "5px",
-				"text-align": "left",
-				"width": "100%",
-				"font-weight": "bold"
+			$('#cboxTitle').remove();
+			$("#ctl00_content_CtlAddToCart_InteractivityContainer_ctl00_pf3PrefillSave_lblQuickFillInstructions").html('<div id="cboxTitle">Save Customizations</div><br> Input a name for your saved customizations for future use.');
+			$("#cboxTitle").css({
+				'font-size': '16px',
+				'top': '-20px',
+				'left': '5px',
+				'text-align': 'left',
+				'width': '100%',
+				'font-weight': 'bold',
+				'color': '#fff'
 			});
 		},
 		/**
