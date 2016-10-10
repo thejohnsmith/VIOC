@@ -7,11 +7,11 @@
 <!-- ****************** Attn. The following is Marcom PORTAL CUSTOM COPY ******************
 !!   The following markup is to be COPIED and kept in sync with the Marcom Custom Copy textarea for this page   !!
 
-<link href="https://files.marcomcentral.app.pti.com/epsilon/static_beta/marcom_css/storePages.css" rel="stylesheet" type="text/css">
+<link href="https://files.marcomcentral.app.pti.com/epsilon/static/marcom_css/storePages.css" rel="stylesheet" type="text/css">
 <div id="storeDetails" class="asyncMarkup"></div>
 <script>
 window.onload = function () {
-	var marcomCustomFilePath = marcomUserData.$constants.marcomCustomFilePath || 'https://files.marcomcentral.app.pti.com/epsilon/static_beta/marcom_custom/';
+	var marcomCustomFilePath = marcomUserData.$constants.marcomCustomFilePath || 'https://files.marcomcentral.app.pti.com/epsilon/static/marcom_custom/';
 
 	function getData() {
 		return jQuery.get(marcomCustomFilePath + 'storeDetails.html').success(function (resp) {
@@ -82,7 +82,7 @@ window.onload = function () {
             @example .dropzone-basic-details => includes/store-basic-details.mustach
             @controller StorePageDetailController.js
             @paths
-              Beta: static_beta/includes/[NAME].mustach
+              Beta: static/includes/[NAME].mustach
               Prod: (TBD)
             @param {class} .active, shows the tab-pane and is controlled using Bootstrap 3.x.x tabs.
             @param {class} .dropzone-pane Container

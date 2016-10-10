@@ -100,8 +100,8 @@ var marcomUserData = (function ($) {
 			defaultManagerPhotoUrl: "https://vioc.d.epsilon.com:443/~/media/Images/Locations/Stores/Manager Photos/Default Manager.ashx",
 			apiPath: 'https://adobe-prod-vioc.epsilon.com/jssp/vioc/',
 			apiPathLocal: 'data/',
-			marcomFilePath: 'https://files.marcomcentral.app.pti.com/epsilon/static_beta/',
-			marcomCustomFilePath: 'https://files.marcomcentral.app.pti.com/epsilon/static_beta/marcom_custom/'
+			marcomFilePath: 'https://files.marcomcentral.app.pti.com/epsilon/static/',
+			marcomCustomFilePath: 'https://files.marcomcentral.app.pti.com/epsilon/static/marcom_custom/'
 		} : constants;
 	return {
 		marcomUserData: this,

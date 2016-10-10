@@ -106,7 +106,7 @@ var StorePageDetailController = StorePageDetailController || (function ($) {
 	    },
 	    loadSectionsFromMustache: function(cb) {
 			
-	        var prefix = "https://files.marcomcentral.app.pti.com/epsilon/static_beta/includes/"
+	        var prefix = "https://files.marcomcentral.app.pti.com/epsilon/static/includes/"
 
 	        var d1 = $.get(prefix + "store-landmark-info.mustache");
 	        var d2 = $.get(prefix + "store-basic-details.mustache");
