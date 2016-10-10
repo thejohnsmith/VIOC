@@ -36,7 +36,7 @@ function getParameterByName(name, url) {
 JSON.nativeStringify = JSON.stringify;
 
 JSON.stringify = function(obj) {
-	
+
 	var t = typeof (obj);
 
 	if (t != "object" || obj === null) {
@@ -83,9 +83,9 @@ var appUtilities = (function ($) {
 			return $('title').html('VIOC Warp Drive' + ' - ' + $pageTitle);
 		},
 		changeNavBarLink: function () {
-			$('.navBarItem > a').filter(function () {
-				return $(this).text() === 'STORE PAGES';
-			}).addClass('storePages').hide();
+			// $('.navBarItem > a').filter(function () {
+			// 	return $(this).text() === 'STORE PAGES';
+			// }).addClass('storePages').hide();
 			$('.navBarItem > a').filter(function () {
 				return $(this).text() === 'REPORTS';
 			}).attr('href', 'https://bo-vioc.epsilon.com').attr('target', '_blank');
