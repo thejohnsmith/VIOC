@@ -55,48 +55,45 @@ var SiteCoreLibrary = (function () {
         { 
             var self = this;
             
-            self.stores = [];
-            self._storesOriginal = [];
-            
             var ajajCallsRemaining  = stores.length;
             
             for (var i = 0; i < stores.length; i++) { 
                 jQuery.get( "https://vioc.d.epsilon.com/storeapi/storequery.ashx?id=" + stores[i] + "&Fields=ALL", function(data) {
-					
+                
 				  self._processStoreQueryResponse(data);
-
-				  --ajajCallsRemaining;
-				  if (ajajCallsRemaining <= 0) {
-					cb(null);
-				  }
-				  
+                  
+                  --ajajCallsRemaining;
+                  if (ajajCallsRemaining <= 0) {
+					  if (typeof cb == "function")
+						cb(null);
+                  }
                 });      
             }; 
         };
 		
-		this._processStoreQueryResponse = function(data)
-		{
+		this._processStoreQueryResponse = function(data) {
+			
             var self = this;
+			
 			for (var idx in data.results)
 			{
-				var newstore = jQuery.extend({}, data.results[idx]);
-				
+				var newStore = data.results[idx];
 				var alreadyExists = false;
 				for (var idx2 in self.stores)
 				{
-					if (self.stores[idx2].id == newstore.id)
+					var existingStore = self.stores[idx2];
+					if (newStore.id == existingStore.id)
 						alreadyExists = true;
+				};
+
+				if (!alreadyExists) {
+				  self.stores.push(JSON.parse(JSON.stringify(newStore)));
+				  self._storesOriginal.push(JSON.parse(JSON.stringify(newStore)));
 				}
-				
-				if (!alreadyExists && newstore.id != undefined)
-				{
-					self.stores.push(newstore);
+			};
+			
 				  
-					var newstoreorig = jQuery.extend({}, data.results[idx]);
-					self._storesOriginal.push(newstoreorig);
-				}
-			}
-		};
+		},
         /**  
         };
         /**
@@ -112,10 +109,47 @@ var SiteCoreLibrary = (function () {
           jQuery.get( "https://vioc.d.epsilon.com/storeapi/storequery.ashx?FranchiseId=" + companyCode + "&Fields=ALL", function(data) {
 			  
 				self._processStoreQueryResponse(data);
-				
-                cb(null);
+                
+				if (typeof cb == "function")
+					cb(null);
             }); 
         };
+
+		this.unloadStore = function(storeNumber, cb)
+		{
+		    var self = this;
+
+		    for (var i = 0; i < self.stores.length; i++) {
+		        if (self.stores[i].storeNumber === storeNumber) {
+		            self.stores.splice(i, 1);
+		        }
+		    }
+
+		    for (var i = 0; i < self._storesOriginal.length; i++) {
+		        if (self._storesOriginal[i].storeNumber === storeNumber) {
+		            self._storesOriginal.splice(i, 1);
+		        }
+		    }
+
+		    cb();
+		},
+
+        this.retrieveStoreCareers = function (storeNumber, cb) {
+            var self = this;
+
+            jQuery.get("https://vioc.d.epsilon.com/storeapi/storequery.ashx?id=" + storeNumber + "&Fields=ALL", function (data) {
+
+                cb(data.results[0].careers);
+            });
+        },
+        this.retrieveStoreNews = function (storeNumber, cb) {
+            var self = this;
+
+            jQuery.get("https://vioc.d.epsilon.com/storeapi/storequery.ashx?id=" + storeNumber + "&Fields=ALL", function (data) {
+
+                cb(data.results[0].news);
+            });
+        }
         /**
          * Triggers a form to post to the /imageUpload.jssp API within Campaign.  This API will store the image on the media server and return a unique file URL.
          * This method will then return the path to the image, which can then be set as necessary.
@@ -165,7 +199,7 @@ var SiteCoreLibrary = (function () {
                   },
                   data: JSON.stringify(careerItem),
                   dataType: "json",
-                  crossdomain: true,
+                  crossDomain: true,
                   success: function (data) { cb(null, data); },
                   error: function (jqXHR, textStatus, errorThrown) { cb(errorThrown, null); }
               });
@@ -180,6 +214,21 @@ var SiteCoreLibrary = (function () {
                       "Authorization":"Token  BE8E5CD2-61C0-4041-96DB-7A36B41643A5"
                   },
                   data: JSON.stringify(careerItem),
+                  dataType: "json",
+                  success: function (data) { cb(null, data); },
+                  error: function (jqXHR, textStatus, errorThrown) { cb(errorThrown, null); }
+              });
+         }
+
+         this.deleteFeature = function(featureItem, cb)
+         {
+            jQuery.ajax({
+                  type: 'DELETE',
+                  url: 'https://vioc.d.epsilon.com/storeapi/feature.ashx',
+                  headers: {
+                      "Authorization":"Token  BE8E5CD2-61C0-4041-96DB-7A36B41643A5"
+                  },
+                  data: JSON.stringify(featureItem),
                   dataType: "json",
                   success: function (data) { cb(null, data); },
                   error: function (jqXHR, textStatus, errorThrown) { cb(errorThrown, null); }
@@ -247,7 +296,19 @@ var SiteCoreLibrary = (function () {
               });
          }
     
-    
+         this.getOffer = function(offerId, cb)
+         {
+             jQuery.ajax({
+                 type: 'GET',
+                 url: 'https://vioc.d.epsilon.com/storeapi/offer.ashx?id=' + offerId,
+                 headers: {
+                     "Authorization": "Token  BE8E5CD2-61C0-4041-96DB-7A36B41643A5"
+                 },
+                 success: function (data) { cb(null, data); },
+                 error: function (jqXHR, textStatus, errorThrown) { cb(errorThrown, null); }
+             });
+         }
+
          this.createOffer = function(offerItem, cb)
          {
             jQuery.ajax({
@@ -292,7 +353,7 @@ var SiteCoreLibrary = (function () {
                   error: function (jqXHR, textStatus, errorThrown) { cb(errorThrown, null); }
               });
          }
-         
+		 
          this.addStoreImage = function(formdata, cb) { 
             var self = this;
             
@@ -337,7 +398,7 @@ var SiteCoreLibrary = (function () {
                   var storeJSON = JSON.stringify(this.stores[i]);
                   
                   if (originalStoreJSON != storeJSON) {
-                    console.log(originalStoreJSON + " --- " + storeJSON);
+                    //console.log(originalStoreJSON + " --- " + storeJSON);
                     toModifyList.push(storeJSON);
                   }
                 }  
@@ -350,26 +411,32 @@ var SiteCoreLibrary = (function () {
                 jQuery.ajax({
                         type: 'PUT',
                         url: 'https://vioc.d.epsilon.com/storeapi/storeupdate.ashx',
+                        //url: 'https://requestb.in/18ba6mk1',
                         headers: {
                             "Authorization":"Token  BE8E5CD2-61C0-4041-96DB-7A36B41643A5"
                         },
                         data: toModifyList[i],
                         dataType: "json",
+                        contentType: "application/json",
                         success: function (data) 
                         { 
                           --ajajCallsRemaining;
                           if (ajajCallsRemaining <= 0) {
-                            cbcomplete(null, null);
+							  if (typeof cbcomplete == "function")
+								cbcomplete(null, null);
                           }
-                          cbprogress(ajajCallsRemaining);
+						  if (typeof cbprogress == "function")
+							cbprogress(ajajCallsRemaining);
                         },
                         error: function (jqXHR, textStatus, errorThrown) 
                         { 
                           --ajajCallsRemaining;
                           if (ajajCallsRemaining <= 0) {
-                            cbcomplete(null, null);
+							  if (typeof cbcomplete == "function")
+								cbcomplete(null, null);
                           }
-                          cbprogress(errorThrown, null); 
+						  if (typeof cbprogress == "function")
+							cbprogress(errorThrown, null); 
                         }
                     });    
             }

@@ -66,13 +66,14 @@ var StorePageDetailController = StorePageDetailController || (function ($) {
 	            siteCoreLibrary.loadStores([controller.storeNumber], function (error) {
 	                if (controller.validateStoreLoaded(controller.storeNumber)) {
 	                    controller.loadSectionsFromMustache(function() { 
-	                        controller.attachEventListeners();
-	                        controller.populateUI();
-	                        controller.refreshLandmarkPreview();
-	                        controller.initCharacterLimits();
-	                        customCheckAndRadioBoxes.customCheckbox();
-							controller.performInitCallbacks();
-	                        controller.showUI();
+	                        controller.populateUI(function () {
+	                            controller.attachEventListeners();
+	                            controller.refreshLandmarkPreview();
+	                            controller.initCharacterLimits();
+	                            customCheckAndRadioBoxes.customCheckbox();
+	                            controller.performInitCallbacks();
+	                            controller.showUI();
+	                        });
 	                    });
 	                };
 	            });
@@ -153,25 +154,39 @@ var StorePageDetailController = StorePageDetailController || (function ($) {
 	        // -------------------------------------
 	        // Listen for Other Actions
 	        // -------------------------------------
-	        $(".btn-save").click(function() { controller.onSave() });
+	        $(".btn-save").click(function () { controller.onSave() });
+	        $("#buttoncancel").click(function () { controller.onCancel() });
 		
 	        $('#newimage').change(function () { $('#uploader_form_1').submit(); });
 	        $("#uploader_form_1").submit(function (event) { controller.onUploadStorePhoto(event); });
+			$(".btn-store.btn-restore-default").click(function(event) { controller.onRestoreStorePhoto(event) });
+			$(".btn-manager.btn-restore-default").click(function(event) { controller.onRestoreManagerPhoto(event) });
 
 	        $('#newmanagerimage').change(function () { $('#uploader_form_3').submit(); });
 	        $("#uploader_form_3").submit(function (event) { controller.onUploadManagerPhoto(event); });
+			
+	        // -------------------------------------
+	        // Listen for failed image loads
+	        // -------------------------------------
+			$("#store-photo-item").on('error', function() {controller.onRestoreStorePhoto({})} );
+			$("#manager-photo-item").on('error', function () { controller.onRestoreManagerPhoto({}) });
+
+			$('.select-all-services').click(function () { controller.onSelectAllServices(); });
+			
 	    },
 
-		populateUI: function() {
+		populateUI: function(cb) {
 			var controller = this;
+			controller.setTitle();
 			controller.setLandmarkInputFields();
 			controller.populateBasicDetails();
 			controller.populateStorePhoto();
 			controller.populateManagerPhoto();
 			controller.populateServices();
 			controller.populateHolidays();
-			controller.populateFeatures();
 			controller.populateSocialAndCommunity();
+			controller.checkRestoreButtonVisibility();
+			cb();
 		},
 
 		populateBasicDetails: function() {
@@ -199,35 +214,37 @@ var StorePageDetailController = StorePageDetailController || (function ($) {
 		populateStorePhoto: function() {
 			var controller = this;
 			var storeData = siteCoreLibrary.stores[0];
-			var imageUrl = 'https://placeholdit.imgix.net/~text?txtsize=33&txt=No%20Store%20Image%20Available&w=350&h=150'
+			var imageUrl = marcomUserData.$constants.defaultStorePhotoUrl;
 
 			if (storeData.storeImage != undefined && storeData.storeImage.url != undefined)
 			{
 				imageUrl = storeData.storeImage.url;
 			}
-			console.log("Store Photo URL is : " + imageUrl);
+
 			$("#store-photo-item").attr("src", imageUrl);
 		},
 		populateManagerPhoto: function() {
 			var controller = this;
 			var storeData = siteCoreLibrary.stores[0];
-			var imageUrl = 'https://files.marcomcentral.app.pti.com/epsilon/static_beta/images/ico-profile-default.png'
+			var imageUrl = marcomUserData.$constants.defaultManagerPhotoUrl;
 
 			if (storeData.managerImage != undefined && storeData.managerImage.url != undefined)
 			{
 				imageUrl = storeData.managerImage.url;
 			}
-			console.log("Manager Photo URL is : " + imageUrl);
+
 			$("#manager-photo-item").attr("src", imageUrl);
 		},
 		populateServices: function() {
 			var controller = this;
 			$(".store-services-list").html('');
+			$(".store-services-list").append('<a class="select-all-services">(Select All)</a>');
+			$(".store-services-list").append('<div style="height: 10px"></div>');
 
 			$.each(siteCoreLibrary.settings.Services, function(i, service) {
 				
 				if ($.inArray(service.name, controller.serviceFilter) == -1) return;
-				var item = '<li class="list-item-default service-item col-sm-6">';
+				var item = '<li class="list-item-default service-item col-sm-12">';
 				item += '<label class="checkbox-default">';
 
 				var isChecked = false;
@@ -249,7 +266,7 @@ var StorePageDetailController = StorePageDetailController || (function ($) {
 					item += '<a style="margin-left: 8px" target="_blank" href="' + service.webURL + '"><span class="glyphicon glyphicon-info-sign"></span></a>';
 			    item += '</label></li>';
 
-				$(".store-services-list").append(item);
+			    $(".store-services-list").append(item);
 			});
 		},
 		populateHolidays: function() {
@@ -292,22 +309,6 @@ var StorePageDetailController = StorePageDetailController || (function ($) {
 				$("ul.holidays").append(ordered[idx]);
 			}
 		},
-		populateFeatures: function() {
-			var controller = this;
-			var template = $(".store-feature-template").html();
-			var $target = $(".feature-container");
-			
-			$.each(siteCoreLibrary.settings.Features, function(i, feature) {
-				var data = {
-					"featureId" : feature.id,
-					"featureName" : feature.name,
-					"checkedState": false,
-					"featureTitle": feature.name,
-					"featureImgSource": ""
-				};
-				$target.append(Mustache.render(template, data));
-			});
-		},
 		populateSocialAndCommunity : function() {
 			var controller = this;
 			var storeData = siteCoreLibrary.stores[0];
@@ -344,6 +345,10 @@ var StorePageDetailController = StorePageDetailController || (function ($) {
 				default: placeholder = "[EDIT]";
 			}
 			return placeholder;
+		},
+		setTitle: function() {
+			var controller = this;
+			$(".page-title span,.breadcrumb-current").html("Store Details - " + siteCoreLibrary.stores[0].name);
 		},
 		setLandmarkInputFields: function() {
 			var controller = this;
@@ -450,6 +455,30 @@ var StorePageDetailController = StorePageDetailController || (function ($) {
 			});
 		},
 		
+		checkRestoreButtonVisibility: function() {
+			
+			var controller = this;
+			
+			if ($("#store-photo-item").attr("src") != marcomUserData.$constants.defaultStorePhotoUrl)
+			{
+				$(".btn-store.btn-restore-default").removeClass('none');
+			}
+			else
+			{
+				$(".btn-store.btn-restore-default").addClass('none');
+			}
+			
+			if ($("#manager-photo-item").attr("src") != marcomUserData.$constants.defaultManagerPhotoUrl)
+			{
+				$(".btn-manager.btn-restore-default").removeClass('none');
+			}
+			else
+			{
+				$(".btn-manager.btn-restore-default").addClass('none');
+			}
+		     
+		},
+		
 		showUI: function() {
 			var controller = this;
 
@@ -466,56 +495,79 @@ var StorePageDetailController = StorePageDetailController || (function ($) {
 
 		},
 
+		onSelectAllServices: function() {
+		    //$('input[name="storeService"]').prop('checked', true);
+		    var visible_count = $('input[name="storeService"]').length;
+		    var checked_count = $('input[name="storeService"]:checked').length;
+		    $('input[name="storeService"]:visible').prop('checked', (visible_count != checked_count));
+		},
+
 		onChangePreviewInput: function() {
 			this.refreshLandmarkPreview();
 		},
 
 		onUploadStorePhoto: function (event) {
 
-		    event.preventDefault();
+			var controller = this;
+			event.preventDefault();
 
 		    $('#storenumberhidden').val(controller.storeNumber);
+			$("#uploader_form_1 input[name='ImageType']").val("store_" + siteCoreLibrary.stores[0].storeNumber + "_" + Date.now().toString());
+			
+			$("#store-photo-item").attr("src","https://placeholdit.imgix.net/~text?txtsize=24&txt=Loading...&w=150&h=150");
 
 		    siteCoreLibrary.addStoreImage(new FormData($('#uploader_form_1')[0]), function (err, data) {
 		        controller.savenewStoreImageId = data.results.id;
 		        controller.savenewStoreImageUrl = data.results.url;
-
 		        $("#store-photo-item").attr("src", controller.savenewStoreImageUrl);
+				controller.checkRestoreButtonVisibility();
 		    });
 
 		},
 
-		onRestoreStorePhoto: function () {
+		onRestoreStorePhoto: function (event) {
 
-		    controller.savenewStoreImageId = controller.defaultStoreImageId;
-		    controller.savenewStoreImageUrl = controller.defaultStoreImageUrl;
+			var controller = this;
 
-		    $("#store-photo-item").attr("src", defaultstoreImageUrl);
+		    controller.savenewStoreImageId = marcomUserData.$constants.defaultStorePhotoId;
+		    controller.savenewStoreImageUrl = marcomUserData.$constants.defaultStorePhotoUrl;
 
+		    $("#store-photo-item").attr("src", marcomUserData.$constants.defaultStorePhotoUrl);
+
+			controller.checkRestoreButtonVisibility();
 		},
 
 		onUploadManagerPhoto: function(event) {
+
+			var controller = this;
 
 		    event.preventDefault();
 
 		    $('#storenumberhidden').val(controller.storeNumber);
 
+			$("#uploader_form_3 input[name='ImageType']").val("manager_" + siteCoreLibrary.stores[0].storeNumber + "_" + Date.now().toString());
+
+			$("#manager-photo-item").attr("src","https://placeholdit.imgix.net/~text?txtsize=24&txt=Loading...&w=150&h=150");
+
 		    siteCoreLibrary.addStoreImage(new FormData($('#uploader_form_3')[0]), function (err, data) {
 		        controller.savenewManagerImageId = data.results.id;
 		        controller.savenewManagerImageUrl = data.results.url;
-
 		        $("#manager-photo-item").attr("src", controller.savenewManagerImageUrl);
+				controller.checkRestoreButtonVisibility();
 		    });
 
 		},
 
-		onRestoreManagerPhoto: function () {
+		onRestoreManagerPhoto: function (event) {
 
-		    controller.savenewManagerImageId = controller.defaultManagerImageId;
-		    controller.savenewManagerImageUrl = controller.defaultManagerImageUrl;
+			var controller = this;
 
-		    $("#manager-photo-item").attr("src", defaultManagerImageUrl);
+		    controller.savenewManagerImageId = marcomUserData.$constants.defaultManagerPhotoId;
+		    controller.savenewManagerImageUrl = marcomUserData.$constants.defaultManagerPhotoUrl;
 
+		    $("#manager-photo-item").attr("src", marcomUserData.$constants.defaultManagerPhotoUrl);
+
+			controller.checkRestoreButtonVisibility();
 		},
 
 		onChangeClosedOn: function() {
@@ -577,6 +629,10 @@ var StorePageDetailController = StorePageDetailController || (function ($) {
 					toastr.error(err);
 				}
 			});
+		},
+
+		onCancel: function () {
+		    window.location.href = marcomUserData.$constants.storePagesUrl;
 		}
 
 

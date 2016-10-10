@@ -46,13 +46,13 @@ window.onload = function () {
           <li>
             <a href="https://marcomcentral.app.pti.com/Epsilon_Data_Management/Beta_Epsilon/CustomPage.aspx?uigroup_id=479602&page_id=12939" title="Store Pages">Store Pages</a>
           </li>
-          <li>Store Details - Tom T's 1st Store</li>
+          <li class="breadcrumb-current">Loading...</li>
         </ul>
       </section>
     </div>
     <div class="main">
       <h1 class="h1 page-title">
-        <span>Store Details - Tom T's 1st Store</span>
+        <span>Loading...</span>
       </h1>
       <div class="js-loading">
         <div role="presentation" class="spinner"></div>
@@ -73,7 +73,7 @@ window.onload = function () {
               <a href="#tab-careers" data-toggle="tab">Careers</a>
             </li>
             <li>
-              <a href="#tab-news" data-toggle="tab">News/Events/Promotions</a>
+              <a href="#tab-news" data-toggle="tab">Promotions/Events/News</a>
             </li>
           </ul>
           <div class="tab-content">
@@ -158,9 +158,10 @@ window.onload = function () {
                 <hr>
                 <div class="clearfix form-item">
                   <!-- BUTTON Save -->
-                  <button class="btn-save btn btn-primary btn-lg display-block" name="saveDetails" type="button">
+                  <button class="btn-save btn btn-primary btn-lg display-inline" name="saveDetails" type="button">
                     Save
                   </button>
+                    <button type="button" class="btn btn-lg btn-primary display-inline" id="buttoncancel">Cancel</button> 
                 </div>
               </div>
 

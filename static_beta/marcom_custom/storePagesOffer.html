@@ -1,0 +1,373 @@
+<!-- Store Pages New Offer:
+		@file storePagesNewOffer.html
+		Beta URL:
+		https://marcomcentral.app.pti.com/Epsilon_Data_Management/Beta_Epsilon/CustomPage.aspx?uigroup_id=479602&page_id=13091
+-->
+
+<!-- ****************** PORTAL CUSTOM COPY ******************
+
+!!	 The following markup is to be copied into the Marcom Custom Copy textarea for this page	 !!
+
+<div id="storePagesNewOffer" class="asyncMarkup"></div>
+
+<script>
+window.onload = function () {
+	function getData() {
+		return jQuery.get('https://files.marcomcentral.app.pti.com/epsilon/static_beta/marcom_custom/storePagesOffer.html').success(function (resp) {
+			// console.log('Fires after the AJAX request succeeds');
+			jQuery('.asyncMarkup').html(resp);
+			OfferPageController.controller.init();
+		});
+	}
+	function showDiv() {
+		var dfd = jQuery.Deferred();
+		dfd.done(function () {
+			// console.log('Fires after the animation succeeds');
+		});
+		jQuery('.asyncMarkup').fadeIn(1000, dfd.resolve);
+		return dfd.promise();
+	}
+	jQuery.when(getData(), showDiv())
+		.then(function (ajaxResult) {
+			// console.log('Fires after BOTH showDiv() AND the AJAX request succeed!');
+		});
+}
+</script>
+********************** /PORTAL CUSTOM COPY ****************** -->
+
+<style>
+  .red {
+    color: #e02926;
+  }
+  .resp-tab-content {
+    margin: 0 0 15px;
+  }
+  #programManagementTabs {
+    width: 100%;
+    margin: 0 0 20px;
+    padding: 0;
+  }
+  #programManagementTabs h4 {
+    font-size: 24px;
+    font-weight: bold;
+    margin: 10px 0;
+    padding: 10px 0 0;
+    color: #e02926;
+  }
+  #programManagementTabs p {
+    margin: 0;
+    padding: 0 0 10px;
+  }
+  #programManagementTabs input {
+    max-width: 140px;
+    margin: 5px 0 15px;
+  }
+  #programManagementTabs .btn {
+    max-width: 140px;
+    margin: 5px 0 15px;
+    padding: 6px 12px;
+    color: #fff;
+    border: 1px solid #337ab7;
+    border-radius: 4px;
+    background-color: #0ea3dd;
+  }
+  #programManagementTabs input.settings-name {
+    margin: 0;
+  }
+  #programManagementTabs select {
+    width: auto;
+    min-width: 140px;
+    margin: 5px 0 15px;
+  }
+  .program-button {
+    margin: 0;
+    padding: 0;
+  }
+  .discountCodeLink {
+    font-weight: bold;
+    margin: 0;
+    padding: 0;
+    text-decoration: underline;
+  }
+  .discountCode {
+    width: 100%;
+    padding: 20px;
+    background: #eee;
+  }
+  #parentHorizontalTab table,
+  .discountCode table {
+    width: 100%;
+  }
+  #parentHorizontalTab table tr td:first-child,
+  .discountCode table tr td:first-child {
+    padding: 0 15px 10px 0;
+    text-align: right;
+    vertical-align: middle;
+  }
+  #parentHorizontalTab table tr td:nth-child(odd),
+  .discountCode table tr td:nth-child(odd) {
+    width: 40%;
+  }
+  #parentHorizontalTab table tr .form-group-label {
+    width: 40% !important;
+    text-align: left !important;
+  }
+  #parentHorizontalTab table tr .form-group-input {
+    width: 75% !important;
+    text-align: left !important;
+  }
+  .adtlConfigForm {
+    overflow: hidden;
+  }
+  .adtlConfigForm .settings-section {
+    width: 100%;
+    margin-bottom: 1.5em;
+  }
+  .results-section {
+    width: 100% !important;
+  }
+  .adtlConfigForm .label-cell {
+    min-width: 120px;
+    padding: 0;
+  }
+  .adtlConfigForm .value-cell {
+    padding: 4px 8px;
+  }
+  #programManagementTabs .adtlConfigForm .value-cell input,
+  #programManagementTabs .adtlConfigForm .value-cell select {
+    min-width: 300px;
+    margin: 4px 0;
+  }
+  .adtlConfigForm .resp-tab-content {
+    margin-bottom: 0.6em;
+  }
+  #parentHorizontalTab {
+    margin: 0;
+    padding: 0;
+  }
+  .module table tr td:first-child {
+    padding: 0 15px 10px 0;
+    vertical-align: middle;
+  }
+  .module table tr td:nth-child(odd) {
+    width: 30%;
+  }
+  .module table {
+    width: 100%;
+  }
+  .sidebar p {
+    padding: 20px 0 10px;
+  }
+  .sidebar textarea {
+    font-size: 14px;
+    line-height: 20px;
+    padding: 10px;
+    text-align: left;
+  }
+  .resp-tab-content {
+    width: 80%;
+    margin: 0 0 20px;
+  }
+  .coupon-form {
+    float: left;
+    width: auto;
+  }
+  .coupon-form td {
+    vertical-align: sub;
+  }
+  .coupon-form td label {
+    margin-right: 1em;
+  }
+  .coupon-image {
+    float: left;
+    width: 40%;
+    padding: 0 0 3px;
+    text-align: center;
+  }
+  .coupon-form i {
+    color: red;
+  }
+  .form-group-label {
+	display: block;
+    font-weight: bold;
+    font-size: 14px;
+    margin-bottom: 6px;
+  }
+  .form-group-label small {
+	margin: 6px 0px;
+	font-weight: normal;
+  }
+  .form-group-input {
+	display: inline-block;
+  }
+  .offer-form-tr {
+    margin: 0 0 12px !important;
+  }
+  #store-container {
+	margin: 6px 0px 20px 0px
+  }
+.edit-card {
+	margin-right: 0;
+	margin-left: 0;
+	background-color: #fff;
+	border-color: #ddd;
+	border-width: 1px;
+	border-radius: 4px;
+	-webkit-box-shadow: 0px 2px 2px rgba(0,0,0,.10);
+	box-shadow: 0px 2px 2px rgba(0,0,0,.10);
+	border: 1px solid #ddd;
+	padding: 20px;
+	width: 75%;
+}
+.list-item {
+	padding: 4px;
+	background: #fff;
+	text-align: left !important;
+	cursor: pointer;
+}
+.list-item label, .list-item input {
+	cursor: pointer;
+}
+.filters-area {
+	font-size: 16px;
+	margin-top: 6px;
+}
+</style>
+
+<div class="wrapper storePages">
+  <div class="mid-container">
+    <div class="main">
+      <section id="breadcrumbs">
+        <ul>
+          <li class="breadcrumbs_root">
+            <a href="/" title="Home">Home</a>
+          </li>
+          <li class="breadcrumbs_previous">
+            <a title="Store Pages">Store Pages</a>
+          </li>
+          <li class="breadcrumbs_current"></li>
+        </ul>
+      </section>
+    </div>
+    <div class="main">
+      <h1 class="h1 page-title"></h1>
+      <div class="js-loading">
+        <div role="presentation" class="spinner"></div>
+      </div>
+      <div class="main js-content">
+        <form class="offer-form">
+          <section class="results-section edit-card">
+		  
+			<div class="row">
+				<div class="col-sm-4">
+
+					<table>
+					  <tbody>
+						<tr class="offer-form-tr display-inline-block">
+						  <td class="form-group-label">
+							<label>Discount Code</label>
+						  </td>
+						  <td class="form-group-input">
+							<input id="discountCode" type="text">
+						  </td>
+						</tr>
+						<tr class="offer-form-tr display-inline-block">
+						  <td class="form-group-label">
+							<label>Offer Type</label>
+						  </td>
+						  <td class="form-group-input">
+							<select id="offerType" class="offerType selectbox"></select>
+						  </td>
+						</tr>
+						<tr class="offer-form-tr display-inline-block">
+						  <td class="form-group-label">
+							<label>Amount</label>
+						  </td>
+						  <td class="width-auto form-group-input">
+							<input id="offerAmount" type="number">
+						  </td>
+						  <td class="width-auto form-group-input">
+							<select id="offerAmountType" class="selectbox"></select>
+						  </td>
+						</tr>
+						<tr class="offer-form-tr display-inline-block">
+						  <td class="form-group-label">
+							<label>Expiration</label>
+							<small class="display-block">Set expiration either from the list or a specific date.</small>
+						  </td>
+						  <td class="form-group-input">
+							<div id="expiration-container"></div>
+						  </td>
+						</tr>
+						<tr class="offer-form-tr display-inline-block">
+						  <td class="form-group-input">
+							<div class="footer-buttons">
+								<button type="button" class="offer-save-btn btn btn-primary">Save</button>
+								<button type="button" class="offer-delete-btn btn btn-danger">Delete</button>
+								<button type="button" class="offer-cancel-btn btn btn-link">Cancel</button>
+							</div>
+						  </td>
+						</tr>
+						
+					  </tbody>
+					</table>
+
+				
+				</div>
+				<div class="col-sm-7" style="margin-left:20px">
+
+					<table>
+					  <tbody>
+						<tr class="offer-form-tr display-inline-block">
+						  <td class="form-group-label">	
+							<label>Participating Stores</label>
+						  </td>
+						  <td class="form-group-input">
+						  
+							<div class="filters-area">
+							  <div class="filter-title">
+								Store Filters:
+							  </div>
+							  <div class="company filter-select select-option">
+								<select class="selectbox"></select>
+							  </div>
+
+							  <div class="market filter-select select-option">
+								<select class="selectbox"></select>
+							  </div>
+
+							  <div class="filter-results">
+								<a href="#" title="filter-edit" class="filter-reset">
+								  <img src="https://files.marcomcentral.app.pti.com/epsilon/static/marcom_custom/images/edit-filter.png" alt="Edit" title="Edit" width="16">
+								</a>
+								<span class="filter-results-value"></span>
+							  </div>
+							</div>
+
+							<div style="margin-bottom: 6px">
+								<small>
+									<a class="select-all" href="#">(Select All)</a>
+								</small>
+							</div>
+							
+							<table id="storeDetail" class="edit-card full-width" style="width: 450px">
+								<tbody class="full-width">
+									<tr><td>Loading...</td></tr>
+								</tbody>
+							</table>							
+			  
+						  </td>
+						</tr>
+						
+					  </tbody>
+					</table>
+				
+				</div>
+			</div>
+		  
+			
+			
+			
+          </div>
+        </div>
+      </div>

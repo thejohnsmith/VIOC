@@ -55,7 +55,7 @@ JSON.stringify = function(obj) {
 			t = typeof(v);
 			if (obj.hasOwnProperty(n)) {
 				if (t == "string") {
-					v = '"' + v.replace(/"/g,'\\\"').replace(/\n/g,'\\n') + '"';
+					v = '"' + v.replace(/"/g,'\\\"').replace(/[\r\n]/g,'\\n') + '"';
 				} else if (t == "undefined") {
 					v = '""';
 				} else if (t == "object" && v !== null){

@@ -27,6 +27,7 @@ var OfferPageController = OfferPageController || (function ($) {
 
 	    init: function () {
 	        var controller = this;
+			programManagementFilters.controller.init();
 	        siteCoreLibrary.init(function (error) {
 				controller.loadRequestedOffer(function() {
 					controller.populateUI();
@@ -74,8 +75,7 @@ var OfferPageController = OfferPageController || (function ($) {
 			controller.setStoreList();
 		},
 		setBreadcrumbs: function() {
-		
-			$(".breadcrumbs_previous").attr("href", marcomUserData.$constants.storePagesUrl);
+			$(".breadcrumbs_previous a").attr("href", marcomUserData.$constants.storePagesUrl);
 		},
 		
 		setFormChoices: function() {
@@ -131,8 +131,11 @@ var OfferPageController = OfferPageController || (function ($) {
 		setCurrentOfferData: function() {
 			var controller = this;
 			var offerData = controller.offerData;
-			if (offerData == null) return 0;
-			
+			if (offerData == null) {
+				$(".page-title, .breadcrumbs_current").html("Create Offer");
+				return 0;
+			}
+
 			$(".page-title, .breadcrumbs_current").html("Edit " + offerData.code);
 			$("#discountCode").val(offerData.code);
 			$("#offerType option[data-checksum=" + controller.hashCode(offerData.offerType.name) + "]").prop('selected', true);
@@ -173,29 +176,27 @@ var OfferPageController = OfferPageController || (function ($) {
 		
 		setOfferOwnership: function() {
 			var storeList = [];
-			
+			var offerData = controller.offerData;
+	
+			// Build a list of stores to load
 			$.each($("input:checkbox:visible"), function(i,cb) {
-				var storeNumber = $(cb).attr('data-store-number');
-				var alreadyLoaded = false;
-				
-				$.each(siteCoreLibrary.stores, function(i,s) {
-					if (s.storeNumber == storeNumber)
-						alreadyLoaded = true;
-				});
-
-				if (!alreadyLoaded)
-				{
-					storeList.push(storeNumber);
-					$(cb).attr("disabled", true);
-				}
+				storeList.push($(cb).attr('data-store-number'));
 			});
+			
+			if (storeList.length == 0) return;
+
+			$("input:checkbox:visible").attr("disabled", true);
+			console.log("Loading " + storeList.length + " stores...");
 
 			siteCoreLibrary.loadStores(storeList, function(err) { 
+				
 				$.each($("input:checkbox:visible"), function(i,cb) {
-					if ($(cb).attr('data-state-loaded') != '1') {
-						var storeNumber = $(cb).attr('data-store-number');
-						$.each(siteCoreLibrary.stores, function(i,s) {
-							if (s.storeNumber == storeNumber && s.offers != undefined) {
+					var storeNumber = $(cb).attr('data-store-number');
+					$.each(siteCoreLibrary.stores, function(i,s) {
+						if (s.storeNumber == storeNumber) {
+							$(cb).attr('data-store-guid', s.id);
+							if (s.offers != undefined && offerData != null)
+							{
 								$.each(s.offers, function(i,o){ 
 									if (o.id == offerData.id) {
 										console.log("Store " + s.storeNumber + " has offer " + o.id);
@@ -203,14 +204,11 @@ var OfferPageController = OfferPageController || (function ($) {
 									}
 								});
 							}
-							$(cb).attr('data-store-guid', s.id);
-						});
-						$(cb).attr('data-state-loaded', '1');
-					}
-					
-					$(cb).removeAttr("disabled");
+						}
+					});
 				});
-			
+				// Reenable all checkboxes
+				$("input:checkbox:visible").removeAttr("disabled");
 			});
 		},
 
@@ -291,66 +289,72 @@ var OfferPageController = OfferPageController || (function ($) {
 			// ------------------------------------
 			// Fill offerData and validate
 			// ------------------------------------
-debugger;				
 			
 			var saveData = {};
 
+			// Set Name 
+			saveData.name = $('#offerType option:selected').text();
+			
 			// Set ID
 			if (controller.offerData != null)
-				saveData.Id = (controller.offerData.id);
+				saveData.id = (controller.offerData.id);
 				
 			// Set/Validate Amount
-			if (!controller.isNumeric(saveData.Amount = $("input#offerAmount").val()))
+			if (!controller.isNumeric(saveData.amount = $("input#offerAmount").val()))
 				error = "Please provide a valid amount.";
-				
-			// Set FranchiseId.  Setting all offers to be owned by VAL, since it sorta doesn't matter
-			saveData.FranchiseId = "VAL";
-			
+		
 			// Set Code
-			if (!controller.isString(saveData.Code = $("input#discountCode").val(), 3, undefined))
+			if (!controller.isString(saveData.code = $("input#discountCode").val(), 3, undefined))
 				error = "Please provide a valid discount code.";
 
 			// Set ExpirationDate
+			saveData.expirationDate = "0001-01-01T00:00:00";
+
 			if ($("input[data-label='Specific Date']:checked").length > 0)
 			{
-				if (!controller.isString(saveData.ExpirationDate = $("input#specificExpirationDate").val(), 10, 10))
+				if (!controller.isString(saveData.expirationDate = $("input#specificExpirationDate").val(), 10, 10))
 					error = "Please provide a valid expiration date.";
 			}
 			
 			// Set OfferTypeId
-			saveData.OfferTypeId = $("#offerType").val();
+			saveData.offerType = { "id" : $("#offerType").val() };
 				
 			// Set ExpirationTypeId
-			if (!controller.isString(saveData.ExpirationTypeId = $("input[name='expiration-choice']:checked").attr('id'), 30, 40))
+			var ExpirationTypeId = null;
+			if (!controller.isString(ExpirationTypeId = $("input[name='expiration-choice']:checked").attr('id'), 30, 40))
 				error = "Please select an expiration type.";
+			
+			saveData.expirationType = { "id" : ExpirationTypeId};
 				
 			// Set AmountTypeId
-			saveData.AmountTypeId = $("#offerAmountType").val();
+			saveData.amountType = { "id" : $("#offerAmountType").val()};
 			
 			// Set Stores
-			saveData.Stores = [];
+			saveData.stores = [];
 			
 			$.each($(".store-item input:checked"), function(i,cb) { 
-				saveData.Stores.push({ "Id" : $(cb).attr('store-guid') });
+				saveData.stores.push({ "id" : $(cb).attr('data-store-guid') });
 			});
 			
-			if (saveData.Stores.length == 0)	
+			if (saveData.stores.length == 0)	
 				error = "Please select one or more stores to apply this offer code to.";
-debugger;				
+
 			if (error != null)
 			{
 				toastr.error(error);
 				return 0;
 			}
-			
+
 			// ------------------------------------
 			// Perform Save
 			// ------------------------------------
 			
-			var method = (saveData.Id != undefined) ? "modifyOffer" : "createOffer";
+			$("button").prop('disabled',true);
+			
+			var method = (saveData.id != undefined) ? "modifyOffer" : "createOffer";
 			
 			siteCoreLibrary[method](saveData, function(err) { 
-				toastr.success("Offer saved!");
+				toastr.success("Offer saved!  Returning to previous page...");
 				setTimeout(function() { window.location.href = marcomUserData.$constants.storePagesUrl }, 2000);
 			});
 		},
@@ -358,13 +362,14 @@ debugger;
 		onDelete: function()
 		{
 			var controller = OfferPageController.controller;
-			
-			jConfirm("Are you sure you want to delete this offer?", function() {
-				$("button").prop('disabled',true);
-				siteCoreLibrary.deleteOffer(controller.offerData, function(err) { 
-					toastr.success("Offer deleted!");
-					setTimeout(function() { window.location.href = marcomUserData.$constants.storePagesUrl }, 2000);
-				});
+			jConfirm("Are you sure you want to delete this offer?", "Please confirm", function(r) {
+				if (r) {
+					$("button").prop('disabled',true);
+					siteCoreLibrary.deleteOffer(controller.offerData, function(err) { 
+						toastr.success("Offer deleted!  Returning to previous page...");
+						setTimeout(function() { window.location.href = marcomUserData.$constants.storePagesUrl }, 2000);
+					});
+				}
 			});
 		},
 		
@@ -377,5 +382,3 @@ debugger;
 		controller: controller,
 	};
 })(jQuery);
-
-OfferPageController.controller.init()
