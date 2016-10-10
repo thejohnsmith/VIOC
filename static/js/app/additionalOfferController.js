@@ -13,9 +13,12 @@ var additionalOfferController = (function ($) {
 		userId: marcomUserData.$user.externalId,
 		programId: getParameterByName('programId', window.location.href),
 		configId: getParameterByName('configId', window.location.href),
-
+		storePagesNewOfferUrl: marcomUserData.$constants.storePagesNewOfferUrl,
+		storePagesEditOfferUrl: marcomUserData.$constants.storePagesEditOfferUrl,
+		storePagesTrue: window.location.href.indexOf(marcomUserData.$constants.storePagesNewOfferUrl) > -1 ? true : window.location.href.indexOf(marcomUserData.$constants.storePagesEditOfferUrl) > -1 ? true : false,
 		init: function (config) {
 			var controller = this;
+			console.info('storePagesTrue: %o', controller.storePagesTrue);
 			controller.GetAdditionalOfferText(function (programId) {
 				controller.GetProgramData(controller.programId, function (programId) {
 					if (typeof controller.configId != "undefined") {
@@ -103,8 +106,15 @@ var additionalOfferController = (function ($) {
 		},
 		UpdateTitle: function () {
 			var controller = this;
-			var title = (controller.configLoaded) ? "Edit " + controller.config.content.label : "Create Additional Offer";
 
+			var title = (controller.configLoaded) ? "Edit " + controller.config.content.label : "Create Additional Offer";
+			if (window.location.href.indexOf(controller.storePagesNewOfferUrl) > -1) {
+				title = 'New Offer';
+			}
+			if (window.location.href.indexOf(controller.storePagesEditOfferUrl) > -1) {
+				title = 'Edit Offer';
+				$('.delete-offer').show();
+			}
 			// Set title
 			$("h1.page-title").html(title);
 
@@ -113,6 +123,17 @@ var additionalOfferController = (function ($) {
 		},
 		UpdateBreadCrumbs: function () {
 			var controller = this;
+
+			if (controller.storePagesTrue) {
+				console.info('breadcrumbs_previous updated.');
+				$('.breadcrumbs_root a')
+					.html('Home')
+					.attr('href', marcomUserData.$constants.homePageGroupUrl);
+				$('.breadcrumbs_previous:first a')
+					.html('Store Pages')
+					.attr('href', marcomUserData.$constants.storePagesUrl);
+				return false;
+			}
 
 			// Set 2nd Level Breadcrumb
 			$(".breadcrumbs_previous:first a").html((controller.program.isSpecialtyProgram) ? "Specialty Programs" : "Lifecycle Programs");
@@ -155,6 +176,9 @@ var additionalOfferController = (function ($) {
 				 * Disable 'required' attr from .adtlText dropdown
 				 */
 				if (controller.program.isLifecycleCampaign) {
+					if (controller.storePagesTrue) {
+						return false
+					}
 					$('.coupon-form label:first i').hide();
 					$('.adtlText').prop('required', false);
 				}
@@ -180,6 +204,9 @@ var additionalOfferController = (function ($) {
 			});
 		},
 		MinimizeUnusedCoupons: function () {
+			if (controller.storePagesTrue) {
+				return false
+			}
 			for (var i = 1; i <= 4; i++) {
 				if ($('[name=adtlText' + i + ']').val() == "none") {
 					$('[name=adtlText' + i + ']').closest("table").find("tr").hide(); // Hide all of my sibling rows (including myelf)
@@ -221,8 +248,7 @@ var additionalOfferController = (function ($) {
 			// If the program is not lifecycle program, text is required on coupon #1.
 			// If a coupon text has been set on any offer, then the child fields must be set as well.
 
-			function throwError(message)
-			{
+			function throwError(message) {
 				jAlert(message);
 				return null;
 			}
@@ -234,25 +260,19 @@ var additionalOfferController = (function ($) {
 				var code = $('[name=adtlCode' + i + ']').val();
 				var val = $('[name=adtlValue' + i + ']').val();
 
-				if (controller.program.isLifecycleCampaign)
-				{
-					if (txt != "none")
-					{
+				if (controller.program.isLifecycleCampaign) {
+					if (txt != "none") {
 						if (code == "") return throwError("Please provide a valid discount code.");
 						if (val == "") return throwError("Please provide a valid discount amount.");
 
 						hasSpecifiedAnOffer = true;
 					}
-				}
-				else
-				{
-					if (txt == "none" && i == 1)
-					{
+				} else {
+					if (txt == "none" && i == 1 && !controller.storePagesTrue) {
 						return throwError("Please configure Additional Offer #1");
 					}
 
-					if (txt != "none")
-					{
+					if (txt != "none") {
 						if (code == "") return throwError("Please provide a valid discount code.");
 						if (val == "") return throwError("Please provide a valid discount amount.");
 
@@ -261,13 +281,11 @@ var additionalOfferController = (function ($) {
 				}
 			}
 
-			if ($('.settings-name').val() == "")
-			{
+			if ($('.settings-name').val() == "" && !controller.storePagesTrue) {
 				return throwError("Please provide a name for this setting.");
 			}
 
-			if (!hasSpecifiedAnOffer)
-			{
+			if (!hasSpecifiedAnOffer) {
 				return callback();
 			}
 
@@ -280,8 +298,7 @@ var additionalOfferController = (function ($) {
 
 					if (controller.config.content.corpDefault == 0) {
 						return callback();
-					}
-					else if ($('.settings-name').val() == controller.config.content.label) {
+					} else if ($('.settings-name').val() == controller.config.content.label) {
 						jConfirm("This is a factory-defined setting and may not be changed.  Instead, the system will create a new setting named \"" + new_label + "\" which will contain your custom settings.  Proceed?", 'Create New Settings?', function (r) {
 							if (r) {
 								return callback();
@@ -307,16 +324,13 @@ var additionalOfferController = (function ($) {
 						_expiration: $('.expiration').val()
 					};
 
-
 					for (var i = 1; i <= 4; i++) {
 						if ($('[name=adtlText' + i + ']').val() != "none") {
 							saveData["_adtlCode" + i] = $('[name=adtlCode' + i + ']').val();
 							saveData["_adtlText" + i] = $('[name=adtlText' + i + ']').val();
 							saveData["_adtlApproach" + i] = $('[name=adtlApproach' + i + ']').val();
 							saveData["_adtlValue" + i] = $('[name=adtlValue' + i + ']').val();
-						}
-						else
-						{
+						} else {
 							saveData["_adtlCode" + i] = '';
 							saveData["_adtlText" + i] = '';
 							saveData["_adtlApproach" + i] = '';

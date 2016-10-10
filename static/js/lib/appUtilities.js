@@ -6,7 +6,7 @@ var $j = jQuery;
  * @param  {data} data recieved from ajax calls is manually parsed and returned.
  * @return {return}	data, parsed data.
  */
-var ParseData = function(data) {
+var ParseData = function (data) {
 	data = JSON.parse(data)
 	return data;
 };
@@ -15,7 +15,7 @@ var ParseData = function(data) {
  * @param  {data} data recieved from ajax calls and just returns it back.
  * @return {return}	data, that data.
  */
-var DoNotParseData = function(data) {
+var DoNotParseData = function (data) {
 	return data;
 };
 
@@ -33,6 +33,43 @@ function getParameterByName(name, url) {
 	return decodeURIComponent(results[2].replace(/\+/g, ' '));
 }
 
+JSON.nativeStringify = JSON.stringify;
+
+JSON.stringify = function(obj) {
+	
+	var t = typeof (obj);
+
+	if (t != "object" || obj === null) {
+		// simple data type
+		if (t == "string") obj = '"' + obj.replace(/"/g,'\\\"').replace(/\n/g,'\\n') + '"';
+		return String(obj);
+	} else if (t == "undefined") {
+		return String("");
+	}
+	else {
+		// recurse array or object
+		var n, v, json = [], arr = (obj && obj.constructor == Array);
+
+		for (n in obj) {
+			v = obj[n];
+			t = typeof(v);
+			if (obj.hasOwnProperty(n)) {
+				if (t == "string") {
+					v = '"' + v.replace(/"/g,'\\\"').replace(/[\r\n]/g,'\\n') + '"';
+				} else if (t == "undefined") {
+					v = '""';
+				} else if (t == "object" && v !== null){
+					v = JSON.stringify(v);
+				}
+				json.push((arr ? "" : '"' + n + '":') + String(v));
+			}
+		}
+
+		return (arr ? "[" : "{") + String(json) + (arr ? "]" : "}");
+	}
+}
+
+
 var appUtilities = (function ($) {
 	var controller = {
 		init: function () {
@@ -46,6 +83,9 @@ var appUtilities = (function ($) {
 			return $('title').html('VIOC Warp Drive' + ' - ' + $pageTitle);
 		},
 		changeNavBarLink: function () {
+			$('.navBarItem > a').filter(function () {
+				return $(this).text() === 'STORE PAGES';
+			}).addClass('storePages').hide();
 			$('.navBarItem > a').filter(function () {
 				return $(this).text() === 'REPORTS';
 			}).attr('href', 'https://bo-vioc.epsilon.com').attr('target', '_blank');
@@ -82,41 +122,66 @@ var appUtilities = (function ($) {
 				}
 			});
 		},
+		goBack: function () {
+			$(function () {
+				$('.back').click(function () {
+					if (history.length > 1) {
+						parent.history.back();
+					} else {}
+					return false;
+				});
+			});
+		},
+		MarcomUtilNav: function () {
+			$('.NavTop, .profile_menu').show();
+			$('.NavTop').css({
+				'position': 'relative'
+			});
+			$('.header-right').hide();
+			return this;
+		},
 		/**
 		 * [runtimeDebugging Debugging for Beta]
 		 */
-		runtimeDebugging: function (fnRunning) {
-			/* Only run console Debugging in UAT(Beta_Epsilon) Environment. */
+		runtimeDebugging: function () {
 			// Give the source a namespace
 			marcomUserData.environmentKind === 'UAT' ? $('html').addClass('Beta_Epsilon') : $('html').removeClass('Epsilon');
+			var betaLink = $('.Beta_Epsilon .header-info h2');
+			betaLink.on('click', function (e) {
+				if (e.clientX > $(this).offset().left + 100) {
+					window.location = marcomUserData.$constants.storePagesUrl;
+				}
+			});
 
-			var domainLocation = window.location.href,
-				debugHeader = 'color:#00bbfd;font-family:"HelveticaNeueLT-Condensed";font-weight:light;background:#000;' + 'font-size:1.6em;line-height:1;padding:0.08em 0.25em;margin:0',
-				debugTitle = 'color:green;font-weight:bold;font-size:1em',
-				debugGroup = 'color:purple;font-weight:bold;font-size:1em',
-				debugItem = 'color:#f06;font-weight:bold;font-size:0.95em';
-
-			console.group('%cWelcome to Beta_Epsilon', debugHeader);
-			console.groupCollapsed('%c **CONSTANTS**', debugGroup);
-			console.debug('ENV: %c %s', debugGroup, marcomUserData.environmentKind);
-			console.debug('URL: %c %s', debugTitle, domainLocation);
-			console.groupEnd();
-			console.groupCollapsed('%c **User Info**', debugGroup);
-			console.debug('Name: %c %s', debugItem, marcomUserData.$user.firstName + ' ' + marcomUserData.$user.lastName);
-			console.debug('Email: %c %s', debugItem, marcomUserData.$user.email);
-			console.debug('ID: %c %s', debugItem, marcomUserData.$user.externalId);
-			console.debug('Agent: %c %s', debugItem, navigator.userAgent.toLowerCase());
-			console.debug('Platform: %c %s', debugItem, navigator.platform.toLowerCase());
-			console.groupEnd();
-			console.groupEnd();
-			}
+			// var domainLocation = window.location.href,
+			// 	debugHeader = 'color:#00bbfd;font-family:HelveticaNeueLT-Condensed,sans-serif;font-weight:100;background:#000;' + 'font-size:1.3em;line-height:1;padding:0.08em 0.25em;margin:0',
+			// 	debugTitle = 'color:green;font-weight:bold;font-size:1em',
+			// 	debugGroup = 'color:purple;font-weight:bold;font-size:1em',
+			// 	debugItem = 'color:#f06;font-weight:bold;font-size:0.95em';
+			//
+			// console.group('%cWelcome to Beta_Epsilon', debugHeader);
+			// console.groupCollapsed('%c **CONSTANTS**', debugGroup);
+			// console.debug('ENV: %c %s', debugGroup, marcomUserData.environmentKind);
+			// console.debug('URL: %c %s', debugTitle, domainLocation);
+			// console.groupEnd();
+			// console.groupCollapsed('%c **User Info**', debugGroup);
+			// console.debug('Name: %c %s', debugItem, marcomUserData.$user.firstName + ' ' + marcomUserData.$user.lastName);
+			// console.debug('Email: %c %s', debugItem, marcomUserData.$user.email);
+			// console.debug('ID: %c %s', debugItem, marcomUserData.$user.externalId);
+			// console.debug('Agent: %c %s', debugItem, navigator.userAgent.toLowerCase());
+			// console.debug('Platform: %c %s', debugItem, navigator.platform.toLowerCase());
+			// console.groupEnd();
+			// console.groupEnd();
+		}
 	};
 	return {
 		controller: controller,
 		changeNavBarLink: controller.changeNavBarLink,
 		runtimeDebugging: controller.runtimeDebugging,
 		setPrettyPhone: controller.setPrettyPhone,
-		routeEnterKeyToNext: controller.routeEnterKeyToNext
+		routeEnterKeyToNext: controller.routeEnterKeyToNext,
+		goBack: controller.goBack,
+		MarcomUtilNav: controller.MarcomUtilNav
 	};
 })(jQuery);
 

@@ -6,38 +6,164 @@
  * @filename - StorePagesController.js
  * @author - John Smith : Epsilon 2016
  */
-var pageAnchor = '.asyncMarkup';
-var pageKey = marcomUserData.$constants.storePagesUrl;
 
-StorePagesController = (function ($) {
+var StorePagesController = StorePagesController || (function ($) {
 	'use strict';
 	var controller = {
+		apiPath: marcomUserData.$constants.apiPath,
+		user_id: marcomUserData.$user.externalId,
+		store_data: [],
 		intervalHandle: null,
 		init: function () {
 			var controller = this;
-			controller.AdjustUI();
-			// controller.WatchForPageReady(function () {
-			// 	controller.AdjustUI();
-			// });
+			programManagementFilters.controller.init();
+			controller.ConfigureFilters();
+			controller.AdjustUI(function () {
+				controller.getStoreProgramData(function () {
+					controller.ShowUI(function() {
+						controller.TapIntoFilterChanges();
+					});
+				});
+			});
 		},
-		isPageReady: function () {
-			return $(pageAnchor).length > 0;
+		ConfigureFilters: function () {
+			if (!$('#sortable').length === 0) {
+				console.debug('sortable will not configure filters');
+				programManagementFilters.controller.init();
+			}
 		},
-		WatchForPageReady: function (callback) {
-			var controller = this;
-			// controller.intervalHandle = setInterval(function () {
-			// 	if (controller.isPageReady()) {
-			// 		clearInterval(controller.intervalHandle);
-			// 		callback();
-			// 	}
-			// }, 500);
-		},
-		AdjustUI: function () {
+		AdjustUI: function (callback) {
 			var controller = this;
 			controller.SetNavigation();
-			controller.UpdateBreadCrumbs();
 			controller.InitializeTabs();
+
+			if (typeof callback == 'function') {
+				callback();
+			}
 		},
+		
+		TapIntoFilterChanges: function() {
+			var controller = this;
+			// This area gets a little magical.  programManagementFilter.js wasn't built with proper encapulation,
+			// so I'm hacking it's onFilterChange function to notify us when things change.
+			programManagementFilters.controller.onFilterChangeOriginal = programManagementFilters.controller.onFilterChange;
+			programManagementFilters.controller.onFilterChange = controller.onFilterChange;
+			controller.onFilterChange(programManagementFilters.controller.store_ids);
+		},
+		
+		onFilterChange: function(storeIds) {
+			// Call the original functionality of the store filter
+			programManagementFilters.controller.onFilterChangeOriginal(storeIds);
+			
+			// Do our custom add-on
+			controller.setOfferDetails();
+		},
+		
+		setOfferDetails: function() {
+
+			var tagTemplate = $('.offer-tag-template').html();
+			var newTagTemplate = $('.new-offer-tag-template').html();
+			
+			$.each($j("tr.store-item"), function(i,tr) {
+				if ($(tr).hasClass('hide')) return;
+				
+				var storeNumber = $(tr).attr('data-store-number');
+				var storeIndex = null;
+				$.each(siteCoreLibrary.stores, function(i,store) {
+					if (store.storeNumber == storeNumber)
+					{
+						if (store.offers != undefined && store.offers.length > 0)
+						{
+							$(tr).find(".tag-container").html('');
+							$.each(store.offers, function(i2, offer) {
+								offer.tooltip = offer.offerType.name + " - " + offer.offerType.longText;
+								offer.tooltip = $("<textarea/>").html(offer.tooltip).text(); // A little HTML entity decoding trick
+								$(tr).find(".tag-container").append(Mustache.render(tagTemplate, offer));
+							})
+								$(tr).find(".tag-container").append(Mustache.render(newTagTemplate, {}));
+						}
+						else
+						{
+							$(tr).find(".tag-container").html('No Offers&nbsp;&nbsp;&nbsp;&nbsp;' + Mustache.render(newTagTemplate, {}));
+						}
+					}
+				});
+			});
+			
+			$.each($(".edit-offer-tag"), function(i,e)  {
+				var offerId = $(e).attr('data-id');
+				var storeNumber = $(e).closest("tr").attr('data-store-number');
+				var url = marcomUserData.$constants.storePagesEditOfferUrl + "&storeNumber=" + storeNumber + "&offerId=" + offerId;
+				$(e).attr('href', url)
+			});
+			
+			$(".create-offer-tag").attr('href', marcomUserData.$constants.storePagesEditOfferUrl);
+			
+			$(".remove-offer-tag").click(controller.RemoveOffer);
+			
+			$j('[data-toggle="tooltip"]').tooltip();
+		},
+		
+		/*RemoveOffer: function(e) {
+			jConfirm("Remove this offer?", 'Please Confirm', function(r) {
+				if (!r) return;
+				var offerId = $(e.target).closest(".remove-offer-tag").attr('data-id');
+				var storeNumber = $(e.target).closest('tr.store-item').attr('data-store-number');
+				var targetStoreIndex = null;
+				var targetOfferIndex = null;
+				console.log("Removing offer " + offerId + " from store " + storeNumber);
+				$.each(siteCoreLibrary.stores, function(i,store) {
+					if (store.storeNumber == storeNumber)
+					{
+						if (store.offers != undefined)
+						{
+							$.each(store.offers, function(i2, offer) {
+								if (offer.id == offerId)
+								{
+									targetStoreIndex = i;
+									targetOfferIndex = i2;
+								}
+							})
+						}
+					}
+				})
+
+				if (targetStoreIndex != null && targetOfferIndex != null)
+				{
+					siteCoreLibrary.stores[targetStoreIndex].offers.splice(targetOfferIndex,1);
+					$(e.target).closest(".remove-offer-tag").parent().remove();
+					siteCoreLibrary.save();
+					toastr.success("Offer removed!");
+				}
+			});
+		},*/
+
+		RemoveOffer: function(e) {
+		    jConfirm("Remove this offer?", 'Please Confirm', function (r) {
+		        if (!r) return;
+		        var offerId = $(e.target).closest(".remove-offer-tag").attr('data-id');
+		        var storeNumber = $(e.target).closest('tr.store-item').attr('data-store-number');
+
+		        siteCoreLibrary.getOffer(offerId, function (err, data) {
+
+		            for (var i = 0; i < data.results.stores.length; i++) {
+		                if (data.results.stores[i].storeNumber === storeNumber) {
+		                    data.results.stores.splice(i, 1);
+		                    break;
+		                }
+		            }
+
+		            siteCoreLibrary.modifyOffer(data.results, function (err, data) {
+
+		                if (!err) {
+		                    $(e.target).closest(".remove-offer-tag").parent().remove();
+		                    toastr.success("Offer removed!");
+		                }
+		            });
+		        });
+		    });
+		},
+		
 		InitializeTabs: function () {
 			if ($('#parentHorizontalTab').length < -1) {
 				return false;
@@ -60,39 +186,84 @@ StorePagesController = (function ($) {
 		 * [SetNavigation Set navigation state]
 		 */
 		SetNavigation: function () {
+			var controller = this;
 			$('.navBarItem > a').filter(function () {
 				return $(this).text() === 'STORE PAGES';
 			}).addClass('navBarSelectedLinkColor, customColorOverridable').removeClass('navBarEnhancedLinkColor');
 			return this;
 		},
-		/**
-		 * [UpdateBreadCrumbs Custom breadcumb handler]
-		 */
-		UpdateBreadCrumbs: function () {
-			// var controller = this;
 
-			// Set 1st Level Breadcrumb
+		ShowUI: function (cb) {
+			var controller = this;
+			var franchiseList = {};
 
-			// Set 2nd Level Breadcrumb
-			// $('.breadcrumbs_previous:first a').html();
-			// $('.breadcrumbs_previous:first a').attr('href', '');
-
-			// Set 3rd Level Breadcrumb
-			// $('.breadcrumbs_previous:last a').html();
-			// $('.breadcrumbs_previous:last a').attr('href', '');
-		},
-		ShowUI: function () {
 			$('.js-content').fadeIn();
 			$('.js-loading').hide();
+
+			// Load a mustache template out of the DOM, fill it with data and put it back
+			var template = $('.storePage-storeTable-template').html();
+			if (template === null) {
+				return false
+			}
+			var data = controller.store_data;
+			$.each(data, function (i, e) {
+				franchiseList[data[i].franchiseCode] = data[i].franchiseCode;
+				data[i].href = marcomUserData.$constants.storeDetailsUrl + "&storeId=" + data[i].storeId + "&storeNumber=" + data[i].storeNumber;
+			});
+			var target_css_selector = "#storePage-storeTable-Section";
+
+			$(target_css_selector).html(Mustache.render(template, data));
+			
+			// Now load in sitecore data
+			var requestQueue = 0;
+			for(var idx in franchiseList)
+			{
+				var code = franchiseList[idx];
+				requestQueue++;
+				siteCoreLibrary.loadStoresByFranchise(code, function() {
+					requestQueue--;
+					if (requestQueue == 0)
+						controller.setOfferDetails();
+				});
+			}
+			
+			cb()
+
+		},
+		getMustacheTemplate: function (filename, extraction_css_selector, target_css_selector, data, callback) {
+			var controller = this;
+			var template_key = filename.replace(".", "");
+
+			var fillContent = function (template, data) {
+				// controller.timeDebug("Filling " + target_css_selector + ' with ' + data.length + ' data elements.')
+				$(target_css_selector).html(Mustache.render(template, data));
+				// controller.timeDebug("Done filling " + target_css_selector + ' with ' + data.length + ' data elements.')
+			}
+
+			if (typeof controller[template_key] != 'undefined' && controller[template_key] != "") {
+				// console.log("Loading cached version of " + template_key);
+				fillContent(controller[template_key], data);
+				callback(controller[template_key]);
+			} else {
+
+				$.get(controller.filePath + filename, function (templates) {
+					controller[template_key] = $(templates).filter(extraction_css_selector).html();
+					fillContent(controller[template_key], data);
+					callback(controller[template_key]);
+				});
+			}
+		},
+		getStoreProgramData: function (callback) {
+			var controller = this;
+			$.get(controller.apiPath + 'getStoreProgramData.jssp?userId=' + encodeURIComponent(controller.user_id) + '&programId=1', function (results) {
+				var json_results = DoNotParseData(results);
+				controller.store_data = json_results;
+				if (typeof callback == 'function') callback(json_results);
+			});
 		}
 	};
 	return {
 		controller: controller,
-		setNavigation: controller.SetNavigation()
+		showUI: controller.ShowUI
 	};
 })(jQuery);
-
-// // Only execute this controller on a certain page
-// if (window.location.href.indexOf(pageKey) > -1) {
-// 	StorePagesController.controller.init();
-// }

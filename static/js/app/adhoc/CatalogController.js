@@ -13,6 +13,7 @@ CatalogController = (function ($) {
 	'use strict';
 	var controller = {
 		intervalHandle: null,
+		title: $('#catalogContent') ? 'ON DEMAND MARKETING' : '',
 		init: function () {
 			var controller = this;
 			controller.WatchForPageReady(function () {
@@ -24,7 +25,6 @@ CatalogController = (function ($) {
 		},
 		WatchForPageReady: function (callback) {
 			var controller = this;
-			// console.warn('Watching for: Page ready...');
 			controller.intervalHandle = setInterval(function () {
 				if (controller.isPageReady()) {
 					clearInterval(controller.intervalHandle);
@@ -33,11 +33,64 @@ CatalogController = (function ($) {
 			}, 500);
 		},
 		AdjustUI: function () {
-			// console.warn('Adjusting UI...');
+			var controller = this;
+			controller.RemoveEmptyCells();
+			controller.SetNavigation();
+			controller.UpdateTitle();
+			controller.UpdateBreadCrumbs();
+		},
+		/**
+		 * [SetNavigation Set navigation state]
+		 */
+		SetNavigation: function () {
+			$('.navBarItem > a').filter(function () {
+				return $(this).text() === 'ON DEMAND MARKETING';
+			}).addClass('navBarSelectedLinkColor').addClass('customColorOverridable').removeClass('navBarEnhancedLinkColor');
+		},
+		/**
+		 * UpdateTitle
+		 */
+		UpdateTitle: function () {
+			var controller = this;
+
+			// Set title
+			$('h1.page-title').html(controller.title);
+		},
+		/**
+		 * [UpdateBreadCrumbs Custom breadcumb handler]
+		 */
+		UpdateBreadCrumbs: function () {
+			var controller = this;
+
+			// Set 1st Level Breadcrumb
+			$('#ctl00_content_CatalogBreadCrumbsLayout_CatalogBreadCrumbs_btnItem1').hide();
+			// Set 2nd Level Breadcrumb
+			$('.breadcrumbs_previous:first a').html();
+			$('.breadcrumbs_previous:first a').attr('href', '');
+
+			// Set 3rd Level Breadcrumb
+			$('.breadcrumbs_previous:last a').html();
+			$('.breadcrumbs_previous:last a').attr('href', '');
+
+			// Set 4th Level Breadcrumb
+			$('.breadcrumbs_current').html(controller.title);
+		},
+		RemoveEmptyCells: function () {
+			// console.info('RemoveEmptyCells');
+			$('td, tr').filter(function () {
+				$.trim($(this).html()) === '&nbsp;';
+				$.trim($(this).html()) === '';
+			}).remove();
+		},
+		RemoveHtmlComments: function () {
+			var htmlComments = $('*').contents().filter(function () {
+				return this.nodeType === 8;
+			});
 		}
 	};
 	return {
-		controller: controller
+		controller: controller,
+		setNavigation: controller.SetNavigation()
 	};
 })(jQuery);
 

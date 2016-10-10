@@ -113,9 +113,15 @@ var programManagementFilters = (function ($) {
 			var area_filter = document.cookie.replace(/(?:(?:^|.*;\s*)filter_area\s*\=\s*([^;]*).*$)|^.*$/, '$1');
 
 			// console.log("Running reloadDefaultsFromCookie : %s, %s, %s", company_filter, market_filter, area_filter);
+			
+			console.log("Converting '" + company_filter + "' to 0 if needed...");
+			if (company_filter == "*" || company_filter == "")	
+				company_filter = "0";
 
+			console.log("Company Filter is now: '" + company_filter + "'");
+			
 			if (company_filter != "")
-				$j(".company.filter-select select option[value='" + company_filter + "']").prop("selected", "selected")
+				$(".company.filter-select select option[value='" + company_filter + "']").prop("selected", "selected")
 
 			$(".company.filter-select select").trigger("change");
 

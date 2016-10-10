@@ -53,6 +53,11 @@ var marcomUserData = (function ($) {
 			forgotPassPageUrl: 'forgotpassword.aspx?uigroup_id=478656',
 			accountPageUrl: 'profile.aspx?uigroup_id=478656&mode=1',
 			onDemandUrl: 'catalog.aspx?folder_id=1724903',
+			storePagesUrl: '',
+			defaultStorePhotoId: '',
+			defaultStorePhotoUrl: '',
+			defaultManagerPhotoId: '',
+			defaultManagerPhotoUrl: '',
 			apiPath: 'https://adobe-prod-vioc.epsilon.com/jssp/vioc/',
 			apiPathLocal: 'data/',
 			marcomFilePath: 'https://files.marcomcentral.app.pti.com/epsilon/static/'
@@ -60,10 +65,15 @@ var marcomUserData = (function ($) {
 
 		/** UAT URLs
 		 * @kind {string} Production or User Acceptance Testing (Beta_Epsilon)
-		 * @example marcomUserData.$constants.apiPath
+		 * @example marcomUserData.$constants.storeDetailsUrl
 		 * @example marcomUserData.$constants.kind = 'UAT'
 		 * @return {object} environment
 		 */
+
+		 /**
+			* @TODO: Find a place for this odd-duckling (defaults to Prod, but shows _beta tag),
+			* 				loginPage3Url: 'login.aspx?uigroup_id=479602&company_id=20951',
+			*/
 		(environment == 'UAT') ?
 		constants = {
 			kind: 'UAT',
@@ -80,9 +90,18 @@ var marcomUserData = (function ($) {
 			forgotPassPageUrl: 'forgotpassword.aspx?uigroup_id=479602',
 			accountPageUrl: 'profile.aspx?uigroup_id=479602&mode=1',
 			onDemandUrl: 'catalog.aspx?uigroup_id=479602&folder_id=1633307',
+			storePagesUrl: 'CustomPage.aspx?uigroup_id=479602&page_id=12939',
+			storeDetailsUrl: 'CustomPage.aspx?uigroup_id=479602&page_id=13090',
+			storePagesNewOfferUrl: 'CustomPage.aspx?uigroup_id=479602&page_id=13091',
+			storePagesEditOfferUrl: 'CustomPage.aspx?uigroup_id=479602&page_id=13091',
+			defaultStorePhotoId: 'f6f18b71-c587-4b44-893b-eba37d1f81e7',
+			defaultStorePhotoUrl: 'https://vioc.d.epsilon.com/images/Default_store.jpg',
+			defaultManagerPhotoId: 'f6f18b71-c587-4b44-893b-eba37d1f81e7',
+			defaultManagerPhotoUrl: "https://vioc.d.epsilon.com:443/~/media/Images/Locations/Stores/Manager Photos/Default Manager.ashx",
 			apiPath: 'https://adobe-prod-vioc.epsilon.com/jssp/vioc/',
 			apiPathLocal: 'data/',
-			marcomFilePath: 'https://files.marcomcentral.app.pti.com/epsilon/static_beta/'
+			marcomFilePath: 'https://files.marcomcentral.app.pti.com/epsilon/static_beta/',
+			marcomCustomFilePath: 'https://files.marcomcentral.app.pti.com/epsilon/static_beta/marcom_custom/'
 		} : constants;
 	return {
 		marcomUserData: this,
@@ -94,7 +113,7 @@ var marcomUserData = (function ($) {
 
 (function ($) {
 	/* Monitor for flash messages */
-	if (typeof getParameterByName === 'function') {
+	if (typeof getParameterByName === 'function' && typeof toastr === 'object') {
 		if (getParameterByName('flashSuccessMsg', window.location.href) != '') {
 			toastr.success(getParameterByName('flashSuccessMsg', window.location.href));
 		}
@@ -103,7 +122,9 @@ var marcomUserData = (function ($) {
 	if (typeof appUtilities === 'object') {
 		/* Update the hard-coded URL's in the utility navigation. */
 		appUtilities.changeNavBarLink();
-		// appUtilities.runtimeDebugging(marcomUserData);
+		if (marcomUserData.environmentKind === 'UAT') {
+			var $debug = appUtilities.runtimeDebugging();
+		}
 	}
 
 	/* Run the login controller */
@@ -111,4 +132,5 @@ var marcomUserData = (function ($) {
 		recordLogin.makeRequest();
 	}
 
+	return $debug;
 })(jQuery);
