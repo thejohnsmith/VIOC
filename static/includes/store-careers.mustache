@@ -1,0 +1,320 @@
+<section id="careers" class="mustache-template col-sm-6 clearfix form-section">
+	<style for="basic-details">
+		#tab-details {
+			margin-top: 22px;
+		}
+	</style>
+	
+	<style for="main.css">
+		::-webkit-input-placeholder { /* Chrome */
+		  color: #ccc !important;
+		}
+		:-ms-input-placeholder { /* IE 10+ */
+		  color: #ccc !important;
+		}
+		::-moz-placeholder { /* Firefox 19+ */
+		  color: #ccc !important;
+		  opacity: 1;
+		}
+		:-moz-placeholder { /* Firefox 4 - 18 */
+		  color: #ccc !important;
+		  opacity: 1;
+		}
+		.edit-card {
+			margin-right: 0;
+			margin-left: 0;
+			background-color: #fff;
+			border-color: #ddd;
+			border-width: 1px;
+			border-radius: 4px;
+			-webkit-box-shadow: 0px 2px 2px rgba(0,0,0,.10);
+			box-shadow: 0px 2px 2px rgba(0,0,0,.10);
+			border: 1px solid #ddd;
+			padding: 20px;
+			width: 75%;
+		}
+		.edit-card-header {
+			margin-top: 0px;
+			margin-bottom: 16px;
+		}
+	</style>
+	<style for="this-page-only">
+
+		#tab-careers .section-header {
+			margin-top: 8px !important;
+			margin-bottom: 0px !important;
+		}
+		#tab-careers .career-template {
+			background-color: #E7E7E7;
+			padding: 10px;
+			border-radius: 4px;
+			margin-bottom: 20px;
+		}
+		#tab-careers .label-text {
+			font-weight: bold;
+		}
+		#tab-careers .label-text small {
+			font-weight: normal;
+		}
+		#tab-careers .radio {
+			margin-bottom: 12px;
+			margin-top: 4px;			
+		}
+		#tab-careers .radio input[type=radio] {
+		    margin-top: 4px;
+		}
+		#tab-careers .storeCareersList {
+			width: 75%
+		}
+		
+	</style>
+  <div class="row" id="careersdiv" style="display: none">
+    <div class="col-xs-12">
+      <h2 class="section-header">Careers</h2>
+
+      <div class="display-inline-block storeCareersList">
+        <section class="resp-tab-content-section">
+          <!--  This toggled the hidden items.
+              Used 1st by StorePagesController.js
+              - John Smith
+            -->
+          <small>
+            <a href="#sortable" role="button" class="pull-right display-inline storeCareersShowAll" aria-hidden="false">
+              Show All
+            </small>
+          </a>
+            <div id="moustacheTableHtml"></div>
+           <script id="mustache-template" type="text/template">
+            <table id="storeCareerTable" class="full-width">
+            <tbody id="sortable-false" class="full-width">
+              <!--<tr class="table-banner">
+                <th class="table-banner-item text-left">
+                  Title
+                </th>
+                <th class="table-banner-item text-left">
+                  Application Instructions
+                </th>
+                <th class="table-banner-item">
+                  Archive/Unarchive
+                </th>
+                <th class="table-banner-item">
+                  Edit
+                </th>
+                <th class="table-banner-item">
+                  Delete
+                </th>
+              </tr>
+              <tr class="error none">
+                <td colspan="7" class="Error list-item">Please add more career items.</td>
+              </tr>
+              <tr draggable="false" class="filterable careerItem text-center storeCareersShowAllItem" data-filter-storeid="1" data-storeid="1" data-enrolled="true">
+                <td class="list-item text-left">
+                  <small>
+                    Customer Service Advisor
+                  </small>
+                </td>
+                <td class="list-item text-left">
+                  <small>
+                    <a href="http://www.careerbuilder.com/vioc" target="_blank">http://www.careerbuilder.com/vioc</a>
+                  </small>
+                </td>
+                <td class="list-item">
+                  <div class="checkbox-area">
+                    <div class="customCheckbox">
+                      <input type="checkbox" value="11">
+                    </div>
+                  </div>
+                </td>
+                <td class="list-item">
+                  <small>
+                    <span alt="Edit Offer Details" class="icon icon-edit-bg"></span>
+                  </small>
+                </td>
+                <td class="deleteNewsEventPromotion list-item">
+                  <button data-storeid="1938" data-offerid="1" alt="Delete Offer" class="icon icon-delete-bg"></button>
+                </td>
+              </tr>
+              <tr draggable="false" class="filterable careerItem text-center careerItemActive" data-filter-storeid="2" data-storeid="2" data-enrolled="true">
+                <td class="list-item text-left">
+                  <small>
+                    Assistant Manager
+                  </small>
+                </td>
+                <td class="list-item text-left">
+                  <small>
+                    <a href="https://jobs.vioc.com/job/brooklyn-park/assistant-manager/1664/88182" target="_blank">URL</a>
+                  </small>
+                </td>
+                <td class="list-item">
+                  <div class="checkbox-area">
+                    <div class="customCheckbox">
+                      <input type="checkbox" value="11">
+                    </div>
+                  </div>
+                </td>
+                <td class="list-item">
+                  <small>
+                    <span alt="Edit Offer Details" class="icon icon-edit-bg"></span>
+                  </small>
+                </td>
+                <td class="deleteNewsEventPromotion list-item">
+                  <button data-offerid="2" alt="Delete Offer" class="icon icon-delete-bg"></button>
+                </td>
+              </tr>
+              <tr draggable="false" data-filter-storeid="3" data-storeid="3" data-enrolled="false" id="past-date-1" class="careerItemShowAllItem collapse filterable careerItem text-center">
+                <span>
+                  <td class="list-item text-lft">
+                    <small>
+                      #3 Title - Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facere tempore ab quasi.
+                    </small>
+                  </td>
+                  <td class="list-item text-left">
+                    <small>
+                      #3 Title - Consectetur adipisicing elit. Facere tempore ab quasi, Lorem ipsum. Lorem ipsum dolor sit.
+                    </small>
+                  </td>
+                </span>
+                <td class="list-item">
+                  <small>2018-12-29</small>
+                </td>
+                <td class="list-item">
+                  <a class="editNewsEventPromotion" title="Edit Offer Details" role="button" data-toggle="collapse" href="#collapseNewsEventForms" aria-expanded="false" aria-controls="collapseNewsEventForms">
+                    <span alt="Edit Offer Details" class="icon icon-edit-bg"></span>
+                  </a>
+                </td>
+                <td class="deleteOffer list-item">
+                  <button data-offerid="3" alt="Delete Offer" class="icon icon-delete-bg"></button>
+                </td>
+              </tr>-->
+               {{#rows}}
+                <tr draggable="false" class="filterable careerItem text-center careerItemActive" data-enrolled="true" data-id="{{id}}">
+                    <td class="list-item text-left">
+                        <small>
+                            {{name}}
+                        </small>
+                    </td>
+                    <td class="list-item text-left">
+                        <small>
+                            <a href="{{link}}" target="_blank">{{link}}</a>
+                        </small>
+                    </td>
+                    <td class="list-item">
+                            <button type="button" alt="Edit Offer Details" class="editbutton icon icon-edit-bg"></button>
+                    </td>
+                    <td class="deleteNewsEventPromotion list-item">
+                        <button type="button" alt="Delete Offer" class="deletebutton icon icon-delete-bg"></button>
+                    </td>
+                </tr>
+                {{/rows}}     
+
+            </tbody>
+          </table>
+           </script>
+        </section>
+      </div>
+      <br>
+      <div class="form-controls">
+        <div class="clearfix form-item">
+          <button class="btn btn-primary btn-sm display-block" name="addCareer" type="button" data-toggle="collapse" data-target="#collapseCareersForms" aria-expanded="false" aria-controls="collapseCareersForms">
+            Add Career
+          </button>
+        </div>
+      </div>
+	  
+      <div class="storeCareersForm accordion-body collapseCareersForms collapse edit-card" id="collapseCareersForms" style="height: 0px; display: none;">
+	  
+        <h2 class="edit-card-header">New Career</h2>
+		
+            <div class="clearfix form-item career-template">
+              <label class="label-text" for="Templates">
+                Premade Career Templates
+                <small class="small display-block">Select a template to use as a starting point for a new career entry.</small>
+              </label>
+              <!-- <input class="" value="" placeholder="Select..." type="text" name="Templates" id="Templates"> -->
+              <select name="Templates" id="Templates">
+                <option selected="selected">
+                  Select...
+                </option>
+                <option>
+                  Assistant Manager
+                </option>
+                <option>
+                  Automotive Technician
+                </option>
+              </select>
+            </div>
+			
+			
+			<div class="row">
+				<div class="col-sm-6">
+
+					<div class="clearfix form-item">
+					  <label class="label-text" for="JobTitle">
+						Job Title
+					  </label>
+					  <div class="characterLimit">
+						<!-- Use the Character Limit plugin -->
+						<textarea data-maxlength="140" class="characterLimitInput resize-false" placeholder="" rows="1" cols="80" id="JobTitle" name="JobTitle"></textarea>
+					  </div>
+					</div>
+					<div class="clearfix form-item">
+					  <label class="label-text" for="JobDescription">
+						Job Description
+					  </label>
+					  <div class="characterLimit">
+						<!-- Use the Character Limit plugin -->
+						<textarea data-maxlength="1000" class="characterLimitInput" placeholder="" rows="6" cols="80" id="JobDescription" name="JobDescription"></textarea>
+					  </div>
+					</div>
+					<div class="form-controls">
+					  <div class="clearfix form-item">
+						<button class="btn btn-primary btn-lg display-block" name="removeNewsEvent" type="button" data-toggle="collapse" data-target="#collapseNewsEventForms" aria-expanded="false" aria-controls="collapseNewsEventForms">
+						  Save
+						</button>
+					  </div>
+					</div>
+
+
+
+				</div>
+				<div class="col-sm-6">
+
+					<div class="clearfix form-item">
+					  <label class="label-text" for="JobDescription">
+						Application Instructions
+						<small class="small display-block">Select how visitors can request more info or apply - via a URL to an external site, by sending an email to a specific address, or by walking in to the store.</small>
+					  </label>
+					  <div style="margin: 12px 0px 8px 0px;">Requesting more info will :</div>
+						<div class="radio">
+						  <label>
+							<input type="radio" name="optionsRadios" id="optionsRadios1" value="link" checked>
+							Take the visitor to the following link: <input type="text" placeholder="http://www.yourcompany.com/yourlink"> 
+						  </label>
+						</div>
+						<div class="radio">
+						  <label>
+							<input type="radio" name="optionsRadios" id="optionsRadios2" value="email">
+							Open an email to: <input type="text" placeholder="manager@yourstore.com"> 
+						  </label>
+						</div>
+						<div class="radio disabled">
+						  <label>
+							<input type="radio" name="optionsRadios" id="optionsRadios3" value="store" disabled>
+							Tell the visitor: <textarea data-maxlength="200" class="characterLimitInput" rows="3" placeholder="Visit our store between 2PM and 5pm daily to speak with a manager."></textarea> 
+						  </label>
+						</div>
+					</div>
+
+
+				</div>
+			</div>
+			
+			
+
+	   </div>
+      <!-- /box-grey -->
+
+    </div>
+
+  </div>
+</section>

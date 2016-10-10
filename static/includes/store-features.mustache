@@ -1,0 +1,162 @@
+<section id="features" class="mustache-template col-sm-6 form-section clearfix ">
+  <style for="this-page-only">
+	#tab-features .section-header {
+		margin-top: 8px !important;
+		margin-bottom: 8px !important;
+	}
+	#tab-features .feature .handle {
+		margin-right: 12px;
+	}
+	#tab-features .feature-container {
+		margin-left: 8px
+		margin-top: 12px;
+	}
+	
+	#tab-features .feature {
+		border-radius: 4px;
+		-webkit-box-shadow: 0px 2px 2px rgba(0,0,0,.10);
+		border: 1px solid #CCC;
+	}
+	#tab-features .feature .feature-label {
+	  width: 140px;
+	  white-space: nowrap;
+	  overflow: hidden;
+	  text-overflow: ellipsis;
+	  text-align: left;
+	}
+	#tab-features .feature .checkbox {
+		margin-right: 0px;
+		margin-top: 3px;
+		border: 1px solid #CCC;
+	}
+	
+	#tab-features .feature .feature-title-bar {
+		background-color: #E7E7E7;
+		margin: -12px;
+		padding: 4px 8px;
+		border-radius: 4px 4px 0px 0px;
+	}
+	
+	#tab-features .feature .feature-media {
+		height: 70px;
+		position: relative;
+		margin-top: 0px;
+	}
+		
+	#tab-features .feature .feature-media img {
+		margin: 0;
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		max-height: 70px;
+		margin-right: -50%;
+		transform: translate(-50%, -50%) 
+	}
+
+	#tab-features .feature {
+	  padding: 1em;
+	  -webkit-transition: ease-out .15s;
+	  transition: ease-out .15s;
+	  width: 33%;
+	  width: 200px;
+	  margin: 1em 1%;
+	  height: 120px;
+	  vertical-align: bottom;
+	  position: relative;
+	  display: inline-block;
+	  text-align: center;
+	  background: #FFF;
+	}
+
+	#tab-features .sortable.feature {
+	  -webkit-box-flex: 0;
+	  -ms-flex-positive: 0;
+	  -ms-flex-negative: 0;
+	  flex-shrink: 1;
+	  -ms-flex-preferred-size: 0;
+	  flex-basis: 16.3em;
+	  margin: 0.4em;
+	}
+
+	#tab-features .feature:hover {
+	  background: #f9fdc3
+	}
+
+	#tab-features .feature-active {
+	  background: #f9fdc3;
+	}
+
+		
+  </style>
+  <div class="clearfix">
+    <h2 class="section-header">Features</h2>
+    <small class="small">
+      Maximum 6. First 2 will appear on Direct Mail. First 4 show up on Email. All 6 will appear on Website. Drag selected to re-order. Franchisee is responsible to ensure compliance with state and municipality regulations for inspection advertising. Franchisee is responsible for securing permission to use third party logos.
+    </small>
+    <div class="row">
+        <!-- Store Features Template
+        @type template/mustache
+        @param {class} .feature All items in features are featurese themselves
+        @param {class} .feature-active Each feature have an active state
+        @Note  The ID can't be a name with spaces
+      -->
+        <script class="store-feature-template" type="x-tmpl-mustache">
+          {{#.}}
+            <div id="{{featureId}}" class="feature sortable">
+              <div class="sortable-item">
+				<div class="feature-title-bar">
+					<span class="handle pull-left">::</span>
+					<label class="feature-label pull-left" for="{{featureName}}">
+					  <span class="feature-title">{{featureTitle}}</span>
+					</label>
+					  <input id="{{featureName}}" name="{{featureName}}" class="checkbox pull-right" type="checkbox" checked="{{#checkedState}}checked{{/checkedState}}{{^checkedState}}false{{/checkedState}}">
+					  <br class="clearfix"/>
+				</div>
+				<span class="feature-media">
+					<img src="{{#featureImgSource}}{{featureImgSource}}{{/featureImgSource}}{{^featureImgSource}}https://placehold.it/60x40{{/featureImgSource}}" alt="{{featureName}}'s company logo image." class="feature-image">
+				</span>
+              </div>
+            </div>
+          {{/.}}
+        </script>
+        <!-- We’ll programmatically fill a this div with feature objects. -->
+        <div class="feature-container"></div>
+    </div>
+  </div>
+  <div class="feature-create row none">
+    <div class="col-xs-12">
+      <div class="clearfix row">
+        <div class="col-xs-12 col-md-6">
+          <div class="feature-create form-item">
+            <label class="feature-name" for="featureName">Feature</label>
+            <input class="feature-name" value="" placeholder="Potted Plants" type="text" name="Feature Name">
+          </div>
+        </div>
+      </div>
+      <br><br>
+
+      <div class="clearfix row">
+        <div class="col-xs-12 col-sm-2 create-feature-icon">
+          <div class="display-inline-block text-center">
+            <label class="create-feature-icon">Icon</label>
+            <span class="feature-media">
+              <img src="https://placehold.it/60x40" alt="Feature icon image." class="feature-media-icon create-feature-icon">
+            </span>
+          </div>
+        </div>
+        <div class="col-xs-12 col-sm-3 create-feature-icon-upload">
+          <form class="feature-icon-form display-table-cell form-controls" id="uploader_form_5" action="">
+            <label class="create-feature-icon-upload-lab display-block" for="create-feature-icon-upload">
+              <small>PNG, JPG, or GIF. 114px x 61px minimum.</small>
+            </label>
+            <label class="btn btn-sm btn-default btn-file display-inline-block">
+              <span class="btn-file-text">Upload Icon</span>
+              <input type="file" class="none btn-file-input feature-icon-upload-file-input">
+            </label>
+          </form>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

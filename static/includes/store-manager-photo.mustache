@@ -1,0 +1,31 @@
+<section id="manager_photo" class="mustache-template col-sm-4 form-section clearfix">
+  <div class="text-center box-centered">
+    <label class="label-text" for="storeName">
+      <h2 class="store-photo-label">Manager Photo</h2>
+      <small class="display-block small">PNG, JPG or GIF. Minimum size: 240px x 240px</small>
+    </label>
+    <div class="form-item profile-photo">
+      <div class="store-manager-photo">
+        <!-- To crop the image with a circle, make sure to update the width and height in the inline styles. -->
+        <img class="img-circle" id="manager-photo-item" style="width: 160px; height: 160px;" src="https://files.marcomcentral.app.pti.com/epsilon/static_beta/images/ico-profile-default.png" alt="Default picture">
+      </div>
+
+      <!--  MUST BE WRAPED IN UNIQUE FORM -->
+        <form></form>
+        <form class="form-controls" id="uploader_form_3" action="">
+            <label class="btn btn-primary btn-sm btn-file">
+                <span class="btn-file-text">Upload New Photo</span>
+                <input class="none" type="hidden" name="StoreNumber" id="storenumberhidden" />
+                <input class="none" type="hidden" name="ImageType" id="imagetype" value="store" />
+                <input id="newmanagerimage" type="file" name="file" class="none btn-file-input">
+            </label>
+        </form>
+        <form class="form-controls" id="uploader_form_4" action="" name="defaultimageform">
+            <label class="btn btn-primary btn-sm btn-file">
+                <span class="btn-file-text">Restore Default</span>
+                <input type="file" class="none btn-file-input">
+            </label>
+        </form>
+    </div>
+  </div>
+</section>

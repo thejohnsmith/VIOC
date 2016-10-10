@@ -1,0 +1,201 @@
+<!-- Store Pages:
+    @file storePages.html
+    Beta URL:
+    CustomPage.aspx?uigroup_id=479602&page_id=10792CustomPage.aspx?uigroup_id=479602&page_id=12939
+-->
+
+<!-- ****************** PORTAL CUSTOM COPY ******************
+
+!!   The following markup is to be copied into the Marcom Custom Copy textarea for this page   !!
+
+<div id="storePages" class="asyncMarkup"></div>
+
+<script>
+window.onload = function () {
+  function getData() {
+  	return jQuery.get('https://files.marcomcentral.app.pti.com/epsilon/static_beta/marcom_custom/storePages.html').success(function (resp) {
+  		// console.log('Fires after the AJAX request succeeds');
+  		jQuery('.asyncMarkup').html(resp);
+  		StorePagesController.controller.init();
+  	});
+  }
+  function showDiv() {
+  	var dfd = jQuery.Deferred();
+  	dfd.done(function () {
+  		// console.log('Fires after the animation succeeds');
+  	});
+  	jQuery('.asyncMarkup').fadeIn(100, dfd.resolve);
+  	return dfd.promise();
+  }
+  jQuery.when(getData(), showDiv())
+  	.then(function (ajaxResult) {
+    try {
+      typeof StorePagesController === 'object';
+    } catch (e) {
+      console.error("error=" + e);
+      setTimeout(function () {
+        console.info('retry StorePagesController')
+        StorePagesController.controller.init();
+      }, 100);
+      if (typeof(console) != "undefined") {
+        console.log(e);
+      }
+    }
+  	});
+}
+</script>
+********************** /PORTAL CUSTOM COPY ****************** -->
+
+<div class="wrapper storePages">
+
+<!-- Include bootstrap -->
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+<!-- Declare styles for Offer tabs -->
+<style>
+.tag {
+	font-size: 14px;
+    padding: 5px;
+    margin: 0 .1em;
+    font-weight: normal;
+	cursor: pointer;
+}
+.tag span {
+	margin: 0px 4px;
+	text-decoration: underline;
+}
+.tag a {
+  display: none;  /* We'll hide this functionality for now. */
+  color: #bbb;
+  cursor: pointer;
+  opacity: 0.6;
+}
+.tag a:hover {
+  opacity: 1.0
+}
+.tag .remove {
+  vertical-align: bottom;
+  top: 0;
+}
+.tag a {
+    margin: 0px 0 0 .3em;
+    position: relative;
+    top: 2px;
+    left: 0px;
+}
+.tag a .glyphicon-white {
+  color: #fff;
+  margin-bottom: 2px;
+}
+.edit-col {
+	border-right: 1px solid white;
+}
+</style>
+
+  <div class="mid-container">
+    <div class="main">
+      <section id="breadcrumbs">
+        <ul>
+          <li>
+            <a href="home.aspx" title="Home">Home</a>
+          </li>
+          <li>Store Pages</li>
+        </ul>
+      </section>
+    </div>
+    <div class="main">
+      <h1 class="h1 page-title">
+        <span>Store Pages</span>
+      </h1>
+
+      <div id="parentHorizontalTab" class="store-pages-tab">
+
+        <div class="js-loading">
+          <div role="presentation" class="spinner"></div>
+        </div>
+        <div class="js-content">
+		  <section class="resp-tab-content-section">
+			<div class="filters-area">
+			  <div class="filter-title">
+				Store Filters:
+			  </div>
+			  <div class="company filter-select select-option">
+				<select class="selectbox"></select>
+			  </div>
+
+			  <div class="market filter-select select-option">
+				<select class="selectbox"></select>
+			  </div>
+
+			  <div class="filter-results">
+				<a href="#" title="filter-edit" class="filter-reset">
+				  <img src="https://files.marcomcentral.app.pti.com/epsilon/static/marcom_custom/images/edit-filter.png" alt="Edit" title="Edit" width="16">
+				</a>
+				<span class="filter-results-value"></span>
+			  </div>
+			</div>
+
+			<!-- Store Pages: Store Table Template
+				@template storePage-storeTable-template
+				@type template/mustache
+				@import storePages.html
+			-->
+			<script class="storePage-storeTable-template" type="x-tmpl-mustache">
+
+			  <table id="storeDetail" class="full-width">
+				<tbody class="{{#sortable}}not-sortable{{/sortable}} full-width text-center">
+				  <tr draggable="false" class="table-banner text-center">
+					{{#sortable}}
+					  <th class="table-banner-item">
+						Sort
+					  </th>
+					{{/sortable}}
+					<th class="table-banner-item">
+					  Store
+					</th>
+					<th class="table-banner-item edit-col">
+					  Edit Store
+					</th>
+					<th class="table-banner-item">Store Offers</th>
+				  </tr>
+				  {{#.}}
+					<tr draggable="false" class="{{^sortable}}not-sortable-item{{/sortable}} filterable store-item text-center" data-store-franchise-code="{{franchiseCode}}" data-filter-storeId="{{storeId}}" data-storeId="{{storeId}}" data-store-number="{{storeNumber}}">
+					  {{#sortable}}
+						<td class="list-item handle text-center">::</td>
+					  {{/sortable}}
+					  <td class="list-item text-center store-name">
+						{{storeName}}
+						<div class="text-center store-number">Store #{{storeNumber}}</div>
+					  </td>
+					  <td class="list-item text-center edit-col">
+						<a href="{{href}}" title="Edit Store">
+						  <span alt="Edit" class="icon icon-edit-bg"></span>
+						</a>
+					  </td>
+					  <td class="list-item text-center">
+						<span class="tag-container">Loading...</span>
+					  </td>
+					</tr>
+				  {{/.}}
+				</tbody>
+			  </table>
+			</script>
+
+			<script class="offer-tag-template" type="x-tmpl-mustache">
+				<span class="tag label label-info" data-toggle="tooltip" data-placement="top" title="{{code}}" data-id="{{id}}">
+				  <span class="offer-tag" data-id="{{id}}">{{code}}</span>
+				</span>
+			</script>
+			
+			<section id="storePage-storeTable-Section"></section>
+		  </section>
+      </div>
+    </div>
+  </div>
+  <br>
+  <a class="btn btn-primary" href="CustomPage.aspx?uigroup_id=479602&page_id=13091">Create New Offer</a>
+</div>
+<!-- Initialize tool tips -->
+<script>
+  $j('[data-toggle="tooltip"]').tooltip();
+</script>

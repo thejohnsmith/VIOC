@@ -16,10 +16,5 @@
       $j.trim($j(this).html()) == '&nbsp;';
       $j.trim($j(this).html()) == '';
     }).remove();
-
-    // Change the layout if the user is viewing their profile from inside the portal.
-    if (getParameterByName('mode', window.location.href) == '1') {
-      $j('body').addClass('accountPage');
-    }
   });
 </script>

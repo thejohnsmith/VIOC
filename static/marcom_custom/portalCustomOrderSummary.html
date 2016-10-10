@@ -1,0 +1,78 @@
+<!-- <link href="https://files.marcomcentral.app.pti.com/epsilon/static_beta/marcom_css/orderSummary.css" rel="stylesheet" type="text/css" /> -->
+<!--
+  CURRENT CUSTOM CONTENT: Order Summary/Detail
+Actual content in
+Macrom/Custom Content/Order Summary/Detail
+
+  <style>
+  /* Hide the rest of the page and inject our custom Thank You page. */
+  #CtlCart,
+  .ButtonRowFloatR {
+    display: none;
+  }
+</style>
+<script>
+  var $j = jQuery;
+  $j('#CtlCart, .ButtonRowFloatR').html('');
+  $j('.CustomCopy').load("https://files.marcomcentral.app.pti.com/epsilon/static_beta/marcom_custom/portalCustomOrderSummary.html", function () {
+    console.info('Load was performed.');
+  });
+</script>
+
+-->
+<style>
+  /* Hide the rest of the page and inject our custom Thank You page. */
+  #CtlCart,
+  .ButtonRowFloatR {
+    display: none;
+  }
+  #CtlBrdCrm {
+    display: none;
+  }
+  .mid-container {
+    padding-bottom: 0;
+  }
+
+</style>
+<div class="mid-container">
+  <section id="breadcrumbs">
+    <ul>
+      <li class="breadcrumbs_root">
+        <a href="#" title="Home">Home</a>
+      </li>
+      <li class="breadcrumbs_current">On Demand Marketing</li>
+
+    </ul>
+  </section>
+  <h1 class="h1 page-title"></h1>
+  <div class="thanky-msg none wrapper">
+    <div class="mid-container">
+      <div class="main text-center">
+        <a id="pageAnchorFormCopy" href="#" class="hidden">pageAnchorFormCopy</a>
+        <h1>Email Added To Queue For Delivery</h1>
+        <h3>
+          <p>Thank you. Your email has been added to the queue for review.</p>
+        </h3>
+        <h4>
+          <p>Upon approval your email will be sent at the time you specified when creating your email.</p>
+          <br>
+        </h4>
+        <h5>
+          <div>
+            Your email confirmation number is
+            <strong>
+              <span id="orderConfirmationNumber"></span>
+            </strong>.
+            <br>
+            Your email is scheduled to deliver to
+            <span id="orderConfirmationQuantity"></span>
+            recipient(s).
+          </div>
+        </h5>
+        <br>
+        <a id="homePageUrl" href="home.aspx?uigroup_id=479602">Return to Home Page</a>
+      </h4>
+    </div>
+  </div>
+</div>
+</div>

@@ -1,0 +1,154 @@
+<section id="landmark_info" class="mustache-template landmark-info-section form-section">
+  <div class="clearfix">
+    <div class="col-xs-12" style="padding-left: 0px;">
+      <div class="clearfix form-item">
+        <label class="label-text" for="storeName">
+          <h2 class="landmark-info-label">Landmark Info</h2>
+          <small class="small">
+            Click on elements of the Landmark Info to edit the description.
+          </small>
+        </label>
+      </div>
+      <div class="store-preview box box-grey">
+        <h2 class="none section-header">Preview</h2>
+
+        <!-- Store Preview Template
+                  @type template/mustache
+              -->
+        <script class="none store-preview-template" type="x-tmpl-mustache">
+          Welcome. The
+          {{#.}}
+            {{#storeName}}{{storeName}}{{/storeName}}
+            Valvoline Instant Oil Change is located approximately
+            {{storeDistMiles}}
+            Miles
+            {{storeDistDirection}}
+            of
+            {{storeLandmark}}
+            near the intersection of
+            {{storeStreet}}
+            and
+            {{storeCrossStreet}}
+			{{storeNeighboringType}}
+            {{storeNeighboring}}.
+          {{/.}}
+        </script>
+        <small class="preview-content small"></small>
+      </div>
+      <div class="storeName-container none clearfix form-item">
+        <label class="label-text" for="storeName">
+          Store Name
+        </label>
+        <div class="row">
+          <div class="col-xs-12">
+            <textarea readonly data-maxlength="80" class="resize-false textDisguisedAsTextarea disabled-input width-full" placeholder="" rows="1" cols="80" name="storeName" id="storeName" name="storeName" wrap="soft"></textarea>
+          </div>
+        </div>
+      </div>
+      <!-- Enable the 1st form-item to help the user understand the process.  -->
+      <div class="storeDistDirection-container storeDist-container storeDistMiles-container clearfix form-item">
+        <label class="label-text" for="storeDist">
+          Distance/Direction from Major Landmark
+        </label>
+        <input class="col-sm-2 width-auto input-number input-number-5-digit" value="1337" type="number" name="storeDist" id="storeDistMiles" data-maxlength="10">
+        <div class="col-sm-2" style="width: auto;padding: 8px 1em;text-align: center;display: inline-block;">
+          <small class="small">Miles</small>
+        </div>
+        <select class="col-sm-4 width-auto display-inline-block" name="storeDist" id="storeDistDirection">
+          <option value="North">North</option>
+          <option value="North-East">North-East</option>
+          <option value="East">East</option>
+          <option value="South-East">South-East</option>
+          <option value="South">South</option>
+          <option value="South-West">South-West</option>
+          <option value="West">West</option>
+          <option value="North-West">North-West</option>
+        </select>
+      </div>
+      <div class="storeLandmark-container none clearfix form-item">
+        <label class="label-text" for="storeLandmark">
+          Major Landmark
+        </label>
+        <div class="row">
+          <div class="col-xs-12 col-md-8">
+            <div class="characterLimit">
+              <input class="characterLimitInput" value="Popular Landmark" type="text" name="storeLandmark" id="storeLandmark" data-maxlength="50">
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="storeStreet-container none clearfix form-item">
+        <label class="label-text" for="storeStreet">
+          Street
+        </label>
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="characterLimit">
+              <input class="characterLimitInput" value="Store Street Name" type="text" name="storeStreet" id="storeStreet" data-maxlength="80">
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="storeCrossStreet-container none clearfix form-item">
+        <label class="label-text" for="storeCrossStreet">
+          Cross Street
+        </label>
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="characterLimit">
+              <input class="characterLimitInput" type="text" name="storeCrossStreet" id="storeCrossStreet" data-maxlength="80">
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="storeNeighboring-container storeNeighboringType-container none clearfix form-item">
+        <label class="label-text" for="storeNeighboring">
+          Neighboring Business
+        </label>
+        <label class="radio-default" for="storeNeighboringAcrossFrom">
+          <input selected="selected" value="across from" type="radio" name="storeNeighboringType" id="storeNeighboringAcrossFrom" class="storeNeighboringType">
+          Across From
+        </label>
+        <label class="radio-default" for="storeNeighboringNextTo">
+          <input value="next to" type="radio" name="storeNeighboringType" id="storeNeighboringNextTo" class="storeNeighboringType">
+          Next To
+        </label>
+        <div class="storeNeighboring row">
+          <div class="col-xs-12 col-md-8">
+            <div class="characterLimit">
+              <input style="margin-top:0.4em;" class="storeNeighboring characterLimitInput" type="text" name="storeNeighboring" id="storeNeighboring" data-maxlength="50">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="preview-section none col-xs-12 col-sm-5 col-md-6">
+      <div class="box box-grey">
+        <h2 class="none section-header preview-section-header">Preview</h2>
+
+        <!-- Store Preview Template
+                  @type template/mustache
+              -->
+        <script class="none store-preview-template" type="x-tmpl-mustache">
+          Welcome. The
+          {{#.}}
+            {{storeName}}
+            Valvoline Instant Oil Change is located approximately
+            {{storeDistMiles}}
+            Miles
+            {{storeDistDirection}}
+            of
+            {{storeLandmark}}
+            near the intersection of
+            {{storeStreet}}
+            and
+            {{storeCrossStreet}}
+            across from
+            {{storeNeighboringType}}.
+          {{/.}}
+        </script>
+        <small class="preview-content small"></small>
+      </div>
+    </div>
+  </div>
+</section>

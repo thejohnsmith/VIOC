@@ -1,0 +1,26 @@
+/** Self Registration
+  * @link https://marcomcentral.app.pti.com/Epsilon_Data_Management/Epsilon/signup.aspx?uigroup_id=479602
+  * Marcom Custom Content Label: Self Registration - Above Instructions
+ */
+
+.CtlSearchGroup td.header {
+  display: none;
+}
+#CtlBody {
+  max-width: 660px;
+}
+#CtlCart thead, #CtlCart thead .PanelHeadL, #CtlCart thead .PanelHead, #CtlCart thead .PanelHeadR, .CtlSearchGroup, .CtlAddrEdit input {
+  background-color: #fff;
+}
+#CtlCart, .CtlAddrEdit, .CtlSearchGroup {
+  border: none;
+}
+.CtlSearchGroup {
+  padding: 10px;
+}
+.CtlAddrEdit input {
+  padding: 4px;
+}
+a.pbtn span {
+  padding: 6px 12px;
+}
