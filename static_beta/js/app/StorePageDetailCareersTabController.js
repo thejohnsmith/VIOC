@@ -9,6 +9,7 @@ var StorePageDetailCareersTabController = (function ($) {
 
 	    isAdd: false,
         idEditing : null,
+		showArchived: false,
 		
 		// None
 
@@ -29,9 +30,17 @@ var StorePageDetailCareersTabController = (function ($) {
 		    // Build the HTML here, without event handling
 
 		    siteCoreLibrary.retrieveStoreCareers([siteCoreLibrary.stores[0].storeNumber], function (careers) {
+				
+				// Remove careers that are archived if needed
+				var data = careers;
+				$.each(careers, function(i, c) {
+					data[i].hide = (!controller.showArchived && c.isArchived);
+				} );
+				
+				// Populate mustache template 
 		        var template = $('#mustache-template').html();
 		        var render = Mustache.render(template, {
-		            rows: careers
+		            rows: data
 		        });
 		        $('#mustacheTableHtml').html(render);
 		        cb();
@@ -40,6 +49,17 @@ var StorePageDetailCareersTabController = (function ($) {
 		
 		attachEventListeners: function() {
 		    // Delegate user events to handler functions
+			
+
+		    $('.storeCareersShowAll').unbind().click(function () {
+		        var id = $(this).attr('data-id');
+		        controller.onShowArchived();
+		    });
+			
+		    $('.archive-link').unbind().click(function () {
+		        var id = $(this).attr('data-id');
+		        controller.onChangeArchiveState(id);
+		    });
 
 		    $('.editbuttoncareers').unbind().click(function () {
 		        var id = $(this).closest('tr').attr('data-id');
@@ -150,7 +170,7 @@ var StorePageDetailCareersTabController = (function ($) {
 		                $.each(careers, function (i, career) {
 		                    if (career.id === id) {
 		                        var careerItemToDelete = {};
-		                        careerItemToDelete.id = id;
+		                        careerItemToDelete.id = id; 
 		                        siteCoreLibrary.deleteCareer(careerItemToDelete, function (err, data) {
 		                            toastr.success("Career deleted!");
 		                            setTimeout(function () {
@@ -224,6 +244,43 @@ var StorePageDetailCareersTabController = (function ($) {
 
 		onButtonCancelCareer() {
 		    window.location.href = marcomUserData.$constants.storePagesUrl;
+		},
+		
+		onShowArchived() { 
+			var controller = this;
+			controller.showArchived = true;
+			controller.populateUI(function() {
+				controller.attachEventListeners();
+			});
+		},
+		
+		onChangeArchiveState(careerId) {
+			var controller = this;
+			console.log("Changing career id: " + careerId);
+			// Find the career 
+			var career = null;
+			var careerIndex = null;
+			$.each(siteCoreLibrary.stores[0].careers, function(i, c) {
+				if (c.id == careerId)
+					career = c;
+					careerIndex = i;
+			} );
+			
+			if (career != null)
+			{
+				if (career.isArchived)
+				{
+					// :TODO: Do a PUT call
+				} else 
+				{
+					// :TODO: Do a DELETE call 
+				}
+				
+				siteCoreLibrary.stores[0].careers[careerIndex].isArchived = (!career.isArchived);
+				controller.populateUI(function() {
+					controller.attachEventListeners();
+				});
+			}
 		}
 	};
 

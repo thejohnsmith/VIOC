@@ -40,6 +40,16 @@ var StorePageDetailController = StorePageDetailController || (function ($) {
 	        "input[name='storeNeighboringType']:checked"		: "storeNeighboringType",
 	        "#storeNeighboring"									: "storeNeighboring"
 	    },
+	    previewMapState : {
+	        // Source											// Variable
+	        "#storeDistMiles"									: false,
+	        "#storeDistDirection"								: false,
+	        "#storeLandmark"									: false,
+	        "#storeStreet"										: false,
+	        "#storeCrossStreet"									: false,
+	        "input[name='storeNeighboringType']:checked"		: false,
+	        "#storeNeighboring"									: false,
+	    },
 	    serviceFilter: [  // Limit the display to these services
 			"Full-Service Oil Change",
 			"Transmission Service",
@@ -394,6 +404,10 @@ var StorePageDetailController = StorePageDetailController || (function ($) {
 			// Set the fields 
 		},
 		refreshLandmarkPreview: function() {
+			
+			var controller = this;
+			
+			controller.getLandmarkDataFromTokens();
 
 			var previewMap = controller.previewMap;
 			var data = {};
@@ -405,11 +419,15 @@ var StorePageDetailController = StorePageDetailController || (function ($) {
 				{
 					var placeholder = controller.getLandmarkPlaceholder(key);
 					
-					if (placeholder != "")
-					$(key).val(placeholder);
+					if (placeholder != "") {
+					    if (controller.previewMapState[key] == false) {
+					        $(key).val(placeholder);
+					        controller.previewMapState[key] = true;
+					    }
+					}
 				}
 				
-				data[previewMap[key]] = "<mark class='edit-" + previewMap[key] + "'>" + $(key).val() + "</mark>";
+				data[previewMap[key]] = "<mark style=\"color: red; font-size: 14px; font-weight: bold;\" class='edit-" + previewMap[key] + "'>" + $(key).val() + "</mark>";
 			}
 
 			// Update the display
@@ -433,6 +451,69 @@ var StorePageDetailController = StorePageDetailController || (function ($) {
 			// Update the store's landmark info.
 			siteCoreLibrary.stores[0].landmark = $(".preview-content:last").text().replace(/\s+/g, ' ').trim();
 		},
+		
+		getLandmarkDataFromTokens: function()
+		{
+			// Parse Token #2
+				// Split the token into elements by space
+				// Check if the first element is numeric
+					// If so, set the value of $('#storeDistMiles')
+					// If not, show an error and set $('#storeDistMiles') to 0.
+				// Check if the 3rd+ element contains a cardinal direction
+					// Example: var element3plus = token1.splice(2,99).toLowerCase();
+					// If so, set the value of $('#storeDistDirection').val()
+					// If not, show an error and set $('#storeDistDirection').val() to "north";
+
+			// Parse Token #3 (Column D)
+				// Check if token 3 is empty
+					// If so, show an error and set $('#storeLandmark').val() to ""
+					// If not, fill $('#storeLandmark').val() with token 3 
+					
+			// Parse Token #4 (Column E)
+				// Check if token 4 is empty
+					// If so, show an error and set $('#storeStreet').val() to ""
+					// If not, fill $('#storeStreet').val() with token 4
+				
+			// Parse Token #5 (Column F)
+				// Check if token 5 is empty
+					// If so, show an error and set $('#storeCrossStreet').val() to ""
+					// If not, fill $('#storeCrossStreet').val() with token 5
+
+			// Parse Toke #6 (Column G)
+				// Split the token into elements
+				// Combine element #1 and element #2 concatenated by a space.
+					// If equals "across from"...
+						// Set $('#storeNeighboringType').val() to "across from";
+					// If equals "next to"...
+						// Set $('#storeNeighboringType').val() to "next to";
+					// Otherwise:
+						// If not, show an error and set $('#storeNeighboringType').val() to "across from";
+				
+				// Combine elements 3+ into a string concateted by a space.
+				// Is it empty?
+					// If so, show an error and set $('#storeNeighboring').val() to ""
+					// If not, fill $('#storeNeighboring').val() with the value
+			
+		}
+		
+		storeLandmarkDataInTokens: function() 
+		{
+			// :TODO: Refactor and store back in semi-normalized fashion
+			
+			/*
+				Specifically, create each token by concatenating the various inputs in different ways.
+				
+				e.g. landmarkToken1 = $('#storeDistMiles').val() + " miles " + $('#storeDistDirection').val();
+			
+			siteCoreLibrary.stores[0].landmarkToken1 = $('#storeDistMiles').val();
+			siteCoreLibrary.stores[0].landmarkToken2 = $('#storeDistDirection').val();
+			siteCoreLibrary.stores[0].landmarkToken3 = $('#storeLandmark').val();
+			siteCoreLibrary.stores[0].landmarkToken4 = $('#storeStreet').val();
+			siteCoreLibrary.stores[0].landmarkToken5 = $('#storeCrossStreet').val();
+			siteCoreLibrary.stores[0].landmarkToken6 = $("input[name='storeNeighboringType']:checked").val();
+			*/
+		}
+		
 		initCharacterLimits: function() {
 			$('.characterLimitInput').each(function () {
 				$(this).characterCounter({
@@ -503,7 +584,9 @@ var StorePageDetailController = StorePageDetailController || (function ($) {
 		},
 
 		onChangePreviewInput: function() {
-			this.refreshLandmarkPreview();
+			var controller = this;
+			controller.storeLandmarkDataInTokens();
+			controller.refreshLandmarkPreview();
 		},
 
 		onUploadStorePhoto: function (event) {

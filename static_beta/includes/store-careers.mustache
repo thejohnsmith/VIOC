@@ -87,7 +87,7 @@
                         - John Smith
                       -->
                     <small>
-                        <a href="#sortable" role="button" class="pull-right display-inline storeCareersShowAll" aria-hidden="false" style="display:none">
+                        <a href="#sortable" role="button" class="pull-right display-inline storeCareersShowAll" aria-hidden="false">
                             Show All
                         </a>
                     </small>
@@ -102,13 +102,16 @@
                                         Link
                                     </th>
                                     <th class="table-banner-item">
+                                        Active
+                                    </th>
+                                    <th class="table-banner-item">
                                         Edit
                                     </th>
                                     <th class="table-banner-item">
                                         Delete
                                     </th>
                                     {{#rows}}
-                                    <tr draggable="false" class="filterable careerItem text-center careerItemActive" data-enrolled="true" data-id="{{id}}">
+                                    <tr draggable="false" class="{{#hide}}none{{/hide}} filterable careerItem text-center careerItemActive" data-enrolled="true" data-id="{{id}}">
                                         <td class="list-item text-left">
                                             <small>
                                                 {{title}}
@@ -119,7 +122,11 @@
                                                 <a href="{{link}}" target="_blank">{{link}}</a>
                                             </small>
                                         </td>
-                                        <td class="list-item">
+                                         <td class="list-item">
+											{{#isArchived}}<a class="archive-link" data-id="{{id}}" href="#">Unarchive</a>{{/isArchived}}
+											{{^isArchived}}<a class="archive-link" data-id="{{id}}" href="#">Archive</a>{{/isArchived}}
+                                        </td>
+                                       <td class="list-item">
                                             <button type="button" alt="Edit Offer Details" class="editbuttoncareers icon icon-edit-bg"></button>
                                         </td>
                                         <td class="deleteNewsEventPromotion list-item">
