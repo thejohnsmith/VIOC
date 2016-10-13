@@ -36,7 +36,6 @@ FormCopyController = (function ($) {
 			controller.SetNavigation();
 			controller.CalculatePrice();
 			controller.ChangeText();
-			controller.SetRequiredInput();
 			controller.AddDisclaimers();
 			controller.SetDeliveryTime();
 
@@ -145,7 +144,8 @@ FormCopyController = (function ($) {
 				"Includes up to 5 quarts of conventional, synthetic blend, full synthetic, or diesel oil (diesel quarts may vary; see store for details), filter (prem. extra), lube & maintenance check; plus tax, if applicable; not valid with same service offers / discounts (including fleet); see store for additional details or restrictions; good only at participating locations. No cash or credit back; cash value $0.001.",
 				"Includes up to 6 quarts of conventional, synthetic blend, full synthetic, or diesel oil (diesel quarts may vary; see store for details), filter (prem. extra), lube & maintenance check; plus tax, if applicable; not valid with same service offers / discounts (including fleet); see store for additional details or restrictions; good only at participating locations. No cash or credit back; cash value $0.001.",
 				"Includes up to 5 quarts of conventional, synthetic blend, full synthetic, or diesel oil (diesel quarts may vary; see store for details), filter (prem. extra), lube & maintenance check; plus tax, if applicable; not valid with same service offers / discounts (including fleet); see store for additional details or restrictions; good only at participating locations. Haz waste fee extra. No cash or credit back; cash value $0.001.",
-				"Includes up to 6 quarts of conventional, synthetic blend, full synthetic, or diesel oil (diesel quarts may vary; see store for details), filter (prem. extra), lube & maintenance check; plus tax, if applicable; not valid with same service offers / discounts (including fleet); see store for additional details or restrictions; good only at participating locations. Haz waste fee extra. No cash or credit back; cash value $0.001", "Excluding batteries and state inspections."
+				"Includes up to 6 quarts of conventional, synthetic blend, full synthetic, or diesel oil (diesel quarts may vary; see store for details), filter (prem. extra), lube & maintenance check; plus tax, if applicable; not valid with same service offers / discounts (including fleet); see store for additional details or restrictions; good only at participating locations. Haz waste fee extra. No cash or credit back; cash value $0.001",
+				"Excluding batteries and state inspections."
 			];
 			// ==============================================================================
 			// Implement Disclaimer Dropdowns
@@ -220,16 +220,6 @@ FormCopyController = (function ($) {
 				'font-weight': 'bold',
 				'color': '#fff'
 			});
-		},
-		/**
-		 * [SetRequiredInput Set navigation state]
-		 */
-		SetRequiredInput: function () {
-			$('#Text_SubjectLine, #Text_Sendfromemailaddress, #SenderAddress').attr('required', true);
-			$('#Text_SubjectLine_LabelCell, #Text_Sendfromemailaddress_LabelCell, #SenderAddress_LabelCell').append('<span class="pfRequiredAsterik pfRequired Font11"><span id="">*</span></span>');
-			// Hack to display address as placeholder
-			// @TODO This is pure shame, needs to be coded proper.
-			$('#SenderAddress').val('3499 Blazer Parkway, Lexington. KY 40509').blur();
 		},
 		/**
 		 * [ChangeText Set navigation state]

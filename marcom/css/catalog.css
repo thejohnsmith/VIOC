@@ -7,10 +7,7 @@
 .btn-s-green, .btn-s-green:hover {
   background-position: right -769px
 }
-.Minimum {
-  visibility: hidden
-}
-#qtip-blanket, .qtip, .qtip>* {
+.Minimum, #ErrorDetails, #qtip-blanket, .qtip, .qtip>* {
   display: none!important
 }
 #CtlBrdCrm {
@@ -43,7 +40,7 @@
   width: 1.4em!important;
   border-radius: 0
 }
-#ctl00_content_CatalogBreadCrumbsLayout_CatalogBreadCrumbs_btnItem2, #ctl00_content_CtlAddToCart_InteractivityContainer_divVersionProduct, #ctl00_content_CtlPager_btnGrid, #ctl00_content_CtlPager_lblView, #ctl00_content_CtlPager_tblPager, #divSearchCart, .SelectSavedContentPrompt {
+#ctl00_content_CatalogBreadCrumbsLayout_CatalogBreadCrumbs_btnItem2, #ctl00_content_CtlAddToCart_InteractivityContainer_divVersionProduct, #ctl00_content_CtlPager_btnGrid, #ctl00_content_CtlPager_lblView, #ctl00_content_CtlPager_tblPager, #divSearchCart {
   display: none
 }
 .CheckoutBreadCrumbs {
@@ -145,47 +142,56 @@ input[type=button] {
   height: auto!important;
   padding: 0
 }
-a.pbtn span, a.pbtn.primary span {
-  font-size: 15px!important;
+a.pbtn span, a.pbtn.btn-s-disabled span, a.pbtn.btn-s-disabled:hover span, a.pbtn.primary span {
+  font-size: 12px!important;
   max-width: 140px;
   margin: 0 0 15px;
-  padding: 6px 12px!important;
+  padding: 4px 12px!important;
   color: #fff;
+  cursor: pointer;
   border: 1px solid #337ab7;
   border-radius: 4px;
   background: #0ea3dd;
   box-sizing: content-box;
-  -webkit-transition: .5s;
-  transition: .5s
+  -webkit-transition: all 1.4s cubic-bezier(.25, .46, 0, 1.39);
+  transition: all 1.4s cubic-bezier(.25, .46, 0, 1.39);
+  -webkit-transform: scale(1);
+  transform: scale(1)
 }
-.CtlSearchGroup td input:focus, .CtlSearchGroup td select:focus, a.pbtn span:hover {
-  border-color: #00bcd4;
-  box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px rgba(102, 175, 233, .8)
+.SelectSavedContentPrompt>a, #SelectSavedContentPrompt a {
+  -webkit-transition: none;
+  transition: none
 }
 a.pbtn span:hover, a.pbtn:hover span {
-  color: #fff;
-  border: 1px solid #3f51b5
+  color: #fff
 }
-.pbtn:active span, a.pbtn span:hover:focus, a.pbtn:focus span {
-  outline: 0;
-  border: 1px solid #666;
-  box-shadow: inset 0 1px 3px rgba(255, 255, 255, .75), 0 0 4px rgba(102, 175, 233, .9)
+a.pbtn span:hover {
+  -webkit-transform: scale(1.015);
+  transform: scale(1.015);
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, .2), 6px 10px 15px rgba(53, 82, 97, .05)
 }
-a.pbtn:focus:active span {
-  border: 1px solid #000;
-  box-shadow: inset 0 1px 3px rgba(255, 255, 255, .75), 0 0 30px rgba(102, 175, 233, .8)
+a.pbtn span:hover:active, a.pbtn span:hover:focus {
+  -webkit-transform: scale(1.055);
+  transform: scale(1.055);
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, .2), 12px 20px 15px rgba(53, 82, 97, .4)
 }
-#ctl00_content_CtlAddToCart_ProductOrderInfoController_divProductOrderInfo table.MarginTop12, #ctl00_content_CtlAddToCart_ProductOrderInfoController_divProductOrderInfo>.BluePromptText.FontBold, #divPricingGridContainer, #prefillSaveContainer, .NavTop, .btn-l span.img-savefloppy, .btn-s span.img-cancel, .btn-s span.img-next, .btn-s span.img-refresh, .btn-s span.img-upload, .btn-s-green span.img-refresh, .btn-s-green:hover span.img-refresh, .cbx-choice>small, .pbtn span.pbtn-icon-after, .pbtn-icon-before.img-upload, span.pbtn-icon-before.img-gallery, span.pbtn-icon.img-plus {
+.CtlSearchGroup td input:focus, .CtlSearchGroup td select:focus {
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px rgba(102, 175, 233, .8)
+}
+#ctl00_content_CtlAddToCart_ProductOrderInfoController_divProductOrderInfo table.MarginTop12, #ctl00_content_CtlAddToCart_ProductOrderInfoController_divProductOrderInfo>.BluePromptText.FontBold, #divPricingGridContainer, .NavTop, .btn-l span.img-savefloppy, .btn-s span.img-cancel, .btn-s span.img-next, .btn-s span.img-refresh, .btn-s span.img-upload, .btn-s-green span.img-refresh, .btn-s-green:hover span.img-refresh, .cbx-choice>small, .pbtn span.pbtn-icon-after, .pbtn-icon-before.img-upload, span.pbtn-icon-before.img-gallery, span.pbtn-icon.img-plus, span.pbtn-icon.img-save {
   display: none
 }
 .gridItem_title .description {
   display: none!important
 }
 .prefill-container+select {
-  margin-bottom: 1em
+  margin-bottom: 0.6em
 }
 .ui-accordion .ui-accordion-header a {
-  text-decoration: none
+  text-decoration: none;
+  display: inline-block;
+  font-size: .9em;
+  padding: .5em .5em .5em 2.2em
 }
 a.pbtn.btn-l-green span {
   margin-bottom: .4em
@@ -216,18 +222,20 @@ a.pbtn.btn-l-green span {
   position: relative
 }
 .PreviewWrapper {
-  overflow: visible;
+  /*overflow: visible;
   display: inline-table;
   left: 0;
   top: 3em;
   right: 0;
-  padding: 15px 15px 0
+  border-radius: 3px;
+  padding: 15px 15px 0*/
 }
 #Table5 {
   border: none;
   background: 0 0
 }
 .FullPageWidth, .Width100Pct {
+  overflow: hidden;
   max-width: 1200px
 }
 .Width100Pct {
@@ -241,13 +249,15 @@ a.pbtn.btn-l-green span {
   margin: 0;
   overflow: hidden;
   white-space: nowrap;
-  padding: 15px
+  padding: 15px;
+  border-radius: 3px;
+  background: #fbfbfb
 }
 #tdProof {
   background: 0 0;
   border: none;
   padding-left: 4em;
-  display: inline-block!important
+  /*display: inline-block!important*/
 }
 .poFormOptionsOn {
   padding: 0 0 1em
@@ -271,12 +281,12 @@ a.pbtn.btn-l-green span {
   width: 150px;
   border-radius: 4px
 }
-.Reports.Width100Pct .BluePromptText.FontBold {
+.Reports.Width100Pct .BluePromptText.FontBold, .ui-datepicker .ui-datepicker-next span, .ui-datepicker .ui-datepicker-prev span {
   margin-top: 0
 }
 #w2p_form .pfFormButtonRow {
   white-space: nowrap;
-  margin-bottom: 1em
+  margin-bottom: .4em
 }
 #screenshot {
   background: 0 0;
@@ -301,4 +311,195 @@ input#ctl00_content_OrderSearchAdvanced_ddlSearchTypes_0 {
 }
 .gridItem_action {
   width: 50%
+}
+#cboxContent>* {
+  font-family: 'HelveticaNeueLT-Condensed', sans-serif
+}
+#costContainer {
+  margin: 1em 0
+}
+.hasDatepicker {
+  width: 90%!important;
+  margin-right: 15px
+}
+#Headline_row {
+  height: 60px
+}
+.pf3FormInstructionsCopy {
+  font-style: normal
+}
+input[type=number], input[type=password], input[type=search], input[type=text], textarea {
+  font-size: 13px;
+  color: #616161;
+  border: 1px solid #e0e0e0;
+  border-radius: 4px
+}
+.ui-state-active, .ui-state-default, .ui-state-hover, .ui-widget-content .ui-state-active, .ui-widget-content .ui-state-default {
+  border: none!important;
+  background: 0 0!important;
+  box-shadow: inset 0 0 0 1px #e0e0e0
+}
+.pfFormNote, .ui-state-active a, .ui-state-active a:link, .ui-state-active a:visited {
+  color: #045e90
+}
+#ui-datepicker-div .ui-widget, #ui-datepicker-div.ui-widget {
+  font-size: .8em
+}
+#ui-datepicker-div .ui-widget-content, #ui-datepicker-div.ui-widget-content {
+  border: 1px solid #ccc
+}
+#ui-datepicker-div .ui-widget-header, #ui-datepicker-div.ui-widget-header {
+  border: none;
+  background: 0 0
+}
+.ui-state-default, .ui-widget-content .ui-state-default {
+  border-radius: 3px;
+  transition: all 1.4s cubic-bezier(.37, -.29, .2, 1);
+  transform: scale(1)
+}
+.ui-state-default:hover, .ui-widget-content .ui-state-default:hover {
+  background-color: #e0e0e0!important;
+  color: #003958!important;
+  transform: scale(1.025)
+}
+.btn-10 {
+  color: #413698
+}
+.btn-10:before {
+  left: 0
+}
+.btn-10 span:after, .btn-10 span:before, .btn-10:after, .btn-10:before {
+  content: '';
+  position: absolute;
+  top: 0;
+  width: 0;
+  height: 80px;
+  background: rgba(19, 11, 80, .25);
+  -webkit-transition: .4s;
+  transition: .4s
+}
+.btn-10 span:after {
+  left: 0
+}
+.btn-10 span:before, .btn-10:after {
+  left: auto;
+  right: 0
+}
+.btn-10 span:after, .btn-10 span:before {
+  -webkit-transition-delay: .4s;
+  transition-delay: .4s
+}
+.btn-10:hover {
+  color: #c7c4e1
+}
+.btn-10:hover span:after, .btn-10:hover span:before, .btn-10:hover:after, .btn-10:hover:before {
+  width: 250px
+}
+.btn-10:active {
+  background: #1f1386
+}
+.poVariItemForm .poFormOptions select {
+  font-size: 13px;
+  white-space: nowrap
+}
+#CtlCart p, #CtlCart h1, #CtlCart h2, #CtlCart h3, #CtlCart h4, #CtlCart h5, #CtlCart h6, #CtlCart ol {
+  border-radius: 3px
+}
+a#openPDF>span {
+  font-size: 14px!important;
+  max-width: 140px;
+  margin: 0 0 15px;
+  padding: 6px 12px!important;
+  color: #fff;
+  cursor: pointer;
+  border: 1px solid #337ab7;
+  border-radius: 4px;
+  background: #0ea3dd;
+  box-sizing: content-box;
+  -webkit-transition: all 1.4s cubic-bezier(.25, .46, 0, 1.39);
+  transition: all 1.4s cubic-bezier(.25, .46, 0, 1.39);
+  -webkit-transform: scale(1);
+  transform: scale(1)
+}
+.pf3FormTitleCopy {
+  display: none
+}
+.SelectSavedContentPrompt>a, .SaveContentPrompt>a {
+  color: #333!important;
+  background-color: #fff;
+  margin-bottom: 1em!important;
+  border: 1px solid #ccc;
+  display: inline-block;
+  border-radius: 3px;
+  padding: 6px 12px!important
+}
+#prefillSaveContainer {
+  padding: 0!important;
+  margin: 2em 0 0
+}
+a#ctl00_content_gridSavedContent_btnImport, #cboxLoadedContent #ctl00_content_gridSavedContent_btnImport {
+  display: none!important
+}
+.ButtonAddToCart.addToCartBtn span {
+  margin-bottom: 0!important;
+  padding: 3px 12px 0!important
+}
+input#ctl00_content_CtlAddToCart_ProductOrderInfoController_AddToCartActionBox_mItemQuantity_txtQty {
+  border: none
+}
+div#ctl00_content_CtlAddToCart_ProductOrderInfoController_AddToCartActionBox_mItemQuantity_panelQty>span.FontBold {
+  position: relative;
+  display: inline-table
+}
+div#ctl00_content_CtlAddToCart_ProductOrderInfoController_AddToCartActionBox_mItemQuantity_panelQty>span.FontBold::after {
+  content: ': ';
+  display: inline-block;
+  position: absolute;
+  right: -4px;
+  top: 0
+}
+.disclaimerSection {
+  position: relative;
+  display: inline-block;
+  border: 1px solid #dfdfdf;
+  box-shadow: inset 0 0 5px 2px rgba(189, 189, 189, 0.37);
+  height: 214px;
+  padding: 0.3em 1em 0;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  white-space: normal;
+  font-size: 0.6em;
+  text-rendering: geometricPrecision;
+  -webkit-font-smoothing: antialiased;
+  empty-cells: hide;
+  text-rendering: optimizeLegibility;
+  width: 350px;
+}
+.disclaimerSection .disclaimerSectionRow {
+  width: 100%;
+  display: block;
+}
+.disclaimerSection .disclaimerSectionRow+.disclaimerSectionRow {
+  margin-top: 0.6em;
+}
+.disclaimerSection td {
+  width: 100%!important;
+  display: inline-block!important;
+  margin-top: 0.6em!important;
+}
+.disclaimerSection input[type='radio'] {
+  margin: 4px;
+}
+.disclaimerSection::-webkit-scrollbar-.ack {
+  border-radius: 10px;
+  background-color: #f5f5f5;
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, .3)
+}
+.disclaimerSection::-webkit-scrollbar {
+  width: 8px;
+  background-color: #f5f5f5
+}
+.disclaimerSection::-webkit-scrollbar-thumb {
+  border-radius: 4px;
+  background-image: -webkit-gradient(linear, left bottom, left top, color-stop(.04, rgba(224, 41, 38, .95)), color-stop(.62, #004890), color-stop(.86, #497dbd))
 }
