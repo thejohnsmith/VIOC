@@ -1,6 +1,6 @@
 /* Order Summary Controller
  * @NOTE - The On-Demand Marketing URL for Beta is:
- * @URL - https://marcomcentral.app.pti.com/Epsilon_Data_Management/Beta_Epsilon/orderSummary.aspx?uigroup_id=479602&orderId=8004082&new=1
+ * @LINK - https://marcomcentral.app.pti.com/Epsilon_Data_Management/Beta_Epsilon/orderSummary.aspx?uigroup_id=479602&orderId=8004082&new=1
  *
  * @description - Loads templates with data from custom Adobe API.
  * @filename - OrderSummaryController.js
@@ -16,8 +16,8 @@ OrderSummaryController = (function ($) {
 		reqId: getParameterByName('reqId', window.location.href),
 		init: function () {
 			var controller = this;
-			console.debug('reqId, ', controller.reqId);
-			console.log('reqId: ', typeof controller.reqId);
+			// console.debug('reqId, ', controller.reqId);
+			// console.log('reqId: ', typeof controller.reqId);
 			controller.WatchForPageReady(function () {
 				controller.AdjustUI();
 			});
@@ -55,15 +55,15 @@ OrderSummaryController = (function ($) {
 
 			var $j = jQuery;
 			$j('#FormCopyController').load("https://files.marcomcentral.app.pti.com/epsilon/static_beta/js/app/adhoc/FormCopyController.js", function () {
-				console.info('Load was FormCopyController.js performed.');
+				// console.info('Load was FormCopyController.js performed.');
 			});
 
 			if ($('#ctl00_content_OrderSummary_lblCustRefText') && $('#ctl00_content_OrderSummary_CtlOrderItemList_CtlOrderItems_ctl02_tdIOQuantity')) {
 				var orderQuantity = $('#ctl00_content_OrderSummary_CtlOrderItemList_CtlOrderItems_ctl02_tdIOQuantity').text();
 				var orderNumber = $('#ctl00_content_OrderSummary_lblCustRefText').text();
 
-				console.info('orderQuantity: ', $.trim(orderQuantity));
-				console.info('orderNumber: ', $.trim(orderNumber));
+				// console.info('orderQuantity: ', $.trim(orderQuantity));
+				// console.info('orderNumber: ', $.trim(orderNumber));
 
 				$('#orderConfirmationQuantity').text(orderQuantity);
 				$('#orderConfirmationNumber').text(orderNumber);

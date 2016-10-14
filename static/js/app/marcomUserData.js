@@ -22,13 +22,17 @@ var marcomUserData = (function ($) {
 	 * @default 'PROD'
 	 */
 	var environment = getParameterByName('uigroup_id', window.location.href) || getParameterByName('company_id', window.location.href);
-	environment =
-		(environment == 478656) ? 'PROD' :
-		(environment == 20917) ? 'PROD' :
-		(environment == 479602) ? 'UAT' :
-		(environment == 20951) ? 'UAT' :
-		(location.href.match(/Beta_Epsilon/)) ? 'UAT' :
-		'PROD';
+	environment = (environment == 478656)
+		? 'PROD'
+		: (environment == 20917)
+			? 'PROD'
+			: (environment == 479602)
+				? 'UAT'
+				: (environment == 20951)
+					? 'UAT'
+					: (location.href.match(/Beta_Epsilon/))
+						? 'UAT'
+						: 'PROD';
 
 	/** PRODUCTION URLs
 	 * @kind {string} Production or User Acceptance Testing (Beta_Epsilon)
@@ -36,9 +40,8 @@ var marcomUserData = (function ($) {
 	 * @example marcomUserData.$constants.kind
 	 * @return {object} environment
 	 */
-	environment =
-		(environment == 'PROD') ?
-		constants = {
+	environment = (environment == 'PROD')
+		? constants = {
 			kind: 'PROD',
 			homePageUrl: 'home.aspx',
 			homePageGroupUrl: 'home.aspx?uigroup_id=478656',
@@ -65,7 +68,8 @@ var marcomUserData = (function ($) {
 			apiPathLocal: 'data/',
 			marcomFilePath: 'https://files.marcomcentral.app.pti.com/epsilon/static/',
 			marcomCustomFilePath: 'https://files.marcomcentral.app.pti.com/epsilon/static/marcom_custom/'
-		} :
+		}
+		:
 
 		/** UAT URLs
 		 * @kind {string} Production or User Acceptance Testing (Beta_Epsilon)
@@ -74,45 +78,41 @@ var marcomUserData = (function ($) {
 		 * @return {object} environment
 		 */
 
-		 /**
+		/**
 			* @TODO: Find a place for this odd-duckling (defaults to Prod, but shows _beta tag),
 			* 				loginPage3Url: 'login.aspx?uigroup_id=479602&company_id=20951',
 			*/
-		(environment == 'UAT') ?
-		constants = {
-			kind: 'UAT',
-			homePageUrl: 'home.aspx?uigroup_id=479602',
-			homePageGroupUrl: 'home.aspx?uigroup_id=479602',
-			lifecyclePageUrl: 'CustomPage.aspx?uigroup_id=479602&page_id=10792',
-			specialtyPageUrl: 'CustomPage.aspx?uigroup_id=479602&page_id=10793',
-			programManagementUrl: 'CustomPage.aspx?uigroup_id=479602&page_id=11173',
-			additionalOfferPageUrl: 'CustomPage.aspx?uigroup_id=479602&page_id=11226',
-			configPageUrl: 'CustomPage.aspx?uigroup_id=479602&page_id=11225',
-			helpPageUrl: 'CustomPage.aspx?uigroup_id=479602&page_id=10798',
-			loginPageUrl: 'login.aspx?company_id=20951',
-			loginPage2Url: 'login.aspx?uigroup_id=479602',
-			forgotPassPageUrl: 'forgotpassword.aspx?uigroup_id=479602',
-			accountPageUrl: 'profile.aspx?uigroup_id=479602&mode=1',
-			onDemandUrl: 'catalog.aspx?uigroup_id=479602&folder_id=1633307',
-			storePagesUrl: 'CustomPage.aspx?uigroup_id=479602&page_id=12939',
-			storeDetailsUrl: 'CustomPage.aspx?uigroup_id=479602&page_id=13090',
-			storePagesNewOfferUrl: 'CustomPage.aspx?uigroup_id=479602&page_id=13091',
-			storePagesEditOfferUrl: 'CustomPage.aspx?uigroup_id=479602&page_id=13091',
-			defaultStorePhotoId: 'f6f18b71-c587-4b44-893b-eba37d1f81e7',
-			defaultStorePhotoUrl: 'https://vioc.d.epsilon.com/images/Default_store.jpg',
-			defaultManagerPhotoId: 'f6f18b71-c587-4b44-893b-eba37d1f81e7',
-			defaultManagerPhotoUrl: 'https://vioc.d.epsilon.com:443/~/media/Images/Locations/Stores/Manager Photos/Default Manager.ashx',
-			apiPath: 'https://adobe-prod-vioc.epsilon.com/jssp/vioc/',
-			apiPathLocal: 'data/',
-			marcomFilePath: 'https://files.marcomcentral.app.pti.com/epsilon/static_beta/',
-			marcomCustomFilePath: 'https://files.marcomcentral.app.pti.com/epsilon/static_beta/marcom_custom/'
-		} : constants;
-	return {
-		marcomUserData: this,
-		$user: user,
-		$constants: constants,
-		environmentKind: environment.kind
-	};
+		(environment == 'UAT')
+			? constants = {
+				kind: 'UAT',
+				homePageUrl: 'home.aspx?uigroup_id=479602',
+				homePageGroupUrl: 'home.aspx?uigroup_id=479602',
+				lifecyclePageUrl: 'CustomPage.aspx?uigroup_id=479602&page_id=10792',
+				specialtyPageUrl: 'CustomPage.aspx?uigroup_id=479602&page_id=10793',
+				programManagementUrl: 'CustomPage.aspx?uigroup_id=479602&page_id=11173',
+				additionalOfferPageUrl: 'CustomPage.aspx?uigroup_id=479602&page_id=11226',
+				configPageUrl: 'CustomPage.aspx?uigroup_id=479602&page_id=11225',
+				helpPageUrl: 'CustomPage.aspx?uigroup_id=479602&page_id=10798',
+				loginPageUrl: 'login.aspx?company_id=20951',
+				loginPage2Url: 'login.aspx?uigroup_id=479602',
+				forgotPassPageUrl: 'forgotpassword.aspx?uigroup_id=479602',
+				accountPageUrl: 'profile.aspx?uigroup_id=479602&mode=1',
+				onDemandUrl: 'catalog.aspx?uigroup_id=479602&folder_id=1633307',
+				storePagesUrl: 'CustomPage.aspx?uigroup_id=479602&page_id=12939',
+				storeDetailsUrl: 'CustomPage.aspx?uigroup_id=479602&page_id=13090',
+				storePagesNewOfferUrl: 'CustomPage.aspx?uigroup_id=479602&page_id=13091',
+				storePagesEditOfferUrl: 'CustomPage.aspx?uigroup_id=479602&page_id=13091',
+				defaultStorePhotoId: 'f6f18b71-c587-4b44-893b-eba37d1f81e7',
+				defaultStorePhotoUrl: 'https://vioc.d.epsilon.com/images/Default_store.jpg',
+				defaultManagerPhotoId: 'f6f18b71-c587-4b44-893b-eba37d1f81e7',
+				defaultManagerPhotoUrl: 'https://vioc.d.epsilon.com:443/~/media/Images/Locations/Stores/Manager Photos/Default Manager.ashx',
+				apiPath: 'https://adobe-prod-vioc.epsilon.com/jssp/vioc/',
+				apiPathLocal: 'data/',
+				marcomFilePath: 'https://files.marcomcentral.app.pti.com/epsilon/static_beta/',
+				marcomCustomFilePath: 'https://files.marcomcentral.app.pti.com/epsilon/static_beta/marcom_custom/'
+			}
+			: constants;
+	return {marcomUserData: this, $user: user, $constants: constants, environmentKind: environment.kind};
 })(jQuery);
 
 (function ($) {
