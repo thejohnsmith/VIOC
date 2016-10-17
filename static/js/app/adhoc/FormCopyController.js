@@ -266,4 +266,4 @@ FormCopyController = (function ($) {
 if (window.location.href.indexOf(pageKey) > -1) {
 	FormCopyController.controller.init();
 }
-jQuery(document).ready(FormCopyController.controller.AddDisclaimers())
+jQuery(document).ready(FormCopyController.controller.init();)

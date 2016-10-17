@@ -24,6 +24,20 @@ br {
   max-width: 450px;
   padding: 6px 12px 20px
 }
+.mid-container {
+  text-align: center!important;
+  min-width: 0!important;
+  width: 400px!important;
+  float: none!important;
+}
+#CtlLogIn {
+    min-width: 0!important;
+    width: 400px!important;
+    margin: 0;
+    border: none;
+}
+
+
 #CtlLogIn h4 {
   font-size: 26px
 }

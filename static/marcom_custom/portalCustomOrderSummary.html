@@ -1,4 +1,4 @@
-<!-- <link href="https://files.marcomcentral.app.pti.com/epsilon/static/marcom_css/orderSummary.css" rel="stylesheet" type="text/css" /> -->
+<!-- <link href="https://files.marcomcentral.app.pti.com/epsilon/static_beta/marcom_css/orderSummary.css" rel="stylesheet" type="text/css" /> -->
 <!--
   CURRENT CUSTOM CONTENT: Order Summary/Detail
 Actual content in
@@ -14,7 +14,7 @@ Macrom/Custom Content/Order Summary/Detail
 <script>
   var $j = jQuery;
   $j('#CtlCart, .ButtonRowFloatR').html('');
-  $j('.CustomCopy').load("https://files.marcomcentral.app.pti.com/epsilon/static/marcom_custom/portalCustomOrderSummary.html", function () {
+  $j('.CustomCopy').load("https://files.marcomcentral.app.pti.com/epsilon/static_beta/marcom_custom/portalCustomOrderSummary.html", function () {
     console.info('Load was performed.');
   });
 </script>
@@ -31,6 +31,11 @@ Macrom/Custom Content/Order Summary/Detail
   }
   .mid-container {
     padding-bottom: 0;
+  }
+  .wrapper {
+    padding: 0 1%;
+    max-width: 1200px;
+    margin: 0 auto;
   }
 
 </style>
@@ -51,7 +56,7 @@ Macrom/Custom Content/Order Summary/Detail
         <a id="pageAnchorFormCopy" href="#" class="hidden">pageAnchorFormCopy</a>
         <h1>Email Added To Queue For Delivery</h1>
         <h3>
-          <p>%%User.FirstName%%,Thank you. Your email has been added to the queue for review.</p>
+          <p>%%User.FirstName%%, Thank your for your order. Your email has been added to the queue for review.</p>
         </h3>
         <h4>
           <p>Upon approval your email will be sent at the time you specified when creating your email.</p>
