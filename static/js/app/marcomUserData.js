@@ -131,10 +131,8 @@ var marcomUserData = (function ($) {
 		}
 	}
 
-	/* Run the login controller */
-	if ($('#homePageLanding').length >= 1 || window.location.href.indexOf(marcomUserData.$constants.homePageUrl) > -1) {
-		recordLogin.makeRequest();
-	}
+	/* Record the user's login and possibly hide the reports tab */
+	recordLogin.makeRequest();
 
 	return $debug;
 })(jQuery);

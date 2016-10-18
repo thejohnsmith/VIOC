@@ -30,8 +30,6 @@ var recordLogin = (function ($) {
 			};
 			setLandingPageType(results);
 		} else {
-			// var localDevUrl = 'data/recordLogin.jssp';
-			// var marcomDevUrl = 'https://files.marcomcentral.app.pti.com/epsilon/static/data/recordLogin.jssp';
 			var apiPath = marcomUserData.$constants.apiPath + 'recordLogin.jssp';
 			$.ajax({
 				url: apiPath,
@@ -67,18 +65,26 @@ var recordLogin = (function ($) {
 		document.cookie = 'loginCount=' + $loginCount;
 		document.cookie = 'marcomReportingAccess=' + $reportingAccess;
 		document.cookie = 'marcomUserId=' + marcomUserData.$user.externalId;
+		
+		$('.navBarItem > a').filter(function () {
+			return $(this).text() === 'STORE PAGES';
+		}).addClass('store-pages-link').hide();
+
+		$('.navBarItem > a').filter(function () {
+			return $(this).text() === 'ON DEMAND MARKETING';
+		}).addClass('on-demand-marketing-link').hide();
 
 		/* Show Reports main nav link if reportingAccess is 1 */
 		$('.navBarItem > a').filter(function () {
 			return $(this).text() === 'REPORTS';
 		}).addClass('reports-link');
 
-		// if ($reportingAccess == 0) {
-		// 	$('.reports-link').addClass('hide');
-		// }
-		// if ($reportingAccess == 1) {
-		// 	$('.reports-link').removeClass('hide');
-		// }
+		if ($reportingAccess == 0) {
+			$('.reports-link').addClass('hide');
+		}
+		if ($reportingAccess == 1) {
+			$('.reports-link').removeClass('hide');
+		}
 
 		if ($newUser > 0) {
 			$loginCount = 1;
@@ -92,6 +98,9 @@ var recordLogin = (function ($) {
 			$('#welcome + #gettingStartedNow.landing-page-only').hide();
 			$('#programSummary.landing-page-only').fadeIn();
 		}
+		
+		// Show navigation now that we've manipulated it.
+		$(".navBarEnhanced li a").css('opacity', 1);
 	};
 	return {
 		makeRequest: makeRequest

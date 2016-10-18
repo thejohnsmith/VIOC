@@ -20,64 +20,84 @@ Macrom/Custom Content/Order Summary/Detail
 </script>
 
 -->
-<style>
+<<link href="https://files.marcomcentral.app.pti.com/epsilon/static_beta/marcom_css/catalog.css" rel="stylesheet" type="text/css" />
+<a id="pageAnchorFormCopy" href="#" class="hidden">pageAnchorOrderSummaryController</a>
+ <style>
   /* Hide the rest of the page and inject our custom Thank You page. */
+.btn-s:hover, .pbtn {
+  background: 0 0
+}
+.pbtn {
+  font-family: 'HelveticaNeueLT-Condensed';
+  height: auto!important;
+  padding: 0
+}
+a.pbtn span, a.pbtn.primary span, .pbtn.btn-m.pbtn-icon-after-wrapper span {
+  font-size: 15px!important;
+  max-width: 140px;
+  margin: 0;
+  padding: 6px 12px;
+  color: #fff;
+  border: 1px solid #337ab7;
+  border-radius: 4px;
+  background: #00adee;
+  box-sizing: content-box;
+  -webkit-transition: .5s;
+  transition: .5s
+}
+a#ctl00_content_TextUserAttributeList_btnContnue {
+  margin: 0!important;
+  padding: 0!important;
+}
+.CtlSearchGroup td input:focus, .CtlSearchGroup td select:focus, a.pbtn span:hover {
+  border-color: #00bcd4;
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px rgba(102, 175, 233, .8)
+}
+a.pbtn span:hover {
+  color: #fff
+}
+a.pbtn span:hover:focus {
+  border-color: rgba(0, 72, 144, .72);
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px rgba(0, 0, 0, .64);
+  color: #004890;
+  background: #ececec
+}
+span.pbtn-icon-after.img-next {
+  display: none;
+}
+.RedBoldSm + span {
+  font-size: 12px;
+  padding: 0 0 1em 0;
+  margin: 0 0 0 -0.6em;
+  display: inline-block;
+}
   #CtlCart,
   .ButtonRowFloatR {
     display: none;
   }
-  #CtlBrdCrm {
-    display: none;
-  }
-  .mid-container {
-    padding-bottom: 0;
-  }
-  .wrapper {
-    padding: 0 1%;
-    max-width: 1200px;
-    margin: 0 auto;
-  }
-
+#CtlBody {
+	margin: 1em auto;
+	max-width: 1200px;
+}
+.ButtonRowFloatR {
+	display: block;
+	margin: 1em auto;
+	max-width: 1200px;
+	float: none;
+	text-align: right;
+	padding: 1em;
+}
+.CtlCartItems, .CtlCartItems thead td {
+        border: none;
+}
+.CtlCartItems tbody td {
+	padding: 1em 1em 1em 0;
+	border-left: none;
+}
+.CtlCartItems thead td {
+        font-size: 1em;
+}
 </style>
-<div class="mid-container">
-  <section id="breadcrumbs">
-    <ul>
-      <li class="breadcrumbs_root">
-        <a href="#" title="Home">Home</a>
-      </li>
-      <li class="breadcrumbs_current">On Demand Marketing</li>
-
-    </ul>
-  </section>
-  <h1 class="h1 page-title"></h1>
-  <div class="thanky-msg none wrapper">
-    <div class="mid-container">
-      <div class="main text-center">
-        <a id="pageAnchorFormCopy" href="#" class="hidden">pageAnchorFormCopy</a>
-        <h1>Email Added To Queue For Delivery</h1>
-        <h3>
-          <p>%%User.FirstName%%, Thank your for your order. Your email has been added to the queue for review.</p>
-        </h3>
-        <h4>
-          <p>Upon approval your email will be sent at the time you specified when creating your email.</p>
-          <br>
-        </h4>
-        <h5>
-          <div>
-            Your email confirmation number is
-            <strong>
-              <span id="orderConfirmationNumber"></span>
-            </strong>.
-            <br>
-            Your email is scheduled to deliver to
-            <span id="orderConfirmationQuantity"></span>
-            recipient(s).
-          </div>
-        </h5>
-        <br>
-        <a id="homePageUrl" href="home.aspx?uigroup_id=479602">Return to Home Page</a>
-      </h4>
-    </div>
-  </div>
-</div>
-</div>
+<script>
+window.onload = function() {  var $j = jQuery;  $j('#CtlCart, .ButtonRowFloatR').html('');  $j('.CustomCopy').load("https://files.marcomcentral.app.pti.com/epsilon/static_beta/marcom_custom/portalCustomOrderSummary.html", function () {    $j('#breadcrumbs ul').addClass('wrapper');    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;    po.src = 'https://files.marcomcentral.app.pti.com/epsilon/static_beta/js/app/adhoc/OrderSummaryController.js';    var s = document.getElementById('CtlFooter'); s.parentNode.insertBefore(po, s);  });}; 
+</script>
