@@ -36,7 +36,7 @@ var programConfigController = (function ($) {
 			var controller = this;
 			$.get(controller.apiPath + 'getProgramParticipationStats.jssp?userId=' + encodeURIComponent(controller.userId), function (results) {
 				// NOTE: We may need to parse results.
-				var json_results = JSON.parse(results);
+				var json_results = DoNotParseData(results);
 
 				// Loop through the API result and find the program that matches program ID (DONE)
 				$.each(json_results, function (i, result) {
@@ -69,7 +69,7 @@ var programConfigController = (function ($) {
 
 			$.get(controller.apiPath + 'loadConfig.jssp?userId=' + encodeURIComponent(controller.userId) + '&configId=' + controller.configId, function (results) {
 
-				var json_results = JSON.parse(results);
+				var json_results = DoNotParseData(results);
 				controller.config = json_results;
 				controller.configLoaded = true;
 
@@ -177,6 +177,14 @@ var programConfigController = (function ($) {
 				$('.offer-2').hide();
 			}
 
+			if (controller.config.content.emStd1Code == "") {
+				$('.content-preview-section .touchpoint-1 .standard-risk.offer-1').hide(); // A special edge-case for using this grid on the Content Preview tab.
+			}
+
+			if (controller.config.content.emStd2Code == "") {
+				$('.content-preview-section .touchpoint-2 .standard-risk.offer-2').hide(); // A special edge-case for using this grid on the Content Preview tab.
+			}
+
 			var firstActiveTab = null;
 
 			for (var i = 1; i <= 3; i++) {
@@ -209,7 +217,7 @@ var programConfigController = (function ($) {
 			$('.touchpoint-' + firstActiveTab + '.resp-tab-content').addClass('resp-tab-content-active');
 
 			if (!controller.program.programUsesService) {
-				$('.results-section .service-offer').hide();
+				$('.results-section .service-offer, .results-section .additional-offer').hide();
 			}
 
 			$.each($('.touchpoint-value'), function (i, e) {
@@ -289,7 +297,7 @@ var programConfigController = (function ($) {
 				// console.log('validateDiscountCode.jssp returned: ' + results + ' (' + typeof results + ')');
 				$('.pre-submit').hide();
 				$('.post-submit').show();
-				var json_results = JSON.parse(results);
+				var json_results = DoNotParseData(results);
 				if (json_results.valid && !json_results.damaged) {
 					$(input).removeClass('input-error');
 					$(input).addClass('input-success');
@@ -298,8 +306,8 @@ var programConfigController = (function ($) {
 					$(input).addClass('input-error');
 
 					var msg = (json_results.valid)
-						? 'The discount code "' + discountCode + '" is valid in POS, however, it is not a valid discount code for Lifecycle Programs. Please contact Derick Brumbaugh (dnbrumbaugh@ashland.com / 859-357-7268) for assistance.'
-						: 'The discount code "' + discountCode + '" does not exist.  Please contact Derick Brumbaugh (dnbrumbaugh@ashland.com / 859-357-7268) for assistance.';
+						? 'The discount code "' + discountCode + '" is valid in POS, however, it is not a valid discount code for Lifecycle Programs. Please contact Derick Brumbaugh (dnbrumbaugh@valvoline.com / 859-357-7268) for assistance.'
+						: 'The discount code "' + discountCode + '" does not exist.  Please contact Derick Brumbaugh (dnbrumbaugh@valvoline.com / 859-357-7268) for assistance.';
 					toastr.error(msg);
 				}
 				for (var cssSelector in json_results.preview)

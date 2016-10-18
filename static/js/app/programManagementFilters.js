@@ -175,7 +175,7 @@ var programManagementFilters = (function ($) {
 					// console.log("Tree data set length : " + results.length);
 					if (results.length > 50000)
 						controller.largeDataSet = true;
-					var json_results = JSON.parse(results);
+					var json_results = DoNotParseData(results);
 					controller.store_tree = json_results;
 					if (typeof callback === 'function') {
 						callback(json_results);
@@ -259,5 +259,8 @@ programManagementFilters.controller.onFilterChange = function (store_ids) {
 			programManagementController.controller.buildUI(targetStores);
 		}
 	}
-
+	// Call ContentPreviewController to update store dropdown.
+	ContentPreviewController.controller.storeIds = store_ids;
+	ContentPreviewController.controller.updateStoreDropdown(store_ids);
+	ContentPreviewController.controller.refresh();
 };

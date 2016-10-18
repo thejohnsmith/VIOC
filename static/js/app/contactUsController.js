@@ -77,7 +77,7 @@ var contactUsController = (function ($) {
 					// console.warn(jqXHR.status);
 					// console.warn(jqXHR.statusText);
 					// console.warn(jqXHR.responseText);
-					// controller.errormsg.html('<p>' + JSON.parse(jqXHR.responseText).error + '</p>');
+					// controller.errormsg.html('<p>' + DoNotParseData(jqXHR.responseText).error + '</p>');
 				}
 			});
 		},

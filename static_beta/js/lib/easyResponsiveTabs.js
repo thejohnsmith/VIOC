@@ -10,7 +10,7 @@
 				fit: true,
 				closed: false,
 				tabidentify: '',
-				activetab_bg: 'white',
+				activetab_bg: '#F5F5F5',
 				inactive_bg: '#F5F5F5',
 				active_border_color: '#c1c1c1',
 				active_content_border_color: '#c1c1c1',
@@ -153,8 +153,7 @@
 							':visible'))) {
 					$($respTabs.find('.resp-accordion.' + options.tabidentify)[
 						tabNum]).addClass('resp-tab-active').css({
-						'background-color': options.activetab_bg +
-							' !important',
+						'background-color': options.activetab_bg,
 						'border-color': options.active_border_color,
 						'background': 'none'
 					});

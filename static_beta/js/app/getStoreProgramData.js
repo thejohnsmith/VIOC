@@ -91,7 +91,7 @@ var getStoreProgramData = (function ($) {
 			var target = '.store-counts[data-enrolled="true"] .' + e + ':visible';
 
 			$(target).each(function () {
-				if ($(this).parent().not(".dim-mid") ) {
+				if ($(this).parent().not(".dim-mid")) {
 					var n = parseFloat($(this).text());
 					n = (isNaN(n)) ? 0 : n;
 					newSum += n;

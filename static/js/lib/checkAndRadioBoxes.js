@@ -67,7 +67,7 @@ var customCheckAndRadioBoxes = (function ($) {
 		 * @param {class} .toggle-btn wrapper
 		 * @return {function} toggleBtns();
 		 */
-		function toggleBtns() {
+		function toggleBtns () {
 
 		// ====================================================================================
 		// DISABLED!!!  Functionality moved to programManagement.js
@@ -77,27 +77,27 @@ var customCheckAndRadioBoxes = (function ($) {
 
 		// console.log("Running toggleBtns");
 
-			var $programId = getParameterByName('programId', window.location.href);
-			var $userId = marcomUserData.$user.externalId || {};
+			// var $programId = getParameterByName('programId', window.location.href);
+			// var $userId = marcomUserData.$user.externalId || {};
 			// console.warn('number of $stores ' + visible_store_count);
 
-			refreshSelectAllButton();
+			// refreshSelectAllButton();
 
-			$('.toggle-btn').off('click.vioc').on('click.vioc', function (e) {
-				// console.log("Firing checkbox click...");
-				var $storeId = $(this).attr('data-storeid');
-				if ($(this).attr('data-enrolled') == "true") {
-					var $storeId = $(this).attr('data-storeid');
-					$(this).attr('data-enrolled', "false");
-					unsubscribeStore($userId, $storeId, $programId, 1);
-				} else if ($(this).attr('data-enrolled') == "false") {
-					var $storeId = $(this).attr('data-storeid');
-					$(this).attr('data-enrolled', "true");
-					subscribeStore($userId, $storeId, $programId, 1);
-				}
-				refreshSelectAllButton();
-				refreshStoreRowEnrollment();
-			});
+			// $('.toggle-btn').off('click.vioc').on('click.vioc', function (e) {
+			// 	// console.log("Firing checkbox click...");
+			// 	var $storeId = $(this).attr('data-storeid');
+			// 	if ($(this).attr('data-enrolled') == "true") {
+			// 		var $storeId = $(this).attr('data-storeid');
+			// 		$(this).attr('data-enrolled', "false");
+			// 		unsubscribeStore($userId, $storeId, $programId, 1);
+			// 	} else if ($(this).attr('data-enrolled') == "false") {
+			// 		var $storeId = $(this).attr('data-storeid');
+			// 		$(this).attr('data-enrolled', "true");
+			// 		subscribeStore($userId, $storeId, $programId, 1);
+			// 	}
+			// 	refreshSelectAllButton();
+			// 	refreshStoreRowEnrollment();
+			// });
 
 		}
 
@@ -108,31 +108,31 @@ var customCheckAndRadioBoxes = (function ($) {
 		// ====================================================================================
 		return false;
 		// ====================================================================================
-			$('.toggle-btn').each(function () {
-				var enabled = $(this).attr('data-enrolled') == 'true';
-				var storeId = $(this).attr('data-storeid');
-
-				if (enabled) {
-					$(this).addClass('active');
-					$(".store-item[data-storeid="+storeId+"] .store-item-dimable").removeClass('dim-mid').attr('data-enrolled', "true");
-					$(".store-item[data-storeid="+storeId+"] .store-item-dimable input").removeClass('input-disabled').removeAttr("disabled");
-					$(".store-item[data-storeid="+storeId+"] .store-item-dimable select").removeClass('input-disabled').removeAttr("disabled");
-					$(".store-item[data-storeid="+storeId+"] .store-item-dimable .apply-quantity-limit").removeClass('disabled').removeAttr("disabled");
-					$(".store-item[data-storeid="+storeId+"] .store-item-dimable .vioc-checkbox").removeClass('disabled');
-					$(".store-item[data-storeid="+storeId+"] .store-item-dimable small.not-enrolled").addClass('none');
-					$(".store-item[data-storeid="+storeId+"] .store-item-dimable .store-level-dropdown").removeClass('none');
-				} else {
-					$(this).removeClass('active');
-					$(".store-item[data-storeid="+storeId+"] .store-item-dimable").addClass('dim-mid').attr('data-enrolled', "false");
-					$(".store-item[data-storeid="+storeId+"] .store-item-dimable input").addClass('input-disabled').attr("disabled", true);
-					$(".store-item[data-storeid="+storeId+"] .store-item-dimable select").addClass('input-disabled').attr("disabled", true);
-					$(".store-item[data-storeid="+storeId+"] .store-item-dimable .apply-quantity-limit").addClass('disabled').attr("disabled", true);
-					$(".store-item[data-storeid="+storeId+"] .store-item-dimable .vioc-checkbox").addClass('disabled');
-					$(".store-item[data-storeid="+storeId+"] .store-item-dimable small.not-enrolled").addClass('none');
-					$(".store-item[data-storeid="+storeId+"] .store-item-dimable .store-level-dropdown").removeClass('none');
-				}
-			});
-			getStoreProgramData.getTotals();
+			// $('.toggle-btn').each(function () {
+			// 	var enabled = $(this).attr('data-enrolled') == 'true';
+			// 	var storeId = $(this).attr('data-storeid');
+			//
+			// 	if (enabled) {
+			// 		$(this).addClass('active');
+			// 		$(".store-item[data-storeid="+storeId+"] .store-item-dimable").removeClass('dim-mid').attr('data-enrolled', "true");
+			// 		$(".store-item[data-storeid="+storeId+"] .store-item-dimable input").removeClass('input-disabled').removeAttr("disabled");
+			// 		$(".store-item[data-storeid="+storeId+"] .store-item-dimable select").removeClass('input-disabled').removeAttr("disabled");
+			// 		$(".store-item[data-storeid="+storeId+"] .store-item-dimable .apply-quantity-limit").removeClass('disabled').removeAttr("disabled");
+			// 		$(".store-item[data-storeid="+storeId+"] .store-item-dimable .vioc-checkbox").removeClass('disabled');
+			// 		$(".store-item[data-storeid="+storeId+"] .store-item-dimable small.not-enrolled").addClass('none');
+			// 		$(".store-item[data-storeid="+storeId+"] .store-item-dimable .store-level-dropdown").removeClass('none');
+			// 	} else {
+			// 		$(this).removeClass('active');
+			// 		$(".store-item[data-storeid="+storeId+"] .store-item-dimable").addClass('dim-mid').attr('data-enrolled', "false");
+			// 		$(".store-item[data-storeid="+storeId+"] .store-item-dimable input").addClass('input-disabled').attr("disabled", true);
+			// 		$(".store-item[data-storeid="+storeId+"] .store-item-dimable select").addClass('input-disabled').attr("disabled", true);
+			// 		$(".store-item[data-storeid="+storeId+"] .store-item-dimable .apply-quantity-limit").addClass('disabled').attr("disabled", true);
+			// 		$(".store-item[data-storeid="+storeId+"] .store-item-dimable .vioc-checkbox").addClass('disabled');
+			// 		$(".store-item[data-storeid="+storeId+"] .store-item-dimable small.not-enrolled").addClass('none');
+			// 		$(".store-item[data-storeid="+storeId+"] .store-item-dimable .store-level-dropdown").removeClass('none');
+			// 	}
+			// });
+			// getStoreProgramData.getTotals();
 		}
 
 		function toggleStoreRows(storeId, active)

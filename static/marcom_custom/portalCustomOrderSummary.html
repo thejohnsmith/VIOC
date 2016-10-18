@@ -1,0 +1,52 @@
+<!-- <link href="https://files.marcomcentral.app.pti.com/epsilon/static/marcom_css/orderSummary.css" rel="stylesheet" type="text/css" /> -->
+<!--
+  CURRENT CUSTOM CONTENT: Order Summary/Detail
+Actual content in
+Macrom/Custom Content/Order Summary/Detail
+
+  <style>
+  /* Hide the rest of the page and inject our custom Thank You page. */
+  #CtlCart,
+  .ButtonRowFloatR {
+    display: none;
+  }
+</style>
+<script>
+  var $j = jQuery;
+  $j('#CtlCart, .ButtonRowFloatR').html('');
+  $j('.CustomCopy').load("https://files.marcomcentral.app.pti.com/epsilon/static/marcom_custom/portalCustomOrderSummary.html", function () {
+    console.info('Load was performed.');
+  });
+</script>
+
+-->
+<style>
+  /* Hide the rest of the page and inject our custom Thank You page. */
+  #CtlCart,
+  .ButtonRowFloatR {
+    display: none;
+  }
+
+</style>
+<div class="wrapper">
+  <div class="mid-container">
+    <div class="main text-center">
+      <a id="pageAnchorFormCopy" href="#" class="hidden">pageAnchorFormCopy</a>
+      <h1>Email Added To Queue For Delivery</h1>
+      <h3>
+        <p>Thank you. Your email has been added to the queue for immediate delivery.</p>
+        <p>Your email confirmation number is
+          <span id="orderConfirmationNumber"></span>.</p>
+        <p>Your email is scheduled to deliver to
+          <span id="orderConfirmationQuantity"></span>
+          recipients.</p>
+      </h3>
+      <h4>
+        <br>
+        <a id="homePageUrl" href="home.aspx?uigroup_id=478656">[Return to Home Page]</a>
+      </h4>
+    </div>
+  </div>
+</div>
+<script src="https://files.marcomcentral.app.pti.com/epsilon/static/js/app/adhoc/CatalogController.js"></script>
+<script src="https://files.marcomcentral.app.pti.com/epsilon/static/js/app/adhoc/OrderSummaryController.js"></script>

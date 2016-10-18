@@ -25,6 +25,7 @@ var programManagementController = (function ($) {
 				controller.timeDebug("Getting store program data...");
 				controller.getStoreProgramData(function (store_data) {
 					// Trigger a filter change, which will triger a UI refresh
+					ContentPreviewController.controller.init(programManagementFilters.controller.store_ids, store_data, controller.program);
 					programManagementFilters.controller.onFilterChange(programManagementFilters.controller.store_ids);
 					controller.timeDebug("PMC Init Complete.");
 				});
@@ -69,7 +70,7 @@ var programManagementController = (function ($) {
 		},
 		highlightNavSection: function () {
 			var controller = this;
-			var target = (controller.program.isLifecycleCampaign) ? 'LIFECYCLE PROGRAMS' : 'SPECIALTY PROGRAMS';
+			var target = (controller.program.isLifecycleCampaign) ? "LIFECYCLE PROGRAMS" : "SPECIALTY PROGRAMS";
 			$("li.navBarItem a:contains('" + target + "')").addClass('navBarSelectedLinkColor').addClass('customColorOverridable').removeClass('navBarEnhancedLinkColor');
 		},
 		/** Gets a user config
@@ -83,7 +84,7 @@ var programManagementController = (function ($) {
 				return;
 			}
 			$.get(controller.apiPath + 'getUserConfigurations.jssp?userId=' + encodeURIComponent(controller.user_id) + '&programId=' + encodeURIComponent(controller.program_id), function (results) {
-				var json_results = JSON.parse(results);
+				var json_results = DoNotParseData(results);
 				controller.user_configs = json_results;
 				if (typeof callback == 'function') {
 					callback(json_results);
@@ -99,7 +100,7 @@ var programManagementController = (function ($) {
 			controller.timeDebug("Triggering getStoreProgramData API call..");
 			$.get(controller.apiPath + 'getStoreProgramData.jssp?userId=' + encodeURIComponent(controller.user_id) + '&programId=' + controller.program_id, function (results) {
 				controller.timeDebug("API call complete.");
-				var json_results = JSON.parse(results);
+				var json_results = DoNotParseData(results);
 				controller.store_data = json_results;
 				controller.getProgramData(controller.program_id, function () {
 					if (typeof callback == 'function') callback(json_results);
@@ -115,7 +116,7 @@ var programManagementController = (function ($) {
 			controller.timeDebug("Triggering getProgramData API call..");
 			$.get(controller.apiPath + 'getProgramParticipationStats.jssp?userId=' + encodeURIComponent(controller.user_id), function (results) {
 				controller.timeDebug("getProgramData API call complete!");
-				var json_results = JSON.parse(results);
+				var json_results = DoNotParseData(results);
 				//controller.refreshSelectAllButton();
 				//controller.refreshStoreRowEnrollment();
 
@@ -136,12 +137,8 @@ var programManagementController = (function ($) {
 		},
 		hideAdditionalOffersIfNeeded: function () {
 			var controller = this;
-			for (var i = 0; i < controller.program.length; i++) {
-				if (controller.program[i].id == controller.program_id) {
-					if (controller.program[i].programUsesAdtl == 0) {
-						$('.additional-offer').hide();
-					}
-				}
+			if (controller.program.programUsesAdtl == 0) {
+				$('.additional-offer').hide();
 			}
 		},
 		highlightSelectedStoreConfiguration: function () {
@@ -155,12 +152,8 @@ var programManagementController = (function ($) {
 		},
 		hideStandardOffersIfNeeded: function () {
 			var controller = this;
-			for (var i = 0; i < controller.program.length; i++) {
-				if (controller.program[i].id == controller.program_id) {
-					if (controller.program[i].programUsesOffers == 0) {
-						$('.standard-offer').hide();
-					}
-				}
+			if (controller.program.programUsesOffers == 0) {
+				$('.standard-offer').hide();
 			}
 		},
 
@@ -242,12 +235,11 @@ var programManagementController = (function ($) {
 			$.get(controller.apiPath + 'deleteConfig.jssp?userId=' + encodeURIComponent(controller.user_id) + '&configId=' + encodeURIComponent(selectedConfigId), function (results) {}).error(function (data) {
 				toastr.error('Failed to delete settings.');
 			}).done(function (data) {
-				console.warn('About to delete selectedConfig: ' + selectedConfigId);
+				// console.debug('About to delete selectedConfig: ' + selectedConfigId);
 				toastr.success('Settings deleted!');
 				if (typeof callback == 'function') {
 					$('option[value="' + selectedConfigId + '"]').remove();
-					console.warn('removing selectedConfig: ' + selectedConfigId);
-					callback();
+					console.debug('removing selectedConfig: ' + selectedConfigId);
 				}
 			});
 		},
@@ -294,6 +286,19 @@ var programManagementController = (function ($) {
 				'proof-settings-tab.mustache.html',
 				'.proof-settings-tab-template',
 				'.proof-settings-tab-section',
+				result,
+				function (template) {
+					if (++controller.templatesLoaded == 4) {
+						allTemplateLoaded()
+					} else {
+						// console.log("Loaded " + controller.templatesLoaded + " /4 templates");
+					};
+				});
+
+			controller.getMustacheTemplate(
+				'content-preview.mustache.html',
+				'.content-preview-template',
+				'.content-preview-section',
 				result,
 				function (template) {
 					if (++controller.templatesLoaded == 4) {
@@ -445,6 +450,7 @@ var programManagementController = (function ($) {
 					toastr.success('Setting changes saved!');
 					controller.getStoreProgramData(function (store_data) {
 						controller.highlightSelectedStoreConfiguration();
+						ContentPreviewController.controller.storeData = controller.store_data;
 					});
 				});
 			});
@@ -465,6 +471,7 @@ var programManagementController = (function ($) {
 					toastr.success('Setting changes saved!');
 					controller.getStoreProgramData(function (store_data) {
 						controller.highlightSelectedStoreConfiguration();
+						ContentPreviewController.controller.storeData = controller.store_data;
 					});
 				});
 			});
@@ -656,7 +663,7 @@ var programManagementController = (function ($) {
 			var controller = this;
 			var stringStoreIds = selectedStores.join(',');
 			$.get(controller.apiPath + 'setStoreConfig.jssp?userId=' + encodeURIComponent(controller.user_id) + '&configId=' + configId + '&programId=' + controller.program_id + '&storeIds=' + stringStoreIds, function (results) {
-				var json_results = JSON.parse(results);
+				var json_results = DoNotParseData(results);
 				controller.store_data = json_results;
 				if (typeof callback == 'function') callback(json_results);
 			});
@@ -679,23 +686,15 @@ var programManagementController = (function ($) {
 		},
 		showQuantityLimitTabIfNeeded: function () {
 			var controller = this;
-			for (var i = 0; i < controller.program.length; i++) {
-				if (controller.program[i].id == controller.program_id) {
-					if (controller.program[i].showQuantityLimitTab == 1) {
-						$('#programManagementTabs .optional-tab').css('visibility', 'visible');
-					}
-				}
+			if (controller.program.showQuantityLimitTab == 1) {
+				$('#programManagementTabs .optional-tab').addClass('optional-tab-is-visible');
 			}
 		},
 		hideProgramSettingsIfNeeded: function () {
 			var controller = this;
-			for (var i = 0; i < controller.program.length; i++) {
-				if (controller.program[i].id == controller.program_id) {
-					if (controller.program[i].programUsesOffers == 0 && controller.program[i].programUsesAdtl == 0) {
-						$('[aria-controls="hor_1_tab_item-1"], [aria-labelledby="hor_1_tab_item-1"]').hide();
-						window.location.hash = '#parentHorizontalTab1';
-					}
-				}
+			if (controller.program.programUsesOffers == 0 && controller.program.programUsesAdtl == 0) {
+				$('[aria-controls="hor_1_tab_item-1"], [aria-labelledby="hor_1_tab_item-1"]').hide();
+				window.location.hash = '#parentHorizontalTab1';
 			}
 		},
 		saveQuantityMeta: function (selectedStores, quantityLimit, callback) {
@@ -707,7 +706,7 @@ var programManagementController = (function ($) {
 			var quantityLimit;
 			$.get(controller.apiPath + 'setStoreMeta.jssp?userId=' + encodeURIComponent(controller.user_id) + '&storeIds=' + stringStoreIds + '&quantity_limit=' + quantityLimit, function (results) {
 				try {
-					var json_results = JSON.parse(results);
+					var json_results = DoNotParseData(results);
 					controller.store_data = json_results;
 					if (typeof callback == 'function') callback(json_results);
 				} catch (e) {
@@ -731,7 +730,7 @@ var programManagementController = (function ($) {
 			var stringStoreIds = selectedStores.join(',');
 			$.get(controller.apiPath + 'setProofPreferences.jssp?userId=' + encodeURIComponent(controller.user_id) + '&storeIds=' + stringStoreIds + '&programId=' + controller.program_id + '&' + proofType + '=' + proofVal, function (results) {
 				try {
-					var json_results = JSON.parse(results);
+					var json_results = DoNotParseData(results);
 					controller.store_data = json_results;
 					if (typeof callback == 'function') callback(json_results);
 				} catch (e) {
@@ -796,12 +795,13 @@ var programManagementController = (function ($) {
 					var targetStores = [];
 					var store_ids = programManagementFilters.controller.store_ids;
 
-					$j.each(controller.store_data, function (idx, store) {
-						if ($j.inArray(store.storeId.toString(), store_ids) > -1) {
+					$.each(controller.store_data, function (idx, store) {
+						if ($.inArray(store.storeId.toString(), store_ids) > -1) {
 							targetStores.push(store);
 						}
 					});
 					controller.buildUI(targetStores);
+					console.info('controller.storeIds', store_ids);
 				});
 			});
 		},

@@ -1,0 +1,96 @@
+<!-- <link href="https://files.marcomcentral.app.pti.com/epsilon/static_beta/marcom_css/orderSummary.css" rel="stylesheet" type="text/css" /> -->
+<!--
+  CURRENT CUSTOM CONTENT: Order Summary/Detail
+Actual content in
+Macrom/Custom Content/Order Summary/Detail
+
+  <style>
+  /* Hide the rest of the page and inject our custom Thank You page. */
+  #CtlCart,
+  .ButtonRowFloatR {
+    display: none;
+  }
+</style>
+<script>
+  var $j = jQuery;
+  $j('#CtlCart, .ButtonRowFloatR').html('');
+  $j('.CustomCopy').load("https://files.marcomcentral.app.pti.com/epsilon/static_beta/marcom_custom/portalCustomOrderSummary.html", function () {
+    console.info('Load was performed.');
+  });
+</script>
+
+-->
+<style>
+  /* Hide the rest of the page and inject our custom Thank You page. */
+  #CtlCart,
+  .ButtonRowFloatR {
+    display: none;
+  }
+
+</style>
+<div class="wrapper">
+  <div class="mid-container">
+    <div class="main text-center">
+      <a id="pageAnchorFormCopy" href="#" class="hidden">pageAnchorFormCopy</a>
+      <h1>Email Added To Queue For Delivery</h1>
+      <h3>
+        <p>Thank you. Your email has been added to the queue for immediate review.</p>
+      </h3>
+      <h4>
+        <p>Upon approval your email will be delivered.</p>
+        <br>
+      </h4>
+      <h5>
+        <div>
+          Your email confirmation number is
+          <span id="orderConfirmationNumber"></span>.
+          <br>
+          Your email is scheduled to deliver to
+          <span id="orderConfirmationQuantity"></span>
+          recipient(s).
+        </div>
+      </h5>
+      <br>
+      <a id="homePageUrl" href="home.aspx?uigroup_id=479602">Return to Home Page</a>
+    </h4>
+  </div>
+</div>
+</div>
+<script src="https://files.marcomcentral.app.pti.com/epsilon/static_beta/js/app/adhoc/CatalogController.js"></script>
+<script src="https://files.marcomcentral.app.pti.com/epsilon/static_beta/js/app/adhoc/OrderSummaryController.js"></script>
+
+
+
+<!--
+  CURRENT CUSTOM CONTENT: Versioned & Variable Form Copy
+-->
+<a id="pageAnchorFormCopy" href="#" class="hidden">pageAnchorFormCopyController</a>
+
+<script>
+(function() {
+    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+    po.src = 'https://files.marcomcentral.app.pti.com/epsilon/static_beta/js/app/adhoc/FormCopyController.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+  })();
+</script>
+
+
+
+<!--
+  CURRENT CUSTOM CONTENT: Versioned & Variable Form Copy
+-->
+<a id="pageAnchorFormCopy" href="#" class="hidden">pageAnchorFormCopyController</a>
+
+<script>
+(function() {
+    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+    po.src = 'https://files.marcomcentral.app.pti.com/epsilon/static_beta/js/app/adhoc/FormCopyController.js';
+    var s = document.getElementById('CtlFooter'); s.parentNode.insertBefore(po, s);
+  })();
+
+window.onload = function() {
+  var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+  po.src = 'https://files.marcomcentral.app.pti.com/epsilon/static_beta/js/app/adhoc/FormCopyController.js';
+  var s = document.getElementById('CtlFooter'); s.parentNode.insertBefore(po, s);
+};
+</script>

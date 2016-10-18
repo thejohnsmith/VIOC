@@ -1,0 +1,188 @@
+<!-- ****************** PORTAL CUSTOM COPY ******************
+<div id="storeDetails" class="asyncMarkup"></div>
+
+<script>
+window.onload = function () {
+  function getData() {
+  	return jQuery.get('https://files.marcomcentral.app.pti.com/epsilon/static_beta/marcom_custom/storeDetails.html').success(function (resp) {
+  		// console.log('Fires after the AJAX request succeeds');
+  		jQuery('.asyncMarkup').html(resp);
+  		StorePagesController.controller.init();
+
+  	});
+  }
+  function showDiv() {
+  	var dfd = jQuery.Deferred();
+  	dfd.done(function () {
+  		// console.log('Fires after the animation succeeds');
+  	});
+  	jQuery('.asyncMarkup').fadeIn(1000, dfd.resolve);
+  	return dfd.promise();
+  }
+  jQuery.when(getData(), showDiv())
+  	.then(function (ajaxResult) {
+  		// console.log('Fires after BOTH showDiv() AND the AJAX request succeed!');
+      StorePagesController.controller.ShowUI();
+  	});
+}
+</script>
+
+
+
+            <div class="js-content" ng-app="masterApp" ng-controller="myCtrl">
+
+              <h2>Landmark Info</h2>
+              <small class="small">Where is your store?</small>
+              <br>
+              <br>
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-item">
+                    <label class="label-text" for="storeName">
+                      Store Name
+                    </label>
+
+
+                    <input ng-model="storeName" placeholder="Tom T's 1st Store" type="text" name="storeName" id="storeName" maxlength="80">
+                  </div>
+                  <div class="form-item">
+                    <label class="label-text" for="storeDist">
+                      Distance/Direction from Major Landmark
+                    </label>
+                    <input ng-model="storeDistMiles" type="number" name="storeDist" id="storeDistMiles" maxlength="10">
+                    <small class="small">Miles</small>
+                    <select ng-model="storeDistDirection" name="display-inline" id="storeDistDirection">
+                      <option value="North">North</option>
+                      <option value="NorthEast">North-East</option>
+                      <option value="East">East</option>
+                      <option value="SouthEast">South-East</option>
+                      <option value="South">South</option>
+                      <option value="SouthWest">South-West</option>
+                      <option value="West">West</option>
+                      <option value="NorthWest">North-West</option>
+                    </select>
+                  </div>
+                  <div class="form-item">
+                    <label class="label-text" for="storeLandmark">
+                      Major Landmark
+                    </label>
+                    <input ng-model="storeLandmark" type="text" name="storeLandmark" id="storeLandmark" maxlength="200">
+                  </div>
+                  <div class="form-item">
+                    <label class="label-text" for="storeStreet">
+                      Street
+                    </label>
+                    <input ng-model="storeStreet" type="text" name="storeStreet" id="storeStreet" maxlength="200">
+                  </div>
+                  <div class="form-item">
+                    <label class="label-text" for="storeCrossStreet">
+                      Cross Street
+                    </label>
+                    <input ng-model="storeCrossStreet" type="text" name="storeCrossStreet" id="storeCrossStreet" maxlength="200">
+                  </div>
+                  <div class="form-item">
+                    <label class="label-text" for="storeNeighboring">
+                      Neighboring Business
+                    </label>
+                    <input ng-model="storeNeighboring" value="Across from" type="radio" name="storeNeighboring" id="storeNeighboringAcrossFrom">
+
+                    <label for="storeNeighboringAcrossFrom">
+                      <small class="small">Accross From</small>
+                    </label>
+                    <br>
+                    <input selected value="Next to" type="radio" name="storeNeighboring" id="storeNeighboringNextTo">
+                    <label for="storeNeighboringNextTo">
+                      <small class="small">Next To</small>
+                    </label>
+                    <input type="text" name="storeNeighboring" id="storeNeighboringBusiness" maxlength="200">
+                  </div>
+                </div>
+                <br>
+                <div class="col-md-6">
+                  <div class="box box-grey">
+                    <h2>Preview</h2>
+      <br><br>
+                    Welcome. The
+                    {{storeName}}
+                    Valvoline Instant Oil Change is located approximately
+                    {{storeDistMiles}} miles
+                      {{storeDistDirection}} of
+                      {{storeLandmark}} near the intersection of
+                      {{storeStreet}} and
+                      {{storeCrossStreet}} across from
+                      {{storeNeighboring}}.
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+
+              <script>
+                        var app = angular.module('masterApp', []);
+                  app.controller('myCtrl', function($scope) {
+                    $scope.storeName= "John";
+                  });
+              </script>
+********************** /PORTAL CUSTOM COPY ****************** -->
+
+<!-- Store Pages:
+    @file storeDetails.html
+    Beta URL:
+    https://marcomcentral.app.pti.com/Epsilon_Data_Management/Beta_Epsilon/CustomPage.aspx?uigroup_id=479602&page_id=13090
+-->
+<div class="wrapper storePages storeDetails">
+  <div class="mid-container">
+    <div class="main">
+      <section id="breadcrumbs">
+        <ul>
+          <li>
+            <a href="https://marcomcentral.app.pti.com/Epsilon_Data_Management/Beta_Epsilon/home.aspx?uigroup_id=479602" title="Home">Home</a>
+          </li>
+          <li>
+            <a href="https://marcomcentral.app.pti.com/Epsilon_Data_Management/Beta_Epsilon/CustomPage.aspx?uigroup_id=479602&page_id=12939" title="Store Pages">Store Pages</a>
+          </li>
+          <li>Store Details - Tom T's 1st Store</li>
+        </ul>
+      </section>
+    </div>
+    <div class="main">
+      <h1 class="h1 page-title">
+        <span>Store Details - Tom T's 1st Store</span>
+      </h1>
+      <div class="js-loading">
+        <div role="presentation" class="spinner"></div>
+      </div>
+
+
+        <div class="js-content container" ng-app="masterApp" ng-controller="myCtrl">
+          <div ng-include="'https://files.marcomcentral.app.pti.com/epsilon/static_beta/marcom_custom/portalCustomStoreDetailsLandmarkInfo.html'"></div>
+        </div>
+
+      </div>
+
+      <!-- /.js-content -->
+    </div>
+  </div>
+</div>
+<script>
+  window.onload = function () {
+
+    // var app = angular.module('masterApp', []);
+    // app.controller('myCtrl', function($scope) {
+    //   $scope.firstName= "John";
+    //   $scope.lastName= "Doe";
+    // });
+    // try {
+    //   typeof StorePagesController === 'object';
+    // } catch (e) {
+    //   console.error("error=" + e);
+    //   setTimeout(function () {
+    //     console.info('retry StorePagesController')
+    //     StorePagesController.controller.init();
+    //   }, 100);
+    //   if (typeof(console) != "undefined") {
+    //     console.log(e);
+    //   }
+    // }
+  };
+</script>

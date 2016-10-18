@@ -27,10 +27,8 @@ var marcomUserData = (function ($) {
 		(environment == 20917) ? 'PROD' :
 		(environment == 479602) ? 'UAT' :
 		(environment == 20951) ? 'UAT' :
+		(location.href.match(/Beta_Epsilon/)) ? 'UAT' :
 		'PROD';
-
-	// console.warn('Environment: ' + environment);
-	// console.warn('URL: ' + window.location.href);
 
 	/** PRODUCTION URLs
 	 * @kind {string} Production or User Acceptance Testing (Beta_Epsilon)
@@ -54,7 +52,7 @@ var marcomUserData = (function ($) {
 			loginPage2Url: 'login.aspx?uigroup_id=478656',
 			forgotPassPageUrl: 'forgotpassword.aspx?uigroup_id=478656',
 			accountPageUrl: 'profile.aspx?uigroup_id=478656&mode=1',
-			onDemandUrl: 'catalog.aspx?uigroup_id=478656&folder_id=1633307',
+			onDemandUrl: 'catalog.aspx?folder_id=1724903',
 			apiPath: 'https://adobe-prod-vioc.epsilon.com/jssp/vioc/',
 			apiPathLocal: 'data/',
 			marcomFilePath: 'https://files.marcomcentral.app.pti.com/epsilon/static/'
@@ -69,7 +67,7 @@ var marcomUserData = (function ($) {
 		(environment == 'UAT') ?
 		constants = {
 			kind: 'UAT',
-			homePageUrl: 'home.aspx',
+			homePageUrl: 'home.aspx?uigroup_id=479602',
 			homePageGroupUrl: 'home.aspx?uigroup_id=479602',
 			lifecyclePageUrl: 'CustomPage.aspx?uigroup_id=479602&page_id=10792',
 			specialtyPageUrl: 'CustomPage.aspx?uigroup_id=479602&page_id=10793',
@@ -82,28 +80,35 @@ var marcomUserData = (function ($) {
 			forgotPassPageUrl: 'forgotpassword.aspx?uigroup_id=479602',
 			accountPageUrl: 'profile.aspx?uigroup_id=479602&mode=1',
 			onDemandUrl: 'catalog.aspx?uigroup_id=479602&folder_id=1633307',
-			apiPath: 'https://adobe-uat-vioc.epsilon.com/jssp/vioc/',
+			apiPath: 'https://adobe-prod-vioc.epsilon.com/jssp/vioc/',
 			apiPathLocal: 'data/',
-			marcomFilePath: 'https://files.marcomcentral.app.pti.com/epsilon/static/'
+			marcomFilePath: 'https://files.marcomcentral.app.pti.com/epsilon/static_beta/'
 		} : constants;
 	return {
+		marcomUserData: this,
 		$user: user,
 		$constants: constants,
 		environmentKind: environment.kind
 	};
 })(jQuery);
 
-/* Monitor for flash messages */
-if (getParameterByName('flashSuccessMsg', window.location.href) != '') {
-	toastr.success(getParameterByName('flashSuccessMsg', window.location.href));
-}
+(function ($) {
+	/* Monitor for flash messages */
+	if (typeof getParameterByName === 'function') {
+		if (getParameterByName('flashSuccessMsg', window.location.href) != '') {
+			toastr.success(getParameterByName('flashSuccessMsg', window.location.href));
+		}
+	}
 
-/* Update the hard-coded URL's in the utility navigation. */
-if (typeof appUtilities === 'object') {
-	appUtilities.changeNavBarLink();
-}
+	if (typeof appUtilities === 'object') {
+		/* Update the hard-coded URL's in the utility navigation. */
+		appUtilities.changeNavBarLink();
+		// appUtilities.runtimeDebugging(marcomUserData);
+	}
 
-/* Run the login controller */
-if (jQuery('#homePageLanding').length >= 1) {
-	recordLogin.makeRequest();
-}
+	/* Run the login controller */
+	if ($('#homePageLanding').length >= 1 || window.location.href.indexOf(marcomUserData.$constants.homePageUrl) > -1) {
+		recordLogin.makeRequest();
+	}
+
+})(jQuery);

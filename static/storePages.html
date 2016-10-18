@@ -1,0 +1,58 @@
+<!-- ****************** PORTAL CUSTOM COPY ******************
+<div class="asyncMarkup"></div>
+<script>
+var $j = jQuery;
+	$j('.asyncMarkup').load("https://files.marcomcentral.app.pti.com/epsilon/static/marcom_custom/storePages.html", function () {
+		console.debug('Done loading storePages.html, Calling StorePagesController');
+		StorePagesController.controller.init();
+	});
+</script>
+********************** /PORTAL CUSTOM COPY ****************** -->
+
+<!-- Store Pages:
+    @file storePages.html
+    Beta URL:
+    https://marcomcentral.app.pti.com/Epsilon_Data_Management/Beta_Epsilon/CustomPage.aspx?uigroup_id=479602&page_id=10792https://marcomcentral.app.pti.com/Epsilon_Data_Management/Beta_Epsilon/CustomPage.aspx?uigroup_id=479602&page_id=12939
+-->
+<div class="wrapper" id="storeDetails">
+  <div class="mid-container">
+    <div class="main">
+      <section id="breadcrumbs">
+        <ul>
+          <li>
+            <a href="home.aspx" title="Home">Home</a>
+          </li>
+          <li>Store Pages</li>
+        </ul>
+      </section>
+    </div>
+    <div class="main">
+      <div id="parentHorizontalTab" class="lifescycle-tab">
+        <div class="js-loading">
+          <div role="presentation" class="spinner"></div>
+        </div>
+        <div class="js-content">
+          <ul class="resp-tabs-list hor_1">
+            <li>Store Details</li>
+            <li>Offers</li>
+          </ul>
+          <div class="resp-tabs-container hor_1">
+            <div class="storeDetailsTab">
+              <section class="<p>storeDetailsSection</p>">
+                <p>Store Filters</p>
+              </section>
+            </div>
+            <div class="storeOffers">
+              <section class="storeDetailsSection">
+                <p>Add Offer</p>
+              </section>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+  StorePagesController.controller.ShowUI();
+</script>

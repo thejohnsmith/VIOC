@@ -1,0 +1,390 @@
+<!-- Store Pages New Offer:
+		@file storePagesNewOffer.html
+		Beta URL:
+		https://marcomcentral.app.pti.com/Epsilon_Data_Management/Beta_Epsilon/CustomPage.aspx?uigroup_id=479602&page_id=13095
+-->
+
+<!-- ****************** PORTAL CUSTOM COPY ******************
+
+!!	 The following markup is to be copied into the Marcom Custom Copy textarea for this page	 !!
+
+<div id="storePagesNewOffer" class="asyncMarkup"></div>
+
+<script>
+window.onload = function () {
+	function getData() {
+		return jQuery.get('https://files.marcomcentral.app.pti.com/epsilon/static_beta/marcom_custom/storePagesNewOffer.html').success(function (resp) {
+			// console.log('Fires after the AJAX request succeeds');
+			jQuery('.asyncMarkup').html(resp);
+			StorePagesController.controller.init();
+			additionalOfferController.controller.init();
+		});
+	}
+	function showDiv() {
+		var dfd = jQuery.Deferred();
+		dfd.done(function () {
+			// console.log('Fires after the animation succeeds');
+		});
+		jQuery('.asyncMarkup').fadeIn(1000, dfd.resolve);
+		return dfd.promise();
+	}
+	jQuery.when(getData(), showDiv())
+		.then(function (ajaxResult) {
+			// console.log('Fires after BOTH showDiv() AND the AJAX request succeed!');
+		});
+}
+</script>
+********************** /PORTAL CUSTOM COPY ****************** -->
+
+<style>
+  .red {
+    color: #e02926;
+  }
+  .resp-tab-content {
+    margin: 0 0 15px;
+  }
+  #programManagementTabs {
+    width: 100%;
+    margin: 0 0 20px;
+    padding: 0;
+  }
+  #programManagementTabs h4 {
+    font-size: 24px;
+    font-weight: bold;
+    margin: 10px 0;
+    padding: 10px 0 0;
+    color: #e02926;
+  }
+  #programManagementTabs p {
+    margin: 0;
+    padding: 0 0 10px;
+  }
+  #programManagementTabs input {
+    max-width: 140px;
+    margin: 5px 0 15px;
+  }
+  #programManagementTabs .btn {
+    max-width: 140px;
+    margin: 5px 0 15px;
+    padding: 6px 12px;
+    color: #fff;
+    border: 1px solid #337ab7;
+    border-radius: 4px;
+    background-color: #0ea3dd;
+  }
+  #programManagementTabs input.settings-name {
+    margin: 0;
+  }
+  #programManagementTabs select {
+    width: auto;
+    min-width: 140px;
+    margin: 5px 0 15px;
+  }
+  .program-button {
+    margin: 0;
+    padding: 0;
+  }
+  .discountCodeLink {
+    font-weight: bold;
+    margin: 0;
+    padding: 0;
+    text-decoration: underline;
+  }
+  .discountCode {
+    width: 100%;
+    padding: 20px;
+    background: #eee;
+  }
+  #parentHorizontalTab table,
+  .discountCode table {
+    width: 100%;
+  }
+  #parentHorizontalTab table tr td:first-child,
+  .discountCode table tr td:first-child {
+    padding: 0 15px 10px 0;
+    text-align: right;
+    vertical-align: middle;
+  }
+  #parentHorizontalTab table tr td:nth-child(odd),
+  .discountCode table tr td:nth-child(odd) {
+    width: 40%;
+  }
+  #parentHorizontalTab table tr .adtl-offer-form-group-label {
+    width: 40% !important;
+    text-align: left !important;
+  }
+  #parentHorizontalTab table tr .adtl-offer-form-group-input {
+    width: 75% !important;
+    text-align: left !important;
+  }
+  .adtlConfigForm {
+    overflow: hidden;
+  }
+  .adtlConfigForm .settings-section {
+    width: 100%;
+    margin-bottom: 1.5em;
+  }
+  .adtlConfigForm .results-section {
+    width: 100%;
+  }
+  .adtlConfigForm .label-cell {
+    min-width: 120px;
+    padding: 0;
+  }
+  .adtlConfigForm .value-cell {
+    padding: 4px 8px;
+  }
+  #programManagementTabs .adtlConfigForm .value-cell input,
+  #programManagementTabs .adtlConfigForm .value-cell select {
+    min-width: 300px;
+    margin: 4px 0;
+  }
+  .adtlConfigForm .resp-tab-content {
+    margin-bottom: 0.6em;
+  }
+  #parentHorizontalTab {
+    margin: 0;
+    padding: 0;
+  }
+  .module table tr td:first-child {
+    padding: 0 15px 10px 0;
+    vertical-align: middle;
+  }
+  .module table tr td:nth-child(odd) {
+    width: 30%;
+  }
+  .module table {
+    width: 100%;
+  }
+  .sidebar p {
+    padding: 20px 0 10px;
+  }
+  .sidebar textarea {
+    font-size: 14px;
+    line-height: 20px;
+    padding: 10px;
+    text-align: left;
+  }
+  .resp-tab-content {
+    width: 80%;
+    margin: 0 0 20px;
+  }
+  .coupon-form {
+    float: left;
+    width: auto;
+  }
+  .coupon-form td {
+    vertical-align: sub;
+  }
+  .coupon-form td label {
+    margin-right: 1em;
+  }
+  .coupon-image {
+    float: left;
+    width: 40%;
+    padding: 0 0 3px;
+    text-align: center;
+  }
+  .coupon-form i {
+    color: red;
+  }
+
+</style>
+<div class="wrapper storePages">
+  <div class="mid-container">
+    <div class="main">
+
+      <section id="breadcrumbs">
+        <ul>
+          <li class="breadcrumbs_root">
+            <a href="home.aspx?uigroup_id=479602" title="Home">Home</a>
+          </li>
+          <li class="breadcrumbs_previous">
+            <a href="CustomPage.aspx?uigroup_id=479602&page_id=12939" title="Store Pages">Store Pages</a>
+          </li>
+          <li class="breadcrumbs_current"></li>
+        </ul>
+      </section>
+
+    </div>
+    <div class="main">
+      <h1 class="h1 page-title"></h1>
+      <div class="js-loading">
+        <div role="presentation" class="spinner"></div>
+      </div>
+      <div class="main js-content">
+        <form class="offer-form">
+          <section class="results-section">
+            <table>
+              <tbody>
+                <tr class="offer-form-tr display-inline-block">
+                  <td class="adtl-offer-form-group-label">
+                    <label>Discount Code</label>
+                  </td>
+                  <td class="adtl-offer-form-group-input">
+                    <input name="adtlCode1" class="adtlCode" type="text">
+                  </td>
+                </tr>
+                <tr class="offer-form-tr display-inline-block">
+                  <td class="adtl-offer-form-group-label">
+                    <label>Offer Type</label>
+                  </td>
+                  <td class="adtl-offer-form-group-input">
+                    <select name="adtlText1" class="adtlText selectbox">
+                      <option value="2WiperswithOilChange">2 Wipers with Oil Change</option>
+                      <option value="AirConditioningCheck">Air Conditioning Check</option>
+                      <option value="AirConditioningService">Air Conditioning Service</option>
+                      <option value="AirConditioningServiceMsg">Air Conditioning Serivce Message</option>
+                      <option value="AirFilterCabinFilter">Air Filter & Cabin Filter</option>
+                      <option value="AirFilterWipers">Air Filter & Wipers</option>
+                      <option value="AirFilterorWiperReplacement">Air Filter or Wiper Replacement</option>
+                      <option value="AirFilterCabinAirFilterWipers">Air Filter, Cabin Air Filter & Wipers</option>
+                      <option value="AllProductsandServices">All Products & Services</option>
+                      <option value="AnyOilChangeStateInspection">ANY Oil Change and State Inspection</option>
+                      <option value="AnyOilChangeTireRotation">ANY Oil Change and Tire Rotation</option>
+                      <option value="AnyOilChangeFuelSystemCleaning">Any Oil Change with Fuel System Cleaning</option>
+                      <option value="AnyOilChange5qts">Any Oil Change, 5qts</option>
+                      <option value="AutoTransFluidExchangeService">Automatic Transmission Fluid Exchange Service</option>
+                      <option value="CarWash">Car Wash</option>
+                      <option value="ConventionalOilChangeStateInspection">Conventional Oil Change with State Inspection</option>
+                      <option value="ConventionalOilChange5qts">Conventional Oil Change, 5qts.</option>
+                      <option value="CustAppreciationOilChangeSpecial">Customer Appreciation Oil Change Special</option>
+                      <option value="DieselOilChange">Diesel Oil Change</option>
+                      <option value="EachGearboxFluidExchangeService">Each Gearbox Fluid Exchange Service</option>
+                      <option value="EarlyBird10amTWT5qts">Early Bird: 10am Tues, Wed, Thurs, 5qts.</option>
+                      <option value="EarlyBirdAnyOC10amTWT5qts">Early Bird: Any OC 10am Tues, Wed, Thurs, 5qts.</option>
+                      <option value="EarnSpeedyRewardsPoints">Earn Speedy Rewards Points</option>
+                      <option value="EmissionsTest">Emissions Test</option>
+                      <option value="EntireInvoice">Entire Invoice</option>
+                      <option value="FuelSavingsPackage">Fuel Savings Package: Oil Change, Tire Rotation & Fuel System Cleaning</option>
+                      <option value="FuelSysCleaningServiceFullServiceOilChange">FUEL SYS CLEANING SERVICE with Any Full-Service Oil Change</option>
+                      <option value="FuelSystemCleaningAirFilter">Fuel System Cleaning & Air Filter</option>
+                      <option value="FuelSystemCleaningService">Fuel System Cleaning Service</option>
+                      <option value="FuelSystemCleaningOilChangeAirFilter">Fuel System Cleaning, Oil Change & Air Filter</option>
+                      <option value="FullSynthetic5qts">Full Synthetic, 5 qts.</option>
+                      <option value="FullSynthetic6qts">Full Synthetic, 6qts.</option>
+                      <option value="OilChangeAirFilter">Oil Change and Air Filter</option>
+                      <option value="Premium5qtsOrDiesel">Premium 5qts. OR Diesel</option>
+                      <option value="Premium6qtsOrDiesel">Premium 6qts. OR Diesel</option>
+                      <option value="PremiumFullServiceOilChangeFreeTireRotation">Premium Full-Service Oil Change and FREE Tire Rotation</option>
+                      <option value="PremiumOilChange5qts">Premium Oil Change, 5qts.</option>
+                      <option value="RadiatorFluidExchangeService">Radiator Fluid Exchange Service</option>
+                      <option value="RadiatorServiceAnyOilChange">Radiator Servce and ANY Oil Change</option>
+                      <option value="SelectPrevMaintenence">Selct Prev Maint: Gear, Rad, ATF, Srp, Fuel Sys, CAF, AF, Fuel Flt</option>
+                      <option value="SpeedyPoints">Speedy Points</option>
+                      <option value="SyntheticBlend5qts">Synthetic Blend, 5 qts.</option>
+                      <option value="SyntheticBlend6qts">Synthetic Blend, 6 qts.</option>
+                      <option value="TireRotationAnyOilChange">Tire Rotation and ANY Oil Change</option>
+                      <option value="TireRoationConventionalOilChange">Tire Roation and Conventional Oil Change</option>
+                      <option value="TransmissionAnyOilChange">Transmission and ANY Oil Change</option>
+                      <option value="TransRadACSerpBeltPowerSteer">Transmission, Radiator, AC, Serp Belt Replacement and Power Steering</option>
+                    </select>
+                  </td>
+                </tr>
+                <tr class="offer-form-tr display-inline-block">
+                  <td class="adtl-offer-form-group-label">
+                    <label>Value</label>
+                  </td>
+                  <td class="width-auto adtl-offer-form-group-input">
+                    <input name="adtlValue1" class="adtlValue" type="number">
+                  </td>
+                  <td class="width-auto adtl-offer-form-group-input">
+                    <select name="adtlApproach1" class="adtlApproach selectbox">
+                      <option value="DOLLAR">$ Off</option>
+                      <option value="PERCENT">% Off</option>
+                      <option value="FEE">Fee</option>
+                      <option value="NUMBER">Number</option>
+                      <option value="PRICE_POINT">Price Point</option>
+                    </select>
+                  </td>
+                </tr>
+                <tr class="offer-form-tr display-inline-block">
+                  <td class="adtl-offer-form-group-label">
+                    <label>Expiration</label>
+                    <small class="display-block">Set expiration either from load or a specific date.</small>
+                  </td>
+                  <td class="adtl-offer-form-group-input">
+                    <select class="expiration selectbox">
+                      <option value="15">Send Date Plus 15</option>
+                      <option value="30">Send Date Plus 30</option>
+                      <option value="45">Send Date Plus 45</option>
+                      <option value="60">Send Date Plus 60</option>
+                    </select>
+                  </td>
+                </tr>
+                <tr class="offer-form-tr display-inline-block">
+                  <td class="adtl-offer-form-group-label">
+                    <label>Participating Stores</label>
+                  </td>
+                  <td class="">
+                    <div class="filters-area">
+                      <div class="company filter-select select-option">
+                        <select class="selectbox"></select>
+                      </div>
+
+                      <div class="market filter-select select-option">
+                        <select class="selectbox"></select>
+                      </div>
+
+                      <div class="filter-results">
+                        <a href="#" title="filter-edit" class="filter-reset">
+                          <img src="https://files.marcomcentral.app.pti.com/epsilon/static/marcom_custom/images/edit-filter.png" alt="Edit" title="Edit" width="16">
+                        </a>
+                        <span class="filter-results-value">3</span>
+                      </div>
+                      <div>
+                        <small>
+                          <a href="#">(Select All)</a>
+                          <small></div>
+                        </div>
+                        <tr draggable="false" class="not-sortable-item filterable store-item" data-filter-storeid="1" data-storeid="1" data-enrolled="true">
+                          <td class="store-name">
+                            <input type="checkbox" name="storeid-1" value="1">Tom T's New Store 1
+                            <span class="store-number">(Store #1)</span>
+                          </td>
+                        </tr>
+                        <tr draggable="false" class="not-sortable-item filterable store-item" data-filter-storeid="2" data-storeid="2" data-enrolled="true">
+                          <td class="store-name">
+                            <input type="checkbox" name="storeid-2" value="2">Tom T's New Store 2
+                            <span class="store-number">(Store #2)</span>
+                          </td>
+                        </tr>
+                        <tr draggable="false" class="not-sortable-item filterable store-item" data-filter-storeid="3" data-storeid="3" data-enrolled="true">
+                          <td class="store-name">
+                            <input type="checkbox" name="storeid-3" value="3">Tom T's New Store 3
+                            <span class="store-number">(Store #3)</span>
+                          </td>
+                        </tr>
+                        <tr draggable="false" class="not-sortable-item filterable store-item" data-filter-storeid="4" data-storeid="4" data-enrolled="true">
+                          <td class="store-name">
+                            <input type="checkbox" name="storeid-4" value="4">Tom T's New Store 4
+                            <span class="store-number">(Store #4)</span>
+                          </td>
+                        </tr>
+                      </td>
+                    </tr>
+
+                    <tr class="offer-form-tr display-inline-block">
+                      <td>
+                        <div class="program-button">
+                          <input class="cancel-btn btn btn-primary pull-left" type="button" id="cancel" name="cancel" value="Cancel">
+                        </div>
+                      </td>
+                      <td>
+                        <div class="program-button">
+                          <input class="save-btn btn btn-primary pull-left" type="button" id="save" name="save" value="Save">
+                        </div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+
+              </section>
+
+            </form>
+
+          </div>
+
+        </div>
+      </div>
+    </div>

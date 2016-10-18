@@ -5,22 +5,29 @@
  */
 var getProgramParticipationStats = (function ($) {
 	/* Use getHashParams.js to get programId */
-	var programId = getParameterByName('programId', window.location.href);
 	var marcomFilePath = marcomUserData.$constants.marcomFilePath;
+	var apiPath = marcomUserData.$constants.apiPath;
+	var programManagementUrl = marcomUserData.$constants.programManagementUrl;
+	var externalId = marcomUserData.$user.externalId;
+	var lifecyclePageUrl = marcomUserData.$constants.lifecyclePageUrl;
+	var specialtyPageUrl = marcomUserData.$constants.specialtyPageUrl;
+	var helpPageUrl = marcomUserData.$constants.helpPageUrl;
+	var programId = getParameterByName('programId', window.location.href);
+	var programTitle = getParameterByName('programId', window.location.href);
 	var makeRequest = function () {
 
 			// Make sure there's a User ID loaded from Marcom before we Init this script.
-			if (marcomUserData.$user.externalId === '%%User.ExternalId%%' || window.location.href.indexOf(marcomUserData.$constants.helpPageUrl) > -1) {
+			if (externalId === '%%User.ExternalId%%' || window.location.href.indexOf(helpPageUrl) > -1) {
 				return false;
 			}
-			var apiPath = marcomUserData.$constants.apiPath + 'getProgramParticipationStats.jssp';
+			var fullApiPath = apiPath + 'getProgramParticipationStats.jssp';
 			$.ajax({
-				url: apiPath,
+				url: fullApiPath,
 				type: 'GET',
 				dataType: 'json',
 				processData: true,
 				data: {
-					userId: marcomUserData.$user.externalId
+					userId: externalId
 				},
 				headers: {
 					'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
@@ -45,17 +52,17 @@ var getProgramParticipationStats = (function ($) {
 				return;
 			}
 			return result.map(function (obj) {
-				var programTitle = getParameterByName('programId', window.location.href);
+
 				if (JSON.stringify(obj.id) === programId) {
 					/* Change Breadcrumb text */
-					$('.breadcrumbs_previous1 a').attr('title', 'Lifecycle Programs').attr('href', marcomUserData.$constants.lifecyclePageUrl);
+					$('.breadcrumbs_previous1 a').attr('title', 'Lifecycle Programs').attr('href', lifecyclePageUrl);
 
 					/** Update the breadcrumbs_previous text and title for Specialty Programs
 					 */
 					if (obj.isSpecialtyProgram) {
 						isSpecialtyProgram = obj.isSpecialtyProgram;
 						/* Change Breadcrumb text */
-						$('.breadcrumbs_previous1 a').text('Specialty Programs').attr('title', 'Specialty Programs').attr('href', marcomUserData.$constants.specialtyPageUrl);
+						$('.breadcrumbs_previous1 a').text('Specialty Programs').attr('title', 'Specialty Programs').attr('href', specialtyPageUrl);
 						/* Make nav item active */
 						$('.navBarItem > a').filter(function () {
 							return $(this).text() === 'SPECIALTY PROGRAMS';
@@ -79,12 +86,9 @@ var getProgramParticipationStats = (function ($) {
 		 */
 		setProgramTitle = function (programTitle) {
 			$('.h1.page-title span').text(programTitle + ' Program').show();
-			$('h1.page-title').removeClass('hidden')
-
-			var programSettingsName = getParameterByName('programId', window.location.href);
-			$('.settings-title').text(programSettingsName);
-			// customCheckAndRadioBoxes.customCheckbox();
-			return setBreadcrumbTitle(programTitle);
+			$('h1.page-title').removeClass('hidden');
+			$('.settings-title').text(programId);
+			setBreadcrumbTitle(programTitle);
 		},
 		setBreadcrumbTitle = function (programTitle) {
 			$('#breadcrumbs span').text(programTitle + ' Program');
@@ -94,7 +98,7 @@ var getProgramParticipationStats = (function ($) {
 				$.get(marcomFilePath + 'participation-dashboard.mustache.html', function (templates) {
 					var template = $(templates).filter('.participation-dashboard-template').html();
 					$('.participation-dashboard-tpl').html(Mustache.render(template, result));
-					return loadProgramData(result);
+					// return loadProgramData(result);
 				});
 			}
 		},
@@ -105,19 +109,30 @@ var getProgramParticipationStats = (function ($) {
 		 * @retrun {function} upDateProgramsDashboard
 		 */
 		loadProgramData = function (result) {
-			$.get(marcomFilePath + 'program-list.mustache.html', function (templates) {
-				var template = $(templates).filter('.program-list-template').html();
-				$('.program-select.lifecycle-program-list').html(Mustache.render(template, result));
-				// customCheckAndRadioBoxes.customCheckbox();
-				return upDateProgramsDashboard(result), setProgramTabContent();
-			});
-
-			$.get(marcomFilePath + 'specialty-program-list.mustache.html', function (templates) {
-				var template = $(templates).filter('.specialty-program-list-template').html();
-				$('.program-select.specialty-program-list').html(Mustache.render(template, result));
-				customCheckAndRadioBoxes.customCheckbox();
-				upDateProgramsDashboard(result), setProgramTabContent();
-			});
+			if ($('#programSummary .lifecycle-program-list').length) {
+				$.get(marcomFilePath + 'program-list.mustache.html', function (templates) {
+					var template = $(templates).filter('.program-list-template').html();
+					$('.program-select.lifecycle-program-list').html(Mustache.render(template, result));
+					upDateProgramsDashboard(result);
+					setProgramTabContent();
+				}).done(function (result) {
+					if (typeof customCheckAndRadioBoxes.customCheckbox === 'function') {
+						customCheckAndRadioBoxes.customCheckbox();
+					}
+				});
+			}
+			if ($('#programSummary .specialty-program-list').length) {
+				$.get(marcomFilePath + 'specialty-program-list.mustache.html', function (templates) {
+					var template = $(templates).filter('.specialty-program-list-template').html();
+					$('.program-select.specialty-program-list').html(Mustache.render(template, result));
+					upDateProgramsDashboard(result);
+					setProgramTabContent();
+				}).done(function (result) {
+					if (typeof customCheckAndRadioBoxes.customCheckbox === 'function') {
+						customCheckAndRadioBoxes.customCheckbox();
+					}
+				});
+			}
 		},
 
 		/**
@@ -140,7 +155,7 @@ var getProgramParticipationStats = (function ($) {
 			 */
 			$('.program-edit a').each(function () {
 				var programId = $(this).attr('data-programId');
-				$(this).attr('href', marcomUserData.$constants.programManagementUrl + '&programId=' + programId);
+				$(this).attr('href', programManagementUrl + '&programId=' + programId);
 			});
 
 			// Yellow Highlight
@@ -148,13 +163,6 @@ var getProgramParticipationStats = (function ($) {
 				$('.program-select .program-list li').removeClass('item-highlight');
 				$(this).addClass('item-highlight');
 			});
-
-			// Same Highlight, different, using jQueyr
-			// $('.program-select .program-list li').hover(function () {
-			// 	$(this).addClass('item-highlight');
-			// }, function () {
-			// 	$(this).removeClass('item-highlight');
-			// });
 
 			return $.each(result, function (index, obj) {
 				var $programId = $('#program-' + obj.id);

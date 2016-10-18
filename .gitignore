@@ -27,3 +27,5 @@ bower_components/
 static/.eslintrc.js
 
 static/.eslintrc.js
+.tern-project
+app.min.js
