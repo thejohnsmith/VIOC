@@ -220,6 +220,34 @@ var SiteCoreLibrary = (function () {
               });
          }
 
+         this.archiveCareer = function (careerItem, cb) {
+             jQuery.ajax({
+                 type: 'DELETE',
+                 url: 'https://vioc.d.epsilon.com/storeapi/career.ashx?archive=true',
+                 headers: {
+                     "Authorization": "Token  BE8E5CD2-61C0-4041-96DB-7A36B41643A5"
+                 },
+                 data: JSON.stringify(careerItem),
+                 dataType: "json",
+                 success: function (data) { cb(null, data); },
+                 error: function (jqXHR, textStatus, errorThrown) { cb(errorThrown, null); }
+             });
+         }
+
+         this.unarchiveCareer = function (careerItem, cb) {
+             jQuery.ajax({
+                 type: 'DELETE',
+                 url: 'https://vioc.d.epsilon.com/storeapi/career.ashx?archive=false',
+                 headers: {
+                     "Authorization": "Token  BE8E5CD2-61C0-4041-96DB-7A36B41643A5"
+                 },
+                 data: JSON.stringify(careerItem),
+                 dataType: "json",
+                 success: function (data) { cb(null, data); },
+                 error: function (jqXHR, textStatus, errorThrown) { cb(errorThrown, null); }
+             });
+         }
+
          this.deleteFeature = function(featureItem, cb)
          {
             jQuery.ajax({

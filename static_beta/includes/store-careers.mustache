@@ -102,7 +102,7 @@
                                         Link
                                     </th>
                                     <th class="table-banner-item">
-                                        Active
+                                        Status
                                     </th>
                                     <th class="table-banner-item">
                                         Edit
@@ -123,8 +123,8 @@
                                             </small>
                                         </td>
                                          <td class="list-item">
-											{{#isArchived}}<a class="archive-link" data-id="{{id}}" href="#">Unarchive</a>{{/isArchived}}
-											{{^isArchived}}<a class="archive-link" data-id="{{id}}" href="#">Archive</a>{{/isArchived}}
+											{{#isArchived}}<a class="archive-link" data-id="{{id}}" href="#">Archived</a>{{/isArchived}}
+											{{^isArchived}}<a class="archive-link" data-id="{{id}}" href="#">Active</a>{{/isArchived}}
                                         </td>
                                        <td class="list-item">
                                             <button type="button" alt="Edit Offer Details" class="editbuttoncareers icon icon-edit-bg"></button>

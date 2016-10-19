@@ -56,16 +56,18 @@ var marcomUserData = (function ($) {
 			forgotPassPageUrl: 'forgotpassword.aspx?uigroup_id=478656',
 			accountPageUrl: 'profile.aspx?uigroup_id=478656&mode=1',
 			onDemandUrl: 'catalog.aspx?uigroup_id=478656&folder_id=1724903',
-			storePagesUrl: '',
-			storeDetailsUrl: '',
-			storePagesNewOfferUrl: '',
-			storePagesEditOfferUrl: '',
+			storePagesUrl: 'CustomPage.aspx?uigroup_id=478656&page_id=13586',
+			storeDetailsUrl: 'CustomPage.aspx?uigroup_id=478656&page_id=13599',
+			storePagesNewOfferUrl: 'CustomPage.aspx?uigroup_id=478656&page_id=13597',
+			storePagesEditOfferUrl: 'CustomPage.aspx?uigroup_id=478656&page_id=13598',
 			defaultStorePhotoId: 'f6f18b71-c587-4b44-893b-eba37d1f81e7',
 			defaultStorePhotoUrl: 'https://vioc.d.epsilon.com/images/Default_store.jpg',
 			defaultManagerPhotoId: 'f6f18b71-c587-4b44-893b-eba37d1f81e7',
 			defaultManagerPhotoUrl: 'https://vioc.d.epsilon.com:443/~/media/Images/Locations/Stores/Manager Photos/Default Manager.ashx',
 			apiPath: 'https://adobe-prod-vioc.epsilon.com/jssp/vioc/',
 			apiPathLocal: 'data/',
+			includesPath: 'https://files.marcomcentral.app.pti.com/epsilon/static/includes/',
+			includesPath: 'https://files.marcomcentral.app.pti.com/epsilon/static/includes/',
 			marcomFilePath: 'https://files.marcomcentral.app.pti.com/epsilon/static/',
 			marcomCustomFilePath: 'https://files.marcomcentral.app.pti.com/epsilon/static/marcom_custom/'
 		}
@@ -108,6 +110,7 @@ var marcomUserData = (function ($) {
 				defaultManagerPhotoUrl: 'https://vioc.d.epsilon.com:443/~/media/Images/Locations/Stores/Manager Photos/Default Manager.ashx',
 				apiPath: 'https://adobe-prod-vioc.epsilon.com/jssp/vioc/',
 				apiPathLocal: 'data/',
+				includesPath: 'https://files.marcomcentral.app.pti.com/epsilon/static_beta/includes/',
 				marcomFilePath: 'https://files.marcomcentral.app.pti.com/epsilon/static_beta/',
 				marcomCustomFilePath: 'https://files.marcomcentral.app.pti.com/epsilon/static_beta/marcom_custom/'
 			}
@@ -116,6 +119,72 @@ var marcomUserData = (function ($) {
 })(jQuery);
 
 (function ($) {
+	// This is used as a precaution.
+	var $j = jQuery.noConflict();
+
+	// BACKUP 3pm
+	// if ($('[data-dynamicUrl]').length >= 1 {
+	// 	// $.each($('.productDescription'), function (index, value) {
+	// 	// 	console.log(index + ':' + $(value).text());
+	// 	// });
+	// 	$('[data-dynamicUrl]').each(function (index, value) {
+	// 		var path = marcomUserData.$constants + homePageGroupUrl;
+	// 		$(this).attr('href', $(value));
+	// 	});
+	// }
+
+	/**
+ * Having an HTML element like this where I want to pass custom options:
+ * @example
+	<div class="my-element"
+    data-options="background-color: #dadada; custom-key: custom-value;">
+	</div>
+ * @param {object} $elem
+ * @param i
+ * @param len
+ * @param option
+ * @param options
+ * @param optionsObject = {};
+ * @return {object} optionsObject
+ */
+	function readCustomOptions($elem) {
+		var i,
+			len,
+			option,
+			options,
+			optionsObject = {};
+
+		options = $elem.data('options');
+		options = (options || '').replace(/\s/g, '').split(';');
+		for (i = 0, len = options.length - 1; i < len; i++) {
+			option = options[i].split(':');
+			optionsObject[option[0]] = option[1];
+		}
+		return optionsObject;
+	}
+
+	console.log(readCustomOptions($j('.dynamicLink')));
+	//
+	// function setDynamicLink($elem) {
+	// 	var options = optionsObject;
+	// 	if ($('.dynamicLink').length >= 1 {
+	// 		readCustomOptions($('.dynamicLink'));
+	// 		var
+	// 		// $('.dynamicLink').each(function (index, value) {
+	// 		// 	var path = marcomUserData.$constants + homePageGroupUrl;
+	// 		// 	$(this).attr('href', $(value));
+	// 		// 	readCustomOptions($(this))
+	// 		// });
+	// 	}
+	//
+	// }
+
+
+	/** @example
+	 * @todo - Convert this to use a data-dynamicUrl
+	 */
+	$j('#homePageUrl').attr('href', marcomUserData.$constants.homePageGroupUrl);
+
 	/* Monitor for flash messages */
 	if (typeof getParameterByName === 'function' && typeof toastr === 'object') {
 		if (getParameterByName('flashSuccessMsg', window.location.href) != '') {

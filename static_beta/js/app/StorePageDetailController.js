@@ -440,18 +440,37 @@ var StorePageDetailController = StorePageDetailController || (function ($) {
 			// Add click handlers to the display
 			for (var key in previewMap) {
 				var name = previewMap[key];
-				$(".edit-" + name).click(function() {
-					var name = $(this).attr('class').replace("edit-", "");
-					console.log("Clicked " + name);
-					$j(".store-preview ~.form-item").addClass("none")
-					$("." + name + "-container").removeClass("none");
+				$(".edit-" + name).click(function () {
+				    var name = $(this).attr('class').replace("edit-", "");
+				    console.log("Clicked " + name);
+				    $j(".store-preview ~.form-item").addClass("none")
+				    $("." + name + "-container").removeClass("none");
+				});
+
+				$(key).blur(function (event) {
+
+				    if ($('#' + event.target.id).val() == '') {
+				        $('#' + event.target.id).val(controller.getLandmarkPlaceholder('#' + event.target.id));
+				    }
+
+				    controller.storeLandmarkDataInTokens();
+				    controller.previewMapState[event.target.id] = false;
+				    controller.refreshLandmarkPreview();
 				});
 			}
 			
 			// Update the store's landmark info.
 			siteCoreLibrary.stores[0].landmark = $(".preview-content:last").text().replace(/\s+/g, ' ').trim();
 		},
-		
+
+		storeDistMilesValid : false,
+		storeDistDirectionValid : false,
+	    storeLandmarkValid : false,
+	    storeStreetValid : false,
+	    storeCrossStreetValid : false,
+	    storeNeighboringTypeValid: false,
+	    storeNeighboringValid : false,
+
 		getLandmarkDataFromTokens: function()
 		{
 			// Parse Token #2
@@ -462,22 +481,114 @@ var StorePageDetailController = StorePageDetailController || (function ($) {
 				// Check if the 3rd+ element contains a cardinal direction
 					// Example: var element3plus = token1.splice(2,99).toLowerCase();
 					// If so, set the value of $('#storeDistDirection').val()
-					// If not, show an error and set $('#storeDistDirection').val() to "north";
+		    // If not, show an error and set $('#storeDistDirection').val() to "north";
+
+		    if (siteCoreLibrary.stores[0].landmarkToken2 != '') {
+
+		        var tokentwo = siteCoreLibrary.stores[0].landmarkToken2.split(' ');
+
+		        if (tokentwo.length > 1) {
+		            if ($.isNumeric(tokentwo[0]) == true) {
+		                $('#storeDistMiles').val(tokentwo[0]);
+		                controller.storeDistMilesValid = true;
+		            }
+		            else {
+		                $('#storeDistMiles').val('0');
+		                controller.storeDistMilesValid = false;
+		            }
+		        }
+		        else {
+		            controller.storeDistMilesValid = false;
+		        }
+
+		        if (tokentwo.length > 2) {
+		            if (tokentwo[2].toLowerCase() == 'north' ||
+                        tokentwo[2].toLowerCase() == 'south' ||
+                        tokentwo[2].toLowerCase() == 'east' ||
+                        tokentwo[2].toLowerCase() == 'west' ||
+                        tokentwo[2].toLowerCase() == 'northwest' ||
+                        tokentwo[2].toLowerCase() == 'northeast' ||
+                        tokentwo[2].toLowerCase() == 'southwest' ||
+                        tokentwo[2].toLowerCase() == 'southeast' ||
+                        tokentwo[2].toLowerCase() == 'north-west' ||
+                        tokentwo[2].toLowerCase() == 'north-east' ||
+                        tokentwo[2].toLowerCase() == 'south-west' ||
+                        tokentwo[2].toLowerCase() == 'south-east') {
+
+		                tokentwo[2] = tokentwo[2].replace('-', '');
+
+		                $('#storeDistDirection').val(tokentwo[2]);
+		                controller.storeDistDirectionValid = true;
+		            }
+		            else {
+		                $('#storeDistDirection').val('north');
+		                controller.storeDistDirectionValid = true;
+		            }
+		        }
+		    }
+		    else {
+		        controller.storeDistMilesValid = false;
+		    }
 
 			// Parse Token #3 (Column D)
 				// Check if token 3 is empty
 					// If so, show an error and set $('#storeLandmark').val() to ""
-					// If not, fill $('#storeLandmark').val() with token 3 
+		    // If not, fill $('#storeLandmark').val() with token 3 
+
+		    if (siteCoreLibrary.stores[0].landmarkToken3 === '') {
+		        $('#storeLandmark').val('');
+		        controller.storeLandmarkValid = false;
+		    }
+		    else {
+		        $('#storeLandmark').val(siteCoreLibrary.stores[0].landmarkToken3);
+
+		        if (siteCoreLibrary.stores[0].landmarkToken3 != controller.getLandmarkPlaceholder('#storeLandmark')) {
+		            controller.storeLandmarkValid = true;
+		        }
+		        else {
+		            controller.storeLandmarkValid = false;
+		        }
+		    }
 					
 			// Parse Token #4 (Column E)
 				// Check if token 4 is empty
 					// If so, show an error and set $('#storeStreet').val() to ""
-					// If not, fill $('#storeStreet').val() with token 4
+		    // If not, fill $('#storeStreet').val() with token 4
+
+		    if (siteCoreLibrary.stores[0].landmarkToken4 === '') {
+		        $('#storeStreet').val('');
+		        controller.storeStreetValid = false;
+		    }
+		    else {
+		        $('#storeStreet').val(siteCoreLibrary.stores[0].landmarkToken4);
+
+		        if (siteCoreLibrary.stores[0].landmarkToken4 != controller.getLandmarkPlaceholder('#storeStreet')) {
+		            controller.storeStreetValid = true;
+		        }
+		        else {
+		            controller.storeStreetValid = false;
+		        }
+		    }
 				
 			// Parse Token #5 (Column F)
 				// Check if token 5 is empty
 					// If so, show an error and set $('#storeCrossStreet').val() to ""
-					// If not, fill $('#storeCrossStreet').val() with token 5
+		    // If not, fill $('#storeCrossStreet').val() with token 5
+
+		    if (siteCoreLibrary.stores[0].landmarkToken5 === '') {
+		        $('#storeCrossStreet').val('');
+		        controller.storeCrossStreetValid = false;
+		    }
+		    else {
+		        $('#storeCrossStreet').val(siteCoreLibrary.stores[0].landmarkToken5);
+
+		        if (siteCoreLibrary.stores[0].landmarkToken5 != controller.getLandmarkPlaceholder('#storeCrossStreet')) {
+		            controller.storeCrossStreetValid = true;
+		        }
+		        else {
+		            controller.storeCrossStreetValid = false;
+		        }
+		    }
 
 			// Parse Toke #6 (Column G)
 				// Split the token into elements
@@ -489,30 +600,152 @@ var StorePageDetailController = StorePageDetailController || (function ($) {
 					// Otherwise:
 						// If not, show an error and set $('#storeNeighboringType').val() to "across from";
 				
-				// Combine elements 3+ into a string concateted by a space.
-				// Is it empty?
-					// If so, show an error and set $('#storeNeighboring').val() to ""
-					// If not, fill $('#storeNeighboring').val() with the value
-			
-		}
+		    if (siteCoreLibrary.stores[0].landmarkToken6 != '') {
+		        var tokensix = siteCoreLibrary.stores[0].landmarkToken6.split(' ');
+
+		        if (tokensix.length > 0) {
+
+		            if (tokensix[0] === 'next' ||
+                        tokensix[0] === 'across') {
+
+		                if (tokensix.length > 1) {
+		                    var combined = tokensix[0] + ' ' + tokensix[1];
+
+		                    if (combined == 'across from') {
+		                        $("input[name='storeNeighboringType']:first").prop('checked', 'true');
+		                    }
+		                    else {
+		                        $("input[name='storeNeighboringType']:nth-child(1)").prop('checked', 'true');
+		                    }
+
+		                    controller.storeNeighboringTypeValid = true;
+		                }
+
+		                // Combine elements 3+ into a string concateted by a space.
+		                // Is it empty?
+		                // If so, show an error and set $('#storeNeighboring').val() to ""
+		                // If not, fill $('#storeNeighboring').val() with the value
+
+		                if (tokensix.length > 2) {
+
+		                    var finaltokens = '';
+
+		                    for (var j = 2; j < tokensix.length; j++) {
+		                        finaltokens += tokensix[j];
+
+		                        if (tokensix.length - 1 > j) {
+		                            finaltokens += ' ';
+		                        }
+		                    }
+
+		                    $('#storeNeighboring').val(finaltokens);
+
+		                    if (finaltokens != controller.getLandmarkPlaceholder('#storeNeighboring') &&
+                                finaltokens != '') {
+		                        controller.storeNeighboringValid = true;
+		                    }
+		                    else {
+		                        controller.storeNeighboringValid = false;
+		                    }
+		                }
+		                else {
+
+		                    var finaltokens = '';
+
+		                    for (var j = 0; j < tokensix.length; j++) {
+		                        finaltokens += tokensix[j];
+
+		                        if (tokensix.length - 1 > j) {
+		                            finaltokens += ' ';
+		                        }
+		                    }
+
+		                    $('#storeNeighboring').val(finaltokens);
+
+		                    if (finaltokens != controller.getLandmarkPlaceholder('#storeNeighboring') &&
+                                finaltokens != '') {
+		                        controller.storeNeighboringValid = true;
+		                    }
+		                    else {
+		                        controller.storeNeighboringValid = false;
+		                    }
+		                }
+		            }
+		            else {
+
+		                var finaltokens = '';
+
+		                for (var j = 0; j < tokensix.length; j++) {
+		                    finaltokens += tokensix[j];
+
+		                    if (tokensix.length - 1 > j) {
+		                        finaltokens += ' ';
+		                    }
+		                }
+
+		                $('#storeNeighboring').val(finaltokens);
+		                controller.storeNeighboringTypeValid = false;
+
+		                if (finaltokens != '') {
+		                    controller.storeNeighboringValid = true;
+		                }
+		                else {
+		                    controller.storeNeighboringValid = false;
+		                }
+		            }
+		        }
+		        else {
+		            controller.storeNeighboringTypeValid = false;
+		            controller.storeNeighboringValid = false;
+		        }
+		    }
+		},
 		
 		storeLandmarkDataInTokens: function() 
 		{
+		 
+
+		    // now save stuff
+            ////////////////////////////////////////////////////////////
+
 			// :TODO: Refactor and store back in semi-normalized fashion
-			
-			/*
-				Specifically, create each token by concatenating the various inputs in different ways.
+		
+			// Specifically, create each token by concatenating the various inputs in different ways.
 				
-				e.g. landmarkToken1 = $('#storeDistMiles').val() + " miles " + $('#storeDistDirection').val();
+		    // e.g. landmarkToken1 = $('#storeDistMiles').val() + " miles " + $('#storeDistDirection').val();
 			
-			siteCoreLibrary.stores[0].landmarkToken1 = $('#storeDistMiles').val();
-			siteCoreLibrary.stores[0].landmarkToken2 = $('#storeDistDirection').val();
+			//siteCoreLibrary.stores[0].landmarkToken1 = $('#storeDistMiles').val();
+
+		    var token2 = $('#storeDistMiles').val();
+
+		    if (token2 > 1) {
+		        token2 += ' miles ';
+		    }
+		    else {
+		        token2 += " mile ";
+		    }
+
+		    token2 += $('#storeDistDirection').val();
+
+		    siteCoreLibrary.stores[0].landmarkToken2 = token2;
+
 			siteCoreLibrary.stores[0].landmarkToken3 = $('#storeLandmark').val();
 			siteCoreLibrary.stores[0].landmarkToken4 = $('#storeStreet').val();
 			siteCoreLibrary.stores[0].landmarkToken5 = $('#storeCrossStreet').val();
-			siteCoreLibrary.stores[0].landmarkToken6 = $("input[name='storeNeighboringType']:checked").val();
-			*/
-		}
+
+			var token6 = '';
+
+			if ($('input[name="storeNeighboringType"]:checked').val() == true) {
+			    token6 += "across from ";
+			}
+			else {
+			    token6 += 'next to ';
+			}
+
+			token6 += $('#storeNeighboring').val();
+
+			siteCoreLibrary.stores[0].landmarkToken6 = token6;
+		},
 		
 		initCharacterLimits: function() {
 			$('.characterLimitInput').each(function () {
@@ -658,6 +891,28 @@ var StorePageDetailController = StorePageDetailController || (function ($) {
 		},
 		
 		onSave: function () {
+
+		    // landmark
+
+		    /*storeDistMilesValid : false,
+		    storeDistDirectionValid : false,
+		    storeLandmarkValid : false,
+		    storeStreetValid : false,
+		    storeCrossStreetValid : false,
+		    storeNeighboringTypeValid: false,
+		    storeNeighboringValid : false,*/
+
+		    if (controller.storeDistMilesValid == false ||
+                controller.storeDistDirectionValid == false ||
+                controller.storeLandmarkValid == false ||
+                controller.storeStreetValid == false ||
+                controller.storeCrossStreetValid ==  false ||
+                controller.storeNeighboringTypeValid == false ||
+                controller.storeNeighboringValid == false) {
+
+		        toastr.error("Unable to save store, you need to correct your landmark information before saving!");
+		        return;
+		    }
 
             // store image
 

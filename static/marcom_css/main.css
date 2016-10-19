@@ -6119,5 +6119,5 @@ textarea.input-group-sm>.form-control, textarea.input-group-sm>.input-group-addo
 
 /* Hide the nav text by default until recordLogin.js enables it.  Prevents users from seeing nav items we will hide */
 .navBarEnhanced li a {
-	opacity' : 0
+	'opacity' : 0
 }

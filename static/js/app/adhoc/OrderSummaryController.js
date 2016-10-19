@@ -44,7 +44,6 @@ OrderSummaryController = (function ($) {
 
 			// Show the appropriate UI
 			if (getParameterByName("new") == 1) {
-
 				$('.thanky-msg').html($('.thanky-msg').html().replace("%%User.FirstName%%",marcomUserData.$user.firstName));
 				$('.thanky-msg').show();
 				$("#homePageUrl").attr('href', marcomUserData.$constants.homePageUrl);

@@ -7,11 +7,11 @@
     <div class="form-item profile-photo">
       <div class="store-manager-photo">
         <!-- To crop the image with a circle, make sure to update the width and height in the inline styles. -->
-        <img class="img-circle" id="manager-photo-item" style="width: 160px; height: 160px;" src="https://files.marcomcentral.app.pti.com/epsilon/static/images/ico-profile-default.png" alt="Default picture">
+        <img class="img-circle" id="manager-photo-item" style="display: block; max-width:160px; max-height:160px; width: auto; height: auto; margin-left: auto; margin-right: auto" src="https://files.marcomcentral.app.pti.com/epsilon/static_beta/images/ico-profile-default.png" alt="Default picture">
       </div>
 
       <!--  MUST BE WRAPED IN UNIQUE FORM -->
-        <form></form>
+		<form></form> <!-- Marcom kills the first form tag.  Here is our sacrifice unto you. -->
         <form class="form-controls" id="uploader_form_3" action="">
             <label class="btn btn-primary btn-sm btn-file">
                 <span class="btn-file-text">Upload New Photo</span>
@@ -19,12 +19,10 @@
                 <input class="none" type="hidden" name="ImageType" id="imagetype" value="store" />
                 <input id="newmanagerimage" type="file" name="file" class="none btn-file-input">
             </label>
-        </form>
-        <form class="form-controls" id="uploader_form_4" action="" name="defaultimageform">
-            <label class="btn btn-primary btn-sm btn-file">
-                <span class="btn-file-text">Restore Default</span>
-                <input type="file" class="none btn-file-input">
-            </label>
+			<label class="btn btn-primary btn-sm btn-file btn-manager btn-restore-default">
+				<span class="btn-file-text">Restore Default</span>
+				<input type="button" class="none">
+			</label>
         </form>
     </div>
   </div>

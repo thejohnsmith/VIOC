@@ -21,7 +21,7 @@
             {{#storeName}}{{storeName}}{{/storeName}}
             Valvoline Instant Oil Change is located approximately
             {{storeDistMiles}}
-            Miles
+            miles
             {{storeDistDirection}}
             of
             {{storeLandmark}}
@@ -50,19 +50,19 @@
         <label class="label-text" for="storeDist">
           Distance/Direction from Major Landmark
         </label>
-        <input class="col-sm-2 width-auto input-number input-number-5-digit" value="1337" type="number" name="storeDist" id="storeDistMiles" data-maxlength="10">
+        <input class="col-sm-2 width-auto input-number input-number-5-digit" value="" type="number" name="storeDist" id="storeDistMiles" data-maxlength="10">
         <div class="col-sm-2" style="width: auto;padding: 8px 1em;text-align: center;display: inline-block;">
           <small class="small">Miles</small>
         </div>
         <select class="col-sm-4 width-auto display-inline-block" name="storeDist" id="storeDistDirection">
-          <option value="North">North</option>
-          <option value="North-East">North-East</option>
-          <option value="East">East</option>
-          <option value="South-East">South-East</option>
-          <option value="South">South</option>
-          <option value="South-West">South-West</option>
-          <option value="West">West</option>
-          <option value="North-West">North-West</option>
+            <option value="east">east</option>
+            <option value="north">north</option>
+            <option value="northeast">northeast</option>
+            <option value="northwest">northwest</option>
+            <option value="south">south</option>
+            <option value="southeast">southeast</option>
+            <option value="southwest">southwest</option>
+            <option value="west">west</option>
         </select>
       </div>
       <div class="storeLandmark-container none clearfix form-item">

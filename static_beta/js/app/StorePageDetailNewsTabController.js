@@ -10,7 +10,8 @@ var StorePageDetailNewsController = (function ($) {
 	    isAdd: false,
 	    idEditing: null,
 	    savenewStorePromoImageId: null,
-        savenewStorePromoImageUrl: null,
+	    savenewStorePromoImageUrl: null,
+	    showAll: false,
 		
 		// None
 
@@ -30,6 +31,14 @@ var StorePageDetailNewsController = (function ($) {
 		populateUI: function(cb) {
 		    // Build the HTML here, without event handling
 		    siteCoreLibrary.retrieveStoreNews([siteCoreLibrary.stores[0].storeNumber], function (news) {
+
+                if (controller.showAll == false) {
+                    for (var i = 0; i < news.length; i++) {
+                        if (false == moment().isBetween(news[i].postOnDate, news[i].removeOnDate)) {
+                            news.splice(i, 1);
+                        }
+                    }
+                }
 
 		        var promoarray = [];
 		        var eventarray = [];
@@ -138,6 +147,14 @@ var StorePageDetailNewsController = (function ($) {
 
 		    $('#removegraphicbutton').unbind().click(function () {
 		        controller.onRemoveGraphicButton();
+		    });
+
+		    $('#linkshowactiveonly').unbind().click(function () {
+		        controller.OnShowActiveOnly();
+		    });
+
+		    $('#linkshowall').unbind().click(function () {
+		        controller.OnShowAll();
 		    });
 
 		    $('#newimagenews').unbind().change(function () { $('#uploader_form_newsimage_1').submit(); });
@@ -335,7 +352,31 @@ var StorePageDetailNewsController = (function ($) {
 
 		onButtonCancelNews() {
 		    window.location.href = marcomUserData.$constants.storePagesUrl;
+		},
+
+		OnShowActiveOnly() {
+		    $('#linkshowall').show();
+		    $('#linkshowactiveonly').hide();
+
+		    controller.showAll = false;
+
+		    controller.populateUI(function () {
+		        controller.attachEventListeners();
+		    });
+		},
+
+		OnShowAll() {
+
+		    $('#linkshowall').hide();
+		    $('#linkshowactiveonly').show();
+
+		    controller.showAll = true;
+
+		    controller.populateUI(function () {
+		        controller.attachEventListeners();
+		    });
 		}
+  
 	};
 
 	return {

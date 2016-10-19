@@ -260,27 +260,32 @@ var StorePageDetailCareersTabController = (function ($) {
 			// Find the career 
 			var career = null;
 			var careerIndex = null;
-			$.each(siteCoreLibrary.stores[0].careers, function(i, c) {
-				if (c.id == careerId)
-					career = c;
-					careerIndex = i;
-			} );
-			
-			if (career != null)
-			{
-				if (career.isArchived)
-				{
-					// :TODO: Do a PUT call
-				} else 
-				{
-					// :TODO: Do a DELETE call 
-				}
-				
-				siteCoreLibrary.stores[0].careers[careerIndex].isArchived = (!career.isArchived);
-				controller.populateUI(function() {
-					controller.attachEventListeners();
-				});
-			}
+			siteCoreLibrary.retrieveStoreCareers([siteCoreLibrary.stores[0].storeNumber], function (careers) {
+			    $.each(careers, function (i, c) {
+			        if (c.id == careerId)
+			            career = c;
+			        careerIndex = i;
+			    });
+
+			    if (career != null) {
+			        if (career.isArchived) {
+			            career.isArchived = false;
+			            siteCoreLibrary.unarchiveCareer(career, function (err, data) {
+			                //siteCoreLibrary.stores[0].careers[careerIndex].isArchived = (!career.isArchived);
+			                controller.populateUI(function () {
+			                    controller.attachEventListeners();
+			                });
+			            });
+			        } else {
+			            career.isArchived = true;
+			            siteCoreLibrary.archiveCareer(career, function (err, data) {
+			                controller.populateUI(function () {
+			                    controller.attachEventListeners();
+			                });
+			            });
+			        }
+			    }
+			});
 		}
 	};
 

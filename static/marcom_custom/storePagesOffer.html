@@ -13,11 +13,10 @@
 <script>
 window.onload = function () {
 	function getData() {
-		return jQuery.get('https://files.marcomcentral.app.pti.com/epsilon/static_beta/marcom_custom/storePagesNewOffer.html').success(function (resp) {
+		return jQuery.get('https://files.marcomcentral.app.pti.com/epsilon/static_beta/marcom_custom/storePagesOffer.html').success(function (resp) {
 			// console.log('Fires after the AJAX request succeeds');
 			jQuery('.asyncMarkup').html(resp);
-			StorePagesController.controller.init();
-			additionalOfferController.controller.init();
+			OfferPageController.controller.init();
 		});
 	}
 	function showDiv() {
@@ -234,8 +233,7 @@ window.onload = function () {
 	margin-top: 6px;
 }
 </style>
-<script src="https://files.marcomcentral.app.pti.com/epsilon/static_beta/js/app/OfferPageController.js"></script>
-<script src="https://adobe-prod-vioc.epsilon.com/jssp/vioc/siteCoreLibrary.jssp"></script>
+
 <div class="wrapper storePages">
   <div class="mid-container">
     <div class="main">
@@ -245,7 +243,7 @@ window.onload = function () {
             <a href="/" title="Home">Home</a>
           </li>
           <li class="breadcrumbs_previous">
-            <a href="/" title="Store Pages">Store Pages</a>
+            <a title="Store Pages">Store Pages</a>
           </li>
           <li class="breadcrumbs_current"></li>
         </ul>

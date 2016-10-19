@@ -119,16 +119,63 @@ var marcomUserData = (function ($) {
 	// This is used as a precaution.
 	var $j = jQuery.noConflict();
 
-	if ($j('.dynamicLink').length >= 1){
-		$j('.dynamicLink').each(function (index, value) {
-			var url = $j(this).data('dynamicUrl');
-			console.info('url is: ',url);
-			var path = marcomUserData.$jconstants[url];
-			$j(this).attr('href', path);
-			console.log(index + ':' + $j(value).text());
-			return value;
-		});
+	// BACKUP 3pm
+	// if ($('[data-dynamicUrl]').length >= 1 {
+	// 	// $.each($('.productDescription'), function (index, value) {
+	// 	// 	console.log(index + ':' + $(value).text());
+	// 	// });
+	// 	$('[data-dynamicUrl]').each(function (index, value) {
+	// 		var path = marcomUserData.$constants + homePageGroupUrl;
+	// 		$(this).attr('href', $(value));
+	// 	});
+	// }
+
+	/**
+ * Having an HTML element like this where I want to pass custom options:
+ * @example
+	<div class="my-element"
+    data-options="background-color: #dadada; custom-key: custom-value;">
+	</div>
+ * @param {object} $elem
+ * @param i
+ * @param len
+ * @param option
+ * @param options
+ * @param optionsObject = {};
+ * @return {object} optionsObject
+ */
+	function readCustomOptions($elem) {
+		var i,
+			len,
+			option,
+			options,
+			optionsObject = {};
+
+		options = $elem.data('options');
+		options = (options || '').replace(/\s/g, '').split(';');
+		for (i = 0, len = options.length - 1; i < len; i++) {
+			option = options[i].split(':');
+			optionsObject[option[0]] = option[1];
+		}
+		return optionsObject;
 	}
+
+	console.log(readCustomOptions($j('.dynamicLink')));
+	//
+	// function setDynamicLink($elem) {
+	// 	var options = optionsObject;
+	// 	if ($('.dynamicLink').length >= 1 {
+	// 		readCustomOptions($('.dynamicLink'));
+	// 		var
+	// 		// $('.dynamicLink').each(function (index, value) {
+	// 		// 	var path = marcomUserData.$constants + homePageGroupUrl;
+	// 		// 	$(this).attr('href', $(value));
+	// 		// 	readCustomOptions($(this))
+	// 		// });
+	// 	}
+	//
+	// }
+
 
 	/** @example
 	 * @todo - Convert this to use a data-dynamicUrl
@@ -150,10 +197,8 @@ var marcomUserData = (function ($) {
 		}
 	}
 
-	/* Run the login controller */
-	if ($('#homePageLanding').length >= 1 || window.location.href.indexOf(marcomUserData.$constants.homePageUrl) > -1) {
-		recordLogin.makeRequest();
-	}
+	/* Record the user's login and possibly hide the reports tab */
+	recordLogin.makeRequest();
 
 	return $debug;
 })(jQuery);

@@ -1,13 +1,17 @@
-<!-- Bootstrap V3.3.7 - Latest compiled and minified CSS -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<!-- Store Details:
+    @file storeDetails.html
+    Beta URL:
+    https://marcomcentral.app.pti.com/Epsilon_Data_Management/Beta_Epsilon/CustomPage.aspx?uigroup_id=479602&page_id=13090
+-->
 
-<link  rel="stylesheet" href="https://files.marcomcentral.app.pti.com/epsilon/static/marcom_css/storePages.css">
+<!-- ****************** Attn. The following is Marcom PORTAL CUSTOM COPY ******************
+!!   The following markup is to be COPIED and kept in sync with the Marcom Custom Copy textarea for this page   !!
 
+<link href="https://files.marcomcentral.app.pti.com/epsilon/static_beta/marcom_css/storePages.css" rel="stylesheet" type="text/css">
 <div id="storeDetails" class="asyncMarkup"></div>
-
 <script>
 window.onload = function () {
-	var marcomCustomFilePath = marcomUserData.$constants.marcomCustomFilePath || 'https://files.marcomcentral.app.pti.com/epsilon/static/marcom_custom/';
+	var marcomCustomFilePath = marcomUserData.$constants.marcomCustomFilePath || 'https://files.marcomcentral.app.pti.com/epsilon/static_beta/marcom_custom/';
 
 	function getData() {
 		return jQuery.get(marcomCustomFilePath + 'storeDetails.html').success(function (resp) {
@@ -29,3 +33,162 @@ window.onload = function () {
 	});
 }
 </script>
+********************** /PORTAL CUSTOM COPY ****************** -->
+
+<div class="container-fluid storePages storeDetails">
+  <div class="mid-container">
+    <div class="main">
+      <section id="breadcrumbs">
+        <ul>
+          <li>
+            <a href="https://marcomcentral.app.pti.com/Epsilon_Data_Management/Beta_Epsilon/home.aspx?uigroup_id=479602" title="Home">Home</a>
+          </li>
+          <li>
+            <a href="https://marcomcentral.app.pti.com/Epsilon_Data_Management/Beta_Epsilon/CustomPage.aspx?uigroup_id=479602&page_id=12939" title="Store Pages">Store Pages</a>
+          </li>
+          <li class="breadcrumb-current">Loading...</li>
+        </ul>
+      </section>
+    </div>
+    <div class="main">
+      <h1 class="h1 page-title">
+        <span>Loading...</span>
+      </h1>
+      <div class="js-loading">
+        <div role="presentation" class="spinner"></div>
+      </div>
+
+      <div class="js-content clearfix">
+
+        <!-- tabs left -->
+        <div class="tabbable tabs-left">
+          <ul class="nav nav-tabs">
+            <li class="active">
+              <a href="#tab-details" data-toggle="tab">Details</a>
+            </li>
+            <li>
+              <a href="#tab-features" data-toggle="tab">Features</a>
+            </li>
+            <li>
+              <a href="#tab-careers" data-toggle="tab">Careers</a>
+            </li>
+            <li>
+              <a href="#tab-news" data-toggle="tab">Promotions/News/Events</a>
+            </li>
+          </ul>
+          <div class="tab-content">
+            <!-- Dropzone page element
+            @description .dropzone items are populated from a template match-paired name/class.
+            @example .dropzone-basic-details => includes/store-basic-details.mustach
+            @controller StorePageDetailController.js
+            @paths
+              Beta: static_beta/includes/[NAME].mustach
+              Prod: (TBD)
+            @param {class} .active, shows the tab-pane and is controlled using Bootstrap 3.x.x tabs.
+            @param {class} .dropzone-pane Container
+            @param {class} .dropzone-row  Row
+            @param {class} .dropzone-col  Column
+            @param {class} .dropzone      Element
+            @order: (TBD)
+                Basic Details   Landmark Info
+                Store Photo     Manager Photo
+                Closed On       Services
+                Communities Served
+                Social
+            @samples
+              Beta: CustomPage.aspx?uigroup_id=479602&page_id=13090&storeId=1&storeNumber=501
+              Prod: (TBD)
+            -->
+            <!-- #tab-details -->
+            <div class="tab-pane active dropzone-pane" id="tab-details">
+              <div class="clearfix row dropzone-row">
+                <div class="col-md-6 dropzone-col">
+
+                  <!-- details  -->
+                  <div class="dropzone dropzone-basic-details"></div>
+
+                </div>
+                <div class="col-md-3 dropzone-col">
+
+                  <!-- photo store  -->
+                  <div class="dropzone dropzone-photo"></div>
+
+                </div>
+                <div class="col-md-3 dropzone-col">
+
+                  <!-- photo manager -->
+                  <div class="text-centered dropzone dropzone-manager-photo"></div>
+
+                </div>
+              </div>
+              <div class="clearfix row dropzone-row">
+                <div class="col-md-6 dropzone-col">
+
+                  <!-- landmark  -->
+                  <div class="dropzone dropzone-landmark-info"></div>
+
+                </div>
+                <div class="col-md-6 dropzone-col">
+
+                  <!-- communities served  -->
+                  <div class="dropzone dropzone-communities-served"></div>
+
+                </div>
+              </div>
+              <div class="clearfix row dropzone-row">
+                <div class="col-md-6 dropzone-col">
+
+                  <!-- closed on / holidays  -->
+                  <div class="dropzone dropzone-holidays"></div>
+	
+				  <br>
+				  
+                  <!-- social -->
+                  <div class="dropzone dropzone-social"></div>
+                </div>
+                <div class="col-md-6 dropzone-col">
+
+                  <!-- services  -->
+                  <div class="dropzone dropzone-services"></div>
+
+                </div>
+              </div>
+              <!-- BUTTON Save -->
+              <div class="form-controls">
+                <hr>
+                <div class="clearfix form-item">
+                  <!-- BUTTON Save -->
+                  <button class="btn-save btn btn-primary btn-lg display-inline" name="saveDetails" type="button">
+                    Save
+                  </button>
+                    <button type="button" class="btn btn-lg btn-primary display-inline" id="buttoncancel">Cancel</button> 
+                </div>
+              </div>
+
+            </div>
+
+            <!-- #features -->
+            <div class="tab-pane dropzone-pane" id="tab-features">
+              <!-- features -->
+              <div class="dropzone dropzone-features"></div>
+            </div>
+
+            <!-- #careers -->
+            <div class="tab-pane dropzone-pane" id="tab-careers">
+              <!-- careers -->
+              <div class="dropzone dropzone-careers"></div>
+            </div>
+
+            <!-- #news -->
+            <div class="tab-pane dropzone-pane" id="tab-news">
+              <!-- news -->
+              <div class="dropzone dropzone-news-events-promotions"></div>
+            </div>
+          </div>
+          <!-- /tabs -->
+        </div>
+      </div>
+      <!-- /clearfix row -->
+    </div>
+  </div>
+</div>

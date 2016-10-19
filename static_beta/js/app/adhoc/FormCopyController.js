@@ -264,6 +264,10 @@ FormCopyController = (function ($) {
 })(jQuery);
 // Only execute this controller on the addToCart page.
 if (window.location.href.indexOf(pageKey) > -1) {
-	FormCopyController.controller.init();
+	if (!document.FormCopyControllerLoaded) 
+	{
+		document.FormCopyControllerLoaded = true;
+		FormCopyController.controller.init();
+	}
 }
 jQuery(document).ready(FormCopyController.controller.AddDisclaimers())

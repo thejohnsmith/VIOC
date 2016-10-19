@@ -44,7 +44,9 @@ OrderSummaryController = (function ($) {
 
 			// Show the appropriate UI
 			if (getParameterByName("new") == 1) {
+				$('.thanky-msg').html($('.thanky-msg').html().replace("%%User.FirstName%%",marcomUserData.$user.firstName));
 				$('.thanky-msg').show();
+				$("#homePageUrl").attr('href', marcomUserData.$constants.homePageUrl);
 				if ($("#orderConfirmationNumber").html() == "")
 					$("#orderConfirmationNumber").closest('div').hide();
 			} else {
@@ -52,11 +54,6 @@ OrderSummaryController = (function ($) {
 				$('#CtlBrdCrm, #CtlCart, .ButtonRowFloatR').show();
 				$('.CustomCopy').hide();
 			}
-
-			var $j = jQuery;
-			$j('#FormCopyController').load("https://files.marcomcentral.app.pti.com/epsilon/static_beta/js/app/adhoc/FormCopyController.js", function () {
-				// console.info('Load was FormCopyController.js performed.');
-			});
 
 			if ($('#ctl00_content_OrderSummary_lblCustRefText') && $('#ctl00_content_OrderSummary_CtlOrderItemList_CtlOrderItems_ctl02_tdIOQuantity')) {
 				var orderQuantity = $('#ctl00_content_OrderSummary_CtlOrderItemList_CtlOrderItems_ctl02_tdIOQuantity').text();

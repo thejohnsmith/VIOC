@@ -37,12 +37,12 @@
                         - John Smith
                       -->
                     <small>
-                        <a href="#sortable" role="button" class="pull-right display-inline storeNewsEventsPromotionsShowActive" aria-hidden="false">
-                            | Show scheduled/active only
+                        <a id="linkshowactiveonly" href="#sortable" role="button" class="pull-right display-inline storeNewsEventsPromotionsShowActive" aria-hidden="false" hidden>
+                            Show scheduled/active only
                         </a>
 
-                        <a href="#sortable" role="button" class="pull-right display-inline storeNewsEventsPromotionsShowAll" aria-hidden="false" hidden>
-                            Show All |
+                        <a id="linkshowall" href="#sortable" role="button" class="pull-right display-inline storeNewsEventsPromotionsShowAll" aria-hidden="false" >
+                            Show All
                         </a>
                     </small>
                     <div id="mustacheTableHtmlNews"></div>
@@ -70,7 +70,7 @@
                                     </th>
                                 </tr>
                                 <tr class="empty-row">
-                                    <td colspan="7" class="list-item">No Promotion/News/Events created.</td>
+                                    <td colspan="7" class="list-item">No Promotions/News/Events created.</td>
                                 </tr>
                                 <!--
                                 <tr draggable="true" class="filterable newsEventPromotionItem text-center storeNewsEventsPromotionsShowAllItem storeNewsEventsPromotionsActive" data-filter-storeid="1" data-storeid="1" data-enrolled="true">

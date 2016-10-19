@@ -10,7 +10,8 @@ var StorePageDetailNewsController = (function ($) {
 	    isAdd: false,
 	    idEditing: null,
 	    savenewStorePromoImageId: null,
-        savenewStorePromoImageUrl: null,
+	    savenewStorePromoImageUrl: null,
+	    showAll: false,
 		
 		// None
 
@@ -30,6 +31,14 @@ var StorePageDetailNewsController = (function ($) {
 		populateUI: function(cb) {
 		    // Build the HTML here, without event handling
 		    siteCoreLibrary.retrieveStoreNews([siteCoreLibrary.stores[0].storeNumber], function (news) {
+
+                if (controller.showAll == false) {
+                    for (var i = 0; i < news.length; i++) {
+                        if (false == moment().isBetween(news[i].postOnDate, news[i].removeOnDate)) {
+                            news.splice(i, 1);
+                        }
+                    }
+                }
 
 		        var promoarray = [];
 		        var eventarray = [];
@@ -65,12 +74,12 @@ var StorePageDetailNewsController = (function ($) {
 		            news.push(promoarray[i]);
 		        }
 
-		        for (var i = 0; i < eventarray.length; i++) {
-		            news.push(eventarray[i]);
-		        }
-
 		        for (var i = 0; i < newsarray.length; i++) {
 		            news.push(newsarray[i]);
+		        }
+
+		        for (var i = 0; i < eventarray.length; i++) {
+		            news.push(eventarray[i]);
 		        }
 
 		        /*
@@ -124,8 +133,8 @@ var StorePageDetailNewsController = (function ($) {
 		        controller.onClickDeleteNews(id);
 		    });
 
-		    $('#buttonsavenews').unbind().click(function () {
-		        controller.onButtonSaveNews();
+		    $('#buttonsavenews').unbind().click(function (e) {
+		        controller.onButtonSaveNews(e);
 		    });
 
 		    $('#addnewsbutton').unbind().click(function () {
@@ -138,6 +147,14 @@ var StorePageDetailNewsController = (function ($) {
 
 		    $('#removegraphicbutton').unbind().click(function () {
 		        controller.onRemoveGraphicButton();
+		    });
+
+		    $('#linkshowactiveonly').unbind().click(function () {
+		        controller.OnShowActiveOnly();
+		    });
+
+		    $('#linkshowall').unbind().click(function () {
+		        controller.OnShowAll();
 		    });
 
 		    $('#newimagenews').unbind().change(function () { $('#uploader_form_newsimage_1').submit(); });
@@ -203,12 +220,12 @@ var StorePageDetailNewsController = (function ($) {
 
 		                // load image
 		                if (newsItem.image.url) {
-		                    $("#newsEventPromotionImage").attr("src", newsItem.image.url);
+		                    $("#newsEventPromotionImage").attr("src", newsItem.image.url + "?" + Math.random());
 		                    controller.savenewStorePromoImageId = newsItem.image.id;
 		                    controller.savenewStorePromoImageUrl = newsItem.savenewStorePromoImageUrl;
 		                }
 		                else {
-		                    $("#newsEventPromotionImage").attr("src", "https://placeholdit.imgix.net/~text?txtsize=33&txt=350%C3%97150&w=350&h=150");
+		                    $("#newsEventPromotionImage").attr("src", "https://placeholdit.imgix.net/~text?txtsize=33&txt=1046%C3%97322&w=1046&h=322");
 		                }
 
 		                $('#newsformbanner').html('Edit News/Event/Promotion');
@@ -240,7 +257,18 @@ var StorePageDetailNewsController = (function ($) {
 		    });
 		},
 
-		onButtonSaveNews() {
+		onButtonSaveNews(e) {
+
+		    // verify post on and remove on date are correct
+
+		    var postOnDate = moment($('#newsEventPostDate').val());
+		    var removeOnDate = moment($('#newsEventRemoveDate').val());
+
+		    if (!removeOnDate.isAfter(postOnDate)) {
+		        e.stopPropagation();
+		        toastr.error("Remove On Date has to be after Post On Date.");
+		        return;
+		    }
 
 		    /*
             1911FD9D-64CB-4795-870D-3CCB912CD2FB - Events
@@ -276,8 +304,7 @@ var StorePageDetailNewsController = (function ($) {
 		        newsItem.image.url = controller.savenewStorePromoImageUrl;
 		    }
 		    else {
-		        //newsItem.image = {};
-		        delete newsItem['image'];
+		        newsItem.image = {};
 		    }
 
 		    if (controller.isAdd == true) {
@@ -325,7 +352,31 @@ var StorePageDetailNewsController = (function ($) {
 
 		onButtonCancelNews() {
 		    window.location.href = marcomUserData.$constants.storePagesUrl;
+		},
+
+		OnShowActiveOnly() {
+		    $('#linkshowall').show();
+		    $('#linkshowactiveonly').hide();
+
+		    controller.showAll = false;
+
+		    controller.populateUI(function () {
+		        controller.attachEventListeners();
+		    });
+		},
+
+		OnShowAll() {
+
+		    $('#linkshowall').hide();
+		    $('#linkshowactiveonly').show();
+
+		    controller.showAll = true;
+
+		    controller.populateUI(function () {
+		        controller.attachEventListeners();
+		    });
 		}
+  
 	};
 
 	return {
