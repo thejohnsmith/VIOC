@@ -142,7 +142,7 @@ var StorePageDetailCareersTabController = (function ($) {
 		                $('#JobTitle').val(career.title);
 		                $('#JobDescription').val(career.description);
 
-		                if (career.linkType == 'Web') {
+		                if (career.linkType == 'Web' || career.linkType == 'http://') {
 		                    $('#optionsRadios1').prop('checked', true);
 		                    $('#thelink').val(career.link);
 		                }

@@ -56,18 +56,16 @@ var marcomUserData = (function ($) {
 			forgotPassPageUrl: 'forgotpassword.aspx?uigroup_id=478656',
 			accountPageUrl: 'profile.aspx?uigroup_id=478656&mode=1',
 			onDemandUrl: 'catalog.aspx?uigroup_id=478656&folder_id=1724903',
-			storePagesUrl: 'CustomPage.aspx?uigroup_id=478656&page_id=13586',
-			storeDetailsUrl: 'CustomPage.aspx?uigroup_id=478656&page_id=13599',
+			storePagesUrl: 'CustomPage.aspx?uigroup_id=478656&page_id=13586',  
+			storeDetailsUrl: 'CustomPage.aspx?uigroup_id=478656&page_id=13596', 
 			storePagesNewOfferUrl: 'CustomPage.aspx?uigroup_id=478656&page_id=13597',
-			storePagesEditOfferUrl: 'CustomPage.aspx?uigroup_id=478656&page_id=13598',
+			storePagesEditOfferUrl: 'CustomPage.aspx?uigroup_id=478656&page_id=13597',
 			defaultStorePhotoId: 'f6f18b71-c587-4b44-893b-eba37d1f81e7',
 			defaultStorePhotoUrl: 'https://vioc.d.epsilon.com/images/Default_store.jpg',
-			defaultManagerPhotoId: 'f6f18b71-c587-4b44-893b-eba37d1f81e7',
+			defaultManagerPhotoId: '11c3e57d-a90a-4de7-96f9-73e7aa6a7834',
 			defaultManagerPhotoUrl: 'https://vioc.d.epsilon.com:443/~/media/Images/Locations/Stores/Manager Photos/Default Manager.ashx',
 			apiPath: 'https://adobe-prod-vioc.epsilon.com/jssp/vioc/',
 			apiPathLocal: 'data/',
-			includesPath: 'https://files.marcomcentral.app.pti.com/epsilon/static/includes/',
-			includesPath: 'https://files.marcomcentral.app.pti.com/epsilon/static/includes/',
 			marcomFilePath: 'https://files.marcomcentral.app.pti.com/epsilon/static/',
 			marcomCustomFilePath: 'https://files.marcomcentral.app.pti.com/epsilon/static/marcom_custom/'
 		}
@@ -110,7 +108,6 @@ var marcomUserData = (function ($) {
 				defaultManagerPhotoUrl: 'https://vioc.d.epsilon.com:443/~/media/Images/Locations/Stores/Manager Photos/Default Manager.ashx',
 				apiPath: 'https://adobe-prod-vioc.epsilon.com/jssp/vioc/',
 				apiPathLocal: 'data/',
-				includesPath: 'https://files.marcomcentral.app.pti.com/epsilon/static_beta/includes/',
 				marcomFilePath: 'https://files.marcomcentral.app.pti.com/epsilon/static_beta/',
 				marcomCustomFilePath: 'https://files.marcomcentral.app.pti.com/epsilon/static_beta/marcom_custom/'
 			}

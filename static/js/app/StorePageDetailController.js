@@ -20,7 +20,6 @@ var StorePageDetailController = StorePageDetailController || (function ($) {
 
 	    storeNumber: '',
 	    apiPath: marcomUserData.$constants.apiPath,
-			includesPath: marcomUserData.$constants.includes,
 	    userId: marcomUserData.$user.externalId,
 	    savenewStoreImageId: null,
 	    savenewStoreImageUrl: null,
@@ -76,7 +75,7 @@ var StorePageDetailController = StorePageDetailController || (function ($) {
 	        siteCoreLibrary.init(function (error) {
 	            siteCoreLibrary.loadStores([controller.storeNumber], function (error) {
 	                if (controller.validateStoreLoaded(controller.storeNumber)) {
-	                    controller.loadSectionsFromMustache(function() {
+	                    controller.loadSectionsFromMustache(function() { 
 	                        controller.populateUI(function () {
 	                            controller.attachEventListeners();
 	                            controller.refreshLandmarkPreview();
@@ -93,7 +92,7 @@ var StorePageDetailController = StorePageDetailController || (function ($) {
 	    getStoreNumber: function() {
 	        var controller = this;
 	        controller.storeNumber = getParameterByName('storeNumber', window.location.href);
-
+			
 	        if (controller.storeNumber == "501" || controller.storeNumber == "701" || controller.storeNumber == "941")
 	        {
 	            toastr.success('Store ' + controller.storeNumber + " is a test store.  Changing store number to 050002 for testing purposes.");
@@ -116,8 +115,8 @@ var StorePageDetailController = StorePageDetailController || (function ($) {
 	        return true;
 	    },
 	    loadSectionsFromMustache: function(cb) {
-
-	        var prefix = controller.includes || PathmarcomUserData.$constants.includes;
+			
+	        var prefix = "https://files.marcomcentral.app.pti.com/epsilon/static_beta/includes/"
 
 	        var d1 = $.get(prefix + "store-landmark-info.mustache");
 	        var d2 = $.get(prefix + "store-basic-details.mustache");
@@ -131,9 +130,9 @@ var StorePageDetailController = StorePageDetailController || (function ($) {
 	        var d10 = $.get(prefix + "store-careers.mustache");
 	        var d11 = $.get(prefix + "store-features.mustache");
 
-	        $.when(d1,d2,d3,d4,d5,d6,d7,d8,d9,d10,d11).done(function(
+	        $.when(d1,d2,d3,d4,d5,d6,d7,d8,d9,d10,d11).done(function( 
 				d1res,d2res,d3res,d4res,d5res,d6res,d7res,d8res,d9res,d10res,d11res) {
-
+					
 	            $(".dropzone.dropzone-landmark-info").html($(d1res[0]).filter(".mustache-template").html());
 	            $(".dropzone.dropzone-basic-details").html($(d2res[0]).filter(".mustache-template").html());
 	            $(".dropzone.dropzone-communities-served").html($(d3res[0]).filter(".mustache-template").html());
@@ -146,7 +145,7 @@ var StorePageDetailController = StorePageDetailController || (function ($) {
 	            $(".dropzone.dropzone-careers").html($(d10res[0]).filter(".mustache-template").html());
 	            $(".dropzone.dropzone-features").html($(d11res[0]).filter(".mustache-template").html());
 	            cb();
-	        });
+	        });			
 	    },
 	    attachEventListeners: function() {
 	        var controller = this;
@@ -161,21 +160,45 @@ var StorePageDetailController = StorePageDetailController || (function ($) {
 	        $("input[name='storeNeighboringType']").change(function() { controller.onChangePreviewInput() });
 	        $(targets.join(",")).change(function() { controller.onChangePreviewInput() });
 	        $(targets.join(",")).keyup(function() { controller.onChangePreviewInput() });
-
+			
 	        // -------------------------------------
 	        // Listen for Other Actions
 	        // -------------------------------------
 	        $(".btn-save").click(function () { controller.onSave() });
 	        $("#buttoncancel").click(function () { controller.onCancel() });
-
-	        $('#newimage').change(function () { $('#uploader_form_1').submit(); });
+		
+	        $('#newimage').change(function () {
+	            var selected_file_name = $(this).val();
+	            if (selected_file_name.length > 0) {
+	                $('#uploader_form_1').submit();
+	            }
+	            else {
+	                /* No file selected or cancel/close
+                       dialog button clicked */
+	                /* If user has select a file before,
+                       when they submit, it will treated as
+                       no file selected */
+	            }
+	        });
 	        $("#uploader_form_1").submit(function (event) { controller.onUploadStorePhoto(event); });
 			$(".btn-store.btn-restore-default").click(function(event) { controller.onRestoreStorePhoto(event) });
 			$(".btn-manager.btn-restore-default").click(function(event) { controller.onRestoreManagerPhoto(event) });
 
-	        $('#newmanagerimage').change(function () { $('#uploader_form_3').submit(); });
+			$('#newmanagerimage').change(function () {
+			    var selected_file_name = $(this).val();
+			    if (selected_file_name.length > 0) {
+			        $('#uploader_form_3').submit();
+			    }
+			    else {
+			        /* No file selected or cancel/close
+                       dialog button clicked */
+			        /* If user has select a file before,
+                       when they submit, it will treated as
+                       no file selected */
+			    }
+			});
 	        $("#uploader_form_3").submit(function (event) { controller.onUploadManagerPhoto(event); });
-
+			
 	        // -------------------------------------
 	        // Listen for failed image loads
 	        // -------------------------------------
@@ -183,12 +206,13 @@ var StorePageDetailController = StorePageDetailController || (function ($) {
 			$("#manager-photo-item").on('error', function () { controller.onRestoreManagerPhoto({}) });
 
 			$('.select-all-services').click(function () { controller.onSelectAllServices(); });
-
+			
 	    },
 
 		populateUI: function(cb) {
 			var controller = this;
 			controller.setTitle();
+			controller.setBreadcrumbs();
 			controller.setLandmarkInputFields();
 			controller.populateBasicDetails();
 			controller.populateStorePhoto();
@@ -209,7 +233,7 @@ var StorePageDetailController = StorePageDetailController || (function ($) {
 			$(".company-phone").html(storeData.phone);
 			$(".company-manager").html(storeData.managerName);
 
-			$.each(daysOfWeek, function(i,day) {
+			$.each(daysOfWeek, function(i,day) { 
 				var hours = storeData[day + "Hours"];
 				var isClosed = hours.length < 8;
 				if (isClosed) {
@@ -253,7 +277,7 @@ var StorePageDetailController = StorePageDetailController || (function ($) {
 			$(".store-services-list").append('<div style="height: 10px"></div>');
 
 			$.each(siteCoreLibrary.settings.Services, function(i, service) {
-
+				
 				if ($.inArray(service.name, controller.serviceFilter) == -1) return;
 				var item = '<li class="list-item-default service-item col-sm-12">';
 				item += '<label class="checkbox-default">';
@@ -297,14 +321,14 @@ var StorePageDetailController = StorePageDetailController || (function ($) {
 				});
 
 				var checked = '';
-
+                 
 				if (isChecked === true) {
 				    checked = 'checked';
 				}
 
 				item += '<input class="checkbox-default-input" type="checkbox" data-id="' + holiday.id + '" name="storeClosure" ' + checked + '/>' + holiday.name;
 				item += '</label></li>';
-
+				
 				var leading_zero = (holiday.month < 10) ? "0" : "";
 				var leading_zero2 = (i < 10) ? "0" : "";
 				items["seq_" + leading_zero + holiday.month.toString() + holiday.day.toString() + leading_zero2 + i.toString()] = item;
@@ -344,7 +368,7 @@ var StorePageDetailController = StorePageDetailController || (function ($) {
 			var placeholder = "";
 			switch (key) {
 				case "#storeStreet": placeholder = "[STREET]"; break;
-				case "input[name='storeNeighboringType']:checked":
+				case "input[name='storeNeighboringType']:checked": 
 					$("input[name='storeNeighboringType']:first").prop('checked', 'true');
 				break;
 				case "#storeNeighboring": placeholder = "[NEIGHBORING BUSINESS]"; break;
@@ -359,13 +383,18 @@ var StorePageDetailController = StorePageDetailController || (function ($) {
 		},
 		setTitle: function() {
 			var controller = this;
-			$(".page-title span,.breadcrumb-current").html("Store Details - " + siteCoreLibrary.stores[0].name);
+			$(".page-title span").html("Store Details - " + siteCoreLibrary.stores[0].name);
+		},
+		setBreadcrumbs: function() {
+			var controller = this;
+			$(".breadcrumb-current").html("Store Details - " + siteCoreLibrary.stores[0].name);
+			$(".breadcrumb-current").prev().find("a").attr('href', marcomUserData.$constants.storePagesUrl);
 		},
 		setLandmarkInputFields: function() {
 			var controller = this;
 			var storeData = siteCoreLibrary.stores[0];
 			// storeData.landmark = "Welcome. The CHAMBERS ROAD Valvoline Instant Oil Change is located approximately 55.5 Miles North-West of The Old Barn near the intersection of Ross Ave. and 151st St across from Macy's.";
-
+			
 			// Read the current landmark value from the store
 			// If it's blank, set the input fields with default values.
 			if (storeData.landmark == "")
@@ -373,7 +402,7 @@ var StorePageDetailController = StorePageDetailController || (function ($) {
 				// Loop through the map
 				for (var key in controller.previewMap) {
 					var placeholder = controller.getLandmarkPlaceholder(key);
-
+					
 					// Set the input
 					if (placeholder != "")
 						$(key).val(placeholder);
@@ -383,9 +412,9 @@ var StorePageDetailController = StorePageDetailController || (function ($) {
 			else
 			{
 				var regex = /Welcome. The (.*?) Valvoline Instant Oil Change is located approximately (.*?) Miles (.*?) of (.*?) near the intersection of (.*?) and (.*?) (across from|next to) (.*?)\./;
-
+				
 				var matches = storeData.landmark.replace(/\s+/g, ' ').trim().match(regex);
-
+				
 			    try {
 			        $("#storeDistMiles").val(matches[2]);
 			        $("#storeDistDirection").val(matches[3]);
@@ -399,27 +428,27 @@ var StorePageDetailController = StorePageDetailController || (function ($) {
 			        $("#storeNeighboring").val(matches[8]);
 			    }
 			    catch (Err) { }
-
+				
 			};
-
-			// Set the fields
+			
+			// Set the fields 
 		},
 		refreshLandmarkPreview: function() {
-
+			
 			var controller = this;
-
+			
 			controller.getLandmarkDataFromTokens();
 
 			var previewMap = controller.previewMap;
 			var data = {};
-
+			
 			// Read the inputs and build the values for the mustache template.
 			for (var key in previewMap) {
 				var val = $(key).val();
 				if (val == undefined || val.trim() == "")
 				{
 					var placeholder = controller.getLandmarkPlaceholder(key);
-
+					
 					if (placeholder != "") {
 					    if (controller.previewMapState[key] == false) {
 					        $(key).val(placeholder);
@@ -427,7 +456,7 @@ var StorePageDetailController = StorePageDetailController || (function ($) {
 					    }
 					}
 				}
-
+				
 				data[previewMap[key]] = "<mark style=\"color: red; font-size: 14px; font-weight: bold;\" class='edit-" + previewMap[key] + "'>" + $(key).val() + "</mark>";
 			}
 
@@ -441,25 +470,32 @@ var StorePageDetailController = StorePageDetailController || (function ($) {
 			// Add click handlers to the display
 			for (var key in previewMap) {
 				var name = previewMap[key];
-				$(".edit-" + name).click(function () {
+				$(".edit-" + name).unbind('click').click(function () {
 				    var name = $(this).attr('class').replace("edit-", "");
 				    console.log("Clicked " + name);
 				    $j(".store-preview ~.form-item").addClass("none")
 				    $("." + name + "-container").removeClass("none");
 				});
 
-				$(key).blur(function (event) {
+				$(key).unbind('blur').blur(function (event) {
 
-				    if ($('#' + event.target.id).val() == '') {
-				        $('#' + event.target.id).val(controller.getLandmarkPlaceholder('#' + event.target.id));
+				    console.log("Blue " + event.target);
+
+				    if (event.target.id == 'storeLandmark' ||
+                        event.target.id == 'storeStreet' ||
+                        event.target.id == 'storeCrossStreet' ||
+                        event.target.id == 'storeNeighboring') {
+				        if ($('#' + event.target.id).val() == '') {
+				            $('#' + event.target.id).val(controller.getLandmarkPlaceholder('#' + event.target.id));
+				        }
+
+				        controller.storeLandmarkDataInTokens();
+				        controller.previewMapState[event.target.id] = false;
+				        controller.refreshLandmarkPreview();
 				    }
-
-				    controller.storeLandmarkDataInTokens();
-				    controller.previewMapState[event.target.id] = false;
-				    controller.refreshLandmarkPreview();
 				});
 			}
-
+			
 			// Update the store's landmark info.
 			siteCoreLibrary.stores[0].landmark = $(".preview-content:last").text().replace(/\s+/g, ' ').trim();
 		},
@@ -489,14 +525,16 @@ var StorePageDetailController = StorePageDetailController || (function ($) {
 		        var tokentwo = siteCoreLibrary.stores[0].landmarkToken2.split(' ');
 
 		        if (tokentwo.length > 1) {
-		            if ($.isNumeric(tokentwo[0]) == true) {
+		            if ($.isNumeric(tokentwo[0]) == true ||
+                        tokentwo[0] == '.' ||
+                        tokentwo[0] == '') {
 		                $('#storeDistMiles').val(tokentwo[0]);
 		                controller.storeDistMilesValid = true;
 		            }
-		            else {
+		            /*else {
 		                $('#storeDistMiles').val('0');
 		                controller.storeDistMilesValid = false;
-		            }
+		            }*/
 		        }
 		        else {
 		            controller.storeDistMilesValid = false;
@@ -534,7 +572,7 @@ var StorePageDetailController = StorePageDetailController || (function ($) {
 			// Parse Token #3 (Column D)
 				// Check if token 3 is empty
 					// If so, show an error and set $('#storeLandmark').val() to ""
-		    // If not, fill $('#storeLandmark').val() with token 3
+		    // If not, fill $('#storeLandmark').val() with token 3 
 
 		    if (siteCoreLibrary.stores[0].landmarkToken3 === '') {
 		        $('#storeLandmark').val('');
@@ -550,7 +588,7 @@ var StorePageDetailController = StorePageDetailController || (function ($) {
 		            controller.storeLandmarkValid = false;
 		        }
 		    }
-
+					
 			// Parse Token #4 (Column E)
 				// Check if token 4 is empty
 					// If so, show an error and set $('#storeStreet').val() to ""
@@ -570,7 +608,7 @@ var StorePageDetailController = StorePageDetailController || (function ($) {
 		            controller.storeStreetValid = false;
 		        }
 		    }
-
+				
 			// Parse Token #5 (Column F)
 				// Check if token 5 is empty
 					// If so, show an error and set $('#storeCrossStreet').val() to ""
@@ -600,7 +638,7 @@ var StorePageDetailController = StorePageDetailController || (function ($) {
 						// Set $('#storeNeighboringType').val() to "next to";
 					// Otherwise:
 						// If not, show an error and set $('#storeNeighboringType').val() to "across from";
-
+				
 		    if (siteCoreLibrary.stores[0].landmarkToken6 != '') {
 		        var tokensix = siteCoreLibrary.stores[0].landmarkToken6.split(' ');
 
@@ -701,20 +739,20 @@ var StorePageDetailController = StorePageDetailController || (function ($) {
 		        }
 		    }
 		},
-
-		storeLandmarkDataInTokens: function()
+		
+		storeLandmarkDataInTokens: function() 
 		{
-
+		 
 
 		    // now save stuff
             ////////////////////////////////////////////////////////////
 
 			// :TODO: Refactor and store back in semi-normalized fashion
-
+		
 			// Specifically, create each token by concatenating the various inputs in different ways.
-
+				
 		    // e.g. landmarkToken1 = $('#storeDistMiles').val() + " miles " + $('#storeDistDirection').val();
-
+			
 			//siteCoreLibrary.stores[0].landmarkToken1 = $('#storeDistMiles').val();
 
 		    var token2 = $('#storeDistMiles').val();
@@ -736,18 +774,16 @@ var StorePageDetailController = StorePageDetailController || (function ($) {
 
 			var token6 = '';
 
-			if ($('input[name="storeNeighboringType"]:checked').val() == true) {
-			    token6 += "across from ";
-			}
-			else {
-			    token6 += 'next to ';
-			}
+			var radioval = $('input[name="storeNeighboringType"]:checked').val();
+
+			token6 = radioval;
+			token6 += ' ';
 
 			token6 += $('#storeNeighboring').val();
 
 			siteCoreLibrary.stores[0].landmarkToken6 = token6;
 		},
-
+		
 		initCharacterLimits: function() {
 			$('.characterLimitInput').each(function () {
 				$(this).characterCounter({
@@ -761,7 +797,7 @@ var StorePageDetailController = StorePageDetailController || (function ($) {
 				});
 			});
 		},
-
+		
 		performInitCallbacks: function() {
 			var controller = this;
 			$.each(controller.postInitCallbacks, function(i,callback) {
@@ -769,11 +805,11 @@ var StorePageDetailController = StorePageDetailController || (function ($) {
 					callback();
 			});
 		},
-
+		
 		checkRestoreButtonVisibility: function() {
-
+			
 			var controller = this;
-
+			
 			if ($("#store-photo-item").attr("src") != marcomUserData.$constants.defaultStorePhotoUrl)
 			{
 				$(".btn-store.btn-restore-default").removeClass('none');
@@ -782,7 +818,7 @@ var StorePageDetailController = StorePageDetailController || (function ($) {
 			{
 				$(".btn-store.btn-restore-default").addClass('none');
 			}
-
+			
 			if ($("#manager-photo-item").attr("src") != marcomUserData.$constants.defaultManagerPhotoUrl)
 			{
 				$(".btn-manager.btn-restore-default").removeClass('none');
@@ -791,9 +827,9 @@ var StorePageDetailController = StorePageDetailController || (function ($) {
 			{
 				$(".btn-manager.btn-restore-default").addClass('none');
 			}
-
+		     
 		},
-
+		
 		showUI: function() {
 			var controller = this;
 
@@ -830,7 +866,7 @@ var StorePageDetailController = StorePageDetailController || (function ($) {
 
 		    $('#storenumberhidden').val(controller.storeNumber);
 			$("#uploader_form_1 input[name='ImageType']").val("store_" + siteCoreLibrary.stores[0].storeNumber + "_" + Date.now().toString());
-
+			
 			$("#store-photo-item").attr("src","https://placeholdit.imgix.net/~text?txtsize=24&txt=Loading...&w=150&h=150");
 
 		    siteCoreLibrary.addStoreImage(new FormData($('#uploader_form_1')[0]), function (err, data) {
@@ -890,7 +926,7 @@ var StorePageDetailController = StorePageDetailController || (function ($) {
 		onChangeClosedOn: function() {
 
 		},
-
+		
 		onSave: function () {
 
 		    // landmark

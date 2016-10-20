@@ -65,11 +65,12 @@ var recordLogin = (function ($) {
 		document.cookie = 'loginCount=' + $loginCount;
 		document.cookie = 'marcomReportingAccess=' + $reportingAccess;
 		document.cookie = 'marcomUserId=' + marcomUserData.$user.externalId;
-
+				
+		
 		var allowedOnDemandUsers = ['9AxjRAyjw399d3JmBs','Daa3fZwpiDn87uxNrFQ','fEXPbMk6pqj8vEPsq3G','JU8ifq5sr2swjvmIbCv','BBLMmYz7Hg8F0OYahZd','EHGyULHHHttq6k857W','R9rJu9azr3ICGxM11i4','i9YTdOoop9rhZTKkLxT','Nk2k8qRf1lH4fO4H1z','faeEYyoBMBLd1TEjArW','0adDmacCa3lQEvvSzx','E2W0XXBHVuhEQGDQuMW','SSLDurXv2GDIa3zpDaV','Mbmt5AbQgzlcBPf+J','M6l3hqR0zUoyqE7GPk8','dXxl8inekdvDSMzja6s','t6QhdhBTR3bBRlCERb7','0uzKkh4Kq0nWHJupCv','kSbR8MacAQdWMugWwH','KFKe1MHi3dMZv8sp36n','dMbRz+4nWR1vl492U','cUX14uPYeYaYXtiPsGg','2nz1l5qmFBn2jSzuJan','ml6aZ9kkKlAbaBEzgB','Uuk1xze37wwi3vLst/','GNr4F2IGqGgJdH9Aj','WJegGCEtIcsxTlvDhPc','Za592hbq6Xowd3weH2','zAC9b7qIAhkYi5K3XZf','rKY4pq5AvKiDjEHAEQd','rOu3gn3RUPxWPzUBtu6','tfvG2fXsfvaTMfCDBGxc','VCcMhJj9Q86Kc5yUr75','NWhNpgcF93eWPVNMr1D','QvjtJN5nN7yMDHxwtTe','3b9DccOm1YJTQTg0fLt']
-
+		
 		var allowedStorePageUsers = ['EHGyULHHHttq6k857W'];
-
+		
 		// If the current user isn't an authorized exception, hide On Demand Marketing.
 		if ($.inArray(marcomUserData.$user.externalId, allowedStorePageUsers) == -1)
 		{
@@ -77,13 +78,25 @@ var recordLogin = (function ($) {
 				return $(this).text() === 'STORE PAGES';
 			}).addClass('store-pages-link').hide();
 		}
-
+		else
+		{
+			$('.navBarItem > a').filter(function () {
+				return $(this).text() === 'STORE PAGES';
+			}).show();
+		}
+		
 		// If the current user isn't an authorized exception, hide On Demand Marketing.
 		if ($.inArray(marcomUserData.$user.externalId, allowedOnDemandUsers) == -1)
 		{
 			$('.navBarItem > a').filter(function () {
 				return $(this).text() === 'ON DEMAND MARKETING';
 			}).addClass('on-demand-marketing-link').hide();
+		}
+		else
+		{
+			$('.navBarItem > a').filter(function () {
+				return $(this).text() === 'ON DEMAND MARKETING';
+			}).show();
 		}
 
 		/* Show Reports main nav link if reportingAccess is 1 */
@@ -110,7 +123,7 @@ var recordLogin = (function ($) {
 			$('#welcome + #gettingStartedNow.landing-page-only').hide();
 			$('#programSummary.landing-page-only').fadeIn();
 		}
-
+		
 		// Show navigation now that we've manipulated it.
 		$(".navBarEnhanced li a").css('opacity', 1);
 	};

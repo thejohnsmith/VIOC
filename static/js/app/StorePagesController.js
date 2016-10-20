@@ -16,12 +16,14 @@ var StorePagesController = StorePagesController || (function ($) {
 		intervalHandle: null,
 		init: function () {
 			var controller = this;
-			programManagementFilters.controller.init();
-			controller.ConfigureFilters();
-			controller.AdjustUI(function () {
-				controller.getStoreProgramData(function () {
-					controller.ShowUI(function() {
-						controller.TapIntoFilterChanges();
+			siteCoreLibrary.init(function() {
+				programManagementFilters.controller.init();
+				controller.ConfigureFilters();
+				controller.AdjustUI(function () {
+					controller.getStoreProgramData(function () {
+						controller.ShowUI(function() {
+							controller.TapIntoFilterChanges();
+						});
 					});
 				});
 			});
@@ -218,6 +220,7 @@ var StorePagesController = StorePagesController || (function ($) {
 			var requestQueue = 0;
 			for(var idx in franchiseList)
 			{
+				debugger;
 				var code = franchiseList[idx];
 				requestQueue++;
 				siteCoreLibrary.loadStoresByFranchise(code, function() {
