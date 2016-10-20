@@ -106,8 +106,9 @@ var recordLogin = (function ($) {
 			'QvjtJN5nN7yMDHxwtTe',
 			'3b9DccOm1YJTQTg0fLt'
 		]
+		
+		var allowedStorePageUsers = allowedOnDemandUsers;
 
-		var allowedStorePageUsers = ['IQUb4GRsNuHvkPi5+t', 'EHGyULHHHttq6k857W'];
 		var authorizedOrderManagementUsers = ['IQUb4GRsNuHvkPi5+t', 'EHGyULHHHttq6k857W'];
 
 		// If the current user isn't an authorized exception, hide Store Pages
