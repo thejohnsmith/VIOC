@@ -167,12 +167,36 @@ var StorePageDetailController = StorePageDetailController || (function ($) {
 	        $(".btn-save").click(function () { controller.onSave() });
 	        $("#buttoncancel").click(function () { controller.onCancel() });
 		
-	        $('#newimage').change(function () { $('#uploader_form_1').submit(); });
+	        $('#newimage').change(function () {
+	            var selected_file_name = $(this).val();
+	            if (selected_file_name.length > 0) {
+	                $('#uploader_form_1').submit();
+	            }
+	            else {
+	                /* No file selected or cancel/close
+                       dialog button clicked */
+	                /* If user has select a file before,
+                       when they submit, it will treated as
+                       no file selected */
+	            }
+	        });
 	        $("#uploader_form_1").submit(function (event) { controller.onUploadStorePhoto(event); });
 			$(".btn-store.btn-restore-default").click(function(event) { controller.onRestoreStorePhoto(event) });
 			$(".btn-manager.btn-restore-default").click(function(event) { controller.onRestoreManagerPhoto(event) });
 
-	        $('#newmanagerimage').change(function () { $('#uploader_form_3').submit(); });
+			$('#newmanagerimage').change(function () {
+			    var selected_file_name = $(this).val();
+			    if (selected_file_name.length > 0) {
+			        $('#uploader_form_3').submit();
+			    }
+			    else {
+			        /* No file selected or cancel/close
+                       dialog button clicked */
+			        /* If user has select a file before,
+                       when they submit, it will treated as
+                       no file selected */
+			    }
+			});
 	        $("#uploader_form_3").submit(function (event) { controller.onUploadManagerPhoto(event); });
 			
 	        // -------------------------------------
@@ -188,6 +212,7 @@ var StorePageDetailController = StorePageDetailController || (function ($) {
 		populateUI: function(cb) {
 			var controller = this;
 			controller.setTitle();
+			controller.setBreadcrumbs();
 			controller.setLandmarkInputFields();
 			controller.populateBasicDetails();
 			controller.populateStorePhoto();
@@ -358,7 +383,12 @@ var StorePageDetailController = StorePageDetailController || (function ($) {
 		},
 		setTitle: function() {
 			var controller = this;
-			$(".page-title span,.breadcrumb-current").html("Store Details - " + siteCoreLibrary.stores[0].name);
+			$(".page-title span").html("Store Details - " + siteCoreLibrary.stores[0].name);
+		},
+		setBreadcrumbs: function() {
+			var controller = this;
+			$(".breadcrumb-current").html("Store Details - " + siteCoreLibrary.stores[0].name);
+			$(".breadcrumb-current").prev().find("a").attr('href', marcomUserData.$constants.storePagesUrl);
 		},
 		setLandmarkInputFields: function() {
 			var controller = this;
@@ -440,22 +470,29 @@ var StorePageDetailController = StorePageDetailController || (function ($) {
 			// Add click handlers to the display
 			for (var key in previewMap) {
 				var name = previewMap[key];
-				$(".edit-" + name).click(function () {
+				$(".edit-" + name).unbind('click').click(function () {
 				    var name = $(this).attr('class').replace("edit-", "");
 				    console.log("Clicked " + name);
 				    $j(".store-preview ~.form-item").addClass("none")
 				    $("." + name + "-container").removeClass("none");
 				});
 
-				$(key).blur(function (event) {
+				$(key).unbind('blur').blur(function (event) {
 
-				    if ($('#' + event.target.id).val() == '') {
-				        $('#' + event.target.id).val(controller.getLandmarkPlaceholder('#' + event.target.id));
+				    console.log("Blue " + event.target);
+
+				    if (event.target.id == 'storeLandmark' ||
+                        event.target.id == 'storeStreet' ||
+                        event.target.id == 'storeCrossStreet' ||
+                        event.target.id == 'storeNeighboring') {
+				        if ($('#' + event.target.id).val() == '') {
+				            $('#' + event.target.id).val(controller.getLandmarkPlaceholder('#' + event.target.id));
+				        }
+
+				        controller.storeLandmarkDataInTokens();
+				        controller.previewMapState[event.target.id] = false;
+				        controller.refreshLandmarkPreview();
 				    }
-
-				    controller.storeLandmarkDataInTokens();
-				    controller.previewMapState[event.target.id] = false;
-				    controller.refreshLandmarkPreview();
 				});
 			}
 			
@@ -488,14 +525,16 @@ var StorePageDetailController = StorePageDetailController || (function ($) {
 		        var tokentwo = siteCoreLibrary.stores[0].landmarkToken2.split(' ');
 
 		        if (tokentwo.length > 1) {
-		            if ($.isNumeric(tokentwo[0]) == true) {
+		            if ($.isNumeric(tokentwo[0]) == true ||
+                        tokentwo[0] == '.' ||
+                        tokentwo[0] == '') {
 		                $('#storeDistMiles').val(tokentwo[0]);
 		                controller.storeDistMilesValid = true;
 		            }
-		            else {
+		            /*else {
 		                $('#storeDistMiles').val('0');
 		                controller.storeDistMilesValid = false;
-		            }
+		            }*/
 		        }
 		        else {
 		            controller.storeDistMilesValid = false;
@@ -735,12 +774,10 @@ var StorePageDetailController = StorePageDetailController || (function ($) {
 
 			var token6 = '';
 
-			if ($('input[name="storeNeighboringType"]:checked').val() == true) {
-			    token6 += "across from ";
-			}
-			else {
-			    token6 += 'next to ';
-			}
+			var radioval = $('input[name="storeNeighboringType"]:checked').val();
+
+			token6 = radioval;
+			token6 += ' ';
 
 			token6 += $('#storeNeighboring').val();
 

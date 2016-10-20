@@ -77,6 +77,12 @@ var recordLogin = (function ($) {
 				return $(this).text() === 'STORE PAGES';
 			}).addClass('store-pages-link').hide();
 		}
+		else
+		{
+			$('.navBarItem > a').filter(function () {
+				return $(this).text() === 'STORE PAGES';
+			}).show();
+		}
 		
 		// If the current user isn't an authorized exception, hide On Demand Marketing.
 		if ($.inArray(marcomUserData.$user.externalId, allowedOnDemandUsers) == -1)
@@ -84,6 +90,12 @@ var recordLogin = (function ($) {
 			$('.navBarItem > a').filter(function () {
 				return $(this).text() === 'ON DEMAND MARKETING';
 			}).addClass('on-demand-marketing-link').hide();
+		}
+		else
+		{
+			$('.navBarItem > a').filter(function () {
+				return $(this).text() === 'ON DEMAND MARKETING';
+			}).show();
 		}
 
 		/* Show Reports main nav link if reportingAccess is 1 */

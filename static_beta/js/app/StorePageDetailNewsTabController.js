@@ -161,6 +161,11 @@ var StorePageDetailNewsController = (function ($) {
 		    $("#uploader_form_newsimage_1").unbind().submit(function (event) { controller.onUploadPhoto(event); });
 		},
 		
+		setPhoto: function(url)
+		{
+			$("#newsEventPromotionImage").attr("src", url + ((url.indexOf("?") > -1) ? "&" : "?") + "nocache=" + Math.random());
+		},
+		
 		showUI: function() {
 		    // Unhide the UI now that it is built and ready for interaction
 
@@ -220,12 +225,12 @@ var StorePageDetailNewsController = (function ($) {
 
 		                // load image
 		                if (newsItem.image.url) {
-		                    $("#newsEventPromotionImage").attr("src", newsItem.image.url + "?" + Math.random());
+							controller.setPhoto(newsItem.image.url);
 		                    controller.savenewStorePromoImageId = newsItem.image.id;
 		                    controller.savenewStorePromoImageUrl = newsItem.savenewStorePromoImageUrl;
 		                }
 		                else {
-		                    $("#newsEventPromotionImage").attr("src", "https://placeholdit.imgix.net/~text?txtsize=33&txt=1046%C3%97322&w=1046&h=322");
+		                    controller.setPhoto("https://placeholdit.imgix.net/~text?txtsize=33&txt=1046%C3%97322&w=1046&h=322");
 		                }
 
 		                $('#newsformbanner').html('Edit News/Event/Promotion');
@@ -329,17 +334,17 @@ var StorePageDetailNewsController = (function ($) {
 
 		    var controller = this;
 		    event.preventDefault();
+		    $('#uploader_form_newsimage_1 #storenumberhiddenn').val(siteCoreLibrary.stores[0].storeNumber);
+			$("#uploader_form_newsimage_1 input[name='ImageType']").val("news_" + Date.now().toString())
 
-		    $('#storenumberhiddenn').val(siteCoreLibrary.stores[0].storeNumber);
-
-		    $("#newsEventPromotionImage").attr("src", "https://placeholdit.imgix.net/~text?txtsize=24&txt=Loading...&w=150&h=150");
+			controller.setPhoto("https://placeholdit.imgix.net/~text?txtsize=24&txt=Loading...&w=150&h=150");
 
 		    siteCoreLibrary.addStoreImage(new FormData($('#uploader_form_newsimage_1')[0]), function (err, data) {
-		        controller.savenewStorePromoImageId = data.results.id;
-		        controller.savenewStorePromoImageUrl = data.results.url;
-		        $("#newsEventPromotionImage").attr("src", controller.savenewStorePromoImageUrl + "?" + Math.random());
-		     
-		        $('#uploader_form_newsimage_1')[0].reset();
+				controller.savenewStorePromoImageId = data.results.id;
+				controller.savenewStorePromoImageUrl = data.results.url;
+				controller.setPhoto(controller.savenewStorePromoImageUrl);
+			 
+				$('#uploader_form_newsimage_1')[0].reset();
 		    });
 
 		},
@@ -347,7 +352,7 @@ var StorePageDetailNewsController = (function ($) {
 		onRemoveGraphicButton() {
 		    controller.savenewStorePromoImageId = null;
 		    controller.savenewStorePromoImageUrl = null;
-		    $('#newsEventPromotionImage').attr('src', 'https://placeholdit.imgix.net/~text?txtsize=33&txt=1046%C3%97322&w=1046&h=322');
+			controller.setPhoto('https://placeholdit.imgix.net/~text?txtsize=33&txt=1046%C3%97322&w=1046&h=322');
 		},
 
 		onButtonCancelNews() {

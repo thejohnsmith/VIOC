@@ -13,6 +13,8 @@ var SiteCoreLibrary = (function () {
             'FeatureIcons': [],
             'Status': []
         };
+		this.siteCoreAPI = "";
+		this.siteCoreAuthToken = "Token  BE8E5CD2-61C0-4041-96DB-7A36B41643A5";
         this.stores = [];
         this._storesOriginal = [];
         /**
@@ -24,9 +26,13 @@ var SiteCoreLibrary = (function () {
          */
         this.init = function (cb) {
             var self = this;
+			self.siteCoreAPI = (marcomUserData.$constants.kind == "PROD") 
+				? "https://www.vioc.com/storeapi/"
+				: "https://vioc.d.epsilon.com/storeapi/";
+				
             // :TODO: Call SiteCore at ~/sitecore/services/Settings endpoint and store the results in this.settings.
             // Trigger the callback
-            jQuery.get( "https://vioc.d.epsilon.com/storeapi/settings.ashx", function(data) {   // :FEEDBACK: Move this path to a global constant / property
+            jQuery.get( self.siteCoreAPI + "settings.ashx", function(data) {   // :FEEDBACK: Move this path to a global constant / property
                 self.settings.Services = data.results.services;
                 self.settings.Features = data.results.features;
                 self.settings.Careers = data.results.careers;
@@ -40,7 +46,7 @@ var SiteCoreLibrary = (function () {
                 //console.log(data);
                 //console.log(self.settings);
                 console.log("Init complete!");
-                cb(null);
+               cb(null);
             });
         };
         /**
@@ -58,7 +64,7 @@ var SiteCoreLibrary = (function () {
             var ajajCallsRemaining  = stores.length;
             
             for (var i = 0; i < stores.length; i++) { 
-                jQuery.get( "https://vioc.d.epsilon.com/storeapi/storequery.ashx?id=" + stores[i] + "&Fields=ALL", function(data) {
+                jQuery.get( self.siteCoreAPI + "storequery.ashx?id=" + stores[i] + "&Fields=ALL", function(data) {
                 
 				  self._processStoreQueryResponse(data);
                   
@@ -106,7 +112,7 @@ var SiteCoreLibrary = (function () {
         { 
           var self = this;
           
-          jQuery.get( "https://vioc.d.epsilon.com/storeapi/storequery.ashx?FranchiseId=" + companyCode + "&Fields=ALL", function(data) {
+          jQuery.get( self.siteCoreAPI + "storequery.ashx?FranchiseId=" + companyCode + "&Fields=ALL", function(data) {
 			  
 				self._processStoreQueryResponse(data);
                 
@@ -137,7 +143,7 @@ var SiteCoreLibrary = (function () {
         this.retrieveStoreCareers = function (storeNumber, cb) {
             var self = this;
 
-            jQuery.get("https://vioc.d.epsilon.com/storeapi/storequery.ashx?id=" + storeNumber + "&Fields=ALL", function (data) {
+            jQuery.get(self.siteCoreAPI + "storequery.ashx?id=" + storeNumber + "&Fields=ALL", function (data) {
 
                 cb(data.results[0].careers);
             });
@@ -145,7 +151,7 @@ var SiteCoreLibrary = (function () {
         this.retrieveStoreNews = function (storeNumber, cb) {
             var self = this;
 
-            jQuery.get("https://vioc.d.epsilon.com/storeapi/storequery.ashx?id=" + storeNumber + "&Fields=ALL", function (data) {
+            jQuery.get(self.siteCoreAPI + "storequery.ashx?id=" + storeNumber + "&Fields=ALL", function (data) {
 
                 cb(data.results[0].news);
             });
@@ -161,17 +167,18 @@ var SiteCoreLibrary = (function () {
          } );*/
         
          this.createFeature = function(newFeature, cb) { 
+            var self = this;
             jQuery.ajax({
                   type: 'POST',
-                  url: 'https://vioc.d.epsilon.com/storeapi/feature.ashx',
+                  url: self.siteCoreAPI + 'feature.ashx',
                   headers: {
-                      "Authorization":"Token  BE8E5CD2-61C0-4041-96DB-7A36B41643A5"
+                      "Authorization": self.siteCoreAuthToken
                   },
                   data: JSON.stringify(newFeature),
                   dataType: "json",
                   crossdomain: true,
-                  success: function (data) { cb(null, data); },
-                  error: function (jqXHR, textStatus, errorThrown) { cb(errorThrown, null); }
+                  success: function (data) { self.callbackWrapper(cb, null, data); },
+                  error: function (jqXHR, textStatus, errorThrown) { self.callbackWrapper(cb, errorThrown, null); }
               });
          }
         
@@ -191,146 +198,156 @@ var SiteCoreLibrary = (function () {
          
          this.createCareer = function(careerItem, cb)
          {
+            var self = this;
             jQuery.ajax({
                   type: 'POST',
-                  url: 'https://vioc.d.epsilon.com/storeapi/career.ashx',
+                  url: self.siteCoreAPI + 'career.ashx',
                   headers: {
-                      "Authorization":"Token  BE8E5CD2-61C0-4041-96DB-7A36B41643A5"
+                      "Authorization": self.siteCoreAuthToken
                   },
                   data: JSON.stringify(careerItem),
                   dataType: "json",
                   crossDomain: true,
-                  success: function (data) { cb(null, data); },
-                  error: function (jqXHR, textStatus, errorThrown) { cb(errorThrown, null); }
+                  success: function (data) { self.callbackWrapper(cb, null, data); },
+                  error: function (jqXHR, textStatus, errorThrown) { self.callbackWrapper(cb, errorThrown, null); }
               });
          }
          
          this.modifyCareer = function(careerItem, cb)
          {
+            var self = this;
             jQuery.ajax({
                   type: 'PUT',
-                  url: 'https://vioc.d.epsilon.com/storeapi/career.ashx',
+                  url: self.siteCoreAPI + 'career.ashx',
                   headers: {
-                      "Authorization":"Token  BE8E5CD2-61C0-4041-96DB-7A36B41643A5"
+                      "Authorization": self.siteCoreAuthToken
                   },
                   data: JSON.stringify(careerItem),
                   dataType: "json",
-                  success: function (data) { cb(null, data); },
-                  error: function (jqXHR, textStatus, errorThrown) { cb(errorThrown, null); }
+                  success: function (data) { self.callbackWrapper(cb, null, data); },
+                  error: function (jqXHR, textStatus, errorThrown) { self.callbackWrapper(cb, errorThrown, null); }
               });
          }
 
          this.archiveCareer = function (careerItem, cb) {
+            var self = this;
              jQuery.ajax({
                  type: 'DELETE',
-                 url: 'https://vioc.d.epsilon.com/storeapi/career.ashx?archive=true',
+                 url: self.siteCoreAPI + 'career.ashx?archive=true',
                  headers: {
-                     "Authorization": "Token  BE8E5CD2-61C0-4041-96DB-7A36B41643A5"
+                     "Authorization":  self.siteCoreAuthToken
                  },
                  data: JSON.stringify(careerItem),
                  dataType: "json",
-                 success: function (data) { cb(null, data); },
-                 error: function (jqXHR, textStatus, errorThrown) { cb(errorThrown, null); }
+                 success: function (data) { self.callbackWrapper(cb, null, data); },
+                 error: function (jqXHR, textStatus, errorThrown) { self.callbackWrapper(cb, errorThrown, null); }
              });
          }
 
          this.unarchiveCareer = function (careerItem, cb) {
+            var self = this;
              jQuery.ajax({
                  type: 'DELETE',
-                 url: 'https://vioc.d.epsilon.com/storeapi/career.ashx?archive=false',
+                 url: self.siteCoreAPI + 'career.ashx?archive=false',
                  headers: {
-                     "Authorization": "Token  BE8E5CD2-61C0-4041-96DB-7A36B41643A5"
+                     "Authorization":  self.siteCoreAuthToken
                  },
                  data: JSON.stringify(careerItem),
                  dataType: "json",
-                 success: function (data) { cb(null, data); },
-                 error: function (jqXHR, textStatus, errorThrown) { cb(errorThrown, null); }
+                 success: function (data) { self.callbackWrapper(cb, null, data); },
+                 error: function (jqXHR, textStatus, errorThrown) { self.callbackWrapper(cb, errorThrown, null); }
              });
          }
 
          this.deleteFeature = function(featureItem, cb)
          {
+            var self = this;
             jQuery.ajax({
                   type: 'DELETE',
-                  url: 'https://vioc.d.epsilon.com/storeapi/feature.ashx',
+                  url: self.siteCoreAPI + 'feature.ashx',
                   headers: {
-                      "Authorization":"Token  BE8E5CD2-61C0-4041-96DB-7A36B41643A5"
+                      "Authorization": self.siteCoreAuthToken
                   },
                   data: JSON.stringify(featureItem),
                   dataType: "json",
-                  success: function (data) { cb(null, data); },
-                  error: function (jqXHR, textStatus, errorThrown) { cb(errorThrown, null); }
+                  success: function (data) { self.callbackWrapper(cb, null, data); },
+                  error: function (jqXHR, textStatus, errorThrown) { self.callbackWrapper(cb, errorThrown, null); }
               });
          }
          
          this.deleteCareer = function(careerItem, cb)
          {
+            var self = this;
             jQuery.ajax({
                   type: 'DELETE',
-                  url: 'https://vioc.d.epsilon.com/storeapi/career.ashx',
+                  url: self.siteCoreAPI + 'career.ashx',
                   headers: {
-                      "Authorization":"Token  BE8E5CD2-61C0-4041-96DB-7A36B41643A5"
+                      "Authorization": self.siteCoreAuthToken
                   },
                   data: JSON.stringify(careerItem),
                   dataType: "json",
-                  success: function (data) { cb(null, data); },
-                  error: function (jqXHR, textStatus, errorThrown) { cb(errorThrown, null); }
+                  success: function (data) { self.callbackWrapper(cb, null, data); },
+                  error: function (jqXHR, textStatus, errorThrown) { self.callbackWrapper(cb, errorThrown, null); }
               });
          }
          
          this.createNews = function(newsItem, cb)
          {
+            var self = this;
             jQuery.ajax({
                   type: 'POST',
-                  url: 'https://vioc.d.epsilon.com/storeapi/news.ashx',
+                  url: self.siteCoreAPI + 'news.ashx',
                   headers: {
-                      "Authorization":"Token  BE8E5CD2-61C0-4041-96DB-7A36B41643A5"
+                      "Authorization": self.siteCoreAuthToken
                   },
                   data: JSON.stringify(newsItem),
                   dataType: "json",
                   crossdomain: true,
-                  success: function (data) { cb(null, data); },
-                  error: function (jqXHR, textStatus, errorThrown) { cb(errorThrown, null); }
+                  success: function (data) { self.callbackWrapper(cb, null, data); },
+                  error: function (jqXHR, textStatus, errorThrown) { self.callbackWrapper(cb, errorThrown, null); }
               });
          }
          
          this.modifyNews = function(newsItem, cb)
          {
+            var self = this;
             jQuery.ajax({
                   type: 'PUT',
-                  url: 'https://vioc.d.epsilon.com/storeapi/news.ashx',
+                  url: self.siteCoreAPI + 'news.ashx',
                   headers: {
-                      "Authorization":"Token  BE8E5CD2-61C0-4041-96DB-7A36B41643A5"
+                      "Authorization": self.siteCoreAuthToken
                   },
                   data: JSON.stringify(newsItem),
                   dataType: "json",
-                  success: function (data) { cb(null, data); },
-                  error: function (jqXHR, textStatus, errorThrown) { cb(errorThrown, null); }
+                  success: function (data) { self.callbackWrapper(cb, null, data); },
+                  error: function (jqXHR, textStatus, errorThrown) { self.callbackWrapper(cb, errorThrown, null); }
               });
          }
          
          this.deleteNews = function(newsItem, cb)
          {
+            var self = this;
             jQuery.ajax({
                   type: 'DELETE',
-                  url: 'https://vioc.d.epsilon.com/storeapi/offer.ashx',
+                  url: self.siteCoreAPI + 'offer.ashx',
                   headers: {
-                      "Authorization":"Token  BE8E5CD2-61C0-4041-96DB-7A36B41643A5"
+                      "Authorization": self.siteCoreAuthToken
                   },
                   data: JSON.stringify(newsItem),
                   dataType: "json",
-                  success: function (data) { cb(null, data); },
-                  error: function (jqXHR, textStatus, errorThrown) { cb(errorThrown, null); }
+                  success: function (data) { self.callbackWrapper(cb, null, data); },
+                  error: function (jqXHR, textStatus, errorThrown) { self.callbackWrapper(cb, errorThrown, null); }
               });
          }
     
          this.getOffer = function(offerId, cb)
          {
+            var self = this;
              jQuery.ajax({
                  type: 'GET',
-                 url: 'https://vioc.d.epsilon.com/storeapi/offer.ashx?id=' + offerId,
+                 url: self.siteCoreAPI + 'offer.ashx?id=' + offerId,
                  headers: {
-                     "Authorization": "Token  BE8E5CD2-61C0-4041-96DB-7A36B41643A5"
+                     "Authorization":  self.siteCoreAuthToken
                  },
                  success: function (data) { cb(null, data); },
                  error: function (jqXHR, textStatus, errorThrown) { cb(errorThrown, null); }
@@ -339,46 +356,49 @@ var SiteCoreLibrary = (function () {
 
          this.createOffer = function(offerItem, cb)
          {
+            var self = this;
             jQuery.ajax({
                   type: 'POST',
-                  url: 'https://vioc.d.epsilon.com/storeapi/offer.ashx',
+                  url: self.siteCoreAPI + 'offer.ashx',
                   headers: {
-                      "Authorization":"Token  BE8E5CD2-61C0-4041-96DB-7A36B41643A5"
+                      "Authorization": self.siteCoreAuthToken
                   },
                   data: JSON.stringify(offerItem),
                   dataType: "json",
-                  success: function (data) { cb(null, data); },
-                  error: function (jqXHR, textStatus, errorThrown) { cb(errorThrown, null); }
+                  success: function (data) { self.callbackWrapper(cb, null, data); },
+                  error: function (jqXHR, textStatus, errorThrown) { self.callbackWrapper(cb, errorThrown, null); }
               });
          }
          
          this.modifyOffer = function(offerItem, cb)
          {
+            var self = this;
            jQuery.ajax({
                   type: 'PUT',
-                  url: 'https://vioc.d.epsilon.com/storeapi/offer.ashx',
+                  url: self.siteCoreAPI + 'offer.ashx',
                   headers: {
-                      "Authorization":"Token  BE8E5CD2-61C0-4041-96DB-7A36B41643A5"
+                      "Authorization": self.siteCoreAuthToken
                   },
                   data: JSON.stringify(offerItem),
                   dataType: "json",
-                  success: function (data) { cb(null, data); },
-                  error: function (jqXHR, textStatus, errorThrown) { cb(errorThrown, null); }
+                  success: function (data) { self.callbackWrapper(cb, null, data); },
+                  error: function (jqXHR, textStatus, errorThrown) { self.callbackWrapper(cb, errorThrown, null); }
               });
          }
          
          this.deleteOffer = function(offerItem, cb)
          {
+            var self = this;
             jQuery.ajax({
                   type: 'DELETE',
-                  url: 'https://vioc.d.epsilon.com/storeapi/offer.ashx',
+                  url: self.siteCoreAPI + 'offer.ashx',
                   headers: {
-                      "Authorization":"Token  BE8E5CD2-61C0-4041-96DB-7A36B41643A5"
+                      "Authorization": self.siteCoreAuthToken
                   },
                   data: JSON.stringify(offerItem),
                   dataType: "json",
-                  success: function (data) { cb(null, data); },
-                  error: function (jqXHR, textStatus, errorThrown) { cb(errorThrown, null); }
+                  success: function (data) { self.callbackWrapper(cb, null, data); },
+                  error: function (jqXHR, textStatus, errorThrown) { self.callbackWrapper(cb, errorThrown, null); }
               });
          }
 		 
@@ -387,10 +407,10 @@ var SiteCoreLibrary = (function () {
             
             jQuery.ajax({
                   type: 'POST',
-                  url: 'https://vioc.d.epsilon.com/storeapi/image.ashx',
+                  url: self.siteCoreAPI + 'image.ashx',
                   //url: 'https://requestb.in/1kxcfj41',
                   headers: {
-                      "Authorization":"Token  BE8E5CD2-61C0-4041-96DB-7A36B41643A5"
+                      "Authorization": self.siteCoreAuthToken
                   },
                   cache: false,
                    contentType: false,
@@ -398,10 +418,18 @@ var SiteCoreLibrary = (function () {
                    processData: false,
                   /*contentType: 'multipart/form-data',*/
                   data: formdata,
-                  success: function (data) { cb(null, data); },
-                  error: function (jqXHR, textStatus, errorThrown) { cb(errorThrown, null); }
+                  success: function (data) { self.callbackWrapper(cb, null, data); },
+                  error: function (jqXHR, textStatus, errorThrown) { self.callbackWrapper(cb, errorThrown, null); }
               });
          }
+		 
+		 this.callbackWrapper = function(cb, arg1, arg2)
+		 {
+			 // Due to latency in siteCore, we need to wait a few seconds before responding
+			 setTimeout(function() {
+				 cb(arg1, arg2);
+			 }, 2000);
+		 }
          
         /**
          * Pushes modified stores back to SiteCore.  If a store load is in progress,
@@ -438,10 +466,10 @@ var SiteCoreLibrary = (function () {
             for (var i = 0; i < toModifyList.length; i++) { 
                 jQuery.ajax({
                         type: 'PUT',
-                        url: 'https://vioc.d.epsilon.com/storeapi/storeupdate.ashx',
+                        url: self.siteCoreAPI + 'storeupdate.ashx',
                         //url: 'https://requestb.in/18ba6mk1',
                         headers: {
-                            "Authorization":"Token  BE8E5CD2-61C0-4041-96DB-7A36B41643A5"
+                            "Authorization": self.siteCoreAuthToken
                         },
                         data: toModifyList[i],
                         dataType: "json",
