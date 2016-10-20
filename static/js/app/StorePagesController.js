@@ -43,7 +43,7 @@ var StorePagesController = StorePagesController || (function ($) {
 				callback();
 			}
 		},
-		
+
 		TapIntoFilterChanges: function() {
 			var controller = this;
 			// This area gets a little magical.  programManagementFilter.js wasn't built with proper encapulation,
@@ -52,23 +52,23 @@ var StorePagesController = StorePagesController || (function ($) {
 			programManagementFilters.controller.onFilterChange = controller.onFilterChange;
 			controller.onFilterChange(programManagementFilters.controller.store_ids);
 		},
-		
+
 		onFilterChange: function(storeIds) {
 			// Call the original functionality of the store filter
 			programManagementFilters.controller.onFilterChangeOriginal(storeIds);
-			
+
 			// Do our custom add-on
 			controller.setOfferDetails();
 		},
-		
+
 		setOfferDetails: function() {
 
 			var tagTemplate = $('.offer-tag-template').html();
 			var newTagTemplate = $('.new-offer-tag-template').html();
-			
+
 			$.each($j("tr.store-item"), function(i,tr) {
 				if ($(tr).hasClass('hide')) return;
-				
+
 				var storeNumber = $(tr).attr('data-store-number');
 				var storeIndex = null;
 				$.each(siteCoreLibrary.stores, function(i,store) {
@@ -91,21 +91,21 @@ var StorePagesController = StorePagesController || (function ($) {
 					}
 				});
 			});
-			
+
 			$.each($(".edit-offer-tag"), function(i,e)  {
 				var offerId = $(e).attr('data-id');
 				var storeNumber = $(e).closest("tr").attr('data-store-number');
 				var url = marcomUserData.$constants.storePagesEditOfferUrl + "&storeNumber=" + storeNumber + "&offerId=" + offerId;
 				$(e).attr('href', url)
 			});
-			
+
 			$(".create-offer-tag").attr('href', marcomUserData.$constants.storePagesEditOfferUrl);
-			
+
 			$(".remove-offer-tag").click(controller.RemoveOffer);
-			
+
 			$j('[data-toggle="tooltip"]').tooltip();
 		},
-		
+
 		/*RemoveOffer: function(e) {
 			jConfirm("Remove this offer?", 'Please Confirm', function(r) {
 				if (!r) return;
@@ -165,7 +165,7 @@ var StorePagesController = StorePagesController || (function ($) {
 		        });
 		    });
 		},
-		
+
 		InitializeTabs: function () {
 			if ($('#parentHorizontalTab').length < -1) {
 				return false;
@@ -215,12 +215,11 @@ var StorePagesController = StorePagesController || (function ($) {
 			var target_css_selector = "#storePage-storeTable-Section";
 
 			$(target_css_selector).html(Mustache.render(template, data));
-			
+
 			// Now load in sitecore data
 			var requestQueue = 0;
 			for(var idx in franchiseList)
 			{
-				debugger;
 				var code = franchiseList[idx];
 				requestQueue++;
 				siteCoreLibrary.loadStoresByFranchise(code, function() {
@@ -229,7 +228,7 @@ var StorePagesController = StorePagesController || (function ($) {
 						controller.setOfferDetails();
 				});
 			}
-			
+
 			cb()
 
 		},

@@ -56,8 +56,8 @@ var marcomUserData = (function ($) {
 			forgotPassPageUrl: 'forgotpassword.aspx?uigroup_id=478656',
 			accountPageUrl: 'profile.aspx?uigroup_id=478656&mode=1',
 			onDemandUrl: 'catalog.aspx?uigroup_id=478656&folder_id=1724903',
-			storePagesUrl: 'CustomPage.aspx?uigroup_id=478656&page_id=13586',  
-			storeDetailsUrl: 'CustomPage.aspx?uigroup_id=478656&page_id=13596', 
+			storePagesUrl: 'CustomPage.aspx?uigroup_id=478656&page_id=13586',
+			storeDetailsUrl: 'CustomPage.aspx?uigroup_id=478656&page_id=13596',
 			storePagesNewOfferUrl: 'CustomPage.aspx?uigroup_id=478656&page_id=13597',
 			storePagesEditOfferUrl: 'CustomPage.aspx?uigroup_id=478656&page_id=13597',
 			defaultStorePhotoId: "9d905764-f897-4d46-8c28-bcada654ebe9",
@@ -67,7 +67,8 @@ var marcomUserData = (function ($) {
 			apiPath: 'https://adobe-prod-vioc.epsilon.com/jssp/vioc/',
 			apiPathLocal: 'data/',
 			marcomFilePath: 'https://files.marcomcentral.app.pti.com/epsilon/static/',
-			marcomCustomFilePath: 'https://files.marcomcentral.app.pti.com/epsilon/static/marcom_custom/'
+			marcomCustomFilePath: 'https://files.marcomcentral.app.pti.com/epsilon/static/marcom_custom/',
+			manageOrdersUrl: 'manageOrders.aspx?uigroup_id=478656'
 		}
 		:
 
@@ -109,7 +110,8 @@ var marcomUserData = (function ($) {
 				apiPath: 'https://adobe-prod-vioc.epsilon.com/jssp/vioc/',
 				apiPathLocal: 'data/',
 				marcomFilePath: 'https://files.marcomcentral.app.pti.com/epsilon/static_beta/',
-				marcomCustomFilePath: 'https://files.marcomcentral.app.pti.com/epsilon/static_beta/marcom_custom/'
+				marcomCustomFilePath: 'https://files.marcomcentral.app.pti.com/epsilon/static_beta/marcom_custom/',
+				manageOrdersUrl: 'manageOrders.aspx?uigroup_id=479602'
 			}
 			: constants;
 	return {marcomUserData: this, $user: user, $constants: constants, environmentKind: environment.kind};
@@ -119,18 +121,7 @@ var marcomUserData = (function ($) {
 	// This is used as a precaution.
 	var $j = jQuery.noConflict();
 
-	// BACKUP 3pm
-	// if ($('[data-dynamicUrl]').length >= 1 {
-	// 	// $.each($('.productDescription'), function (index, value) {
-	// 	// 	console.log(index + ':' + $(value).text());
-	// 	// });
-	// 	$('[data-dynamicUrl]').each(function (index, value) {
-	// 		var path = marcomUserData.$constants + homePageGroupUrl;
-	// 		$(this).attr('href', $(value));
-	// 	});
-	// }
-
-	/**
+/**
  * Having an HTML element like this where I want to pass custom options:
  * @example
 	<div class="my-element"
@@ -160,7 +151,7 @@ var marcomUserData = (function ($) {
 		return optionsObject;
 	}
 
-	console.log(readCustomOptions($j('.dynamicLink')));
+	// console.log(readCustomOptions($j('.dynamicLink')));
 	//
 	// function setDynamicLink($elem) {
 	// 	var options = optionsObject;

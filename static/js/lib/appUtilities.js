@@ -20,7 +20,8 @@ var DoNotParseData = function (data) {
 };
 
 function getParameterByName(name, url) {
-	if (!url) url = window.location.href;
+	if (!url)
+		url = window.location.href;
 	name = name.replace(/[\[\]]/g, '\\$&');
 	var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)');
 	var results = regex.exec(url);
@@ -35,40 +36,48 @@ function getParameterByName(name, url) {
 
 JSON.nativeStringify = JSON.stringify;
 
-JSON.stringify = function(obj) {
-	
-	var t = typeof (obj);
+JSON.stringify = function (obj) {
+
+	var t = typeof(obj);
 
 	if (t != "object" || obj === null) {
 		// simple data type
-		if (t == "string") obj = '"' + obj.replace(/"/g,'\\\"').replace(/\n/g,'\\n') + '"';
+		if (t == "string")
+			obj = '"' + obj.replace(/"/g, '\\\"').replace(/\n/g, '\\n') + '"';
 		return String(obj);
 	} else if (t == "undefined") {
 		return String("");
-	}
-	else {
+	} else {
 		// recurse array or object
-		var n, v, json = [], arr = (obj && obj.constructor == Array);
+		var n,
+			v,
+			json = [],
+			arr = (obj && obj.constructor == Array);
 
 		for (n in obj) {
 			v = obj[n];
 			t = typeof(v);
 			if (obj.hasOwnProperty(n)) {
 				if (t == "string") {
-					v = '"' + v.replace(/"/g,'\\\"').replace(/[\r\n]/g,'\\n') + '"';
+					v = '"' + v.replace(/"/g, '\\\"').replace(/[\r\n]/g, '\\n') + '"';
 				} else if (t == "undefined") {
 					v = '""';
-				} else if (t == "object" && v !== null){
+				} else if (t == "object" && v !== null) {
 					v = JSON.stringify(v);
 				}
-				json.push((arr ? "" : '"' + n + '":') + String(v));
+				json.push((arr
+					? ""
+					: '"' + n + '":') + String(v));
 			}
 		}
 
-		return (arr ? "[" : "{") + String(json) + (arr ? "]" : "}");
+		return (arr
+			? "["
+			: "{") + String(json) + (arr
+			? "]"
+			: "}");
 	}
 }
-
 
 var appUtilities = (function ($) {
 	var controller = {
@@ -80,12 +89,13 @@ var appUtilities = (function ($) {
 		},
 		setBrowserTitle: function () {
 			var $pageTitle = '' || $('.wrapper h1').first().text();
-			return $('title').html('VIOC Warp Drive' + ' - ' + $pageTitle);
+			return $('title').html('VIOC Warp Drive' +
+				' - ' + $pageTitle);
 		},
 		changeNavBarLink: function () {
-			$('.navBarItem > a').filter(function () {
-				return $(this).text() === 'STORE PAGES';
-			}).addClass('storePages').hide();
+			// $('.navBarItem > a').filter(function () {
+			// 	return $(this).text() === 'STORE PAGES';
+			// }).addClass('storePages').hide();
 			$('.navBarItem > a').filter(function () {
 				return $(this).text() === 'REPORTS';
 			}).attr('href', 'https://bo-vioc.epsilon.com').attr('target', '_blank');
@@ -94,7 +104,15 @@ var appUtilities = (function ($) {
 				return $(this).text() === 'ON DEMAND MARKETING';
 			}).attr('href', marcomUserData.$constants.onDemandUrl);
 
-			$('.header-right .btnHelp, .header-right .btnContactUs').attr('href', marcomUserData.$constants.helpPageUrl);
+
+			var helpPageUrl = marcomUserData.$constants.helpPageUrl;
+			var contactUsUrl = marcomUserData.$constants.helpPageUrl;
+
+			$('.btnLogOut').before('<a title="Help" href="' + helpPageUrl + '" class="btnHelp">Help</a><img id="ctl00_ctl08_imgDivider1" class="NavTopDivider" src="https://images.printable.com/application/spacer_black.gif" style="border-width:0px;"><a title="Contact Us" href="' + contactUsUrl + '" class="btnContactUs">Contact Us</a><img id="ctl00_ctl08_imgDivider1" class="NavTopDivider" src="https://images.printable.com/application/spacer_black.gif" style="border-width:0px;">');
+
+			$('.NavTop, #CtlBody').fadeIn('slow');
+
+
 		},
 		setFavicon: function () {
 			return $('head').append('<link rel="icon" href="https://files.marcomcentral.app.pti.com/epsilon/static/images/favicon.ico" type="image/x-icon">');
@@ -134,9 +152,7 @@ var appUtilities = (function ($) {
 		},
 		MarcomUtilNav: function () {
 			$('.NavTop, .profile_menu').show();
-			$('.NavTop').css({
-				'position': 'relative'
-			});
+			$('.NavTop').css({'position': 'relative'});
 			$('.header-right').hide();
 			return this;
 		},
@@ -145,7 +161,9 @@ var appUtilities = (function ($) {
 		 */
 		runtimeDebugging: function () {
 			// Give the source a namespace
-			marcomUserData.environmentKind === 'UAT' ? $('html').addClass('Beta_Epsilon') : $('html').removeClass('Epsilon');
+			marcomUserData.environmentKind === 'UAT'
+				? $('html').addClass('Beta_Epsilon')
+				: $('html').removeClass('Epsilon');
 			var betaLink = $('.Beta_Epsilon .header-info h2');
 			betaLink.on('click', function (e) {
 				if (e.clientX > $(this).offset().left + 100) {

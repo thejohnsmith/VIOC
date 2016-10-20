@@ -35,7 +35,7 @@ input[type=number], input[type=password], input[type=search], input[type=text], 
 #ctl00_content_TextUserAttributeList_lblUserName, .ContentBoxGrey, .CtlAddrEdit {
   font-family: HelveticaNeueLT-Thin, sans-serif
 }
-#navBarEnhanced, .header-right {
+.header-right {
   visibility: hidden
 }
 #CtlBrdCrm, #divAddressBook {
@@ -44,7 +44,7 @@ input[type=number], input[type=password], input[type=search], input[type=text], 
 #CtlBody {
   max-width: 700px;
   margin: 0 auto;
-  box-shadow: 0 0 37px 10px rgba(0, 0, 0, .18)
+  /*box-shadow: 0 0 37px 10px rgba(0, 0, 0, .18)*/
 }
 .ContentBoxLarge {
   width: 100%;
@@ -120,7 +120,7 @@ a.pbtn span:hover:focus {
 span.pbtn-icon-after.img-next {
   display: none;
 }
-.RedBoldSm + span {
+.RedBoldSm+span {
   font-size: 12px;
   padding: 0 0 1em 0;
   margin: 0 0 0 -0.6em;
