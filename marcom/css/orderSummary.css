@@ -1,0 +1,19 @@
+@charset "UTF-8";
+
+/* Order Summary/Detail Copy */
+
+/* sets width of Shipping / Billing Address and Info */
+table.CtlSearchGroup { width: 455px;
+background-color: #fff!important;
+	}
+/* keeps PRINT THIS PAGE button in place, and clears order date table to the left */
+#CtlCart.ContentBoxLarge div.ButtonRowFloatR {
+left: 0px!important;
+margin-left: 455px;
+}
+/* keeps VIEW DETAIL SUMMARY button in place */
+
+div.ButtonRowFloatR {
+position: relative;
+left: -9px!important
+}

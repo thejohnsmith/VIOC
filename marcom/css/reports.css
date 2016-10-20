@@ -1,0 +1,5 @@
+@charset "UTF-8";
+/* Stretches out iFrame holding Reports */
+
+#ctl00_content_ReportsFrame_trReports  { width: 100%; }
+#ctl00_content_ReportsFrame_trReports iframe { width: 100%; }

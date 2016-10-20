@@ -1,0 +1,8 @@
+@charset "UTF-8";
+
+/* Order Manager Copy */
+
+/* sets width of Shipping / Billing Address and Info */
+table.CtlSearchGroup { width: 950px!important;}
+
+

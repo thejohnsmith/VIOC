@@ -1,0 +1,114 @@
+@charset "UTF-8";
+table, tr, td {
+	padding: 0px!important;
+	border-spacing: 0px!important;
+	border-style: none!important;
+	border-collapse: collapse!important;
+}
+#CtlBody, #CtlCart.ContentBoxLarge.NoBorder {
+	background-color: transparent !important;
+}
+.iconsHolder {
+	display: block;
+	margin: 10px auto 0 auto;
+	width: 960px;
+	clear: both;
+}
+.iconsHolder h1 {
+	display: block;
+	text-align: center;
+	padding: 0!important;
+	margin: 6px 0 20px 0!important;
+	font-family: 'Agenda-Light', Helvetica, Arial, sans-serif!important;
+	font-weight: 100!important;
+	font-size: 41px;
+	line-height: 41px!important;
+	color: #fff;
+}
+.icons {
+	position: relative;
+	float: left;
+	padding: 0px;
+	margin: 0 1.05% 0 0;
+	width: 32%;
+	height: 285px;
+	display: block;
+	border: 3px solid transparent;
+}
+.iconsLast {
+	margin: 0 0 0 0;
+	float: right;
+}
+/* Specifies background images for icons/folders on front page */
+
+ 
+
+.icons:before {
+	position: absolute;
+	height: 80px;
+	width: 100%;
+	padding: 0 !important;
+	margin: 0 auto !important;
+	display: inline-block;
+	font-size: 24px;
+	line-height: 75px;
+	color: #fff;
+	text-align: center;
+	text-transform: uppercase
+}
+.icons:after {
+	position: absolute;
+	height: 100%;
+	width: 100%;
+	padding: 0 !important;
+	content: "";
+	opacity: 0;
+	-webkit-transition: opacity 0.3s ease;
+	-moz-transition: opacity 0.3s ease;
+	-o-transition: opacity 0.3s ease;
+	transition: opacity 0.3s ease
+}
+.icons:hover:after {
+	opacity: 1;
+}
+
+
+/**/
+.iconsCorp {
+	background: #000 url('https://files.marcomcentral.app.pti.com/epsilon/marcom/images/iconsCorpBackgroundSm.png') 50% -50% no-repeat;
+	border-color: #000;
+}
+.icons.iconsCorp:before {
+	content: "Corporate";
+	background: #000;
+}
+.icons.iconsCorp:after {
+	background: #000 url('https://files.marcomcentral.app.pti.com/epsilon/marcom/images/iconsCorpBackgroundLg.png') 50% 50% no-repeat;
+}
+ /**/
+
+.iconsGroc {
+	background: #e1261c url('https://files.marcomcentral.app.pti.com/epsilon/marcom/images/iconsGrocBackgroundSm.png') 50% -50% no-repeat;
+	border-color: #e1261c;
+}
+.icons.iconsGroc:before {
+	content: "Grocery";
+	background: #e1261c;
+}
+.icons.iconsGroc:after {
+	background: #e1261c url('https://files.marcomcentral.app.pti.com/epsilon/marcom/images/iconsGrocBackgroundLg.png') 50% 50% no-repeat;
+}
+/**/
+
+
+.iconsFood {
+	background: #dbaa00 url('https://files.marcomcentral.app.pti.com/epsilon/marcom/images/iconsFoodBackgroundSm.png') 50% -50% no-repeat;
+	border-color: #dbaa00;
+}
+.icons.iconsFood:before {
+	content: "Food Service";
+	background: #dbaa00;
+}
+.icons.iconsFood:after {
+	background: #dbaa00 url('https://files.marcomcentral.app.pti.com/epsilon/marcom/images/iconsFoodBackgroundLg.png') 50% 50% no-repeat;
+}
