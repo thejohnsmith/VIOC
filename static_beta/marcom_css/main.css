@@ -500,12 +500,13 @@ li.navBarItem {
 }
 .NavTop {
   position: absolute;
-  z-index: 3;
-  display: none;
-  right: 0;
-  left: 0;
-  margin: 0.5em auto;
-  background: none;
+	width: auto;
+	z-index: 3;
+	display: none;
+	right: 0;
+	left: auto;
+	margin: 0.5em auto;
+	background: none;
 }
 .NavTop>div {
   float: right;
@@ -555,14 +556,14 @@ header#nav {
   padding-top: 11px;
   padding-left: 106px
 }
-.header-info, .header-info>* {}
 .header-info h2 {
   font-size: 16px;
   text-transform: uppercase
 }
 .header-info h2, .header-info h3, .header-info h3 b {
   font-family: 'HelveticaNeueLT-Thin', sans-serif;
-  font-weight: 400
+  font-weight: 400;
+  margin: auto;
 }
 .header-info h3 {
   letter-spacing: 1.9px;

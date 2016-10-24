@@ -116,7 +116,7 @@ var StorePageDetailController = StorePageDetailController || (function ($) {
 	    },
 	    loadSectionsFromMustache: function(cb) {
 			
-	        var prefix = "https://files.marcomcentral.app.pti.com/epsilon/static_beta/includes/"
+	        var prefix = marcomUserData.$constants.marcomFilePath + "includes/";
 
 	        var d1 = $.get(prefix + "store-landmark-info.mustache");
 	        var d2 = $.get(prefix + "store-basic-details.mustache");
@@ -500,13 +500,13 @@ var StorePageDetailController = StorePageDetailController || (function ($) {
 			siteCoreLibrary.stores[0].landmark = $(".preview-content:last").text().replace(/\s+/g, ' ').trim();
 		},
 
-		storeDistMilesValid : false,
-		storeDistDirectionValid : false,
-	    storeLandmarkValid : false,
-	    storeStreetValid : false,
-	    storeCrossStreetValid : false,
-	    storeNeighboringTypeValid: false,
-	    storeNeighboringValid : false,
+		storeDistMilesValid : true,
+		storeDistDirectionValid : true,
+	    storeLandmarkValid : true,
+	    storeStreetValid : true,
+	    storeCrossStreetValid : true,
+	    storeNeighboringTypeValid: true,
+	    storeNeighboringValid : true,
 
 		getLandmarkDataFromTokens: function()
 		{
@@ -537,7 +537,7 @@ var StorePageDetailController = StorePageDetailController || (function ($) {
 		            }*/
 		        }
 		        else {
-		            controller.storeDistMilesValid = false;
+		            //controller.storeDistMilesValid = false;
 		        }
 
 		        if (tokentwo.length > 2) {
@@ -566,7 +566,7 @@ var StorePageDetailController = StorePageDetailController || (function ($) {
 		        }
 		    }
 		    else {
-		        controller.storeDistMilesValid = false;
+		        //controller.storeDistMilesValid = false;
 		    }
 
 			// Parse Token #3 (Column D)
@@ -576,7 +576,7 @@ var StorePageDetailController = StorePageDetailController || (function ($) {
 
 		    if (siteCoreLibrary.stores[0].landmarkToken3 === '') {
 		        $('#storeLandmark').val('');
-		        controller.storeLandmarkValid = false;
+		        //controller.storeLandmarkValid = false;
 		    }
 		    else {
 		        $('#storeLandmark').val(siteCoreLibrary.stores[0].landmarkToken3);
@@ -585,7 +585,7 @@ var StorePageDetailController = StorePageDetailController || (function ($) {
 		            controller.storeLandmarkValid = true;
 		        }
 		        else {
-		            controller.storeLandmarkValid = false;
+		            //controller.storeLandmarkValid = false;
 		        }
 		    }
 					
@@ -596,7 +596,7 @@ var StorePageDetailController = StorePageDetailController || (function ($) {
 
 		    if (siteCoreLibrary.stores[0].landmarkToken4 === '') {
 		        $('#storeStreet').val('');
-		        controller.storeStreetValid = false;
+		        //controller.storeStreetValid = false;
 		    }
 		    else {
 		        $('#storeStreet').val(siteCoreLibrary.stores[0].landmarkToken4);
@@ -605,7 +605,7 @@ var StorePageDetailController = StorePageDetailController || (function ($) {
 		            controller.storeStreetValid = true;
 		        }
 		        else {
-		            controller.storeStreetValid = false;
+		            //controller.storeStreetValid = false;
 		        }
 		    }
 				
@@ -616,7 +616,7 @@ var StorePageDetailController = StorePageDetailController || (function ($) {
 
 		    if (siteCoreLibrary.stores[0].landmarkToken5 === '') {
 		        $('#storeCrossStreet').val('');
-		        controller.storeCrossStreetValid = false;
+		        //controller.storeCrossStreetValid = false;
 		    }
 		    else {
 		        $('#storeCrossStreet').val(siteCoreLibrary.stores[0].landmarkToken5);
@@ -625,7 +625,7 @@ var StorePageDetailController = StorePageDetailController || (function ($) {
 		            controller.storeCrossStreetValid = true;
 		        }
 		        else {
-		            controller.storeCrossStreetValid = false;
+		            //controller.storeCrossStreetValid = false;
 		        }
 		    }
 
@@ -684,7 +684,7 @@ var StorePageDetailController = StorePageDetailController || (function ($) {
 		                        controller.storeNeighboringValid = true;
 		                    }
 		                    else {
-		                        controller.storeNeighboringValid = false;
+		                        //controller.storeNeighboringValid = false;
 		                    }
 		                }
 		                else {
@@ -706,7 +706,7 @@ var StorePageDetailController = StorePageDetailController || (function ($) {
 		                        controller.storeNeighboringValid = true;
 		                    }
 		                    else {
-		                        controller.storeNeighboringValid = false;
+		                        //controller.storeNeighboringValid = false;
 		                    }
 		                }
 		            }
@@ -729,13 +729,13 @@ var StorePageDetailController = StorePageDetailController || (function ($) {
 		                    controller.storeNeighboringValid = true;
 		                }
 		                else {
-		                    controller.storeNeighboringValid = false;
+		                    //controller.storeNeighboringValid = false;
 		                }
 		            }
 		        }
 		        else {
-		            controller.storeNeighboringTypeValid = false;
-		            controller.storeNeighboringValid = false;
+		            //controller.storeNeighboringTypeValid = false;
+		            //controller.storeNeighboringValid = false;
 		        }
 		    }
 		},

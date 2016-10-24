@@ -44,6 +44,7 @@ OrderSummaryController = (function ($) {
 
 			// Show the appropriate UI
 			if (getParameterByName("new") == 1) {
+				//$('#CtlCart, .ButtonRowFloatR').hide();
 				$('.thanky-msg').html($('.thanky-msg').html().replace("%%User.FirstName%%",marcomUserData.$user.firstName));
 				$('.thanky-msg').show();
 				$("#homePageUrl").attr('href', marcomUserData.$constants.homePageUrl);
@@ -51,8 +52,7 @@ OrderSummaryController = (function ($) {
 					$("#orderConfirmationNumber").closest('div').hide();
 			} else {
 				// console.info('showing table page.');
-				$('#CtlBrdCrm, #CtlCart, .ButtonRowFloatR').show();
-				$('.CustomCopy').hide();
+				$('#CtlCart, .ButtonRowFloatR').show();
 			}
 
 			if ($('#ctl00_content_OrderSummary_lblCustRefText') && $('#ctl00_content_OrderSummary_CtlOrderItemList_CtlOrderItems_ctl02_tdIOQuantity')) {
