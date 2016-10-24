@@ -67,7 +67,7 @@ var recordLogin = (function ($) {
 		document.cookie = 'marcomReportingAccess=' + $reportingAccess;
 		document.cookie = 'marcomUserId=' + marcomUserData.$user.externalId;
 
-		var allowedOnDemandUsers = [
+		var allowedStorePageUsers = [
 			'IQUb4GRsNuHvkPi5+t',
 			'9AxjRAyjw399d3JmBs',
 			'Daa3fZwpiDn87uxNrFQ',
@@ -106,8 +106,8 @@ var recordLogin = (function ($) {
 			'QvjtJN5nN7yMDHxwtTe',
 			'3b9DccOm1YJTQTg0fLt'
 		]
-
-		var allowedStorePageUsers = allowedOnDemandUsers;
+		
+		var allowedOnDemandUsers = ['3b9DccOm1YJTQTg0fLt','Za592hbq6Xowd3weH2','dMbRz+4nWR1vl492U','KFKe1MHi3dMZv8sp36n','kSbR8MacAQdWMugWwH','t6QhdhBTR3bBRlCERb7','dXxl8inekdvDSMzja6s','R9rJu9azr3ICGxM11i4','EHGyULHHHttq6k857W','BBLMmYz7Hg8F0OYahZd','JU8ifq5sr2swjvmIbCv','fEXPbMk6pqj8vEPsq3G','Daa3fZwpiDn87uxNrFQ','9AxjRAyjw399d3JmBs'];
 		
 		var authorizedOrderManagementUsers = ['IQUb4GRsNuHvkPi5+t', 'EHGyULHHHttq6k857W'];
 
